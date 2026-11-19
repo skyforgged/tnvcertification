@@ -75,6 +75,82 @@ Article frontmatter may include:
 
 Treat `serviceId` as a service reference, not as duplicated service content. Resolve the ID against the canonical service dataset. If no matching service exists, do not invent a relationship or contextual claim; use the default footer as fallback.
 
+## Schedule CSV import workflow
+
+The schedule CSV is the operational source used to author and maintain training batches. A validated import converts each complete row into one schedule Markdown/frontmatter entry in the Astro `training-schedules` collection. The CSV is the authoring input; generated frontmatter is the website's content representation. Keep the importer deterministic and do not manually edit generated schedule files unless the workflow explicitly supports reverse-sync.
+
+Recommended source file: `src/data/schedules/schedules.csv`.
+
+### CSV columns
+
+Use this exact header and order:
+
+```csv
+ID,trainingSlug,startDate,endDate,timezone,locationType,venue,city,province,registrationStatus,price,currency,quota,registrationUrl,notes
+```
+
+- `ID` (required): stable numeric identifier for a schedule/batch; also used for its photo directory.
+- `trainingSlug` (required): foreign-key reference to a training collection entry.
+- `startDate`, `endDate` (required for a publishable schedule): ISO date `YYYY-MM-DD`.
+- `timezone` (optional): IANA timezone; default `Asia/Jakarta`.
+- `locationType` (optional): `offline`, `online`, or `hybrid`.
+- `venue`, `city`, `province` (optional): venue and location details.
+- `registrationStatus` (optional): `open`, `closed`, `full`, or `cancelled`; define a documented default if blank.
+- `price` (optional): numeric amount only, no currency symbols; zero means free, blank means price not provided.
+- `currency` (optional): ISO 4217 currency code; default `IDR`.
+- `quota` (optional): positive integer; blank means unknown.
+- `registrationUrl` (optional): registration link.
+- `notes` (optional): schedule-specific notes.
+
+### Import and validation behavior
+
+- Treat blank CSV cells as null/omitted values, not as zero, false, or an invented value.
+- Keep incomplete rows (for example, a row with ID and trainingSlug but no dates) in the CSV as planning records, but do not generate/publish them as schedule content.
+- Report skipped/incomplete rows with their row number and ID. Invalid values (duplicate IDs, unknown trainingSlug, malformed dates, endDate before startDate, invalid enum values, malformed URL, nonnumeric price/quota) must produce actionable validation errors.
+- Require `ID` uniqueness; preserve it when dates, price, venue, or status change.
+- Validate `trainingSlug` against the canonical training collection.
+- Never infer event times from date-only values.
+- Importer should be deterministic: identical valid CSV data and source content should produce the same frontmatter values, without build-time timestamps.
+- Generate schedule files keyed by ID (e.g. `3084.md`) and keep schedule photo paths keyed by the same ID.
+- Do not publish a row until both dates and required relationship fields validate.
+- Formatting (currency, date labels, CTA text) belongs in UI/rendering code, not in the CSV.
+- The importer should not silently turn missing price into free registration or missing quota into unlimited capacity.
+
+### CSV-to-frontmatter mapping
+
+Map CSV fields to frontmatter as follows: `ID` → `id`; `trainingSlug` → `trainingSlug`; `startDate`, `endDate`, `timezone`, `locationType`, `venue`, `city`, `province`, `registrationStatus`, `price`, `currency`, `quota`, `registrationUrl`, and `notes` retain their names. Publication metadata such as `pubDate`, `updatedDate`, `draft`, and URL slug may be generated/managed separately and must not be fabricated from the schedule dates.
+
+Example CSV planning row (not publishable until dates are supplied):
+
+```csv
+3083,ahli-higiene-industri-utama-hiu,,,,,,,,,,,,,
+```
+
+Example generated frontmatter for a complete row:
+
+```yaml
+---
+type: schedule
+id: 3084
+trainingSlug: operator-boiler-tingkat-1
+startDate: "2026-12-14"
+endDate: "2026-12-22"
+timezone: "Asia/Jakarta"
+locationType: offline
+venue: "Training Center"
+city: "Jakarta"
+province: "DKI Jakarta"
+registrationStatus: open
+price: 4500000
+currency: IDR
+quota: 20
+registrationUrl: "https://example.com/register"
+notes: "Sesi praktik perlu dikonfirmasi"
+---
+```
+
+The importer must preserve blanks as absent fields. The frontmatter schema should enforce the publishable schedule requirements while optional location, registration, pricing, and quota fields remain optional.
+
 ## Schedule content type
 
 Schedule content represents an event/batch occurrence (for example, a training batch), and is distinct from the training/course page and from an article. Validate its frontmatter through a dedicated collection schema.
