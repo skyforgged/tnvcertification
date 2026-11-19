@@ -1,5 +1,33 @@
 # Astro Architecture Guidelines
 
+
+## Editorial intro and SEO metadata validation
+
+All publishable content entries (services/certifications, training, schedules, articles, and applicable pages) must use separate fields for the page introduction, SEO snippet, and primary-image alternative text. These fields serve distinct purposes and must not be copied verbatim from one another.
+
+### Required fields and editorial format
+- `intro`: exactly one introductory paragraph rendered immediately after the page's H1. It must explain the page's `title` and begin with the title followed by `adalah ...`. Example: “Sertifikasi ISO 9001 adalah standar sistem manajemen mutu yang membantu organisasi mengendalikan dan meningkatkan prosesnya.” Avoid generic or repeated intros across unrelated entries.
+- `metaDescription`: a separate required SEO description. Write it for search-result context with a concise, persuasive, page-specific summary and relevant intent. It must not be identical to `intro` or `featuredImage.alt`. Character-length guidance (approximately 120–160 characters) should be a warning rather than a hard build failure; empty, duplicate, or verbatim-copy meta descriptions are errors.
+- `featuredImage`: exactly one required primary image object. Its `alt` is required, must explain the page title using the word `adalah`, and must be shorter and more concise than the intro. Alt text should accurately describe the image/content and avoid generic labels or keyword stuffing.
+- `images`: optional array of additional images. It does not replace or implicitly duplicate the required `featuredImage`.
+
+### Build-time validation
+Run content validation as part of the production build. Mandatory violations fail the build (non-zero exit status) and produce actionable diagnostics containing the content entry/path, field, rule identifier, and reason. Apply validation across every publishable content collection/type.
+
+Recommended rule identifiers:
+- `CONTENT-001`: H1 exists.
+- `CONTENT-002`: exactly one intro paragraph appears immediately after H1.
+- `CONTENT-003`: intro is non-empty and starts with the page title followed by `adalah`.
+- `CONTENT-004`: intro explains the title and is not generic/reused across unrelated content.
+- `CONTENT-005`: `metaDescription` is present and non-empty.
+- `CONTENT-006`: `metaDescription` is unique across pages and is not an exact duplicate of intro or image alt.
+- `CONTENT-007`: exactly one `featuredImage` object exists.
+- `CONTENT-008`: `featuredImage.alt` is non-empty and title-relevant, using `adalah`.
+- `CONTENT-009`: `featuredImage.alt` is shorter than intro.
+- `CONTENT-010`: optional `images`, when supplied, is a valid array of image objects.
+
+Meta-description length guidance should report warnings for unusually short/long values rather than failing solely on character count. Build validation must check the rendered/content source relationship between H1 and intro, not merely whether an arbitrary paragraph exists elsewhere.
+
 ## Core approach
 - Build TNV Certification as a content-driven Astro website.
 - Use Astro 7 or newer stable releases, subject to compatibility checks before upgrades.
