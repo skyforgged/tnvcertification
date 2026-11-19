@@ -270,3 +270,25 @@ Generate sitemap `lastmod` from actual content metadata rather than build/deploy
 - Do not set `lastmod` to the current build time or deployment time.
 - Keep timestamps valid and consistent in ISO 8601 format, including timezone information where available.
 - Only change `updatedDate` when meaningful content changes occur; avoid false freshness signals.
+
+## Semantic heading hierarchy validation
+
+Every publishable content page must use a sequential semantic heading hierarchy. Heading levels must not skip levels when moving deeper into the document.
+
+Allowed progression:
+- H1 → H2
+- H2 → H2 or H3 (or return to H1 for a new top-level section, only if the page structure permits it)
+- H3 → H2, H3, or H4
+- H4 → H3 or H4; returning to a higher level is permitted
+
+Invalid jumps include H1 → H3, H1 → H4, H2 → H4, and any transition that descends by more than one heading level. Headings must represent the document outline, not be chosen for visual styling.
+
+### Build validation
+
+Validate heading hierarchy from the parsed Markdown/content AST or rendered document structure, not fragile raw-text matching. A hierarchy violation is a hard build error with the content entry/path, heading text, actual level, expected level(s), and a rule identifier.
+
+Recommended rule identifier:
+- `CONTENT-011`: semantic heading levels must not skip (e.g., H1 cannot be followed directly by H3/H4; H2 cannot be followed directly by H4).
+
+This validation applies to all publishable content collections and page content that supports headings. The production build must exit non-zero if any violation is found.
+
