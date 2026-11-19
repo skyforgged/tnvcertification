@@ -86,11 +86,20 @@ Recommended source file: `src/data/schedules/schedules.csv`.
 Use this exact header and order:
 
 ```csv
-ID,trainingSlug,startDate,endDate,timezone,locationType,venue,city,province,registrationStatus,price,currency,quota,registrationUrl,notes
+ID,serviceSlug,trainingSlug,startDate,endDate,timezone,locationType,venue,city,province,registrationStatus,price,currency,quota,registrationUrl,notes
 ```
 
+### Service and training relationships
+
+- `serviceSlug` is optional and references a canonical service by its stable slug; it provides service context/category for a schedule where relevant.
+- `trainingSlug` is required for every publishable schedule and references the actual training/course entry the schedule belongs to.
+- Service and training are distinct content entities. A service may have no training schedule, and a training can exist without a service association.
+- Validate `serviceSlug` and `trainingSlug` independently against their respective canonical collections. Do not duplicate service title, service description, or service metadata into schedule CSV/frontmatter.
+- Do not require `serviceSlug` to be populated merely because a schedule exists.
+
 - `ID` (required): stable numeric identifier for a schedule/batch; also used for its photo directory.
-- `trainingSlug` (required): foreign-key reference to a training collection entry.
+- `serviceSlug` (optional): foreign-key reference to a canonical service entry, when the schedule has a service context.
+- `trainingSlug` (required): foreign-key reference to the canonical training collection entry for the actual course/batch.
 - `startDate`, `endDate` (required for a publishable schedule): ISO date `YYYY-MM-DD`.
 - `timezone` (optional): IANA timezone; default `Asia/Jakarta`.
 - `locationType` (optional): `offline`, `online`, or `hybrid`.
@@ -118,12 +127,12 @@ ID,trainingSlug,startDate,endDate,timezone,locationType,venue,city,province,regi
 
 ### CSV-to-frontmatter mapping
 
-Map CSV fields to frontmatter as follows: `ID` → `id`; `trainingSlug` → `trainingSlug`; `startDate`, `endDate`, `timezone`, `locationType`, `venue`, `city`, `province`, `registrationStatus`, `price`, `currency`, `quota`, `registrationUrl`, and `notes` retain their names. Publication metadata such as `pubDate`, `updatedDate`, `draft`, and URL slug may be generated/managed separately and must not be fabricated from the schedule dates.
+Map CSV fields to frontmatter as follows: `ID` → `id`; `serviceSlug` → `serviceSlug` (optional service context); `trainingSlug` → `trainingSlug`; `startDate`, `endDate`, `timezone`, `locationType`, `venue`, `city`, `province`, `registrationStatus`, `price`, `currency`, `quota`, `registrationUrl`, and `notes` retain their names. Publication metadata such as `pubDate`, `updatedDate`, `draft`, and URL slug may be generated/managed separately and must not be fabricated from the schedule dates.
 
 Example CSV planning row (not publishable until dates are supplied):
 
 ```csv
-3083,ahli-higiene-industri-utama-hiu,,,,,,,,,,,,,
+3083,,ahli-higiene-industri-utama-hiu,,,,,,,,,,,,,
 ```
 
 Example generated frontmatter for a complete row:
