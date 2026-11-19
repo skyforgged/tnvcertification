@@ -67,6 +67,30 @@ Reuse components across layouts where appropriate, but preserve meaningful diffe
 - Avoid excessively long utility chains; extract meaningful Astro components or reusable patterns when appropriate.
 - Do not add Bootstrap or generic UI kits without an explicit decision.
 
+## Visual identity and color system
+
+The visual direction is cheerful, energetic, bold, and professional. Avoid pale, washed-out, pastel-heavy palettes and conventional monochrome corporate styling.
+
+### Preferred palette direction
+- Electric blue: primary brand/action color (suggested `#315CFF`).
+- Deep blue: strong contrast, typography, dark sections (suggested `#1736A8`).
+- Vivid orange/coral: secondary accent and CTA variation (suggested `#FF6B35`).
+- Sunshine yellow: highlights, badges, editorial accents (suggested `#FFD447`).
+- Fresh mint: supporting accent (suggested `#36C9A5`).
+- Bright pink: optional accent used sparingly (suggested `#F45B91`).
+- Warm cream and white: primary light surfaces (suggested `#FFF8EC` and `#FFFFFF`).
+
+Treat these values as proposed design tokens, subject to accessibility contrast checks and refinement during implementation.
+
+### Application rules
+- Give colors clear roles; do not use all accents at once or create visual noise.
+- Maintain strong contrast and readable text, including text placed on colored surfaces; verify accessible combinations.
+- Create page rhythm with purposeful alternation of light surfaces, saturated color sections, and occasional dark/strong contrast sections. Avoid a site where every section is plain white.
+- Use bold color blocks, expressive but disciplined typography, and authentic imagery that supports certification, training, audit, industry, and professional contexts.
+- Use color to communicate hierarchy, section identity, interaction, or emphasis—not as random decoration.
+- Avoid pastel washout, generic corporate navy-only designs, excessive gradients/glows, glassmorphism, repetitive card grids, and template-like SaaS/AI visuals.
+- The target impression is credible, energetic, modern, human, and distinctive—not childish or chaotic.
+
 ## Rendering and data
 - Avoid duplicating content in page templates.
 - Prefer typed content and validated frontmatter.
