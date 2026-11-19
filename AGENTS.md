@@ -22,6 +22,7 @@ Build and maintain the PT. Intiprima Sertifikasi website as a polished, content-
 - Every publishable content entry must have exactly one `featuredImage` object. Its `alt` is required, explains the page title using `adalah`, and is shorter and more concise than the intro. Avoid generic alt text and keyword stuffing.
 - Additional `images` are optional and do not replace `featuredImage`.
 - Enforce required content rules at build time. Invalid content must fail the build with actionable file/field/rule diagnostics; do not treat mandatory rule violations as warnings.
+- Enforce semantic heading hierarchy at build time: heading levels must progress without skipping (H1 → H2 → H3 → H4). For example, H1 may be followed by H2, H2 may be followed by H3 or H2, and H3 may be followed by H4, H3, or a higher-level heading. H1 → H3, H2 → H4, and any other downward level jump are invalid and must fail the build. Heading hierarchy must be validated from the content/rendered document structure, not by string matching.
 
 ## Stack and conventions
 - Astro 7+ stable (confirm actual compatibility and release status before upgrades).
