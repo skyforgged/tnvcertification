@@ -49,6 +49,8 @@ Build and maintain the PT. Intiprima Sertifikasi website as a polished, content-
 - Design responsively, but preserve the intended composition across breakpoints rather than merely stacking everything.
 - Use imagery only where it adds meaning; ensure alt text is useful and not redundant.
 - Ensure interactive elements have clear affordances, focus states, and adequate contrast.
+- Visual direction: use a cheerful, vibrant, high-saturation palette—not pale, washed-out, or pastel-heavy corporate styling. Prefer strong colors such as electric blue, vivid orange/coral, sunshine yellow, and fresh mint balanced with warm cream and white. Color must be purposeful, with clear roles and accessible contrast; avoid using every accent at once. Create visual rhythm with intentional section/background variation rather than making the whole site white or uniformly dark.
+- Preserve a professional, credible, energetic, modern, and human brand feel. Avoid generic SaaS/AI landing-page styling, excessive cards, gradients/glows, and decorative color noise.
 
 ## Validation and delivery
 - Before committing, inspect the diff and check for accidental unrelated changes.
