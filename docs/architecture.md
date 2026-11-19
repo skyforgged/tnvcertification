@@ -75,6 +75,23 @@ Article frontmatter may include:
 
 Treat `serviceId` as a service reference, not as duplicated service content. Resolve the ID against the canonical service dataset. If no matching service exists, do not invent a relationship or contextual claim; use the default footer as fallback.
 
+## Training frontmatter and page composition
+
+Training content is a canonical program/course page, not a schedule record. The observed frontmatter structure includes:
+- Identity: `id`, `ulid`, `trainingSlug`, and `slug`.
+- Content/SEO metadata: `title`, `description`, `pubDate`, `updatedDate`, and `draft`.
+- Categorization: `categoryIds` referencing the canonical category dataset.
+- Hero metadata: `hero` object (headline, eyebrow, description, image alternative text, CTA, delivery mode, duration, and other optional fields).
+- Trust indicators: optional `hero.trustItems`.
+- Page composition: `blocks`, validated by block type and block-specific schema.
+
+### Training blocks and schedules
+- Training `blocks` control page section composition and must be schema-validated by discriminated block type.
+- The `training-schedule-list` block is a display/configuration block (e.g. heading, eyebrow, empty state, and list anchor), not the schedule data itself.
+- Schedule records are loaded from the separate `training-schedules` collection and associated to a training using `trainingSlug`. Do not duplicate schedule dates, pricing, quotas, registration state, or venue in the training frontmatter.
+- Training blocks may include `training-content-section`, `training-summary`, `training-detail-intro`, `training-cta`, `training-faq`, and `training-schedule-list`. Maintain a type-specific schema for each block and avoid one overly permissive schema.
+- The training example contains `categoryIds`, but no `serviceSlug`. Do not infer a service relationship from a category ID or assume every training belongs to a service. If a service relationship is needed, add an explicit canonical relationship field and define its ownership/derivation before implementation.
+
 ## Schedule CSV import workflow
 
 The schedule CSV is the operational source used to author and maintain training batches. A validated import converts each complete row into one schedule Markdown/frontmatter entry in the Astro `training-schedules` collection. The CSV is the authoring input; generated frontmatter is the website's content representation. Keep the importer deterministic and do not manually edit generated schedule files unless the workflow explicitly supports reverse-sync.
