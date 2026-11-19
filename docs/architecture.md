@@ -325,3 +325,13 @@ This validation applies to all publishable content collections and page content 
 - Only published, valid articles are eligible for these sections; draft/invalid articles must never appear. When `updatedDate` is missing, use `pubDate` as a documented sort fallback. For deterministic ordering when timestamps match, sort by `pubDate DESC`, then stable article ID/slug ascending.
 - Keep these article selection rules in shared data/query logic rather than duplicating sort/filter logic in page components. Homepage and service-index article lists must use the same sorted result so their rank windows remain consistent.
 - The number of articles in the service-detail related section is a presentation/configuration choice; do not assume an arbitrary limit unless explicitly set.
+
+## Article archive listing and pagination
+
+- The `/articles/` archive page displays published, valid articles as article cards in a responsive grid: 3 columns on desktop, 2 on tablet, and 1 on mobile.
+- Use a page size of 9 articles (3×3 grid) per page.
+- Cards use the article's single `featuredImage`, category when available, title, intro/excerpt, updated date, and a clear link to the article. Keep card markup semantic and links keyboard-accessible.
+- Use the same canonical published-article dataset and ordering as the homepage and service index: effective update date descending (`updatedDate`, falling back to `pubDate`), then `pubDate DESC`, then stable ID/slug ascending.
+- Pagination is generated dynamically from the number of eligible published articles. Do not emit empty or out-of-range pages. First page canonical URL is `/articles/`; subsequent pages use `/articles/page/2/`, `/articles/page/3/`, etc.
+- Pagination links must be crawlable HTML anchors (Previous, page numbers, Next), with the current page clearly indicated and appropriately marked for assistive technology. Disable/omit Previous on the first page and Next on the last page. Provide correct page-specific metadata/canonical handling; do not canonicalize every page to the archive root.
+- The grid must adapt to screen sizes without forcing three columns on narrow viewports.
