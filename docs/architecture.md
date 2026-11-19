@@ -277,9 +277,10 @@ Every publishable content page must use a sequential semantic heading hierarchy.
 
 Allowed progression:
 - H1 → H2
-- H2 → H2 or H3 (or return to H1 for a new top-level section, only if the page structure permits it)
-- H3 → H2, H3, or H4
-- H4 → H3 or H4; returning to a higher level is permitted
+- From any heading, moving back to a higher-level heading (a numerically smaller level) is permitted when structurally appropriate.
+- H2 → H2 or H3
+- H3 → H3 or H4
+- H4 → H4 (or move back to H1, H2, or H3 as appropriate)
 
 Invalid jumps include H1 → H3, H1 → H4, H2 → H4, and any transition that descends by more than one heading level. Headings must represent the document outline, not be chosen for visual styling.
 
