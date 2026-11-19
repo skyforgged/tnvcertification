@@ -1,6 +1,5 @@
 # Astro Architecture Guidelines
 
-
 ## Editorial intro and SEO metadata validation
 
 All publishable content entries (services/certifications, training, schedules, articles, and applicable pages) must use separate fields for the page introduction, SEO snippet, and primary-image alternative text. These fields serve distinct purposes and must not be copied verbatim from one another.
@@ -47,7 +46,6 @@ Organize collections by content type, not visual layout. Recommended initial col
 - training-schedules
 - articles
 - pages
-
 Each collection should define a TypeScript schema using Astro's content APIs and Zod. Use frontmatter for metadata and structured content. Use Markdown body for long-form editorial content. Use MDX only when embedding components in editorial content is a real requirement.
 
 ## Layout flexibility
@@ -57,7 +55,6 @@ Do not force all pages into one layout. Choose layouts by purpose and content:
 - Training pages: course-focused layout with objectives, audience, curriculum, delivery, and registration details.
 - Schedule pages: schedule/list-oriented layout with dates, status, modality, and registration.
 - Corporate pages: flexible informational layouts.
-
 Reuse components across layouts where appropriate, but preserve meaningful differences in hierarchy and user experience.
 
 ## Styling
@@ -116,12 +113,47 @@ Service, Schedule, and Article content types may all use FAQ, HowTo, and CTA blo
 - HowTo JSON-LD, if emitted, must describe visible step content and accurate supported details. Do not imply eligibility for Google HowTo rich results.
 - Structured data should reflect the content actually rendered and should not be emitted merely because a block schema exists.
 
+## Schema.org structured data for Service pages
+
+Service detail pages (for example, `/services/<slug>/`) use Schema.org's `Service` as the primary structured-data entity. Services are professional certification/audit services, not physical products; do not use `Product` as a substitute.
+
+### Recommended JSON-LD graph
+Generate JSON-LD programmatically from canonical content and the central `site.ts` configuration. A service detail page should normally emit a graph containing:
+- `Service`: primary service entity.
+- `WebPage`: the page itself, with its canonical URL and main entity reference.
+- `BreadcrumbList`: Home → Service index → current service.
+- `FAQPage`: only when valid FAQ content is present, visible on page, and schema requirements are met.
+
+Optionally emit `HowTo` for a service process only when it is genuinely instructional and the structured data describes the visible, eligible procedure. Do not automatically mark every process/step list as HowTo.
+
+### Service entity properties
+Populate supported fields using real canonical data:
+- `@id`: canonical service URL + `#service`.
+- `name`: service title/name.
+- `description`: service-specific description.
+- `url`: canonical page URL.
+- `image`: required primary featured image URL.
+- `serviceType`: specific service/certification type.
+- `category`: service category, when provided.
+- `provider`: reference to the site's canonical Organization entity using its `@id`.
+- `areaServed`: supported service coverage (e.g. Indonesia) only when confirmed by canonical configuration/content.
+
+### Entity graph and source of truth
+- The provider Organization must be declared centrally (using `site.ts` as SSOT) and referenced by `@id`; do not duplicate company identity or contact data per service.
+- Canonical IDs should be consistent across the site (Organization, WebSite, WebPage, Service, BreadcrumbList, FAQPage).
+- The JSON-LD graph must be built from data actually rendered; omit unsupported or absent optional fields rather than fabricate them.
+- Service index `/service/` may emit `CollectionPage`, `ItemList`, and `BreadcrumbList` to represent its listing, as appropriate.
+- Service page FAQ JSON-LD is semantically useful but does not guarantee FAQ rich results; Google currently limits FAQ rich-result display eligibility.
+- Training pages may use `Course` when their content genuinely represents a course/program. Individual training schedules may use `Event` only when they represent real event instances with sufficient accurate data. Use neither type mechanically.
+- Articles should use `Article` or `BlogPosting` and relevant page/breadcrumb entities as appropriate.
+- Structured data must be validated and must not contain fabricated claims, times, dates, prices, locations, or eligibility.
+
 ## Content image model
 
 Every publishable content entry must have exactly one primary image through `featuredImage`. An optional `images` array provides additional images; it is not a replacement for the required primary image.
 
 - `featuredImage`: required single image object (never an array). Used as the default visual representation for content cards/listings, page hero/cover where the layout calls for it, and Open Graph/social sharing image where appropriate.
-- `images`: optional array of additional image objects for galleries, supporting visuals, documentation, or content-specific image sections. It may be omitted or empty.
+- `images`: optional array of additional image objects for galleries, supporting visuals, documentation, or content-specific image sections. It may be omitted or empty
 - Use a consistent validated image-object schema across content collections. Store appropriate image metadata such as source/path, meaningful alt text, and optional caption where supported. Avoid duplicating image metadata structures across collection schemas.
 - Keep the featured image conceptually distinct from the optional gallery. Do not automatically repeat the featured image inside `images`; if the same asset is intentionally included there, document/render it without unintended duplicate presentation.
 - Content schemas must validate that `featuredImage` is present and is a single image object. Validate `images`, when supplied, as an array of image objects.
@@ -137,7 +169,6 @@ Every publishable content entry must have exactly one primary image through `fea
 ## Contextual footer
 
 The website uses one reusable footer component with two rendering modes: a default footer and a service-contextual footer. Do not create separate hardcoded footer components for individual service pages or articles.
-
 - Default footer: used on general pages and articles without a valid service relationship. It includes company information, general navigation/contact information, and a general CTA.
 - Service footer: used on a service page, or on an article linked to a service. It may include a service-specific claim and CTA that link to the related service.
 - Service pages resolve footer context from their own service data.
@@ -189,7 +220,6 @@ ID,serviceSlug,trainingSlug,startDate,endDate,timezone,locationType,venue,city,p
 ```
 
 ### Service and training relationships
-
 - `serviceSlug` is optional and references a canonical service by its stable slug; it provides service context/category for a schedule where relevant.
 - `trainingSlug` is required for every publishable schedule and references the actual training/course entry the schedule belongs to.
 - Service and training are distinct content entities. A service may have no training schedule, and a training can exist without a service association.
@@ -211,7 +241,6 @@ ID,serviceSlug,trainingSlug,startDate,endDate,timezone,locationType,venue,city,p
 - `notes` (optional): schedule-specific notes.
 
 ### Import and validation behavior
-
 - Treat blank CSV cells as null/omitted values, not as zero, false, or an invented value.
 - Keep incomplete rows (for example, a row with ID and trainingSlug but no dates) in the CSV as planning records, but do not generate/publish them as schedule content.
 - Report skipped/incomplete rows with their row number and ID. Invalid values (duplicate IDs, unknown trainingSlug, malformed dates, endDate before startDate, invalid enum values, malformed URL, nonnumeric price/quota) must produce actionable validation errors.
@@ -225,7 +254,6 @@ ID,serviceSlug,trainingSlug,startDate,endDate,timezone,locationType,venue,city,p
 - The importer should not silently turn missing price into free registration or missing quota into unlimited capacity.
 
 ### CSV-to-frontmatter mapping
-
 Map CSV fields to frontmatter as follows: `ID` → `id`; `serviceSlug` → `serviceSlug` (optional service context); `trainingSlug` → `trainingSlug`; `startDate`, `endDate`, `timezone`, `locationType`, `venue`, `city`, `province`, `registrationStatus`, `price`, `currency`, `quota`, `registrationUrl`, and `notes` retain their names. Publication metadata such as `pubDate`, `updatedDate`, `draft`, and URL slug may be generated/managed separately and must not be fabricated from the schedule dates.
 
 Example CSV planning row (not publishable until dates are supplied):
@@ -256,13 +284,11 @@ registrationUrl: "https://example.com/register"
 notes: "Sesi praktik perlu dikonfirmasi"
 ---
 ```
-
 The importer must preserve blanks as absent fields. The frontmatter schema should enforce the publishable schedule requirements while optional location, registration, pricing, and quota fields remain optional.
 
 ## Schedule content type
 
 Schedule content represents an event/batch occurrence (for example, a training batch), and is distinct from the training/course page and from an article. Validate its frontmatter through a dedicated collection schema.
-
 Schedule frontmatter may include:
 - `startDate`: event start date, formatted as an ISO 8601 date (`YYYY-MM-DD`); source of the event start date for UI and JSON-LD structured data.
 - `endDate`: event end date, formatted as an ISO 8601 date (`YYYY-MM-DD`); source of the event end date for UI and JSON-LD structured data.
@@ -277,7 +303,6 @@ Schedule frontmatter may include:
 - `sites`: per-site publishing/visibility configuration, validated by schema.
 
 ### Schedule dates versus publication dates
-
 - `startDate` and `endDate` represent the actual event dates and are the source of event date values in JSON-LD (such as an Event's `startDate` and `endDate`).
 - `pubDate` and `updatedDate` represent the schedule page/content publication and editorial update timestamps. They must not be substituted for event dates.
 - `dateLabel` is display-only; use the ISO event date fields for structured data and date logic.
@@ -298,7 +323,6 @@ Generate sitemap `lastmod` from actual content metadata rather than build/deploy
 ## Semantic heading hierarchy validation
 
 Every publishable content page must use a sequential semantic heading hierarchy. Heading levels must not skip levels when moving deeper into the document.
-
 Allowed progression:
 - H1 → H2
 - From any heading, moving back to a higher-level heading (a numerically smaller level) is permitted when structurally appropriate.
@@ -311,14 +335,12 @@ Invalid jumps include H1 → H3, H1 → H4, H2 → H4, and any transition that d
 ### Build validation
 
 Validate heading hierarchy from the parsed Markdown/content AST or rendered document structure, not fragile raw-text matching. A hierarchy violation is a hard build error with the content entry/path, heading text, actual level, expected level(s), and a rule identifier.
-
 Recommended rule identifier:
 - `CONTENT-011`: semantic heading levels must not skip (e.g., H1 cannot be followed directly by H3/H4; H2 cannot be followed directly by H4).
 
 This validation applies to all publishable content collections and page content that supports headings. The production build must exit non-zero if any violation is found.
 
 ## Article discovery and contextual article sections
-
 - Homepage (`/`): render an **Artikel Terbaru** section before the footer, showing the first 3 published/valid articles after sorting by `updatedDate DESC` (global ranks 1–3).
 - Service index (`/service/`): render an **Artikel Terbaru** section showing global ranks 4–6 from the same sorted article list. Do not repeat ranks 1–3 shown on the homepage.
 - Service detail (`/services/<slug>`): render an **Artikel Terkait** section filtered to articles whose explicit `serviceId` matches the canonical ID of the current service. Sort matching articles by `updatedDate DESC`. Do not infer associations from categories, titles, or slugs.
@@ -327,7 +349,6 @@ This validation applies to all publishable content collections and page content 
 - The number of articles in the service-detail related section is a presentation/configuration choice; do not assume an arbitrary limit unless explicitly set.
 
 ## Article archive listing and pagination
-
 - The `/articles/` archive page displays published, valid articles as article cards in a responsive grid: 3 columns on desktop, 2 on tablet, and 1 on mobile.
 - Use a page size of 9 articles (3×3 grid) per page.
 - Cards use the article's single `featuredImage`, category when available, title, intro/excerpt, updated date, and a clear link to the article. Keep card markup semantic and links keyboard-accessible.
