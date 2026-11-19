@@ -57,3 +57,12 @@ Build and maintain the PT. Intiprima Sertifikasi website as a polished, content-
 - Run available checks (typecheck, lint, build, tests) that are relevant and present in the repository; do not invent scripts.
 - Summarize the work and provide the commit hash after a successful commit.
 - If requirements conflict or the existing architecture is unclear, inspect first and ask only the necessary clarifying question.
+
+## Article discovery and contextual article sections
+
+- Homepage (`/`): render an **Artikel Terbaru** section before the footer, showing the first 3 published/valid articles after sorting by `updatedDate DESC` (global ranks 1–3).
+- Service index (`/service/`): render an **Artikel Terbaru** section showing global ranks 4–6 from the same sorted article list. Do not repeat ranks 1–3 shown on the homepage.
+- Service detail (`/services/<slug>`): render an **Artikel Terkait** section filtered to articles whose explicit `serviceId` matches the canonical ID of the current service. Sort matching articles by `updatedDate DESC`. Do not infer associations from categories, titles, or slugs.
+- Only published, valid articles are eligible for these sections; draft/invalid articles must never appear. When `updatedDate` is missing, use `pubDate` as a documented sort fallback. For deterministic ordering when timestamps match, sort by `pubDate DESC`, then stable article ID/slug ascending.
+- Keep these article selection rules in shared data/query logic rather than duplicating sort/filter logic in page components. Homepage and service-index article lists must use the same sorted result so their rank windows remain consistent.
+- The number of articles in the service-detail related section is a presentation/configuration choice; do not assume an arbitrary limit unless explicitly set.
