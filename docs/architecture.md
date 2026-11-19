@@ -75,13 +75,38 @@ Article frontmatter may include:
 
 Treat `serviceId` as a service reference, not as duplicated service content. Resolve the ID against the canonical service dataset. If no matching service exists, do not invent a relationship or contextual claim; use the default footer as fallback.
 
+## Schedule content type
+
+Schedule content represents an event/batch occurrence (for example, a training batch), and is distinct from the training/course page and from an article. Validate its frontmatter through a dedicated collection schema.
+
+Schedule frontmatter may include:
+- `startDate`: event start date, formatted as an ISO 8601 date (`YYYY-MM-DD`); source of the event start date for UI and JSON-LD structured data.
+- `endDate`: event end date, formatted as an ISO 8601 date (`YYYY-MM-DD`); source of the event end date for UI and JSON-LD structured data.
+- `dateLabel`: human-readable date text for display, such as “14–18 & 22 Desember 2026”; do not use this display string as the machine-readable event date.
+- `timezone`: IANA timezone identifier for the event (e.g. `Asia/Jakarta`).
+- `pubDate`: content publication timestamp, in valid ISO 8601 format.
+- `updatedDate`: timestamp of the latest meaningful update to this schedule content, in valid ISO 8601 format; optional.
+- `status`: schedule lifecycle/status used by display and application logic (validate allowed values in the collection schema).
+- `scheduleId`, `publisherId`, `trainingSlug`, `batchNo`, and `slug`: identifiers and references used to identify the schedule, publisher, related training, batch, and URL.
+- `delivery`: delivery mode and attendance mode, validated against allowed values.
+- `venue`: venue/location metadata; avoid implying a venue is confirmed when the content says it requires confirmation.
+- `sites`: per-site publishing/visibility configuration, validated by schema.
+
+### Schedule dates versus publication dates
+
+- `startDate` and `endDate` represent the actual event dates and are the source of event date values in JSON-LD (such as an Event's `startDate` and `endDate`).
+- `pubDate` and `updatedDate` represent the schedule page/content publication and editorial update timestamps. They must not be substituted for event dates.
+- `dateLabel` is display-only; use the ISO event date fields for structured data and date logic.
+- Respect the schedule's `timezone` when generating date/time values or interpreting event dates. If frontmatter provides date-only values, do not invent event start/end times.
+- For JSON-LD, map event dates from `startDate`/`endDate` and location/delivery details from schedule metadata only when appropriate and supported by the data. Do not emit unsupported or unconfirmed details as definitive event facts.
+- Keep schedule status distinct from dates: a past event, draft, cancelled, or otherwise unavailable schedule must not be represented as an upcoming, bookable event solely because its metadata exists. Validate status values and define their display/structured-data handling explicitly.
+- A multi-day schedule can have non-consecutive class days (as shown by `dateLabel`); `startDate` and `endDate` still describe the overall event range. Preserve the explicit `dateLabel` for communicating session dates, and do not infer missing session days from the date range.
+
 ## Sitemap lastmod
 
 Generate sitemap `lastmod` from actual content metadata rather than build/deploy timestamps.
-
-- For articles, use `updatedDate` when present; otherwise fall back to `pubDate`.
+- For articles and schedules, use `updatedDate` when present; otherwise fall back to `pubDate`.
 - For other content types, use their own real modification metadata when available; define an explicit fallback appropriate to that content type.
 - Do not set `lastmod` to the current build time or deployment time.
 - Keep timestamps valid and consistent in ISO 8601 format, including timezone information where available.
 - Only change `updatedDate` when meaningful content changes occur; avoid false freshness signals.
-
