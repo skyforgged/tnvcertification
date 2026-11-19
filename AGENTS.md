@@ -43,6 +43,16 @@ Build and maintain the PT. Intiprima Sertifikasi website as a polished, content-
 - Structured data (JSON-LD) must accurately reflect supported, visible page content. Never fabricate dates, prices, availability, event times, locations, claims, or relationships for SEO.
 - Use actual publication/update metadata for sitemap `lastmod`; never use build or deploy timestamps.
 
+## Service Schema.org markup policy
+- Service detail pages (`/services/<slug>/`) use Schema.org `Service` as the primary entity; do not substitute `Product` for professional certification/audit services.
+- Generate a JSON-LD graph from validated canonical content and central `site.ts` settings, typically including `Service`, `WebPage`, and `BreadcrumbList`.
+- Add `FAQPage` only when valid FAQ entries are actually rendered and supported. FAQ markup is semantically useful but must not promise Google FAQ rich results.
+- Add `HowTo` only for genuinely instructional, visible procedures that meet schema requirements; do not automatically map every service process list to HowTo.
+- `Service` fields should use factual data: `@id` (canonical URL + `#service`), `name`, `description`, `url`, `image` (featured image), `serviceType`, `category` when present, `provider` referencing canonical Organization `@id`, and `areaServed` only when supported by configuration/content.
+- Define the canonical `Organization` entity once from the central `site.ts` SSOT; reference it by `@id` instead of duplicating company identity on service pages.
+- Service index may use `CollectionPage`, `ItemList`, and `BreadcrumbList`; training may use `Course` when appropriate; schedules may use `Event` only for real event records with accurate details; articles may use `Article`/`BlogPosting`. Do not emit schemas mechanically.
+- Structured data must mirror visible content and omit unsupported optional fields. Validate JSON-LD output.
+
 ## UI and design quality
 - Prioritize intentional typography, spacing, composition, visual hierarchy, and brand credibility.
 - Avoid template-like hero layouts, excessive cards, gradients/glows, gratuitous icons, repeated rounded boxes, and overlong utility-class chains.
@@ -59,7 +69,6 @@ Build and maintain the PT. Intiprima Sertifikasi website as a polished, content-
 - If requirements conflict or the existing architecture is unclear, inspect first and ask only the necessary clarifying question.
 
 ## Article discovery and contextual article sections
-
 - Homepage (`/`): render an **Artikel Terbaru** section before the footer, showing the first 3 published/valid articles after sorting by `updatedDate DESC` (global ranks 1–3).
 - Service index (`/service/`): render an **Artikel Terbaru** section showing global ranks 4–6 from the same sorted article list. Do not repeat ranks 1–3 shown on the homepage.
 - Service detail (`/services/<slug>`): render an **Artikel Terkait** section filtered to articles whose explicit `serviceId` matches the canonical ID of the current service. Sort matching articles by `updatedDate DESC`. Do not infer associations from categories, titles, or slugs.
@@ -68,7 +77,6 @@ Build and maintain the PT. Intiprima Sertifikasi website as a polished, content-
 - The number of articles in the service-detail related section is a presentation/configuration choice; do not assume an arbitrary limit unless explicitly set.
 
 ## Article archive listing and pagination
-
 - The `/articles/` archive page displays published, valid articles as article cards in a responsive grid: 3 columns on desktop, 2 on tablet, and 1 on mobile.
 - Use a page size of 9 articles (3×3 grid) per page.
 - Cards use the article's single `featuredImage`, category when available, title, intro/excerpt, updated date, and a clear link to the article. Keep card markup semantic and links keyboard-accessible.
