@@ -64,6 +64,18 @@ Service, Schedule, and Article content types may all use FAQ, HowTo, and CTA blo
 - HowTo JSON-LD, if emitted, must describe visible step content and accurate supported details. Do not imply eligibility for Google HowTo rich results.
 - Structured data should reflect the content actually rendered and should not be emitted merely because a block schema exists.
 
+## Content image model
+
+Every publishable content entry must have exactly one primary image through `featuredImage`. An optional `images` array provides additional images; it is not a replacement for the required primary image.
+
+- `featuredImage`: required single image object (never an array). Used as the default visual representation for content cards/listings, page hero/cover where the layout calls for it, and Open Graph/social sharing image where appropriate.
+- `images`: optional array of additional image objects for galleries, supporting visuals, documentation, or content-specific image sections. It may be omitted or empty.
+- Use a consistent validated image-object schema across content collections. Store appropriate image metadata such as source/path, meaningful alt text, and optional caption where supported. Avoid duplicating image metadata structures across collection schemas.
+- Keep the featured image conceptually distinct from the optional gallery. Do not automatically repeat the featured image inside `images`; if the same asset is intentionally included there, document/render it without unintended duplicate presentation.
+- Content schemas must validate that `featuredImage` is present and is a single image object. Validate `images`, when supplied, as an array of image objects.
+- Presentation is context-specific: the featured image can be shown as a hero, cover, card thumbnail, or social preview, but do not force every page layout to display it in the same way. Optional `images` should only be rendered when the page composition calls for them.
+- Use responsive image handling and appropriate dimensions/format optimization. Alt text should describe meaningful visual content; use empty alt only for decorative images in the rendered context where appropriate.
+
 ## Maintainability
 - Keep components focused and reusable; avoid giant components.
 - Use semantic HTML and accessible headings, landmarks, links, and controls.
