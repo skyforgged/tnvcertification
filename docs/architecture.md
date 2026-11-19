@@ -46,6 +46,24 @@ Reuse components across layouts where appropriate, but preserve meaningful diffe
 - Keep content authoring straightforward for Markdown editors.
 - Components should receive explicit typed props rather than reaching into unrelated global state.
 
+## Shared content blocks across Service, Schedule, and Article
+
+Service, Schedule, and Article content types may all use FAQ, HowTo, and CTA blocks. These are reusable content capabilities, not features exclusive to a single collection or layout. Their presence is optional and determined by the editorial purpose of each page.
+
+### Shared block types
+- `faq`: a structured list of question/answer items. It may render as an accessible accordion or another appropriate presentation. FAQ content can be used on Service, Schedule, and Article pages. Emit FAQPage JSON-LD only when the visible content and schema requirements are met; do not promise search rich-result eligibility.
+- `how-to`: a structured set of procedural steps, optionally including step titles, descriptions, images, or links where supported by its schema. It can be used on Service (service process), Schedule (registration/attendance instructions), and Article (tutorials or guides). Do not force HowTo into content that is not instructional.
+- `cta`: a reusable call-to-action block with validated variant, title/description, and button/link configuration. It can be used on Service, Schedule, and Article pages, with target and copy determined by page context. CTA configuration must not contain hardcoded company identity or contact details; resolve those through the central site configuration or canonical content records.
+
+### Schema and rendering requirements
+- Define each shared block as a discriminated block schema with its own validation, rather than a single permissive shape.
+- Allow each relevant collection schema to include these shared block types, while retaining content-type-specific blocks and page layouts.
+- Shared block data controls content and intent; components control semantic markup, accessibility, styling, responsive behavior, and presentation.
+- Blocks remain optional and orderable within content composition where block arrays are used. Do not assume every page must contain FAQ, HowTo, or CTA.
+- Reuse rendering components across content types while allowing layouts to preserve distinct page hierarchy and user experience.
+- HowTo JSON-LD, if emitted, must describe visible step content and accurate supported details. Do not imply eligibility for Google HowTo rich results.
+- Structured data should reflect the content actually rendered and should not be emitted merely because a block schema exists.
+
 ## Maintainability
 - Keep components focused and reusable; avoid giant components.
 - Use semantic HTML and accessible headings, landmarks, links, and controls.
