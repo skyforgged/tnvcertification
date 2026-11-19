@@ -16,6 +16,13 @@ Build and maintain the PT. Intiprima Sertifikasi website as a polished, content-
 - Use stable canonical identifiers/relationships; do not infer relationships from labels, categories, or similar-looking slugs.
 - Keep Service, Training, Schedule, Article, and Category as distinct content entities. A schedule must reference its training; service association is optional and explicit.
 
+## Mandatory editorial content rules
+- Every publishable content entry must have an introductory paragraph directly after its H1. The intro is exactly one paragraph and must explain the page title, beginning with the title followed by `adalah ...` (for example, `Sertifikasi ISO 9001 adalah ...`). Do not use generic or repeated intro copy across unrelated pages.
+- `metaDescription` is a required, separate SEO field. It must be unique, persuasive, relevant to the page, and must not duplicate the intro or featured-image alt text.
+- Every publishable content entry must have exactly one `featuredImage` object. Its `alt` is required, explains the page title using `adalah`, and is shorter and more concise than the intro. Avoid generic alt text and keyword stuffing.
+- Additional `images` are optional and do not replace `featuredImage`.
+- Enforce required content rules at build time. Invalid content must fail the build with actionable file/field/rule diagnostics; do not treat mandatory rule violations as warnings.
+
 ## Stack and conventions
 - Astro 7+ stable (confirm actual compatibility and release status before upgrades).
 - TypeScript 7+ stable, strict typing.
