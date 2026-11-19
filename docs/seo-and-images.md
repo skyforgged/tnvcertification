@@ -1,36 +1,31 @@
 # SEO, Schema.org, Metadata, and Images
 
-## SEO is required
-Every indexable page must have appropriate SEO metadata:
-- Unique localized title
-- Meta description
-- Canonical URL
-- Robots directives when needed
-- Open Graph metadata (title, description, image, URL)
-- Twitter/X card metadata as applicable
-- Alternate language links (hreflang) for bilingual pages
+## Metadata
+Each indexable page needs a unique localized title and description, canonical URL, appropriate robots directives, Open Graph metadata, applicable Twitter/X cards, and hreflang alternates for available translations.
 
-Metadata can be defined in page frontmatter/content schemas and rendered through a shared SEO component or layout. Ensure values are page-specific and not duplicated or stale.
+Render metadata through shared SEO components/layouts while ensuring values are page-specific and not stale.
 
-## Schema.org structured data
-Every page must include valid, relevant Schema.org JSON-LD. Choose schema types based on the actual content and entity represented; do not apply one generic schema to every page.
+## Schema.org
+Include valid, relevant JSON-LD based on the page/entity, such as Organization, Service, Course, Event, Article/BlogPosting, or BreadcrumbList where applicable. Structured data must match visible content. Validate and escape it, avoid duplicates, and never misrepresent TNV's accreditation, approval, credentials, or status.
 
-Examples (select as applicable):
-- Organization / EducationalOrganization: only when accurate for the organization
-- Service: certification service pages
-- Course: training course pages
-- Event: scheduled training sessions, when appropriate
-- Article / BlogPosting: editorial articles
-- BreadcrumbList: pages with breadcrumb navigation
-
-Structured data may be implemented in a layout or component, or composed at page level. Keep JSON-LD data typed/validated where practical, escape safely, avoid duplicate/conflicting schema blocks, and ensure markup matches visible page content. Never claim accreditation, approvals, credentials, or other status that TNV does not actually hold.
+## Technical SEO
+- Generate sitemap XML and robots.txt.
+- Maintain canonical URLs and reciprocal hreflang links.
+- Use semantic HTML, descriptive links, and intentional indexability.
+- Avoid broken internal links and duplicate content.
 
 ## Images
-- Published website imagery should use WebP.
-- Optimize image dimensions and file size for the display context; provide responsive variants where beneficial.
-- SVG may be used as an editable source or placeholder asset. For image assets intended for web delivery, convert SVG sources to WebP as part of the asset workflow.
-- Preserve SVG source files when useful for editing, but do not use SVG as a substitute for the requested WebP published image format.
-- Use descriptive filenames and meaningful localized alt text. Decorative images should use empty alt text.
-- Do not fabricate photos or imply that placeholders depict real TNV auditors, clients, facilities, or events.
-- For placeholders, create abstract, illustrative, or brand-neutral SVG artwork and convert it to WebP.
-- Ensure image conversion workflow is reproducible and documented (tooling may be selected based on environment).
+- Optimize images and serve responsive sizes where useful.
+- Prefer WebP for raster photos; AVIF can be used if supported and beneficial.
+- Astro image tooling should be used for sizing/optimization where applicable.
+- SVG remains appropriate for logos, icons, and vector diagrams.
+- Use descriptive filenames and localized alt text; decorative images use empty alt.
+- Do not fabricate photos or imply placeholders depict TNV staff, clients, facilities, or events.
+- Use abstract or brand-neutral placeholder visuals when actual assets are unavailable.
+- Keep optimization workflows reproducible.
+
+## Performance
+- Minimize client-side JavaScript; prefer static rendering.
+- Lazy-load non-critical images but not critical above-the-fold imagery.
+- Reserve image dimensions to limit layout shift.
+- Review Lighthouse/Core Web Vitals as part of quality checks.
