@@ -131,3 +131,18 @@ The internal candidate catalog is maintained in `src/data/certification-schemes.
 Edition values are deliberately `null` for now. The catalog does not assert current editions, TNCV accreditation, authorization, or that these schemes are commercially available. Confirm each item against the official standards publisher and the applicable accreditation/authorization scope before completing edition metadata or changing status to `active`.
 
 The catalog is not wired to public routes or SEO output. It is a planning data source only. Build-time validation in `src/lib/certification-scheme-validation.ts` checks unique IDs/designations, category references, and prevents an active scheme without a verified edition. CSMS remains a separate planned Contractor Safety service concept, not an ISO standard and not an entry in this ISO shortlist.
+
+
+## 10. P6 explicit article/service relationships
+
+Articles may optionally declare `serviceId` in frontmatter. This is a numeric reference to the stable `id` of one record in the services collection. The field already exists in the article schema; do not add a parallel slug-based relationship field.
+
+Build-time validation enforces:
+- service IDs are unique positive integers;
+- every supplied article `serviceId` resolves to an existing service;
+- a published article cannot link to a draft service;
+- a draft article may link to a draft service while both remain unpublished.
+
+The relationship is intentionally one-way in content storage. A service's related articles can be derived by querying articles whose `serviceId` equals that service's `id`, avoiding duplicated relationship metadata that could drift out of sync.
+
+No article is currently assigned to the draft CSMS record. Existing editorial subject matter alone is not evidence of a live service offering, and no article should be linked to CSMS until the assessment scope and authorization are approved.
