@@ -54,4 +54,4 @@ Avoid interpreting search snippets as complete catalogues. Prefer current offici
 
 
 ## Current research status
-This initial research pass contains partial official-source findings. The matrix uses **NC** where a competitor page has not yet been reviewed adequately and **NF** only as a cautious indication from a specific page reviewed. Counts must not be treated as final competitor portfolio totals.
+The first follow-up verification pass now includes TÜV NORD's Indonesia KAN accreditation list, MUTU International's own KAN scope document and its INSPECT partner offer, and BSI's official Indonesia client certificate directory. The evidence types are explicitly distinguished in the matrix. Other rows still contain global or indirect evidence; counts are not market share or a complete competitor portfolio audit.
