@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated merge commit: `96ca35b`
+- Validated merge commit: `7a288de`
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -39,7 +39,7 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 | P4 | Service taxonomy design and implementation | Completed; 12 bilingual category pairs and reference validation merged and locally validated |
 | P5 | ISO service/scheme catalog | Internal 12-item planned catalog and build-time validation implemented; editions and TNCV scope remain unverified |
 | P6 | Article-to-service relationships | Cross-collection validation implemented and merged; no article linked to the draft CSMS service |
-| P7 | Service SEO and structured data | Service directory/detail canonical metadata and page-specific JSON-LD implemented; CI/review pending |
+| P7 | Service SEO and structured data | Implemented and merged; local checks passed on pinned toolchain |
 | P8 | Full quality gate | Local checks passed on pinned toolchain; deployment runtime verification still pending |
 
 ## Verified repository facts
@@ -75,7 +75,7 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-Local full validation ran on `main` at merge commit `96ca35b` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
+Local full validation ran on `main` at merge commit `7a288de` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
 
 | Command | Result |
 |---|---|
@@ -83,7 +83,7 @@ Local full validation ran on `main` at merge commit `96ca35b` with the pinned No
 | `npm run build` | PASS, exit `0`, 13 pages |
 | `npm run typecheck` | PASS, exit `0` |
 | `npm run lint` | PASS, exit `0` |
-| `npm run test` | PASS, exit `0`, 25 tests |
+| `npm run test` | PASS, exit `0`, 29 tests |
 
 GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test and build on pull requests and pushes to `main`. No CI run result was independently verifiable in this environment. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
 
@@ -108,9 +108,9 @@ Branch: `feat/article-service-relations` (merged at `96ca35b`)
 - Merged into `main` at `96ca35b`.
 
 
-## P7 current work — service SEO and structured data
+## P7 merged work — service SEO and structured data
 
-Branch: `feat/service-seo-structured-data`
+Branch: `feat/service-seo-structured-data` (merged at `7a288de`)
 
 - Added service detail JSON-LD graph: `WebPage`, `Service`, and `BreadcrumbList`.
 - Added service directory JSON-LD graph: `CollectionPage`, `ItemList`, and `BreadcrumbList`.
@@ -122,4 +122,5 @@ Branch: `feat/service-seo-structured-data`
 - Added three automated tests for service page graph, omission of unsupported optional claims, and service directory ItemList.
 - No accreditation, authorization, area-served, pricing, or active certification claims are inferred.
 - The canonical domain and organization contact details in `src/site.ts` remain unconfirmed placeholders; production deployment remains blocked until verified details are supplied.
-- This branch is for review only. Do not merge until maintainer approval and successful CI.
+- Integration fix after merge: `structured-data.ts` uses an explicit `.ts` import so the Node test runner can resolve it, and `tsconfig.json` enables `allowImportingTsExtensions` to keep typecheck passing.
+- Merged into `main` at `7a288de`.
