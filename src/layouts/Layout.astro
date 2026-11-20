@@ -1,16 +1,16 @@
 ---
 import "../styles/global.css";
 import { organization } from "../site";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
 import { buildSeo, type LayoutProps } from "../lib/seo";
 import { pageJsonLdGraph, serializeJsonLd } from "../lib/structured-data";
 
 export type Props = LayoutProps;
-
 const { structuredData = [] } = Astro.props;
 const seo = buildSeo(Astro.props);
 const jsonLd = serializeJsonLd(pageJsonLdGraph(structuredData));
 ---
-
 <!doctype html>
 <html lang={seo.lang}>
   <head>
@@ -35,25 +35,14 @@ const jsonLd = serializeJsonLd(pageJsonLdGraph(structuredData));
     {seo.hreflang.map((alternate) => <link rel="alternate" hreflang={alternate.lang} href={alternate.href} />)}
     <script type="application/ld+json" set:html={jsonLd} />
   </head>
-  <body class="min-h-screen bg-cream text-slate-900">
-    <header class="border-b border-brand-blue/20">
-      <div class="mx-auto max-w-6xl px-4 sm:px-6">
-        <div class="flex h-16 items-center justify-between">
-          <a href="/" class="text-lg font-semibold tracking-tight text-brand-blue">
-            {organization.name}
-          </a>
-        </div>
-      </div>
-    </header>
-    <main class="mx-auto flex max-w-6xl flex-1 px-4 py-10 sm:px-6">
+  <body id="top" class="flex min-h-screen flex-col bg-cream text-slate-900">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-3 focus:text-brand-deepblue focus:shadow-lg">
+      Lewati ke konten utama
+    </a>
+    <SiteHeader />
+    <main id="main-content" class="mx-auto flex w-full max-w-6xl flex-1 px-4 py-10 sm:px-6">
       <slot />
     </main>
-    <footer class="border-t border-brand-blue/20">
-      <div class="mx-auto max-w-6xl px-4 py-6 text-sm text-slate-600 sm:px-6">
-        <p class="pb-1" data-pu-ignore>
-          © {new Date().getFullYear()} {organization.name}. {organization.contact.address.city}, {organization.contact.addressLabels.country}.
-        </p>
-      </div>
-    </footer>
+    <SiteFooter />
   </body>
 </html>
