@@ -2,12 +2,13 @@
 
 ## Current checkpoint
 
-Repository: `tnvcertification/tnvcertification`  
-Base branch: `main`  
-Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)  
-Current implementation branch: `feat/bilingual-service-taxonomy`
+- Repository: `tnvcertification/tnvcertification`
+- Base branch: `main`
+- Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
+- Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
+- Current HEAD: `a68b53b`
 
-The current implementation is isolated from `main` and contains taxonomy schema, planned bilingual category records, and build-time reference validation. No category routes, certification scheme records, or active service claims have been published.
+The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
 ## Completed in the previous audit branch
 
@@ -19,12 +20,14 @@ The current implementation is isolated from `main` and contains taxonomy schema,
 
 The audit branch was merged into `main` by PR #3 (`ab54c88`).
 
-## Current implementation branch
+## Merged implementation branch
 
 | Commit | Change |
 |---|---|
 | `c747167` | Add bilingual taxonomy cross-validation and tests |
 | `fbd70ea` | Add 12 planned category groups (24 Indonesian/English records), category status schema, and explicit CSMS category reference |
+| `9a52d51` | Record bilingual taxonomy implementation status |
+| `a68b53b` | Migrate legacy `categoryIds` to canonical slugs so validation and build pass |
 
 ## Roadmap status
 
@@ -33,11 +36,11 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 | P1 | Foundation and architecture audit | Completed in prior work |
 | P2 | CSMS planned-service draft | Completed; remains `draft: true` |
 | P3 | Site identity / `site.ts` SSOT audit | Audit completed; code replacement blocked on confirmed company details |
-| P4 | Service taxonomy design and implementation | 12 bilingual category pairs and reference validation implemented; build verification pending |
+| P4 | Service taxonomy design and implementation | Completed; 12 bilingual category pairs and reference validation merged and locally validated |
 | P5 | ISO service/scheme catalog | Planning shortlist exists; TNCV authority/scope/partner evidence must be confirmed |
 | P6 | Article-to-service relationships | Architecture exists; requires canonical service records and editorial mapping |
 | P7 | Service SEO and structured data | Shared SEO/JSON-LD helpers exist; verify against approved canonical service data |
-| P8 | Full quality gate | Must be run on the final implementation and deployment runtime |
+| P8 | Full quality gate | Local checks passed on pinned toolchain; deployment runtime verification still pending |
 
 ## Verified repository facts
 
@@ -50,6 +53,8 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 - The services collection currently contains a CSMS draft; it is not a published service.
 - Current repository runtime policy pins Node.js `26.13.1` in `.node-version` / `.nvmrc`, with `package.json` engine `>=26.13.1 <27`; pnpm is `12.21.0`.
 - Current TypeScript is `7.1.0-beta`; TypeScript 6.x is prohibited by repository policy. This is a beta exception, not a stable release.
+- `categoryIds` values now use canonical stable slugs. Legacy `kualitas` and `organisasi` references were removed during integration.
+- No GitHub Actions workflow or verifiable automated build result exists in the repository.
 
 ## External confirmations needed
 
@@ -64,12 +69,20 @@ Do not replace these values with guesses. If a field is optional and not confirm
 ## Next implementation sequence
 
 1. Resolve the site identity inputs above, then update `src/site.ts` and any optional-field consumers in a dedicated code commit.
-2. Implement taxonomy/category schema refinements and bilingual category entries in a separate commit.
-3. Add verified certification scheme records and explicit service-to-scheme relationships; do not publish unverified standards.
-4. Add cross-collection checks for dangling category, scheme and service references.
-5. Complete service/article mapping and service SEO.
-6. Run `check`, `typecheck`, `lint`, `test` and `build` on the pinned Node/pnpm toolchain, then inspect generated routes and JSON-LD.
+2. Add verified certification scheme records and explicit service-to-scheme relationships; do not publish unverified standards.
+3. Complete service/article mapping and service SEO.
+4. Re-run `check`, `typecheck`, `lint`, `test` and `build` on the deployment runtime, then inspect generated routes and JSON-LD.
 
 ## Validation note
 
-No local install, typecheck, test, lint, or build has been run for `feat/bilingual-service-taxonomy` in this environment. The previous build report belongs to an earlier HEAD and is not validation of these commits. Keep the PR unmerged until CI or a local full validation run is available.
+Local full validation ran on `main` at `a68b53b` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
+
+| Command | Result |
+|---|---|
+| `npm run check` | PASS, exit `0` |
+| `npm run build` | PASS, exit `0`, 13 pages |
+| `npm run typecheck` | PASS, exit `0` |
+| `npm run lint` | PASS, exit `0` |
+| `npm run test` | PASS, exit `0`, 14 tests |
+
+No GitHub Actions workflow or verifiable automated build result is present in this repository. Build success is recorded from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
