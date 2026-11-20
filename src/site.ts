@@ -46,6 +46,7 @@ export const siteSettings = {
   title: "PT. Intiprima Sertifikasi",
   description:
     "Sertifikasi, pelatihan kepatuhan, dan penilaian risiko profesional bagi industri manufaktur, konstruksi, dan energi.",
+  tagline: "Informasi sertifikasi dan kepatuhan",
   defaultLanguage: "id",
   languages: [
     { code: "id", label: "Bahasa Indonesia" },
@@ -61,18 +62,16 @@ export const primaryNavigation = [
 /** Footer navigation grouped by visitor intent; no unverified contact details. */
 export const footerNavigation = [
   {
-    title: "Jelajahi",
+    title: "Mulai",
     links: [
       { label: "Beranda", href: "/" },
       { label: "Layanan", href: "/service/" },
-      { label: "Artikel", href: "/articles/" },
     ],
   },
   {
-    title: "Informasi",
+    title: "Baca",
     links: [
-      { label: "Tentang situs", href: "/" },
-      { label: "Panduan dan wawasan", href: "/articles/" },
+      { label: "Artikel dan panduan", href: "/articles/" },
     ],
   },
 ] as const;
