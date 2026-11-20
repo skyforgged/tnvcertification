@@ -15,11 +15,14 @@ This document records the development runtime and package-version policy.
 
 ## TypeScript policy
 
-- TypeScript: `7.0.2` only.
+- TypeScript: `7.1.0-beta`, recorded as an approved beta exception.
+- `@astrojs/ts-content-mapper`: `0.2.0`.
 - TypeScript 6.x is prohibited.
-- `@astrojs/check` is intentionally removed. It rejects TypeScript 7.0.
-- `check` runs `astro sync && tsc --noEmit`.
-- `.astro` templates are not fully type-checked by this setup. Full Astro-aware checking needs a stable TypeScript 7.1+ path, which is not used here.
+- `@astrojs/check` is intentionally removed.
+- `check` runs `astro sync && tsc --noEmit --runExternalCode`.
+- `typecheck` runs `tsc --noEmit --runExternalCode`.
+- `.astro` files are type-checked by `tsc` through the Astro content mapper.
+- ESLint remains JavaScript-only because `typescript-eslint` rejects TypeScript 7.
 - Do not add package aliases that install multiple TypeScript compiler majors.
 
 ## Validation requirement

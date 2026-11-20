@@ -1,15 +1,16 @@
 # Build report — 2026-11-20
 
-Consolidated findings and fixes. Replaces the earlier baseline report.
+Astro-aware TypeScript checking report. This replaces the earlier single-version baseline report.
 
 ## Current state
 
-- HEAD: `d515859`
+- HEAD during validation: `175c858`
 - Node: `26.13.1`; pnpm: `12.21.0`
 - Astro: `7.4.13`; Tailwind CSS and `@tailwindcss/vite`: `4.3.5`
-- TypeScript: `7.0.2` only. No TypeScript 6 package in `package.json` or
-  `pnpm-lock.yaml`.
-- Remote branches: only `main`.
+- TypeScript: `7.1.0-beta` as an approved beta exception
+- `@astrojs/ts-content-mapper`: `0.2.0`
+- No TypeScript 6 package, alias, or override in `package.json` or `pnpm-lock.yaml`
+- `@astrojs/check` remains removed
 
 Fresh validation at HEAD:
 
@@ -25,103 +26,79 @@ Fresh validation at HEAD:
 
 ## Findings and fixes
 
-### 1. Two TypeScript majors in one dependency graph
+### 1. TypeScript 7.0.2 did not check `.astro` templates
 
-`typescript` aliased `@typescript/typescript6@6.0.2` for tooling while
-`@typescript/native` supplied `7.0.2` for `tsc`. `docs/toolchain-policy.md`
-prohibited TS 6, but dependencies still installed it.
+The prior setup ran `astro sync && tsc --noEmit`. That checked TypeScript files
+only. Template expressions, component props, and content-data access inside
+`.astro` files were not part of the TypeScript program.
 
-Fix: removed the alias and `@typescript/native`. Set `typescript` to `7.0.2`.
-Removed `@astrojs/check`, which rejects TypeScript 7.0. Updated
-`docs/toolchain-policy.md`, `README.md`, and `docs/technology-stack.md` to
-match.
+Fix: moved to TypeScript `7.1.0-beta` and registered
+`@astrojs/ts-content-mapper@0.2.0`. `check` and `typecheck` now pass
+`--runExternalCode`. `tsc` parses `.astro` files through the mapper.
 
-### 2. `astro check` reported 34 type errors
+### 2. Content mapper configuration is strict
 
-Errors clustered in `src/pages/[slug].astro`,
-`src/pages/articles/[slug].astro`, `src/pages/services/[slug].astro`, and
-`src/pages/service/index.astro`. Dominant diagnostics were `ts(2339)`
-`Property 'data' does not exist on type 'never'`, plus implicit-`any`
-`ts(7006)` / `ts(7031)`.
+Putting `contentMappers` inside `compilerOptions` fails with:
 
-Root cause: `astro check` resolved TypeScript `6.0.2`. Under that compiler,
-Zod 4 schema inference collapsed to `unknown` / `never` through the generated
-Astro content type path. Direct `z.infer` worked, so the schemas were not the
-cause. Plain `tsc` with `7.0.2` accepted the same types.
+`TS5023: Unknown compiler option 'contentMappers'`.
 
-Fix: `check` is now `astro sync && tsc --noEmit`. Rewriting collection helpers
-was tried and reverted; it did not change the result.
+Omitting `jsx: "preserve"` produces `TS17004` errors in `.astro` files.
 
-### 3. Build crashed with `pageCount is not defined`
+Fix: `contentMappers` is a root-level `tsconfig.json` field. `jsx` is
+`"preserve"`, and `include` contains both `.astro/types.d.ts` and `src`.
 
-`src/pages/articles/page/[page].astro` defined `pageSize`, `ordered`, and
-`pageCount` in the frontmatter module body. Astro compiles `getStaticPaths()`
-into a separate prerender chunk, where those constants are out of scope.
+### 3. `collection()` erased concrete Zod schema types
 
-Fix: compute all three inside `getStaticPaths()` and pass `page`, `articles`,
-and `pageCount` through props.
+`src/content.config.ts` declared the helper parameter as `schema: z.ZodType`.
+That widened every collection schema to an unknown output type. Once `.astro`
+files were checked, `getCollection()` returned entries whose `data` was
+`unknown`.
 
-### 4. pnpm 12 install blockers
+Verified failure: 36 `TS18046` errors across:
 
-- `ERR_PNPM_MINIMUM_RELEASE_AGE_VIOLATION` for `source-map-js@1.2.4`.
-- `ERR_PNPM_IGNORED_BUILDS` for `esbuild@0.28.2`.
-- `vite.config.mjs` imports `vite`, but `vite` was undeclared. pnpm 12 strict
-  layout could not resolve it.
+- `src/pages/[slug].astro`
+- `src/pages/articles/[slug].astro`
+- `src/pages/service/index.astro`
+- `src/pages/services/[slug].astro`
 
-Fix: added `pnpm-workspace.yaml` with `minimumReleaseAge: 0` and
-`allowBuilds.esbuild: true`. Added `vite: 8.3.8` as a direct dev dependency.
-Regenerated `pnpm-lock.yaml`.
+Fix: changed the helper to
+`function collection<T extends z.ZodTypeAny>(name: keyof typeof collectionRegistry, schema: T)`.
+All 36 errors disappeared.
 
-### 5. ESLint incompatibility and duplicate config
+### 4. `pageSchema` omitted `draft`
 
-`typescript-eslint@8.73.0` rejects TypeScript 7.0. `eslint-plugin-astro`
-failed to parse TypeScript frontmatter without it. `eslint.config.mjs` also
-imported both removed packages; ESLint preferred `eslint.config.js`, so editors
-or an explicit `--config` would break.
+After the schema helper fix, one error remained:
 
-Fix: removed `typescript-eslint` and `eslint-plugin-astro`. Kept
-`eslint.config.js` with JavaScript rules only. Deleted `eslint.config.mjs`.
+`TS2339: Property 'draft' does not exist` in `src/pages/[slug].astro`.
 
-### 6. Review follow-up: archive pagination and canonicals
+The route already filters `data.draft !== true`, and
+`src/content/pages/0010-halaman-about-us.md` already contains `draft: false`.
 
-Article archive pages defaulted their canonical to the site root. Page 2+
-showed only a "next" link, with no crawlable page-number anchors.
+Fix: `pageSchema` is now
+`baseEntrySchema.extend({ draft: z.boolean().optional() })`. `npm run check`
+exits `0` with no `error TS` lines.
 
-Fix: added `path` props to both archive layouts. Extracted
-`src/lib/pagination.ts` and added `tests/pagination.test.mjs`. Page numbers are
-anchors, the current page uses `aria-current="page"`, Previous is omitted on
-page 1, and Next is omitted on the last page. Rendering was verified by
-temporarily lowering `pageSize` during a build, then restoring it to `9`.
+### 5. Lint scope intentionally unchanged
 
-### 7. Merged CSMS service draft broke build validation
+`typescript-eslint` rejects TypeScript 7. Canary `8.73.1-alpha.7` is also
+unsupported. Adding it would require a TypeScript 6 API alias, which the
+toolchain policy prohibits.
 
-After merging `audit/service-catalog-foundation`, `npm run build` failed on
-`src/content/services/csms-contractor-safety-management-system.md` with four
-editorial diagnostics:
-
-- `CONTENT-002`: three intro paragraphs after H1 instead of one.
-- `CONTENT-002`: frontmatter `intro` did not match the first body paragraph.
-- `CONTENT-003`: intro did not begin with the title followed by `adalah`.
-- `CONTENT-008`: `featuredImage.alt` lacked `adalah`.
-
-Fix: rewrote the H1, intro paragraph, and `featuredImage.alt` to satisfy the
-rules. Kept `draft: true` and made no new service or certification claims.
-
-### 8. Branch integration
-
-`research/iso-competitor-service-matrix` was already an ancestor of `main`.
-`audit/service-catalog-foundation` was merged as `9f1c91e`. Both remote branches
-were deleted after verifying ancestry. `main` was pushed to `d515859`.
+Fix: no lint dependency or config changes. `eslint.config.js` still applies
+JavaScript rules only. `npm run lint` exits `0`.
 
 ## Remaining limitations
 
-- `.astro` templates are not type-checked. `tsc` checks TypeScript files under
-  `src` only.
-- ESLint no longer lints `.astro`, `.ts`, or `.tsx` files.
-- Some content collection glob warnings remain non-fatal.
+- ESLint still checks only `.js`, `.mjs`, and `.cjs` files. It does not lint
+  `.ts`, `.tsx`, or `.astro` files.
+- `typescript-eslint` still rejects TypeScript 7, including canary
+  `8.73.1-alpha.7`.
+- TypeScript `7.1.0-beta` and `@astrojs/ts-content-mapper@0.2.0` are not
+  stable releases. This is recorded as a policy exception.
+- Empty content-collection glob warnings remain non-fatal.
 - Deprecated `z.string().url()` calls in `src/content.config.ts` remain.
 
 ## Artifacts
 
 `docs/build-output.txt` contains the saved `npm run build` output from the
-fresh validation run at HEAD `d515859`.
+fresh validation run.
