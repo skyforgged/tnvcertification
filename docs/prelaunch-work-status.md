@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated merge commit: `bca8043`
+- Validated merge commit: `2a3b225`
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -75,7 +75,7 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-Local full validation ran on `main` at merge commit `bca8043` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
+Local full validation ran on `main` at merge commit `2a3b225` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
 
 | Command | Result |
 |---|---|
@@ -139,9 +139,9 @@ Branch: `feat/prelaunch-identity-readiness-gate` (merged at `bca8043`)
 - Merged into `main` at `bca8043`.
 
 
-## P9 — Homepage discovery layout (in review)
+## P9 — Homepage discovery layout
 
-Branch: `feat/homepage-discovery-layout`
+Branch: `feat/homepage-discovery-layout` (merged at `2a3b225`)
 
 - Added a reusable responsive homepage hero component.
 - Added clear navigation panels for the existing service index and article archive.
@@ -149,12 +149,12 @@ Branch: `feat/homepage-discovery-layout`
 - No unverified certification service, accreditation, authorization, criteria, coverage, pricing or company identity details were added.
 - Draft CSMS remains excluded from public service pages.
 - See `docs/homepage-discovery-layout.md` for implementation notes and local QA checklist.
-- Changes are isolated in a feature branch and are not merged to `main` by the assistant. Local build and responsive review are pending.
+- Merged into `main` at `2a3b225`. Full local checks passed; responsive visual review remains a separate manual task.
 
 
-## Next work
+## Remaining work
 
-1. Run full local checks and visual review of P9; fix any issues in follow-up commits if found.
+1. Review the homepage at desktop, tablet and mobile widths visually; fix any issues in follow-up commits if found.
 2. Confirm official company identity/contact/domain and approved logo before production-facing configuration is updated.
 3. Confirm certification/assessment scope and authorization evidence before activating scheme or service records.
 4. Continue with sitewide navigation/footer and content page UX after the homepage review; preserve the SSOT and avoid publishing placeholder identity or unsupported service claims.
