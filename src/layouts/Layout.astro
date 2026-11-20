@@ -6,8 +6,9 @@ import { organizationJsonLd, serializeJsonLd } from "../lib/structured-data";
 
 export type Props = LayoutProps;
 
+const { structuredData = [] } = Astro.props;
 const seo = buildSeo(Astro.props);
-const jsonLd = serializeJsonLd(organizationJsonLd());
+const jsonLd = serializeJsonLd([organizationJsonLd(), ...structuredData]);
 ---
 
 <!doctype html>
