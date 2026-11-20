@@ -4,10 +4,8 @@
  * footers, SEO metadata, CTAs, and contact sections must read identity
  * values from this module; nothing company-wide is hardcoded.
  */
-
 /** Canonical deployed URL. The only place the production domain is written. */
 const SITE_URL = "https://www.intiprima-sertifikasi.dev";
-
 /** Canonical Organization entity. Referenced by @id from structured data. */
 export const organization = {
   id: "organization",
@@ -42,7 +40,6 @@ export const organization = {
     "https://www.instagram.com/intiprima.sertifikasi",
   ],
 } as const;
-
 /** Shared site settings. */
 export const siteSettings = {
   url: SITE_URL,
@@ -55,3 +52,27 @@ export const siteSettings = {
     { code: "en", label: "English" },
   ],
 } as const;
+/** Primary links used by the sitewide header. Keep routes centralized here. */
+export const primaryNavigation = [
+  { label: "Beranda", href: "/" },
+  { label: "Layanan", href: "/service/" },
+  { label: "Artikel", href: "/articles/" },
+] as const;
+/** Footer navigation grouped by visitor intent; no unverified contact details. */
+export const footerNavigation = [
+  {
+    title: "Jelajahi",
+    links: [
+      { label: "Beranda", href: "/" },
+      { label: "Layanan", href: "/service/" },
+      { label: "Artikel", href: "/articles/" },
+    ],
+  },
+  {
+    title: "Informasi",
+    links: [
+      { label: "Tentang situs", href: "/" },
+      { label: "Panduan dan wawasan", href: "/articles/" },
+    ],
+  },
+] as const;
