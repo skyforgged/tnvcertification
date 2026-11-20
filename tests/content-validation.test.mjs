@@ -110,3 +110,29 @@ test("two paragraphs after H1 report CONTENT-002", () => {
     "expected CONTENT-002",
   );
 });
+
+
+test("metaDescription matching featuredImage.alt reports CONTENT-006", () => {
+  const alt = "Judul Uji adalah ilustrasi sertifikasi.";
+  const diagnostics = validateEntry(makeEntry({data: {
+    metaDescription: alt,
+    featuredImage: { src: "/image.webp", alt },
+  }}));
+  assert.ok(diagnostics.some(d => d.rule === "CONTENT-006" && d.field === "metaDescription"));
+});
+
+test("duplicate slug is rejected within same collection and language", () => {
+  const diagnostics = validateAllEntries([
+    makeEntry({id: "a.md", data: {slug: "slug-sama", lang: "id"}}),
+    makeEntry({id: "b.md", data: {slug: "SLUG-SAMA", lang: "id"}}),
+  ]);
+  assert.ok(diagnostics.some(d => d.rule === "CONTENT-006" && d.field === "slug"));
+});
+
+test("gallery image objects require src and alt", () => {
+  const diagnostics = validateEntry(makeEntry({data: {images: [
+    {src: "", alt: "Gambar"},
+    {src: "/image.webp", alt: ""},
+  ]}}));
+  assert.equal(diagnostics.filter(d => d.rule === "CONTENT-010").length, 2);
+});
