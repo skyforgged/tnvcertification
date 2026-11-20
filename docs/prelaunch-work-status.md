@@ -124,3 +124,14 @@ Branch: `feat/service-seo-structured-data` (merged at `7a288de`)
 - The canonical domain and organization contact details in `src/site.ts` remain unconfirmed placeholders; production deployment remains blocked until verified details are supplied.
 - Integration fix after merge: `structured-data.ts` uses an explicit `.ts` import so the Node test runner can resolve it, and `tsconfig.json` enables `allowImportingTsExtensions` to keep typecheck passing.
 - Merged into `main` at `7a288de`.
+
+
+## P9 — Pre-launch site identity readiness helper
+
+Branch: `feat/prelaunch-identity-readiness-gate`
+
+- Added an advisory helper to detect likely placeholder values in the shared site identity configuration (domain, email, phone, address, and social URLs).
+- Added automated tests for the current placeholder values, complete-looking values, missing values, and invalid/placeholder social URLs.
+- This check intentionally does not run as a production CI blocker: current placeholder data is expected during preparation. It also does not independently verify legal identity, domain ownership, contact details, or official profiles.
+- Run the helper against `src/site.ts` once authoritative company details have been supplied; do not treat a green result as proof of identity.
+- Current source values are expected to be flagged until the company confirms them.
