@@ -81,7 +81,6 @@ export function servicePageJsonLd(input: ServiceStructuredDataInput) {
       description: input.description,
       mainEntity: { "@id": serviceId },
       breadcrumb: { "@id": breadcrumbId },
-      isPartOf: { "@id": `${siteSettings.url}/#website` },
     },
     service,
     {
