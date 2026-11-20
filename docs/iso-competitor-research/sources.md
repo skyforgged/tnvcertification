@@ -21,7 +21,7 @@ Reviewed for an initial evidence pass on 2026-11-20. These links are source poin
 - Accreditation mark policy document (North America scope): https://www.tuv.com/content-media-files/usa/pdfs/imprint-corporate-procurement/2025/ms-0005743-promoting-certification-and-using-the-trna-and-anab-marks.pdf — contains ISO 27701 and ISO 42001 in scope; not Indonesia-specific evidence.
 
 ## 4. TÜV NORD
-- **Not adequately researched in this pass.** Add a verified official management systems certification catalogue URL before coding any matrix cells.
+- Indonesia recognitions and accreditations: https://www.tuv-nord.com/id/en/company/our-recognitions-accreditations/ — official Indonesia page explicitly lists KAN accreditation identifiers for ISO 9001 (LSSM-016-IDN), ISO 14001 (LSSML-008-IDN), ISO 45001 (LSSMK3-003-IDN), ISO/IEC 27001 (LSSMKI-001-IDN), ISO 37001 (LSSMAP-003-IDN), ISO 21001, ISO 50001 (LSSME-001-IDN), ISO 13485 (LSSMAK-001-IDN), and ISO 22000/HACCP (LSSMKP-004-IDN / LSSHACCP-011-IDN). This is stronger local accreditation evidence than a general global portfolio. The page does not list ISO 22301, ISO/IEC 20000-1, ISO/IEC 27701 or ISO/IEC 42001.
 
 ## 5. SUCOFINDO
 - Indonesia certification services overview: https://www.sucofindo.co.id/id/layanan/sertifikasi — general service categories.
@@ -30,14 +30,15 @@ Reviewed for an initial evidence pass on 2026-11-20. These links are source poin
 - Certification brochure PDF: https://www.sucofindo.co.id/wp-content/uploads/2022/12/Certification-Brochure-mei-2022.pdf — older brochure; not assumed to reflect the current full portfolio.
 
 ## 6. MUTU International
-- Official company page: https://mutucertification.com/profile/about-mutu-international/ — portfolio history, including ISO 21001/45001 references; not a definitive service catalogue for the 12 candidates.
-- Home page (official): https://mutucertification.com/ — should be reviewed directly for service portfolio.
-- Note: a search result for a similarly named company (Mutiara Terpadu) is not MUTU International and was excluded.
+- MUTU profile (official): https://mutucertification.com/profile/about-mutu-international/ — history states KAN accreditation as ISO 9001 certification body LSSM-008-IDN; company profile also describes its ISO 45001 portfolio history.
+- INSPECT partnership service page: https://mutucertification.com/inspect-certification/ — explicitly says MUTU cooperates with an IAS-accredited Turkish certification body and can help clients obtain ISO 9001, ISO 14001, ISO 45001 and ISO 13485 through INSPECT. Record these as partner-delivered offers, not as MUTU's own KAN-accredited scope.
+- MUTU's ISO management-system certification rules (PDF): https://mutucertification.com/wp-content/uploads/2019/06/MUTU-5001-ABPI-3-6-Aturan-Pelaksanan-Sertifikasi-9001-14001-37001-27001.pdf — identifies KAN accreditation IDs for ISO 9001 (LSSM-008-IDN), ISO 14001 (LSSML-002-IDN), ISO 37001 (LSSMAP-004-IDN), and ISO/IEC 27001 (LSSMKI-010-IDN). The PDF revision is dated 2021; verify current register before treating it as current scope.
 
 ## 7. BSI
-- Indonesia quality and assessment overview: https://www.bsigroup.com/en-ID/our-expertise/quality/ — references ISO 9001 and assessment/certification generally.
-- Indonesia training schedule PDF: https://www.bsigroup.com/globalassets/localfiles/en-id/Training%20Schedule/2024/bsi-indonesia-training-schedule-2024.pdf — standards/topic coverage includes 9001, 22301, 37001, 45001, 27701, 27001, 20000-1, 14001, 50001; **training content is not evidence of certification offer**.
-- Management systems certification guidebook (older): https://www.bsigroup.com/globalassets/localfiles/en-th/bsi-cert-guidebook/management-systems-certification-guidebook.pdf — older general guide; confirm current Indonesia scheme scope separately.
+- BSI Indonesia certificate directory — ISO/IEC 27001 certificate IS 785832: https://www.bsigroup.com/en-ID/products-and-services/assessment-and-certification/validation-and-verification/client-directory-certificate/IS%20785832/ — current Indonesian client certificate record.
+- BSI Indonesia certificate directory — ISO 9001, ISO 14001 and ISO 45001 client profile (PT Trakindo Utama): https://www.bsigroup.com/en-ID/products-and-services/assessment-and-certification/validation-and-verification/client-directory-profile/PT_TRA-0047764320-035/ — records issued certificates for the three standards.
+- BSI Indonesia certificate directory — further ISO/IEC 27001 client examples: https://www.bsigroup.com/en-ID/products-and-services/assessment-and-certification/validation-and-verification/client-directory-certificate/IS%20791674/ and https://www.bsigroup.com/en-ID/products-and-services/assessment-and-certification/validation-and-verification/client-directory-certificate/IS%20774023/.
+- Indonesia training schedule PDF: https://www.bsigroup.com/globalassets/localfiles/en-id/Training%20Schedule/2024/bsi-indonesia-training-schedule-2024.pdf — standards/topic coverage includes 22301, 37001, 27701, 20000-1 and 50001; training is contextual only, not proof of certification offer.
 
 ## 8. DQS
 - Indonesia/global accreditation overview: https://www.dqsglobal.com/id/tentang/akreditasi-dan-integritas/akreditasi-dan-notifikasi/akreditasi-dan-notifikasi-dqs — says DQS evaluates against 100+ standards; accreditation table lists a wide portfolio globally including ISO 9001, 14001, 45001, 50001, 27001, 20000-1, 22301, 22000, 37001, 13485, and others. This is global accreditation context; Indonesian KAN scope on this page is narrower.
