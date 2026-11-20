@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated merge commit: `2a3b225`
+- Validated merge commit: `f3f4875`
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -75,7 +75,7 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-Local full validation ran on `main` at merge commit `2a3b225` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
+Local full validation ran on `main` at merge commit `f3f4875` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
 
 | Command | Result |
 |---|---|
@@ -157,4 +157,15 @@ Branch: `feat/homepage-discovery-layout` (merged at `2a3b225`)
 1. Review the homepage at desktop, tablet and mobile widths visually; fix any issues in follow-up commits if found.
 2. Confirm official company identity/contact/domain and approved logo before production-facing configuration is updated.
 3. Confirm certification/assessment scope and authorization evidence before activating scheme or service records.
-4. Continue with sitewide navigation/footer and content page UX after the homepage review; preserve the SSOT and avoid publishing placeholder identity or unsupported service claims.
+4. Continue with content page UX after the homepage and navigation reviews; preserve the SSOT and avoid publishing placeholder identity or unsupported service claims.
+
+
+## P10 — Sitewide navigation and footer
+
+Branch: `feat/site-navigation-footer` (merged at `f3f4875`).
+
+- `primaryNavigation` and `footerNavigation` now live in `src/site.ts` as shared route/label configuration.
+- `SiteHeader.astro` and `SiteFooter.astro` provide responsive sitewide navigation, skip-to-content, and a back-to-top link.
+- Placeholder contact details stay out of public UI. No new service, accreditation or authorization claims were added.
+- Integration fix after merge: removed an unused `organization` import from `Layout.astro`.
+- See `docs/site-navigation-footer.md` for scope and validation notes. Visual and keyboard review remain separate manual tasks.

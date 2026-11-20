@@ -1,6 +1,6 @@
 ---
 title: Sitewide navigation and footer
-status: implemented on feature branch
+status: merged to main
 phase: P10
 ---
 
@@ -19,8 +19,15 @@ Introduce consistent sitewide navigation and footer elements using shared config
 - Sitewide navigation labels and paths live in `src/site.ts`.
 - Do not expose placeholder contact fields from `src/site.ts` in public UI.
 - The approved logo/contact/domain still require confirmation; this change does not replace those values.
-- No changes to `main`; user performs local merge after validation.
+- Merged into `main` at `f3f4875`.
 
 ## Validation
-- Reviewed the current source, route structure, site settings, and layout contracts from GitHub.
-- Remote source was updated in multiple commits; local `pnpm check`, `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm build`, and visual/keyboard review are not run in this environment. Run them on the pinned Node/pnpm toolchain before merging.
+Local validation on `main` at merge commit `f3f4875` with Node.js `26.13.1` and pnpm `12.21.0`:
+
+- `npm run check`: PASS, exit `0`.
+- `npm run typecheck`: PASS, exit `0`.
+- `npm run lint`: PASS, exit `0`.
+- `npm run test`: PASS, exit `0`, 33 tests.
+- `npm run build`: PASS, exit `0`, 13 pages.
+
+Integration fix after merge: removed an unused `organization` import from `src/layouts/Layout.astro` that strict typechecking rejected. Visual and keyboard review remain separate manual tasks.
