@@ -137,3 +137,24 @@ Branch: `feat/prelaunch-identity-readiness-gate` (merged at `bca8043`)
 - Current source values are expected to be flagged until the company confirms them.
 - Integration fix after merge: the helper now declares explicit types for its config, findings, and placeholder checks so strict typechecking passes without changing runtime behavior.
 - Merged into `main` at `bca8043`.
+
+
+## P9 — Homepage discovery layout (in review)
+
+Branch: `feat/homepage-discovery-layout`
+
+- Added a reusable responsive homepage hero component.
+- Added clear navigation panels for the existing service index and article archive.
+- Retained the homepage's latest-three article section using the shared article ordering function.
+- No unverified certification service, accreditation, authorization, criteria, coverage, pricing or company identity details were added.
+- Draft CSMS remains excluded from public service pages.
+- See `docs/homepage-discovery-layout.md` for implementation notes and local QA checklist.
+- Changes are isolated in a feature branch and are not merged to `main` by the assistant. Local build and responsive review are pending.
+
+
+## Next work
+
+1. Run full local checks and visual review of P9; fix any issues in follow-up commits if found.
+2. Confirm official company identity/contact/domain and approved logo before production-facing configuration is updated.
+3. Confirm certification/assessment scope and authorization evidence before activating scheme or service records.
+4. Continue with sitewide navigation/footer and content page UX after the homepage review; preserve the SSOT and avoid publishing placeholder identity or unsupported service claims.
