@@ -1,0 +1,37 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import ArticleCard from "../../../components/ArticleCard.astro";
+import { getCollection } from "astro:content";
+
+const pageSize = 9;
+export async function getStaticPaths() {
+  const articles = await getCollection("articles", ({ data }) => data.draft !== true);
+  const ordered = articles.sort((a, b) => (b.data.updatedDate ?? b.data.pubDate).getTime() - (a.data.updatedDate ?? a.data.pubDate).getTime());
+  const pageCount = Math.ceil(ordered.length / pageSize);
+  return Array.from({ length: Math.max(0, pageCount - 1) }, (_, index) => {
+    const page = index + 2;
+    return { params: { page: String(page) }, props: { page, articles: ordered.slice((page - 1) * pageSize, page * pageSize), pageCount } };
+  });
+}
+const { page, articles, pageCount } = Astro.props;
+---
+
+<Layout title={`Artikel — Halaman ${page} | PT. Intiprima Sertifikasi`} description="Artikel sertifikasi, pelatihan, dan kepatuhan.">
+  <section class="w-full" aria-labelledby="article-archive">
+    <h1 id="article-archive" class="text-3xl font-semibold text-brand-deepblue">Artikel</h1>
+    <div class="mt-8 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {articles.map((entry) => <ArticleCard article={{
+        id: entry.id, slug: entry.data.slug, title: entry.data.title, intro: entry.data.intro,
+        metaDescription: entry.data.metaDescription, pubDate: entry.data.pubDate, updatedDate: entry.data.updatedDate,
+        effectiveDate: entry.data.updatedDate ?? entry.data.pubDate, lang: entry.data.lang, translationKey: entry.data.translationKey,
+        featuredImage: entry.data.featuredImage, categoryIds: entry.data.categoryIds ?? [], serviceId: entry.data.serviceId,
+        body: entry.body
+      }} />)}
+    </div>
+    <nav class="mt-10 flex items-center justify-between" aria-label="Pagination">
+      <a href={page === 2 ? "/articles/" : `/articles/page/${page - 1}/`} class="underline">Sebelumnya</a>
+      <span aria-current="page">Halaman {page} dari {pageCount}</span>
+      {page < pageCount ? <a href={`/articles/page/${page + 1}/`} class="underline">Berikutnya</a> : <span />}
+    </nav>
+  </section>
+</Layout>
