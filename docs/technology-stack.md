@@ -1,11 +1,11 @@
 # TNV Certification Technology Stack
 
 ## Version policy
-- Astro 7 or newer stable compatible version.
-- TypeScript 7.0.2 native compiler via `@typescript/native`; `typescript` module aliases `@typescript/typescript6@6.0.2` for tooling without a TS 7 API. Strict mode enabled.
-- Tailwind CSS latest stable compatible release.
-- Node.js `22.23.4` (`.nvmrc` and `.node-version`); minimum `>=22.23.4`.
-- pnpm `10.15.0` via Corepack (`packageManager` in `package.json`).
+- Astro `7.4.13`.
+- TypeScript `7.0.2` only. No compiler aliases and no TypeScript 6 packages. Strict mode enabled.
+- Tailwind CSS and `@tailwindcss/vite`: `4.3.5`.
+- Node.js `26.13.1` (`.nvmrc` and `.node-version`); engine range `>=26.13.1 <27`.
+- pnpm `12.21.0` via Corepack (`packageManager` in `package.json`).
 - Check release notes and compatibility before major upgrades; do not blindly update.
 - Lock exact resolved versions in package manifests and lockfile.
 
@@ -13,7 +13,7 @@
 - Astro for framework, routing, static rendering, and components.
 - TypeScript for strict typing.
 - Tailwind CSS for utility styling.
-- Vite is managed through Astro; configure independently only if required.
+- Vite is a direct dev dependency because `vite.config.mjs` imports it; Astro manages the rest.
 - pnpm for package/dependency management.
 
 ## Content
@@ -33,7 +33,7 @@
 - ESLint for linting.
 - Prettier for formatting.
 - Prettier Tailwind plugin for class ordering.
-- Astro Check for Astro and TypeScript diagnostics.
+- `astro sync && tsc --noEmit` for content sync and TypeScript diagnostics; `.astro` templates are not fully type-checked.
 - Playwright for focused end-to-end/browser checks.
 - Lighthouse for performance, accessibility, SEO, and best-practice auditing.
 - Git/GitHub for version control.

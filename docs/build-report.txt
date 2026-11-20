@@ -1,5 +1,8 @@
 # Build report — 2026-11-20
 
+The baseline sections below are historical. See
+`## Final toolchain repair (2026-11-20)` for current state and validation.
+
 ## Scope
 
 Record current validation failures and toolchain conflicts. No source fix is
@@ -150,7 +153,7 @@ Failures were introduced by newer route commits pulled from remote after
 `d8ee348`: `3b4c78f`, `7e63006`, `d1bd7fd`, `9357617`, `33d8ec2`,
 `aba62d1`.
 
-## Recommended order of repair
+## Historical recommended order of repair (superseded)
 
 1. Resolve the TypeScript toolchain conflict first. Pick versions supported
    together by Astro, `astro check`, and `typescript-eslint`; otherwise verify
@@ -205,7 +208,28 @@ Ran on Node `26.13.1` and pnpm `12.21.0`:
 
 ### Remaining limitations
 
-- `.astro` templates are not fully type-checked. `check` validates generated
-  content types and TypeScript files via `tsc`.
+- `.astro` templates are not type-checked. `tsc` checks TypeScript files under
+  `src` only; `astro sync` does not make generated `.astro` types part of that
+  check in this configuration.
 - ESLint no longer lints `.astro`, `.ts`, or `.tsx` files.
 - Empty content collection warnings remain non-fatal.
+
+## Review follow-up (2026-11-20)
+
+- Removed stale `eslint.config.mjs`. `eslint.config.js` is now the only ESLint
+  config.
+- Updated `README.md` and `docs/technology-stack.md` to match Node `26.13.1`,
+  pnpm `12.21.0`, TypeScript `7.0.2`, and the current check command.
+- Added `path` props to article archive layouts so page 2+ canonicals point to
+  their own URLs instead of the site root.
+- Added `src/lib/pagination.ts` and `tests/pagination.test.mjs`. Page numbers,
+  Previous, and Next are shared logic. Previous is omitted on page 1; Next is
+  omitted on the last page; the current page uses `aria-current="page"`.
+- Verified rendered pagination by temporarily lowering `pageSize` during a
+  build, then restoring `pageSize` to `9`. Built HTML contained correct page
+  anchors, `aria-current`, and per-page canonicals.
+- Regenerated `docs/build-output.txt` from `npm run build` after these fixes.
+
+Final validation on Node `26.13.1` and pnpm `12.21.0`: `check`, `build`,
+`typecheck`, `lint`, and `test` all exit `0`. `tests/pagination.test.mjs` passes
+2 of 2 tests.

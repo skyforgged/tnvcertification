@@ -2,6 +2,7 @@
 import Layout from "../../../layouts/Layout.astro";
 import ArticleCard from "../../../components/ArticleCard.astro";
 import { getPublishedArticles } from "../../../data/articles";
+import { getAdjacentPageHrefs, getPageLinks } from "../../../lib/pagination";
 
 export function getStaticPaths() {
   const pageSize = 9;
@@ -13,18 +14,23 @@ export function getStaticPaths() {
   });
 }
 const { page, articles, pageCount: totalPages } = Astro.props;
+const pageLinks = getPageLinks(page, totalPages, "/articles/");
+const adjacent = getAdjacentPageHrefs(page, totalPages, "/articles/");
 ---
 
-<Layout title={`Artikel — Halaman ${page} | PT. Intiprima Sertifikasi`} description="Artikel sertifikasi, pelatihan, dan kepatuhan.">
+<Layout path={`/articles/page/${page}/`} title={`Artikel — Halaman ${page} | PT. Intiprima Sertifikasi`} description="Artikel sertifikasi, pelatihan, dan kepatuhan.">
   <section class="w-full" aria-labelledby="article-archive">
     <h1 id="article-archive" class="text-3xl font-semibold text-brand-deepblue">Artikel</h1>
     <div class="mt-8 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {articles.map((article) => <ArticleCard article={article} />)}
     </div>
-    <nav class="mt-10 flex items-center justify-between" aria-label="Pagination">
-      <a href={page === 2 ? "/articles/" : `/articles/page/${page - 1}/`} class="underline">Sebelumnya</a>
-      <span aria-current="page">Halaman {page} dari {totalPages}</span>
-      {page < totalPages ? <a href={`/articles/page/${page + 1}/`} class="underline">Berikutnya</a> : <span />}
+    <nav class="mt-10 flex flex-wrap items-center gap-4" aria-label="Pagination">
+      {adjacent.previous && <a href={adjacent.previous} class="underline">Sebelumnya</a>}
+      {pageLinks.map((link) => link.current
+        ? <span aria-current="page" class="font-semibold text-brand-deepblue">{link.label}</span>
+        : <a href={link.href} class="underline">{link.label}</a>
+      )}
+      {adjacent.next && <a href={adjacent.next} class="underline">Berikutnya</a>}
     </nav>
   </section>
 </Layout>

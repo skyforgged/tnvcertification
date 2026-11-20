@@ -4,8 +4,8 @@ Content-driven Astro site for PT. Intiprima Sertifikasi.
 
 ## Requirements
 
-- Node.js `22.23.4` (see `.nvmrc` and `.node-version`)
-- pnpm `10.15.0` via Corepack
+- Node.js `26.13.1` (see `.nvmrc` and `.node-version`)
+- pnpm `12.21.0` via Corepack
 
 ## Setup
 
@@ -18,7 +18,7 @@ corepack pnpm install
 
 - `pnpm dev` — start Astro dev server
 - `pnpm build` — build the site and run editorial validation
-- `pnpm check` — Astro and TypeScript diagnostics
+- `pnpm check` — Astro content sync and TypeScript diagnostics (`.astro` templates are not type-checked)
 - `pnpm typecheck` — TypeScript only
 - `pnpm lint` — ESLint
 - `pnpm test` — content validation tests

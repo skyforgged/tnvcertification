@@ -2,14 +2,17 @@
 import Layout from "../../layouts/Layout.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
 import { getPublishedArticles } from "../../data/articles";
+import { getAdjacentPageHrefs, getPageLinks } from "../../lib/pagination";
 
 const articles = getPublishedArticles();
 const pageSize = 9;
 const pageCount = Math.max(1, Math.ceil(articles.length / pageSize));
 const pageArticles = articles.slice(0, pageSize);
+const pageLinks = getPageLinks(1, pageCount, "/articles/");
+const adjacent = getAdjacentPageHrefs(1, pageCount, "/articles/");
 ---
 
-<Layout title="Artikel | PT. Intiprima Sertifikasi" description="Artikel, wawasan, dan panduan sertifikasi serta kepatuhan.">
+<Layout path="/articles/" title="Artikel | PT. Intiprima Sertifikasi" description="Artikel, wawasan, dan panduan sertifikasi serta kepatuhan.">
   <section class="w-full" aria-labelledby="article-archive">
     <h1 id="article-archive" class="text-3xl font-semibold text-brand-deepblue">Artikel</h1>
     <p class="mt-3 max-w-2xl text-slate-700">Wawasan, panduan, dan pembahasan seputar sertifikasi dan kepatuhan.</p>
@@ -18,6 +21,14 @@ const pageArticles = articles.slice(0, pageSize);
         {pageArticles.map((article) => <ArticleCard article={article} />)}
       </div>
     ) : <p class="mt-8">Artikel belum tersedia.</p>}
-    {pageCount > 1 && <nav class="mt-10 flex gap-4" aria-label="Pagination"><a href="/articles/page/2/">Artikel berikutnya</a></nav>}
+    {pageCount > 1 && (
+      <nav class="mt-10 flex flex-wrap items-center gap-4" aria-label="Pagination">
+        {pageLinks.map((link) => link.current
+          ? <span aria-current="page" class="font-semibold text-brand-deepblue">{link.label}</span>
+          : <a href={link.href} class="underline">{link.label}</a>
+        )}
+        {adjacent.next && <a href={adjacent.next} class="underline">Berikutnya</a>}
+      </nav>
+    )}
   </section>
 </Layout>
