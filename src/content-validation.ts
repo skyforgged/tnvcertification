@@ -13,6 +13,7 @@ import { validateAllEntries, type ContentEntryLike } from "./lib/content-validat
 import { validateTaxonomy, type TaxonomyRecordLike } from "./lib/taxonomy-validation";
 import { certificationSchemes } from "./data/certification-schemes";
 import { validateCertificationSchemes } from "./lib/certification-scheme-validation";
+import { validateArticleServiceRelations } from "./lib/article-service-relations";
 import { collectionRegistry, editorialCollections } from "./data/collections";
 
 function readFrontmatter(filePath: string): FrontmatterPayload | null {
@@ -80,18 +81,20 @@ export const contentValidationIntegration = {
         ...validateAllEntries(contentEntries),
         ...validateTaxonomy(categories, contentEntries),
       ];
+      const relationDiagnostics = validateArticleServiceRelations(contentEntries);
       const schemeDiagnostics = validateCertificationSchemes(
         certificationSchemes,
         categories.map((category) => String(category.data.slug ?? "")),
       );
-      if (diagnostics.length > 0 || schemeDiagnostics.length > 0) {
-        const totalIssues = diagnostics.length + schemeDiagnostics.length;
+      if (diagnostics.length > 0 || schemeDiagnostics.length > 0 || relationDiagnostics.length > 0) {
+        const totalIssues = diagnostics.length + schemeDiagnostics.length + relationDiagnostics.length;
         const lines = [
           `Content validation failed with ${totalIssues} issue(s):`,
           ...diagnostics.map((d) => `  [${d.rule}] ${d.path} → ${d.field}: ${d.reason}`),
           ...schemeDiagnostics.map((d) => `  [${d.rule}] scheme:${d.schemeId} → ${d.field}: ${d.reason}`),
+          ...relationDiagnostics.map((d) => `  [${d.rule}] ${d.path} → ${d.field}: ${d.reason}`),
           "",
-          "Fix the content, taxonomy and certification-scheme references before building again.",
+          "Fix the content, taxonomy, certification-scheme and article-service references before building again.",
         ];
         throw new Error(lines.join("\n"));
       }
