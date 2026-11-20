@@ -1,0 +1,35 @@
+---
+import { getCollection, render } from "astro:content";
+import ServiceLayout from "../../layouts/ServiceLayout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import { getPublishedArticles, getRelatedArticles } from "../../data/articles";
+
+export async function getStaticPaths() {
+  const services = await getCollection("services", ({ data }) => data.draft !== true);
+  return services.map((service) => ({ params: { slug: service.data.slug }, props: { service } }));
+}
+const { service } = Astro.props;
+const { Content } = await render(service);
+const serviceId = service.data.id;
+const relatedArticles = serviceId ? getRelatedArticles(getPublishedArticles(), serviceId) : [];
+---
+
+<ServiceLayout
+  title={service.data.title}
+  description={service.data.metaDescription}
+  intro={service.data.intro}
+  lang={service.data.lang}
+  canonical={`/services/${service.data.slug}/`}
+  ogImage={service.data.featuredImage.src}
+  blocks={service.data.blocks}
+>
+  <Content />
+  {relatedArticles.length > 0 && (
+    <section class="mt-16" aria-labelledby="artikel-terkait">
+      <h2 id="artikel-terkait" class="text-2xl font-semibold text-brand-deepblue">Artikel Terkait</h2>
+      <div class="mt-6 grid gap-8 md:grid-cols-2">
+        {relatedArticles.map((article) => <ArticleCard article={article} />)}
+      </div>
+    </section>
+  )}
+</ServiceLayout>

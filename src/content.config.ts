@@ -81,6 +81,7 @@ const articleSchema = baseEntrySchema.extend({
 
 // --- Services ---
 const serviceSchema = baseEntrySchema.extend({
+  id: z.number().int().positive(),
   draft: z.boolean().optional(),
   categoryIds: z.array(z.string()).optional(),
   serviceType: z.string().optional(),
