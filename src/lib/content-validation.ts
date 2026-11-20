@@ -183,6 +183,13 @@ export function validateEntry(entry: ContentEntryLike): Diagnostic[] {
     }
   }
 
+  if (metaDescription && typeof image === "object" && image !== null && !Array.isArray(image)) {
+    const imageAlt = toStr(image.alt).trim();
+    if (imageAlt && metaDescription.trim() === imageAlt) {
+      add("metaDescription", "CONTENT-006", "metaDescription must not duplicate featuredImage.alt.");
+    }
+  }
+
   // CONTENT-010: optional `images`, when supplied, is a valid array of objects.
   const imagesVal = data.images;
   if (imagesVal !== undefined) {
@@ -193,6 +200,14 @@ export function validateEntry(entry: ContentEntryLike): Diagnostic[] {
         const img = imagesVal[i];
         if (typeof img !== "object" || img === null || Array.isArray(img)) {
           add(`images[${i}]`, "CONTENT-010", "Each item in `images` must be an image object.");
+          continue;
+        }
+        const galleryImage = img as { src?: unknown; alt?: unknown };
+        if (!toStr(galleryImage.src).trim()) {
+          add(`images[${i}].src`, "CONTENT-010", "Each image requires a non-empty src.");
+        }
+        if (!toStr(galleryImage.alt).trim()) {
+          add(`images[${i}].alt`, "CONTENT-010", "Each image requires a non-empty alt.");
         }
       }
     }
@@ -220,6 +235,7 @@ export function validateAllEntries(entries: ContentEntryLike[]): Diagnostic[] {
   const diagnostics: Diagnostic[] = [];
   const introOwners = new Map<string, string>();
   const metaOwners = new Map<string, string>();
+  const slugOwners = new Map<string, string>();
 
   for (const entry of entries) {
     diagnostics.push(...validateEntry(entry));
@@ -238,6 +254,23 @@ export function validateAllEntries(entries: ContentEntryLike[]): Diagnostic[] {
         });
       } else {
         introOwners.set(intro, entry.id);
+      }
+    }
+
+    const slug = toStr(data.slug).trim();
+    if (slug) {
+      const slugKey = `${entry.collection}:${toStr(data.lang)}:${slug.toLowerCase()}`;
+      const slugOwner = slugOwners.get(slugKey);
+      if (slugOwner) {
+        diagnostics.push({
+          entry: entry.id,
+          path: entry.path ?? entry.id,
+          field: "slug",
+          rule: "CONTENT-006",
+          reason: `Slug is duplicated on "${slugOwner}" for the same collection and language.`,
+        });
+      } else {
+        slugOwners.set(slugKey, entry.id);
       }
     }
 
