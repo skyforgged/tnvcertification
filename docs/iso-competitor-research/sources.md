@@ -21,6 +21,7 @@ Reviewed for an initial evidence pass on 2026-11-20. These links are source poin
 - Accreditation mark policy document (North America scope): https://www.tuv.com/content-media-files/usa/pdfs/imprint-corporate-procurement/2025/ms-0005743-promoting-certification-and-using-the-trna-and-anab-marks.pdf — contains ISO 27701 and ISO 42001 in scope; not Indonesia-specific evidence.
 
 ## 4. TÜV NORD
+- Indonesia system certification service catalogue: https://www.tuv-nord.com/id/en/tuev-nord-indonesia/our-business-unit/certifications/system-certification-services/ — current local service page explicitly presents ISO 9001, ISO 14001, ISO 45001 and ISO 37001.
 - Indonesia recognitions and accreditations: https://www.tuv-nord.com/id/en/company/our-recognitions-accreditations/ — official Indonesia page explicitly lists KAN accreditation identifiers for ISO 9001 (LSSM-016-IDN), ISO 14001 (LSSML-008-IDN), ISO 45001 (LSSMK3-003-IDN), ISO/IEC 27001 (LSSMKI-001-IDN), ISO 37001 (LSSMAP-003-IDN), ISO 21001, ISO 50001 (LSSME-001-IDN), ISO 13485 (LSSMAK-001-IDN), and ISO 22000/HACCP (LSSMKP-004-IDN / LSSHACCP-011-IDN). This is stronger local accreditation evidence than a general global portfolio. The page does not list ISO 22301, ISO/IEC 20000-1, ISO/IEC 27701 or ISO/IEC 42001.
 
 ## 5. SUCOFINDO
