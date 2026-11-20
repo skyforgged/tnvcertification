@@ -3,6 +3,7 @@ import { getCollection, render } from "astro:content";
 import ServiceLayout from "../../layouts/ServiceLayout.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
 import { getPublishedArticles, getRelatedArticles } from "../../data/articles";
+import { servicePageJsonLd } from "../../lib/structured-data";
 
 export async function getStaticPaths() {
   const services = await getCollection("services", ({ data }) => data.draft !== true);
@@ -12,6 +13,14 @@ const { service } = Astro.props;
 const { Content } = await render(service);
 const serviceId = service.data.id;
 const relatedArticles = serviceId ? getRelatedArticles(getPublishedArticles(), serviceId) : [];
+const structuredData = servicePageJsonLd({
+  name: service.data.title,
+  description: service.data.metaDescription,
+  path: `/services/${service.data.slug}/`,
+  image: service.data.featuredImage.src,
+  serviceType: service.data.serviceType,
+  category: service.data.category,
+});
 ---
 
 <ServiceLayout
@@ -22,6 +31,7 @@ const relatedArticles = serviceId ? getRelatedArticles(getPublishedArticles(), s
   canonical={`/services/${service.data.slug}/`}
   ogImage={service.data.featuredImage.src}
   blocks={service.data.blocks}
+  structuredData={structuredData}
 >
   <Content />
   {relatedArticles.length > 0 && (
