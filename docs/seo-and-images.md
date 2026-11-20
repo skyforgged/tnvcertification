@@ -29,3 +29,15 @@ Include valid, relevant JSON-LD based on the page/entity, such as Organization, 
 - Lazy-load non-critical images but not critical above-the-fold imagery.
 - Reserve image dimensions to limit layout shift.
 - Review Lighthouse/Core Web Vitals as part of quality checks.
+
+
+## Service SEO implementation notes
+
+- The service directory at `/service/` uses the canonical URL, localized document language, and title assembled with the shared site title from `src/site.ts`.
+- The service directory emits a `CollectionPage`, an `ItemList` containing only non-draft services rendered on the page, and a `BreadcrumbList`.
+- Published service detail pages emit a `WebPage`, `Service`, and `BreadcrumbList` graph. The `Service.provider` references the one canonical Organization entity by `@id`.
+- Optional `image`, `serviceType`, and `category` properties are emitted only when the published content supplies them. No `areaServed`, accreditation, certification scope, price, or authorization claim is inferred.
+- The base layout combines centrally defined Organization JSON-LD with page-specific entities and serializes the combined graph safely.
+- Draft service records are filtered before static paths are generated and before the service directory is assembled. They therefore do not become indexable service pages or ItemList entries.
+- The current CSMS record remains draft, so this implementation does not publish a CSMS detail page or claim that the assessment is available.
+- The production domain and organization contact values in `src/site.ts` are still placeholders/unconfirmed and must be corrected before deployment; this phase intentionally does not guess replacements.
