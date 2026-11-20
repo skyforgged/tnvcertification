@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Current HEAD: `a68b53b`
+- Validated merge commit: `96ca35b`
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -38,7 +38,7 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 | P3 | Site identity / `site.ts` SSOT audit | Audit completed; code replacement blocked on confirmed company details |
 | P4 | Service taxonomy design and implementation | Completed; 12 bilingual category pairs and reference validation merged and locally validated |
 | P5 | ISO service/scheme catalog | Internal 12-item planned catalog and build-time validation implemented; editions and TNCV scope remain unverified |
-| P6 | Article-to-service relationships | Architecture exists; requires canonical service records and editorial mapping |
+| P6 | Article-to-service relationships | Cross-collection validation implemented and merged; no article linked to the draft CSMS service |
 | P7 | Service SEO and structured data | Shared SEO/JSON-LD helpers exist; verify against approved canonical service data |
 | P8 | Full quality gate | Local checks passed on pinned toolchain; deployment runtime verification still pending |
 
@@ -54,7 +54,7 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 - Current repository runtime policy pins Node.js `26.13.1` in `.node-version` / `.nvmrc`, with `package.json` engine `>=26.13.1 <27`; pnpm is `12.21.0`.
 - Current TypeScript is `7.1.0-beta`; TypeScript 6.x is prohibited by repository policy. This is a beta exception, not a stable release.
 - `categoryIds` values now use canonical stable slugs. Legacy `kualitas` and `organisasi` references were removed during integration.
-- GitHub Actions workflow `.github/workflows/quality.yml` is introduced on the current P5 branch; it must pass after the branch is pushed/opened as a PR.
+- GitHub Actions workflow `.github/workflows/quality.yml` is present on `main`; it runs install, check, lint, test and build on pull requests and pushes to `main`.
 
 ## External confirmations needed
 
@@ -75,7 +75,7 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-Local full validation ran on `main` at `a68b53b` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
+Local full validation ran on `main` at merge commit `96ca35b` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
 
 | Command | Result |
 |---|---|
@@ -83,9 +83,9 @@ Local full validation ran on `main` at `a68b53b` with the pinned Node.js `26.13.
 | `npm run build` | PASS, exit `0`, 13 pages |
 | `npm run typecheck` | PASS, exit `0` |
 | `npm run lint` | PASS, exit `0` |
-| `npm run test` | PASS, exit `0`, 14 tests |
+| `npm run test` | PASS, exit `0`, 25 tests |
 
-GitHub Actions workflow `.github/workflows/quality.yml` is present. Its first pull-request run completed successfully for dependency installation, checks, lint, tests and production build. Build success is recorded from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
+GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test and build on pull requests and pushes to `main`. No CI run result was independently verifiable in this environment. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
 
 
 ## P5 completion — certification scheme catalog and CI
@@ -93,11 +93,11 @@ GitHub Actions workflow `.github/workflows/quality.yml` is present. Its first pu
 - PR #5 was merged by the repository maintainer into `main` at commit `85711a2`.
 - Added 12 internal candidate scheme records; all remain `planned`, with editions unset pending official verification.
 - Added scheme reference validation and the `.github/workflows/quality.yml` quality gates.
-- The first GitHub Actions run passed dependency installation, Astro/TypeScript checks, lint, tests and production build.
+- The workflow is configured for dependency installation, Astro/TypeScript checks, lint, tests and production build. CI run results were not independently verifiable in this environment.
 
-## P6 current work — article/service relationships
+## P6 merged work — article/service relationships
 
-Branch: `feat/article-service-relations`
+Branch: `feat/article-service-relations` (merged at `96ca35b`)
 
 - The article schema already supports an explicit optional numeric `serviceId`; this stage adds cross-collection validation instead of introducing a second competing relationship field.
 - Every service must have a unique positive integer `id`.
@@ -105,4 +105,4 @@ Branch: `feat/article-service-relations`
 - A published article may not link to a draft service. Draft articles may reference draft services.
 - No current article has been associated with the draft CSMS service. Existing article topics are not sufficient evidence to claim that an operational certification service is available.
 - Added automated tests and integrated relation checks into the build-time validation gate.
-- This branch is for review only. Do not merge until the maintainer has reviewed the PR and the CI result.
+- Merged into `main` at `96ca35b`.
