@@ -31,26 +31,22 @@ import { globSync } from "tinyglobby";
 import { readFileSync } from "node:fs";
 import { parse as parseYaml } from "yaml";
 import { validateAllEntries, type ContentEntryLike } from "./lib/content-validation";
-
-// Canonical content dirs backing each collection. The Zod `defineCollection`
-// config already maps these; this array mirrors them so the build gate knows
-// where to read frontmatter.
-const COLLECTIONS = [
-  { name: "articles", dir: "src/content/articles" },
-  { name: "certifications", dir: "src/content/certifications" },
-  { name: "training", dir: "src/content/training" },
-  { name: "trainingSchedules", dir: "src/content/training-schedules" },
-  { name: "pages", dir: "src/content/pages" },
-] as const;
+import { editorialCollections } from "./data/collections";
 
 function loadContentEntries(): ContentEntryLike[] {
   const entries: ContentEntryLike[] = [];
-  for (const col of COLLECTIONS) {
-    const files = globSync(`${col.dir}/**/*.md`, { onlyFiles: true });
+  for (const col of editorialCollections) {
+    const files = globSync(`${col.dir}/**/*.{md,mdx}`, { onlyFiles: true });
     for (const file of files) {
       const payload = readFrontmatter(file);
       if (payload === null) continue;
-      entries.push({ id: file, collection: col.name, data: payload.data, body: payload.body });
+      entries.push({
+        id: file,
+        collection: col.name,
+        path: file,
+        data: payload.data,
+        body: payload.body,
+      });
     }
   }
   return entries;

@@ -10,6 +10,7 @@ featuredImage:
   src: "/images/articles/0001.jpg"
   alt: "Posisi Kualitas sebagai Talenta Kompetitif adalah peran mutu dalam organisasi."
 slug: "posisi-kualitas-sebagai-talenta-kompetitif"
+translationKey: "article-posisi-kualitas-sebagai-talenta-kompetitif"
 lang: "id"
 ---
 # Posisi Kualitas sebagai Talenta Kompetitif

@@ -10,6 +10,7 @@ featuredImage:
   src: "/images/articles/0002.jpg"
   alt: "Sertifikasi ISO 9001:2015 adalah pengakuan atas sistem manajemen mutu."
 slug: "sertifikasi-iso-9001-2015"
+translationKey: "article-sertifikasi-iso-9001-2015"
 lang: "id"
 ---
 # Sertifikasi ISO 9001:2015

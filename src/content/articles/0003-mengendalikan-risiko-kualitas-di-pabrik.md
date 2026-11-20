@@ -10,6 +10,7 @@ featuredImage:
   src: "/images/articles/0003.jpg"
   alt: "Mengendalikan Risiko Kualitas di Pabrik adalah pengendalian mutu produksi."
 slug: "mengendalikan-risiko-kualitas-di-pabrik"
+translationKey: "article-mengendalikan-risiko-kualitas-di-pabrik"
 lang: "id"
 ---
 # Mengendalikan Risiko Kualitas di Pabrik

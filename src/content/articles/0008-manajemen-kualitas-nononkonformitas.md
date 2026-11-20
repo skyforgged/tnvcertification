@@ -10,6 +10,7 @@ featuredImage:
   src: "/images/articles/0008.jpg"
   alt: "Manajemen Kualitas Nonkonformitas adalah penanganan penyimpangan mutu."
 slug: "manajemen-kualitas-nononkonformitas"
+translationKey: "article-manajemen-kualitas-nononkonformitas"
 lang: "id"
 ---
 # Manajemen Kualitas Nonkonformitas

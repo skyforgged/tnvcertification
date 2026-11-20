@@ -1,6 +1,7 @@
 import { defineCollection } from "astro/content/config";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
+import { collectionRegistry } from "./data/collections";
 
 /**
  * Shared image-object schema (single primary / optional gallery).
@@ -22,7 +23,7 @@ const faqBlock = z.object({
       z.object({
         question: z.string().min(1),
         answer: z.string().min(1),
-      })
+      }),
     )
     .min(1),
 });
@@ -34,7 +35,7 @@ const howToBlock = z.object({
       title: z.string().min(1),
       description: z.string().min(1),
       image: imageObjectSchema.optional(),
-    })
+    }),
   ),
 });
 
@@ -53,33 +54,43 @@ const ctaBlock = z.object({
 
 const blockSchema = z.union([faqBlock, howToBlock, ctaBlock]);
 
-// --- Articles ---
-const articleSchema = z.object({
+/**
+ * Fields shared by every publishable page-like entry. Schedule and category
+ * records keep their own schemas because they are not editorial pages.
+ */
+const baseEntrySchema = z.object({
   title: z.string().min(1, "title is required"),
   intro: z.string().min(1, "intro is required"),
+  slug: z.string().min(1),
   metaDescription: z.string().min(1, "meta description is required"),
   pubDate: z.coerce.date(),
   updatedDate: z.coerce.date().optional(),
-  draft: z.boolean().optional(),
-  categoryIds: z.array(z.string()).optional(),
-  serviceId: z.number().int().positive().optional(),
   featuredImage: imageObjectSchema,
   images: z.array(imageObjectSchema).optional(),
-  slug: z.string().min(1),
   lang: z.enum(["id", "en"]),
+  translationKey: z.string().min(1, "translationKey is required"),
+});
+
+// --- Articles ---
+const articleSchema = baseEntrySchema.extend({
+  draft: z.boolean().optional(),
+  categoryIds: z.array(z.string()).optional(),
+  // Explicit optional association; never inferred from labels, categories or slugs.
+  serviceId: z.number().int().positive().optional(),
+});
+
+// --- Services ---
+const serviceSchema = baseEntrySchema.extend({
+  draft: z.boolean().optional(),
+  categoryIds: z.array(z.string()).optional(),
+  serviceType: z.string().optional(),
+  category: z.string().optional(),
+  blocks: z.array(blockSchema).optional(),
 });
 
 // --- Certifications ---
-const certificationSchema = z.object({
-  title: z.string().min(1, "title is required"),
-  metaDescription: z.string().min(1, "meta description is required"),
-  pubDate: z.coerce.date(),
-  updatedDate: z.coerce.date().optional(),
+const certificationSchema = baseEntrySchema.extend({
   categoryIds: z.array(z.string()).optional(),
-  featuredImage: imageObjectSchema,
-  images: z.array(imageObjectSchema).optional(),
-  slug: z.string().min(1),
-  lang: z.enum(["id", "en"]),
 });
 
 // --- Training (program/course page) ---
@@ -96,23 +107,26 @@ const trainingHeroSchema = z.object({
     .optional(),
 });
 
-const trainingSchema = z.object({
-  title: z.string().min(1, "title is required"),
-  metaDescription: z.string().min(1, "meta description is required"),
-  pubDate: z.coerce.date(),
-  updatedDate: z.coerce.date().optional(),
+const trainingSchema = baseEntrySchema.extend({
   draft: z.boolean().optional(),
   categoryIds: z.array(z.string()).optional(),
-  featuredImage: imageObjectSchema,
   hero: trainingHeroSchema.optional(),
   blocks: z.array(blockSchema).optional(),
-  slug: z.string().min(1),
-  lang: z.enum(["id", "en"]),
 });
 
-// --- Training schedules (event/batch records) ---
-const scheduleSchema = z.object({
+// --- Categories (taxonomy records, not editorial pages) ---
+const categorySchema = z.object({
+  title: z.string().min(1, "title is required"),
+  slug: z.string().min(1),
+  description: z.string().optional(),
+  lang: z.enum(["id", "en"]),
+  translationKey: z.string().min(1, "translationKey is required"),
+});
+
+// --- Training schedules (event records; training link is required) ---
+const trainingScheduleSchema = z.object({
   trainingSlug: z.string().min(1, "trainingSlug is required"),
+  serviceSlug: z.string().optional(),
   startDate: z
     .string()
     .regex(/^\d{4}-\d{2}-\d{2}$/, "startDate must be YYYY-MM-DD"),
@@ -136,37 +150,24 @@ const scheduleSchema = z.object({
 });
 
 // --- General pages ---
-const pageSchema = z.object({
-  title: z.string().min(1, "title is required"),
-  intro: z.string().min(1, "intro is required"),
-  metaDescription: z.string().min(1, "meta description is required"),
-  pubDate: z.coerce.date(),
-  updatedDate: z.coerce.date().optional(),
-  draft: z.boolean().optional(),
-  featuredImage: imageObjectSchema,
-  slug: z.string().min(1),
-  lang: z.enum(["id", "en"]),
-});
+const pageSchema = baseEntrySchema;
+
+function collection(name: keyof typeof collectionRegistry, schema: z.ZodType) {
+  return defineCollection({
+    loader: glob({
+      base: `./${collectionRegistry[name].dir}`,
+      pattern: "**/*.{md,mdx}",
+    }),
+    schema,
+  });
+}
 
 export const collections = {
-  articles: defineCollection({
-    loader: glob({ base: "./src/content/articles", pattern: "**/*.{md,mdx}" }),
-    schema: articleSchema,
-  }),
-  certifications: defineCollection({
-    loader: glob({ base: "./src/content/certifications", pattern: "**/*.{md,mdx}" }),
-    schema: certificationSchema,
-  }),
-  training: defineCollection({
-    loader: glob({ base: "./src/content/training", pattern: "**/*.{md,mdx}" }),
-    schema: trainingSchema,
-  }),
-  trainingSchedules: defineCollection({
-    loader: glob({ base: "./src/content/training-schedules", pattern: "**/*.{md,mdx}" }),
-    schema: scheduleSchema,
-  }),
-  pages: defineCollection({
-    loader: glob({ base: "./src/content/pages", pattern: "**/*.{md,mdx}" }),
-    schema: pageSchema,
-  }),
+  articles: collection("articles", articleSchema),
+  services: collection("services", serviceSchema),
+  categories: collection("categories", categorySchema),
+  certifications: collection("certifications", certificationSchema),
+  training: collection("training", trainingSchema),
+  trainingSchedules: collection("trainingSchedules", trainingScheduleSchema),
+  pages: collection("pages", pageSchema),
 };

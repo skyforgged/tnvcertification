@@ -10,6 +10,7 @@ featuredImage:
   src: "/images/articles/0009.jpg"
   alt: "Manfaat Sertifikasi ISO 9001:2015 bagi Perusahaan adalah efisiensi proses."
 slug: "manfaat-sertifikasi-iso-9001-2015-bagi-perusahaan"
+translationKey: "article-manfaat-sertifikasi-iso-9001-2015-bagi-perusahaan"
 lang: "id"
 ---
 # Manfaat Sertifikasi ISO 9001:2015 bagi Perusahaan

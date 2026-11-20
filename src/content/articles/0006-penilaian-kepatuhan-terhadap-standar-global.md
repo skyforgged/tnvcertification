@@ -10,6 +10,7 @@ featuredImage:
   src: "/images/articles/0006.jpg"
   alt: "Penilaian Kepatuhan Terhadap Standar Global adalah verifikasi praktik kerja."
 slug: "penilaian-kepatuhan-terhadap-standar-global"
+translationKey: "article-penilaian-kepatuhan-terhadap-standar-global"
 lang: "id"
 ---
 # Penilaian Kepatuhan Terhadap Standar Global

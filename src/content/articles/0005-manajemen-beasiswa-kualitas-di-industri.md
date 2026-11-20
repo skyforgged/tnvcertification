@@ -10,6 +10,7 @@ featuredImage:
   src: "/images/articles/0005.jpg"
   alt: "Manajemen Beasiswa Kualitas di Industri adalah pengembangan talenta mutu."
 slug: "manajemen-beasiswa-kualitas-di-industri"
+translationKey: "article-manajemen-beasiswa-kualitas-di-industri"
 lang: "id"
 ---
 # Manajemen Beasiswa Kualitas di Industri

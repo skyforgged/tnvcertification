@@ -10,6 +10,7 @@ featuredImage:
   src: "/images/articles/0010.jpg"
   alt: "Deskripsi Halaman Tentang adalah pengantar profil organisasi."
 slug: "hal-about-us"
+translationKey: "page-hal-about-us"
 lang: "id"
 ---
 # Deskripsi Halaman Tentang
