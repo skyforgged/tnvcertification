@@ -1,18 +1,27 @@
 ---
 title: "Sertifikasi ISO 9001:2015"
-metaDescription: "Sertifikasi sistem manajemen mutu yang membangun kepastian proses, kepercayaan pemangku kepentingan, dan perbaikan berkelanjutan."
+intro: "Sertifikasi ISO 9001:2015 adalah pengakuan formal terhadap sistem manajemen mutu yang konsisten, terdokumentasi, dan terus diperbaiki."
+metaDescription: "Panduan sertifikasi sistem manajemen mutu ISO 9001:2015, mulai dari kesiapan dokumen hingga audit dan penerbitan sertifikat."
 pubDate: "2026-11-10"
 draft: false
 categoryIds:
   - "kualitas"
 featuredImage:
   src: "/images/articles/0002.jpg"
-  alt: "Sertifikasi ISO 9001:2015 adalah sistem mutu yang dipercaya di pelaksanaan industri."
+  alt: "Sertifikasi ISO 9001:2015 adalah pengakuan atas sistem manajemen mutu."
 slug: "sertifikasi-iso-9001-2015"
 lang: "id"
 ---
 # Sertifikasi ISO 9001:2015
 
-Sertifikasi ISO 9001:2015 adalah sistem manajemen mutu yang membangun kepastian proses, kepercayaan pemangku kepentingan, dan perbaikan berkelanjutan..
+Sertifikasi ISO 9001:2015 adalah pengakuan formal terhadap sistem manajemen mutu yang konsisten, terdokumentasi, dan terus diperbaiki.
 
-> ""Sertifikasi adalah bukti bahwa sistem mutu telah dicek dari luar.""
+## Kesiapan Dokumentasi
+
+Organisasi perlu memetakan proses, kebijakan, dan rekaman yang menjadi bukti penerapan sistem mutu. Dokumentasi yang rapi memudahkan auditor memahami alur kerja dan menilai kesesuaiannya dengan standar.
+
+## Audit dan Tindak Lanjut
+
+Audit tidak berhenti pada temuan. Setiap ketidaksesuaian perlu ditindaklanjuti dengan tindakan koreksi, penetapan akar penyebab, dan verifikasi agar masalah tidak berulang.
+
+> "Sertifikasi adalah bukti bahwa sistem mutu telah diperiksa dari luar."

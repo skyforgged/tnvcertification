@@ -1,18 +1,27 @@
 ---
 title: "Sertifikasi ISO 45001:2018"
-metaDescription: "Sertifikasi manajemen keselamatan dan kesehatan kerja yang meletakkan kesehatan dan kesejahteraan pekerja di urutan pertama."
+intro: "Sertifikasi ISO 45001:2018 adalah pengakuan atas sistem manajemen keselamatan dan kesehatan kerja yang melindungi pekerja secara berkelanjutan."
+metaDescription: "Panduan sertifikasi ISO 45001:2018 untuk membangun sistem K3, mengelola risiko kerja, dan meningkatkan keselamatan pekerja."
 pubDate: "2026-11-10"
 draft: false
 categoryIds:
   - "kualitas"
 featuredImage:
   src: "/images/articles/0004.jpg"
-  alt: "Sertifikasi ISO 45001:2018 adalah sistem keselamatan dan kesehatan kerja yang diimbangi."
+  alt: "Sertifikasi ISO 45001:2018 adalah sistem manajemen keselamatan kerja."
 slug: "sertifikasi-iso-45001-2018"
 lang: "id"
 ---
 # Sertifikasi ISO 45001:2018
 
-Sertifikasi ISO 45001:2018 adalah sistem manajemen keselamatan dan kesehatan kerja yang meletakkan kesehatan dan kesejahteraan pekerja di urutan pertama..
+Sertifikasi ISO 45001:2018 adalah pengakuan atas sistem manajemen keselamatan dan kesehatan kerja yang melindungi pekerja secara berkelanjutan.
 
-> ""Kerja yang aman adalah investasi jangka panjang yang tidak boleh diabaikan.""
+## Mengenali Bahaya Kerja
+
+Organisasi memetakan bahaya di setiap area kerja, termasuk potensi paparan, kondisi alat, dan beban kerja. Keterlibatan pekerja lapangan membuat pemetaan lebih lengkap karena mereka melihat risiko yang sering terlewat.
+
+## Pengendalian dan Partisipasi
+
+Hasil pemetaan ditindaklanjuti dengan pengendalian yang jelas, pelatihan, serta konsultasi rutin dengan pekerja. Sistem yang hidup membuat keselamatan menjadi bagian dari cara kerja, bukan sekadar dokumen.
+
+> "Kerja yang aman adalah investasi jangka panjang yang tidak boleh diabaikan."
