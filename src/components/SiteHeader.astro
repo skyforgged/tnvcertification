@@ -4,6 +4,9 @@ import { organization, primaryNavigation } from "../site";
 const currentPath = Astro.url.pathname;
 const isCurrent = (href: string) => {
   if (href === "/") return currentPath === "/";
+  if (href === "/service/") {
+    return currentPath === href || currentPath.startsWith("/services/");
+  }
   return currentPath === href || currentPath.startsWith(href);
 };
 ---
