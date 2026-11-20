@@ -13,13 +13,15 @@ This document records the development runtime and package-version policy.
 - Astro: keep the repository's current 7.4.13 version while validating the toolchain.
 - Tailwind CSS and `@tailwindcss/vite`: both pinned to 4.3.5.
 
-## TypeScript compatibility decision
+## TypeScript policy
 
-- **TypeScript 6.0.2 is explicitly prohibited.**
-- Do not adopt TypeScript 7.0.2 for the Astro check/lint stack yet: the current `astro check` and `typescript-eslint` toolchain reported incompatibilities.
-- Do not maintain multiple TypeScript compiler majors as an accidental side effect of package aliases.
-- Revisit TypeScript separately after the Astro language tooling compatibility path is verified. This is intentionally deferred rather than papered over by disabling checks.
+- TypeScript: `7.0.2` only.
+- TypeScript 6.x is prohibited.
+- `@astrojs/check` is intentionally removed. It rejects TypeScript 7.0.
+- `check` runs `astro sync && tsc --noEmit`.
+- `.astro` templates are not fully type-checked by this setup. Full Astro-aware checking needs a stable TypeScript 7.1+ path, which is not used here.
+- Do not add package aliases that install multiple TypeScript compiler majors.
 
 ## Validation requirement
 
-After dependency installation on Node 26.13.1 with pnpm 12.21.0, run `check`, `typecheck`, `lint`, `test`, and `build`. This GitHub-side toolchain edit has not been validated by executing these scripts in a local repository checkout.
+After dependency installation on Node 26.13.1 with pnpm 12.21.0, run `check`, `typecheck`, `lint`, `test`, and `build` locally.
