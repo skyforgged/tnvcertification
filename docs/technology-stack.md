@@ -4,8 +4,8 @@
 - Astro 7 or newer stable compatible version.
 - TypeScript 7 or newer stable compatible version, strict mode enabled.
 - Tailwind CSS latest stable compatible release.
-- Node.js supported LTS version recommended by Astro/dependencies.
-- pnpm current stable.
+- Node.js `22.23.4` (`.nvmrc` and `.node-version`); minimum `>=22.23.4`.
+- pnpm `10.15.0` via Corepack (`packageManager` in `package.json`).
 - Check release notes and compatibility before major upgrades; do not blindly update.
 - Lock exact resolved versions in package manifests and lockfile.
 
