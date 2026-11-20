@@ -1,5 +1,5 @@
 import { defineConfig } from "astro/config";
-import tailwindcss from "@tailwindcss/vite";
+import viteConfig from "./vite.config.mjs";
 import { contentValidationIntegration } from "./src/content-validation";
 
 /**
@@ -10,7 +10,5 @@ import { contentValidationIntegration } from "./src/content-validation";
 export default defineConfig({
   site: "https://www.intiprima-sertifikasi.dev",
   integrations: [contentValidationIntegration],
-  vite: {
-    plugins: [tailwindcss()],
-  },
+  vite: viteConfig,
 });

@@ -2,7 +2,7 @@
 
 ## Version policy
 - Astro 7 or newer stable compatible version.
-- TypeScript 7 or newer stable compatible version, strict mode enabled.
+- TypeScript 7.0.2 native compiler via `@typescript/native`; `typescript` module aliases `@typescript/typescript6@6.0.2` for tooling without a TS 7 API. Strict mode enabled.
 - Tailwind CSS latest stable compatible release.
 - Node.js `22.23.4` (`.nvmrc` and `.node-version`); minimum `>=22.23.4`.
 - pnpm `10.15.0` via Corepack (`packageManager` in `package.json`).
