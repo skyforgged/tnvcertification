@@ -1,14 +1,21 @@
 import { defineConfig } from "astro/config";
+import sitemap from "@astrojs/sitemap";
 import viteConfig from "./vite.config.mjs";
 import { contentValidationIntegration } from "./src/content-validation";
+import { siteSettings } from "./src/site";
 
-/**
- * Canonical site URL used for canonical links, sitemap base, and
- * structured-data base URLs. Replace with the production domain when
- * deploying. Kept as a placeholder until the real domain is defined.
- */
 export default defineConfig({
-  site: "https://www.intiprima-sertifikasi.dev",
-  integrations: [contentValidationIntegration],
+  site: siteSettings.url,
+  integrations: [
+    contentValidationIntegration,
+    sitemap({
+      // lastmod must trace to content publication/update metadata, never to
+      // the file system or build time. Content-backed routes set it explicitly.
+      serialize(item) {
+        delete item.lastmod;
+        return item;
+      },
+    }),
+  ],
   vite: viteConfig,
 });

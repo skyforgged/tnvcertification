@@ -5,6 +5,9 @@
  * values from this module; nothing company-wide is hardcoded.
  */
 
+/** Canonical deployed URL. The only place the production domain is written. */
+const SITE_URL = "https://www.intiprima-sertifikasi.dev";
+
 /** Canonical Organization entity. Referenced by @id from structured data. */
 export const organization = {
   id: "organization",
@@ -13,7 +16,7 @@ export const organization = {
   shortName: "Intiprima Sertifikasi",
   description:
     "Sertifikasi, pelatihan, dan penilaian kepatuhan profesional untuk industri manufaktur, konstruksi, dan energi.",
-  url: "https://www.intiprima-sertifikasi.dev",
+  url: SITE_URL,
   logo: {
     url: "/logo.svg",
     width: 200,
@@ -42,9 +45,10 @@ export const organization = {
 
 /** Shared site settings. */
 export const siteSettings = {
+  url: SITE_URL,
   title: "PT. Intiprima Sertifikasi",
   description:
-    "Sertifikasi, pelatihan kepattuhan, dan penilaian risiko profesional bagi industri manufaktur, konstruksi, dan energi.",
+    "Sertifikasi, pelatihan kepatuhan, dan penilaian risiko profesional bagi industri manufaktur, konstruksi, dan energi.",
   defaultLanguage: "id",
   languages: [
     { code: "id", label: "Bahasa Indonesia" },

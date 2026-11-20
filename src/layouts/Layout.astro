@@ -1,31 +1,38 @@
 ---
 import "../styles/global.css";
-import { organization, siteSettings } from "../site";
-
-export interface LayoutProps {
-  title?: string;
-  description?: string;
-  lang?: string;
-  canonical?: string;
-  ogImage?: string;
-}
+import { organization } from "../site";
+import { buildSeo, type LayoutProps } from "../lib/seo";
+import { organizationJsonLd, serializeJsonLd } from "../lib/structured-data";
 
 export type Props = LayoutProps;
 
-const {
-  title = siteSettings.title,
-  description = siteSettings.description,
-  lang = siteSettings.defaultLanguage,
-} = Astro.props;
+const seo = buildSeo(Astro.props);
+const jsonLd = serializeJsonLd(organizationJsonLd());
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={seo.lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
-    <title>{title}</title>
+    <title>{seo.title}</title>
+    <meta name="description" content={seo.description} />
+    <meta name="robots" content={seo.robots} />
+    <link rel="canonical" href={seo.canonical} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:type" content={seo.openGraph.type} />
+    <meta property="og:site_name" content={seo.openGraph.siteName} />
+    <meta property="og:locale" content={seo.openGraph.locale} />
+    <meta property="og:title" content={seo.openGraph.title} />
+    <meta property="og:description" content={seo.openGraph.description} />
+    <meta property="og:url" content={seo.openGraph.url} />
+    {seo.openGraph.images.map((image) => <meta property="og:image" content={image.url} />)}
+    <meta name="twitter:card" content={seo.twitter.card} />
+    <meta name="twitter:title" content={seo.twitter.title} />
+    <meta name="twitter:description" content={seo.twitter.description} />
+    {seo.twitter.images.map((image) => <meta name="twitter:image" content={image} />)}
+    {seo.hreflang.map((alternate) => <link rel="alternate" hreflang={alternate.lang} href={alternate.href} />)}
+    <script type="application/ld+json" set:html={jsonLd} />
   </head>
   <body class="min-h-screen bg-cream text-slate-900">
     <header class="border-b border-brand-blue/20">
