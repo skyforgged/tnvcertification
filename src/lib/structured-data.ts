@@ -2,7 +2,7 @@
  * Canonical JSON-LD entities. Organization is defined once from site.ts and
  * referenced by @id from other entity graphs (for example service pages).
  */
-import { organization, siteSettings } from "../site";
+import { organization, siteSettings } from "../site.ts";
 
 export const ORGANIZATION_ID = `${siteSettings.url}/#organization`;
 
