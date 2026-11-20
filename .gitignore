@@ -80,7 +80,6 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
 .output
 
 # NitroJS
@@ -145,8 +144,19 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
 
-# Astro generated types
+# Astro build output and generated types
 .astro/
+dist/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Deployment platforms
+.vercel/
+.netlify/
 
 # Turbo Repo (https://turborepo.dev/)
 .turbo

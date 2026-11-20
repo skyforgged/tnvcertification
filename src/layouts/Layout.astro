@@ -1,0 +1,38 @@
+---
+import "../styles/global.css";
+import { organization } from "../site";
+import type { Props } from "./Index.astro";
+const { title = organization.title } = Astro.props;
+const { url } = Astro.url;
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={organization.description} />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen bg-brand-cream text-slate-900">
+    <header class="border-b border-brand-blue/20">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        <div class="flex h-16 items-center justify-between">
+          <a href="/" class="text-lg font-semibold tracking-tight text-brand-blue">
+            {organization.name}
+          </a>
+        </div>
+      </div>
+    </header>
+    <main class="mx-auto max-w-6xl flex-1 px-4 py-10 sm:px-6">
+      <slot />
+    </main>
+    <footer class="border-t border-brand-blue/20">
+      <div class="mx-auto max-w-6xl px-4 py-6 sm:px-6 text-sm text-slate-600">
+        <p className="pb-1" data-pu-ignore>
+          © {new Date().getFullYear()} {organization.name}. {organization.contact.address.city}, Indonesia.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

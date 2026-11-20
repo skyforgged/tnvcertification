@@ -1,0 +1,31 @@
+/**
+ * PT. Intiprima Sertifikasi — design tokens and base styles.
+ *
+ * Tailwind CSS 4 uses CSS-first configuration. Brand tokens are registered
+ * in @theme so they can be consumed as utilities (e.g. `bg-brand-blue`),
+ * and the same values are published as CSS custom properties for shared use
+ * in scoped component CSS and any non-Tailwind styles.
+ */
+
+@import "tailwindcss";
+
+@theme {
+  --color-brand-blue: #315CFF;
+  --color-brand-deepblue: #1736A8;
+  --color-brand-orange: #FF6B35;
+  --color-brand-yellow: #FFD447;
+  --color-brand-mint: #36C9A5;
+  --color-brand-pink: #F45B91;
+  --color-cream: #FFF8EC;
+  --color-white: #FFFFFF;
+
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-serif: "Merriweather", "Noto Serif", Georgia, serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-cream);
+    color: #111827;
+  }
+}
