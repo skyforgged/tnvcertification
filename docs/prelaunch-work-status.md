@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated merge commit: `7a288de`
+- Validated merge commit: `bca8043`
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -75,7 +75,7 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-Local full validation ran on `main` at merge commit `7a288de` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
+Local full validation ran on `main` at merge commit `bca8043` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
 
 | Command | Result |
 |---|---|
@@ -83,7 +83,7 @@ Local full validation ran on `main` at merge commit `7a288de` with the pinned No
 | `npm run build` | PASS, exit `0`, 13 pages |
 | `npm run typecheck` | PASS, exit `0` |
 | `npm run lint` | PASS, exit `0` |
-| `npm run test` | PASS, exit `0`, 29 tests |
+| `npm run test` | PASS, exit `0`, 33 tests |
 
 GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test and build on pull requests and pushes to `main`. No CI run result was independently verifiable in this environment. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
 
@@ -128,10 +128,12 @@ Branch: `feat/service-seo-structured-data` (merged at `7a288de`)
 
 ## P9 — Pre-launch site identity readiness helper
 
-Branch: `feat/prelaunch-identity-readiness-gate`
+Branch: `feat/prelaunch-identity-readiness-gate` (merged at `bca8043`)
 
 - Added an advisory helper to detect likely placeholder values in the shared site identity configuration (domain, email, phone, address, and social URLs).
 - Added automated tests for the current placeholder values, complete-looking values, missing values, and invalid/placeholder social URLs.
 - This check intentionally does not run as a production CI blocker: current placeholder data is expected during preparation. It also does not independently verify legal identity, domain ownership, contact details, or official profiles.
 - Run the helper against `src/site.ts` once authoritative company details have been supplied; do not treat a green result as proof of identity.
 - Current source values are expected to be flagged until the company confirms them.
+- Integration fix after merge: the helper now declares explicit types for its config, findings, and placeholder checks so strict typechecking passes without changing runtime behavior.
+- Merged into `main` at `bca8043`.
