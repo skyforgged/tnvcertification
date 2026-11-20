@@ -56,6 +56,7 @@ const blockSchema = z.union([faqBlock, howToBlock, ctaBlock]);
 // --- Articles ---
 const articleSchema = z.object({
   title: z.string().min(1, "title is required"),
+  intro: z.string().min(1, "intro is required"),
   metaDescription: z.string().min(1, "meta description is required"),
   pubDate: z.coerce.date(),
   updatedDate: z.coerce.date().optional(),
@@ -137,6 +138,7 @@ const scheduleSchema = z.object({
 // --- General pages ---
 const pageSchema = z.object({
   title: z.string().min(1, "title is required"),
+  intro: z.string().min(1, "intro is required"),
   metaDescription: z.string().min(1, "meta description is required"),
   pubDate: z.coerce.date(),
   updatedDate: z.coerce.date().optional(),

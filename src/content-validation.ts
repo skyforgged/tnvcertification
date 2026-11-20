@@ -19,7 +19,7 @@
  *   - CONTENT-011: semantic heading hierarchy must not skip levels.
  *
  * Each violation is reported as an actionable diagnostic:
- *   [RULE] collection → entryId → field: reason
+ *   [RULE] path → field: reason
  * and the build fails.
  *
  * Unlike the Zod collection schema (which validates at content-sync time) and
@@ -93,7 +93,7 @@ export const contentValidationIntegration = {
         const lines = [
           `Content editorial validation failed with ${diagnostics.length} issue(s):`,
           ...diagnostics.map((d) => {
-            return `  [${d.ruleId}] ${d.collection} → ${d.entryId} → ${d.field}: ${d.reason}`;
+            return `  [${d.rule}] ${d.path} → ${d.field}: ${d.reason}`;
           }),
           "",
           "Fix the frontmatter/body per docs/project-capabilities-roadmap.md (CONTENT-001 .. CONTENT-011).",

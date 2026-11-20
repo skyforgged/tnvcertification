@@ -4,67 +4,76 @@
  * Enforces the mandatory editorial rules from docs/project-capabilities-roadmap.md
  * (CONTENT-001 .. CONTENT-011) that the collection Zod schema cannot express.
  *
+ * The markdown body is parsed into an mdast AST with remark. Headings come from
+ * AST nodes and the intro is the paragraph block immediately after the first
+ * H1. No line-based regex is used for document structure.
+ *
  * NOTE: this module is Astro-import-free so it stays plainly testable. The Astro
- * integration (src/content-validation.ts) loads entries via
- * `astro/content/runtime` and throws the final error to fail the build.
+ * integration (src/content-validation.ts) loads entries and throws the final
+ * error to fail the build.
  */
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import { toString } from "mdast-util-to-string";
+import { visit } from "unist-util-visit";
+import type { Root } from "mdast";
 
 export interface Diagnostic {
-  collection: string;
-  entryId: string;
+  entry: string;
+  path: string;
   field: string;
-  ruleId: string;
+  rule: string;
   reason: string;
+  headingText?: string;
+  expectedLevel?: number;
+}
+
+export interface Heading {
+  level: number;
+  text: string;
 }
 
 export interface ParsedContent {
-  headings: Array<{ level: number; text: string }>;
+  headings: Heading[];
   intro: string | null;
+  introParagraphs: string[];
 }
 
 export interface ContentEntryLike {
   id: string;
   collection: string;
+  path?: string;
   data: Record<string, unknown>;
   body: string;
 }
 
-export function parseHeadingsAndIntro(body: string): ParsedContent {
-  const headings: Array<{ level: number; text: string }> = [];
-  let introLines: string[] = [];
-  let inIntro = false;
+const markdownParser = unified().use(remarkParse);
 
-  const lines = body.split(/\r?\n/);
-  for (const raw of lines) {
-    const line = raw.trimEnd();
-    if (!line.trim()) continue;
+/** Parse headings and the intro paragraph block from a markdown body. */
+export function parseContent(body: string): ParsedContent {
+  const tree = markdownParser.parse(body) as Root;
+  const headings: Heading[] = [];
 
-    const hashMatch = line.match(/^(#{1,6})\s+(.*)$/);
-    if (hashMatch) {
-      const level = (hashMatch[1]?.length ?? 0);
-      headings.push({ level, text: hashMatch[2] ?? "" });
-      if (level === 1) {
-        inIntro = true;
-        introLines = [];
-      } else if (inIntro) {
-        break; // deeper heading ends the intro paragraph block
-      }
-      continue;
-    }
+  visit(tree, "heading", (node) => {
+    headings.push({ level: node.depth, text: toString(node) });
+  });
 
-    if (line.startsWith(">") || line.startsWith("```")) {
-      if (inIntro) break; // blockquote / code ends the intro paragraph
-      continue;
-    }
-
-    if (inIntro) {
-      introLines.push(line);
+  const introParagraphs: string[] = [];
+  const h1Index = tree.children.findIndex(
+    (node) => node.type === "heading" && node.depth === 1,
+  );
+  if (h1Index >= 0) {
+    for (let i = h1Index + 1; i < tree.children.length; i += 1) {
+      const node = tree.children[i];
+      if (node?.type !== "paragraph") break;
+      introParagraphs.push(toString(node));
     }
   }
 
   return {
     headings,
-    intro: inIntro ? introLines.join(" ").trim() : null,
+    intro: introParagraphs[0] ?? null,
+    introParagraphs,
   };
 }
 
@@ -74,154 +83,133 @@ function toStr(value: unknown, fallback = ""): string {
 
 export function validateEntry(entry: ContentEntryLike): Diagnostic[] {
   const diagnostics: Diagnostic[] = [];
-  const data = entry.data;
+  const data = entry.data ?? {};
   const title = toStr(data.title);
+  const introField = toStr(data.intro);
   const metaDescription = toStr(data.metaDescription);
-  const { headings, intro } = parseHeadingsAndIntro(entry.body);
 
-  // CONTENT-001 / 002 / 003
+  const add = (
+    field: string,
+    rule: string,
+    reason: string,
+    extra?: Pick<Diagnostic, "headingText" | "expectedLevel">,
+  ): void => {
+    diagnostics.push({
+      entry: entry.id,
+      path: entry.path ?? entry.id,
+      field,
+      rule,
+      reason,
+      ...extra,
+    });
+  };
+
+  // Non-editorial records (for example training schedules) have no page body.
+  if (!title) return diagnostics;
+
+  const { headings, intro, introParagraphs } = parseContent(entry.body ?? "");
+  const effectiveIntro = introField || intro;
+
+  // CONTENT-001: an H1 must exist.
   if (!headings.some((h) => h.level === 1)) {
-    diagnostics.push({
-      collection: entry.collection,
-      entryId: entry.id,
-      field: "body",
-      ruleId: "CONTENT-001",
-      reason: "Missing H1. The page must start with an H1 heading.",
-    });
-  }
-  if (headings.some((h) => h.level === 1) && !intro) {
-    diagnostics.push({
-      collection: entry.collection,
-      entryId: entry.id,
-      field: "body",
-      ruleId: "CONTENT-002",
-      reason: "No introductory paragraph immediately after H1.",
-    });
-  }
-  if (title && intro && !intro.startsWith(title + " adalah")) {
-    diagnostics.push({
-      collection: entry.collection,
-      entryId: entry.id,
-      field: "body",
-      ruleId: "CONTENT-003",
-      reason: `Intro must begin with the title followed by "adalah" (expected: "${title} adalah ...", got: "${intro.slice(0, 40)}...").`,
-    });
+    add("body", "CONTENT-001", "Missing H1. The page must start with an H1 heading.");
   }
 
-  // CONTENT-005
+  // CONTENT-002: exactly one intro paragraph immediately after H1, matching the field.
+  if (!introField) {
+    add("intro", "CONTENT-002", "The `intro` field is required.");
+  }
+  if (!intro) {
+    add("intro", "CONTENT-002", "No introductory paragraph immediately after H1.");
+  } else if (introParagraphs.length !== 1) {
+    add(
+      "intro",
+      "CONTENT-002",
+      `Expected exactly one intro paragraph after H1; found ${introParagraphs.length}.`,
+    );
+  }
+  if (introField && intro && introField.trim() !== intro.trim()) {
+    add("intro", "CONTENT-002", "The `intro` field must match the first paragraph after H1.");
+  }
+
+  // CONTENT-003: the intro begins with the title followed by "adalah".
+  if (title && effectiveIntro && !effectiveIntro.startsWith(`${title} adalah`)) {
+    add(
+      "intro",
+      "CONTENT-003",
+      `Intro must begin with the title followed by "adalah" (expected "${title} adalah ...").`,
+    );
+  }
+
+  // CONTENT-005: metaDescription is required and non-empty.
   if (!metaDescription) {
-    diagnostics.push({
-      collection: entry.collection,
-      entryId: entry.id,
-      field: "metaDescription",
-      ruleId: "CONTENT-005",
-      reason: "metaDescription is required and must be non-empty.",
-    });
+    add("metaDescription", "CONTENT-005", "metaDescription is required and must be non-empty.");
   }
 
-  // CONTENT-007 / 008 / 009
+  // CONTENT-006 (within entry): metaDescription must not duplicate the intro.
+  if (metaDescription && effectiveIntro && metaDescription.trim() === effectiveIntro.trim()) {
+    add("metaDescription", "CONTENT-006", "metaDescription must not duplicate the intro text.");
+  }
+
+  // CONTENT-007 / 008 / 009 / 006: featured image.
   const image = data.featuredImage as
     | { src?: unknown; alt?: unknown }
     | undefined;
   if (!image || typeof image !== "object" || Array.isArray(image)) {
-    diagnostics.push({
-      collection: entry.collection,
-      entryId: entry.id,
-      field: "featuredImage",
-      ruleId: "CONTENT-007",
-      reason: "featuredImage must be a single image object.",
-    });
+    add("featuredImage", "CONTENT-007", "featuredImage must be a single image object.");
   } else {
     const src = toStr(image.src);
     const alt = toStr(image.alt);
     if (!src) {
-      diagnostics.push({
-        collection: entry.collection,
-        entryId: entry.id,
-        field: "featuredImage",
-        ruleId: "CONTENT-007",
-        reason: "featuredImage.src is required.",
-      });
+      add("featuredImage", "CONTENT-007", "featuredImage.src is required.");
     }
     if (!alt) {
-      diagnostics.push({
-        collection: entry.collection,
-        entryId: entry.id,
-        field: "featuredImage",
-        ruleId: "CONTENT-008",
-        reason: "featuredImage.alt is required.",
-      });
+      add("featuredImage.alt", "CONTENT-008", "featuredImage.alt is required.");
     } else {
       if (!alt.includes("adalah")) {
-        diagnostics.push({
-          collection: entry.collection,
-          entryId: entry.id,
-          field: "featuredImage.alt",
-          ruleId: "CONTENT-008",
-          reason: `featuredImage.alt must include "adalah" (got: "${alt}").`,
-        });
+        add("featuredImage.alt", "CONTENT-008", `featuredImage.alt must include "adalah" (got "${alt}").`);
       } else if (!alt.toLowerCase().includes(title.toLowerCase())) {
-        diagnostics.push({
-          collection: entry.collection,
-          entryId: entry.id,
-          field: "featuredImage.alt",
-          ruleId: "CONTENT-008",
-          reason: `featuredImage.alt must be title-relevant (title: "${title}").`,
-        });
+        add("featuredImage.alt", "CONTENT-008", "featuredImage.alt must be title-relevant.");
       }
-      if (intro && alt.length >= intro.length) {
-        diagnostics.push({
-          collection: entry.collection,
-          entryId: entry.id,
-          field: "featuredImage.alt",
-          ruleId: "CONTENT-009",
-          reason: "featuredImage.alt must be shorter than the intro.",
-        });
+      if (effectiveIntro && alt.trim() === effectiveIntro.trim()) {
+        add("featuredImage.alt", "CONTENT-006", "featuredImage.alt must not duplicate the intro.");
+      }
+      if (title && alt.trim() === title.trim()) {
+        add("featuredImage.alt", "CONTENT-006", "featuredImage.alt must not duplicate the title.");
+      }
+      if (effectiveIntro && alt.length >= effectiveIntro.length) {
+        add("featuredImage.alt", "CONTENT-009", "featuredImage.alt must be shorter than the intro.");
       }
     }
   }
 
-  // CONTENT-010
+  // CONTENT-010: optional `images`, when supplied, is a valid array of objects.
   const imagesVal = data.images;
   if (imagesVal !== undefined) {
     if (!Array.isArray(imagesVal)) {
-      diagnostics.push({
-        collection: entry.collection,
-        entryId: entry.id,
-        field: "images",
-        ruleId: "CONTENT-010",
-        reason: "Optional `images` must be an array when supplied.",
-      });
+      add("images", "CONTENT-010", "Optional `images` must be an array when supplied.");
     } else {
       for (let i = 0; i < imagesVal.length; i += 1) {
         const img = imagesVal[i];
         if (typeof img !== "object" || img === null || Array.isArray(img)) {
-          diagnostics.push({
-            collection: entry.collection,
-            entryId: entry.id,
-            field: `images[${i}]`,
-            ruleId: "CONTENT-010",
-            reason: "Each item in `images` must be an image object.",
-          });
+          add(`images[${i}]`, "CONTENT-010", "Each item in `images` must be an image object.");
         }
       }
     }
   }
 
-  // CONTENT-011
-  const levels = headings.map((h) => h.level);
-  for (let i = 1; i < levels.length; i += 1) {
-    const prev = levels[i - 1];
-    const next = levels[i];
-    if (prev === undefined || next === undefined) continue;
-    if (next > prev && next - prev !== 1) {
-      diagnostics.push({
-        collection: entry.collection,
-        entryId: entry.id,
-        field: "body",
-        ruleId: "CONTENT-011",
-        reason: `Heading level skipped: H${prev} cannot be followed directly by H${next}.`,
-      });
+  // CONTENT-011: heading levels must not skip downward levels.
+  for (let i = 1; i < headings.length; i += 1) {
+    const prev = headings[i - 1];
+    const next = headings[i];
+    if (!prev || !next) continue;
+    if (next.level > prev.level && next.level - prev.level > 1) {
+      add(
+        "body",
+        "CONTENT-011",
+        `Heading level skipped: H${prev.level} cannot be followed directly by H${next.level}.`,
+        { headingText: next.text, expectedLevel: prev.level + 1 },
+      );
     }
   }
 
@@ -230,54 +218,42 @@ export function validateEntry(entry: ContentEntryLike): Diagnostic[] {
 
 export function validateAllEntries(entries: ContentEntryLike[]): Diagnostic[] {
   const diagnostics: Diagnostic[] = [];
-  const intros = new Map<string, { collection: string; entryId: string }>();
-  const metaDescriptions = new Map<string, string>();
+  const introOwners = new Map<string, string>();
+  const metaOwners = new Map<string, string>();
 
   for (const entry of entries) {
-    for (const d of validateEntry({ ...entry, body: entry.body ?? "" })) {
-      diagnostics.push(d);
-    }
+    diagnostics.push(...validateEntry(entry));
 
-    // CONTENT-004: intro text must not be reused across entries.
-    const parsed = parseHeadingsAndIntro(entry.body);
-    if (parsed.intro) {
-      const key = parsed.intro.trim();
-      if (intros.has(key)) {
-        const prev = intros.get(key)!;
+    const data = entry.data ?? {};
+    const intro = (toStr(data.intro) || parseContent(entry.body ?? "").intro || "").trim();
+    if (intro) {
+      const owner = introOwners.get(intro);
+      if (owner) {
         diagnostics.push({
-          collection: entry.collection,
-          entryId: entry.id,
-          field: "body",
-          ruleId: "CONTENT-004",
-          reason: `Intro text is reused from "${prev.collection} → ${prev.entryId}".`,
+          entry: entry.id,
+          path: entry.path ?? entry.id,
+          field: "intro",
+          rule: "CONTENT-004",
+          reason: `Intro text is reused from "${owner}".`,
         });
       } else {
-        intros.set(key, { collection: entry.collection, entryId: entry.id });
+        introOwners.set(intro, entry.id);
       }
     }
 
-    // CONTENT-005 and CONTENT-006: metaDescription uniqueness + no intro dup.
-    const metaDescription = toStr(entry.data.metaDescription);
-    if (metaDescription) {
-      if (metaDescriptions.has(metaDescription)) {
+    const meta = toStr(data.metaDescription).trim();
+    if (meta) {
+      const owner = metaOwners.get(meta);
+      if (owner) {
         diagnostics.push({
-          collection: entry.collection,
-          entryId: entry.id,
+          entry: entry.id,
+          path: entry.path ?? entry.id,
           field: "metaDescription",
-          ruleId: "CONTENT-006",
-          reason: `metaDescription is duplicated on "${metaDescriptions.get(metaDescription)}".`,
+          rule: "CONTENT-006",
+          reason: `metaDescription is duplicated on "${owner}".`,
         });
       } else {
-        metaDescriptions.set(metaDescription, entry.id);
-      }
-      if (parsed.intro && metaDescription === parsed.intro.trim()) {
-        diagnostics.push({
-          collection: entry.collection,
-          entryId: entry.id,
-          field: "metaDescription",
-          ruleId: "CONTENT-006",
-          reason: "metaDescription must not duplicate the intro text.",
-        });
+        metaOwners.set(meta, entry.id);
       }
     }
   }
