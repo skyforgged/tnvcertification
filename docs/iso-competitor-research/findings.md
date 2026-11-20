@@ -25,7 +25,7 @@ Counts below are **the number of competitor rows marked L in `matrix.md`**, and 
 | ISO 50001 | SGS, TÜV Rheinland, SUCOFINDO, DQS, TQCSI, IAS | 6 |
 | ISO/IEC 20000-1 | DQS, URS, TQCSI, IAS | 4 |
 | ISO 37001 | SUCOFINDO, DQS, TQCSI | 3 |
-| ISO 22301 | SGS, DQS | 2 |
+| ISO 22301 | SGS, DQS, TQCSI | 3 |
 | ISO/IEC 27701 | SGS | 1 |
 | ISO/IEC 42001 | TÜV Rheinland | 1 |
 
