@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { ORGANIZATION_ID, serviceIndexJsonLd, servicePageJsonLd } from "../src/lib/structured-data.ts";
+import { ORGANIZATION_ID, pageJsonLdGraph, serviceIndexJsonLd, servicePageJsonLd } from "../src/lib/structured-data.ts";
 import { siteSettings } from "../src/site.ts";
 
 test("service page graph links a visible service to the canonical organization", () => {
@@ -42,4 +42,17 @@ test("service index lists only the supplied visible services", () => {
   assert.ok(list);
   assert.equal(list.itemListElement.length, 1);
   assert.equal(list.itemListElement[0].item.url, new URL("/services/a/", siteSettings.url).toString());
+});
+
+
+test("page JSON-LD is serialized as a Schema.org graph with the organization", () => {
+  const graph = pageJsonLdGraph(servicePageJsonLd({
+    name: "Example service",
+    description: "Example description.",
+    path: "/services/example/",
+  }));
+  assert.equal(graph["@context"], "https://schema.org");
+  assert.ok(Array.isArray(graph["@graph"]));
+  assert.ok(graph["@graph"].some((item) => item["@type"] === "Organization"));
+  assert.ok(graph["@graph"].some((item) => item["@type"] === "Service"));
 });
