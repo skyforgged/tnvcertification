@@ -19,7 +19,14 @@
     "isolatedModules": true,
     "noEmit": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["node", "astro/types"]
+    "types": ["node", "astro/types"],
+    "jsx": "preserve"
   },
-  "include": ["src"]
+  "include": [".astro/types.d.ts", "src"],
+  "contentMappers": [
+    {
+      "package": "@astrojs/ts-content-mapper",
+      "extensions": [".astro"]
+    }
+  ]
 }

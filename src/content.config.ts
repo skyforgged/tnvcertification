@@ -151,9 +151,11 @@ const trainingScheduleSchema = z.object({
 });
 
 // --- General pages ---
-const pageSchema = baseEntrySchema;
+const pageSchema = baseEntrySchema.extend({
+  draft: z.boolean().optional(),
+});
 
-function collection(name: keyof typeof collectionRegistry, schema: z.ZodType) {
+function collection<T extends z.ZodTypeAny>(name: keyof typeof collectionRegistry, schema: T) {
   return defineCollection({
     loader: glob({
       base: `./${collectionRegistry[name].dir}`,
