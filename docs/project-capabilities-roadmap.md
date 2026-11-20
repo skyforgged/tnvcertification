@@ -123,7 +123,7 @@ automatically here; the gate is left failing until the frontmatter/body are corr
 - Crawlable anchor pagination (Previous, page numbers, Next) with current page marked for assistive tech; Previous omitted on first page, Next omitted on last.
 - Page-specific metadata/canonical handling (do not canonicalize every page to the archive root).
 
-## 7) Design system & UI
+\n### 6.2 Route implementation status (2026-11-20)\n\n- Implemented static article detail routes at `/articles/<slug>/`.\n- Implemented article archive at `/articles/` and paginated routes at `/articles/page/<N>/` (9 entries per page).\n- Implemented content-driven general-page routes from the `pages` collection (for example, the current about-page slug).\n- Archive pages use the shared `getPublishedArticles()` ordering/filtering logic; page 1 and subsequent pages use the same eligible dataset.\n- Build/typecheck still needs to be run against these newly committed route files before marking the routes fully verified.\n\n## 7) Design system & UI
 - CSS custom properties for design tokens.
 - Vibrant, high-saturation palette: electric blue, vivid orange/coral, sunshine yellow, fresh mint, warm cream/white. Use sparingly for clear roles, not noise.
 - Intentional typography, spacing, composition, visual hierarchy. Avoid pastel corporate styling, generic SaaS/AI landing pages, excessive gradients/glows, glassmorphism, repetitive card grids.
