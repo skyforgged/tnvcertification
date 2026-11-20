@@ -4,9 +4,22 @@
  */
 const PLACEHOLDER_TEXT = /placeholder|example|change[-_ ]?me|todo|pahlawan no\. 123/i;
 
-export function siteIdentityReadiness(config) {
-  const findings = [];
-  const checks = [
+export interface SiteIdentityReadinessConfig {
+  url?: unknown;
+  email?: unknown;
+  phone?: unknown;
+  street?: unknown;
+  sameAs?: unknown;
+}
+
+export interface SiteIdentityReadinessFinding {
+  field: string;
+  reason: string;
+}
+
+export function siteIdentityReadiness(config: SiteIdentityReadinessConfig) {
+  const findings: SiteIdentityReadinessFinding[] = [];
+  const checks: Array<[string, unknown, (value: string) => boolean]> = [
     ["url", config.url, (value) => /\.dev\/?$/i.test(value) || /localhost/i.test(value)],
     ["email", config.email, (value) => /\.example$/i.test(value) || /placeholder/i.test(value)],
     ["phone", config.phone, (value) => /555|0000|placeholder/i.test(value)],
@@ -21,8 +34,9 @@ export function siteIdentityReadiness(config) {
     }
   }
 
-  if (Array.isArray(config.sameAs)) {
-    config.sameAs.forEach((url, index) => {
+  const sameAs: unknown = config.sameAs;
+  if (Array.isArray(sameAs)) {
+    sameAs.forEach((url: unknown, index: number) => {
       if (typeof url !== "string" || !/^https:\/\//i.test(url) || /placeholder|example/i.test(url)) {
         findings.push({ field: `sameAs[${index}]`, reason: "invalid or placeholder social URL" });
       }
