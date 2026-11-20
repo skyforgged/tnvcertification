@@ -1,13 +1,13 @@
 ---
 title: "Penilaian Contractor Safety Management System (CSMS)"
-intro: "Rencana layanan penilaian sistem keselamatan kontraktor untuk membantu perusahaan meninjau kesiapan dan pemenuhan persyaratan keselamatan kerja kontraktor. Layanan ini masih dalam tahap verifikasi skema dan ruang lingkup."
+intro: "Penilaian Contractor Safety Management System (CSMS) adalah rencana layanan peninjauan kesiapan kontraktor dalam memenuhi persyaratan keselamatan dan kesehatan kerja yang ditetapkan pemberi kerja atau pemilik proyek; skema, kriteria, ruang lingkup, dan kewenangannya masih diverifikasi."
 metaDescription: "Informasi rencana penilaian Contractor Safety Management System (CSMS) untuk kontraktor. Skema, kriteria, ruang lingkup, dan kewenangan masih dalam tahap verifikasi."
 pubDate: "2026-11-20"
 draft: true
 id: 1
 featuredImage:
   src: "/images/articles/0004.jpg"
-  alt: "Ilustrasi keselamatan dan kesehatan kerja sebagai konteks penilaian keselamatan kontraktor."
+  alt: "Penilaian Contractor Safety Management System (CSMS) adalah ilustrasi K3 kontraktor."
 slug: "csms-contractor-safety-management-system"
 translationKey: "service-csms-contractor-safety-management-system"
 lang: "id"
@@ -15,13 +15,15 @@ serviceType: "Assessment"
 category: "Keselamatan Kontraktor / K3"
 ---
 
-# Contractor Safety Management System (CSMS)
+# Penilaian Contractor Safety Management System (CSMS)
 
-**Status: Draft — Pending Verification**
+Penilaian Contractor Safety Management System (CSMS) adalah rencana layanan peninjauan kesiapan kontraktor dalam memenuhi persyaratan keselamatan dan kesehatan kerja yang ditetapkan pemberi kerja atau pemilik proyek; skema, kriteria, ruang lingkup, dan kewenangannya masih diverifikasi.
 
-CSMS pada konteks ini merujuk pada *Contractor Safety Management System* (sistem manajemen keselamatan kontraktor), bukan sistem manajemen cybersecurity otomotif.
+## Status dan konteks
 
-Rencana layanan ini ditujukan untuk meninjau kesiapan kontraktor dalam memenuhi persyaratan keselamatan dan kesehatan kerja yang ditetapkan oleh organisasi pemberi kerja atau pemilik proyek. Skema, metode penilaian, kriteria, ruang lingkup, dan kelayakan penyelenggaraan layanan masih perlu dikonfirmasi sebelum halaman ini diterbitkan.
+CSMS pada konteks ini merujuk pada *Contractor Safety Management System* (sistem manajemen keselamatan kontraktor), bukan sistem manajemen cybersecurity otomotif. Halaman ini berstatus draft dan belum menyatakan layanan atau penerbitan sertifikat CSMS formal sudah tersedia.
+
+Skema, metode penilaian, kriteria, ruang lingkup, dan kelayakan penyelenggaraan layanan masih perlu dikonfirmasi sebelum halaman ini diterbitkan.
 
 ## Area peninjauan yang direncanakan
 
