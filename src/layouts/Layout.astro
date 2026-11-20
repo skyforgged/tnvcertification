@@ -2,12 +2,13 @@
 import "../styles/global.css";
 import { organization } from "../site";
 import { buildSeo, type LayoutProps } from "../lib/seo";
-import { organizationJsonLd, serializeJsonLd } from "../lib/structured-data";
+import { pageJsonLdGraph, serializeJsonLd } from "../lib/structured-data";
 
 export type Props = LayoutProps;
 
+const { structuredData = [] } = Astro.props;
 const seo = buildSeo(Astro.props);
-const jsonLd = serializeJsonLd(organizationJsonLd());
+const jsonLd = serializeJsonLd(pageJsonLdGraph(structuredData));
 ---
 
 <!doctype html>

@@ -39,7 +39,7 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 | P4 | Service taxonomy design and implementation | Completed; 12 bilingual category pairs and reference validation merged and locally validated |
 | P5 | ISO service/scheme catalog | Internal 12-item planned catalog and build-time validation implemented; editions and TNCV scope remain unverified |
 | P6 | Article-to-service relationships | Cross-collection validation implemented and merged; no article linked to the draft CSMS service |
-| P7 | Service SEO and structured data | Shared SEO/JSON-LD helpers exist; verify against approved canonical service data |
+| P7 | Service SEO and structured data | Service directory/detail canonical metadata and page-specific JSON-LD implemented; CI/review pending |
 | P8 | Full quality gate | Local checks passed on pinned toolchain; deployment runtime verification still pending |
 
 ## Verified repository facts
@@ -106,3 +106,20 @@ Branch: `feat/article-service-relations` (merged at `96ca35b`)
 - No current article has been associated with the draft CSMS service. Existing article topics are not sufficient evidence to claim that an operational certification service is available.
 - Added automated tests and integrated relation checks into the build-time validation gate.
 - Merged into `main` at `96ca35b`.
+
+
+## P7 current work — service SEO and structured data
+
+Branch: `feat/service-seo-structured-data`
+
+- Added service detail JSON-LD graph: `WebPage`, `Service`, and `BreadcrumbList`.
+- Added service directory JSON-LD graph: `CollectionPage`, `ItemList`, and `BreadcrumbList`.
+- Service provider references the canonical Organization `@id`; optional properties are emitted only when present in the service content.
+- Base layout safely combines the canonical Organization graph with page-specific JSON-LD.
+- Service directory title now reads the organization name from `src/site.ts`, uses canonical `/service/`, and declares Indonesian language.
+- Service detail pages retain canonical URLs and now emit structured data from the same published service record used for visible page content.
+- Draft services remain excluded from static routes and the service directory. The CSMS record is still draft and is not published.
+- Added three automated tests for service page graph, omission of unsupported optional claims, and service directory ItemList.
+- No accreditation, authorization, area-served, pricing, or active certification claims are inferred.
+- The canonical domain and organization contact details in `src/site.ts` remain unconfirmed placeholders; production deployment remains blocked until verified details are supplied.
+- This branch is for review only. Do not merge until maintainer approval and successful CI.

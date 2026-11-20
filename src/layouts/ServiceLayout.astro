@@ -10,12 +10,13 @@ interface Props {
   canonical?: string;
   ogImage?: string;
   blocks?: Block[];
+  structuredData?: unknown[];
 }
 
-const { title, description, intro, lang, canonical, ogImage, blocks = [] } = Astro.props;
+const { title, description, intro, lang, canonical, ogImage, blocks = [], structuredData = [] } = Astro.props;
 ---
 
-<Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage}>
+<Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage} structuredData={structuredData}>
   <article>
     <h1 class="text-3xl font-semibold tracking-tight text-brand-deepblue">{title}</h1>
     {intro && <p class="mt-4 max-w-3xl text-lg leading-relaxed text-slate-700">{intro}</p>}
