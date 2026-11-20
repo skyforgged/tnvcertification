@@ -1,20 +1,33 @@
 ---
 import "../styles/global.css";
-import { organization } from "../site";
-import type { Props } from "./Index.astro";
-const { title = organization.title } = Astro.props;
-const { url } = Astro.url;
+import { organization, siteSettings } from "../site";
+
+export interface LayoutProps {
+  title?: string;
+  description?: string;
+  lang?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+export type Props = LayoutProps;
+
+const {
+  title = siteSettings.title,
+  description = siteSettings.description,
+  lang = siteSettings.defaultLanguage,
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="id">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={organization.description} />
+    <meta name="description" content={description} />
     <title>{title}</title>
   </head>
-  <body class="min-h-screen bg-brand-cream text-slate-900">
+  <body class="min-h-screen bg-cream text-slate-900">
     <header class="border-b border-brand-blue/20">
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
         <div class="flex h-16 items-center justify-between">
@@ -24,13 +37,13 @@ const { url } = Astro.url;
         </div>
       </div>
     </header>
-    <main class="mx-auto max-w-6xl flex-1 px-4 py-10 sm:px-6">
+    <main class="mx-auto flex max-w-6xl flex-1 px-4 py-10 sm:px-6">
       <slot />
     </main>
     <footer class="border-t border-brand-blue/20">
-      <div class="mx-auto max-w-6xl px-4 py-6 sm:px-6 text-sm text-slate-600">
-        <p className="pb-1" data-pu-ignore>
-          © {new Date().getFullYear()} {organization.name}. {organization.contact.address.city}, Indonesia.
+      <div class="mx-auto max-w-6xl px-4 py-6 text-sm text-slate-600 sm:px-6">
+        <p class="pb-1" data-pu-ignore>
+          © {new Date().getFullYear()} {organization.name}. {organization.contact.address.city}, {organization.contact.addressLabels.country}.
         </p>
       </div>
     </footer>

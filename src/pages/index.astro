@@ -1,0 +1,13 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { siteSettings } from "../site";
+---
+
+<Layout title={siteSettings.title} description={siteSettings.description}>
+  <h1 class="text-3xl font-semibold tracking-tight text-brand-deepblue">
+    {siteSettings.title}
+  </h1>
+  <p class="mt-4 max-w-2xl text-lg text-slate-700">
+    {siteSettings.description}
+  </p>
+</Layout>
