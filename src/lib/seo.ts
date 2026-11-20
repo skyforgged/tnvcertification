@@ -18,6 +18,8 @@ export interface LayoutProps {
   ogImage?: string;
   path?: string;
   alternates?: SeoAlternate[];
+  /** Additional page-specific JSON-LD entities; organization is injected centrally. */
+  structuredData?: unknown[];
 }
 
 export interface SeoMeta {
