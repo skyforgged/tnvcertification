@@ -134,3 +134,12 @@ export function serviceIndexJsonLd(
     },
   ];
 }
+
+
+/** One valid JSON-LD document containing the canonical organization and page graph. */
+export function pageJsonLdGraph(additionalEntities: unknown[] = []) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [organizationJsonLd(), ...additionalEntities],
+  };
+}
