@@ -1,0 +1,162 @@
+# Build report — 2026-11-20
+
+## Scope
+
+Record current validation failures and toolchain conflicts. No source fix is
+included in this commit.
+
+## Environment
+
+- Repository: `/home/tnv-certification/tnvcertification`
+- HEAD: `aba62d1 docs: note service routing implementation`
+- Node: `v22.23.4` local; `engines.node`: `>=22.23.4`
+- Latest active Node LTS at report time: `v26.13.1`
+- pnpm: `10.15.0` pinned; latest published: `12.21.0`
+- Astro: `7.4.13` (latest stable at report time)
+- Tailwind CSS: `tailwindcss` `4.0.0`; `@tailwindcss/vite` `4.3.5`
+- Latest Tailwind CSS at report time: `4.3.5`
+- TypeScript:
+  - `pnpm exec tsc`: `7.0.2` via `@typescript/native`
+  - root `typescript` alias: `@typescript/typescript6@6.0.2`, reports `6.0.3`
+  - `astro check` resolves root `typescript`: `@typescript/typescript6@6.0.2`
+- `@astrojs/check`: `0.9.12`
+- `typescript-eslint`: `8.73.0`
+
+## Validation results
+
+| Command | Result | Evidence |
+| --- | --- | --- |
+| `pnpm run check` | FAIL | `Result (22 files): 34 errors, 0 warnings, 3 hints` |
+| `pnpm run build` | FAIL | `pageCount is not defined` during static route generation |
+| `pnpm run typecheck` | PASS | exit code `0` |
+| `pnpm run lint` | PASS | exit code `0` |
+| `pnpm run test` | PASS | exit code `0` |
+
+All commands ran with Node `v22.23.4` and pnpm `10.15.0`.
+
+## Problem 1 — `astro check` fails with 34 type errors
+
+Error distribution:
+
+- `src/pages/[slug].astro`: 11 errors
+- `src/pages/articles/[slug].astro`: 11 errors
+- `src/pages/services/[slug].astro`: 10 errors
+- `src/pages/service/index.astro`: 2 errors
+
+Dominant diagnostics:
+
+- `ts(2339)`: `Property 'data' does not exist on type 'never'.`
+- `ts(7006)`: implicit `any` on `entry` / `service` callback parameters
+- `ts(7031)`: implicit `any` on destructured `{ data }` parameters
+
+Root cause:
+
+- `.astro/content.d.ts` derives entry data from
+  `ContentConfig['collections'][C]['schema']`.
+- `astro check` uses TypeScript `6.0.2` from the root `typescript` alias.
+- Zod 4 schema inference through that generated Astro content type path
+  collapses to `unknown` / `never` under TypeScript 6.
+- Plain `tsc` TypeScript `7.0.2` accepted the same generated types.
+- Probe on TypeScript `6.0.2` failed with:
+  `src/probe.ts(6,23): error TS18046: 'a.data' is of type 'unknown'.`
+- Direct `z.infer<typeof articleSchema>` worked under TypeScript `6.0.2`, so
+  the schemas themselves are not the root cause.
+
+Attempted fixes with no effect:
+
+- Replace the generic `collection()` helper in `src/content.config.ts` with
+  direct `defineCollection()` calls.
+- Import `defineCollection` from `astro:content` instead of
+  `astro/content/config`.
+- Both experiments still produced 34 errors. Both were reverted.
+
+Rejected fix:
+
+- Point root `typescript` at `npm:typescript@7.0.2`.
+- `astro check` then refused to run:
+  `astro check does not currently support TypeScript 7.0. To continue using astro check, install TypeScript 6 instead.`
+- `pnpm run lint` then failed:
+  `Error: typescript-eslint does not support TS 7.0.`
+- `package.json` and `pnpm-lock.yaml` were restored from backups. No net
+  change remains from this experiment.
+
+## Problem 2 — production build fails during prerender
+
+Failing command output:
+
+```
+generating static routes
+pageCount is not defined
+  Location:
+    .../astro/dist/core/render/route-cache.js:64:26
+  Stack trace:
+    at Module.getStaticPaths (.../dist/.prerender/chunks/_page__CebaYNRR.mjs:14:42)
+```
+
+Root cause:
+
+- `src/pages/articles/page/[page].astro` defines `pageSize`, `ordered`, and
+  `pageCount` in the frontmatter module body.
+- `getStaticPaths()` references `pageCount`, `ordered`, and `pageSize`.
+- Astro compiles `getStaticPaths()` into a separate prerender chunk. Those
+  module-body constants are not in scope there.
+- Required repair: compute `pageSize`, `ordered`, and `pageCount` inside
+  `getStaticPaths()`; pass the needed values through `props` if the template
+  needs them.
+
+## Problem 3 — toolchain version conflict
+
+- Node local `v22.23.4` is older than latest active LTS `v26.13.1`.
+- `engines.node` only sets a lower bound `>=22.23.4`; it does not pin the
+  supported line.
+- pnpm pinned `10.15.0` while latest published is `12.21.0`.
+- Tailwind packages disagree: `tailwindcss` `4.0.0` vs `@tailwindcss/vite`
+  `4.3.5`; latest is `4.3.5` for both.
+- Two TypeScript majors coexist: `6.0.2` for `astro check` resolution,
+  `7.0.2` for `pnpm exec tsc`.
+- `@astrojs/check` `0.9.12` does not support TypeScript `7.0`.
+- `typescript-eslint` `8.73.0` does not support TypeScript `7.0`.
+- Astro error message points to experimental TypeScript `7.1+` support via
+  `@astrojs/ts-content-mapper`; installed TypeScript `7.0.2` is below that
+  threshold.
+
+## Problem 4 — empty content collections
+
+Both `astro check` and `astro build` warn that these glob loaders found no
+matching Markdown files:
+
+- `src/content/services`
+- `src/content/categories`
+- `src/content/certifications`
+- `src/content/training`
+- `src/content/training-schedules`
+
+Non-fatal, but these directories need content or loader path correction.
+
+## Problem 5 — deprecated Zod URL API
+
+`astro check` reports `ts(6385)` for `z.string().url()`:
+
+- `src/content.config.ts:50`
+- `src/content.config.ts:106`
+- `src/content.config.ts:148`
+
+Zod 4 deprecates this form. Migrate to the current URL schema API.
+
+## Origin
+
+Failures were introduced by newer route commits pulled from remote after
+`d8ee348`: `3b4c78f`, `7e63006`, `d1bd7fd`, `9357617`, `33d8ec2`,
+`aba62d1`.
+
+## Recommended order of repair
+
+1. Resolve the TypeScript toolchain conflict first. Pick versions supported
+   together by Astro, `astro check`, and `typescript-eslint`; otherwise verify
+   the TypeScript `7.1+` `@astrojs/ts-content-mapper` path.
+2. Move pagination constants inside `getStaticPaths()`.
+3. Align Node, pnpm, Tailwind, and TypeScript versions in `package.json` and
+   lockfile; add explicit version policy if "no version drift" is required.
+4. Fix deprecated Zod URL calls.
+5. Populate or correct empty content collection paths.
+6. Re-run `check`, `build`, `typecheck`, `lint`, and `test`.
