@@ -2,7 +2,7 @@
 
 ## Status
 
-**P4 taxonomy design prepared; no public category or certification offering is created by this document.**
+**P4 taxonomy implementation started: 12 candidate category groups now have 24 bilingual records, all marked `planned`. No public category routes or active service claims are created. No certification scheme records have been approved.**
 
 This design uses the current collection architecture and the preliminary competitor research in `docs/iso-competitor-research/`. Competitor presence is market research only; it is not evidence of PT. Intiprima Sertifikasi's accreditation, authorization, capability or approved service scope.
 
@@ -72,17 +72,19 @@ The current category schema in `src/content.config.ts` contains:
 - optional `description`
 - `lang` (`id` or `en`)
 - `translationKey`
+- `status` (`planned` or `active`, default `planned`)
 
 Recommended authoring rules:
 
 - Use the same stable `slug` and `translationKey` for Indonesian and English variants of the same category.
 - Keep the localized `title` and `description` in each language entry.
-- Use `categoryIds` as explicit references from services, certifications, training and articles.
+- Use `categoryIds` as explicit references from services, certifications, training and articles. Values are stable category slugs (for example, `quality-management`), not localized labels or filenames.
+- New category records default to `status: planned`; only move to `active` after category ownership and the related content scope are approved.
 - Never infer a category relationship from the content title or slug.
 - Keep category pages useful for discovery; do not create empty public category routes.
 - Consider an optional `parentSlug` only if a real second-level taxonomy is needed. Do not add hierarchy or schema fields without a consumer and validation rule.
 
-Before implementation, add cross-entry validation for duplicate language variants, missing translation counterparts where required, and dangling category references. The validation should report the content path and unresolved category slug.
+Implemented in `src/lib/taxonomy-validation.ts` and invoked by `src/content-validation.ts`: duplicate slug/language pairs, duplicate translation variants, missing `id`/`en` counterparts, mismatched translated slugs, duplicate category references and dangling category references are build diagnostics with file paths.
 
 ## 5. Service and certification relationship model
 
@@ -107,13 +109,12 @@ CSMS here means **Contractor Safety Management System**, not the automotive cybe
 
 1. Confirm company service authority, accreditation scope, partner-delivered schemes and exact services.
 2. Approve the category labels and stable slugs in this document.
-3. Refine category and certification Zod schemas only where needed for explicit references and validation.
-4. Add bilingual category records with stable translation keys.
+3. Refine the category Zod schema and add bilingual category records with stable translation keys (implemented; records remain planned).
+4. Add build-time cross-collection validation for bilingual pairs and category references (implemented; requires local/CI verification).
 5. Add certification/scheme records only for verified candidate scope; otherwise keep them as internal planning notes.
-6. Connect service records to categories and scheme IDs explicitly.
-7. Add cross-collection validation for dangling category, scheme and service references.
-8. Add category discovery/navigation only after there is enough approved, published content.
-9. Run typecheck, lint, tests, build and inspect generated routes.
+6. Add explicit service-to-scheme relationships only after stable scheme identifiers and authorization evidence are approved.
+7. Add category discovery/navigation only after there is enough approved, published content.
+8. Run typecheck, lint, tests, build and inspect generated routes.
 
 ## 8. Non-goals
 
