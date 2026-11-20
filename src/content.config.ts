@@ -122,6 +122,8 @@ const categorySchema = z.object({
   description: z.string().optional(),
   lang: z.enum(["id", "en"]),
   translationKey: z.string().min(1, "translationKey is required"),
+  // Candidate categories remain non-public until their scope is approved.
+  status: z.enum(["planned", "active"]).default("planned"),
 });
 
 // --- Training schedules (event records; training link is required) ---

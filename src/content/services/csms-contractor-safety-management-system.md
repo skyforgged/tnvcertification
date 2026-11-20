@@ -13,6 +13,8 @@ translationKey: "service-csms-contractor-safety-management-system"
 lang: "id"
 serviceType: "Assessment"
 category: "Keselamatan Kontraktor / K3"
+categoryIds:
+  - contractor-safety
 ---
 
 # Penilaian Contractor Safety Management System (CSMS)
