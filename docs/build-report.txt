@@ -32,7 +32,8 @@ included in this commit.
 | `pnpm run lint` | PASS | exit code `0` |
 | `pnpm run test` | PASS | exit code `0` |
 
-All commands ran with Node `v22.23.4` and pnpm `10.15.0`.
+Baseline commands ran with Node `v22.23.4` and pnpm `10.15.0`. Post-merge
+results are recorded separately below.
 
 ## Problem 1 — `astro check` fails with 34 type errors
 
@@ -160,3 +161,54 @@ Failures were introduced by newer route commits pulled from remote after
 4. Fix deprecated Zod URL calls.
 5. Populate or correct empty content collection paths.
 6. Re-run `check`, `build`, `typecheck`, `lint`, and `test`.
+
+## Post-merge update (2026-11-20)
+
+### Merge state
+
+- `origin/chore/toolchain-standardization` was merged into local `main` with a
+  fast-forward to `8d05f18`.
+- `origin/docs/astro-content-architecture` was already an ancestor of `main`;
+  no merge was needed.
+- At validation time, `origin/main` was still `69be834`. The merge had not
+  been pushed.
+
+### Toolchain state after merge
+
+- `.node-version` and `.nvmrc`: `26.13.1`
+- `packageManager`: `pnpm@12.21.0`
+- `engines.node`: `>=26.13.1 <27`
+- `tailwindcss` and `@tailwindcss/vite`: both `4.3.5`
+- `docs/toolchain-policy.md` was added.
+- The policy says TypeScript `6.0.2` is prohibited, but `package.json` still
+  aliases `typescript` to `@typescript/typescript6@6.0.2`. That contradiction
+  is unresolved.
+
+### Validation with merged toolchain
+
+Ran with Node `26.13.1` and pnpm `12.21.0`:
+
+- `check`: FAIL — same 34 errors, same file distribution
+- `build`: FAIL — same `pageCount is not defined` error
+- `typecheck`, `lint`, `test`: not rerun under Node 26 after the local
+  workaround
+
+### New problems found with pnpm 12
+
+- `pnpm install` failed with `ERR_PNPM_MINIMUM_RELEASE_AGE_VIOLATION`:
+  `source-map-js@1.2.4` was newer than the configured minimum-release-age
+  cutoff.
+- After bypassing that check, install failed with
+  `ERR_PNPM_IGNORED_BUILDS` for `esbuild@0.28.2`.
+- `vite.config.mjs` imports `vite`, but `vite` is not declared in
+  `package.json`. Under pnpm 12 strict resolution, `check` and `build` failed
+  with `Cannot find module 'vite'` until a local `node_modules/vite` symlink
+  was added for validation only.
+- pnpm 12 wrote `allowBuilds` into `pnpm-workspace.yaml` and added
+  `packageManagerDependencies` to `pnpm-lock.yaml`. Both side effects were
+  reverted; no unrequested source change was kept.
+
+### Report filename
+
+The report is tracked as `docs/build-report.txt`. The previous
+`docs/build-report.log` path was ignored by `.gitignore` (`*.log`).
