@@ -1,0 +1,43 @@
+---
+import type { Article } from "../data/articles";
+
+interface Props {
+  article: Article;
+  headingLevel?: 2 | 3;
+}
+
+const { article, headingLevel = 3 } = Astro.props;
+const Heading = `h${headingLevel}` as "h2" | "h3";
+const dateFormatter = new Intl.DateTimeFormat("id-ID", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
+---
+
+<article class="border-t-4 border-brand-orange pt-5">
+  <div
+    role="img"
+    aria-label={article.featuredImage.alt}
+    class="mb-5 flex h-28 items-end bg-brand-blue/10 p-4"
+  >
+    <span class="text-xs font-semibold uppercase tracking-widest text-brand-deepblue">
+      Artikel
+    </span>
+  </div>
+  <Heading class="text-xl font-semibold leading-snug text-brand-deepblue">
+    <a
+      href={`/articles/${article.slug}/`}
+      class="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-orange hover:text-brand-blue"
+    >
+      {article.title}
+    </a>
+  </Heading>
+  <p class="mt-3 text-sm leading-relaxed text-slate-700">{article.intro}</p>
+  <p class="mt-4 text-xs text-slate-500">
+    <time datetime={article.effectiveDate.toISOString().slice(0, 10)}>
+      {dateFormatter.format(article.effectiveDate)}
+    </time>
+  </p>
+</article>

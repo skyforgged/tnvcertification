@@ -1,0 +1,27 @@
+---
+import Layout from "./Layout.astro";
+import BlockRenderer, { type Block } from "../components/BlockRenderer.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  intro?: string;
+  lang?: string;
+  canonical?: string;
+  ogImage?: string;
+  blocks?: Block[];
+}
+
+const { title, description, intro, lang, canonical, ogImage, blocks = [] } = Astro.props;
+---
+
+<Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage}>
+  <article>
+    <h1 class="text-3xl font-semibold tracking-tight text-brand-deepblue">{title}</h1>
+    {intro && <p class="mt-4 max-w-3xl text-lg leading-relaxed text-slate-700">{intro}</p>}
+    <div class="mt-8 max-w-3xl">
+      <slot />
+    </div>
+    <BlockRenderer blocks={blocks} />
+  </article>
+</Layout>

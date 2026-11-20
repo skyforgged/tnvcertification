@@ -1,0 +1,85 @@
+---
+interface FaqBlock {
+  type: "faq";
+  items: Array<{ question: string; answer: string }>;
+}
+
+interface HowToBlock {
+  type: "howto";
+  steps: Array<{
+    title: string;
+    description: string;
+    image?: { src: string; alt: string; caption?: string };
+  }>;
+}
+
+interface CtaBlock {
+  type: "cta";
+  variant?: "primary" | "secondary" | "ghost";
+  title?: string;
+  description?: string;
+  link?: { label: string; url: string };
+}
+
+export type Block = FaqBlock | HowToBlock | CtaBlock;
+
+interface Props {
+  blocks?: Block[];
+}
+
+const { blocks = [] } = Astro.props;
+const faqs = blocks.filter((block): block is FaqBlock => block.type === "faq");
+const howtos = blocks.filter((block): block is HowToBlock => block.type === "howto");
+const ctas = blocks.filter((block): block is CtaBlock => block.type === "cta");
+const ctaClass = (variant?: CtaBlock["variant"]) =>
+  variant === "secondary"
+    ? "bg-brand-blue text-white"
+    : variant === "ghost"
+      ? "border border-brand-deepblue text-brand-deepblue"
+      : "bg-brand-orange text-white";
+---
+
+{faqs.map((block) => (
+  <section class="mt-12">
+    <h2 class="text-2xl font-semibold text-brand-deepblue">Pertanyaan Umum</h2>
+    <dl class="mt-6 space-y-6">
+      {block.items.map((item) => (
+        <div class="border-l-4 border-brand-mint pl-4">
+          <dt class="font-semibold text-slate-900">{item.question}</dt>
+          <dd class="mt-2 text-sm leading-relaxed text-slate-700">{item.answer}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+))}
+
+{howtos.map((block) => (
+  <section class="mt-12">
+    <h2 class="text-2xl font-semibold text-brand-deepblue">Langkah Pelaksanaan</h2>
+    <ol class="mt-6 space-y-6">
+      {block.steps.map((step, index) => (
+        <li class="border-t border-brand-blue/20 pt-4">
+          <h3 class="text-lg font-semibold text-brand-deepblue">
+            {index + 1}. {step.title}
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-700">{step.description}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+))}
+
+{ctas.map((block) => (
+  <aside class="mt-12 border-t-4 border-brand-yellow bg-white p-6">
+    {block.title && <h2 class="text-xl font-semibold text-brand-deepblue">{block.title}</h2>}
+    {block.description && <p class="mt-2 text-sm text-slate-700">{block.description}</p>}
+    {block.link && (
+      <a
+        href={block.link.url}
+        class={`mt-4 inline-block px-5 py-2 text-sm font-semibold ${ctaClass(block.variant)}`}
+      >
+        {block.link.label}
+      </a>
+    )}
+  </aside>
+))}

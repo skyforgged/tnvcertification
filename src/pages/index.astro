@@ -1,6 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ArticleCard from "../components/ArticleCard.astro";
 import { siteSettings } from "../site";
+import { getHomepageArticles, getPublishedArticles } from "../data/articles";
+
+const articles = getHomepageArticles(getPublishedArticles());
 ---
 
 <Layout title={siteSettings.title} description={siteSettings.description}>
@@ -10,4 +14,15 @@ import { siteSettings } from "../site";
   <p class="mt-4 max-w-2xl text-lg text-slate-700">
     {siteSettings.description}
   </p>
+
+  {articles.length > 0 && (
+    <section class="mt-16" aria-labelledby="artikel-terbaru">
+      <h2 id="artikel-terbaru" class="text-2xl font-semibold text-brand-deepblue">
+        Artikel Terbaru
+      </h2>
+      <div class="mt-6 grid gap-8 md:grid-cols-3">
+        {articles.map((article) => <ArticleCard article={article} />)}
+      </div>
+    </section>
+  )}
 </Layout>
