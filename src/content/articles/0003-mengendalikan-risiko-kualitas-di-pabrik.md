@@ -5,7 +5,7 @@ metaDescription: "Metode identifikasi, penilaian, dan pencegahan risiko kualitas
 pubDate: "2026-11-10"
 draft: false
 categoryIds:
-  - "kualitas"
+  - "quality-management"
 featuredImage:
   src: "/images/articles/0003.jpg"
   alt: "Mengendalikan Risiko Kualitas di Pabrik adalah pengendalian mutu produksi."

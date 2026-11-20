@@ -5,7 +5,7 @@ metaDescription: "Peran talenta kualitas dalam membangun daya saing, kepercayaan
 pubDate: "2026-11-10"
 draft: false
 categoryIds:
-  - "kualitas"
+  - "quality-management"
 featuredImage:
   src: "/images/articles/0001.jpg"
   alt: "Posisi Kualitas sebagai Talenta Kompetitif adalah peran mutu dalam organisasi."

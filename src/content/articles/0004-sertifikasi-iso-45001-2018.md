@@ -5,7 +5,7 @@ metaDescription: "Panduan sertifikasi ISO 45001:2018 untuk membangun sistem K3, 
 pubDate: "2026-11-10"
 draft: false
 categoryIds:
-  - "kualitas"
+  - "quality-management"
 featuredImage:
   src: "/images/articles/0004.jpg"
   alt: "Sertifikasi ISO 45001:2018 adalah sistem manajemen keselamatan kerja."

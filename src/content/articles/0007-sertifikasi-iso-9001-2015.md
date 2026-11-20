@@ -5,7 +5,7 @@ metaDescription: "Tahapan audit sertifikasi ISO 9001:2015, dari tinjauan dokumen
 pubDate: "2026-11-10"
 draft: false
 categoryIds:
-  - "kualitas"
+  - "quality-management"
 featuredImage:
   src: "/images/articles/0007.jpg"
   alt: "Proses Audit Sertifikasi ISO 9001:2015 adalah pemeriksaan sistem mutu."

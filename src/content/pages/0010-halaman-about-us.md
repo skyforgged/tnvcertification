@@ -4,8 +4,6 @@ intro: "Deskripsi Halaman Tentang adalah uraian singkat mengenai profil, nilai, 
 metaDescription: "Profil dan tujuan PT. Intiprima Sertifikasi dalam layanan sertifikasi, pelatihan, dan penilaian kepatuhan."
 pubDate: "2026-10-01"
 draft: false
-categoryIds:
-  - "organisasi"
 featuredImage:
   src: "/images/articles/0010.jpg"
   alt: "Deskripsi Halaman Tentang adalah pengantar profil organisasi."

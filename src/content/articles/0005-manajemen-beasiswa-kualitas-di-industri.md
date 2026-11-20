@@ -5,7 +5,7 @@ metaDescription: "Strategi beasiswa dan pengembangan talenta kualitas untuk memb
 pubDate: "2026-11-10"
 draft: false
 categoryIds:
-  - "kualitas"
+  - "quality-management"
 featuredImage:
   src: "/images/articles/0005.jpg"
   alt: "Manajemen Beasiswa Kualitas di Industri adalah pengembangan talenta mutu."

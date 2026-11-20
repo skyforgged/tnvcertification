@@ -5,7 +5,7 @@ metaDescription: "Panduan sertifikasi sistem manajemen mutu ISO 9001:2015, mulai
 pubDate: "2026-11-10"
 draft: false
 categoryIds:
-  - "kualitas"
+  - "quality-management"
 featuredImage:
   src: "/images/articles/0002.jpg"
   alt: "Sertifikasi ISO 9001:2015 adalah pengakuan atas sistem manajemen mutu."

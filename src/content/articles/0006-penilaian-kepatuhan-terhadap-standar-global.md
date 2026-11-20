@@ -5,7 +5,7 @@ metaDescription: "Cara menilai kepatuhan terhadap standar global melalui audit i
 pubDate: "2026-11-10"
 draft: false
 categoryIds:
-  - "kualitas"
+  - "quality-management"
 featuredImage:
   src: "/images/articles/0006.jpg"
   alt: "Penilaian Kepatuhan Terhadap Standar Global adalah verifikasi praktik kerja."

@@ -5,7 +5,7 @@ metaDescription: "Manfaat bisnis sertifikasi ISO 9001:2015, termasuk kepercayaan
 pubDate: "2026-11-10"
 draft: false
 categoryIds:
-  - "kualitas"
+  - "quality-management"
 featuredImage:
   src: "/images/articles/0009.jpg"
   alt: "Manfaat Sertifikasi ISO 9001:2015 bagi Perusahaan adalah efisiensi proses."

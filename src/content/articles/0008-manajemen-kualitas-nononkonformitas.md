@@ -5,7 +5,7 @@ metaDescription: "Penanganan nonkonformitas dalam sistem mutu: identifikasi peny
 pubDate: "2026-11-10"
 draft: false
 categoryIds:
-  - "kualitas"
+  - "quality-management"
 featuredImage:
   src: "/images/articles/0008.jpg"
   alt: "Manajemen Kualitas Nonkonformitas adalah penanganan penyimpangan mutu."
