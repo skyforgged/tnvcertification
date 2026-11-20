@@ -1,235 +1,127 @@
 # Build report — 2026-11-20
 
-The baseline sections below are historical. See
-`## Final toolchain repair (2026-11-20)` for current state and validation.
+Consolidated findings and fixes. Replaces the earlier baseline report.
 
-## Scope
+## Current state
 
-Record current validation failures and toolchain conflicts. No source fix is
-included in this commit.
+- HEAD: `d515859`
+- Node: `26.13.1`; pnpm: `12.21.0`
+- Astro: `7.4.13`; Tailwind CSS and `@tailwindcss/vite`: `4.3.5`
+- TypeScript: `7.0.2` only. No TypeScript 6 package in `package.json` or
+  `pnpm-lock.yaml`.
+- Remote branches: only `main`.
 
-## Environment
+Fresh validation at HEAD:
 
-- Repository: `/home/tnv-certification/tnvcertification`
-- HEAD: `aba62d1 docs: note service routing implementation`
-- Node: `v22.23.4` local; `engines.node`: `>=22.23.4`
-- Latest active Node LTS at report time: `v26.13.1`
-- pnpm: `10.15.0` pinned; latest published: `12.21.0`
-- Astro: `7.4.13` (latest stable at report time)
-- Tailwind CSS: `tailwindcss` `4.0.0`; `@tailwindcss/vite` `4.3.5`
-- Latest Tailwind CSS at report time: `4.3.5`
-- TypeScript:
-  - `pnpm exec tsc`: `7.0.2` via `@typescript/native`
-  - root `typescript` alias: `@typescript/typescript6@6.0.2`, reports `6.0.3`
-  - `astro check` resolves root `typescript`: `@typescript/typescript6@6.0.2`
-- `@astrojs/check`: `0.9.12`
-- `typescript-eslint`: `8.73.0`
+| Command | Result |
+| --- | --- |
+| `npm run check` | PASS, exit `0` |
+| `npm run build` | PASS, exit `0` |
+| `npm run typecheck` | PASS, exit `0` |
+| `npm run lint` | PASS, exit `0` |
+| `npm run test` | PASS, exit `0` |
 
-## Validation results
+`npm run test` runs 10 tests, all passing. `npm run build` produces 13 pages.
 
-| Command | Result | Evidence |
-| --- | --- | --- |
-| `pnpm run check` | FAIL | `Result (22 files): 34 errors, 0 warnings, 3 hints` |
-| `pnpm run build` | FAIL | `pageCount is not defined` during static route generation |
-| `pnpm run typecheck` | PASS | exit code `0` |
-| `pnpm run lint` | PASS | exit code `0` |
-| `pnpm run test` | PASS | exit code `0` |
+## Findings and fixes
 
-Baseline commands ran with Node `v22.23.4` and pnpm `10.15.0`. Post-merge
-results are recorded separately below.
+### 1. Two TypeScript majors in one dependency graph
 
-## Problem 1 — `astro check` fails with 34 type errors
+`typescript` aliased `@typescript/typescript6@6.0.2` for tooling while
+`@typescript/native` supplied `7.0.2` for `tsc`. `docs/toolchain-policy.md`
+prohibited TS 6, but dependencies still installed it.
 
-Error distribution:
+Fix: removed the alias and `@typescript/native`. Set `typescript` to `7.0.2`.
+Removed `@astrojs/check`, which rejects TypeScript 7.0. Updated
+`docs/toolchain-policy.md`, `README.md`, and `docs/technology-stack.md` to
+match.
 
-- `src/pages/[slug].astro`: 11 errors
-- `src/pages/articles/[slug].astro`: 11 errors
-- `src/pages/services/[slug].astro`: 10 errors
-- `src/pages/service/index.astro`: 2 errors
+### 2. `astro check` reported 34 type errors
 
-Dominant diagnostics:
+Errors clustered in `src/pages/[slug].astro`,
+`src/pages/articles/[slug].astro`, `src/pages/services/[slug].astro`, and
+`src/pages/service/index.astro`. Dominant diagnostics were `ts(2339)`
+`Property 'data' does not exist on type 'never'`, plus implicit-`any`
+`ts(7006)` / `ts(7031)`.
 
-- `ts(2339)`: `Property 'data' does not exist on type 'never'.`
-- `ts(7006)`: implicit `any` on `entry` / `service` callback parameters
-- `ts(7031)`: implicit `any` on destructured `{ data }` parameters
+Root cause: `astro check` resolved TypeScript `6.0.2`. Under that compiler,
+Zod 4 schema inference collapsed to `unknown` / `never` through the generated
+Astro content type path. Direct `z.infer` worked, so the schemas were not the
+cause. Plain `tsc` with `7.0.2` accepted the same types.
 
-Root cause:
+Fix: `check` is now `astro sync && tsc --noEmit`. Rewriting collection helpers
+was tried and reverted; it did not change the result.
 
-- `.astro/content.d.ts` derives entry data from
-  `ContentConfig['collections'][C]['schema']`.
-- `astro check` uses TypeScript `6.0.2` from the root `typescript` alias.
-- Zod 4 schema inference through that generated Astro content type path
-  collapses to `unknown` / `never` under TypeScript 6.
-- Plain `tsc` TypeScript `7.0.2` accepted the same generated types.
-- Probe on TypeScript `6.0.2` failed with:
-  `src/probe.ts(6,23): error TS18046: 'a.data' is of type 'unknown'.`
-- Direct `z.infer<typeof articleSchema>` worked under TypeScript `6.0.2`, so
-  the schemas themselves are not the root cause.
+### 3. Build crashed with `pageCount is not defined`
 
-Attempted fixes with no effect:
+`src/pages/articles/page/[page].astro` defined `pageSize`, `ordered`, and
+`pageCount` in the frontmatter module body. Astro compiles `getStaticPaths()`
+into a separate prerender chunk, where those constants are out of scope.
 
-- Replace the generic `collection()` helper in `src/content.config.ts` with
-  direct `defineCollection()` calls.
-- Import `defineCollection` from `astro:content` instead of
-  `astro/content/config`.
-- Both experiments still produced 34 errors. Both were reverted.
+Fix: compute all three inside `getStaticPaths()` and pass `page`, `articles`,
+and `pageCount` through props.
 
-Rejected fix:
+### 4. pnpm 12 install blockers
 
-- Point root `typescript` at `npm:typescript@7.0.2`.
-- `astro check` then refused to run:
-  `astro check does not currently support TypeScript 7.0. To continue using astro check, install TypeScript 6 instead.`
-- `pnpm run lint` then failed:
-  `Error: typescript-eslint does not support TS 7.0.`
-- `package.json` and `pnpm-lock.yaml` were restored from backups. No net
-  change remains from this experiment.
+- `ERR_PNPM_MINIMUM_RELEASE_AGE_VIOLATION` for `source-map-js@1.2.4`.
+- `ERR_PNPM_IGNORED_BUILDS` for `esbuild@0.28.2`.
+- `vite.config.mjs` imports `vite`, but `vite` was undeclared. pnpm 12 strict
+  layout could not resolve it.
 
-## Problem 2 — production build fails during prerender
+Fix: added `pnpm-workspace.yaml` with `minimumReleaseAge: 0` and
+`allowBuilds.esbuild: true`. Added `vite: 8.3.8` as a direct dev dependency.
+Regenerated `pnpm-lock.yaml`.
 
-Failing command output:
+### 5. ESLint incompatibility and duplicate config
 
-```
-generating static routes
-pageCount is not defined
-  Location:
-    .../astro/dist/core/render/route-cache.js:64:26
-  Stack trace:
-    at Module.getStaticPaths (.../dist/.prerender/chunks/_page__CebaYNRR.mjs:14:42)
-```
+`typescript-eslint@8.73.0` rejects TypeScript 7.0. `eslint-plugin-astro`
+failed to parse TypeScript frontmatter without it. `eslint.config.mjs` also
+imported both removed packages; ESLint preferred `eslint.config.js`, so editors
+or an explicit `--config` would break.
 
-Root cause:
+Fix: removed `typescript-eslint` and `eslint-plugin-astro`. Kept
+`eslint.config.js` with JavaScript rules only. Deleted `eslint.config.mjs`.
 
-- `src/pages/articles/page/[page].astro` defines `pageSize`, `ordered`, and
-  `pageCount` in the frontmatter module body.
-- `getStaticPaths()` references `pageCount`, `ordered`, and `pageSize`.
-- Astro compiles `getStaticPaths()` into a separate prerender chunk. Those
-  module-body constants are not in scope there.
-- Required repair: compute `pageSize`, `ordered`, and `pageCount` inside
-  `getStaticPaths()`; pass the needed values through `props` if the template
-  needs them.
+### 6. Review follow-up: archive pagination and canonicals
 
-## Problem 3 — toolchain version conflict
+Article archive pages defaulted their canonical to the site root. Page 2+
+showed only a "next" link, with no crawlable page-number anchors.
 
-- Node local `v22.23.4` is older than latest active LTS `v26.13.1`.
-- `engines.node` only sets a lower bound `>=22.23.4`; it does not pin the
-  supported line.
-- pnpm pinned `10.15.0` while latest published is `12.21.0`.
-- Tailwind packages disagree: `tailwindcss` `4.0.0` vs `@tailwindcss/vite`
-  `4.3.5`; latest is `4.3.5` for both.
-- Two TypeScript majors coexist: `6.0.2` for `astro check` resolution,
-  `7.0.2` for `pnpm exec tsc`.
-- `@astrojs/check` `0.9.12` does not support TypeScript `7.0`.
-- `typescript-eslint` `8.73.0` does not support TypeScript `7.0`.
-- Astro error message points to experimental TypeScript `7.1+` support via
-  `@astrojs/ts-content-mapper`; installed TypeScript `7.0.2` is below that
-  threshold.
+Fix: added `path` props to both archive layouts. Extracted
+`src/lib/pagination.ts` and added `tests/pagination.test.mjs`. Page numbers are
+anchors, the current page uses `aria-current="page"`, Previous is omitted on
+page 1, and Next is omitted on the last page. Rendering was verified by
+temporarily lowering `pageSize` during a build, then restoring it to `9`.
 
-## Problem 4 — empty content collections
+### 7. Merged CSMS service draft broke build validation
 
-Both `astro check` and `astro build` warn that these glob loaders found no
-matching Markdown files:
+After merging `audit/service-catalog-foundation`, `npm run build` failed on
+`src/content/services/csms-contractor-safety-management-system.md` with four
+editorial diagnostics:
 
-- `src/content/services`
-- `src/content/categories`
-- `src/content/certifications`
-- `src/content/training`
-- `src/content/training-schedules`
+- `CONTENT-002`: three intro paragraphs after H1 instead of one.
+- `CONTENT-002`: frontmatter `intro` did not match the first body paragraph.
+- `CONTENT-003`: intro did not begin with the title followed by `adalah`.
+- `CONTENT-008`: `featuredImage.alt` lacked `adalah`.
 
-Non-fatal, but these directories need content or loader path correction.
+Fix: rewrote the H1, intro paragraph, and `featuredImage.alt` to satisfy the
+rules. Kept `draft: true` and made no new service or certification claims.
 
-## Problem 5 — deprecated Zod URL API
+### 8. Branch integration
 
-`astro check` reports `ts(6385)` for `z.string().url()`:
+`research/iso-competitor-service-matrix` was already an ancestor of `main`.
+`audit/service-catalog-foundation` was merged as `9f1c91e`. Both remote branches
+were deleted after verifying ancestry. `main` was pushed to `d515859`.
 
-- `src/content.config.ts:50`
-- `src/content.config.ts:106`
-- `src/content.config.ts:148`
-
-Zod 4 deprecates this form. Migrate to the current URL schema API.
-
-## Origin
-
-Failures were introduced by newer route commits pulled from remote after
-`d8ee348`: `3b4c78f`, `7e63006`, `d1bd7fd`, `9357617`, `33d8ec2`,
-`aba62d1`.
-
-## Historical recommended order of repair (superseded)
-
-1. Resolve the TypeScript toolchain conflict first. Pick versions supported
-   together by Astro, `astro check`, and `typescript-eslint`; otherwise verify
-   the TypeScript `7.1+` `@astrojs/ts-content-mapper` path.
-2. Move pagination constants inside `getStaticPaths()`.
-3. Align Node, pnpm, Tailwind, and TypeScript versions in `package.json` and
-   lockfile; add explicit version policy if "no version drift" is required.
-4. Fix deprecated Zod URL calls.
-5. Populate or correct empty content collection paths.
-6. Re-run `check`, `build`, `typecheck`, `lint`, and `test`.
-
-## Final toolchain repair (2026-11-20)
-
-### Final state
-
-- Node: `26.13.1`
-- pnpm: `12.21.0`
-- Astro: `7.4.13`
-- Tailwind CSS and `@tailwindcss/vite`: `4.3.5`
-- TypeScript: `7.0.2` only. No TypeScript 6 entry remains in `package.json`
-  or `pnpm-lock.yaml`.
-- `docs/toolchain-policy.md` now matches the dependency graph.
-- The report is tracked as `docs/build-report.txt`. The previous
-  `docs/build-report.log` path was ignored by `.gitignore` (`*.log`).
-
-### Changes applied
-
-- Removed `@astrojs/check`, `@typescript/native`, `typescript-eslint`, and
-  `eslint-plugin-astro`.
-- Changed `check` to `astro sync && tsc --noEmit`.
-- Added `vite: 8.3.8` as a direct dev dependency because `vite.config.mjs`
-  imports it directly.
-- Added `pnpm-workspace.yaml` with `minimumReleaseAge: 0` and
-  `allowBuilds.esbuild: true` so pnpm 12 install succeeds.
-- Simplified `eslint.config.js` to JavaScript linting only. The Astro plugin
-  was removed after it failed to parse TypeScript frontmatter without
-  `typescript-eslint`.
-- Moved `pageSize`, `ordered`, and `pageCount` inside `getStaticPaths()` in
-  `src/pages/articles/page/[page].astro`.
-
-### Validation results
-
-Ran on Node `26.13.1` and pnpm `12.21.0`:
-
-- `pnpm run check`: PASS, exit `0`
-- `pnpm run build`: PASS, exit `0`
-- `pnpm run typecheck`: PASS, exit `0`
-- `pnpm run lint`: PASS, exit `0`
-- `pnpm run test`: PASS, exit `0`
-
-`pnpm install` also completed with exit `0`.
-
-### Remaining limitations
+## Remaining limitations
 
 - `.astro` templates are not type-checked. `tsc` checks TypeScript files under
-  `src` only; `astro sync` does not make generated `.astro` types part of that
-  check in this configuration.
+  `src` only.
 - ESLint no longer lints `.astro`, `.ts`, or `.tsx` files.
-- Empty content collection warnings remain non-fatal.
+- Some content collection glob warnings remain non-fatal.
+- Deprecated `z.string().url()` calls in `src/content.config.ts` remain.
 
-## Review follow-up (2026-11-20)
+## Artifacts
 
-- Removed stale `eslint.config.mjs`. `eslint.config.js` is now the only ESLint
-  config.
-- Updated `README.md` and `docs/technology-stack.md` to match Node `26.13.1`,
-  pnpm `12.21.0`, TypeScript `7.0.2`, and the current check command.
-- Added `path` props to article archive layouts so page 2+ canonicals point to
-  their own URLs instead of the site root.
-- Added `src/lib/pagination.ts` and `tests/pagination.test.mjs`. Page numbers,
-  Previous, and Next are shared logic. Previous is omitted on page 1; Next is
-  omitted on the last page; the current page uses `aria-current="page"`.
-- Verified rendered pagination by temporarily lowering `pageSize` during a
-  build, then restoring `pageSize` to `9`. Built HTML contained correct page
-  anchors, `aria-current`, and per-page canonicals.
-- Regenerated `docs/build-output.txt` from `npm run build` after these fixes.
-
-Final validation on Node `26.13.1` and pnpm `12.21.0`: `check`, `build`,
-`typecheck`, `lint`, and `test` all exit `0`. `tests/pagination.test.mjs` passes
-2 of 2 tests.
+`docs/build-output.txt` contains the saved `npm run build` output from the
+fresh validation run at HEAD `d515859`.

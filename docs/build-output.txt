@@ -3,43 +3,43 @@ $ npm run build
 > tnv-certification@0.1.0 build
 > astro build
 
-19:57:42 [content] Syncing content
-19:57:42 [WARN] [glob-loader] No files found matching "**/*.{md,mdx}" in directory "src/content/categories"
-19:57:42 [WARN] [glob-loader] No files found matching "**/*.{md,mdx}" in directory "src/content/certifications"
-19:57:42 [WARN] [glob-loader] No files found matching "**/*.{md,mdx}" in directory "src/content/training"
-19:57:42 [WARN] [glob-loader] No files found matching "**/*.{md,mdx}" in directory "src/content/training-schedules"
-19:57:43 [content] Synced content
-19:57:43 [types] Generated 1.35s
-19:57:43 [build] output: "static"
-19:57:43 [build] mode: "static"
-19:57:43 [build] directory: /home/tnv-certification/tnvcertification/dist/
-19:57:43 [build] Collecting build info...
-19:57:43 [build] ✓ Completed in 1.45s.
-19:57:43 [build] Building static entrypoints...
-19:57:44 [vite] ✓ built in 1.52s
-19:57:44 [vite] ✓ built in 43ms
-19:57:44 [build] Rearranging server assets...
+20:00:16 [content] Syncing content
+20:00:16 [WARN] [glob-loader] No files found matching "**/*.{md,mdx}" in directory "src/content/categories"
+20:00:16 [WARN] [glob-loader] No files found matching "**/*.{md,mdx}" in directory "src/content/certifications"
+20:00:16 [WARN] [glob-loader] No files found matching "**/*.{md,mdx}" in directory "src/content/training"
+20:00:16 [WARN] [glob-loader] No files found matching "**/*.{md,mdx}" in directory "src/content/training-schedules"
+20:00:16 [content] Synced content
+20:00:16 [types] Generated 1.17s
+20:00:16 [build] output: "static"
+20:00:16 [build] mode: "static"
+20:00:16 [build] directory: /home/tnv-certification/tnvcertification/dist/
+20:00:16 [build] Collecting build info...
+20:00:16 [build] ✓ Completed in 1.25s.
+20:00:16 [build] Building static entrypoints...
+20:00:17 [vite] ✓ built in 1.37s
+20:00:17 [vite] ✓ built in 36ms
+20:00:17 [build] Rearranging server assets...
 
  generating static routes
-19:57:44   ├─ /articles/manajemen-beasiswa-kualitas-di-industri/index.html (+61ms)
-19:57:44   ├─ /articles/manajemen-kualitas-nononkonformitas/index.html (+47ms)
-19:57:44   ├─ /articles/manfaat-sertifikasi-iso-9001-2015-bagi-perusahaan/index.html (+35ms)
-19:57:45   ├─ /articles/mengendalikan-risiko-kualitas-di-pabrik/index.html (+100ms)
-19:57:45   ├─ /articles/penilaian-kepatuhan-terhadap-standar-global/index.html (+8ms)
-19:57:45   ├─ /articles/posisi-kualitas-sebagai-talenta-kompetitif/index.html (+3ms)
-19:57:45   ├─ /articles/proses-audit-sertifikasi-iso-9001-2015/index.html (+4ms)
-19:57:45   ├─ /articles/sertifikasi-iso-45001-2018/index.html (+6ms)
-19:57:45   ├─ /articles/sertifikasi-iso-9001-2015/index.html (+8ms)
-19:57:45   ├─ /articles/index.html (+32ms)
-19:57:45   ├─ /robots.txt (+5ms)
-19:57:45   ├─ /service/index.html (+18ms)
-19:57:45   ├─ /hal-about-us/index.html (+7ms)
-19:57:45   ├─ /index.html (+28ms)
-19:57:45 ✓ Completed in 475ms.
+20:00:17   ├─ /articles/manajemen-beasiswa-kualitas-di-industri/index.html (+48ms)
+20:00:17   ├─ /articles/manajemen-kualitas-nononkonformitas/index.html (+41ms)
+20:00:17   ├─ /articles/manfaat-sertifikasi-iso-9001-2015-bagi-perusahaan/index.html (+41ms)
+20:00:18   ├─ /articles/mengendalikan-risiko-kualitas-di-pabrik/index.html (+96ms)
+20:00:18   ├─ /articles/penilaian-kepatuhan-terhadap-standar-global/index.html (+9ms)
+20:00:18   ├─ /articles/posisi-kualitas-sebagai-talenta-kompetitif/index.html (+4ms)
+20:00:18   ├─ /articles/proses-audit-sertifikasi-iso-9001-2015/index.html (+3ms)
+20:00:18   ├─ /articles/sertifikasi-iso-45001-2018/index.html (+4ms)
+20:00:18   ├─ /articles/sertifikasi-iso-9001-2015/index.html (+8ms)
+20:00:18   ├─ /articles/index.html (+21ms)
+20:00:18   ├─ /robots.txt (+3ms)
+20:00:18   ├─ /service/index.html (+15ms)
+20:00:18   ├─ /hal-about-us/index.html (+2ms)
+20:00:18   ├─ /index.html (+31ms)
+20:00:18 ✓ Completed in 421ms.
 
-19:57:45 [build] ✓ Completed in 2.18s.
-19:57:45 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
-19:57:45 [build] 13 page(s) built in 3.77s
-19:57:45 [build] Complete!
+20:00:18 [build] ✓ Completed in 1.94s.
+20:00:18 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+20:00:18 [build] 13 page(s) built in 3.32s
+20:00:18 [build] Complete!
 
 exit code: 0
