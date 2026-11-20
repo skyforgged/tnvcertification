@@ -4,16 +4,27 @@
 
 Repository: `tnvcertification/tnvcertification`  
 Base branch: `main`  
-Work branch: `prep/site-identity-taxonomy-audit`
+Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)  
+Current implementation branch: `feat/bilingual-service-taxonomy`
 
-This work is intentionally isolated from `main`. It contains documentation-only audit/design commits so far; no application code or public service claims have been changed.
+The current implementation is isolated from `main` and contains taxonomy schema, planned bilingual category records, and build-time reference validation. No category routes, certification scheme records, or active service claims have been published.
 
-## Completed in this work branch
+## Completed in the previous audit branch
 
 | Commit | Change |
 |---|---|
 | `eea6d3b` | Audit `src/site.ts` and document placeholder identity/contact values |
 | `051403a` | Define service taxonomy, multilingual category rules and explicit scheme relationships |
+| `ac14094` | Record pre-launch work status |
+
+The audit branch was merged into `main` by PR #3 (`ab54c88`).
+
+## Current implementation branch
+
+| Commit | Change |
+|---|---|
+| `c747167` | Add bilingual taxonomy cross-validation and tests |
+| `fbd70ea` | Add 12 planned category groups (24 Indonesian/English records), category status schema, and explicit CSMS category reference |
 
 ## Roadmap status
 
@@ -22,7 +33,7 @@ This work is intentionally isolated from `main`. It contains documentation-only 
 | P1 | Foundation and architecture audit | Completed in prior work |
 | P2 | CSMS planned-service draft | Completed; remains `draft: true` |
 | P3 | Site identity / `site.ts` SSOT audit | Audit completed; code replacement blocked on confirmed company details |
-| P4 | Service taxonomy design | Design prepared; category records/schema implementation pending |
+| P4 | Service taxonomy design and implementation | 12 bilingual category pairs and reference validation implemented; build verification pending |
 | P5 | ISO service/scheme catalog | Planning shortlist exists; TNCV authority/scope/partner evidence must be confirmed |
 | P6 | Article-to-service relationships | Architecture exists; requires canonical service records and editorial mapping |
 | P7 | Service SEO and structured data | Shared SEO/JSON-LD helpers exist; verify against approved canonical service data |
@@ -34,7 +45,7 @@ This work is intentionally isolated from `main`. It contains documentation-only 
 - Its current canonical domain, email, telephone and street address include placeholder/unconfirmed values; these must not be used for production.
 - Organization JSON-LD emits contact/address fields from that configuration.
 - The content registry includes articles, services, categories, certifications, training, training schedules and pages.
-- The category collection currently has no content records.
+- The category collection now contains 12 candidate groups as 24 localized records, all `status: planned`; no public category routes exist.
 - The certification collection currently has no content records.
 - The services collection currently contains a CSMS draft; it is not a published service.
 - Current repository runtime policy pins Node.js `26.13.1` in `.node-version` / `.nvmrc`, with `package.json` engine `>=26.13.1 <27`; pnpm is `12.21.0`.
@@ -61,4 +72,4 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-This branch has not had a local install or build run in this environment. The previously saved build report belongs to an earlier HEAD and must not be presented as validation of these new commits. A draft PR should remain unmerged until CI or a local full validation run is available.
+No local install, typecheck, test, lint, or build has been run for `feat/bilingual-service-taxonomy` in this environment. The previous build report belongs to an earlier HEAD and is not validation of these commits. Keep the PR unmerged until CI or a local full validation run is available.
