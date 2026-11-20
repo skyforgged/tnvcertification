@@ -85,15 +85,24 @@ Local full validation ran on `main` at `a68b53b` with the pinned Node.js `26.13.
 | `npm run lint` | PASS, exit `0` |
 | `npm run test` | PASS, exit `0`, 14 tests |
 
-No GitHub Actions workflow or verifiable automated build result is present in this repository. Build success is recorded from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
+GitHub Actions workflow `.github/workflows/quality.yml` is present. Its first pull-request run completed successfully for dependency installation, checks, lint, tests and production build. Build success is recorded from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
 
 
-## Current branch work — P5 and CI
+## P5 completion — certification scheme catalog and CI
 
-Branch: `feat/certification-scheme-catalog-ci`
+- PR #5 was merged by the repository maintainer into `main` at commit `85711a2`.
+- Added 12 internal candidate scheme records; all remain `planned`, with editions unset pending official verification.
+- Added scheme reference validation and the `.github/workflows/quality.yml` quality gates.
+- The first GitHub Actions run passed dependency installation, Astro/TypeScript checks, lint, tests and production build.
 
-- Added 12 internal candidate scheme records in `src/data/certification-schemes.ts`; all remain `planned`, with edition values intentionally unset pending official verification.
-- Added cross-reference validation and tests for duplicate identifiers/designations, category references and active-scheme edition requirements.
-- Integrated scheme validation into the existing build-time content gate.
-- Added `.github/workflows/quality.yml` to run `pnpm check`, `pnpm lint`, `pnpm test` and `pnpm build` on pull requests to `main` and pushes to `main`.
-- No local install, test, lint, typecheck or build has been run by the assistant. Wait for GitHub Actions or a user-run build before merging.
+## P6 current work — article/service relationships
+
+Branch: `feat/article-service-relations`
+
+- The article schema already supports an explicit optional numeric `serviceId`; this stage adds cross-collection validation instead of introducing a second competing relationship field.
+- Every service must have a unique positive integer `id`.
+- Every article `serviceId`, when supplied, must resolve to an existing service.
+- A published article may not link to a draft service. Draft articles may reference draft services.
+- No current article has been associated with the draft CSMS service. Existing article topics are not sufficient evidence to claim that an operational certification service is available.
+- Added automated tests and integrated relation checks into the build-time validation gate.
+- This branch is for review only. Do not merge until the maintainer has reviewed the PR and the CI result.
