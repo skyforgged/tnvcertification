@@ -3,10 +3,10 @@ import Layout from "../../../layouts/Layout.astro";
 import ArticleCard from "../../../components/ArticleCard.astro";
 import { getPublishedArticles } from "../../../data/articles";
 
-const pageSize = 9;
-const ordered = getPublishedArticles();
-const pageCount = Math.ceil(ordered.length / pageSize);
 export function getStaticPaths() {
+  const pageSize = 9;
+  const ordered = getPublishedArticles();
+  const pageCount = Math.ceil(ordered.length / pageSize);
   return Array.from({ length: Math.max(0, pageCount - 1) }, (_, index) => {
     const page = index + 2;
     return { params: { page: String(page) }, props: { page, articles: ordered.slice((page - 1) * pageSize, page * pageSize), pageCount } };
