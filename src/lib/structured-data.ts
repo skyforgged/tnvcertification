@@ -40,7 +40,6 @@ export function serializeJsonLd(value: unknown): string {
   return JSON.stringify(value).replace(/</g, "\\u003c");
 }
 
-
 export interface ServiceStructuredDataInput {
   name: string;
   description: string;
@@ -88,7 +87,7 @@ export function servicePageJsonLd(input: ServiceStructuredDataInput) {
       "@id": breadcrumbId,
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Beranda", item: siteSettings.url },
-        { "@type": "ListItem", position: 2, name: "Layanan", item: `${siteSettings.url}/service/` },
+        { "@type": "ListItem", position: 2, name: "Layanan", item: `${siteSettings.url}/services/` },
         { "@type": "ListItem", position: 3, name: input.name, item: url },
       ],
     },
@@ -99,7 +98,7 @@ export function servicePageJsonLd(input: ServiceStructuredDataInput) {
 export function serviceIndexJsonLd(
   services: Array<{ name: string; path: string; description: string }>,
 ) {
-  const url = new URL("/service/", siteSettings.url).toString();
+  const url = new URL("/services/", siteSettings.url).toString();
   return [
     {
       "@type": "CollectionPage",
@@ -134,7 +133,6 @@ export function serviceIndexJsonLd(
     },
   ];
 }
-
 
 /** One valid JSON-LD document containing the canonical organization and page graph. */
 export function pageJsonLdGraph(additionalEntities: unknown[] = []) {
