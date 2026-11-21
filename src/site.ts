@@ -57,6 +57,8 @@ export const siteSettings = {
 export const primaryNavigation = [
   { label: "Beranda", href: "/" },
   { label: "Layanan", href: "/services/" },
+  { label: "CSMS", href: "/csms/" },
+  { label: "Pelatihan", href: "/trainings/" },
   { label: "Artikel", href: "/articles/" },
 ] as const;
 /** Footer navigation grouped by visitor intent; no unverified contact details. */
@@ -66,6 +68,8 @@ export const footerNavigation = [
     links: [
       { label: "Beranda", href: "/" },
       { label: "Layanan", href: "/services/" },
+      { label: "CSMS", href: "/csms/" },
+      { label: "Pelatihan", href: "/trainings/" },
     ],
   },
   {
