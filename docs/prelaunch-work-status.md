@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated commit: `72b843c` (merge `feat/p16-document-control-article-draft`)
+- Validated commit: `fe2f175` (merge `docs/p16-2-article-integration-readiness`)
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -44,6 +44,7 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 | P14 | Content quality and taxonomy integrity | Completed; article assignments corrected and bilingual slug/status validation added |
 | P15 | Content expansion and editorial strategy | Completed; topic gaps and an eight-article editorial queue documented; no articles published |
 | P16 | Editorial content production | In progress; first Indonesian/English article draft created in docs for review; not published |
+| P16.2 | Article integration and SEO readiness | Review checkpoint; collection schema, metadata gates, and publication gates documented |
 
 ## Verified repository facts
 
@@ -78,7 +79,7 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-Local full validation ran on `main` at `72b843c` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
+Local full validation ran on `main` at `fe2f175` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
 
 | Command | Result |
 |---|---|
@@ -89,7 +90,7 @@ Local full validation ran on `main` at `72b843c` with the pinned Node.js `26.13.
 | `npm run test` | PASS, exit `0`, 35 tests |
 | `npm run audit:seo` | PASS, exit `0`, 13 pages and 13 unique canonicals |
 
-GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Runs `44845274570` (`6151e50`), `44854428984` (`2733047`) and `44855036386` (`0ce7f0b`) completed with `conclusion: success`. No CI result was available for the current merge before this status update. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
+GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Runs `44845274570` (`6151e50`), `44854428984` (`2733047`), `44855036386` (`0ce7f0b`) and `44855490692` (`15daddb`) completed with `conclusion: success`. No CI result was available for the current merge before this status update. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
 
 
 ## P5 completion — certification scheme catalog and CI
@@ -245,8 +246,10 @@ Branch: `feat/p16-document-control-article-draft` (merged at `72b843c`).
 
 ## P16.2 — Article Integration & SEO Readiness (review checkpoint)
 
+Branch: `docs/p16-2-article-integration-readiness` (merged at `fe2f175`).
+
 - Added `docs/p16-2-article-integration-readiness.md` with the article collection schema requirements, proposed bilingual metadata, and editorial/technical publication gates.
 - No publishable article records or routes were created; dates, featured image, category slug, and technical approval remain unconfirmed.
 - GitHub connector did not reliably enumerate the article directory, so filenames and existing locale conventions were not guessed or overwritten.
-- This is a documentation-only checkpoint; local build and automated checks are not run here.
+- This branch only added documentation; local validation ran on merge commit `fe2f175`, with results in the validation note above.
 - Next: confirm article directory patterns, approve the draft technically, verify category/image metadata, then integrate both locale records as drafts.
