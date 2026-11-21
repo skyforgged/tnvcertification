@@ -1,5 +1,5 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import WidePageLayout from "../../layouts/WidePageLayout.astro";
 import MainMenuHero from "../../components/MainMenuHero.astro";
 import { getCollection } from "astro:content";
 import { siteSettings } from "../../site";
@@ -42,7 +42,7 @@ const statusLabel = (status?: string) => ({
 }[status ?? ""] ?? "Informasi pendaftaran menyusul");
 ---
 
-<Layout
+<WidePageLayout
   title={`Jadwal Pelatihan | ${siteSettings.title}`}
   description="Agenda pelaksanaan pelatihan, tanggal kelas, lokasi, biaya, kuota, dan informasi pendaftaran."
   canonical="/schedules/"
@@ -109,4 +109,4 @@ const statusLabel = (status?: string) => ({
       </div>
     )}
   </section>
-</Layout>
+</WidePageLayout>
