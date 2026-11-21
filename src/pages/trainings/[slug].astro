@@ -48,7 +48,7 @@ const statusLabel = (status?: string) => ({
     <div class="prose mt-8 max-w-3xl">
       <Content />
     </div>
-    <BlockRenderer blocks={training.data.blocks ?? []} />
+    <BlockRenderer blocks={training.data.blocks ?? []} lang={training.data.lang} />
 
     <section class="mt-12 border-t border-brand-blue/15 pt-8" aria-labelledby="jadwal-pelatihan">
       <h2 id="jadwal-pelatihan" class="text-2xl font-semibold text-brand-deepblue">Jadwal pelatihan</h2>
