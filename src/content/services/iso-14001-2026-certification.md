@@ -7,7 +7,7 @@ draft: true
 id: 4
 featuredImage:
   src: "/images/illustrations/article-iso14001-certification-en.webp"
-  alt: "ISO 14001:2026 certification is an assessment of an organization's environmental management system."
+  alt: "ISO 14001:2026 Environmental Management System Certification is an independent EMS conformity assessment."
 slug: "iso-14001-2026-certification"
 translationKey: "service-sertifikasi-iso-14001-2026"
 lang: "en"
