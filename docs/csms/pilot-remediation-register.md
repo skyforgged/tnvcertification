@@ -198,3 +198,46 @@ A draft policy, blank register, vendor marketing statement, unchecked configurat
 | Appointed incident roles, current contacts and tested response exercise | Not evidenced |
 | Security/privacy awareness and confidentiality commitments | Not evidenced |
 | Independent RA-08 closure verification | Not evidenced |
+
+
+## RA-09 — Client factual review evidence criteria
+
+**Current status: OPEN.** The draft procedure and blank correction log have been prepared and linked to the report template and operational procedure. No management approval, authorized client review, completed correction record, or engagement evidence is established by these documents.
+
+### Required implementation evidence
+
+1. Management-approved client factual review procedure, defined role authority, review boundary, escalation route and release controls.
+2. Contract/engagement terms defining the draft factual-review opportunity, authorized client recipient(s), secure communication route and an agreed response period. Do not apply an invented universal deadline.
+3. Evidence that the exact draft report version was transmitted to an authorized client representative and was clearly labeled as a draft, with the factual-only purpose and response instructions.
+4. Completed engagement-specific correction log with unique comment IDs, receipt dates, exact affected report version/section/finding, preserved original wording, exact client comment, requested correction and supporting evidence references/provenance.
+5. A reasoned disposition for every comment (accepted, partly accepted, not accepted, clarification required or out of scope/not factual), including evidence basis and effect on evidence, finding, recommendation, conclusion or editorial wording.
+6. Controlled report revision history linking accepted corrections to the exact revised version; preserve the original draft and prior versions without silent overwrite.
+7. Independent technical re-review of changes affecting criteria interpretation, evidence sufficiency, findings or conclusions; record why re-review is not applicable for purely editorial/factual changes where appropriate.
+8. Documented handling of non-response, unresolved comments, technical disagreements, complaints and principal/client disputes. Non-response must not be represented as factual confirmation.
+9. Separate delegated report approval tied to the exact final version and controlled distribution record; no release while blocking issues remain.
+10. Independent closure verification confirming completeness, authenticity, traceability, authorization, privacy/security handling and effectiveness of the factual-review process.
+
+### Closure decision
+
+RA-09 may be marked **Closed** only after the procedure and authority are approved, at least one authorized real engagement demonstrates a complete factual-review cycle, all comments have reasoned dispositions, original and revised versions are preserved, material technical changes are independently re-reviewed, the exact final version is separately authorized and distributed, and an independent closure reviewer records acceptance.
+
+A blank log, simulated case, client signature alone, undocumented verbal agreement, or statement that the client had “no comments” without a controlled transmittal/non-response record does not close RA-09. Client factual review is not client approval of findings and does not confer certification, principal qualification or appeal authority.
+
+### Current evidence state
+
+| Evidence item | Status |
+|---|---|
+| Client Factual Review & Correction Procedure | **Document updated — draft** |
+| Client Factual Correction Log | **Document updated — blank draft template** |
+| Report template factual-review section and change-control rules | **Document updated — draft** |
+| Operational procedure linkage and separation from complaints | **Document updated — draft** |
+| Role governance and separation for coordinator, author, reviewer and approver | **Document updated — draft framework** |
+| Document master register linkage | **Document updated — draft framework** |
+| Management-approved procedure and delegated role authority | Not evidenced |
+| Contract terms, authorized client recipient and agreed response period | Not evidenced |
+| Actual controlled draft transmittal and delivery evidence | Not evidenced |
+| Completed client comments, evidence references and reasoned dispositions | Not evidenced |
+| Preserved original/revised versions and traceable revision history | Not evidenced |
+| Independent re-review of material changes | Not evidenced |
+| Separate final report approval and distribution | Not evidenced |
+| Independent RA-09 closure verification | Not evidenced |
