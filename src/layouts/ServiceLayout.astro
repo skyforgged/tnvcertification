@@ -23,7 +23,7 @@ const { title, description, lang, canonical, ogImage, imageAlt, blocks = [], str
     <div class="prose mt-8 max-w-3xl">
       <slot />
     </div>
-    <BlockRenderer blocks={blocks} />
+    <BlockRenderer blocks={blocks} lang={lang} />
   </article>
 </Layout>
 
