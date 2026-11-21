@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated commit: `ef84389` (full gate suite)
+- Validated commit: `2a44281` (check and build); full gate suite last passed at `ef84389`
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -46,6 +46,7 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 | P16 | Editorial content production | In progress; first Indonesian/English article draft created in docs for review; not published |
 | P16.2 | Article integration and SEO readiness | Review checkpoint; collection schema, metadata gates, and publication gates documented |
 | P16.3 | Bilingual article integration | Bilingual document-control draft pair integrated as `draft: true`; no public article published |
+| Build strategy | Content-first full-build baseline | Adopted; full Astro build remains production source of truth; no incremental rendering |
 
 ## Verified repository facts
 
@@ -80,18 +81,18 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-Local full validation ran on `main` at `ef84389` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
+Local validation used the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain. This update requested only `check` and `build`, which ran on `main` at `2a44281`:
 
 | Command | Result |
 |---|---|
-| `npm run check` | PASS, exit `0` |
-| `npm run build` | PASS, exit `0`, 13 pages |
-| `npm run typecheck` | PASS, exit `0` |
-| `npm run lint` | PASS, exit `0` |
-| `npm run test` | PASS, exit `0`, 39 tests |
-| `npm run audit:seo` | PASS, exit `0`, 13 pages and 13 unique canonicals |
+| `npm run check` (at `2a44281`) | PASS, exit `0` |
+| `npm run build` (at `2a44281`) | PASS, exit `0`, 13 pages |
+| `npm run typecheck` (at `ef84389`) | PASS, exit `0` |
+| `npm run lint` (at `ef84389`) | PASS, exit `0` |
+| `npm run test` (at `ef84389`) | PASS, exit `0`, 39 tests |
+| `npm run audit:seo` (at `ef84389`) | PASS, exit `0`, 13 pages and 13 unique canonicals |
 
-GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Runs `44845274570` (`6151e50`), `44854428984` (`2733047`), `44855036386` (`0ce7f0b`), `44855490692` (`15daddb`), `44856851545` (`c4934aa`), `44858182875` (`c6f9015`) and `44859275893` (`ef84389`) completed with `conclusion: success`. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
+GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Runs `44845274570` (`6151e50`), `44854428984` (`2733047`), `44855036386` (`0ce7f0b`), `44855490692` (`15daddb`), `44856851545` (`c4934aa`), `44858182875` (`c6f9015`), `44859275893` (`ef84389`) and `44862425784` (`2a44281`) completed with `conclusion: success`. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
 
 
 ## P5 completion — certification scheme catalog and CI
@@ -267,4 +268,14 @@ Branch: `docs/p16-2-article-integration-readiness` (merged at `fe2f175`).
 - Technical/editorial approval, approved image assets, and publication dates remain outstanding. Do not change either record from draft until these gates are met.
 - Commit history: `359152a` (draft integration/schema), `11f2c8b` (published metadata guards and localized breadcrumbs), `69801b5` (test fixture correction), `fdb072e` (ISO 9001:2026 source alignment), `bd0697e` and `2be9036` (bilingual intro alignment), `ef84389` (editorial title-rule alignment).
 - Local full gate suite passed on `ef84389`; CI run `44859275893` completed with `conclusion: success`. Both records remain drafts.
+
+
+## Build strategy (adopted baseline)
+
+- Pulled commit `2a44281` added `docs/build-strategy.md` as the adopted architecture; implementation is staged and no code changed.
+- Full `astro build` remains the production source of truth. A deployment artifact must always contain the complete site.
+- Editorial Markdown changes may get selective early validation, but collection-wide integrity checks and the full production build stay mandatory.
+- Any code, schema, config, manifest, lockfile, rename, deletion, or ambiguous change fails safe to the full pipeline.
+- No incremental renderer is in use. Future incremental production output must prove equivalence on routes, assets, canonicals, hreflang, sitemap, and internal links first.
+- `check` and `build` ran on `2a44281` with exit `0`; CI run `44862425784` completed with `conclusion: success`.
 
