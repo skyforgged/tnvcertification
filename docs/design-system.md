@@ -1,6 +1,6 @@
 # TNV Certification Design System
 
-**Status:** P16 foundation — token system and shared visual specifications defined; representative-page validation remains pending.
+**Status:** P16 foundation and P17 layout/container implementation — shared tokens and bounded layout widths are applied; representative-page visual and responsive validation remains pending.
 
 ## 1. Design intent
 
@@ -63,8 +63,11 @@ These are palette spot-checks, not a full accessibility audit. They do not valid
 
 ## 4. Layout, containers, and spacing
 
-- Wide content container: maximum 80rem (1280px).
-- Reading container: maximum 48rem (768px).
+- Standard content container: maximum 64rem (1024px), used for focused data/detail pages such as an individual schedule.
+- Wide content container: maximum 72rem (1152px), used for service, training, and schedule archive content.
+- Landing container: maximum 76rem (1216px), used for main-menu/corporate compositions and the shared page shell.
+- Reading container: maximum 48rem (768px), used for editorial/article text measure.
+- Use the shared CSS variables `--container-standard`, `--container-wide`, `--container-landing`, and `--container-reading`; do not hardcode arbitrary max-width values in layouts.
 - Default responsive gutters: 1rem mobile, 1.5rem tablet, 2rem desktop.
 - Section vertical rhythm: 4–6rem desktop, 3–4rem tablet, 2.5–3rem mobile; tune to content density.
 - Use a consistent 4px base spacing rhythm. Prefer the Tailwind spacing scale and shared semantic tokens over one-off values.
