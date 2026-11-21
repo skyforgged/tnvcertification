@@ -34,12 +34,12 @@ const jsonLd = serializeJsonLd(pageJsonLdGraph(structuredData));
     {seo.hreflang.map((alternate) => <link rel="alternate" hreflang={alternate.lang} href={alternate.href} />)}
     <script type="application/ld+json" set:html={jsonLd} />
   </head>
-  <body id="top" class="flex min-h-screen flex-col bg-cream text-slate-900">
+  <body id="top" class="flex min-h-screen flex-col bg-page text-ink">
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-3 focus:text-brand-deepblue focus:shadow-lg">
       Lewati ke konten utama
     </a>
     <SiteHeader />
-    <main id="main-content" class="mx-auto flex w-full max-w-6xl flex-1 px-4 py-10 sm:px-6">
+    <main id="main-content" class="mx-auto flex w-full max-w-none flex-1 px-[var(--page-gutter)] py-8 sm:py-10 lg:py-12">
       <slot />
     </main>
     <SiteFooter />
