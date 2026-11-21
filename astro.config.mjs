@@ -10,6 +10,7 @@ export default defineConfig({
   redirects: {
     "/service/": "/services/",
     "/schedule/": "/schedules/",
+    "/hal-about-us/": "/about-us/",
   },
   integrations: [
     contentValidationIntegration,
