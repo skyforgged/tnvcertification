@@ -31,6 +31,18 @@ const faqBlock = z.object({
     .min(1),
 });
 
+const contentSectionBlock = z.object({
+  type: z.literal("content-section"),
+  surface: sectionSurfaceSchema.optional(),
+  eyebrow: z.string().optional(),
+  title: z.string().min(1),
+  description: z.string().optional(),
+  items: z.array(z.object({
+    title: z.string().min(1),
+    description: z.string().min(1),
+  })).optional(),
+});
+
 const howToBlock = z.object({
   type: z.literal("howto"),
   surface: sectionSurfaceSchema.optional(),
@@ -57,7 +69,7 @@ const ctaBlock = z.object({
     .optional(),
 });
 
-const blockSchema = z.discriminatedUnion("type", [faqBlock, howToBlock, ctaBlock]);
+const blockSchema = z.discriminatedUnion("type", [contentSectionBlock, faqBlock, howToBlock, ctaBlock]);
 
 /**
  * Fields shared by every publishable page-like entry. Schedule and category
