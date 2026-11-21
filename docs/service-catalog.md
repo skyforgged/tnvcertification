@@ -278,6 +278,7 @@ The following working templates support the proposed readiness/documentation ser
 - [CSMS Document Control & Record Retention](csms/document-control-retention.md)
 - [CSMS Management Decision & Approval Register](csms/management-approval-register.md)
 - [CSMS Roles, Responsibilities & Resource Readiness Plan](csms/roles-responsibilities-resource-plan.md)
+- [CSMS Governance Consistency Audit](csms/governance-consistency-audit.md)
 
 These templates require a current, identified principal/client requirement source. They do not establish a universal CSMS standard, official score, certification, vendor qualification, or principal approval.
 
