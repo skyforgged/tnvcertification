@@ -1,15 +1,15 @@
 import { readdir, mkdir, stat } from "node:fs/promises";
+import { spawnSync } from "node:child_process";
 import path from "node:path";
-import sharp from "sharp";
 
 const root = process.cwd();
 const sourceDir = path.join(root, "assets/illustrations/source");
 const outputDir = path.join(root, "public/images/illustrations");
 const settings = {
-  density: 144,
-  width: 1600,
-  quality: 82,
-  effort: 6,
+  density: "144",
+  width: "1600",
+  quality: "82",
+  effort: "6",
 };
 
 async function listSvgFiles(directory) {
@@ -39,7 +39,6 @@ if (sources.length === 0) {
 }
 
 await mkdir(outputDir, { recursive: true });
-let converted = 0;
 
 for (const sourcePath of sources) {
   const relativePath = path.relative(sourceDir, sourcePath);
@@ -49,16 +48,38 @@ for (const sourcePath of sources) {
   );
   await mkdir(path.dirname(outputPath), { recursive: true });
 
-  await sharp(sourcePath, { density: settings.density })
-    .resize({ width: settings.width, withoutEnlargement: true })
-    .webp({ quality: settings.quality, effort: settings.effort })
-    .toFile(outputPath);
+  const result = spawnSync(
+    "pnpm",
+    [
+      "dlx",
+      "sharp-cli@6.1.0",
+      "--input",
+      sourcePath,
+      "--output",
+      outputPath,
+      "--format",
+      "webp",
+      "--quality",
+      settings.quality,
+      "--effort",
+      settings.effort,
+      "--density",
+      settings.density,
+      "resize",
+      settings.width,
+    ],
+    { cwd: root, stdio: "inherit" },
+  );
+
+  if (result.error) throw result.error;
+  if (result.status !== 0) {
+    throw new Error(`WebP conversion failed for ${relativePath} (exit ${result.status}).`);
+  }
 
   const output = await stat(outputPath);
   console.log(
     `Created ${path.relative(root, outputPath)} (${(output.size / 1024).toFixed(1)} KB)`,
   );
-  converted += 1;
 }
 
-console.log(`Converted ${converted} SVG master(s) to WebP.`);
+console.log(`Converted ${sources.length} SVG master(s) to WebP.`);
