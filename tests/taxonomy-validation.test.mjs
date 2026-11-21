@@ -2,10 +2,10 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { validateTaxonomy } from "../src/lib/taxonomy-validation.ts";
 
-const category = (slug, lang, translationKey, id = `${slug}-${lang}.md`) => ({
+const category = (slug, lang, translationKey, id = `${slug}-${lang}.md`, status = "planned") => ({
   id,
   path: `src/content/categories/${id}`,
-  data: { slug, lang, translationKey },
+  data: { slug, lang, translationKey, status },
 });
 
 const entry = (categoryIds) => ({
@@ -43,6 +43,28 @@ test("rejects translated categories with different stable slugs", () => {
     [],
   );
   assert.ok(diagnostics.some((item) => item.rule === "TAXONOMY-007"));
+});
+
+test("rejects translated pairs with inconsistent status", () => {
+  const diagnostics = validateTaxonomy(
+    [
+      category("quality-management", "id", "quality-management", "quality-management-id.md", "planned"),
+      category("quality-management", "en", "quality-management", "quality-management-en.md", "active"),
+    ],
+    [],
+  );
+  assert.ok(diagnostics.some((item) => item.rule === "TAXONOMY-014"));
+});
+
+test("rejects malformed category slugs", () => {
+  const diagnostics = validateTaxonomy(
+    [
+      category("Quality_Management", "id", "quality-management"),
+      category("Quality_Management", "en", "quality-management"),
+    ],
+    [],
+  );
+  assert.ok(diagnostics.some((item) => item.rule === "TAXONOMY-012"));
 });
 
 test("rejects dangling and duplicate category references", () => {
