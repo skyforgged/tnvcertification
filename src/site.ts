@@ -56,7 +56,7 @@ export const siteSettings = {
 /** Primary links used by the sitewide header. Keep routes centralized here. */
 export const primaryNavigation = [
   { label: "Beranda", href: "/" },
-  { label: "Layanan", href: "/service/" },
+  { label: "Layanan", href: "/services/" },
   { label: "Artikel", href: "/articles/" },
 ] as const;
 /** Footer navigation grouped by visitor intent; no unverified contact details. */
@@ -65,7 +65,7 @@ export const footerNavigation = [
     title: "Mulai",
     links: [
       { label: "Beranda", href: "/" },
-      { label: "Layanan", href: "/service/" },
+      { label: "Layanan", href: "/services/" },
     ],
   },
   {
