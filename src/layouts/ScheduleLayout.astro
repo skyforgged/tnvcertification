@@ -50,8 +50,8 @@ function formatDate(value: Date | string): string {
       </div>
       {endDate && (
         <div>
-          <dt class="text-xs font-semibold uppercase tracking-widest text-slate-500">Selesai</dt>
-          <dd class="mt-1 text-slate-900">
+          <dt class="text-xs font-semibold uppercase tracking-widest text-ink-subtle">Selesai</dt>
+          <dd class="mt-1 text-ink">
             <time datetime={String(endDate).slice(0, 10)}>{formatDate(endDate)}</time>
           </dd>
         </div>
@@ -74,7 +74,7 @@ function formatDate(value: Date | string): string {
     {registrationUrl && (
       <a
         href={registrationUrl}
-        class="mt-8 inline-flex items-center rounded-md bg-brand-blue px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-deepblue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue"
+        class="mt-8 inline-flex items-center rounded-[var(--radius-control)] bg-brand-deepblue px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-deepblue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue"
       >
         Daftar
       </a>
