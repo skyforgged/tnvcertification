@@ -59,7 +59,7 @@ export const primaryNavigation = [
   { label: "Layanan", href: "/services/" },
   { label: "CSMS", href: "/csms/" },
   { label: "Pelatihan", href: "/trainings/" },
-  { label: "Jadwal", href: "/schedule/" },
+  { label: "Jadwal", href: "/schedules/" },
   { label: "Artikel", href: "/articles/" },
 ] as const;
 /** Footer navigation grouped by visitor intent; no unverified contact details. */
@@ -71,7 +71,7 @@ export const footerNavigation = [
       { label: "Layanan", href: "/services/" },
       { label: "CSMS", href: "/csms/" },
       { label: "Pelatihan", href: "/trainings/" },
-      { label: "Jadwal pelatihan", href: "/schedule/" },
+      { label: "Jadwal pelatihan", href: "/schedules/" },
     ],
   },
   {
