@@ -241,3 +241,51 @@ A blank log, simulated case, client signature alone, undocumented verbal agreeme
 | Independent re-review of material changes | Not evidenced |
 | Separate final report approval and distribution | Not evidenced |
 | Independent RA-09 closure verification | Not evidenced |
+
+
+## RA-10 — Complaints handling evidence criteria
+
+**Current status: OPEN.** A draft complaints procedure and blank restricted case-record template have been added and linked to the operational procedure, role framework, document master register and MGT-09 approval requirements. These documents do not establish an approved complaint route, appointed independent investigator, approved response targets or a complaint investigated in practice.
+
+### Required implementation evidence
+
+1. Management-approved complaints policy/procedure defining scope, accessible intake routes, confidentiality, no-retaliation safeguards, triage, investigation, decision, response, escalation, reopening and records.
+2. Approved and communicated complaint channels, including a safe method for verbal/written complaints and a documented approach to anonymous complaints.
+3. Management-approved acknowledgement, triage, progress-update and final-response targets, with authority and process for justified extensions. Targets must reflect applicable legal/contractual duties and actual resources; do not invent or backdate them.
+4. Formal appointments and delegated authority for complaint coordinator, investigator, independent decision reviewer, management escalation authority, corrective-action owner and effectiveness verifier.
+5. Competence and conflict/independence evidence for actual case roles. The subject of the complaint must not control investigation, findings, response or record access; external/independent route must be available where internal separation is impracticable or management is implicated.
+6. At least one actual complaint case record (if a complaint has been received) showing original complaint wording, unique ID, receipt, acknowledgement, triage, risk and conflict screening, safe communication and evidence preservation. If no complaint has been received, do not fabricate a case; demonstrate the approved route through a controlled exercise and retain real-case readiness evidence.
+7. Completed investigation plan and evidence index for an actual case or approved exercise, including supporting and contradictory evidence, interviews, limitations, fair opportunity to respond and specialist referrals where needed.
+8. Independent review and documented decision for each allegation, with substantiated/partly substantiated/not substantiated/unable to determine/out-of-scope rationale and an approved response.
+9. Correction and corrective-action records with root cause, owner, approved due date, implementation evidence, residual risk and independent effectiveness verification. Keep open actions tracked even if the complaint is administratively closed.
+10. Evidence of appropriate handling of technical disagreement, RA-09 factual correction, principal/client decision dispute, privacy/security incident, legal concern and external referral without conflating authorities or delaying urgent response.
+11. Restricted complaint-record access, approved secure intake/storage, retention/legal-hold/disposal arrangements and protection of complainant/third-party information.
+12. Trend monitoring and management review using appropriate aggregated/anonymized data, with decisions, owners and follow-up effectiveness evidence.
+13. Independent closure verification confirming procedure approval, role independence, target governance, case/route evidence, response quality, corrective-action effectiveness and record integrity.
+
+### Closure decision
+
+RA-10 may be marked **Closed** only when management has approved and communicated the complaint process and targets; competent independent roles and an escalation fallback are appointed; approved secure intake and record controls are operational; and objective evidence demonstrates the process works. At least one real complaint should be evaluated where one has been received. If no complaint has arisen, a controlled exercise can test readiness but must not be represented as a real complaint or as evidence of actual customer case handling. The exercise does not replace approvals, appointments, live channel verification or ongoing monitoring. An independent reviewer must verify the full package and management must accept residual risks.
+
+A blank template, draft procedure, unapproved email address, invented response deadline, self-investigation by the subject, unsigned response, or completed action without independent effectiveness verification does not close RA-10.
+
+### Current evidence state
+
+| Evidence item | Status |
+|---|---|
+| Complaints Handling Procedure | **Document updated — draft** |
+| Complaints Register & Case Record | **Document updated — blank restricted template** |
+| Operational procedure complaint routing and separation from RA-09/technical/principal disputes | **Document updated — draft** |
+| Complaint role separation and external fallback framework | **Document updated — draft** |
+| MGT-09 complaint commitments expanded | **Document updated — approval still Pending** |
+| Document master register linkage | **Document updated — draft framework** |
+| Management-approved complaint policy, route and targets | Not evidenced |
+| Live approved complaint channel and published instructions | Not evidenced |
+| Named competent coordinator, investigator, decision reviewer and escalation authority | Not evidenced |
+| Actual role conflict checks / independence decisions | Not evidenced |
+| Completed actual complaint case or controlled readiness exercise | Not evidenced |
+| Approved investigation outcome and complainant response | Not evidenced |
+| Corrective action and independent effectiveness verification | Not evidenced |
+| Restricted system, privacy/security and retention/legal-hold controls | Not evidenced |
+| Trend monitoring and management review | Not evidenced |
+| Independent RA-10 closure verification | Not evidenced |
