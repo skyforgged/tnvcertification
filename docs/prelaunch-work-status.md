@@ -200,3 +200,15 @@ Branch: `chore/github-actions-node24-runtime` (merged at `cf666d3`).
 - Project Node.js from `.node-version` and pnpm `12.21.0` are unchanged.
 - Major action tags were confirmed to exist. No CI run result was independently verified locally.
 - See `docs/github-actions-runtime.md` for scope and validation notes.
+
+
+## P14 — Content Quality & Taxonomy Integrity (in progress)
+
+- Audited the nine existing article category assignments against their subjects.
+- Corrected the ISO 45001 article from `quality-management` to `occupational-health-safety`.
+- Removed the category from the generic global-compliance article because its subject spans domains and a single category would be misleading.
+- Added taxonomy validator checks for lowercase kebab-case slugs and bilingual category status parity.
+- Added tests for malformed slugs and mismatched translation statuses.
+- Added `docs/p14-content-quality-taxonomy-integrity.md` with mapping decisions and editorial boundaries.
+- Local validation (check/typecheck/lint/test/build) has not been run in this environment; maintainer must run the pinned toolchain locally before merging.
+- Categories remain `planned`; no certification/service scope claims were activated.
