@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="128" viewBox="0 0 480 128" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">TNV Group — PT. Intiprima Sertifikasi</title>
+  <desc id="desc">Emblem geometris TNV dengan tanda verifikasi berwarna teal.</desc>
+  <g transform="translate(8 8)">
+    <path d="M56 7 105 34 105 61 56 34 7 61 7 34 56 7Z" fill="#0B2A4A"/>
+    <path d="M7 68 36 52 36 103 7 119V68Z" fill="#0B2A4A"/>
+    <path d="M43 55 63 66 63 119 43 108V55Z" fill="#0B2A4A"/>
+    <path d="m53 77 18-11 24 14 38-43 18 15-54 61-44-26 0-10Z" fill="#0D9EAA"/>
+    <path d="m82 88 15 9 37-42" stroke="#0D9EAA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g fill="#0B2A4A">
+    <text x="180" y="66" font-family="Arial, Helvetica, sans-serif" font-size="46" font-weight="800" letter-spacing="1.5">TNV</text>
+    <text x="181" y="91" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" letter-spacing="3.2">GROUP</text>
+    <text x="181" y="111" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="600" letter-spacing="1.1" fill="#557086">PT. INTIPRIMA SERTIFIKASI</text>
+  </g>
+</svg>
