@@ -199,12 +199,17 @@ The service owner should periodically review:
 
 Review this procedure when requirements, service scope, legal conditions, or organizational controls change, and at a defined interval once the service is approved.
 
-## 9. Records and forms
+## 9. Governance documents, records, and forms
 
 Use the controlled versions of:
 - [CSMS Requirement & Evidence Matrix](requirement-evidence-matrix.md)
 - [CSMS Readiness Assessment Form](readiness-assessment-form.md)
 - [CSMS Readiness Review Report Template](readiness-report-template.md)
+- [CSMS Competence Matrix](competence-matrix.md)
+- [CSMS Impartiality & Conflict of Interest Register](impartiality-conflict-register.md)
+- [CSMS Document Control & Record Retention](document-control-retention.md)
+
+The competence, impartiality, and document-control frameworks must be approved and implemented before assigning personnel, accepting sensitive client evidence, or issuing deliverables.
 
 ## 10. Mandatory pre-launch approvals
 
