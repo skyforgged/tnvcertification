@@ -14,6 +14,10 @@ lang: "id"
 
 Pengendalian Dokumen ISO 9001 adalah cara organisasi memastikan informasi yang digunakan dalam menjalankan proses tetap akurat, mudah ditemukan, sesuai kebutuhan, dan terlindungi dari penggunaan versi yang keliru. Dokumen yang tertata membantu karyawan bekerja dengan instruksi yang tepat, sementara rekaman yang dipelihara dengan baik memberikan bukti tentang aktivitas dan hasil yang telah dilakukan.
 
+## Catatan edisi standar
+
+ISO 9001:2026, edisi keenam, diterbitkan pada 16 September 2026 dan menggantikan ISO 9001:2015 sebagai edisi terbaru. Artikel ini membahas praktik pengelolaan informasi terdokumentasi secara umum dan tidak menafsirkan klausul tertentu. Organisasi perlu merujuk pada salinan resmi ISO 9001:2026 serta meminta arahan badan sertifikasi masing-masing mengenai rencana transisi yang berlaku.
+
 ## Mengapa informasi terdokumentasi perlu dikendalikan?
 
 Dokumen kerja dapat menjadi dasar pengambilan keputusan, pelaksanaan proses, pemeriksaan kualitas, dan pembelajaran organisasi. Jika informasi yang digunakan tidak jelas statusnya, tim dapat mengikuti instruksi yang sudah berubah, mengabaikan persyaratan, atau kesulitan menelusuri bukti pelaksanaan.
@@ -93,6 +97,6 @@ Pengelolaan informasi terdokumentasi harus disesuaikan dengan standar edisi yang
 ## Sumber untuk peninjauan teknis
 
 - [ISO 10013:2021 — Guidance for documented information](https://www.iso.org/standard/75736.html)
-- [ISO 9001:2015 Guidance on documented information](https://www.iso.org/files/live/sites/isoorg/files/standards/docs/en/iso_9001_2015_guidance_documented_information.pdf)
-- [ISO/TC 176/SC 2 — ISO 9001:2015 guidance](https://committee.iso.org/sites/tc176sc2/home/projects/published/iso-9001-2015.html)
-- [ISO 9001 current edition status](https://www.iso.org/standard/9001)
+- [ISO 9001:2026 — Quality management systems — Requirements](https://www.iso.org/standard/9001)
+- [ISO announcement: ISO 9001:2026 published on 16 September 2026](https://www.iso.org/news/2026/09/ISO9001-2026)
+- [ISO/TC 176/SC 2 — ISO 9001:2026 transition guidance](https://committee.iso.org/sites/tc176sc2/home/news/content-left-area/news-and-updates/news-2.html)

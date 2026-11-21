@@ -14,6 +14,10 @@ lang: "en"
 
 ISO 9001 Document Control is the way an organization ensures that information used to operate its processes remains accurate, easy to find, suitable for its purpose, and protected against unintended use of incorrect versions. Well-managed documents help people follow appropriate instructions, while properly maintained records provide evidence of activities and results.
 
+## Current edition note
+
+ISO 9001:2026, the sixth edition, was published on 16 September 2026 and replaces ISO 9001:2015 as the current edition. This article discusses general documented-information management practices and does not interpret individual clauses. Organizations should consult an official copy of ISO 9001:2026 and ask their own certification body about applicable transition arrangements.
+
 ## Why documented information needs control
 
 Documents can support decisions, process execution, quality checks, and organizational learning. When the status of information is unclear, people may follow outdated instructions, miss requirements, or struggle to retrieve evidence.
@@ -93,6 +97,6 @@ Documented information management must be tailored to the applicable edition of 
 ## Sources for technical review
 
 - [ISO 10013:2021 — Guidance for documented information](https://www.iso.org/standard/75736.html)
-- [ISO 9001:2015 Guidance on documented information](https://www.iso.org/files/live/sites/isoorg/files/standards/docs/en/iso_9001_2015_guidance_documented_information.pdf)
-- [ISO/TC 176/SC 2 — ISO 9001:2015 guidance](https://committee.iso.org/sites/tc176sc2/home/projects/published/iso-9001-2015.html)
-- [ISO 9001 current edition status](https://www.iso.org/standard/9001)
+- [ISO 9001:2026 — Quality management systems — Requirements](https://www.iso.org/standard/9001)
+- [ISO announcement: ISO 9001:2026 published on 16 September 2026](https://www.iso.org/news/2026/09/ISO9001-2026)
+- [ISO/TC 176/SC 2 — ISO 9001:2026 transition guidance](https://committee.iso.org/sites/tc176sc2/home/news/content-left-area/news-and-updates/news-2.html)

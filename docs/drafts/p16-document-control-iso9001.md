@@ -1,6 +1,8 @@
 # P16 — Draft Editorial: Pengendalian Dokumen ISO 9001
 
 > Status: editorial draft only — not ready to publish. Technical reviewer and final standards-edition check required.
+>
+> Standards update (21 November 2026): ISO 9001:2026 was published on 16 September 2026 and is the current edition, replacing ISO 9001:2015. This article is general guidance and avoids clause-specific interpretation pending review against an official copy of ISO 9001:2026.
 
 ## Metadata proposal
 
@@ -178,13 +180,13 @@ Documented information management must be tailored to the applicable edition of 
 ## Sources for technical review
 
 1. ISO, *ISO 10013:2021 — Quality management systems — Guidance for documented information*. https://www.iso.org/standard/75736.html
-2. ISO, *ISO 9001:2015 Guidance on documented information*. https://www.iso.org/files/live/sites/isoorg/files/standards/docs/en/iso_9001_2015_guidance_documented_information.pdf
-3. ISO/TC 176/SC 2, *ISO 9001:2015 — Guidance on implementing and understanding the standard*. https://committee.iso.org/sites/tc176sc2/home/projects/published/iso-9001-2015.html
-4. ISO, *ISO 9001 — Quality management systems — Requirements (current edition status page)*. https://www.iso.org/standard/9001
+2. ISO, *ISO 9001:2026 — Quality management systems — Requirements* (published 16 September 2026). https://www.iso.org/standard/9001
+3. ISO, *ISO launches update to world’s most widely used quality management standard* (16 September 2026). https://www.iso.org/news/2026/09/ISO9001-2026
+4. ISO/TC 176/SC 2, *ISO 9001:2026 transition guidance*. https://committee.iso.org/sites/tc176sc2/home/news/content-left-area/news-and-updates/news-2.html
 
 ## Editorial review items before publication
 
-- Re-check current ISO 9001 edition and transition information; do not make this draft edition-specific without a verified technical review.
+- Verify any edition-specific explanation and transition dates against an official copy of ISO 9001:2026 and current ISO/TC 176 guidance.
 - Verify terminology and clause references against a licensed copy of the applicable standard before adding any clause-specific explanation.
 - Confirm canonical category slug and article schema fields in the codebase.
 - Review Indonesian and English versions for technical equivalence and readability.
