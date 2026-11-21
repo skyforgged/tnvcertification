@@ -6,6 +6,11 @@ import { siteSettings } from "./src/site";
 
 export default defineConfig({
   site: siteSettings.url,
+  // Preserve the previous singular directory URL as a permanent redirect.
+  redirects: {
+    "/service/": "/services/",
+    "/service": "/services/",
+  },
   integrations: [
     contentValidationIntegration,
     sitemap({
