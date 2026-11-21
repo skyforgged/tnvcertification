@@ -187,3 +187,15 @@ mengikuti pola markdown pada repo contoh. Jika ingin konsisten, kopi teks
 beranda dan tiap halaman menu perlu dipindahkan ke entri pages baru, lalu
 halaman .astro menjadi renderer dari blok tersebut. Ini belum dikerjakan
 karena di luar permintaan publikasi draft.
+
+7. Follow-up setelah laporan
+----------------------------
+Status tindak lanjut diverifikasi dari commit berikutnya pada `main`:
+
+- Commit `c41454d` memasukkan tiga record layanan ISO 2026 dengan
+  `draft: false` beserta aset terkait.
+- Commit `33103b4` mendaftarkan aset ilustrasi ILL-018, ILL-019, dan
+  ILL-020 di `docs/illustration-library/asset-register.md`.
+- Karena itu, butir pendaftaran tiga aset pada bagian 6 telah selesai.
+  Bagian 5 dan 6 di atas tetap dipertahankan sebagai catatan kondisi
+  worktree pada saat laporan dibuat, bukan kondisi repository saat ini.
