@@ -207,14 +207,16 @@ Complete phases in order unless an explicit dependency requires a different sequ
 **Exit criteria:** shared tokens and primitives are implemented and validated on representative pages.
 
 ### P17 — Layout Architecture
-- [ ] Implement/refine `WidePageLayout`.
-- [ ] Implement/refine `ServiceLayout`.
-- [ ] Implement/refine `ArticleLayout`.
-- [ ] Implement/refine `TrainingLayout`.
-- [ ] Implement/refine `ScheduleLayout`.
-- [ ] Verify shared shell consistency and page-specific hierarchy.
+- [x] Implement/refine `WidePageLayout`.
+- [x] Implement/refine `ServiceLayout`.
+- [x] Implement/refine `ArticleLayout`.
+- [x] Implement/refine `TrainingLayout`.
+- [x] Implement/refine `ScheduleLayout`.
+- [x] Verify shared shell consistency and page-specific hierarchy.
+- [x] Standardize page-width tokens and apply bounded containers to the shared shell and purpose-specific layouts.
+- [ ] Complete screenshot-based responsive verification at mobile, tablet, laptop, and wide desktop sizes.
 
-**Exit criteria:** all five layouts are usable, responsive, and connected to the correct page types.
+**Exit criteria:** all five layouts are implemented and connected to the correct page types. Responsive screenshot verification remains tracked in P20.
 
 ### P18 — Components & Blocks
 - [ ] Refactor shared UI primitives and content components.
@@ -262,6 +264,8 @@ Complete phases in order unless an explicit dependency requires a different sequ
 | 2026-11-21 | P17 — Training detail layout | Added `TrainingLayout.astro` with shared site shell, localized breadcrumbs, canonical featured-image presentation, and a content slot; migrated the training detail route to use it while retaining the existing content blocks and schedule section. | GitHub Actions validation is pending for commits `093fa9a` and `e3de529`. Responsive and visual review remains pending. | `e3de529` |
 | 2026-11-21 | P17 — Layout and route audit | Mapped existing layout files and representative routes. Confirmed ArticleLayout is used by generic content pages; ServiceLayout exists; ScheduleLayout exists but the schedule index route still uses Layout directly; training index and detail routes also use Layout directly, and TrainingLayout/WidePageLayout do not yet exist. Homepage and service index use the base Layout with page-specific composition. | Source inspection only. No route/layout migration has been made yet; implementation must preserve existing content, metadata, featured images, and schedule relationships. | Pending |
 | 2026-11-21 | P16 — Contrast guidance | Added preliminary contrast ratios for core palette colors and documented that orange, mint, pink, and yellow accents must not be assumed accessible for text on white | Token-level calculation documented; not a substitute for checking actual rendered component states and foreground/background pairs. | `07a1efa` |
+
+| 2026-11-21 | P17 — Page-width normalization | Added standard (64rem), wide (72rem), landing (76rem), and reading (48rem) container tokens. Bounded the shared page shell; applied wide limits to service, training, and schedule archive pages; kept schedule detail narrower and article pages reading-focused. | Source changes committed directly to main. Production build and screenshot-based responsive review are still required; do not treat this as visually signed off. | `745dad2` |
 
 ## 10. Change control
 
