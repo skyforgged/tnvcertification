@@ -5,15 +5,17 @@ interface BreadcrumbItem {
 }
 interface Props {
   items: BreadcrumbItem[];
+  lang?: "id" | "en";
 }
-const { items } = Astro.props;
+const { items, lang = "id" } = Astro.props;
+const navigationLabel = lang === "en" ? "Breadcrumb" : "Navigasi lokasi";
 ---
 {items.length > 0 && (
-  <nav aria-label="Breadcrumb" class="mb-6">
-    <ol class="flex flex-wrap items-center gap-2 text-sm text-slate-600">
+  <nav aria-label={navigationLabel} class="mb-6">
+    <ol class="flex flex-wrap items-center gap-2 text-sm text-ink-muted">
       {items.map((item, index) => (
         <li class="flex items-center gap-2">
-          {index > 0 && <span aria-hidden="true" class="text-slate-400">/</span>}
+          {index > 0 && <span aria-hidden="true" class="text-ink-subtle">/</span>}
           {item.href && index !== items.length - 1
             ? <a href={item.href} class="rounded-sm underline underline-offset-4 hover:text-brand-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-blue">{item.label}</a>
             : <span aria-current="page" class="font-medium text-brand-deepblue">{item.label}</span>
