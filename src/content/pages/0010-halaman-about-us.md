@@ -7,7 +7,7 @@ draft: false
 featuredImage:
   src: "/images/illustrations/about-organization.webp"
   alt: "Ilustrasi organisasi profesional adalah representasi visual untuk halaman tentang Intiprima Sertifikasi."
-slug: "hal-about-us"
+slug: "about-us"
 translationKey: "page-hal-about-us"
 lang: "id"
 ---
