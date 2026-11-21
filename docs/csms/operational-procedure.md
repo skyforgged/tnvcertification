@@ -191,7 +191,9 @@ Before customer delivery is authorized, management must approve a complaint-hand
 6. Obtain independent approval of the response, communicate the outcome, and retain closure evidence.
 7. Track trends and verify whether corrective action was effective.
 
-Factual corrections to a draft report are handled separately from complaints and must preserve the original observation and a reasoned disposition. A client cannot require removal of a substantiated finding merely because it disagrees. Because this service does not make a formal certification or principal qualification decision, do not describe this process as an appeal against a certification decision. Direct disputes about principal scoring, qualification or procurement outcomes to the relevant principal/client.
+Factual corrections to a draft report are handled separately from complaints under the [Client Factual Review & Correction Procedure](client-factual-review-procedure.md), using the [Client Factual Correction Log](client-factual-correction-log.md). Preserve the exact original observation, client comment, supporting evidence reference, reasoned disposition and report-version history. The client may identify factual errors and submit authorized supporting information; the client cannot require removal of a substantiated finding or dictate a technical conclusion. Material changes to evidence sufficiency, findings or conclusions require independent technical re-review before release. Client non-response is not factual confirmation. A draft must remain clearly labeled and no report may be released with unresolved blocking issues or without separate delegated report approval.
+
+Because this service does not make a formal certification or principal qualification decision, do not describe this process as an appeal against a certification decision. Direct disputes about principal scoring, qualification or procurement outcomes to the relevant principal/client.
 
 ## 7. Service suspension or refusal conditions
 
@@ -225,6 +227,8 @@ Use the controlled versions of:
 - [CSMS Requirement & Evidence Matrix](requirement-evidence-matrix.md)
 - [CSMS Readiness Assessment Form](readiness-assessment-form.md)
 - [CSMS Readiness Review Report Template](readiness-report-template.md)
+- [CSMS Client Factual Review & Correction Procedure](client-factual-review-procedure.md)
+- [CSMS Client Factual Correction Log](client-factual-correction-log.md)
 - [CSMS Competence Matrix](competence-matrix.md)
 - [CSMS Impartiality & Conflict of Interest Register](impartiality-conflict-register.md)
 - [CSMS Document Control & Record Retention](document-control-retention.md)
