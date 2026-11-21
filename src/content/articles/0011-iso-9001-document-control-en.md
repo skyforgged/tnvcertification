@@ -16,7 +16,7 @@ ISO 9001 Document Control: Keeping Documented Information Under Control is the w
 
 ## Current edition note
 
-ISO 9001:2026, the sixth edition, was published on 16 September 2026 and replaces ISO 9001:2015 as the current edition. This article discusses general documented-information management practices and does not interpret individual clauses. Organizations should consult an official copy of ISO 9001:2026 and ask their own certification body about applicable transition arrangements.
+ISO 9001:2026, the sixth edition, was published on 16 September 2026 and replaces ISO 9001:2015 as the current edition. This article discusses general documented-information management practices and does not interpret individual clauses. Organizations should refer to an official copy of ISO 9001:2026 and contact their certification body for applicable transition arrangements.
 
 ## Why documented information needs control
 
