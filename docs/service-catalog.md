@@ -308,3 +308,8 @@ When approved for publication, the service detail page may cover:
 - Consultation CTA.
 
 Suggested URL: `/services/csms-contractor-safety-management-system/`.
+
+
+### CSMS implementation status tracking
+
+Use the [CSMS Implementation & Document Status Tracker](csms/implementation-status.md) as the current consolidated record of prepared documents, pending approvals, open remediation actions, audit dispositions, and the public draft safeguard. Document preparation must not be interpreted as operational implementation, management approval, customer-pilot authorization, or permission to publish.
