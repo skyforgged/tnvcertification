@@ -2,7 +2,7 @@
 
 **Status keseluruhan:** INTERNAL PLANNING — NOT APPROVED FOR CUSTOMER DELIVERY OR PUBLIC LAUNCH  
 **Baseline repository:** `main`  
-**Baseline commit checked:** `a240a3f4be24ad5b1b3dafd0ebce0ed7294352e1`  
+**Baseline commit checked:** `e4ea09b7b837cff36e8a6240d5418c98abfe0647`  
 **Last repository check:** 21 November 2026
 
 > **Cara membaca status**
@@ -116,11 +116,29 @@ Jangan mengubahnya menjadi published, menambahkan CTA aktif, atau membuat klaim 
 
 **Status RA-04:** **BELUM — OPEN**. Dokumen sampling diperkuat; belum ada populasi klien, sampel aktual, pelaksanaan, atau review independen.
 
+
+### Tahap CSMS-DOC-04 — Competence & Personnel Authorization (RA-05)
+
+- [x] Memperjelas dimensi kompetensi dan contoh bukti yang dapat diverifikasi untuk pendidikan, pengalaman, pengetahuan CSMS/principal, assessment, sampling, pelaporan, etika, dan keselamatan kerja.
+- [x] Memperjelas rating internal 0–4 beserta batas penggunaannya; rating internal tidak menggantikan kualifikasi wajib.
+- [x] Memperluas register personel agar mencatat issuer, verifikasi, masa berlaku, pembatasan, ruang lingkup, dan keputusan otorisasi.
+- [x] Menambahkan matriks otorisasi berdasarkan aktivitas dan penugasan, termasuk supervisi serta credential gate.
+- [x] Menambahkan bukti efektivitas kompetensi, pemantauan masa berlaku, reassessment, dan pembatasan/suspensi penugasan.
+- [x] Memperjelas independensi technical reviewer dan pemisahan peran.
+- [x] Menetapkan bukti objektif dan syarat penutupan RA-05 dalam Pilot Remediation Register.
+- [ ] Tetapkan dan setujui kriteria kompetensi, role description, serta delegasi kewenangan oleh manajemen.
+- [ ] Verifikasi personel aktual, pengalaman, dan seluruh kredensial wajib kepada penerbit/sumber berwenang.
+- [ ] Lakukan evaluasi kompetensi berbasis tugas dan simpan hasil efektivitasnya.
+- [ ] Terbitkan otorisasi penugasan aktual dengan ruang lingkup, batasan, dan supervisi.
+- [ ] Tunjuk technical reviewer yang kompeten dan independen; lakukan verifikasi independen atas paket bukti RA-05.
+
+**Status RA-05:** **BELUM — OPEN**. Framework dan kriteria bukti dokumentasi diperkuat; belum ada bukti personel aktual, verifikasi kredensial, appointment, otorisasi penugasan, maupun independent closure review. Tidak dihitung sebagai remediasi operasional yang ditutup.
+
 ## 5. Kesimpulan status saat ini
 
 - Pekerjaan riset, definisi layanan, toolkit, framework governance, simulasi, register, dan audit dokumentasi: **sudah dibuat sebagai artefak internal**.
 - Persetujuan manajemen: **belum — 12/12 Pending**.
-- Remediasi simulasi: **belum — 10/10 Open**.
+- Remediasi simulasi: **belum — 10/10 Open** (RA-02 sampai RA-05 memiliki penguatan dokumentasi; status remediasinya tetap Open).
 - Kesiapan operasional untuk customer delivery: **belum dibuktikan**.
 - Otorisasi pilot customer: **belum diberikan**.
 - Persetujuan publikasi: **belum diberikan**.
