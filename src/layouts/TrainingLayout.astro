@@ -1,0 +1,63 @@
+---
+import Layout from "./Layout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import type { SeoAlternate } from "../lib/seo";
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: string;
+  canonical?: string;
+  ogImage?: string;
+  imageAlt: string;
+  alternates?: SeoAlternate[];
+}
+
+const {
+  title,
+  description,
+  lang = "id",
+  canonical,
+  ogImage,
+  imageAlt,
+  alternates = [],
+} = Astro.props;
+
+const homeLabel = lang === "en" ? "Home" : "Beranda";
+const trainingLabel = lang === "en" ? "Training" : "Pelatihan";
+---
+
+<Layout
+  title={title}
+  description={description}
+  lang={lang}
+  canonical={canonical}
+  ogImage={ogImage}
+  alternates={alternates}
+>
+  <article class="w-full">
+    <Breadcrumbs
+      items={[
+        { label: homeLabel, href: "/" },
+        { label: trainingLabel, href: "/trainings/" },
+        { label: title },
+      ]}
+    />
+    {ogImage && (
+      <figure class="mt-8 max-w-5xl overflow-hidden rounded-xl border border-border bg-surface-muted">
+        <img
+          data-page-image
+          src={ogImage}
+          alt={imageAlt}
+          width="1200"
+          height="675"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+          class="aspect-video w-full object-cover"
+        />
+      </figure>
+    )}
+    <slot />
+  </article>
+</Layout>
