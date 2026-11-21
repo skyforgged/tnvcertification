@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated commit: `2a44281` (check and build); full gate suite last passed at `ef84389`
+- Validated commit: `455bb73` (full gate suite; fixes preflight lint defects)
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -46,7 +46,7 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 | P16 | Editorial content production | In progress; first Indonesian/English article draft created in docs for review; not published |
 | P16.2 | Article integration and SEO readiness | Review checkpoint; collection schema, metadata gates, and publication gates documented |
 | P16.3 | Bilingual article integration | Bilingual document-control draft pair integrated as `draft: true`; no public article published |
-| Build strategy | Content-first full-build baseline | Adopted; full Astro build remains production source of truth; no incremental rendering |
+| Build strategy | Content-first full-build baseline | Classifier and selective editorial preflight implemented; full checks and full build still mandatory |
 
 ## Verified repository facts
 
@@ -81,18 +81,21 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-Local validation used the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain. This update requested only `check` and `build`, which ran on `main` at `2a44281`:
+Local full validation ran on `main` at `455bb73` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
 
 | Command | Result |
 |---|---|
-| `npm run check` (at `2a44281`) | PASS, exit `0` |
-| `npm run build` (at `2a44281`) | PASS, exit `0`, 13 pages |
-| `npm run typecheck` (at `ef84389`) | PASS, exit `0` |
-| `npm run lint` (at `ef84389`) | PASS, exit `0` |
-| `npm run test` (at `ef84389`) | PASS, exit `0`, 39 tests |
-| `npm run audit:seo` (at `ef84389`) | PASS, exit `0`, 13 pages and 13 unique canonicals |
+| `npm run check` | PASS, exit `0` |
+| `npm run build` | PASS, exit `0`, 13 pages |
+| `npm run typecheck` | PASS, exit `0` |
+| `npm run lint` | PASS, exit `0` |
+| `npm run test` | PASS, exit `0`, 45 tests |
+| `npm run audit:seo` | PASS, exit `0`, 13 pages and 13 unique canonicals |
+| `npm run validate:changed -- 2be9036 ef84389` | PASS, exit `0`, 2 editorial files |
 
-GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Runs `44845274570` (`6151e50`), `44854428984` (`2733047`), `44855036386` (`0ce7f0b`), `44855490692` (`15daddb`), `44856851545` (`c4934aa`), `44858182875` (`c6f9015`), `44859275893` (`ef84389`) and `44862425784` (`2a44281`) completed with `conclusion: success`. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
+Earlier pulled commits `9bc16d1` and `ddac326` failed local `lint`; final pulled commit `67b56b3` still had both errors. Commit `455bb73` fixed `no-useless-assignment` in the classifier and `preserve-caught-error` in the preflight.
+
+GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Runs `44845274570` (`6151e50`), `44854428984` (`2733047`), `44855036386` (`0ce7f0b`), `44855490692` (`15daddb`), `44856851545` (`c4934aa`), `44858182875` (`c6f9015`), `44859275893` (`ef84389`) and `44862425784` (`2a44281`) completed with `conclusion: success`. Runs `44863006246` (`9bc16d1`) and `44863375398` (`ddac326`) completed with `conclusion: failure` before the lint fixes. Run `44864063830` (`455bb73`) was `in_progress` at this update. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
 
 
 ## P5 completion — certification scheme catalog and CI
@@ -278,4 +281,15 @@ Branch: `docs/p16-2-article-integration-readiness` (merged at `fe2f175`).
 - Any code, schema, config, manifest, lockfile, rename, deletion, or ambiguous change fails safe to the full pipeline.
 - No incremental renderer is in use. Future incremental production output must prove equivalence on routes, assets, canonicals, hreflang, sitemap, and internal links first.
 - `check` and `build` ran on `2a44281` with exit `0`; CI run `44862425784` completed with `conclusion: success`.
+
+
+## Selective editorial preflight
+
+- Pulled commits `dcbac60` through `67b56b3` implemented build-step 2 (Git change classification) and build-step 3 (selective editorial validation), plus documentation and bug fixes.
+- `scripts/classify-build-changes.mjs` allowlists added or modified Markdown/MDX files in `articles/`, `services/`, `certifications/`, `training/`, and `pages/`. Taxonomy, training schedules, deletions, renames, mixed changes, and unknown paths force `full`.
+- `scripts/validate-changed-content.mjs`, exposed as `pnpm validate:changed <base> <head>`, parses frontmatter for changed editorial entries and runs `validateEntry()` on each. It does not skip global duplicates, cross-collection taxonomy, scheme, relation, type, lint, test, full build, or SEO checks.
+- `.github/workflows/quality.yml` runs the preflight only when `build_mode=content-only`, after install and before the normal gates. Production behavior stays unchanged.
+- Verified manually: classifier returned `content-only` for `2be9036..ef84389` (2 article files), and `pnpm validate:changed 2be9036 ef84389` exited `0`.
+- Full local gate suite passed on `455bb73`: 45 tests, 13 pages, 13 canonicals. CI for `455bb73` was still running at this update.
+- Remaining: measure CI/build time and confirm the preflight catches changed-file errors earlier before considering incremental rendering.
 
