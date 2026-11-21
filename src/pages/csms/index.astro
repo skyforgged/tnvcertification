@@ -1,6 +1,9 @@
 ---
 import WidePageLayout from "../../layouts/WidePageLayout.astro";
 import MainMenuHero from "../../components/MainMenuHero.astro";
+import Section from "../../components/Section.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import ButtonLink from "../../components/ButtonLink.astro";
 import { siteSettings } from "../../site";
 ---
 
@@ -20,41 +23,43 @@ import { siteSettings } from "../../site";
       imageAlt="Ilustrasi keselamatan kerja, perlindungan pekerja, dan pengelolaan risiko kontraktor"
     />
 
-    <section class="mt-10 max-w-3xl rounded-2xl border border-brand-orange/40 bg-white p-6" aria-labelledby="status-csms">
-      <h2 id="status-csms" class="text-xl font-semibold text-brand-deepblue">Status layanan TNCVCertification</h2>
-      <p class="mt-3 leading-relaxed text-slate-700">
+    <Section spacing="default" aria-labelledby="status-csms" class="max-w-3xl border-y border-border py-7">
+      <SectionHeading id="status-csms" eyebrow="Status informasi" title="Status layanan TNCVCertification" />
+      <p class="mt-4 leading-relaxed text-ink-muted">
         Informasi CSMS di situs ini masih dalam tahap pengembangan dan verifikasi. Skema, kriteria, ruang lingkup, metode penilaian, serta kewenangan penyelenggaraan perlu dikonfirmasi terlebih dahulu. Halaman ini bukan pengumuman bahwa layanan penilaian atau penerbitan sertifikat CSMS formal telah tersedia.
       </p>
-    </section>
+    </Section>
 
-    <section class="mt-12 max-w-3xl" aria-labelledby="area-kesiapan">
-      <h2 id="area-kesiapan" class="text-2xl font-semibold text-brand-deepblue">Area kesiapan yang dapat dipersiapkan</h2>
-      <p class="mt-3 leading-relaxed text-slate-700">
+    <Section spacing="spacious" aria-labelledby="area-kesiapan">
+      <SectionHeading id="area-kesiapan" eyebrow="Panduan persiapan" title="Area kesiapan yang dapat dipersiapkan" />
+      <p class="mt-4 max-w-3xl leading-relaxed text-ink-muted">
         Sambil menunggu persyaratan skema yang berlaku diverifikasi, kontraktor dapat mulai menata informasi dan bukti penerapan K3 yang umumnya diminta oleh pemberi kerja. Area di bawah ini merupakan panduan persiapan awal, bukan kriteria penilaian final.
       </p>
-      <ul class="mt-5 list-disc space-y-3 pl-6 leading-relaxed text-slate-700">
-        <li>Kebijakan, tanggung jawab, dan tata kelola keselamatan kerja.</li>
-        <li>Identifikasi bahaya, penilaian risiko, dan pengendalian risiko pekerjaan.</li>
-        <li>Kompetensi pekerja, pelatihan, dan bukti kualifikasi personel.</li>
-        <li>Prosedur kerja aman, kesiapan peralatan, dan pengendalian operasional.</li>
-        <li>Kesiapsiagaan dan tanggap darurat serta pelaporan insiden.</li>
-        <li>Pemenuhan persyaratan K3 dari pemberi kerja atau pemilik proyek.</li>
+      <ul class="mt-7 grid max-w-5xl gap-x-12 gap-y-4 border-t border-border pt-6 text-ink md:grid-cols-2">
+        <li class="border-b border-border pb-4 leading-relaxed">Kebijakan, tanggung jawab, dan tata kelola keselamatan kerja.</li>
+        <li class="border-b border-border pb-4 leading-relaxed">Identifikasi bahaya, penilaian risiko, dan pengendalian risiko pekerjaan.</li>
+        <li class="border-b border-border pb-4 leading-relaxed">Kompetensi pekerja, pelatihan, dan bukti kualifikasi personel.</li>
+        <li class="border-b border-border pb-4 leading-relaxed">Prosedur kerja aman, kesiapan peralatan, dan pengendalian operasional.</li>
+        <li class="border-b border-border pb-4 leading-relaxed">Kesiapsiagaan dan tanggap darurat serta pelaporan insiden.</li>
+        <li class="border-b border-border pb-4 leading-relaxed">Pemenuhan persyaratan K3 dari pemberi kerja atau pemilik proyek.</li>
       </ul>
-    </section>
+    </Section>
 
-    <section class="mt-12 max-w-3xl" aria-labelledby="relasi-iso">
-      <h2 id="relasi-iso" class="text-2xl font-semibold text-brand-deepblue">Hubungan CSMS dengan ISO 45001</h2>
-      <p class="mt-3 leading-relaxed text-slate-700">
-        ISO 45001 dapat menjadi referensi sistem manajemen keselamatan dan kesehatan kerja. Namun, penilaian CSMS kontraktor tidak otomatis sama dengan sertifikasi ISO 45001. Persyaratan CSMS dapat ditentukan oleh pemberi kerja, pemilik proyek, atau skema tertentu dan harus diperiksa sesuai konteksnya.
-      </p>
-    </section>
+    <Section spacing="spacious" aria-labelledby="relasi-iso">
+      <div class="max-w-3xl border-t border-border pt-8">
+        <SectionHeading id="relasi-iso" eyebrow="Konteks sistem manajemen" title="Hubungan CSMS dengan ISO 45001" />
+        <p class="mt-4 leading-relaxed text-ink-muted">
+          ISO 45001 dapat menjadi referensi sistem manajemen keselamatan dan kesehatan kerja. Namun, penilaian CSMS kontraktor tidak otomatis sama dengan sertifikasi ISO 45001. Persyaratan CSMS dapat ditentukan oleh pemberi kerja, pemilik proyek, atau skema tertentu dan harus diperiksa sesuai konteksnya.
+        </p>
+      </div>
+    </Section>
 
-    <section class="mt-12 max-w-3xl border-t border-brand-blue/15 pt-8" aria-labelledby="next-step-csms">
-      <h2 id="next-step-csms" class="text-2xl font-semibold text-brand-deepblue">Informasi lebih lanjut</h2>
-      <p class="mt-3 leading-relaxed text-slate-700">
+    <Section spacing="spacious" aria-labelledby="next-step-csms" class="max-w-3xl border-t border-border pt-8">
+      <SectionHeading id="next-step-csms" eyebrow="Jelajahi lebih lanjut" title="Informasi layanan lainnya" />
+      <p class="mt-4 leading-relaxed text-ink-muted">
         Kunjungi katalog layanan untuk melihat informasi lain yang telah dipublikasikan. Informasi layanan CSMS akan diperbarui setelah dasar skema dan ruang lingkupnya selesai diverifikasi.
       </p>
-      <a href="/services/" class="mt-5 inline-flex rounded-full bg-brand-blue px-5 py-3 font-semibold text-white hover:bg-brand-deepblue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue">Lihat layanan</a>
-    </section>
+      <ButtonLink href="/services/" class="mt-6">Lihat layanan</ButtonLink>
+    </Section>
   </article>
 </WidePageLayout>
