@@ -2,7 +2,7 @@
 
 > **Purpose:** Single tracking document for the TNV Certification website redesign. Checkboxes are the source of truth for task progress. A task may be checked only after its implementation and relevant validation are complete.
 >
-> **Current status (2026-11-21):** P17 layout architecture and P18 component/block implementation are in progress. Shared Container, ButtonLink, Section, SectionHeading, and FeaturedImage primitives are implemented and applied to representative layouts/pages. Latest shared-primitive rollout is committed as `72a5090`; subsequent homepage, training-detail, and CSMS refinements have passed their configured CI checks. P18 remains open for browser/responsive, keyboard/focus, contrast, bilingual-content, and compatibility verification. P19 migration is partially prepared through homepage and catalog index work but is not complete; P20 release QA has not started.
+> **Current status (2026-11-21):** P17 layout architecture and P18 component/block implementation remain open for responsive/browser, keyboard/focus, contrast, bilingual-content, and compatibility verification. P19 migration is underway: homepage and catalog indexes, About page, article archive/detail, service detail route template, and training detail route template are connected to their intended layouts. The About composition fix is validated by GitHub Actions run `44900403689` (all configured checks passed). Individual schedule detail routes, full content/relationship audits, and image alt-text review remain outstanding. P20 release QA has not started.
 >
 > **Approved direction:** Premium, modern, mature, professional, corporate. This document records the latest design decisions and takes precedence over older visual proposals where they conflict.
 
@@ -232,11 +232,11 @@ Complete phases in order unless an explicit dependency requires a different sequ
 
 ### P19 — Page and Content Migration
 - [x] Migrate homepage, service index, training index, and schedule archive to shared page/section patterns.
-- [ ] Migrate the About page to the approved corporate page composition.
+- [x] Migrate the About page to the approved corporate page composition; its content H1/intro now render once alongside the featured image.
 - [x] Migrate the CSMS page to shared Section, SectionHeading, and ButtonLink primitives; retain the explicit unverified-service disclaimer.
-- [ ] Migrate service pages.
-- [ ] Migrate article pages and archive.
-- [ ] Migrate training detail pages; the schedule presentation now uses shared semantic tokens, editorial rows, localized labels, and `ButtonLink`.
+- [x] Migrate the service detail route template to `ServiceLayout`; currently no service content is published (CSMS remains draft).
+- [x] Migrate article archive to `WidePageLayout`; retain article detail on `ArticleLayout` and verify canonical, featured-image, date, and alternate-language props.
+- [x] Migrate training detail route template to `TrainingLayout`; retain schedule presentation with shared semantic tokens, editorial rows, localized labels, and `ButtonLink`. Training collection currently has no published records.
 - [ ] Migrate schedule pages using `ScheduleLayout`.
 - [ ] Resolve featured-image uniqueness and alt-text requirements.
 - [ ] Verify relationships, navigation, and localized routes.
@@ -254,6 +254,8 @@ Complete phases in order unless an explicit dependency requires a different sequ
 **Exit criteria:** all mandatory QA tasks pass and the redesign is ready for release.
 
 ## 9. Progress log
+
+| 2026-11-21 | P19 — Corporate and editorial page migration | Migrated `/articles/` archive to `WidePageLayout`; audited article detail route and `ArticleLayout`; completed About page composition so the editorial H1 and intro render once with the featured image; confirmed service and training detail route templates use their purpose-specific layouts. | GitHub Actions run `44900403689` for commit `014c36c` passed Type/Astro checks, lint, tests, production build, image-uniqueness audit, and SEO/link audit. Training content collection currently has no published records; CSMS service remains draft; individual schedule detail route and full responsive/accessibility review remain outstanding. | `507ee9d`, `014c36c` |
 
 | Date | Phase | Work completed | Validation | Commit |
 |---|---|---|---|---|
