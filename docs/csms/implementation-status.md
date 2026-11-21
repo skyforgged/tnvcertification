@@ -2,7 +2,7 @@
 
 **Status keseluruhan:** INTERNAL PLANNING — NOT APPROVED FOR CUSTOMER DELIVERY OR PUBLIC LAUNCH  
 **Baseline repository:** `main`  
-**Baseline commit checked:** `931e37301eb5eb5b96727b4b31df662f3c6c650f`  
+**Baseline commit checked:** `a9e9944334ef71d21db4a25c240ad48e27b66ca8`  
 **Last repository check:** 21 November 2026
 
 > **Cara membaca status**
@@ -26,7 +26,11 @@
 | [Review Evidence Register](review-evidence-register.md) | **SELESAI — DRAFT REGISTER** | Register review, komentar/koreksi, eskalasi, release dan kriteria closure RA-07 | Isi dengan rekaman aktual; verifikasi independen sebelum closure |
 | [Competence Matrix](competence-matrix.md) | **SELESAI — FRAMEWORK** | Dimensi kompetensi, skala internal, register, dan otorisasi penugasan | Tetapkan personel aktual; verifikasi bukti kompetensi dan otorisasi per penugasan |
 | [Impartiality & Conflict Register](impartiality-conflict-register.md) | **SELESAI — DRAFT FRAMEWORK v0.2** | Kategori ancaman, risk decision rules, hard stops, safeguard effectiveness, engagement record, monitoring dan eskalasi | Persetujuan kebijakan/delegasi; deklarasi aktual, evaluasi per engagement, safeguard efektif dan keputusan independen |
-| [Document Control & Retention](document-control-retention.md) | **SELESAI — FRAMEWORK** | Kontrol dokumen, inventaris, akses, legal hold, disposal, dan master register | Setujui klasifikasi, akses, retensi, keamanan, dan jadwal penyimpanan aktual |
+| [Document Control & Retention](document-control-retention.md) | **SELESAI — FRAMEWORK** | Kontrol dokumen, inventaris, akses, legal hold, disposal, master register dan tautan RA-08 | Setujui klasifikasi, akses, retensi, keamanan, dan jadwal penyimpanan aktual |
+| [Data Governance & Information Security Procedure](data-governance-information-security-procedure.md) | **SELESAI — DRAFT PROCEDURE** | Siklus hidup data, purpose/minimization, klasifikasi, akses, penyimpanan, transfer, supplier, insiden dan disposal RA-08 | Persetujuan MGT-07, legal/privacy review, konfigurasi dan uji kontrol aktual |
+| [Data Asset Inventory & Classification Register](data-asset-inventory-register.md) | **SELESAI — DRAFT REGISTER** | Inventaris aset/data, data flow, minimization, supplier, risk dan disposal | Isi dan verifikasi untuk sistem/engagement aktual setelah gate disetujui |
+| [Access Authorization & Review Register](access-authorization-register.md) | **SELESAI — DRAFT REGISTER** | Permintaan akses, review, revocation, privileged access dan transfer log | Penunjukan user, konfigurasi akses, audit log dan bukti revocation aktual |
+| [Data Incident Response Playbook](data-incident-response-playbook.md) | **SELESAI — DRAFT PLAYBOOK** | Severity, reporting, containment, impact, notification decision, recovery dan closure | Tetapkan kontak/authority, persetujuan legal/security dan tabletop exercise |
 | [Management Approval Register](management-approval-register.md) | **SELESAI — REGISTER DRAFT** | 12 keputusan manajemen dan bukti minimum untuk menutupnya | Seluruh keputusan masih Pending; isi hanya setelah keputusan nyata diberikan |
 | [Roles, Responsibilities & Resource Plan](roles-responsibilities-resource-plan.md) | **SELESAI — RENCANA DRAFT** | Fungsi, pemisahan peran, RACI, checklist otorisasi, dan kebutuhan sumber daya | Tunjuk role holder; setujui kapasitas, anggaran, fasilitas, dan sistem |
 | [Source Verification & Sampling](source-verification-and-sampling.md) | **SELESAI — PROSEDUR KERJA** | Verifikasi sumber, applicability, sampling, keterbatasan, dan checklist | Terapkan pada dokumen principal aktual; verifikasi independen |
@@ -65,7 +69,7 @@ Sumber status: [Pilot Remediation Register](pilot-remediation-register.md).
 | RA-05 | Kompetensi dan otorisasi personel | **BELUM — OPEN** |
 | RA-06 | Impartiality dan konflik kepentingan | **BELUM — OPEN** |
 | RA-07 | Technical review | **BELUM — OPEN (DOKUMENTASI DIPERKUAT; IMPLEMENTASI BELUM DIBUKTIKAN)** |
-| RA-08 | Tata kelola data dan keamanan | **BELUM — OPEN** |
+| RA-08 | Tata kelola data dan keamanan | **BELUM — OPEN (DOKUMENTASI DIPERKUAT; IMPLEMENTASI BELUM DIBUKTIKAN)** |
 | RA-09 | Review faktual oleh klien | **BELUM — OPEN** |
 | RA-10 | Penanganan keluhan | **BELUM — OPEN** |
 
@@ -180,11 +184,36 @@ Jangan mengubahnya menjadi published, menambahkan CTA aktif, atau membuat klaim 
 
 **Status RA-07:** **BELUM — OPEN**. Pekerjaan dokumentasi draft telah selesai dan ditandai [x]. Belum ada bukti persetujuan prosedur/delegasi, appointment dan kompetensi reviewer aktual, conflict clearance engagement, technical review atas engagement nyata, penyelesaian komentar, maupun otorisasi dan distribusi laporan. Technical review tidak sama dengan keputusan sertifikasi, principal qualification atau persetujuan regulator; tidak ada klaim kewenangan tersebut yang dibuat.
 
+
+### Tahap CSMS-DOC-07 — Data Governance & Information Security (RA-08)
+
+- [x] Menyusun draft Data Governance & Information Security Procedure untuk siklus hidup data dari intake hingga return/deletion.
+- [x] Menetapkan prinsip purpose limitation, data minimization, role accountability, classification, need-to-know dan stop conditions sebelum menerima data klien.
+- [x] Membuat Data Asset Inventory & Classification Register untuk data asset, data flow, minimization, supplier, risk dan disposal.
+- [x] Membuat Access Authorization & Review Register untuk grant, periodic/event review, revocation, privileged access dan external transfer.
+- [x] Membuat Data Incident Response Playbook untuk reporting, severity, containment, investigation, legal notification assessment, recovery dan closure.
+- [x] Memperjelas akuntabilitas management, privacy/legal, information security, engagement owner, data custodian, access approver dan incident coordinator.
+- [x] Menautkan kontrol RA-08 ke Document Control & Retention Framework dan master register.
+- [x] Menambahkan data governance stop gate pada Operational Procedure sebelum meminta atau menerima bukti klien.
+- [x] Menetapkan kriteria bukti objektif dan syarat penutupan RA-08 dalam Pilot Remediation Register.
+- [ ] Dapatkan persetujuan MGT-07 atas privacy/security policy, classification, data handling, roles dan exception authority.
+- [ ] Selesaikan legal/privacy assessment untuk purpose, necessity, party roles, notice, contractual instructions dan applicable obligations.
+- [ ] Lengkapi data inventory/data flow dan minimization review untuk sistem serta engagement aktual.
+- [ ] Setujui dan verifikasi storage, transfer channel, access configuration, MFA/encryption/logging/backup serta endpoint controls sesuai kebutuhan dan kemampuan sistem.
+- [ ] Tunjuk user dan access approver; jalankan access review, revocation dan transfer logging dengan bukti aktual.
+- [ ] Selesaikan supplier due diligence dan kontrak untuk pihak ketiga yang mengakses/menyimpan data.
+- [ ] Setujui retention schedule, legal-hold, return/deletion dan backup treatment; buktikan pelaksanaan aktual.
+- [ ] Tetapkan incident contacts dan kewenangan; lakukan tabletop exercise serta tindak lanjuti hasilnya.
+- [ ] Selesaikan confidentiality/security awareness untuk personel yang relevan dan simpan bukti efektivitas.
+- [ ] Lakukan independent verification atas konfigurasi, uji, residual risk dan seluruh paket bukti RA-08.
+
+**Status RA-08:** **BELUM — OPEN**. Pekerjaan dokumentasi draft telah selesai dan ditandai [x]. Belum ada bukti persetujuan MGT-07, legal/privacy assessment, inventory aktual, konfigurasi sistem/channel yang disetujui, access grant/review/revocation, due diligence supplier, retention/deletion, incident contacts/exercise, atau independent closure verification. **Jangan menerima data klien nyata** sebelum mandatory privacy/security gate disetujui dan diverifikasi.
+
 ## 5. Kesimpulan status saat ini
 
 - Pekerjaan riset, definisi layanan, toolkit, framework governance, simulasi, register, dan audit dokumentasi: **sudah dibuat sebagai artefak internal**.
 - Persetujuan manajemen: **belum — 12/12 Pending**.
-- Remediasi simulasi: **belum — 10/10 Open** (RA-02 sampai RA-07 memiliki penguatan dokumentasi; status remediasinya tetap Open).
+- Remediasi simulasi: **belum — 10/10 Open** (RA-02 sampai RA-08 memiliki penguatan dokumentasi; status remediasinya tetap Open).
 - Kesiapan operasional untuk customer delivery: **belum dibuktikan**.
 - Otorisasi pilot customer: **belum diberikan**.
 - Persetujuan publikasi: **belum diberikan**.
