@@ -50,25 +50,25 @@ const statusLabel = (status?: string) => ({
 >
 
     {publishedSchedules.length > 0 ? (
-      <div class="divide-y divide-brand-blue/15 border-y border-brand-blue/15">
+      <div class="divide-y divide-border border-y border-border">
         {publishedSchedules.map((schedule) => {
           const training = trainingBySlug.get(schedule.data.trainingSlug)!;
           return (
             <article class="grid gap-4 py-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
               <div>
-                <p class="text-sm font-semibold text-brand-orange">
+                <p class="text-sm font-semibold text-ink-muted">
                   {formatDate(schedule.data.startDate)} – {formatDate(schedule.data.endDate)}
                 </p>
-                <h2 class="mt-2 text-xl font-semibold text-brand-deepblue">
+                <h2 class="mt-2 text-xl font-semibold tracking-tight text-ink">
                   <a href={`/trainings/${training.data.slug}/`} class="hover:text-brand-blue">
                     {training.data.title}
                   </a>
                 </h2>
-                <p class="mt-2 text-sm text-slate-700">
+                <p class="mt-2 text-sm text-ink-muted">
                   {schedule.data.locationType === "online" ? "Online" : schedule.data.locationType === "hybrid" ? "Hybrid" : schedule.data.locationType === "offline" ? "Tatap muka" : "Metode menyusul"}
                   {(schedule.data.venue || schedule.data.city) && ` · ${[schedule.data.venue, schedule.data.city, schedule.data.province].filter(Boolean).join(", ")}`}
                 </p>
-                <p class="mt-2 text-sm font-medium text-brand-deepblue">{statusLabel(schedule.data.registrationStatus)}</p>
+                <p class="mt-2 text-sm font-medium text-ink">{statusLabel(schedule.data.registrationStatus)}</p>
                 {schedule.data.price !== undefined && (
                   <p class="mt-1 text-sm text-slate-700">
                     Biaya: {schedule.data.currency === "IDR" || !schedule.data.currency ? "Rp " : `${schedule.data.currency} `}
@@ -77,11 +77,11 @@ const statusLabel = (status?: string) => ({
                 )}
               </div>
               <div class="flex flex-wrap gap-3 md:justify-end">
-                <a href={`/trainings/${training.data.slug}/`} class="inline-flex items-center rounded-full border border-brand-blue px-4 py-2 text-sm font-semibold text-brand-blue hover:bg-brand-blue/5">
+                <a href={`/trainings/${training.data.slug}/`} class="inline-flex min-h-11 items-center rounded-[var(--radius-control)] border border-brand-deepblue px-4 py-2 text-sm font-semibold text-brand-deepblue transition-colors hover:bg-surface-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue">
                   Detail program
                 </a>
                 {schedule.data.registrationUrl && schedule.data.registrationStatus === "open" && (
-                  <a href={schedule.data.registrationUrl} class="inline-flex items-center rounded-full bg-brand-blue px-4 py-2 text-sm font-semibold text-white hover:bg-brand-deepblue">
+                  <a href={schedule.data.registrationUrl} class="inline-flex min-h-11 items-center rounded-[var(--radius-control)] bg-brand-deepblue px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue">
                     Daftar
                   </a>
                 )}
@@ -91,12 +91,12 @@ const statusLabel = (status?: string) => ({
         })}
       </div>
     ) : (
-      <div class="max-w-3xl border-y border-brand-blue/15 py-8">
-        <h2 class="text-xl font-semibold text-brand-deepblue">Belum ada jadwal yang dipublikasikan</h2>
-        <p class="mt-3 leading-relaxed text-slate-700">
+      <div class="max-w-3xl border-y border-border py-8">
+        <h2 class="text-xl font-semibold tracking-tight text-ink">Belum ada jadwal yang dipublikasikan</h2>
+        <p class="mt-3 leading-relaxed text-ink-muted">
           Agenda pelaksanaan akan ditampilkan setelah tanggal, program terkait, dan informasi pendaftaran dikonfirmasi. Kunjungi katalog untuk mengenal program pelatihan yang sedang disiapkan.
         </p>
-        <a href="/trainings/" class="mt-5 inline-flex font-semibold text-brand-blue underline underline-offset-4">Lihat katalog pelatihan →</a>
+        <a href="/trainings/" class="mt-5 inline-flex min-h-11 items-center font-semibold text-brand-deepblue underline underline-offset-4 hover:text-brand-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue">Lihat katalog pelatihan →</a>
       </div>
     )}
 </ScheduleArchiveLayout>
