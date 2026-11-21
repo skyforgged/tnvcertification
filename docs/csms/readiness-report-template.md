@@ -36,14 +36,14 @@
 - Project / tender reference: [Complete]
 - Locations / operational sites: [Complete]
 
-## 3. Reference criteria
+## 3. Reference criteria and source verification
 
 | Ref. | Requirement source | Revision / date | Clause / page range | Applicability notes |
 |---|---|---|---|---|
 | CR-01 | [Exact title and owner] | [Complete] | [Complete] | [Complete] |
 | CR-02 | [Additional source, if applicable] | [Complete] | [Complete] | [Complete] |
 
-Only list documents actually reviewed and used. Identify any client-provided or uncontrolled copy and explain the limitation.
+Only list documents actually reviewed and used. State issuer, revision/effective date, source origin, retrieval date, supersession/currentness check, applicability rationale and independent verification. Identify client-provided or uncontrolled copies and explain the limitation. If source currentness or applicability was not verified, state that no readiness conclusion against that source is made.
 
 ## 4. Scope and methodology
 
@@ -53,7 +53,9 @@ Describe:
 - Document review, interviews, observation, and sampling methods used.
 - Sample basis and size.
 - Personnel involved and their roles.
-- How evidence status and findings were determined.
+- Population, sample period, selection method, sample size, rationale, exclusions and deviations.
+- How evidence status and findings were determined, distinguishing records received, records examined and evidence sufficient to support a requirement.
+- Authenticity, completeness, approval, currency and traceability checks performed or not possible.
 - Any deviations from the agreed method.
 
 ## 5. Evidence reviewed
@@ -66,6 +68,8 @@ Describe:
 Do not attach or reproduce sensitive records unless authorized. Use controlled references where possible.
 
 ## 6. Findings and evidence status
+
+**Interpretation rule:** A record being supplied or listed does not by itself demonstrate that a requirement is met. State what was examined and why it does or does not sufficiently support the requirement. Do not infer operational implementation or effectiveness from document presence alone.
 
 Use only the approved status vocabulary:
 - Evidence available
@@ -90,7 +94,15 @@ Use only the approved status vocabulary:
 **Recommended action:** [Specific next step]  
 **Owner / target date:** [If agreed]
 
-## 7. Summary of open actions
+## 7. Client factual review and disposition
+
+| Finding ID | Client comment / correction requested | Evidence supplied | Disposition and rationale | Reviewer / date |
+|---|---|---|---|---|
+| [FR-001] | [Complete] | [Reference] | [Accepted / partly accepted / not accepted + reason] | [Complete] |
+
+Preserve the original finding and the correction history. A disagreement does not automatically remove a substantiated observation.
+
+## 8. Summary of open actions
 
 | Action ID | Related finding | Action | Suggested responsible role | Target date | Closure evidence |
 |---|---|---|---|---|---|
@@ -99,13 +111,13 @@ Use only the approved status vocabulary:
 
 Actions are recommendations unless a separate written agreement defines them as deliverables. TNCVCertification must not create, backdate, or attest to client implementation records.
 
-## 8. Conclusion
+## 9. Conclusion
 
 [Provide a concise, evidence-based statement about the readiness of the evidence pack within the reviewed scope. State major gaps and any conditions that prevent a reliable conclusion.]
 
 Do not use terms such as “certified”, “passed”, “failed”, “approved”, “qualified”, “compliant with all requirements”, or official principal score unless expressly defined by the applicable scheme and TNCVCertification has documented authority to make that decision.
 
-## 9. Limitations and disclaimer
+## 10. Limitations and disclaimer
 
 This report:
 1. Is limited to the agreed scope, criteria, dates, evidence, sampling, and locations described herein.
@@ -115,7 +127,7 @@ This report:
 5. Does not replace the principal/client's own evaluation, verification, or decision.
 6. Must not be represented as an official principal result or used beyond the agreed purpose without written permission.
 
-## 10. Authorization
+## 11. Authorization
 
 | Role | Name | Approval / signature | Date |
 |---|---|---|---|
