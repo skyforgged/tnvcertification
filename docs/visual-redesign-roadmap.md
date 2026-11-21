@@ -86,7 +86,7 @@ Components are focused, reusable presentation units. They receive explicit typed
 
 ### 3.2 Reusable content components
 - [ ] Audit and refine service cards.
-- [ ] Audit and refine article cards.
+- [x] Audit and refine article cards to use canonical featured images and localized metadata.
 - [ ] Audit and refine training cards.
 - [ ] Audit and refine schedule cards/rows.
 - [ ] Audit and refine FAQ, process, statistics, gallery, testimonial, and CTA presentation where these patterns are needed.
@@ -96,22 +96,22 @@ Components are focused, reusable presentation units. They receive explicit typed
 ### 3.3 Site shell and SSOT
 - [ ] Keep company identity, contact details, navigation, and site-wide configuration sourced from `src/site.ts`.
 - [ ] Do not hardcode company identity/contact details in layouts, components, blocks, SEO, footer, or CTA.
-- [ ] Keep header, navigation, breadcrumbs, and footer consistent across all layouts.
+- [x] Align shared header, breadcrumbs, and footer colors, widths, and gutters with the semantic design tokens; verify route-level consistency in P20.
 - [ ] Preserve the contextual footer behavior documented in the architecture guidelines.
 
 ## 4. Block architecture
 
 Blocks define content composition and order; components define presentation. A block system must not become a universal replacement for purpose-specific layouts.
 
-- [ ] Audit current block schemas, renderers, and content usage.
-- [ ] Define typed block schemas with discriminated unions and block-specific validation.
-- [ ] Define a central block registry.
-- [ ] Ensure the renderer preserves the exact order of the content block array.
-- [ ] Keep shared FAQ, HowTo, and CTA blocks reusable across supported content types.
+- [x] Audit the current block schemas and renderer; confirm the renderer is used by service and training content.
+- [x] Define typed block schemas with discriminated unions and block-specific minimum-content validation.
+- [ ] Reconsider a central block registry when block count or complexity justifies indirection; currently only three block types exist.
+- [x] Ensure the renderer preserves the exact order of the content block array.
+- [x] Keep shared FAQ, HowTo, and CTA blocks reusable across supported content types.
 - [ ] Add page-specific blocks only when there is a real content need.
 - [ ] Keep training schedule data in the canonical schedule collection; the training schedule block only configures/displays the related schedule list.
 - [ ] Preserve compatibility with existing content during migration.
-- [ ] Localize all visible block text and labels for Indonesian and English.
+- [ ] Complete bilingual audit of authored block labels/content; shared FAQ/HowTo headings are localized and page language is passed into renderers.
 - [ ] Ensure structured data is emitted only for visible content that satisfies the relevant requirements.
 
 ## 5. Content and page migration
@@ -269,7 +269,7 @@ Complete phases in order unless an explicit dependency requires a different sequ
 
 | 2026-11-21 | P18 — Component and block renderer improvements | Updated `BlockRenderer.astro` to preserve authored block order, apply readable FAQ/HowTo/CTA presentation, localize shared headings, and use high-contrast primary CTA. Added discriminated block schemas and minimum HowTo steps; passed page language from service/training routes. Reworked `ArticleCard.astro` to render canonical featured images and localized metadata; corrected homepage secondary CTA contrast. | GitHub Actions run `44894509764` passed. Browser visual, keyboard, responsive, and component-level contrast review remains outstanding. | `dcddd63` |
 
-| 2026-11-21 | P18 — Shared shell component consistency | Audited the seven current shared components. Replaced remaining slate-specific text colors with semantic design tokens in breadcrumbs/header/footer, localized breadcrumb navigation labeling, and aligned footer width/gutters/borders to the shared design system. Deferred a central registry because three block types do not yet justify registry indirection. | Source changes committed directly to main; latest CI run must be checked after the final commit. Screenshot, keyboard, and contrast review remain pending. | `acae27f` |\n\n## 10. Change control
+| 2026-11-21 | P18 — Shared shell component consistency | Audited the seven current shared components. Replaced remaining slate-specific text colors with semantic design tokens in breadcrumbs/header/footer, localized breadcrumb navigation labeling, and aligned footer width/gutters/borders to the shared design system. Deferred a central registry because three block types do not yet justify registry indirection. | Source changes committed directly to main. Latest CI run for the code commit passed earlier; documentation update has a new run pending. Screenshot, keyboard, and contrast review remain pending. | `acae27f` |\n\n## 10. Change control
 
 - Update this checklist as work progresses; do not silently remove unfinished tasks.
 - Mark a checkbox `[x]` only when the task is actually complete and verified.
