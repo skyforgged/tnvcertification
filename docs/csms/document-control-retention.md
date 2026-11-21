@@ -114,12 +114,23 @@ Changes require review and approval. Superseded versions must be removed from ac
 
 ## 10. Document master register
 
+The register below is a draft inventory of the current repository documents. A listed version is an identification aid only; it does not mean the document is approved or effective. The document controller must confirm each owner, approver, effective date, review interval and final controlled ID before operational release.
+
 | Document ID | Title | Owner | Version | Status | Approved by | Effective date | Next review | Repository location |
 |---|---|---|---|---|---|---|---|---|
-| TNCV-CSMS-PRO-001 | CSMS Readiness Review Operational Procedure | [Role] | 0.1 | Draft | [Pending] | [Pending] | [Pending] | docs/csms/ |
-| TNCV-CSMS-COMP-001 | CSMS Competence Matrix | [Role] | 0.1 | Draft | [Pending] | [Pending] | [Pending] | docs/csms/ |
-| TNCV-CSMS-IMP-001 | CSMS Impartiality & Conflict Register | [Role] | 0.1 | Draft | [Pending] | [Pending] | [Pending] | docs/csms/ |
-| TNCV-CSMS-DOC-001 | CSMS Document Control & Record Retention | [Role] | 0.1 | Draft | [Pending] | [Pending] | [Pending] | docs/csms/ |
+| TNCV-CSMS-PRO-001 | CSMS Readiness Review Operational Procedure | [To be assigned] | 0.2 | Draft — not effective | [Pending] | [Pending] | [Pending] | docs/csms/operational-procedure.md |
+| TNCV-CSMS-MTX-001 (proposed) | CSMS Requirement & Evidence Matrix | [To be assigned] | 0.1 | Draft — not approved | [Pending] | [Pending] | [Pending] | docs/csms/requirement-evidence-matrix.md |
+| TNCV-CSMS-FRM-001 | CSMS Readiness Assessment Form | [To be assigned] | 0.2 | Draft — not approved | [Pending] | [Pending] | [Pending] | docs/csms/readiness-assessment-form.md |
+| TNCV-CSMS-RPT-001 (proposed) | CSMS Readiness Review Report Template | [To be assigned] | Template | Draft — not approved for issue | [Pending] | [Pending] | [Pending] | docs/csms/readiness-report-template.md |
+| TNCV-CSMS-COMP-001 | CSMS Competence Matrix | [To be assigned] | 0.1 | Draft — no personnel authorized | [Pending] | [Pending] | [Pending] | docs/csms/competence-matrix.md |
+| TNCV-CSMS-IMP-001 | CSMS Impartiality & Conflict Register | [To be assigned] | 0.1 | Draft — not approved | [Pending] | [Pending] | [Pending] | docs/csms/impartiality-conflict-register.md |
+| TNCV-CSMS-DOC-001 | CSMS Document Control & Record Retention | [To be assigned] | 0.1 | Draft — not approved | [Pending] | [Pending] | [Pending] | docs/csms/document-control-retention.md |
+| TNCV-CSMS-SRC-001 (proposed) | CSMS Source Verification & Sampling Record | [To be assigned] | 0.1 | Draft — not approved for customer use | [Pending] | [Pending] | [Pending] | docs/csms/source-verification-and-sampling.md |
+| TNCV-CSMS-PILOT-ACT-001 | CSMS Pilot Remediation Register | [Management to assign] | 0.1 | Open working register | [Pending] | [Pending] | [Pending] | docs/csms/pilot-remediation-register.md |
+| TNCV-CSMS-MGT-001 (proposed) | CSMS Management Decision & Approval Register | [To be assigned] | 0.1 | Draft — decisions pending | [Pending] | [Pending] | [Pending] | docs/csms/management-approval-register.md |
+| TNCV-CSMS-ORG-001 (proposed) | CSMS Roles, Responsibilities & Resource Readiness Plan | [To be assigned] | 0.1 | Draft — no appointments evidenced | [Pending] | [Pending] | [Pending] | docs/csms/roles-responsibilities-resource-plan.md |
+| TNCV-CSMS-PILOT-001 | CSMS Simulated Case and Requirement/Evidence Matrix | [To be assigned] | Simulation | Simulation only — not customer evidence | N/A | N/A | N/A | docs/csms/pilot/pilot-case-simulation.md |
+| TNCV-CSMS-PILOT-002 (proposed) | CSMS Pilot Assessment Record and Sample Report | [To be assigned] | Simulation | Simulation only — not for issue | N/A | N/A | N/A | docs/csms/pilot/pilot-assessment-and-report.md |
 
 ## 11. Approval and implementation gates
 
