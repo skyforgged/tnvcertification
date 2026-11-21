@@ -1,6 +1,7 @@
 ---
 import Layout from "./Layout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
+import type { SeoAlternate } from "../lib/seo";
 interface Props {
   title: string;
   description: string;
@@ -9,25 +10,33 @@ interface Props {
   ogImage?: string;
   date: Date;
   imageAlt: string;
+  alternates?: SeoAlternate[];
 }
-const { title, description, lang, canonical, ogImage, date, imageAlt } = Astro.props;
-const dateFormatter = new Intl.DateTimeFormat("id-ID", {
+const { title, description, lang = "id", canonical, ogImage, date, imageAlt, alternates = [] } = Astro.props;
+const dateFormatter = new Intl.DateTimeFormat(lang === "en" ? "en-US" : "id-ID", {
   day: "numeric",
   month: "long",
   year: "numeric",
   timeZone: "UTC",
 });
 ---
-<Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage}>
+<Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage} alternates={alternates}>
   <article class="mx-auto w-full max-w-3xl">
     <Breadcrumbs items={[{ label: "Beranda", href: "/" }, { label: "Artikel", href: "/articles/" }, { label: title }]} />
-    <div
-      role="img"
-      aria-label={imageAlt}
-      class="mb-8 flex h-48 items-end bg-brand-blue/10 p-6"
-    >
-      <span class="text-xs font-semibold uppercase tracking-widest text-brand-deepblue">Artikel</span>
-    </div>
+    {ogImage && (
+      <figure class="mb-8 overflow-hidden rounded-xl bg-brand-blue/10">
+        <img
+          src={ogImage}
+          alt={imageAlt}
+          width="1200"
+          height="675"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+          class="aspect-video w-full object-cover"
+        />
+      </figure>
+    )}
     <p class="text-sm text-slate-500">
       <time datetime={date.toISOString().slice(0, 10)}>{dateFormatter.format(date)}</time>
     </p>
