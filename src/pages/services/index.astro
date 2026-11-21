@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import MainMenuHero from "../../components/MainMenuHero.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
 import { getCollection } from "astro:content";
 import { getPublishedArticles, getServiceIndexArticles } from "../../data/articles";
@@ -17,17 +17,16 @@ const structuredData = serviceIndexJsonLd(
 );
 ---
 <Layout title={`Layanan | ${siteSettings.title}`} description="Layanan sertifikasi, pelatihan, dan penilaian kepatuhan." canonical="/services/" lang="id" ogImage="/images/illustrations/services-assessment.webp" structuredData={structuredData}>
-  <section class="w-full" aria-labelledby="service-index">
-    <Breadcrumbs items={[{ label: "Beranda", href: "/" }, { label: "Layanan" }]} />
-    <header class="grid items-center gap-8 md:grid-cols-[1fr_280px]">
-      <div>
-        <h1 id="service-index" class="text-3xl font-semibold tracking-tight text-brand-deepblue">Layanan Kami</h1>
-        <p class="mt-4 max-w-2xl text-lg text-slate-700">Layanan sertifikasi, pelatihan, dan penilaian kepatuhan untuk mendukung organisasi.</p>
-      </div>
-      <img data-page-image src="/images/illustrations/services-assessment.webp" alt="" aria-hidden="true" width="640" height="480" loading="lazy" class="mx-auto w-full max-w-[280px]" />
-    </header>
+  <div class="w-full space-y-12">
+    <MainMenuHero
+      eyebrow="Layanan profesional"
+      title="Layanan Kami"
+      description="Layanan sertifikasi, pelatihan, dan penilaian kepatuhan untuk mendukung organisasi dalam meningkatkan mutu, kompetensi, dan keandalan proses."
+      image="/images/illustrations/services-assessment.webp"
+      imageAlt="Ilustrasi proses asesmen layanan sertifikasi dan evaluasi kepatuhan"
+    />
     {services.length > 0 ? (
-      <div class="mt-8 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {services.map((service) => (
           <article class="border-t-4 border-brand-orange pt-5">
             <h2 class="text-xl font-semibold text-brand-deepblue"><a href={`/services/${service.data.slug}/`} class="hover:text-brand-blue">{service.data.title}</a></h2>
@@ -35,14 +34,14 @@ const structuredData = serviceIndexJsonLd(
           </article>
         ))}
       </div>
-    ) : <p class="mt-8">Informasi layanan akan segera tersedia.</p>}
+    ) : <p>Informasi layanan akan segera tersedia.</p>}
     {articles.length > 0 && (
-      <section class="mt-16" aria-labelledby="artikel-terbaru-layanan">
-      <h2 id="artikel-terbaru-layanan" class="text-2xl font-semibold text-brand-deepblue">Artikel Terbaru</h2>
-      <div class="mt-6 grid gap-8 md:grid-cols-3">
-        {articles.map((article) => <ArticleCard article={article} />)}
-      </div>
-    </section>
+      <section aria-labelledby="artikel-terbaru-layanan">
+        <h2 id="artikel-terbaru-layanan" class="text-2xl font-semibold text-brand-deepblue">Artikel Terbaru</h2>
+        <div class="mt-6 grid gap-8 md:grid-cols-3">
+          {articles.map((article) => <ArticleCard article={article} />)}
+        </div>
+      </section>
     )}
-  </section>
+  </div>
 </Layout>

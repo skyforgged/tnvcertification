@@ -1,0 +1,47 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  imagePriority?: boolean;
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  image,
+  imageAlt,
+  imagePriority = false,
+} = Astro.props;
+---
+
+<section
+  data-main-menu-hero
+  class="relative isolate grid w-full items-center gap-8 overflow-hidden rounded-3xl bg-brand-deepblue px-6 py-10 text-white sm:px-10 sm:py-12 lg:grid-cols-[minmax(0,1fr)_minmax(280px,0.8fr)] lg:gap-12 lg:px-14 lg:py-14"
+  aria-labelledby="main-menu-hero-title"
+>
+  <div class="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-brand-blue/40 blur-2xl" aria-hidden="true"></div>
+  <div class="pointer-events-none absolute -bottom-28 right-24 h-48 w-48 rotate-12 rounded-[3rem] bg-brand-orange/70" aria-hidden="true"></div>
+  <div class="relative z-10 max-w-2xl">
+    {eyebrow && <p class="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-brand-yellow sm:text-sm">{eyebrow}</p>}
+    <h1 id="main-menu-hero-title" class="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-5xl">{title}</h1>
+    <p class="mt-5 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">{description}</p>
+    <slot name="actions" />
+  </div>
+  <div class="relative z-10 mx-auto flex w-full max-w-md items-center justify-center lg:max-w-none">
+    <img
+      data-page-image
+      src={image}
+      alt={imageAlt}
+      width="720"
+      height="560"
+      loading={imagePriority ? "eager" : "lazy"}
+      decoding="async"
+      fetchpriority={imagePriority ? "high" : "auto"}
+      class="h-auto max-h-72 w-full object-contain sm:max-h-80 lg:max-h-[22rem]"
+    />
+  </div>
+</section>

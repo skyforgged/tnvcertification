@@ -12,6 +12,15 @@ if (!existsSync(dist)) {
   process.exit(1);
 }
 
+const mainMenuRoutes = new Set([
+  "/",
+  "/services/",
+  "/csms/",
+  "/trainings/",
+  "/schedules/",
+  "/articles/",
+]);
+
 function walk(dir) {
   return readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
     const full = path.join(dir, entry.name);
@@ -22,7 +31,7 @@ function walk(dir) {
 
 function attr(tag, name) {
   const match = tag.match(
-    new RegExp("(?:^|\\s)" + name + "\\s*=\\s*(?:\"([^\"]*)\"|'([^']*)')", "i"),
+    new RegExp("(?:^|\\s)" + name + "\\s*=\\s*(?:\\"([^\\"]*)\\"|'([^']*)')", "i"),
   );
   return match ? (match[1] ?? match[2] ?? "") : "";
 }
@@ -32,21 +41,28 @@ const errors = [];
 for (const file of walk(dist)) {
   const html = readFileSync(file, "utf8");
   // Legacy route redirects are transport documents, not independently addressable content URLs.
-  if (/<meta\b[^>]*http-equiv=["\x27]refresh["\x27]/i.test(html)) continue;
-  const canonicalTag = html.match(/<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>/i)?.[0];
+  if (/<meta\\b[^>]*http-equiv=["\x27]refresh["\x27]/i.test(html)) continue;
+  const canonicalTag = html.match(/<link\\b(?=[^>]*\\brel=["']canonical["'])[^>]*>/i)?.[0];
   const canonical = canonicalTag ? attr(canonicalTag, "href") : "";
   const route = canonical
     ? new URL(canonical, "https://tnvcertification.invalid").pathname
     : path.relative(dist, file);
-  const images = [...html.matchAll(/<img\b[^>]*>/gi)]
+  const images = [...html.matchAll(/<img\\b[^>]*>/gi)]
     .map((match) => match[0])
-    .filter((tag) => /(?:^|\s)data-page-image(?:\s|=|>)/i.test(tag));
+    .filter((tag) => /(?:^|\\s)data-page-image(?:\\s|=|>)/i.test(tag));
 
   if (!canonical && path.basename(file) !== "404.html") errors.push("[PAGE-IMAGE-001] " + file + ": missing canonical URL.");
   if (!canonical && path.basename(file) === "404.html") continue;
   if (images.length !== 1) {
     errors.push("[PAGE-IMAGE-002] " + route + ": expected exactly one data-page-image; found " + images.length + ".");
     continue;
+  }
+
+  if (mainMenuRoutes.has(route)) {
+    const hero = html.match(/<section\\b(?=[^>]*data-main-menu-hero)[^>]*>[\\s\\S]*?<\\/section>/i)?.[0] ?? "";
+    if (!hero || !/<h1\\b/i.test(hero) || !/<p\\b/i.test(hero) || !/<img\\b[^>]*data-page-image/i.test(hero)) {
+      errors.push("[PAGE-HERO-001] " + route + ": main menu page must have one hero containing an H1, introductory paragraph, and featured image.");
+    }
   }
 
   const src = attr(images[0], "src");
@@ -74,7 +90,7 @@ errors.push(
 );
 
 if (errors.length > 0) {
-  console.error("Page image uniqueness audit failed:\n" + errors.join("\n"));
+  console.error("Page image uniqueness audit failed:\\n" + errors.join("\\n"));
   process.exit(1);
 }
 
