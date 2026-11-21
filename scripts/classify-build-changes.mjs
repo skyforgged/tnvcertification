@@ -35,8 +35,8 @@ function classifyDiff(raw) {
     const status = fields[index++];
     if (!status) continue;
     if (/^[RC]/.test(status)) {
-      const oldPath = fields[index++];
-      const newPath = fields[index++];
+      const oldPath = fields[index];
+      const newPath = fields[index + 1];
       if (oldPath) files.push({ status, path: oldPath });
       if (newPath) files.push({ status, path: newPath });
       return { mode: FULL, reason: "renamed-or-copied-path", files };

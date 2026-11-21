@@ -60,6 +60,7 @@ function parseEntry(path, collection) {
     throw new Error(
       path + ": invalid YAML frontmatter: " +
       (error instanceof Error ? error.message : String(error)),
+      { cause: error },
     );
   }
   if (typeof data !== "object" || data === null || Array.isArray(data)) {
