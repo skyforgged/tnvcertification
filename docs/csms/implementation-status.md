@@ -2,7 +2,7 @@
 
 **Status keseluruhan:** INTERNAL PLANNING — NOT APPROVED FOR CUSTOMER DELIVERY OR PUBLIC LAUNCH  
 **Baseline repository:** `main`  
-**Baseline commit checked:** `057fd0e102468c80aab8b1071861dd7df9054302`  
+**Baseline commit checked:** `931e37301eb5eb5b96727b4b31df662f3c6c650f`  
 **Last repository check:** 21 November 2026
 
 > **Cara membaca status**
@@ -19,8 +19,11 @@
 | [Service Catalog](../service-catalog.md) | **SELESAI — DOKUMEN** | Benchmark, definisi layanan usulan, batasan klaim, approval gates, dan tautan toolkit | Pertahankan status planned; finalisasi hanya setelah seluruh gate disetujui |
 | [Requirement & Evidence Matrix](requirement-evidence-matrix.md) | **SELESAI — TEMPLATE** | Matriks untuk memetakan persyaratan principal ke bukti dan sumber/revisi | Isi hanya memakai persyaratan principal aktual yang telah diverifikasi |
 | [Readiness Assessment Form](readiness-assessment-form.md) | **SELESAI — DRAFT TEMPLATE** | Formulir penilaian, metode, sampling, temuan, batasan, dan review | Persetujuan metodologi; uji dan revisi setelah pilot yang diotorisasi |
-| [Readiness Report Template](readiness-report-template.md) | **SELESAI — DRAFT TEMPLATE** | Struktur laporan, bukti, temuan, tindakan, batasan, dan otorisasi laporan | Tetapkan reviewer/approver yang kompeten; jangan menerbitkan sebelum disetujui |
+| [Readiness Report Template](readiness-report-template.md) | **SELESAI — DRAFT TEMPLATE** | Struktur laporan, bukti, temuan, tindakan, batasan, serta review dan release gate RA-07 | Tetapkan reviewer/approver yang kompeten; jangan menerbitkan sebelum disetujui |
 | [Operational Procedure](operational-procedure.md) | **SELESAI — DRAFT v0.2** | Alur enquiry hingga pelaporan, pengendalian, keluhan, dan stop/go | Review dan persetujuan formal; implementasikan sebelum layanan berjalan |
+| [Technical Review Procedure](technical-review-procedure.md) | **SELESAI — DRAFT PROCEDURE** | Input, kompetensi/independensi reviewer, metode review, koreksi, eskalasi, outcome, release gate dan record RA-07 | Persetujuan manajemen, delegasi, reviewer aktual dan uji penerapan |
+| [Independent Review Checklist](independent-review-checklist.md) | **SELESAI — DRAFT TEMPLATE** | Checklist independensi, kelengkapan paket, 18 kriteria teknis, koreksi, eskalasi dan release gate | Isi pada engagement nyata oleh reviewer kompeten yang ditunjuk |
+| [Review Evidence Register](review-evidence-register.md) | **SELESAI — DRAFT REGISTER** | Register review, komentar/koreksi, eskalasi, release dan kriteria closure RA-07 | Isi dengan rekaman aktual; verifikasi independen sebelum closure |
 | [Competence Matrix](competence-matrix.md) | **SELESAI — FRAMEWORK** | Dimensi kompetensi, skala internal, register, dan otorisasi penugasan | Tetapkan personel aktual; verifikasi bukti kompetensi dan otorisasi per penugasan |
 | [Impartiality & Conflict Register](impartiality-conflict-register.md) | **SELESAI — DRAFT FRAMEWORK v0.2** | Kategori ancaman, risk decision rules, hard stops, safeguard effectiveness, engagement record, monitoring dan eskalasi | Persetujuan kebijakan/delegasi; deklarasi aktual, evaluasi per engagement, safeguard efektif dan keputusan independen |
 | [Document Control & Retention](document-control-retention.md) | **SELESAI — FRAMEWORK** | Kontrol dokumen, inventaris, akses, legal hold, disposal, dan master register | Setujui klasifikasi, akses, retensi, keamanan, dan jadwal penyimpanan aktual |
@@ -61,7 +64,7 @@ Sumber status: [Pilot Remediation Register](pilot-remediation-register.md).
 | RA-04 | Metode sampling | **BELUM — OPEN** |
 | RA-05 | Kompetensi dan otorisasi personel | **BELUM — OPEN** |
 | RA-06 | Impartiality dan konflik kepentingan | **BELUM — OPEN** |
-| RA-07 | Technical review | **BELUM — OPEN** |
+| RA-07 | Technical review | **BELUM — OPEN (DOKUMENTASI DIPERKUAT; IMPLEMENTASI BELUM DIBUKTIKAN)** |
 | RA-08 | Tata kelola data dan keamanan | **BELUM — OPEN** |
 | RA-09 | Review faktual oleh klien | **BELUM — OPEN** |
 | RA-10 | Penanganan keluhan | **BELUM — OPEN** |
@@ -156,11 +159,32 @@ Jangan mengubahnya menjadi published, menambahkan CTA aktif, atau membuat klaim 
 
 **Status RA-06:** **BELUM — OPEN**. Framework dan kontrol peran telah diperkuat sebagai pekerjaan dokumentasi. Belum ada persetujuan kebijakan, penunjukan reviewer, deklarasi engagement aktual, bukti safeguard efektif, atau keputusan independen. Tidak dihitung sebagai remediasi operasional yang ditutup.
 
+
+### Tahap CSMS-DOC-06 — Technical Review & Quality Assurance (RA-07)
+
+- [x] Membuat draft Technical Review & Quality Assurance Procedure yang menetapkan ruang lingkup, input, metode review, hasil review, koreksi, eskalasi, release gate dan rekaman.
+- [x] Menetapkan persyaratan kompetensi, penunjukan, otorisasi dan independensi technical reviewer untuk ruang lingkup spesifik.
+- [x] Membuat Independent Technical Review Checklist dengan pemeriksaan traceability, kecukupan bukti, sampling, temuan, konsistensi laporan, batasan, klaim dan pengendalian dokumen.
+- [x] Membuat Review Evidence Register untuk review assignment, comment/correction log, disagreement escalation dan report release.
+- [x] Memperjelas pemisahan assessor/author, technical reviewer, technical escalation authority, impartiality reviewer dan report approver pada Roles & Responsibilities Resource Plan.
+- [x] Menyelaraskan Readiness Report Template agar mencatat versi yang direview, outcome, komentar terbuka, re-review, delegation approver dan distribusi.
+- [x] Menetapkan kriteria bukti objektif dan syarat penutupan RA-07 dalam Pilot Remediation Register.
+- [ ] Dapatkan persetujuan manajemen atas prosedur, kriteria kompetensi reviewer, kewenangan eskalasi dan delegasi release.
+- [ ] Tunjuk reviewer aktual; verifikasi kompetensi, otorisasi, kapasitas dan independensinya untuk ruang lingkup yang relevan.
+- [ ] Lengkapi conflict declaration dan impartiality clearance engagement-specific untuk reviewer yang ditugaskan.
+- [ ] Jalankan technical review pada engagement nyata yang telah diotorisasi dan simpan checklist lengkap untuk versi laporan yang spesifik.
+- [ ] Tutup seluruh komentar mayor/release-blocking dengan bukti koreksi dan verifikasi reviewer; lakukan re-review bila diperlukan.
+- [ ] Catat eskalasi perbedaan teknis jika terjadi; jika tidak, dokumentasikan dasar bahwa tidak ada eskalasi pada review tersebut.
+- [ ] Dapatkan keputusan release dari report approver yang memiliki delegasi terpisah; simpan versi final dan distribusi.
+- [ ] Lakukan independent closure verification atas paket bukti RA-07.
+
+**Status RA-07:** **BELUM — OPEN**. Pekerjaan dokumentasi draft telah selesai dan ditandai [x]. Belum ada bukti persetujuan prosedur/delegasi, appointment dan kompetensi reviewer aktual, conflict clearance engagement, technical review atas engagement nyata, penyelesaian komentar, maupun otorisasi dan distribusi laporan. Technical review tidak sama dengan keputusan sertifikasi, principal qualification atau persetujuan regulator; tidak ada klaim kewenangan tersebut yang dibuat.
+
 ## 5. Kesimpulan status saat ini
 
 - Pekerjaan riset, definisi layanan, toolkit, framework governance, simulasi, register, dan audit dokumentasi: **sudah dibuat sebagai artefak internal**.
 - Persetujuan manajemen: **belum — 12/12 Pending**.
-- Remediasi simulasi: **belum — 10/10 Open** (RA-02 sampai RA-06 memiliki penguatan dokumentasi; status remediasinya tetap Open).
+- Remediasi simulasi: **belum — 10/10 Open** (RA-02 sampai RA-07 memiliki penguatan dokumentasi; status remediasinya tetap Open).
 - Kesiapan operasional untuk customer delivery: **belum dibuktikan**.
 - Otorisasi pilot customer: **belum diberikan**.
 - Persetujuan publikasi: **belum diberikan**.
