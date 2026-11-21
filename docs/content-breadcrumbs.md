@@ -1,6 +1,6 @@
 ---
 title: Content breadcrumbs and page consistency
-status: implemented on feature branch
+status: merged to main
 phase: P11
 ---
 
@@ -16,6 +16,12 @@ Add an accessible breadcrumb trail to article and service detail pages, reinforc
 - Preserve SEO metadata, JSON-LD, article/service content, and related-article sections.
 
 ## Validation
-- Source review of existing route conventions confirms article detail route `/articles/[slug]/` and service detail route `/services/[slug]/`, with service index at `/service/`.
-- Local pnpm check/typecheck/lint/test/build and visual keyboard review not run in this environment.
-- No main branch changes; user merges locally after validation.
+Local validation on `main` at merge commit `e4f3bc2` with Node.js `26.13.1` and pnpm `12.21.0`:
+
+- `npm run check`: PASS, exit `0`.
+- `npm run typecheck`: PASS, exit `0`.
+- `npm run lint`: PASS, exit `0`.
+- `npm run test`: PASS, exit `0`, 33 tests.
+- `npm run build`: PASS, exit `0`, 13 pages.
+
+Merged into `main` at `e4f3bc2`. Visual and keyboard review remain separate manual tasks.

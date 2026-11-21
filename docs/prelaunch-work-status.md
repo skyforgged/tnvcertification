@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated merge commit: `f3f4875`
+- Validated merge commit: `e4f3bc2`
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -75,7 +75,7 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-Local full validation ran on `main` at merge commit `f3f4875` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
+Local full validation ran on `main` at merge commit `e4f3bc2` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
 
 | Command | Result |
 |---|---|
@@ -169,3 +169,13 @@ Branch: `feat/site-navigation-footer` (merged at `f3f4875`).
 - Placeholder contact details stay out of public UI. No new service, accreditation or authorization claims were added.
 - Integration fix after merge: removed an unused `organization` import from `Layout.astro`.
 - See `docs/site-navigation-footer.md` for scope and validation notes. Visual and keyboard review remain separate manual tasks.
+
+
+## P11 — Content breadcrumbs
+
+Branch: `feat/content-breadcrumbs` (merged at `e4f3bc2`).
+
+- `Breadcrumbs.astro` provides semantic navigation with an ordered list, accessible label, and current-page indicator.
+- Article and service detail pages now show Home → archive → current page trails.
+- Archive indexes carried updated context labels. SEO metadata, JSON-LD, and related-article sections were preserved.
+- See `docs/content-breadcrumbs.md` for scope and validation notes. Visual and keyboard review remain separate manual tasks.
