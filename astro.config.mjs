@@ -17,6 +17,7 @@ export default defineConfig({
   site: siteSettings.url,
   // Preserve the previous singular directory URL as a permanent redirect.
   redirects: {
+    "/en/": "/",
     "/service/": "/services/",
     "/schedule/": "/schedules/",
     "/hal-about-us/": "/about-us/",
