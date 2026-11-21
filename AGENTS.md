@@ -25,6 +25,15 @@ Build and maintain the PT. Intiprima Sertifikasi website as a polished, content-
 - Enforce required content rules at build time. Invalid content must fail the build with actionable file/field/rule diagnostics; do not treat mandatory rule violations as warnings.
 - Enforce semantic heading hierarchy at build time: heading levels must progress without skipping (H1 → H2 → H3 → H4). For example, H1 may be followed by H2, H2 may be followed by H3 or H2, and H3 may be followed by H4, H3, or a higher-level heading. H1 → H3, H2 → H4, and any other downward level jump are invalid and must fail the build. Heading hierarchy must be validated from the content/rendered document structure, not by string matching.
 
+## Business positioning and absolute content restrictions
+
+- The company website represents a certification body / certification service provider. Its public positioning is certification, audit, assessment where formally authorized, and related certification administration only.
+- **ZERO CONSULTATION: the word family and concept are prohibited in all public-facing website content.** Do not use Indonesian forms beginning with `konsult` or English forms beginning with `consult`, including headings, paragraphs, FAQs, metadata, image alt text, CTA labels, button labels, navigation, forms, training pages, schedule pages, service pages, structured-data descriptions, and reusable component copy.
+- Do not offer consulting, advisory, implementation assistance, system-document preparation, or implementation mentoring. Do not imply these activities are part of certification services.
+- CTA language must focus on certification applications, certification information, audit processes, certification status, or administrative requirements. Preferred wording includes “Ajukan Sertifikasi”, “Informasi Sertifikasi”, and “Hubungi Kami” where appropriate.
+- Describe audit and certification activities accurately and independently. Never imply that the certification body implements or advises on the management system it audits.
+- Treat this policy as a build-blocking editorial requirement for both published entries and drafts. Every new or edited content entry must comply before commit.
+
 ## Stack and conventions
 - Astro 7+ stable (confirm actual compatibility and release status before upgrades).
 - TypeScript 7+ stable, strict typing.
@@ -60,7 +69,7 @@ Build and maintain the PT. Intiprima Sertifikasi website as a polished, content-
 - Design responsively, but preserve the intended composition across breakpoints rather than merely stacking everything.
 - Use imagery only where it adds meaning; ensure alt text is useful and not redundant.
 - Ensure interactive elements have clear affordances, focus states, and adequate contrast.
-- Visual direction: use a cheerful, vibrant, high-saturation palette—not pale, washed-out, or pastel-heavy corporate styling. Prefer strong colors such as electric blue, vivid orange/coral, sunshine yellow, and fresh mint balanced with warm cream and white. Color must be purposeful, with clear roles and accessible contrast; avoid using every accent at once. Create visual rhythm with intentional section/background variation rather than making the whole site white or uniformly dark.
+- Visual direction: use a lively but corporate palette. Distinguish consecutive content sections with intentional background-surface variation—brand blue, deep navy, mint, warm cream, soft coral/orange, and clean white—while keeping text contrast accessible. Use one dominant surface color per section, restrained accents, consistent spacing, and clear typography. The page should feel energetic and welcoming without looking playful, noisy, or like a generic SaaS landing page.
 - Preserve a professional, credible, energetic, modern, and human brand feel. Avoid generic SaaS/AI landing-page styling, excessive cards, gradients/glows, and decorative color noise.
 
 ## Validation and delivery
