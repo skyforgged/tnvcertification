@@ -81,6 +81,15 @@ function toStr(value: unknown, fallback = ""): string {
   return typeof value === "string" ? value : fallback;
 }
 
+function collectTextValues(value: unknown): string[] {
+  if (typeof value === "string") return [value];
+  if (Array.isArray(value)) return value.flatMap(collectTextValues);
+  if (typeof value === "object" && value !== null) {
+    return Object.values(value).flatMap(collectTextValues);
+  }
+  return [];
+}
+
 export function validateEntry(entry: ContentEntryLike): Diagnostic[] {
   const diagnostics: Diagnostic[] = [];
   const data = entry.data ?? {};
@@ -106,6 +115,16 @@ export function validateEntry(entry: ContentEntryLike): Diagnostic[] {
 
   // Non-editorial records (for example training schedules) have no page body.
   if (!title) return diagnostics;
+
+  // CONTENT-013: consultation/consulting language is prohibited across all site content.
+  const allContentText = [...collectTextValues(data), entry.body ?? ""].join(" ");
+  if (/(?:konsult\\p{L}*|consult\\p{L}*)/iu.test(allContentText)) {
+    add(
+      "content",
+      "CONTENT-013",
+      "Consultation/consulting terminology is prohibited. Use certification, audit, assessment, or certification-information wording as appropriate.",
+    );
+  }
 
   const { headings, intro, introParagraphs } = parseContent(entry.body ?? "");
   const effectiveIntro = introField || intro;
