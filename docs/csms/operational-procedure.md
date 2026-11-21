@@ -2,7 +2,7 @@
 
 **Status:** Internal draft — approval required before service delivery.  
 **Procedure ID:** TNCV-CSMS-PRO-001 (proposed)  
-**Version:** 0.1  
+**Version:** 0.2 — remediation draft  
 **Process owner:** [To be assigned]  
 **Approval authority:** [To be assigned]
 
@@ -65,15 +65,17 @@ Explain that the proposed service is not a principal approval, formal CSMS certi
 
 ### 5.2 Requirement-source identification and verification
 
-Before accepting a readiness conclusion:
-1. Obtain the applicable requirement document directly from the client/principal or another traceable authoritative source.
-2. Record exact title, owner, revision/issue date, source, and date accessed.
-3. Confirm the document applies to the contractor, work scope, project, and vendor category.
-4. Identify related appendices, portal instructions, forms, updates, and clarifications.
-5. Resolve conflicting or ambiguous requirements with the client/principal where possible.
-6. Record limitations if the source is incomplete, uncontrolled, or cannot be verified.
+Before accepting a readiness conclusion, complete the controlled [Source Verification & Sampling Record](source-verification-and-sampling.md). For every source, record:
+1. Exact title, issuing owner, document identifier, revision, issue/effective date, and language.
+2. Origin and retrieval method (direct client copy, principal portal, official public source, or other); URL or controlled storage reference; access date; and person who retrieved it.
+3. Evidence that the source is authentic and current, including supersession/update checks and any portal notices or appendices.
+4. Applicability to the named contractor, legal entity, project, work scope, location, vendor category and assessment period, with rationale.
+5. Related forms, annexes, portal instructions, FAQs, amendments and written clarifications.
+6. Conflicts, missing pages, uncontrolled copies, translation issues or unresolved interpretations, including who was asked to clarify and the response.
 
-Do not assume one principal's framework applies to another. Do not adopt a competitor's checklist as a universal standard. If no reliable applicable criteria can be established, offer only a clearly limited document-organization service or decline the readiness assessment.
+A second designated reviewer verifies the source identity, revision/currentness and applicability before criteria are approved for use. Preserve the source or an authorized controlled copy where permitted; record restrictions if it cannot be retained. Do not rely on search snippets, competitor summaries or undated copies as the sole basis for criteria.
+
+Do not assume one principal's framework applies to another. Do not adopt a competitor's checklist as a universal standard. If the source or applicability cannot be verified, stop the readiness conclusion; offer only a clearly limited document-organization service or decline the assessment. A limitation cannot be silently converted into an assumed criterion.
 
 ### 5.3 Contract and scope review
 
@@ -89,37 +91,40 @@ Changes to criteria, sites, work scope, or deliverables require documented revie
 
 ### 5.4 Competence, impartiality, and authorization gate
 
-Before assignment:
-- Verify assessor competence against the subject matter and scope.
-- Review prior advisory, consultancy, training, employment, financial, or other relationships that may affect impartiality.
-- Define safeguards, independent review, or role separation.
-- Verify any legal, scheme-owner, or principal authorization required for the activity and for any proposed claim.
-- Record the decision to proceed, apply safeguards, restrict scope, or decline.
+Before assignment, the service owner and designated impartiality reviewer must complete and approve an engagement-specific gate:
+- Match each assigned person's documented competence to the actual criteria, sector, activities, review method and report task. A self-rating or job title alone is not competence evidence.
+- Verify mandatory licences, registrations, training or scheme/principal authorizations against their issuer and validity period where applicable.
+- Review prior advisory, consultancy, training, employment, financial, family or other relationships, including work performed for the same client on the same subject.
+- Assess threat level, safeguards, role separation and residual risk; disclosure alone does not remove a conflict.
+- Confirm the technical reviewer is competent and sufficiently independent of the work reviewed. The reviewer must not simply approve their own assessment.
+- Record named personnel, assigned tasks, competence evidence references, conflict decision, safeguards, approving authority and date.
 
-No formal certification, accreditation, official qualification, or principal authorization claim may be made without documentary evidence and approval.
+Do not use fictional role labels or blank placeholders as evidence of authorization in a real engagement. If competence, independence, or required authorization is not demonstrated, do not assign the person; restrict scope, appoint a suitable independent reviewer, or decline. No formal certification, accreditation, official qualification or principal authorization claim may be made without documentary evidence and approval.
 
 ### 5.5 Planning and evidence intake
 
-The assessor prepares the assessment form and matrix with:
-- Agreed criteria and clause references.
-- Document request list and evidence IDs.
-- Assessment schedule, locations, interview roles, and sampling plan.
-- Access, safety, confidentiality, and data-protection arrangements.
-- Known exclusions and risks to the review.
+The assessor prepares the assessment form, matrix and [Source Verification & Sampling Record](source-verification-and-sampling.md) with:
+- Approved criteria and traceable clause references.
+- Evidence request list, unique evidence IDs and expected evidence characteristics.
+- Defined population (sites, people, activities, records and period) relevant to the agreed scope.
+- Sampling objective, selection method, sample size, rationale, exclusions and known limitations.
+- Assessment schedule, locations, interview roles, safety/access arrangements and data-protection controls.
 
-Log evidence received with title, owner/source, version/date, receipt date, and storage reference. Preserve original records where authorized. Do not create or alter client records on the client's behalf in a way that misrepresents authorship, approval, implementation, or historical timing.
+Log each item received separately from its assessment. Record title, owner/source, version/date, receipt date, file integrity or authenticity checks performed, sensitivity classification and controlled storage reference. Preserve originals where authorized. Do not create or alter client records in a way that misrepresents authorship, approval, implementation or historical timing.
 
 ### 5.6 Assessment and evidence review
 
 For each requirement:
-1. Identify the source clause and applicability.
-2. Record evidence examined, including ID, version/date, and source.
-3. Apply the approved status vocabulary: Evidence available; Partially evidenced; Evidence missing; Requires clarification; Not applicable (with rationale); or Not reviewed.
-4. Describe objective observations and distinguish absence of evidence from evidence of non-implementation.
-5. Record limitations, sample basis, and unresolved questions.
-6. Discuss factual misunderstandings with the client and retain the disposition of corrections.
+1. Identify the approved source clause, applicability rationale and any clarification.
+2. Record each item received, then identify which item(s) were actually examined, including ID, version/date, owner/source and review date.
+3. Evaluate relevance, completeness, validity, approval status, currency, traceability and consistency with other evidence. Document authenticity checks and any checks that could not be performed.
+4. Distinguish **record received**, **record examined** and **requirement supported**. Presence of a file alone is not evidence that the requirement is implemented or effective.
+5. Apply the controlled status vocabulary: Evidence available; Partially evidenced; Evidence missing; Requires clarification; Not applicable (with rationale); or Not reviewed. Use Evidence available only where the reviewed evidence adequately supports the stated requirement within the agreed scope; otherwise use Partially evidenced or another accurate status.
+6. Describe objective observations and distinguish absence of evidence from evidence of non-implementation. Do not infer falsity solely from missing evidence.
+7. Record limitations, sample population, selection, size, period, exclusions and unresolved questions.
+8. Present factual observations to the client for correction; retain the original finding, proposed correction, evidence supplied, reviewer disposition and reason. A client disagreement does not automatically invalidate or erase a substantiated finding.
 
-Sampling must be proportionate to the agreed scope and documented. Do not imply that unexamined sites, personnel, records, or activities were verified.
+Sampling must be proportionate to the agreed scope and documented. State clearly that results apply only to the reviewed sample. Do not imply that unexamined sites, personnel, records or activities were verified.
 
 ### 5.7 Findings and action priorities
 
@@ -143,7 +148,7 @@ Prepare the report using the controlled report template. At minimum it must stat
 - Conclusion limited to the reviewed evidence and agreed scope.
 - Limitations and disclaimer that the report is not certification or principal approval.
 
-A technical reviewer checks traceability, accuracy, consistency, evidence sufficiency, and language. Any unresolved disagreement is recorded and escalated before report approval.
+A technical reviewer uses a documented review checklist to verify source identity/currentness/applicability, criteria-to-finding traceability, evidence receipt versus examination versus sufficiency, sampling rationale and limitations, objective wording, conclusion proportionality, privacy/redaction and disclaimer. Record comments, corrections, closure evidence and reviewer approval. The reviewer must not approve unresolved technical disagreements; escalate them to the designated technical authority before report approval.
 
 ### 5.9 Approval, issue, and post-issue changes
 
@@ -167,11 +172,18 @@ Retain, under the approved retention and access policy:
 
 Restrict access to authorized personnel. Apply applicable privacy, confidentiality, security, and retention requirements. Do not retain personal or sensitive information beyond the approved purpose and period.
 
-## 6. Complaints, appeals, and disputes
+## 6. Complaints, factual corrections, and disputes
 
-A client may submit a complaint about service delivery or report accuracy through the published company channel. Record, acknowledge, investigate, and respond under the company's approved complaint process. The person investigating should be independent of the activity complained about where practicable.
+Before customer delivery is authorized, management must approve a complaint-handling route and designate an impartial complaint owner. For each complaint:
+1. Register a unique ID, receipt date, complainant/contact route, issue, affected engagement/report and requested outcome.
+2. Acknowledge receipt within the service target approved by management; record communications and any urgent containment.
+3. Screen for conflicts and assign an investigator who was not responsible for the activity complained about, where practicable.
+4. Review the engagement file, source criteria, evidence, decisions and communications; obtain relevant responses without allowing the subject of the complaint to control the outcome.
+5. Record findings, decision rationale, corrective/preventive action, responsible owner and due date.
+6. Obtain independent approval of the response, communicate the outcome, and retain closure evidence.
+7. Track trends and verify whether corrective action was effective.
 
-Because this service does not make a formal certification or principal qualification decision, do not describe the process as an appeal against a certification decision. Direct disputes about principal scoring, qualification, or procurement outcomes to the relevant principal/client.
+Factual corrections to a draft report are handled separately from complaints and must preserve the original observation and a reasoned disposition. A client cannot require removal of a substantiated finding merely because it disagrees. Because this service does not make a formal certification or principal qualification decision, do not describe this process as an appeal against a certification decision. Direct disputes about principal scoring, qualification or procurement outcomes to the relevant principal/client.
 
 ## 7. Service suspension or refusal conditions
 
@@ -208,6 +220,8 @@ Use the controlled versions of:
 - [CSMS Competence Matrix](competence-matrix.md)
 - [CSMS Impartiality & Conflict of Interest Register](impartiality-conflict-register.md)
 - [CSMS Document Control & Record Retention](document-control-retention.md)
+- [CSMS Source Verification & Sampling Record](source-verification-and-sampling.md)
+- [CSMS Pilot Remediation Register](pilot-remediation-register.md)
 
 The competence, impartiality, and document-control frameworks must be approved and implemented before assigning personnel, accepting sensitive client evidence, or issuing deliverables.
 
