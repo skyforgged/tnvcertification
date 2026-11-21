@@ -23,6 +23,6 @@ Organisasi memetakan bahaya di setiap area kerja, termasuk potensi paparan, kond
 
 ## Pengendalian dan Partisipasi
 
-Hasil pemetaan ditindaklanjuti dengan pengendalian yang jelas, pelatihan, serta konsultasi rutin dengan pekerja. Sistem yang hidup membuat keselamatan menjadi bagian dari cara kerja, bukan sekadar dokumen.
+Hasil pemetaan ditindaklanjuti dengan pengendalian yang jelas, pelatihan, serta komunikasi rutin dengan pekerja. Sistem yang hidup membuat keselamatan menjadi bagian dari cara kerja, bukan sekadar dokumen.
 
 > "Kerja yang aman adalah investasi jangka panjang yang tidak boleh diabaikan."
