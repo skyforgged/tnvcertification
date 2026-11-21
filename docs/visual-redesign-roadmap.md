@@ -85,10 +85,10 @@ Components are focused, reusable presentation units. They receive explicit typed
 - [ ] Implement consistent image presentation, aspect ratios, loading priority, and responsive behavior.
 
 ### 3.2 Reusable content components
-- [ ] Audit and refine service cards.
+- [x] Audit and refine service cards with a dedicated semantic-token component.
 - [x] Audit and refine article cards to use canonical featured images and localized metadata.
-- [ ] Audit and refine training cards.
-- [ ] Audit and refine schedule cards/rows.
+- [x] Audit and refine training cards with a dedicated component and distinct catalog treatment.
+- [x] Audit and refine schedule rows with restrained separators, readable metadata, and consistent actions.
 - [ ] Audit and refine FAQ, process, statistics, gallery, testimonial, and CTA presentation where these patterns are needed.
 - [ ] Ensure cards do not all look identical when their information architecture differs.
 - [ ] Ensure all components are keyboard accessible and use semantic HTML.
@@ -269,7 +269,7 @@ Complete phases in order unless an explicit dependency requires a different sequ
 
 | 2026-11-21 | P18 — Component and block renderer improvements | Updated `BlockRenderer.astro` to preserve authored block order, apply readable FAQ/HowTo/CTA presentation, localize shared headings, and use high-contrast primary CTA. Added discriminated block schemas and minimum HowTo steps; passed page language from service/training routes. Reworked `ArticleCard.astro` to render canonical featured images and localized metadata; corrected homepage secondary CTA contrast. | GitHub Actions run `44894509764` passed. Browser visual, keyboard, responsive, and component-level contrast review remains outstanding. | `dcddd63` |
 
-| 2026-11-21 | P18 — Shared shell component consistency | Audited the seven current shared components. Replaced remaining slate-specific text colors with semantic design tokens in breadcrumbs/header/footer, localized breadcrumb navigation labeling, and aligned footer width/gutters/borders to the shared design system. Deferred a central registry because three block types do not yet justify registry indirection. | Source changes committed directly to main. Latest CI run for the code commit passed earlier; documentation update has a new run pending. Screenshot, keyboard, and contrast review remain pending. | `acae27f` |\n\n## 10. Change control
+| 2026-11-21 | P18 — Shared shell component consistency | Audited the seven current shared components. Replaced remaining slate-specific text colors with semantic design tokens in breadcrumbs/header/footer, localized breadcrumb navigation labeling, and aligned footer width/gutters/borders to the shared design system. Deferred a central registry because three block types do not yet justify registry indirection. | Source changes committed directly to main. Latest CI run for the code commit passed earlier; documentation update has a new run pending. Screenshot, keyboard, and contrast review remain pending. | `acae27f` |\n\n| 2026-11-21 | P18 — Catalog and schedule component refinement | Added dedicated `ServiceCard` and `TrainingCard` components and migrated their index pages. Refined schedule archive rows and schedule detail metadata/CTA to use shared semantic tokens, accessible contrast, consistent control radius, and responsive action sizing. Finished remaining footer token/gutter inconsistencies. | Source updates committed directly to main. Production validation for the latest commits is pending; responsive screenshots, keyboard review, and rendered contrast audit remain outstanding. | `0797069` |\n\n## 10. Change control
 
 - Update this checklist as work progresses; do not silently remove unfinished tasks.
 - Mark a checkbox `[x]` only when the task is actually complete and verified.
