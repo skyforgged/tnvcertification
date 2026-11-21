@@ -1,16 +1,20 @@
 ---
 title: "Tentang Intiprima Sertifikasi"
-intro: "PT. Intiprima Sertifikasi berfokus pada informasi dan layanan terkait sertifikasi, pelatihan, serta penilaian kepatuhan bagi organisasi. Kami menempatkan kejelasan proses, ketepatan informasi, dan tanggung jawab sebagai landasan dalam membangun kepercayaan."
+intro: "Tentang Intiprima Sertifikasi adalah halaman yang memperkenalkan fokus organisasi dalam informasi sertifikasi, pelatihan, dan penilaian kepatuhan. Kami menempatkan kejelasan proses, ketepatan informasi, dan tanggung jawab sebagai landasan dalam membangun kepercayaan."
 metaDescription: "Kenali fokus, prinsip kerja, dan komitmen PT. Intiprima Sertifikasi dalam informasi sertifikasi, pelatihan, dan penilaian kepatuhan."
 pubDate: "2026-10-01"
 draft: false
 featuredImage:
   src: "/images/illustrations/about-organization.webp"
-  alt: "Ilustrasi organisasi profesional sebagai representasi halaman tentang Intiprima Sertifikasi."
+  alt: "Ilustrasi organisasi profesional adalah representasi visual untuk halaman tentang Intiprima Sertifikasi."
 slug: "hal-about-us"
 translationKey: "page-hal-about-us"
 lang: "id"
 ---
+# Tentang Intiprima Sertifikasi
+
+Tentang Intiprima Sertifikasi adalah halaman yang memperkenalkan fokus organisasi dalam informasi sertifikasi, pelatihan, dan penilaian kepatuhan. Kami menempatkan kejelasan proses, ketepatan informasi, dan tanggung jawab sebagai landasan dalam membangun kepercayaan.
+
 ## Fokus organisasi
 
 Kami berfokus pada penyediaan informasi yang jelas mengenai sertifikasi, pelatihan, dan penilaian kepatuhan. Setiap kebutuhan organisasi memiliki konteks dan ruang lingkup yang berbeda; karena itu, informasi mengenai persyaratan, proses, dan cakupan layanan perlu disampaikan secara tepat dan dapat dipahami.
