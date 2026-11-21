@@ -59,7 +59,7 @@ Layouts are selected by page purpose. They may share primitives and components, 
 | `ScheduleLayout.astro` | Schedule archive and schedule/batch detail pages | Schedule discovery, dates, status, delivery mode, venue, training relationship, and registration |
 
 ### 2.2 Layout implementation tracking
-- [ ] Audit current layouts and all route-to-layout assignments.
+- [x] Audit current layouts and all route-to-layout assignments.
 - [ ] Define the shared shell used by all layouts (site header, navigation, footer, SEO, breadcrumbs where appropriate).
 - [ ] Design and implement `WidePageLayout.astro`.
 - [ ] Design and implement `ServiceLayout.astro`.
@@ -254,6 +254,7 @@ Complete phases in order unless an explicit dependency requires a different sequ
 | 2026-11-21 | P16 — Shared design system foundation | Defined semantic color, typography, spacing/container, border/radius, image, hero, section, button, card, form, responsive, and accessibility rules; updated global CSS token foundation and white-dominant base surface | Source-level changes committed. Build, contrast verification, and representative-page visual review remain pending. | 7788cca |
 
 | 2026-11-21 | P16 — Shared design system application | Applied the shared system to the main-menu hero, page canvas, site header, and footer; replaced decorative blue hero panel with restrained editorial split composition; removed pill-style active navigation; aligned shell widths to shared wide container | GitHub Actions run `44890885770` passed type/Astro checks, lint, tests, production build, page-image uniqueness, and SEO/link audit. Screenshot review and component-level interaction/contrast review remain pending. | `538927a` |
+| 2026-11-21 | P17 — Layout and route audit | Mapped existing layout files and representative routes. Confirmed ArticleLayout is used by generic content pages; ServiceLayout exists; ScheduleLayout exists but the schedule index route still uses Layout directly; training index and detail routes also use Layout directly, and TrainingLayout/WidePageLayout do not yet exist. Homepage and service index use the base Layout with page-specific composition. | Source inspection only. No route/layout migration has been made yet; implementation must preserve existing content, metadata, featured images, and schedule relationships. | Pending |
 | 2026-11-21 | P16 — Contrast guidance | Added preliminary contrast ratios for core palette colors and documented that orange, mint, pink, and yellow accents must not be assumed accessible for text on white | Token-level calculation documented; not a substitute for checking actual rendered component states and foreground/background pairs. | `07a1efa` |
 
 ## 10. Change control
