@@ -373,3 +373,31 @@ A desk-top process simulation was completed using a wholly fictional contractor,
 
 The CSMS service page remains a draft and must not be activated. The simulation artifacts must not be used as customer evidence, marketing proof, or a representation of completed assessment work.
 
+
+
+## CSMS pilot remediation and procedure hardening checkpoint (2026-11-21)
+
+The ten observations from the desk-top simulation have been converted into controlled remediation actions. This is a documentation update only; no action is represented as implemented or formally approved merely because a template was added.
+
+### Added internal control document
+
+- `docs/csms/source-verification-and-sampling.md` — source identity, revision/currentness, applicability, independent verification, population, sampling method, sample execution, evidence intake and sufficiency record.
+- `docs/csms/pilot-remediation-register.md` — ten remediation actions with accountable-owner, due-date, status and closure-evidence fields.
+
+### Hardened working documents
+
+- `docs/csms/operational-procedure.md` updated to version 0.2 draft: independent source verification; assignment-specific competence and conflict gate; documented sampling; distinction between received, examined and sufficient evidence; controlled factual corrections; technical review checklist; structured complaint handling.
+- `docs/csms/readiness-assessment-form.md` updated to version 0.2 draft: source gate, verification approval, sampling references, evidence sufficiency checks, factual-correction log and complaint control.
+- `docs/csms/readiness-report-template.md` updated to require source verification, sampling boundaries, evidence sufficiency rationale and factual-correction disposition.
+
+### Current decision
+
+- Remediation documents are drafts. Owners, deadlines, actual implementation evidence and management approvals remain unassigned/outstanding.
+- No actual principal source has been selected or verified in this stage.
+- No real personnel competence or impartiality assessment has been completed.
+- Privacy/security arrangements and retention periods remain subject to management/legal approval.
+- The customer pilot remains **not authorized** and the public CSMS page must remain `draft: true`.
+
+### Next gate
+
+Management must assign owners and approve deadlines, then close RA-01 through RA-10 with objective evidence and independent verification. Only after that should a separate decision be made on whether to prepare an actual principal-specific pilot.
