@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated commit: `2c2828b` (full gate suite; adds end-to-end preflight tests)
+- Validated commit: `9049434` (full gate suite; temporary CI fixture removed)
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -46,7 +46,7 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 | P16 | Editorial content production | In progress; first Indonesian/English article draft created in docs for review; not published |
 | P16.2 | Article integration and SEO readiness | Review checkpoint; collection schema, metadata gates, and publication gates documented |
 | P16.3 | Bilingual article integration | Bilingual document-control draft pair integrated as `draft: true`; no public article published |
-| Build strategy | Content-first full-build baseline | Classifier, preflight, and end-to-end CLI tests implemented; content-only CI path untested by a real push; full checks mandatory |
+| Build strategy | Content-first full-build baseline | Classifier, preflight, end-to-end CLI tests, and real content-only CI path verified; full checks mandatory |
 
 ## Verified repository facts
 
@@ -81,7 +81,7 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-Local full validation ran on `main` at `2c2828b` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
+Local full validation ran on `main` at `9049434` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
 
 | Command | Result |
 |---|---|
@@ -92,10 +92,11 @@ Local full validation ran on `main` at `2c2828b` with the pinned Node.js `26.13.
 | `npm run test` | PASS, exit `0`, 49 tests |
 | `npm run audit:seo` | PASS, exit `0`, 13 pages and 13 unique canonicals |
 | `npm run validate:changed -- 2be9036 ef84389` | PASS, exit `0`, 2 editorial files |
+| `node scripts/classify-build-changes.mjs 70eb5a7 88f19a1` | `content-only`, 1 added editorial file |
 
 Earlier pulled commits `9bc16d1` and `ddac326` failed local `lint`; final pulled commit `67b56b3` still had both errors. Commit `455bb73` fixed `no-useless-assignment` in the classifier and `preserve-caught-error` in the preflight.
 
-GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Runs `44845274570` (`6151e50`), `44854428984` (`2733047`), `44855036386` (`0ce7f0b`), `44855490692` (`15daddb`), `44856851545` (`c4934aa`), `44858182875` (`c6f9015`), `44859275893` (`ef84389`) and `44862425784` (`2a44281`) completed with `conclusion: success`. Runs `44863006246` (`9bc16d1`) and `44863375398` (`ddac326`) completed with `conclusion: failure` before the lint fixes. Runs `44864063830` (`455bb73`), `44864122309` (`c0764c6`) and `44864948124` (`2c2828b`) completed with `conclusion: success`. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
+GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Runs `44845274570` (`6151e50`), `44854428984` (`2733047`), `44855036386` (`0ce7f0b`), `44855490692` (`15daddb`), `44856851545` (`c4934aa`), `44858182875` (`c6f9015`), `44859275893` (`ef84389`) and `44862425784` (`2a44281`) completed with `conclusion: success`. Runs `44863006246` (`9bc16d1`) and `44863375398` (`ddac326`) completed with `conclusion: failure` before the lint fixes. Runs `44864063830` (`455bb73`), `44864122309` (`c0764c6`), `44864948124` (`2c2828b`), `44865216807` (`70eb5a7`), `44867371518` (`88f19a1`) and `44867438542` (`9049434`) completed with `conclusion: success`. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
 
 
 ## P5 completion — certification scheme catalog and CI
@@ -281,7 +282,7 @@ Branch: `docs/p16-2-article-integration-readiness` (merged at `fe2f175`).
 - Any code, schema, config, manifest, lockfile, rename, deletion, or ambiguous change fails safe to the full pipeline.
 - No incremental renderer is in use. Future incremental production output must prove equivalence on routes, assets, canonicals, hreflang, sitemap, and internal links first.
 - `check` and `build` ran on `2a44281` with exit `0`; CI run `44862425784` completed with `conclusion: success`.
-- Pulled `2c2828b` records that the preflight CLI has isolated end-to-end CI coverage, but the `content-only` conditional workflow step still lacks a real editorial-only push test.
+- Pulled `2c2828b` records that the preflight CLI has isolated end-to-end CI coverage. Pulled fixture commits `f321207` and `88f19a1` exercised the real `content-only` step with an editorial-only push; `9049434` removed the temporary fixture afterward.
 
 
 ## Selective editorial preflight
@@ -292,6 +293,7 @@ Branch: `docs/p16-2-article-integration-readiness` (merged at `fe2f175`).
 - `.github/workflows/quality.yml` runs the preflight only when `build_mode=content-only`, after install and before the normal gates. Production behavior stays unchanged.
 - Verified manually: classifier returned `content-only` for `2be9036..ef84389` (2 article files), and `pnpm validate:changed 2be9036 ef84389` exited `0`.
 - Pulled commits `94562ab` (end-to-end CLI tests), `9bb4538` (tsx loader resolution), `bef1c3b` (unused import), and `2c2828b` (docs) verified the real preflight CLI in isolated temporary Git repositories: valid Markdown passes, malformed YAML fails, editorial rule violations fail.
-- Full local gate suite passed on `2c2828b`: 49 tests, 13 pages, 13 canonicals. CI run `44864948124` completed with `conclusion: success`.
-- Remaining: exercise the `content-only` conditional workflow step with a real editorial-only push, measure CI/build time, and confirm the preflight catches changed-file errors earlier before considering incremental rendering.
+- Full local gate suite passed on `9049434`: 49 tests, 13 pages, 13 canonicals. CI run `44867438542` completed with `conclusion: success`.
+- Real editorial-only push verified on `88f19a1`: local classifier returned `content-only`, `npm run validate:changed -- 70eb5a7 88f19a1` exited `0`, and CI job step `Validate changed editorial content` completed with `conclusion: success` before the full gates. The temporary `ci-content-only-fixture.md` was then removed on `9049434`.
+- Remaining: measure CI/build time and confirm the preflight catches changed-file errors earlier before considering incremental rendering.
 
