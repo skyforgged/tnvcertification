@@ -8,34 +8,44 @@ interface Props {
 
 const { article, headingLevel = 3 } = Astro.props;
 const Heading = `h${headingLevel}` as "h2" | "h3";
-const dateFormatter = new Intl.DateTimeFormat("id-ID", {
+const dateFormatter = new Intl.DateTimeFormat(article.lang === "en" ? "en-US" : "id-ID", {
   day: "numeric",
   month: "long",
   year: "numeric",
   timeZone: "UTC",
 });
+const articleLabel = article.lang === "en" ? "Article" : "Artikel";
+const readLabel = article.lang === "en" ? "Read article" : "Baca artikel";
 ---
 
-<article class="border-t-4 border-brand-orange pt-5">
-  <div
-    role="img"
-    aria-label={article.featuredImage.alt}
-    class="mb-5 flex h-28 items-end bg-brand-blue/10 p-4"
+<article class="flex h-full flex-col border-t border-border pt-5">
+  <a
+    href={`/articles/${article.slug}/`}
+    class="group block overflow-hidden rounded-[var(--radius-panel)] bg-surface-muted focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-blue"
+    aria-label={`${readLabel}: ${article.title}`}
+    tabindex="-1"
   >
-    <span class="text-xs font-semibold uppercase tracking-widest text-brand-deepblue">
-      Artikel
-    </span>
-  </div>
-  <Heading class="text-xl font-semibold leading-snug text-brand-deepblue">
+    <img
+      src={article.featuredImage.src}
+      alt={article.featuredImage.alt}
+      width="1200"
+      height="675"
+      loading="lazy"
+      decoding="async"
+      class="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+    />
+  </a>
+  <p class="mt-4 text-xs font-semibold uppercase tracking-[0.12em] text-ink-subtle">{articleLabel}</p>
+  <Heading class="mt-2 text-xl font-semibold leading-snug tracking-tight text-ink">
     <a
       href={`/articles/${article.slug}/`}
-      class="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-orange hover:text-brand-blue"
+      class="rounded-sm underline-offset-4 hover:text-brand-deepblue hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue"
     >
       {article.title}
     </a>
   </Heading>
-  <p class="mt-3 text-sm leading-relaxed text-slate-700">{article.intro}</p>
-  <p class="mt-4 text-xs text-slate-500">
+  <p class="mt-3 text-sm leading-relaxed text-ink-muted">{article.intro}</p>
+  <p class="mt-auto pt-4 text-xs text-ink-subtle">
     <time datetime={article.effectiveDate.toISOString().slice(0, 10)}>
       {dateFormatter.format(article.effectiveDate)}
     </time>
