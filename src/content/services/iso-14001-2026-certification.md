@@ -1,0 +1,117 @@
+---
+title: "ISO 14001:2026 Environmental Management System Certification"
+intro: "ISO 14001:2026 Environmental Management System Certification is an independent conformity assessment of an organization's environmental management system against the requirements of the latest ISO 14001 edition."
+metaDescription: "Explore ISO 14001:2026, environmental management system scope, environmental aspects and impacts, certification audits, and transition requirements."
+pubDate: "2026-11-21"
+draft: true
+id: 4
+featuredImage:
+  src: "/images/illustrations/article-iso14001-certification.webp"
+  alt: "ISO 14001:2026 certification is an assessment of an organization's environmental management system."
+slug: "iso-14001-2026-certification"
+translationKey: "service-sertifikasi-iso-14001-2026"
+lang: "en"
+serviceType: "Certification"
+category: "Environmental Management System"
+categoryIds:
+  - "environmental-management"
+blocks:
+  - type: "content-section"
+    surface: "blue"
+    eyebrow: "Current standard"
+    title: "ISO 14001:2026 as the environmental management system reference"
+    description: "ISO 14001:2026 is the fourth edition of the international standard for environmental management systems (EMS). It provides a framework for organizations to manage their environmental responsibilities, improve environmental performance, and meet relevant compliance obligations. ISO published it on 15 April 2026, replacing ISO 14001:2015."
+    items:
+      - title: "Systematic environmental management"
+        description: "Organizations establish processes to identify environmental aspects, understand related impacts, determine controls, and evaluate the results of environmental management."
+      - title: "Environmental performance and protection"
+        description: "An EMS helps organizations manage resource use, waste, emissions, pollution, and other environmental issues relevant to their context and activities."
+  - type: "content-section"
+    surface: "mint"
+    eyebrow: "Management system areas"
+    title: "Key areas of an environmental management system"
+    description: "The following areas provide a general overview of EMS topics. They do not replace the full text of ISO 14001:2026 and are not an exhaustive list of audit requirements."
+    items:
+      - title: "Organizational context and leadership"
+        description: "Understanding internal and external conditions, relevant interested-party needs, the EMS scope, environmental policy, responsibilities, and leadership."
+      - title: "Environmental aspects and impacts"
+        description: "Identifying environmental aspects of activities, products, and services and determining related environmental impacts while considering a life cycle perspective."
+      - title: "Compliance obligations"
+        description: "Determining and accessing applicable environmental compliance obligations, understanding how they apply, and evaluating their fulfilment."
+      - title: "Risks, opportunities, and planning"
+        description: "Determining risks and opportunities that need to be addressed, setting environmental objectives, and planning relevant actions and changes."
+      - title: "Operational control"
+        description: "Establishing controls for relevant processes, activities, products, services, and external providers, including a life cycle perspective."
+      - title: "Performance evaluation and improvement"
+        description: "Monitoring environmental performance, evaluating compliance, conducting internal audits and management reviews, and addressing nonconformities."
+  - type: "content-section"
+    surface: "cream"
+    eyebrow: "2026 edition"
+    title: "Changes and focus areas in ISO 14001:2026"
+    description: "The 2026 edition retains the core EMS framework while clarifying a number of requirements and guidance. Organizations should review the official standard to determine how the changes affect their own systems and conformity evidence."
+    items:
+      - title: "Broader environmental conditions"
+        description: "Relevant environmental context considerations include climate change, environmental conditions, biodiversity, resource availability, and pollution levels."
+      - title: "Life cycle perspective and value chain"
+        description: "Environmental aspects and operational controls take account of life cycle stages and relevant external processes, products, services, and parties."
+      - title: "Risks, opportunities, and change"
+        description: "Requirements for determining risks and opportunities and for planning and managing change are made clearer and more structured."
+      - title: "Leadership and environmental outcomes"
+        description: "Leadership roles, accountability, and performance evaluation remain important to ensuring that the EMS achieves its intended outcomes."
+  - type: "content-section"
+    surface: "coral"
+    eyebrow: "Certification cycle"
+    title: "ISO 14001 certification audit stages"
+    description: "Environmental management system certification generally includes the stages below. Their sequence and applicability depend on the scheme, certification body's procedures, scope, and applicable accreditation requirements."
+    items:
+      - title: "Application and scope determination"
+        description: "Information about the organization, locations, activities, processes, and EMS scope is reviewed to determine eligibility and plan the audit."
+      - title: "Stage 1 audit"
+        description: "Where applicable, the Stage 1 audit reviews documented information, site conditions, significant EMS aspects, and readiness for the Stage 2 audit."
+      - title: "Stage 2 audit"
+        description: "The audit team evaluates the implementation and effectiveness of the EMS against objective evidence, the standard's requirements, and established audit criteria."
+      - title: "Follow-up and certification decision"
+        description: "Nonconformities are addressed in accordance with the applicable procedure. Audit results undergo an independent review before an authorized decision is made."
+      - title: "Surveillance and recertification"
+        description: "After certification is granted, surveillance and recertification activities take place according to the certification cycle and applicable requirements."
+  - type: "content-section"
+    surface: "navy"
+    eyebrow: "Standard transition"
+    title: "Transition from ISO 14001:2015 to ISO 14001:2026"
+    description: "ISO 14001:2026 was published on 15 April 2026. Global ACI transition requirements set 30 April 2029 as the end of the transition period for schemes and parties within their scope. Organizations should confirm the applicable schedule and requirements with their certificate-issuing certification body; requirements may depend on the accreditation body, recognition scope, and certification body's status."
+    items:
+      - title: "Review transition requirements"
+        description: "Use ISO publications, relevant accreditation-body transition requirements, and formal notices from the certificate-issuing certification body as primary references."
+      - title: "Plan the transition audit"
+        description: "The timing and method of the transition audit are determined in accordance with applicable requirements and the organization's certification cycle."
+  - type: "faq"
+    surface: "white"
+    items:
+      - question: "Is ISO 14001:2026 the latest edition?"
+        answer: "Yes. ISO 14001:2026 is the fourth edition, published on 15 April 2026, and it replaces ISO 14001:2015 and its 2024 amendment in the ISO catalogue."
+      - question: "What is the transition deadline for ISO 14001:2026?"
+        answer: "Global ACI transition requirements set 30 April 2029 as the end of the transition period for parties and schemes within their scope. Organizations should verify the requirements of their accreditation body and certificate-issuing certification body."
+      - question: "Do ISO 14001:2015 certificates become invalid immediately after the new edition is published?"
+        answer: "No, not automatically. Certificates and transition activities are governed by the applicable transition requirements. Organizations should confirm the schedule and requirements with the certificate-issuing certification body."
+      - question: "Is TNCV currently accepting applications for ISO 14001:2026 certification?"
+        answer: "This page is still a draft for content development. The availability, scope, and authority of PT. Intiprima Sertifikasi to provide this certification service have not yet been approved for publication. Service information will be published only after internal verification is complete."
+---
+# ISO 14001:2026 Environmental Management System Certification
+
+ISO 14001:2026 Environmental Management System Certification is an independent conformity assessment of an organization's environmental management system against the requirements of the latest ISO 14001 edition.
+
+## Service development status
+
+This page is being prepared for the service catalogue. **PT. Intiprima Sertifikasi has not confirmed the availability of ISO 14001:2026 certification services.** The required scope, scheme status, and authority must be verified before this page can be published.
+
+Publication of this page must not be interpreted as a statement that PT. Intiprima Sertifikasi holds accreditation, recognition, or authority to issue ISO 14001:2026 certificates.
+
+## Certification process overview
+
+If the service is approved and becomes available, environmental management system certification generally includes an application, scope determination, audit planning, a Stage 1 audit where applicable, a Stage 2 audit, resolution of findings, certification decision review, and surveillance according to the certification cycle. Actual requirements follow the applicable scheme, standard, and procedures of the authorized certification body.
+
+## Official references
+
+- [ISO 14001:2026 — Environmental management systems — Requirements with guidance for use](https://www.iso.org/standard/14001)
+- [ISO announcement: ISO 14001:2026 published on 15 April 2026](https://www.iso.org/news/2026/04/iso-14001-2026-published)
+- [Global ACI: Transition Requirements for ISO 14001:2026](https://global-aci.org/en/news/global-aci-publishes-transition-requirements-for-iso-140012026/)
