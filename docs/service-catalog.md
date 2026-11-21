@@ -97,6 +97,79 @@ A safe initial positioning, if approved after validation, would focus on **CSMS 
 5. Define service boundaries and deliverables before preparing public-facing marketing copy.
 6. Keep CSMS out of the published service catalog until the service model and claims have been reviewed and approved.
 
+### Expanded competitor benchmark — Indonesian CSMS market
+
+**Research date:** 21 November 2026  
+**Research method:** public provider webpages and publicly displayed offer details. This is a desk-research benchmark, not a verification of provider licensing, accreditation, actual delivery quality, or authorization by any project owner.
+
+#### Provider landscape
+
+The providers below are grouped by the service they publicly advertise. A provider may appear in more than one market category; the grouping describes the observed offer, not a formal legal classification.
+
+| Provider | Publicly advertised CSMS-related offer | Public price / terms observed | Market category | Notes / verification boundary |
+|---|---|---|---|---|
+| Jasa Perijinan CSMS | CSMS document development, document review/gap analysis, HSE verification and audit assistance, K3LL digitalization | Not publicly confirmed in the reviewed pages | Documentation consultancy / readiness support | Primary competitor benchmark; its nine-element model is provider-presented, not a universal standard |
+| Prime Safety Indonesia | CSMS training covering planning, risk assessment, HSE capability assessment, tender, mobilization, audit, monitoring, and final performance evaluation | Not stated on reviewed page | Training / competency development | Page says its training certificate is issued by Prime Safety Indonesia; do not equate this with principal CSMS qualification |
+| Nisbi Indonesia | CSMS training | Publicly listed prices vary by city; minimum two participants; in-house terms negotiable | Training | Confirm current quotation, tax, inclusions, and course schedule before using price competitively |
+| Safetra (PT Safe Tra Indonesia) | CSMS training with workshops on risk assessment, HSE capability assessment, tendering, mobilization, monitoring, audits, and performance evaluation | Not stated on reviewed page | Training / practical workshops | Training offer does not establish authority to qualify contractors for a principal |
+| Aljabar Anugrah Selaras | CSMS training; online and offline formats | Online: Rp1.8–1.9 million/person; offline: Rp3.5–4.5 million/person depending on city, as displayed on the page | Training | Prices and 2026 schedule are page-published claims; reconfirm before commercial comparison |
+| PENA Consultant | CSMS training and workshop for contractor prequalification documentation | Page displays packages from Rp3.4 million and Rp4.5 million; it also makes Kemnaker/BNSP-related claims | Training / documentation preparation | Verify the exact credential, issuing body, scheme, and relevance to contractor CSMS qualification separately |
+| pelatihan-k3.co.id | Safety Induction & CSMS contractor training | Page displays Rp2.75 million, one-day / 8 JP offer | Training | Page mentions a partner and licensing/competency claims; independently verify the legal entity, license, and certificate issuer |
+| MK Academy | CSMS training for contractors, vendors, suppliers, and company personnel | Price not stated on reviewed page | Training | Public curriculum includes HSE plan, risk assessment, tender, mobilization, audit, and HSE performance |
+| Indonesia Safety Center | CSMS training described as BNSP-related, with assessment preparation | Page displays online/offline prices; verify current offer directly | Training / competency assessment preparation | Do not infer that a training certificate equals a principal's CSMS vendor qualification |
+| Gautama Jaya Sertifikasi | Online CSMS training | Page displayed Rp349,000 for a dated October 2026 class | Online training | Dated schedule and price may be expired; treat as historical page evidence until reconfirmed |
+| SQN Training | CSMS training, public batches and in-house training | City-based prices displayed; page states minimum two participants | Training | Similar training curriculum to other providers; confirm current quote and exact certificate issuer |
+| BMD Training Centre | CSMS training and competency-test pathway described as BNSP-related | Page displays package pricing; details and current schedule require confirmation | Training / TUK pathway | Verify current TUK status, LSP scheme, competency unit, and certificate issuer directly |
+| Dian Pro Consulting | CSMS-related consulting, documentation, HIRADC/JSA, and HSE audit support (from preliminary desk research) | Not confirmed | Consulting / documentation support | Revalidate current service page and legal entity before treating as an active direct competitor |
+| HSE.co.id | CSMS documentation and assistance (from preliminary desk research) | Not confirmed | Documentation / assistance | Revalidate exact service scope and current public offer |
+| AhliK3.id | Document review, scoring simulation, and prequalification preparation (from preliminary desk research) | Not confirmed | Readiness / advisory | Confirm whether this is a current standalone offer and identify the applicable principal scheme |
+| Serkom.co.id | K3 management documentation (from preliminary desk research) | Not confirmed | Documentation support | CSMS-specific scope requires further verification |
+| Segoro Interkon | CSMS training (from preliminary desk research) | Not confirmed | Training | Confirm current course availability and certificate issuer |
+| BMD Training Centre | CSMS training (also listed above) | See row above | Training / competency pathway | Duplicate mention consolidated; count once |
+
+**Count and interpretation:** the table contains more than ten named market participants, but the strength of public evidence differs. The first twelve rows have a directly identified public CSMS offer in the current desk-research set; the remaining entries are retained as leads from preliminary research and require revalidation. Do not present all entries as equally verified or as accredited certification bodies.
+
+#### Principal / scheme-owner references (not competitors in the same service-provider category)
+
+These organizations are included to show why contractor CSMS qualification is scheme-specific. They are not counted as independent CSMS consultants or training providers:
+
+- PGN Contractor Safety Management System guidance: https://ir.pgn.co.id/AssetFiles/esg/Contractor_Safety_Management_System.pdf
+- Pertamina Hulu Energi CSMS reference: https://phe.pertamina.com/uploads/2023/06/60e19136-9a6e-4deb-bb78-41a7d3de4af4.pdf
+- PLN Nusantara Power CSMS FAQ: https://csms.plnnusantarapower.co.id/index.php/welcome/faq
+- PLN Batam CSMS announcement: https://www.plnbatam.com/wp-content/uploads/2026/06/Surat-Pengumuman-CSMS-PLN-Batam.pdf
+
+#### Commercial observations and positioning opportunities
+
+1. **Training is a crowded offer.** Many providers cover similar topics: CSMS lifecycle, HSE plan, risk assessment, HSE capability assessment, tender, mobilization, audit, and performance evaluation. Competing only on a generic two-day training course is unlikely to create strong differentiation.
+2. **Document readiness is a visible customer need.** Document preparation, review, gap analysis, evidence mapping, and corrective-action planning are practical service opportunities, provided TNCVCertification has the required competence and a clear advisory scope.
+3. **Principal-specific readiness is more defensible than a generic “CSMS certificate”.** A useful service could map contractor evidence against a named principal's current published requirements, with the principal, document revision, and assessment limitations stated explicitly.
+4. **Digital evidence management is a potential differentiator.** Controlled document registers, evidence matrices, expiry tracking, corrective-action logs, and readiness dashboards can support contractor preparation without implying approval by a principal.
+5. **Price comparison must normalize scope.** Compare duration, number of participants, online/offline format, workshop deliverables, document review, post-training support, exam, certificate issuer, taxes, travel, and in-house terms. Do not compare headline prices alone.
+6. **Separate three different outcomes in all marketing:** (a) training attendance/competency credential, (b) consultancy or readiness assessment report, and (c) formal contractor qualification/approval issued by or accepted by a principal. They are not interchangeable.
+
+#### Suggested next validation before public launch
+
+- Contact a representative sample of providers to validate current prices, deliverables, certificate issuers, and whether document review is included.
+- Obtain current official CSMS documents from target principals and record title, revision/date, scope, and source.
+- Confirm TNCVCertification's legal authority, competence, impartiality arrangements, and any required recognition before offering assessment or certification claims.
+- Define a service matrix that explicitly states what TNCVCertification prepares, reviews, assesses, and does not issue.
+- Keep all CSMS pages unpublished until the service owner approves the scheme, methodology, claims, and operational controls.
+
+#### Public provider references
+
+- Jasa Perijinan CSMS — https://jasa-perijinan-csms.vercel.app/services and https://jasa-perijinan-csms.vercel.app/csms-elements
+- Prime Safety Indonesia — https://primesafetyindonesia.com/pelatihan/k3-umum-ps/contractors-safety-management-system-csms/
+- Nisbi Indonesia — https://www.nisbiindonesia.com/training-contractor-safety-management-system-csms/
+- Safetra — https://safetra.co.id/training-contractor-safety-management-system-csms/
+- Aljabar Anugrah Selaras — https://aljabarselaras.com/safety/training-csms-contractor-safety-management-system/
+- PENA Consultant — https://penaconsultant.com/pelatihan/csms-contractor-safety-management-system
+- pelatihan-k3.co.id — https://pelatihan-k3.co.id/pelatihan/safety-induction-kontraktor/
+- MK Academy — https://mkacademy.id/product/pelatihan-kompetensi-csms-contractor-safety-management-system/
+- Indonesia Safety Center — https://indonesiasafetycenter.org/pelatihan-contractor-safety-management-system-csms-bnsp/
+- Gautama Jaya Sertifikasi — https://www.gautamajayasertifikasi.co.id/pelatihan-online-training-csms-contractor-safety-management-system-236
+- SQN Training — https://sqn-training.co.id/training-contractor-safety-management-system-csms/
+- BMD Training Centre — https://www.sertifikasibnsp.id/training-csms-contractor-safety-management-system
+
 ### Relationship to other services
 
 - **ISO 45001:** A relevant occupational health and safety management-system reference, but CSMS is not identical to ISO 45001 certification.
