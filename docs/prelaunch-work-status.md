@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated commit: `c210dfe` (merge `feat/p15-editorial-strategy`)
+- Validated commit: `72b843c` (merge `feat/p16-document-control-article-draft`)
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -78,7 +78,7 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-Local full validation ran on `main` at `c210dfe` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
+Local full validation ran on `main` at `72b843c` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
 
 | Command | Result |
 |---|---|
@@ -89,7 +89,7 @@ Local full validation ran on `main` at `c210dfe` with the pinned Node.js `26.13.
 | `npm run test` | PASS, exit `0`, 35 tests |
 | `npm run audit:seo` | PASS, exit `0`, 13 pages and 13 unique canonicals |
 
-GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Runs `44845274570` (`6151e50`) and `44854428984` (`2733047`) completed with `conclusion: success`. No CI result was available for the current merge before this status update. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
+GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Runs `44845274570` (`6151e50`), `44854428984` (`2733047`) and `44855036386` (`0ce7f0b`) completed with `conclusion: success`. No CI result was available for the current merge before this status update. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
 
 
 ## P5 completion — certification scheme catalog and CI
@@ -233,8 +233,11 @@ Branch: `feat/p15-editorial-strategy` (merged at `c210dfe`).
 
 ## P16 — Editorial Content Production (in progress)
 
+Branch: `feat/p16-document-control-article-draft` (merged at `72b843c`).
+
 - Started first prioritized editorial topic: document control for ISO 9001.
 - Drafted Indonesian and English versions in `docs/drafts/p16-document-control-iso9001.md` for editorial/technical review before entering the publishable article collection.
 - Research notes reference ISO's documented-information guidance and the current ISO 9001 edition status page; exact edition-specific requirements and clause references are intentionally not asserted pending technical review.
-- No public article routes/content were added. No local build or tests were run; this is a documentation-only draft branch.
+- No public article routes or publishable article records were added; this branch only created a documentation draft.
+- Local validation ran on merge commit `72b843c`; see the validation note above for command results.
 - Remaining work: technical review, language/SEO review, image selection, internal-link review, metadata/schema verification, and final conversion into the article collection if approved.
