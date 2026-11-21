@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 /**
  * Fast editorial preflight for changed Markdown entries.
- *
- * Cross-entry checks intentionally remain in the Astro build integration.
- * This script is an early feedback layer, never a replacement for full checks.
+ * Cross-entry checks remain in the Astro build integration.
  */
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
@@ -17,7 +15,6 @@ function changedEditorialFiles() {
   if (!base || /^0+$/.test(base)) {
     throw new Error("A valid base commit is required for selective validation.");
   }
-
   const raw = execFileSync("git", ["diff", "--name-status", "-z", base, head], {
     encoding: "buffer",
     stdio: ["ignore", "pipe", "pipe"],
@@ -30,15 +27,15 @@ function changedEditorialFiles() {
     const status = fields[index++];
     if (!status) continue;
     if (status !== "A" && status !== "M") {
-      throw new Error(\`Unsafe diff status "\${status}"; use the full validation path.\`);
+      throw new Error('Unsafe diff status "' + status + '"; use the full validation path.');
     }
     const path = fields[index++];
     if (!path) continue;
     const collection = editorialCollections.find((item) =>
-      path.startsWith(\`\${item.dir}/\`),
+      path.startsWith(item.dir + "/"),
     );
     if (!collection || !/\.(md|mdx)$/i.test(path)) {
-      throw new Error(\`Changed path is not an editorial Markdown entry: \${path}\`);
+      throw new Error("Changed path is not an editorial Markdown entry: " + path);
     }
     files.push({ path, collection: collection.name });
   }
@@ -53,7 +50,7 @@ function parseEntry(path, collection) {
   const raw = readFileSync(path, "utf8");
   const match = raw.match(/^---[ \t]*\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
   if (!match) {
-    throw new Error(\`\${path}: missing or malformed YAML frontmatter delimiters.\`);
+    throw new Error(path + ": missing or malformed YAML frontmatter delimiters.");
   }
 
   let data;
@@ -61,11 +58,12 @@ function parseEntry(path, collection) {
     data = parseYaml(match[1]);
   } catch (error) {
     throw new Error(
-      \`\${path}: invalid YAML frontmatter: \${error instanceof Error ? error.message : String(error)}\`,
+      path + ": invalid YAML frontmatter: " +
+      (error instanceof Error ? error.message : String(error)),
     );
   }
   if (typeof data !== "object" || data === null || Array.isArray(data)) {
-    throw new Error(\`\${path}: YAML frontmatter must be an object.\`);
+    throw new Error(path + ": YAML frontmatter must be an object.");
   }
 
   const body = raw.slice(match[0].length);
@@ -78,11 +76,11 @@ try {
     validateEntry(parseEntry(path, collection)),
   );
 
-  console.log(\`Selective editorial validation: \${files.length} changed file(s).\`);
+  console.log("Selective editorial validation: " + files.length + " changed file(s).");
   if (diagnostics.length > 0) {
     console.error(
       diagnostics
-        .map((item) => \`[\${item.rule}] \${item.path} → \${item.field}: \${item.reason}\`)
+        .map((item) => "[" + item.rule + "] " + item.path + " → " + item.field + ": " + item.reason)
         .join("\n"),
     );
     process.exitCode = 1;
