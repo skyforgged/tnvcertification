@@ -1,5 +1,5 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import WidePageLayout from "../../layouts/WidePageLayout.astro";
 import MainMenuHero from "../../components/MainMenuHero.astro";
 import { getCollection } from "astro:content";
 import { siteSettings } from "../../site";
@@ -9,7 +9,7 @@ const trainings = await getCollection(
   ({ data }) => data.draft !== true && data.lang === "id",
 );
 ---
-<Layout
+<WidePageLayout
   title={`Pelatihan | ${siteSettings.title}`}
   description="Katalog program pelatihan dan pengembangan kompetensi untuk sistem manajemen, audit, dan kepatuhan."
   canonical="/trainings/"
@@ -46,4 +46,4 @@ const trainings = await getCollection(
       </div>
     )}
   </section>
-</Layout>
+</WidePageLayout>
