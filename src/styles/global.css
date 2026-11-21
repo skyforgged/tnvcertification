@@ -1,31 +1,120 @@
 /**
- * PT. Intiprima Sertifikasi — design tokens and base styles.
+ * PT. Intiprima Sertifikasi — shared design tokens and base styles.
  *
- * Tailwind CSS 4 uses CSS-first configuration. Brand tokens are registered
- * in @theme so they can be consumed as utilities (e.g. `bg-brand-blue`),
- * and the same values are published as CSS custom properties for shared use
- * in scoped component CSS and any non-Tailwind styles.
+ * Tailwind CSS 4 uses CSS-first configuration. Semantic values are exposed
+ * through @theme utilities and :root custom properties so Astro components
+ * can share the same visual system without inventing local palettes.
  */
 
 @import "tailwindcss";
 
 @theme {
-  --color-brand-blue: #315CFF;
-  --color-brand-deepblue: #1736A8;
-  --color-brand-orange: #FF6B35;
-  --color-brand-yellow: #FFD447;
-  --color-brand-mint: #36C9A5;
-  --color-brand-pink: #F45B91;
-  --color-cream: #FFF8EC;
-  --color-white: #FFFFFF;
+  /* Brand palette */
+  --color-brand-blue: #315cff;
+  --color-brand-deepblue: #1736a8;
+  --color-brand-orange: #ff6b35;
+  --color-brand-yellow: #ffd447;
+  --color-brand-mint: #36c9a5;
+  --color-brand-pink: #f45b91;
+
+  /* Semantic surfaces and text */
+  --color-page: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f5f7fa;
+  --color-surface-inset: #eef2f6;
+  --color-ink: #172033;
+  --color-ink-muted: #536174;
+  --color-ink-subtle: #697586;
+  --color-border: #dce2ea;
+  --color-border-strong: #b8c2d0;
+
+  /* Backwards-compatible legacy token; now white-dominant. */
+  --color-cream: #ffffff;
 
   --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
   --font-serif: "Merriweather", "Noto Serif", Georgia, serif;
+
+  /* Shared geometry */
+  --container-wide: 80rem;
+  --container-reading: 48rem;
+  --radius-control: 0.5rem;
+  --radius-panel: 0.75rem;
+}
+
+:root {
+  color-scheme: light;
+  --page-background: #ffffff;
+  --surface-background: #ffffff;
+  --surface-muted: #f5f7fa;
+  --surface-inset: #eef2f6;
+  --text-primary: #172033;
+  --text-secondary: #536174;
+  --text-subtle: #697586;
+  --border-default: #dce2ea;
+  --border-strong: #b8c2d0;
+  --content-wide: 80rem;
+  --content-reading: 48rem;
+  --page-gutter: 1rem;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --page-gutter: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --page-gutter: 2rem;
+  }
 }
 
 @layer base {
+  html {
+    background: var(--page-background);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   body {
-    background-color: var(--color-cream);
-    color: #111827;
+    min-width: 320px;
+    background-color: var(--page-background);
+    color: var(--text-primary);
+    line-height: 1.6;
+  }
+
+  p {
+    color: inherit;
+  }
+
+  a {
+    text-underline-offset: 0.18em;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-brand-blue);
+    outline-offset: 3px;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    max-width: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
