@@ -17,7 +17,7 @@ const dateFormatter = new Intl.DateTimeFormat(article.lang === "en" ? "en-US" : 
 const articleLabel = article.lang === "en" ? "Article" : "Artikel";
 ---
 
-<article class="flex h-full flex-col border-t border-border pt-5">
+<article class="group flex h-full flex-col border-t border-border pt-5">
   <figure class="overflow-hidden rounded-[var(--radius-panel)] bg-surface-muted">
     <img
       src={article.featuredImage.src}
