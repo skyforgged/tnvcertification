@@ -124,6 +124,10 @@ The register below is a draft inventory of the current repository documents. A l
 | TNCV-CSMS-RPT-001 (proposed) | CSMS Readiness Review Report Template | [To be assigned] | Template | Draft — not approved for issue | [Pending] | [Pending] | [Pending] | docs/csms/readiness-report-template.md |
 | TNCV-CSMS-COMP-001 | CSMS Competence Matrix | [To be assigned] | 0.1 | Draft — no personnel authorized | [Pending] | [Pending] | [Pending] | docs/csms/competence-matrix.md |
 | TNCV-CSMS-IMP-001 | CSMS Impartiality & Conflict Register | [To be assigned] | 0.1 | Draft — not approved | [Pending] | [Pending] | [Pending] | docs/csms/impartiality-conflict-register.md |
+| TNCV-CSMS-PRO-DG-001 (proposed) | CSMS Data Governance & Information Security Procedure | [To be assigned] | 0.1 | Draft — not approved | [Pending] | [Pending] | [Pending] | docs/csms/data-governance-information-security-procedure.md |
+| TNCV-CSMS-REG-DG-002 (proposed) | CSMS Data Asset Inventory & Classification Register | [To be assigned] | 0.1 | Draft — blank template | [Pending] | [Pending] | [Pending] | docs/csms/data-asset-inventory-register.md |
+| TNCV-CSMS-REG-SEC-003 (proposed) | CSMS Access Authorization & Review Register | [To be assigned] | 0.1 | Draft — blank template | [Pending] | [Pending] | [Pending] | docs/csms/access-authorization-register.md |
+| TNCV-CSMS-PRO-IR-004 (proposed) | CSMS Data Incident Response Playbook | [To be assigned] | 0.1 | Draft — not approved | [Pending] | [Pending] | [Pending] | docs/csms/data-incident-response-playbook.md |
 | TNCV-CSMS-DOC-001 | CSMS Document Control & Record Retention | [To be assigned] | 0.1 | Draft — not approved | [Pending] | [Pending] | [Pending] | docs/csms/document-control-retention.md |
 | TNCV-CSMS-SRC-001 (proposed) | CSMS Source Verification & Sampling Record | [To be assigned] | 0.1 | Draft — not approved for customer use | [Pending] | [Pending] | [Pending] | docs/csms/source-verification-and-sampling.md |
 | TNCV-CSMS-PILOT-ACT-001 | CSMS Pilot Remediation Register | [Management to assign] | 0.1 | Open working register | [Pending] | [Pending] | [Pending] | docs/csms/pilot-remediation-register.md |
@@ -144,3 +148,9 @@ Before operational use, management must approve:
 6. Privacy and confidentiality notices and contract clauses.
 
 **Until these items are approved, this framework is an internal draft and the proposed retention periods remain intentionally blank.**
+
+## 12. RA-08 data governance and information-security linkage
+
+The document-control and retention framework is the record-control foundation; the more detailed privacy, data-flow, access and incident controls are defined in the [Data Governance & Information Security Procedure](data-governance-information-security-procedure.md). Use its linked [Data Asset Inventory & Classification Register](data-asset-inventory-register.md), [Access Authorization & Review Register](access-authorization-register.md) and [Data Incident Response Playbook](data-incident-response-playbook.md) for engagement-specific evidence.
+
+The proposed classification and control requirements in those documents are not effective until management approves the enterprise classification scheme or an aligned service-specific scheme, privacy/legal review, approved systems and channels, access model, supplier arrangements, incident contacts and retention schedule. The placeholder retention periods in Section 7 remain unapproved; this update does not create or imply a retention period.
