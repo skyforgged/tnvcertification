@@ -9,6 +9,7 @@ export default defineConfig({
   // Preserve the previous singular directory URL as a permanent redirect.
   redirects: {
     "/service/": "/services/",
+    "/schedule/": "/schedules/",
   },
   integrations: [
     contentValidationIntegration,
