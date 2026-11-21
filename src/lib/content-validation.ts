@@ -118,7 +118,7 @@ export function validateEntry(entry: ContentEntryLike): Diagnostic[] {
 
   // CONTENT-013: consultation/consulting language is prohibited across all site content.
   const allContentText = [...collectTextValues(data), entry.body ?? ""].join(" ");
-  if (/(?:konsult\\p{L}*|consult\\p{L}*)/iu.test(allContentText)) {
+  if (/(?:konsult\p{L}*|consult\p{L}*)/iu.test(allContentText)) {
     add(
       "content",
       "CONTENT-013",
