@@ -47,15 +47,18 @@ const statusLabel = (status?: string) => ({
   description="Agenda pelaksanaan pelatihan, tanggal kelas, lokasi, biaya, kuota, dan informasi pendaftaran."
   canonical="/schedules/"
   lang="id"
+  ogImage="/images/illustrations/schedules-calendar.webp"
 >
   <section class="w-full" aria-labelledby="schedules-index">
     <Breadcrumbs items={[{ label: "Beranda", href: "/" }, { label: "Jadwal" }]} />
-    <header class="max-w-3xl">
+    <header class="grid items-center gap-8 md:grid-cols-[1fr_280px]"><div class="max-w-3xl">
       <p class="text-sm font-semibold uppercase tracking-widest text-brand-orange">Training Schedule</p>
       <h1 id="schedules-index" class="mt-3 text-3xl font-semibold tracking-tight text-brand-deepblue sm:text-4xl">Jadwal Pelatihan</h1>
       <p class="mt-4 text-lg leading-relaxed text-slate-700">
         Temukan agenda kelas dan pelaksanaan program pelatihan, termasuk tanggal, metode, lokasi, biaya, kuota, serta status pendaftaran. Jadwal dikelola terpisah dari informasi program agar perubahan pelaksanaan dapat diperbarui tanpa mengubah halaman program.
       </p>
+      </div>
+      <img data-page-image src="/images/illustrations/schedules-calendar.webp" alt="" aria-hidden="true" width="640" height="480" loading="lazy" class="mx-auto w-full max-w-[280px]" />
     </header>
 
     {publishedSchedules.length > 0 ? (

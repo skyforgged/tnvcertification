@@ -15,6 +15,7 @@
     "format": "prettier --write .",
     "preview": "astro preview",
     "audit:seo": "node scripts/audit-seo-build.mjs",
+    "audit:page-images": "node scripts/audit-page-images.mjs",
     "validate:changed": "node --import tsx scripts/validate-changed-content.mjs",
     "images:illustrations": "node scripts/convert-illustrations.mjs",
     "predev": "pnpm images:illustrations",

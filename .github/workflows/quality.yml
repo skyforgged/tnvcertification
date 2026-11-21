@@ -53,5 +53,7 @@ jobs:
         run: pnpm test
       - name: Production build
         run: pnpm build
+      - name: Page image uniqueness audit
+        run: pnpm audit:page-images
       - name: SEO and link audit
         run: pnpm audit:seo

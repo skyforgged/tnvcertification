@@ -18,9 +18,12 @@ const pageLinks = getPageLinks(page, totalPages, "/articles/");
 const adjacent = getAdjacentPageHrefs(page, totalPages, "/articles/");
 ---
 
-<Layout path={`/articles/page/${page}/`} title={`Artikel — Halaman ${page} | PT. Intiprima Sertifikasi`} description="Artikel sertifikasi, pelatihan, dan kepatuhan.">
+<Layout path={`/articles/page/${page}/`} title={`Artikel — Halaman ${page} | PT. Intiprima Sertifikasi`} description="Artikel sertifikasi, pelatihan, dan kepatuhan." ogImage="/images/illustrations/articles-archive-page-2.webp">
   <section class="w-full" aria-labelledby="article-archive">
-    <h1 id="article-archive" class="text-3xl font-semibold text-brand-deepblue">Artikel</h1>
+    <header class="mb-8 grid items-center gap-8 md:grid-cols-[1fr_280px]">
+      <h1 id="article-archive" class="text-3xl font-semibold text-brand-deepblue">Artikel</h1>
+      <img data-page-image src="/images/illustrations/articles-archive-page-2.webp" alt="" aria-hidden="true" width="640" height="480" loading="lazy" class="mx-auto w-full max-w-[280px]" />
+    </header>
     <div class="mt-8 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {articles.map((article) => <ArticleCard article={article} />)}
     </div>

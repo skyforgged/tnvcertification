@@ -8,7 +8,7 @@ import { getHomepageArticles, getPublishedArticles } from "../data/articles";
 const articles = getHomepageArticles(getPublishedArticles());
 ---
 
-<Layout title={siteSettings.title} description={siteSettings.description}>
+<Layout title={siteSettings.title} description={siteSettings.description} ogImage="/images/illustrations/home-assurance.webp">
   <div class="w-full space-y-14">
     <HomeHero title="Sertifikasi dan kepatuhan, dengan informasi yang jelas." description={siteSettings.description} />
 

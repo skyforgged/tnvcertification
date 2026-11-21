@@ -11,11 +11,14 @@ const pageArticles = articles.slice(0, pageSize);
 const pageLinks = getPageLinks(1, pageCount, "/articles/");
 const adjacent = getAdjacentPageHrefs(1, pageCount, "/articles/");
 ---
-<Layout path="/articles/" title="Artikel | PT. Intiprima Sertifikasi" description="Artikel, wawasan, dan panduan sertifikasi serta kepatuhan.">
+<Layout path="/articles/" title="Artikel | PT. Intiprima Sertifikasi" description="Artikel, wawasan, dan panduan sertifikasi serta kepatuhan." ogImage="/images/illustrations/articles-editorial.webp">
   <section class="w-full" aria-labelledby="article-archive">
     <Breadcrumbs items={[{ label: "Beranda", href: "/" }, { label: "Artikel" }]} />
-    <h1 id="article-archive" class="text-3xl font-semibold text-brand-deepblue">Artikel</h1>
-    <p class="mt-3 max-w-2xl text-slate-700">Wawasan, panduan, dan pembahasan seputar sertifikasi dan kepatuhan.</p>
+    <header class="grid items-center gap-8 md:grid-cols-[1fr_280px]">
+      <div><h1 id="article-archive" class="text-3xl font-semibold text-brand-deepblue">Artikel</h1>
+      <p class="mt-3 max-w-2xl text-slate-700">Wawasan, panduan, dan pembahasan seputar sertifikasi dan kepatuhan.</p></div>
+      <img data-page-image src="/images/illustrations/articles-editorial.webp" alt="" aria-hidden="true" width="640" height="480" loading="lazy" class="mx-auto w-full max-w-[280px]" />
+    </header>
     {pageArticles.length > 0 ? (
       <div class="mt-8 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {pageArticles.map((article) => <ArticleCard article={article} />)}

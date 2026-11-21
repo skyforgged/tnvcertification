@@ -9,6 +9,10 @@ All four initial assets are original SVG illustrations authored for this reposit
 | ILL-003 | Keselamatan dan perlindungan kontraktor | Original artwork authored for this repository | N/A — original work | Project-owned original artwork; internal website use | 2026-11-21 | SVG master; converted to WebP at build time | `assets/illustrations/source/csms-safety.svg` | `/images/illustrations/csms-safety.webp` | CSMS | Decorative |
 | ILL-004 | Pelatihan dan pengembangan kompetensi | Original artwork authored for this repository | N/A — original work | Project-owned original artwork; internal website use | 2026-11-21 | SVG master; converted to WebP at build time | `assets/illustrations/source/training-competency.svg` | `/images/illustrations/training-competency.webp` | Trainings | Decorative |
 
+| ILL-005 | Jadwal pelatihan | Original artwork authored for this repository | N/A — original work | Project-owned original artwork; internal website use | 2026-11-21 | SVG master; converted to WebP at build time | `assets/illustrations/source/schedules-calendar.svg` | `/images/illustrations/schedules-calendar.webp` | Schedules | Decorative |
+| ILL-006 | Wawasan dan artikel | Original artwork authored for this repository | N/A — original work | Project-owned original artwork; internal website use | 2026-11-21 | SVG master; converted to WebP at build time | `assets/illustrations/source/articles-editorial.svg` | `/images/illustrations/articles-editorial.webp` | Articles index | Decorative |
+| ILL-007 | Arsip artikel lanjutan | Original artwork authored for this repository | N/A — original work | Project-owned original artwork; internal website use | 2026-11-21 | SVG master; converted to WebP at build time | `assets/illustrations/source/articles-archive-page-2.svg` | `/images/illustrations/articles-archive-page-2.webp` | Articles page 2 | Decorative |
+
 ## Approval requirements for future third-party assets
 
 Before adding a third-party asset, verify:

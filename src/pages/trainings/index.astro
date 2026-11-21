@@ -14,6 +14,7 @@ const trainings = await getCollection(
   description="Katalog program pelatihan dan pengembangan kompetensi untuk sistem manajemen, audit, dan kepatuhan."
   canonical="/trainings/"
   lang="id"
+  ogImage="/images/illustrations/training-competency.webp"
 >
   <section class="w-full" aria-labelledby="training-index">
     <Breadcrumbs items={[{ label: "Beranda", href: "/" }, { label: "Pelatihan" }]} />
@@ -25,7 +26,7 @@ const trainings = await getCollection(
         Program pembelajaran untuk membantu organisasi dan profesional memahami persyaratan sistem manajemen, meningkatkan kompetensi, serta mempersiapkan penerapan dan audit.
       </p>
       </div>
-      <img src="/images/illustrations/training-competency.webp" alt="" aria-hidden="true" width="640" height="480" loading="lazy" class="mx-auto w-full max-w-[280px]" />
+      <img data-page-image src="/images/illustrations/training-competency.webp alt="" aria-hidden="true" width="640" height="480" loading="lazy" class="mx-auto w-full max-w-[280px]" />
     </header>
 
     {trainings.length > 0 ? (

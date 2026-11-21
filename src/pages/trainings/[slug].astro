@@ -46,6 +46,7 @@ const statusLabel = (status?: string) => ({
 >
   <article class="w-full">
     <Breadcrumbs items={[{ label: "Beranda", href: "/" }, { label: "Pelatihan", href: "/trainings/" }, { label: training.data.title }]} />
+    <img data-page-image src={training.data.featuredImage.src} alt={training.data.featuredImage.alt} width="1200" height="675" loading="eager" fetchpriority="high" class="mt-8 aspect-video w-full max-w-3xl rounded-xl object-cover" />
     <div class="prose mt-8 max-w-3xl">
       <Content />
     </div>

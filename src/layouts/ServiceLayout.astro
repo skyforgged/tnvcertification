@@ -8,14 +8,16 @@ interface Props {
   lang?: string;
   canonical?: string;
   ogImage?: string;
+  imageAlt: string;
   blocks?: Block[];
   structuredData?: unknown[];
 }
-const { title, description, lang, canonical, ogImage, blocks = [], structuredData = [] } = Astro.props;
+const { title, description, lang, canonical, ogImage, imageAlt, blocks = [], structuredData = [] } = Astro.props;
 ---
 <Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage} structuredData={structuredData}>
   <article class="w-full">
     <Breadcrumbs items={[{ label: "Beranda", href: "/" }, { label: "Layanan", href: "/services/" }, { label: title }]} />
+    {ogImage && <img data-page-image src={ogImage} alt={imageAlt} width="1200" height="675" loading="eager" fetchpriority="high" class="mb-8 aspect-video w-full max-w-3xl rounded-xl object-cover" />}
     <div class="prose mt-8 max-w-3xl">
       <slot />
     </div>

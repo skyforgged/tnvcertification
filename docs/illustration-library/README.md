@@ -46,7 +46,7 @@ These are starting defaults, not a substitute for visual review. If text, fine s
 
 ## Page usage
 
-Use an illustration only when it adds meaning. Prefer a small number of reusable assets across related pages, while avoiding repetitive hero imagery. The asset register records intended page placement and descriptive alt text. Alt text must describe the actual image in its context; decorative images should use empty alt text.
+Use an illustration only when it adds meaning. Every generated URL must have exactly one primary page image, and that image must be exclusive to that URL. Do not reuse an image across pages, even if renamed. The build audit checks source paths and SHA-256 content hashes. Supporting card and in-body images are outside this primary-image rule. The asset register records intended page placement and descriptive alt text. Alt text must describe the actual image in its context; decorative images should use empty alt text.
 
 ## Validation checklist
 
