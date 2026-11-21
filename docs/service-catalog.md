@@ -265,6 +265,16 @@ No public launch should occur while any mandatory gate remains open.
 
 This statement is an internal drafting reference only and must not be published before approval.
 
+### CSMS internal toolkit
+
+The following working templates support the proposed readiness/documentation service. They remain internal drafts and must be approved before operational use:
+
+- [CSMS Requirement & Evidence Matrix](csms/requirement-evidence-matrix.md)
+- [CSMS Readiness Assessment Form](csms/readiness-assessment-form.md)
+- [CSMS Readiness Review Report Template](csms/readiness-report-template.md)
+
+These templates require a current, identified principal/client requirement source. They do not establish a universal CSMS standard, official score, certification, vendor qualification, or principal approval.
+
 ### Relationship to other services
 
 - **ISO 45001:** A relevant occupational health and safety management-system reference, but CSMS is not identical to ISO 45001 certification.
