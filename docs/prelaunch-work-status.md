@@ -253,3 +253,11 @@ Branch: `docs/p16-2-article-integration-readiness` (merged at `fe2f175`).
 - GitHub connector did not reliably enumerate the article directory, so filenames and existing locale conventions were not guessed or overwritten.
 - This branch only added documentation; local validation ran on merge commit `fe2f175`, with results in the validation note above.
 - Next: confirm article directory patterns, approve the draft technically, verify category/image metadata, then integrate both locale records as drafts.
+
+
+## P16.3 — Bilingual Article Integration Audit (in progress)
+
+- Reviewed the bilingual ISO 9001 document-control draft against the article collection, routes, SEO helper, content validator, and repository asset inventory.
+- Confirmed English article integration is blocked by Indonesian-only validator rules, missing reciprocal hreflang wiring, generic article-image placeholder rendering, unverified/missing tracked image assets, and required-but-unapproved publication dates.
+- Added `docs/p16-3-bilingual-article-integration-audit.md` with findings, proposed paired metadata, and safe implementation order.
+- No public article records/routes or fabricated publication metadata were added. Next: address validator and locale SEO/image rendering, verify licensed image assets, approve dates, then integrate records as drafts and run full CI gates.
