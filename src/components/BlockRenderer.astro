@@ -1,79 +1,119 @@
 ---
+interface SurfaceStyles {
+  section: string;
+  heading: string;
+  body: string;
+  divider: string;
+}
+const surfaces: Record<string, SurfaceStyles> = {
+  white: {
+    section: "border-y border-border bg-white",
+    heading: "text-ink",
+    body: "text-ink-muted",
+    divider: "divide-border",
+  },
+  blue: {
+    section: "border-y border-[#d7e2ff] bg-[#eef3ff]",
+    heading: "text-[#1736a8]",
+    body: "text-[#34476f]",
+    divider: "divide-[#cbd8f4]",
+  },
+  navy: {
+    section: "border-y border-[#1736a8] bg-[#1736a8]",
+    heading: "text-white",
+    body: "text-blue-100",
+    divider: "divide-white/20",
+  },
+  mint: {
+    section: "border-y border-[#c7eee3] bg-[#eaf8f3]",
+    heading: "text-[#145b4a]",
+    body: "text-[#365f55]",
+    divider: "divide-[#c7e6dc]",
+  },
+  coral: {
+    section: "border-y border-[#f6d4c9] bg-[#fff1eb]",
+    heading: "text-[#8d3e2b]",
+    body: "text-[#704d43]",
+    divider: "divide-[#f2d5ca]",
+  },
+  cream: {
+    section: "border-y border-[#eee4c8] bg-[#fbf7eb]",
+    heading: "text-[#55451e]",
+    body: "text-[#655b43]",
+    divider: "divide-[#e9dfc5]",
+  },
+};
+
 interface FaqBlock {
   type: "faq";
+  surface?: keyof typeof surfaces;
   items: Array<{ question: string; answer: string }>;
 }
-
 interface HowToBlock {
   type: "howto";
+  surface?: keyof typeof surfaces;
   steps: Array<{
     title: string;
     description: string;
     image?: { src: string; alt: string; caption?: string };
   }>;
 }
-
 interface CtaBlock {
   type: "cta";
+  surface?: keyof typeof surfaces;
   variant?: "primary" | "secondary" | "ghost";
   title?: string;
   description?: string;
   link?: { label: string; url: string };
 }
-
 export type Block = FaqBlock | HowToBlock | CtaBlock;
-
 interface Props {
   blocks?: Block[];
   lang?: string;
 }
-
 const { blocks = [], lang = "id" } = Astro.props;
 const faqHeading = lang === "en" ? "Frequently asked questions" : "Pertanyaan Umum";
-const howToHeading = lang === "en" ? "Implementation steps" : "Langkah Pelaksanaan";
-
-const ctaClass = (variant?: CtaBlock["variant"]) =>
+const howToHeading = lang === "en" ? "Certification process" : "Proses Sertifikasi";
+const palette: Array<keyof typeof surfaces> = ["blue", "mint", "cream", "coral", "white", "navy"];
+const ctaClass = (variant?: CtaBlock["variant"], surface?: keyof typeof surfaces) =>
   variant === "secondary"
-    ? "border border-brand-deepblue bg-white text-brand-deepblue hover:bg-surface-muted"
+    ? "border border-current bg-transparent text-current hover:bg-black/5"
     : variant === "ghost"
-      ? "text-brand-deepblue underline decoration-brand-blue underline-offset-4 hover:text-brand-blue"
-      : "bg-brand-deepblue text-white hover:bg-brand-blue";
+      ? "text-current underline decoration-current underline-offset-4 hover:opacity-75"
+      : surface === "navy"
+        ? "bg-white text-[#1736a8] hover:bg-blue-50"
+        : "bg-[#1736a8] text-white hover:bg-[#2449c7]";
 ---
-
-<div class="space-y-12">
-  {blocks.map((block) =>
-    block.type === "faq" ? (
-      <section class="border-t border-border pt-8" aria-label={faqHeading}>
-        <h2 class="text-2xl font-semibold tracking-tight text-ink">{faqHeading}</h2>
-        <dl class="mt-6 divide-y divide-border">
+<div class="space-y-10 sm:space-y-14">
+  {blocks.map((block, index) => {
+    const surface = block.surface ?? palette[index % palette.length] ?? "white";
+    const style = surfaces[surface];
+    return block.type === "faq" ? (
+      <section class:list={["px-5 py-8 sm:px-9 sm:py-10", style.section]} aria-label={faqHeading}>
+        <h2 class:list={["text-2xl font-semibold tracking-tight sm:text-3xl", style.heading]}>{faqHeading}</h2>
+        <dl class:list={["mt-6 divide-y", style.divider]}>
           {block.items.map((item) => (
             <div class="py-5 first:pt-0 last:pb-0">
-              <dt class="font-semibold text-ink">{item.question}</dt>
-              <dd class="mt-2 max-w-[var(--container-reading)] leading-relaxed text-ink-muted">{item.answer}</dd>
+              <dt class:list={["font-semibold", style.heading]}>{item.question}</dt>
+              <dd class:list={["mt-2 max-w-[var(--container-reading)] leading-relaxed", style.body]}>{item.answer}</dd>
             </div>
           ))}
         </dl>
       </section>
     ) : block.type === "howto" ? (
-      <section class="border-t border-border pt-8" aria-label={howToHeading}>
-        <h2 class="text-2xl font-semibold tracking-tight text-ink">{howToHeading}</h2>
-        <ol class="mt-6 divide-y divide-border">
-          {block.steps.map((step, index) => (
+      <section class:list={["px-5 py-8 sm:px-9 sm:py-10", style.section]} aria-label={howToHeading}>
+        <h2 class:list={["text-2xl font-semibold tracking-tight sm:text-3xl", style.heading]}>{howToHeading}</h2>
+        <ol class:list={["mt-6 divide-y", style.divider]}>
+          {block.steps.map((step, stepIndex) => (
             <li class="grid gap-3 py-5 first:pt-0 sm:grid-cols-[3rem_minmax(0,1fr)]">
-              <span class="text-sm font-semibold tabular-nums text-ink-subtle">{String(index + 1).padStart(2, "0")}</span>
+              <span class:list={["text-sm font-semibold tabular-nums", style.body]}>{String(stepIndex + 1).padStart(2, "0")}</span>
               <div>
-                <h3 class="text-lg font-semibold text-ink">{step.title}</h3>
-                <p class="mt-2 max-w-[var(--container-reading)] leading-relaxed text-ink-muted">{step.description}</p>
+                <h3 class:list={["text-lg font-semibold", style.heading]}>{step.title}</h3>
+                <p class:list={["mt-2 max-w-[var(--container-reading)] leading-relaxed", style.body]}>{step.description}</p>
                 {step.image && (
                   <figure class="mt-5 max-w-2xl">
-                    <img
-                      src={step.image.src}
-                      alt={step.image.alt}
-                      loading="lazy"
-                      decoding="async"
-                      class="h-auto w-full rounded-[var(--radius-panel)] object-cover"
-                    />
-                    {step.image.caption && <figcaption class="mt-2 text-sm text-ink-subtle">{step.image.caption}</figcaption>}
+                    <img src={step.image.src} alt={step.image.alt} loading="lazy" decoding="async" class="h-auto w-full object-cover" />
+                    {step.image.caption && <figcaption class:list={["mt-2 text-sm", style.body]}>{step.image.caption}</figcaption>}
                   </figure>
                 )}
               </div>
@@ -82,18 +122,15 @@ const ctaClass = (variant?: CtaBlock["variant"]) =>
         </ol>
       </section>
     ) : (
-      <aside class="border-y border-border bg-surface-muted px-6 py-7 sm:px-8" aria-label={block.title ?? "Informasi selanjutnya"}>
-        {block.title && <h2 class="text-xl font-semibold tracking-tight text-ink">{block.title}</h2>}
-        {block.description && <p class="mt-2 max-w-[var(--container-reading)] leading-relaxed text-ink-muted">{block.description}</p>}
+      <aside class:list={["border-y px-5 py-8 sm:px-9 sm:py-10", style.section]} aria-label={block.title ?? "Informasi sertifikasi"}>
+        {block.title && <h2 class:list={["text-xl font-semibold tracking-tight sm:text-2xl", style.heading]}>{block.title}</h2>}
+        {block.description && <p class:list={["mt-2 max-w-[var(--container-reading)] leading-relaxed", style.body]}>{block.description}</p>}
         {block.link && (
-          <a
-            href={block.link.url}
-            class={`mt-5 inline-flex min-h-11 items-center justify-center rounded-[var(--radius-control)] px-5 py-2.5 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue ${ctaClass(block.variant)}`}
-          >
+          <a href={block.link.url} class:list={["mt-5 inline-flex min-h-11 items-center justify-center px-5 py-2.5 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue", ctaClass(block.variant, surface)]}>
             {block.link.label}
           </a>
         )}
       </aside>
-    ),
-  )}
+    );
+  })}
 </div>
