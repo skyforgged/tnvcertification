@@ -85,3 +85,32 @@ test("deletions and missing base commits fail safe to full", () => {
     rmSync(cwd, { recursive: true, force: true });
   }
 });
+
+test("non-editorial content collections and unknown Markdown paths force a full build", () => {
+  const cwd = fixtureRepo();
+  try {
+    const base = git(cwd, "rev-parse", "HEAD");
+    mkdirSync(join(cwd, "src/content/training-schedules"), { recursive: true });
+    writeFileSync(join(cwd, "src/content/training-schedules/schedule.md"), "# Schedule");
+    git(cwd, "add", ".");
+    git(cwd, "commit", "-qm", "add schedule");
+    assert.equal(runClassifier(cwd, base).build_mode, "full");
+  } finally {
+    rmSync(cwd, { recursive: true, force: true });
+  }
+});
+
+test("mixed editorial and Astro changes force a full build", () => {
+  const cwd = fixtureRepo();
+  try {
+    const base = git(cwd, "rev-parse", "HEAD");
+    writeFileSync(join(cwd, "src/content/articles/article.md"), "# Updated");
+    mkdirSync(join(cwd, "src/layouts"), { recursive: true });
+    writeFileSync(join(cwd, "src/layouts/Base.astro"), "<html />");
+    git(cwd, "add", ".");
+    git(cwd, "commit", "-qm", "mixed content and layout change");
+    assert.equal(runClassifier(cwd, base).build_mode, "full");
+  } finally {
+    rmSync(cwd, { recursive: true, force: true });
+  }
+});
