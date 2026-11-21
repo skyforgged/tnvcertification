@@ -17,6 +17,7 @@ function makeEntry(overrides = {}) {
     path: `src/content/articles/${id}`,
     data: {
       title: "Judul Uji",
+      lang: "id",
       intro: "Judul Uji adalah intro yang menjelaskan topik halaman ini.",
       metaDescription: "Ringkasan SEO unik untuk halaman uji ini.",
       featuredImage: {
@@ -135,4 +136,41 @@ test("gallery image objects require src and alt", () => {
     {src: "/image.webp", alt: ""},
   ]}}));
   assert.equal(diagnostics.filter(d => d.rule === "CONTENT-010").length, 2);
+});
+
+
+test("English article intro and featured image alt use English validation rules", () => {
+  const diagnostics = validateEntry(makeEntry({
+    data: {
+      title: "ISO 9001 Document Control",
+      lang: "en",
+      intro: "ISO 9001 Document Control is the process of keeping information accurate and available.",
+      metaDescription: "Practical guidance for controlling documented information in an organization.",
+      featuredImage: {
+        src: "/images/document-control.webp",
+        alt: "ISO 9001 Document Control is illustrated by an organized document library.",
+      },
+    },
+    body: "# ISO 9001 Document Control\\n\\nISO 9001 Document Control is the process of keeping information accurate and available.\\n\\n## Practical controls\\n\\nOrganizations should define clear controls.",
+  }));
+  assert.equal(diagnostics.filter((d) => d.rule === "CONTENT-003").length, 0);
+  assert.equal(diagnostics.filter((d) => d.rule === "CONTENT-008").length, 0);
+});
+
+test("English entries still reject Indonesian-only intro and image-alt wording", () => {
+  const diagnostics = validateEntry(makeEntry({
+    data: {
+      title: "ISO 9001 Document Control",
+      lang: "en",
+      intro: "ISO 9001 Document Control adalah proses menjaga informasi.",
+      metaDescription: "A unique English search description for document control.",
+      featuredImage: {
+        src: "/images/document-control.webp",
+        alt: "ISO 9001 Document Control adalah ilustrasi pengendalian dokumen.",
+      },
+    },
+    body: "# ISO 9001 Document Control\\n\\nISO 9001 Document Control adalah proses menjaga informasi.\\n\\n## Practical controls\\n\\nOrganizations should define clear controls.",
+  }));
+  assert.ok(diagnostics.some((d) => d.rule === "CONTENT-003"));
+  assert.ok(diagnostics.some((d) => d.rule === "CONTENT-008"));
 });

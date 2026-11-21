@@ -132,12 +132,18 @@ export function validateEntry(entry: ContentEntryLike): Diagnostic[] {
     add("intro", "CONTENT-002", "The `intro` field must match the first paragraph after H1.");
   }
 
-  // CONTENT-003: the intro begins with the title followed by "adalah".
-  if (title && effectiveIntro && !effectiveIntro.startsWith(`${title} adalah`)) {
+  // CONTENT-003: the intro begins with the title and a language-appropriate copula.
+  const lang = toStr(data.lang, "id").toLowerCase().split("-")[0];
+  const introCopula = lang === "en" ? "is" : "adalah";
+  const startsWithExpectedIntro = (value: string): boolean =>
+    value.trimStart().toLocaleLowerCase(lang === "en" ? "en" : "id").startsWith(
+      `${title} ${introCopula}`.toLocaleLowerCase(lang === "en" ? "en" : "id"),
+    );
+  if (title && effectiveIntro && !startsWithExpectedIntro(effectiveIntro)) {
     add(
       "intro",
       "CONTENT-003",
-      `Intro must begin with the title followed by "adalah" (expected "${title} adalah ...").`,
+      `Intro must begin with the title followed by "${introCopula}" (expected "${title} ${introCopula} ...").`,
     );
   }
 
@@ -166,9 +172,12 @@ export function validateEntry(entry: ContentEntryLike): Diagnostic[] {
     if (!alt) {
       add("featuredImage.alt", "CONTENT-008", "featuredImage.alt is required.");
     } else {
-      if (!alt.includes("adalah")) {
-        add("featuredImage.alt", "CONTENT-008", `featuredImage.alt must include "adalah" (got "${alt}").`);
-      } else if (!alt.toLowerCase().includes(title.toLowerCase())) {
+      const altCopula = lang === "en" ? "is" : "adalah";
+      const normalizedAlt = alt.trim().toLocaleLowerCase(lang === "en" ? "en" : "id");
+      const normalizedTitle = title.trim().toLocaleLowerCase(lang === "en" ? "en" : "id");
+      if (!normalizedAlt.includes(` ${altCopula} `)) {
+        add("featuredImage.alt", "CONTENT-008", `featuredImage.alt must include the language-appropriate phrase "${altCopula}" (got "${alt}").`);
+      } else if (!normalizedAlt.includes(normalizedTitle)) {
         add("featuredImage.alt", "CONTENT-008", "featuredImage.alt must be title-relevant.");
       }
       if (effectiveIntro && alt.trim() === effectiveIntro.trim()) {
