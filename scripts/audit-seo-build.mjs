@@ -22,7 +22,7 @@ function routeFile(urlPath) {
   const candidates = normalized.endsWith("/") ? [normalized + "index.html"] : [normalized, normalized + "/index.html"];
   for (const candidate of candidates) {
     const absolute = path.join(root, candidate.replace(/^\/+/, ""));
-    if (absolute.startsWith(root + path.sep) || absolute === path.join(root, "index.html") return absolute;
+    if ((absolute.startsWith(root + path.sep) || absolute === path.join(root, "index.html")) && !absolute.includes(path.sep + ".." + path.sep)) return absolute;
   }
   return null;
 }
