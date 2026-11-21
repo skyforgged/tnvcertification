@@ -56,7 +56,7 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 - The content registry includes articles, services, categories, certifications, training, training schedules and pages.
 - The category collection now contains 12 candidate groups as 24 localized records, all `status: planned`; no public category routes exist.
 - The certification collection currently has no content records.
-- The services collection currently contains a CSMS draft; it is not a published service.
+- The services collection contains a CSMS draft and three ISO 2026 records with `draft: false`: ISO 14001:2026 (Indonesian and English) and ISO 9001:2026 (Indonesian). The ISO records are included for publication, while their page copy still says service availability, scope, and authority are not confirmed. Treat this as a publication-state/approval-copy mismatch; do not add or activate further service records until it is resolved.
 - Internal CSMS research now includes an expanded competitor benchmark, a proposed service model, a requirement/evidence matrix, a readiness assessment form, and a readiness review report template. These are planning documents only; CSMS stays out of the published catalog until competence, authorization, and claims are approved.
 - Current repository runtime policy pins Node.js `26.13.1` in `.node-version` / `.nvmrc`, with `package.json` engine `>=26.13.1 <27`; pnpm is `12.21.0`.
 - Current TypeScript is `7.1.0-beta`; TypeScript 6.x is prohibited by repository policy. This is a beta exception, not a stable release.
