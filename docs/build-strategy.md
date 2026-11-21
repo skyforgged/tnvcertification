@@ -2,7 +2,7 @@
 
 ## Status
 
-Adopted architecture. Selective editorial preflight is implemented; CI verification remains pending. Production output continues to use a complete Astro build.
+Adopted architecture. Selective editorial preflight is implemented and its CLI is covered by isolated end-to-end CI tests. The content-only conditional workflow step has not yet been exercised by a real editorial-only push. Production output continues to use a complete Astro build.
 
 ## Operating phases
 
@@ -47,8 +47,8 @@ The content-only allowlist is limited to the canonical editorial collections: ar
 
 1. Record and preserve the safe full-build baseline. **Complete.**
 2. Add Git-based change classification with conservative full-build fallback. **Implemented.**
-3. Add selective per-entry validation for changed editorial Markdown, without weakening global checks. **Implemented; CI verification pending.**
-4. Measure actual CI/build time and verify that the new preflight catches changed-file errors earlier. **Pending.**
+3. Add selective per-entry validation for changed editorial Markdown, without weakening global checks. **Implemented; CLI integration tests pass in CI.**
+4. Verify the content-only conditional workflow step with a real editorial-only push and measure CI/build time. **Pending.**
 5. Evaluate incremental production rendering only if the full build becomes a material bottleneck. Do not adopt it solely to reduce a few seconds from the current build.
 
 ## Git change classification
@@ -60,7 +60,7 @@ scripts/classify-build-changes.mjs compares a base and head commit and writes Gi
 
 The Quality gates workflow fetches full Git history and runs this classifier before dependency installation. The classifier does not skip any checks: type checking, lint, tests, the complete astro build, and SEO audit continue to run for every workflow.
 
-Automated tests cover editorial Markdown changes, Astro component changes, taxonomy changes, deletions, unavailable base commits, non-editorial collections, and mixed source/content changes.
+Automated tests cover editorial Markdown changes, Astro component changes, taxonomy changes, deletions, unavailable base commits, non-editorial collections, and mixed source/content changes. End-to-end CLI tests also run the real selective validator against isolated temporary Git repositories: valid editorial Markdown passes, malformed YAML fails, and editorial rule violations fail.
 
 ## Selective editorial preflight
 
