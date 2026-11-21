@@ -83,7 +83,19 @@ File: `src/content/services/csms-contractor-safety-management-system.md`
 **Status: DIPERTAHANKAN SEBAGAI DRAFT (`draft: true`).**  
 Jangan mengubahnya menjadi published, menambahkan CTA aktif, atau membuat klaim sertifikasi/otorisasi CSMS sebelum MGT-12 dan seluruh prasyarat yang relevan disetujui serta dibuktikan.
 
-## 4. Kesimpulan status saat ini
+## 4. Log pelaksanaan lanjutan CSMS
+
+### Tahap CSMS-DOC-01 — Traceability persyaratan dan bukti (RA-02)
+
+- [x] Menambahkan pola ID unik REQ / EV / FR / ACT / report statement.
+- [x] Menetapkan rantai keterlacakan requirement → evidence → finding → action → report.
+- [x] Menambahkan checklist kelengkapan dan pencatatan exception.
+- [ ] Uji dengan source principal aktual yang telah diverifikasi.
+- [ ] Review independen atas record hasil uji dan persetujuan metodologi.
+
+**Status RA-02:** **BELUM — OPEN**. Yang selesai baru penguatan template; belum ada source principal aktual, engagement record, maupun verifikasi independen. Tidak dihitung sebagai remediasi operasional yang ditutup.
+
+## 5. Kesimpulan status saat ini
 
 - Pekerjaan riset, definisi layanan, toolkit, framework governance, simulasi, register, dan audit dokumentasi: **sudah dibuat sebagai artefak internal**.
 - Persetujuan manajemen: **belum — 12/12 Pending**.
