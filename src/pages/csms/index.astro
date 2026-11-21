@@ -1,0 +1,60 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { siteSettings } from "../../site";
+---
+
+<Layout
+  title={`Contractor Safety Management System (CSMS) | ${siteSettings.title}`}
+  description="Informasi Contractor Safety Management System (CSMS), konteks penilaian kesiapan kontraktor, area persiapan, dan status pengembangan layanan."
+  canonical="/csms/"
+  lang="id"
+>
+  <article class="w-full">
+    <Breadcrumbs items={[{ label: "Beranda", href: "/" }, { label: "CSMS" }]} />
+    <header class="max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-widest text-brand-orange">Contractor Safety Management System</p>
+      <h1 class="mt-3 text-3xl font-semibold tracking-tight text-brand-deepblue sm:text-4xl">CSMS untuk kesiapan keselamatan kontraktor</h1>
+      <p class="mt-5 text-lg leading-relaxed text-slate-700">
+        Contractor Safety Management System (CSMS) merupakan pendekatan yang digunakan pemberi kerja atau pemilik proyek untuk memastikan kontraktor memahami dan memenuhi persyaratan keselamatan dan kesehatan kerja sebelum serta selama pekerjaan berlangsung.
+      </p>
+    </header>
+
+    <section class="mt-10 max-w-3xl rounded-2xl border border-brand-orange/40 bg-white p-6" aria-labelledby="status-csms">
+      <h2 id="status-csms" class="text-xl font-semibold text-brand-deepblue">Status layanan TNCVCertification</h2>
+      <p class="mt-3 leading-relaxed text-slate-700">
+        Informasi CSMS di situs ini masih dalam tahap pengembangan dan verifikasi. Skema, kriteria, ruang lingkup, metode penilaian, serta kewenangan penyelenggaraan perlu dikonfirmasi terlebih dahulu. Halaman ini bukan pengumuman bahwa layanan penilaian atau penerbitan sertifikat CSMS formal telah tersedia.
+      </p>
+    </section>
+
+    <section class="mt-12 max-w-3xl" aria-labelledby="area-kesiapan">
+      <h2 id="area-kesiapan" class="text-2xl font-semibold text-brand-deepblue">Area kesiapan yang dapat dipersiapkan</h2>
+      <p class="mt-3 leading-relaxed text-slate-700">
+        Sambil menunggu persyaratan skema yang berlaku diverifikasi, kontraktor dapat mulai menata informasi dan bukti penerapan K3 yang umumnya diminta oleh pemberi kerja. Area di bawah ini merupakan panduan persiapan awal, bukan kriteria penilaian final.
+      </p>
+      <ul class="mt-5 list-disc space-y-3 pl-6 leading-relaxed text-slate-700">
+        <li>Kebijakan, tanggung jawab, dan tata kelola keselamatan kerja.</li>
+        <li>Identifikasi bahaya, penilaian risiko, dan pengendalian risiko pekerjaan.</li>
+        <li>Kompetensi pekerja, pelatihan, dan bukti kualifikasi personel.</li>
+        <li>Prosedur kerja aman, kesiapan peralatan, dan pengendalian operasional.</li>
+        <li>Kesiapsiagaan dan tanggap darurat serta pelaporan insiden.</li>
+        <li>Pemenuhan persyaratan K3 dari pemberi kerja atau pemilik proyek.</li>
+      </ul>
+    </section>
+
+    <section class="mt-12 max-w-3xl" aria-labelledby="relasi-iso">
+      <h2 id="relasi-iso" class="text-2xl font-semibold text-brand-deepblue">Hubungan CSMS dengan ISO 45001</h2>
+      <p class="mt-3 leading-relaxed text-slate-700">
+        ISO 45001 dapat menjadi referensi sistem manajemen keselamatan dan kesehatan kerja. Namun, penilaian CSMS kontraktor tidak otomatis sama dengan sertifikasi ISO 45001. Persyaratan CSMS dapat ditentukan oleh pemberi kerja, pemilik proyek, atau skema tertentu dan harus diperiksa sesuai konteksnya.
+      </p>
+    </section>
+
+    <section class="mt-12 max-w-3xl border-t border-brand-blue/15 pt-8" aria-labelledby="next-step-csms">
+      <h2 id="next-step-csms" class="text-2xl font-semibold text-brand-deepblue">Informasi lebih lanjut</h2>
+      <p class="mt-3 leading-relaxed text-slate-700">
+        Kunjungi katalog layanan untuk melihat informasi lain yang telah dipublikasikan. Informasi layanan CSMS akan diperbarui setelah dasar skema dan ruang lingkupnya selesai diverifikasi.
+      </p>
+      <a href="/services/" class="mt-5 inline-flex rounded-full bg-brand-blue px-5 py-3 font-semibold text-white hover:bg-brand-deepblue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue">Lihat layanan</a>
+    </section>
+  </article>
+</Layout>
