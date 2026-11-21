@@ -1,7 +1,6 @@
 ---
 import ScheduleArchiveLayout from "../../layouts/ScheduleArchiveLayout.astro";
 import { getCollection } from "astro:content";
-import { siteSettings } from "../../site";
 
 const [schedules, trainings] = await Promise.all([
   getCollection("trainingSchedules"),
