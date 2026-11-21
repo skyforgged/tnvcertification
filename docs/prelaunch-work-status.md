@@ -441,3 +441,27 @@ Management must appoint accountable role holders, complete and evidence the deci
 - `f5fe0e8` — roles, responsibilities and resource readiness plan.
 - `83ae5e7` — link management governance documents from Service Catalog.
 - `d29c72b` — record management readiness checkpoint.
+
+
+## CSMS governance consistency audit checkpoint (2026-11-21)
+
+A repository-level desk audit was completed and recorded in `docs/csms/governance-consistency-audit.md`.
+
+### Documentation corrections
+
+- Reconciled the document-control master register with the current operational procedure version (0.2) and expanded the inventory to include the current forms, templates, governance records and simulation-only artifacts.
+- Added the management approval register and roles/resource readiness plan to the operational procedure's governance references.
+- Linked the audit record from the service catalog and operational procedure.
+
+### Audit outcome
+
+Documentation consistency improved; operational readiness is **not demonstrated**. The audit records ten findings: three documentation inconsistencies corrected, management/competence/impartiality/privacy/source verification/pilot effectiveness gates remain open, and the public draft safeguard is maintained.
+
+### Current restrictions
+
+- All management decisions remain pending until supported by actual approval evidence.
+- No personnel appointments, competence authorization, approved budget/resources, verified target principal source pack, or customer pilot authorization is evidenced.
+- No customer evidence may be accepted until privacy, security, access and retention arrangements are approved.
+- The public CSMS content remains `draft: true`; no publication or launch is authorized.
+
+The audit is a documentation review only. It is not a legal opinion, accreditation assessment, management approval, or proof of operational effectiveness.
