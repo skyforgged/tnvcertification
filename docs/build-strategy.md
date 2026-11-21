@@ -63,3 +63,27 @@ Automated tests cover editorial Markdown changes, Astro component changes, taxon
 ## Decision
 
 For the current 13-page site, keep full production builds. The measured build is only a few seconds, while partial static output introduces correctness and deployment risks. Optimize validation first; revisit incremental production generation when content volume or measured build duration justifies it.
+
+
+## Selective editorial preflight (implemented)
+
+For a diff classified as \`content-only\`, Quality gates runs
+\`pnpm validate:changed <base-sha> <head-sha>\` before the general checks.
+The script reads only added/modified Markdown/MDX files in the canonical
+editorial collections and runs the existing \`validateEntry()\` rules against
+each changed entry. Invalid/missing YAML frontmatter fails the preflight.
+
+The classifier allowlist is intentionally limited to the editorial
+collections declared by the project (articles, services, certifications,
+training, and pages). Taxonomy, training schedules, unknown content folders,
+deletions, renames, and mixed source/content changes use the full path.
+
+This preflight is additive. It does not replace:
+- \`validateAllEntries()\` duplicate intro/meta-description/slug checks;
+- cross-collection taxonomy validation;
+- certification scheme validation;
+- article/service relationship validation;
+- Astro content schema/type checks, lint, tests, complete production build,
+  or SEO/link audit.
+
+All of these existing full checks continue to run for every CI workflow.
