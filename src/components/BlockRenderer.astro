@@ -5,7 +5,7 @@ interface SurfaceStyles {
   body: string;
   divider: string;
 }
-const surfaces: Record<string, SurfaceStyles> = {
+const surfaces: Record<"white" | "blue" | "navy" | "mint" | "coral" | "cream", SurfaceStyles> = {
   white: {
     section: "border-y border-border bg-white",
     heading: "text-ink",
@@ -95,7 +95,7 @@ const ctaClass = (variant?: CtaBlock["variant"], surface?: keyof typeof surfaces
 <div class="space-y-10 sm:space-y-14">
   {blocks.map((block, index) => {
     const surface = block.surface ?? palette[index % palette.length] ?? "white";
-    const style = surfaces[surface] ?? surfaces.white;
+    const style = surfaces[surface];
     return block.type === "content-section" ? (
       <section class:list={["px-5 py-8 sm:px-9 sm:py-10", style.section]}>
         {block.eyebrow && <p class:list={["text-xs font-bold uppercase tracking-[0.16em]", style.body]}>{block.eyebrow}</p>}
