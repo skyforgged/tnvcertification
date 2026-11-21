@@ -19,7 +19,7 @@ Track the ten observations from the desk-top simulation through implementation e
 | RA-04 | Sampling | Use a documented population, selection method, sample size, period, rationale, exclusions and inference limitations. | [Assign] | [Approve] | Open |
 | RA-05 | Competence authorization | Approve assignment-specific competence criteria; verify actual personnel records, qualification issuers, mandatory credential validity/scope, demonstrated task competence, supervision restrictions, reviewer competence/independence and delegated authorization. Retain completed engagement-specific authorization records. | [Assign] | [Approve] | **OPEN — DOCUMENT FRAMEWORK UPDATED; IMPLEMENTATION NOT EVIDENCED** |
 | RA-06 | Impartiality | Approve impartiality policy, threat criteria and hard-stop rules; collect declarations from all assigned personnel/external resources; evaluate actual, potential and perceived conflicts; implement and test safeguards; record independent approval before work; decline or stop where threats cannot be controlled. | [Assign] | [Approve] | **OPEN — DOCUMENT FRAMEWORK UPDATED; IMPLEMENTATION NOT EVIDENCED** |
-| RA-07 | Technical review | Approve reviewer competence and a review checklist; retain comments, corrections, disagreement escalation and sign-off. | [Assign] | [Approve] | Open |
+| RA-07 | Technical review | Approve the technical review procedure, reviewer competence/independence criteria, escalation authority and release delegation; appoint and verify competent independent reviewer(s); retain completed engagement review checklist, comment/correction closure, disagreement record where applicable, and separately authorized report-release evidence tied to the reviewed version. | [Assign] | [Approve] | **OPEN — DOCUMENT FRAMEWORK UPDATED; IMPLEMENTATION NOT EVIDENCED** |
 | RA-08 | Data governance | Approve privacy, security, access, storage, transfer, retention and disposal controls; verify channels before receiving real evidence. | [Assign] | [Approve] | Open |
 | RA-09 | Client factual review | Implement a correction log preserving original findings, client comments, supporting evidence and reasoned disposition. | [Assign] | [Approve] | Open |
 | RA-10 | Complaints | Approve complaint route, independent investigator, acknowledgement/response targets, decision authority, corrective action and effectiveness checks. | [Assign] | [Approve] | Open |
@@ -111,3 +111,43 @@ RA-06 may be marked **Closed** only after the policy and authority are formally 
 | Implemented safeguards and effectiveness checks | Not evidenced |
 | Independent engagement decisions | Not evidenced |
 | Independent RA-06 closure verification | Not evidenced |
+
+
+## RA-07 — Technical review and quality assurance evidence criteria
+
+**Current status: OPEN.** Draft procedure, checklist, register and role-governance wording have been added as documentation controls. They do not demonstrate management approval, an appointed reviewer, a completed engagement review or an authorized report release.
+
+### Required implementation evidence
+
+1. Management-approved technical review procedure, reviewer competence criteria, role segregation, escalation authority, record controls and report-release delegation.
+2. Named reviewer appointment(s) with defined scope, verified relevant qualifications/experience, demonstrated review competence, current task authorization, capacity and restrictions.
+3. Engagement-specific conflict declaration and impartiality clearance proving the reviewer is independent of the assessment, report authorship and any conflicting advisory/implementation work.
+4. At least one completed, authorized engagement technical review using the approved checklist, with the exact reviewed report ID/version, complete review inputs, criterion-by-criterion results, rationale for N/A items and reviewer sign-off.
+5. Review comment/correction log with unique IDs, severity, affected sections/evidence, author response, supporting evidence, reviewer verification and closure of all release-blocking issues.
+6. Technical disagreement/escalation record for any disagreement that actually arose, including independent authority competence, conflict check, evidence, decision and rationale. If none arose, document the review-specific basis for no escalation.
+7. Separately authorized report approver and release record tied to the exact reviewed report version, release decision, date and controlled distribution record.
+8. Controlled revision history showing changes after review and evidence of re-review where a change could affect findings, conclusions or intended use.
+9. Independent closure verification confirming evidence authenticity, completeness, currentness, traceability, authorization and effectiveness.
+
+### Closure decision
+
+RA-07 may be marked **Closed** only after the required procedure and delegations are formally approved, reviewer competence and independence are verified for the relevant scope, at least one real authorized engagement has a complete accepted review record, all release-blocking comments are closed, and report release is authorized by a separately delegated approver. An independent closure reviewer must record acceptance.
+
+A blank checklist, draft procedure, hypothetical simulation, reviewer name without competence/appointment evidence, unsigned report, or technical review signature without a separate release authorization does not satisfy closure. Technical review does not confer certification, principal qualification or regulatory authority.
+
+### Current evidence state
+
+| Evidence item | Status |
+|---|---|
+| Technical review procedure defining scope, method, inputs, outcomes, corrections, escalation, release gate and records | **Document updated — draft** |
+| Independent technical review checklist | **Document updated — blank draft template** |
+| Review evidence register and RA-07 closure criteria | **Document updated — blank draft register** |
+| Reviewer competence, independence and authority role controls | **Document updated — draft role framework** |
+| Management-approved procedure and delegation | Not evidenced |
+| Named reviewer appointment and verified competence/authorization | Not evidenced |
+| Engagement-specific reviewer conflict clearance | Not evidenced |
+| Completed review checklist and signed review outcome for a real engagement | Not evidenced |
+| Closed review comments and verified corrections | Not evidenced |
+| Technical disagreement escalation record, if triggered | Not evidenced |
+| Separately authorized report approver and release/distribution record | Not evidenced |
+| Independent RA-07 closure verification | Not evidenced |
