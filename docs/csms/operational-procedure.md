@@ -224,6 +224,7 @@ Use the controlled versions of:
 - [CSMS Pilot Remediation Register](pilot-remediation-register.md)
 - [CSMS Management Decision & Approval Register](management-approval-register.md)
 - [CSMS Roles, Responsibilities & Resource Readiness Plan](roles-responsibilities-resource-plan.md)
+- [CSMS Governance Consistency Audit](governance-consistency-audit.md) (audit record; not an operational procedure)
 
 The competence, impartiality, and document-control frameworks must be approved and implemented before assigning personnel, accepting sensitive client evidence, or issuing deliverables.
 
