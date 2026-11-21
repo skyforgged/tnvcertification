@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated commit: `863def5` (full gate suite; CSMS technical review and data-governance documentation controls added)
+- Validated commit: `a88449f` (full gate suite; CSMS client factual review documentation controls added)
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -82,7 +82,7 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-Local full validation ran on `main` at `863def5` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
+Local full validation ran on `main` at `a88449f` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
 
 | Command | Result |
 |---|---|
@@ -97,7 +97,7 @@ Local full validation ran on `main` at `863def5` with the pinned Node.js `26.13.
 
 Earlier pulled commits `9bc16d1` and `ddac326` failed local `lint`; final pulled commit `67b56b3` still had both errors. Commit `455bb73` fixed `no-useless-assignment` in the classifier and `preserve-caught-error` in the preflight.
 
-GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Runs `44845274570` (`6151e50`), `44854428984` (`2733047`), `44855036386` (`0ce7f0b`), `44855490692` (`15daddb`), `44856851545` (`c4934aa`), `44858182875` (`c6f9015`), `44859275893` (`ef84389`) and `44862425784` (`2a44281`) completed with `conclusion: success`. Runs `44863006246` (`9bc16d1`) and `44863375398` (`ddac326`) completed with `conclusion: failure` before the lint fixes. Runs `44864063830` (`455bb73`), `44864122309` (`c0764c6`), `44864948124` (`2c2828b`), `44865216807` (`70eb5a7`), `44867371518` (`88f19a1`), `44867438542` (`9049434`), `44867757684` (`41df5b9`), `44868225838` (`d828d81`), `44868734147` (`d9ce3be`), `44869018493` (`7101e27`), `44869711362` (`ab647ca`), `44870176304` (`d29c72b`), `44871266120` (`f0d8105`), `44872016416` (`7a7a1eb`), `44872496114` (`b37e8ea`), `44872936117` (`ce8d66d`), `44873398903` (`f6ac2da`), `44873764078` (`579ed86`), `44873979114` (`cffcdd4`), `44874169419` (`c2b9de4`), `44874521129` (`eae3a06`) and `44875417782` (`863def5`) completed with `conclusion: success`. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
+GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Runs `44845274570` (`6151e50`), `44854428984` (`2733047`), `44855036386` (`0ce7f0b`), `44855490692` (`15daddb`), `44856851545` (`c4934aa`), `44858182875` (`c6f9015`), `44859275893` (`ef84389`) and `44862425784` (`2a44281`) completed with `conclusion: success`. Runs `44863006246` (`9bc16d1`) and `44863375398` (`ddac326`) completed with `conclusion: failure` before the lint fixes. Runs `44864063830` (`455bb73`), `44864122309` (`c0764c6`), `44864948124` (`2c2828b`), `44865216807` (`70eb5a7`), `44867371518` (`88f19a1`), `44867438542` (`9049434`), `44867757684` (`41df5b9`), `44868225838` (`d828d81`), `44868734147` (`d9ce3be`), `44869018493` (`7101e27`), `44869711362` (`ab647ca`), `44870176304` (`d29c72b`), `44871266120` (`f0d8105`), `44872016416` (`7a7a1eb`), `44872496114` (`b37e8ea`), `44872936117` (`ce8d66d`), `44873398903` (`f6ac2da`), `44873764078` (`579ed86`), `44873979114` (`cffcdd4`), `44874169419` (`c2b9de4`), `44874521129` (`eae3a06`), `44875417782` (`863def5`) and `44875730310` (`cba6965`) completed with `conclusion: success`. Run `44876022952` (`a88449f`) was still `pending` at the time of this check; no CI result is claimed for that commit. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
 
 
 ## P5 completion — certification scheme catalog and CI
@@ -295,7 +295,7 @@ Branch: `docs/p16-2-article-integration-readiness` (merged at `fe2f175`).
 - `.github/workflows/quality.yml` runs the preflight only when `build_mode=content-only`, after install and before the normal gates. Production behavior stays unchanged.
 - Verified manually: classifier returned `content-only` for `2be9036..ef84389` (2 article files), and `pnpm validate:changed 2be9036 ef84389` exited `0`.
 - Pulled commits `94562ab` (end-to-end CLI tests), `9bb4538` (tsx loader resolution), `bef1c3b` (unused import), and `2c2828b` (docs) verified the real preflight CLI in isolated temporary Git repositories: valid Markdown passes, malformed YAML fails, editorial rule violations fail.
-- Full local gate suite passed on `863def5`: 49 tests, 13 pages, 13 canonicals. CI run `44875417782` completed with `conclusion: success`.
+- Full local gate suite passed on `a88449f`: 49 tests, 13 pages, 13 canonicals. CI run `44876022952` was `pending` at check time; no CI result claimed.
 - Real editorial-only push verified on `88f19a1`: local classifier returned `content-only`, `npm run validate:changed -- 70eb5a7 88f19a1` exited `0`, and CI job step `Validate changed editorial content` completed with `conclusion: success` before the full gates. The temporary `ci-content-only-fixture.md` was then removed on `9049434`.
 - Closed: timing baseline captured and negative preflight verified in CI; see the build-strategy verification closure section below. Incremental rendering remains not adopted.
 
@@ -483,12 +483,12 @@ The audit is a documentation review only. It is not a legal opinion, accreditati
 
 ## CSMS implementation status tracker
 
-For one authoritative view of which CSMS documents have been prepared versus which approvals and real-world implementation actions remain open, see [CSMS Implementation & Document Status Tracker](csms/implementation-status.md). The tracker distinguishes completed documentation from operational readiness; it does not create or renumber implementation phases. Current baseline: management decisions 12/12 Pending, pilot remediation actions 10/10 Open, audit findings AUD-01–AUD-03 corrected, AUD-04–AUD-09 open, and AUD-10 publication safeguard maintained. The public CSMS page remains `draft: true`. The tracker now reconciles to `a9e9944` and records stages CSMS-DOC-01..07 in its continuation log.
+For one authoritative view of which CSMS documents have been prepared versus which approvals and real-world implementation actions remain open, see [CSMS Implementation & Document Status Tracker](csms/implementation-status.md). The tracker distinguishes completed documentation from operational readiness; it does not create or renumber implementation phases. Current baseline: management decisions 12/12 Pending, pilot remediation actions 10/10 Open, audit findings AUD-01–AUD-03 corrected, AUD-04–AUD-09 open, and AUD-10 publication safeguard maintained. The public CSMS page remains `draft: true`. The tracker baseline field still reads `a9e9944`; its continuation log now records stages CSMS-DOC-01..08.
 
 
 ## CSMS documentation-control reinforcement checkpoint (2026-11-21)
 
-Seven remediation actions now have strengthened documentation. These are drafts and blank templates only. RA-02 through RA-08 remain **Open**; RA-09 and RA-10 are also still Open.
+Eight remediation actions now have strengthened documentation. These are drafts and blank templates only. RA-02 through RA-09 remain **Open**; RA-10 is also still Open.
 
 ### Added controls
 
@@ -506,7 +506,12 @@ Seven remediation actions now have strengthened documentation. These are drafts 
 - `docs/csms/operational-procedure.md` — section 5.4A stops real client evidence intake until MGT-07 controls, approved channels, access roles and retention terms are approved and verified.
 - `docs/csms/document-control-retention.md` — master register lists the four RA-08 records and links the data-governance framework; placeholder retention periods remain unapproved.
 - `docs/csms/roles-responsibilities-resource-plan.md` — RA-07 reviewer release-escalation separation and RA-08 privacy/security accountability with stop conditions.
-- `docs/csms/implementation-status.md` — baseline reconciled to `a9e9944`; continuation log records CSMS-DOC-01..07 with explicit open items.
+- `docs/csms/client-factual-review-procedure.md`, `client-factual-correction-log.md` — RA-09: factual-only review scope, intake and unique comment IDs, reasoned disposition, supporting evidence, original and revised versions, technical re-review and release gate. Both are blank drafts.
+- `docs/csms/readiness-report-template.md` — RA-09 factual-review fields: comment ID, report version, evidence, impact, disposition and re-review. Technical re-review or client review does not authorize release.
+- `docs/csms/operational-procedure.md` — RA-09 factual review integrated and separated from complaint handling and principal decision disputes.
+- `docs/csms/roles-responsibilities-resource-plan.md` — factual review coordinator, assessor/author, technical reviewer and report approver separation.
+- `docs/csms/document-control-retention.md` — master register lists both RA-09 records.
+- `docs/csms/implementation-status.md` — continuation log records CSMS-DOC-01..08 with explicit open items; baseline field still reads `a9e9944`.
 
 ### Current restrictions
 
@@ -517,6 +522,7 @@ Seven remediation actions now have strengthened documentation. These are drafts 
 - No approved impartiality policy, appointed reviewer, actual engagement declarations, implemented safeguards, or independent proceed/decline decision is evidenced. RA-06 stays Open. Client consent alone does not clear a conflict.
 - No approved review procedure/delegation, named reviewer with verified competence and conflict clearance, completed real-engagement review, closed blocking comments, or separately authorized report release is evidenced. RA-07 stays Open.
 - No MGT-07 approval, legal/privacy assessment, completed data inventory, approved systems/channels/access/suppliers, retention/deletion evidence, tested incident response, or independent verification is evidenced. RA-08 stays Open. Do not request or receive real client evidence before that gate is approved and verified.
+- No approved factual-review procedure, authorized engagement, actual client comments, populated correction log, revised report, technical re-review, separate release approval, or independent closure verification is evidenced. RA-09 stays Open. Client factual review does not grant a right to change technical conclusions.
 - The public CSMS page remains `draft: true`; no launch, certification claim, or customer pilot is authorized.
 
 ### Repository changes
@@ -551,8 +557,16 @@ Seven remediation actions now have strengthened documentation. These are drafts 
 - `0974e88` — add RA-08 evidence intake stop gate.
 - `a9e9944` — define RA-08 objective closure evidence.
 - `863def5` — track RA-08 documentation and open gates.
+- `023f1f9` — define RA-09 client factual review procedure.
+- `fbac7cc` — add RA-09 factual correction log.
+- `67e1114` — align report template with RA-09 factual review.
+- `c675454` — integrate RA-09 factual review into operations.
+- `ac2c543` — define RA-09 factual review role governance.
+- `d82a5ff` — register RA-09 factual review records.
+- `6338076` — define RA-09 objective closure evidence.
+- `a88449f` — track RA-09 documentation and open gates.
 
-Full gate suite passed on `863def5`; CI run `44875417782` completed with `conclusion: success`. No code, schema, config, or content collection changed in this pull.
+Full gate suite passed on `a88449f`; CI run `44876022952` was `pending` at check time. No code, schema, config, or content collection changed in this pull.
 
 
 ## Historical checkpoint — build-strategy verification priority (closed 2026-11-21)
