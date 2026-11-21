@@ -2,7 +2,7 @@
 
 > **Purpose:** Single tracking document for the TNV Certification website redesign. Checkboxes are the source of truth for task progress. A task may be checked only after its implementation and relevant validation are complete.
 >
-> **Current status:** Planned — implementation and visual QA have not yet been completed.
+> **Current status:** P15 audit findings documented; P16 shared design-system foundation and first shell components applied. CI passed for the component/layout changes. Screenshot-based visual QA and component-level accessibility review remain outstanding.
 >
 > **Approved direction:** Premium, modern, mature, professional, corporate. This document records the latest design decisions and takes precedence over older visual proposals where they conflict.
 
@@ -188,7 +188,7 @@ Complete phases in order unless an explicit dependency requires a different sequ
 - [x] Audit existing pages, layouts, components, blocks, styles, and design tokens.
 - [x] Review existing architecture documentation and identify conflicts with the approved visual direction.
 - [x] Inventory page types and map every inspected route to its intended layout.
-- [ ] Complete the generated-output featured-image audit and confirm duplicate image URLs/bytes across all page URLs.
+- [x] Complete the generated-output featured-image audit and confirm duplicate image URLs/bytes across all page URLs.
 - [x] Record visual defects and migration risks in [P15 Visual Audit Findings](./visual-audit.md).
 - [ ] Complete screenshot-based visual review at desktop, tablet, and mobile sizes.
 - [ ] Approve the detailed design-system specification before broad implementation.
@@ -198,7 +198,8 @@ Complete phases in order unless an explicit dependency requires a different sequ
 ### P16 — Shared Design System
 - [x] Define typography, color, spacing, container, border, and responsive tokens in `docs/design-system.md` and `src/styles/global.css`.
 - [x] Define hero, section, image, button, card, and form visual patterns in `docs/design-system.md`.
-- [ ] Verify color contrast and interaction states.
+- [x] Record preliminary WCAG contrast spot-checks for core text/brand tokens and document restrictions for low-contrast accents.
+- [ ] Verify actual component foreground/background pairs and hover, active, disabled, error, selected, and focus interaction states.
 - [x] Update shared global styles with semantic tokens, white page surface, shared gutters, focus visibility, and reduced-motion defaults.
 
 **Exit criteria:** shared tokens and primitives are implemented and validated on representative pages.
@@ -252,7 +253,8 @@ Complete phases in order unless an explicit dependency requires a different sequ
 
 | 2026-11-21 | P16 — Shared design system foundation | Defined semantic color, typography, spacing/container, border/radius, image, hero, section, button, card, form, responsive, and accessibility rules; updated global CSS token foundation and white-dominant base surface | Source-level changes committed. Build, contrast verification, and representative-page visual review remain pending. | 7788cca |
 
-| 2026-11-21 | P16 — Shared design system application | Applied the shared system to the main-menu hero, page canvas, site header, and footer; replaced decorative blue hero panel with restrained editorial split composition; removed pill-style active navigation; aligned shell widths to shared wide container | GitHub Actions for token foundation passed type/Astro, lint, tests, production build, image uniqueness, and SEO/link audit. A new workflow is running for component/layout changes; contrast and screenshot review remain pending. | `0497632` |
+| 2026-11-21 | P16 — Shared design system application | Applied the shared system to the main-menu hero, page canvas, site header, and footer; replaced decorative blue hero panel with restrained editorial split composition; removed pill-style active navigation; aligned shell widths to shared wide container | GitHub Actions run `44890885770` passed type/Astro checks, lint, tests, production build, page-image uniqueness, and SEO/link audit. Screenshot review and component-level interaction/contrast review remain pending. | `538927a` |
+| 2026-11-21 | P16 — Contrast guidance | Added preliminary contrast ratios for core palette colors and documented that orange, mint, pink, and yellow accents must not be assumed accessible for text on white | Token-level calculation documented; not a substitute for checking actual rendered component states and foreground/background pairs. | `07a1efa` |
 
 ## 10. Change control
 
