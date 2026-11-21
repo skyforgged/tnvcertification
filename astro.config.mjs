@@ -4,12 +4,17 @@ import sitemap from "@astrojs/sitemap";
 import viteConfig from "./vite.config.mjs";
 import { contentValidationIntegration } from "./src/content-validation";
 import { getContentLastmod, normalizeSitemapLastmod } from "./src/lib/sitemap-lastmod.mjs";
+import { removeStubUrlsFromSitemapFiles } from "./src/lib/sitemap-stubs.mjs";
 import { siteSettings } from "./src/site";
 
 const sitemapLastmodIntegration = {
   name: "sitemap-content-lastmod",
   hooks: {
-    "astro:build:done": ({ dir }) => normalizeSitemapLastmod(fileURLToPath(dir)),
+    "astro:build:done": ({ dir }) => {
+      const outputDir = fileURLToPath(dir);
+      normalizeSitemapLastmod(outputDir);
+      removeStubUrlsFromSitemapFiles(outputDir);
+    },
   },
 };
 
@@ -17,6 +22,7 @@ export default defineConfig({
   site: siteSettings.url,
   // Preserve the previous singular directory URL as a permanent redirect.
   redirects: {
+    "/en/": "/",
     "/service/": "/services/",
     "/schedule/": "/schedules/",
     "/hal-about-us/": "/about-us/",
