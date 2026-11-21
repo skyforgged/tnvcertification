@@ -8,6 +8,7 @@ Build and maintain the PT. Intiprima Sertifikasi website as a polished, content-
 - Commit directly to `main`; do not create pull requests or feature branches unless explicitly requested.
 - Keep changes focused. Do not rewrite unrelated files, introduce speculative abstractions, or add dependencies without a clear need.
 - Report what changed, validation performed, and any validation that could not be run. Never claim tests/builds succeeded without actually running them.
+- Before merge, release validation, push, or merged-branch deletion work, read `docs/agent-operational-memory.md`.
 
 ## Source of truth and content
 - Treat `site.ts` as the single source of truth (SSOT) for company identity, contact details, addresses, shared site settings, and other company-wide information.
