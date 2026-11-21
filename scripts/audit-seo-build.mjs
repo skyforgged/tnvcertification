@@ -35,11 +35,11 @@ for (const file of htmlFiles) {
   const pageUrl = rel === "index.html" ? "/" : rel.endsWith("/index.html") ? "/" + rel.slice(0, -"index.html".length) : "/" + rel;
   // Static-host redirects are lightweight HTML stubs, not indexable content pages.
   // Validate their internal links below, but do not require editorial metadata or canonicals.
-  const isRedirect = /<meta\\b(?=[^>]*\\bhttp-equiv=["']refresh["'])[^>]*>/i.test(html);
-  const titleCount = (html.match(/<title(?:\\s[^>]*)?>[\\s\\S]*?<\\/title>/gi) ?? []).length;
-  const descriptionCount = (html.match(/<meta\\s+name=["']description["'][^>]*>/gi) ?? []).length;
-  const canonicalMatches = [...html.matchAll(/<link\\s+rel=["']canonical["']\\s+href=["']([^"']+)["'][^>]*>/gi)];
-  const h1Count = (html.match(/<h1(?:\\s[^>]*)?>[\\s\\S]*?<\\/h1>/gi) ?? []).length;
+  const isRedirect = /<meta\b(?=[^>]*\bhttp-equiv=["']refresh["'])[^>]*>/i.test(html);
+  const titleCount = (html.match(/<title(?:\s[^>]*)?>[\s\S]*?<\/title>/gi) ?? []).length;
+  const descriptionCount = (html.match(/<meta\s+name=["']description["'][^>]*>/gi) ?? []).length;
+  const canonicalMatches = [...html.matchAll(/<link\s+rel=["']canonical["']\s+href=["']([^"']+)["'][^>]*>/gi)];
+  const h1Count = (html.match(/<h1(?:\s[^>]*)?>[\s\S]*?<\/h1>/gi) ?? []).length;
   if (!isRedirect) {
     if (titleCount !== 1) errors.push(rel + ": expected one title, found " + titleCount);
     if (descriptionCount !== 1) errors.push(rel + ": expected one meta description, found " + descriptionCount);
