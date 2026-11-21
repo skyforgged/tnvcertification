@@ -2,7 +2,7 @@
 import { getCollection, render } from "astro:content";
 import ArticleLayout from "../layouts/ArticleLayout.astro";
 import WidePageLayout from "../layouts/WidePageLayout.astro";
-import MainMenuHero from "../components/MainMenuHero.astro";
+import FeaturedImage from "../components/FeaturedImage.astro";
 import Section from "../components/Section.astro";
 
 export async function getStaticPaths() {
@@ -23,15 +23,13 @@ const isAboutPage = entry.data.slug === "about-us";
     canonical={canonical}
     ogImage={entry.data.featuredImage.src}
   >
-    <MainMenuHero
-      eyebrow="Profil organisasi"
-      title={entry.data.title}
-      description={entry.data.intro}
-      image={entry.data.featuredImage.src}
-      imageAlt={entry.data.featuredImage.alt}
-      imagePriority
-    />
     <Section spacing="spacious" class="max-w-3xl">
+      <FeaturedImage
+        src={entry.data.featuredImage.src}
+        alt={entry.data.featuredImage.alt}
+        priority
+        class="mb-8"
+      />
       <div class="prose"><Content /></div>
     </Section>
   </WidePageLayout>

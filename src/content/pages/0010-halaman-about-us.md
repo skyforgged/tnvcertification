@@ -11,6 +11,9 @@ slug: "about-us"
 translationKey: "page-hal-about-us"
 lang: "id"
 ---
+# Tentang Intiprima Sertifikasi
+
+Tentang Intiprima Sertifikasi adalah halaman yang memperkenalkan fokus organisasi dalam informasi sertifikasi, pelatihan, dan penilaian kepatuhan. Kami menempatkan kejelasan proses, ketepatan informasi, dan tanggung jawab sebagai landasan dalam membangun kepercayaan.
 
 ## Fokus organisasi
 
