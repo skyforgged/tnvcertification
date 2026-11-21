@@ -35,7 +35,9 @@
   --font-serif: "Merriweather", "Noto Serif", Georgia, serif;
 
   /* Shared geometry */
-  --container-wide: 80rem;
+  --container-standard: 64rem;
+  --container-wide: 72rem;
+  --container-landing: 76rem;
   --container-reading: 48rem;
   --radius-control: 0.5rem;
   --radius-panel: 0.75rem;
@@ -52,7 +54,9 @@
   --text-subtle: #697586;
   --border-default: #dce2ea;
   --border-strong: #b8c2d0;
-  --content-wide: 80rem;
+  --content-standard: 64rem;
+  --content-wide: 72rem;
+  --content-landing: 76rem;
   --content-reading: 48rem;
   --page-gutter: 1rem;
 }
