@@ -40,7 +40,8 @@ for (const file of walk(dist)) {
     .map((match) => match[0])
     .filter((tag) => /(?:^|\s)data-page-image(?:\s|=|>)/i.test(tag));
 
-  if (!canonical) errors.push("[PAGE-IMAGE-001] " + file + ": missing canonical URL.");
+  if (!canonical && path.basename(file) !== "404.html") errors.push("[PAGE-IMAGE-001] " + file + ": missing canonical URL.");
+  if (!canonical && path.basename(file) === "404.html") continue;
   if (images.length !== 1) {
     errors.push("[PAGE-IMAGE-002] " + route + ": expected exactly one data-page-image; found " + images.length + ".");
     continue;
