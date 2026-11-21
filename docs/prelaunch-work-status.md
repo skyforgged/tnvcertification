@@ -298,3 +298,44 @@ Branch: `docs/p16-2-article-integration-readiness` (merged at `fe2f175`).
 - Real editorial-only push verified on `88f19a1`: local classifier returned `content-only`, `npm run validate:changed -- 70eb5a7 88f19a1` exited `0`, and CI job step `Validate changed editorial content` completed with `conclusion: success` before the full gates. The temporary `ci-content-only-fixture.md` was then removed on `9049434`.
 - Remaining: measure CI/build time and confirm the preflight catches changed-file errors earlier before considering incremental rendering.
 
+## CSMS readiness service — governance toolkit checkpoint (2026-11-21)
+
+The proposed CSMS Readiness Review & Documentation Support service remains **internal planning only**. It is not approved for public launch or customer delivery.
+
+### Completed internal documents
+
+- `docs/csms/requirement-evidence-matrix.md` — principal-specific requirement-to-evidence mapping.
+- `docs/csms/readiness-assessment-form.md` — scope, criteria, competence/impartiality checks, sampling, findings, and limited readiness conclusion.
+- `docs/csms/readiness-report-template.md` — report structure and explicit non-certification / non-approval limitations.
+- `docs/csms/operational-procedure.md` — enquiry-to-closeout operating procedure.
+- `docs/csms/competence-matrix.md` — personnel competence evidence and assignment authorization.
+- `docs/csms/impartiality-conflict-register.md` — conflict screening, threat evaluation, safeguards, and escalation.
+- `docs/csms/document-control-retention.md` — document control, evidence traceability, security, and retention framework.
+
+The Service Catalog and Operational Procedure link to these supporting documents. All remain proposed/internal drafts pending formal approval.
+
+### Governance decisions still required
+
+1. Approve the actual service model and boundaries.
+2. Verify applicable principal requirement sources and determine whether any formal authorization is required.
+3. Approve competence criteria, personnel, mandatory credentials, and technical review authority.
+4. Approve impartiality policy, conflict thresholds, role separation, and escalation authority.
+5. Approve information classification, storage channels, privacy controls, retention periods, and secure disposal.
+6. Approve legal/marketing claims, contract terms, pricing, report distribution, and complaint handling.
+7. Complete a controlled pilot and review its results before any launch decision.
+
+### Important limitations
+
+- No generic CSMS standard or universal checklist is asserted.
+- No official principal score, certificate, contractor qualification, vendor approval, or tender acceptance is promised.
+- Retention periods remain deliberately unfilled pending legal/management approval.
+- Public CSMS content must remain in draft status until all applicable approval gates are closed.
+
+### Repository changes
+
+- `6658c0a` — competence matrix.
+- `e41b2a6` — impartiality and conflict register.
+- `6f2ee90` — document control and retention framework.
+- `8d9cacd` — integrate governance controls into operational procedure.
+- `4260e5f` — link governance documents from Service Catalog.
+
