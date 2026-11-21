@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated commit: `9049434` (full gate suite; temporary CI fixture removed)
+- Validated commit: `d828d81` (full gate suite; CSMS internal toolkit docs added)
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -34,7 +34,7 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 | Phase | Scope | Status |
 |---|---|---|
 | P1 | Foundation and architecture audit | Completed in prior work |
-| P2 | CSMS planned-service draft | Completed; remains `draft: true` |
+| P2 | CSMS planned-service draft | Completed; remains `draft: true`; internal research and readiness toolkit documented, no public claims |
 | P3 | Site identity / `site.ts` SSOT audit | Audit completed; code replacement blocked on confirmed company details |
 | P4 | Service taxonomy design and implementation | Completed; 12 bilingual category pairs and reference validation merged and locally validated |
 | P5 | ISO service/scheme catalog | Internal 12-item planned catalog and build-time validation implemented; editions and TNCV scope remain unverified |
@@ -57,6 +57,7 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 - The category collection now contains 12 candidate groups as 24 localized records, all `status: planned`; no public category routes exist.
 - The certification collection currently has no content records.
 - The services collection currently contains a CSMS draft; it is not a published service.
+- Internal CSMS research now includes an expanded competitor benchmark, a proposed service model, a requirement/evidence matrix, a readiness assessment form, and a readiness review report template. These are planning documents only; CSMS stays out of the published catalog until competence, authorization, and claims are approved.
 - Current repository runtime policy pins Node.js `26.13.1` in `.node-version` / `.nvmrc`, with `package.json` engine `>=26.13.1 <27`; pnpm is `12.21.0`.
 - Current TypeScript is `7.1.0-beta`; TypeScript 6.x is prohibited by repository policy. This is a beta exception, not a stable release.
 - `categoryIds` values now use canonical stable slugs. Legacy `kualitas` and `organisasi` references were removed during integration.
@@ -81,7 +82,7 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-Local full validation ran on `main` at `9049434` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
+Local full validation ran on `main` at `d828d81` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
 
 | Command | Result |
 |---|---|
@@ -96,7 +97,7 @@ Local full validation ran on `main` at `9049434` with the pinned Node.js `26.13.
 
 Earlier pulled commits `9bc16d1` and `ddac326` failed local `lint`; final pulled commit `67b56b3` still had both errors. Commit `455bb73` fixed `no-useless-assignment` in the classifier and `preserve-caught-error` in the preflight.
 
-GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Runs `44845274570` (`6151e50`), `44854428984` (`2733047`), `44855036386` (`0ce7f0b`), `44855490692` (`15daddb`), `44856851545` (`c4934aa`), `44858182875` (`c6f9015`), `44859275893` (`ef84389`) and `44862425784` (`2a44281`) completed with `conclusion: success`. Runs `44863006246` (`9bc16d1`) and `44863375398` (`ddac326`) completed with `conclusion: failure` before the lint fixes. Runs `44864063830` (`455bb73`), `44864122309` (`c0764c6`), `44864948124` (`2c2828b`), `44865216807` (`70eb5a7`), `44867371518` (`88f19a1`) and `44867438542` (`9049434`) completed with `conclusion: success`. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
+GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Runs `44845274570` (`6151e50`), `44854428984` (`2733047`), `44855036386` (`0ce7f0b`), `44855490692` (`15daddb`), `44856851545` (`c4934aa`), `44858182875` (`c6f9015`), `44859275893` (`ef84389`) and `44862425784` (`2a44281`) completed with `conclusion: success`. Runs `44863006246` (`9bc16d1`) and `44863375398` (`ddac326`) completed with `conclusion: failure` before the lint fixes. Runs `44864063830` (`455bb73`), `44864122309` (`c0764c6`), `44864948124` (`2c2828b`), `44865216807` (`70eb5a7`), `44867371518` (`88f19a1`), `44867438542` (`9049434`), `44867757684` (`41df5b9`) and `44868225838` (`d828d81`) completed with `conclusion: success`. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
 
 
 ## P5 completion — certification scheme catalog and CI
@@ -293,7 +294,7 @@ Branch: `docs/p16-2-article-integration-readiness` (merged at `fe2f175`).
 - `.github/workflows/quality.yml` runs the preflight only when `build_mode=content-only`, after install and before the normal gates. Production behavior stays unchanged.
 - Verified manually: classifier returned `content-only` for `2be9036..ef84389` (2 article files), and `pnpm validate:changed 2be9036 ef84389` exited `0`.
 - Pulled commits `94562ab` (end-to-end CLI tests), `9bb4538` (tsx loader resolution), `bef1c3b` (unused import), and `2c2828b` (docs) verified the real preflight CLI in isolated temporary Git repositories: valid Markdown passes, malformed YAML fails, editorial rule violations fail.
-- Full local gate suite passed on `9049434`: 49 tests, 13 pages, 13 canonicals. CI run `44867438542` completed with `conclusion: success`.
+- Full local gate suite passed on `d828d81`: 49 tests, 13 pages, 13 canonicals. CI run `44868225838` completed with `conclusion: success`.
 - Real editorial-only push verified on `88f19a1`: local classifier returned `content-only`, `npm run validate:changed -- 70eb5a7 88f19a1` exited `0`, and CI job step `Validate changed editorial content` completed with `conclusion: success` before the full gates. The temporary `ci-content-only-fixture.md` was then removed on `9049434`.
 - Remaining: measure CI/build time and confirm the preflight catches changed-file errors earlier before considering incremental rendering.
 
