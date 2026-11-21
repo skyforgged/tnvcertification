@@ -1,6 +1,7 @@
 ---
 import WidePageLayout from "../../layouts/WidePageLayout.astro";
 import MainMenuHero from "../../components/MainMenuHero.astro";
+import TrainingCard from "../../components/TrainingCard.astro";
 import { getCollection } from "astro:content";
 import { siteSettings } from "../../site";
 
@@ -28,19 +29,17 @@ const trainings = await getCollection(
     {trainings.length > 0 ? (
       <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {trainings.map((training) => (
-          <article class="rounded-xl border border-brand-blue/15 bg-white p-6">
-            <h2 class="text-xl font-semibold text-brand-deepblue">
-              <a href={`/trainings/${training.data.slug}/`} class="hover:text-brand-blue">{training.data.title}</a>
-            </h2>
-            <p class="mt-3 text-sm leading-relaxed text-slate-700">{training.data.intro}</p>
-            <a href={`/trainings/${training.data.slug}/`} class="mt-5 inline-flex font-semibold text-brand-blue underline underline-offset-4">Lihat program →</a>
-          </article>
+          <TrainingCard
+            title={training.data.title}
+            description={training.data.intro}
+            href={`/trainings/${training.data.slug}/`}
+          />
         ))}
       </div>
     ) : (
-      <div class="max-w-3xl rounded-2xl border border-brand-blue/15 bg-white p-6">
-        <h2 class="text-xl font-semibold text-brand-deepblue">Katalog pelatihan sedang disiapkan</h2>
-        <p class="mt-3 leading-relaxed text-slate-700">
+      <div class="max-w-3xl border-y border-border py-8">
+        <h2 class="text-xl font-semibold tracking-tight text-ink">Katalog pelatihan sedang disiapkan</h2>
+        <p class="mt-3 leading-relaxed text-ink-muted">
           Informasi program, materi, persyaratan peserta, dan jadwal akan ditampilkan setelah masing-masing program siap dipublikasikan. Jadwal pelaksanaan akan dikelola terpisah dari informasi program agar perubahan tanggal, lokasi, kuota, dan status pendaftaran tetap akurat.
         </p>
       </div>
