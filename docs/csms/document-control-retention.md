@@ -122,6 +122,8 @@ The register below is a draft inventory of the current repository documents. A l
 | TNCV-CSMS-MTX-001 (proposed) | CSMS Requirement & Evidence Matrix | [To be assigned] | 0.1 | Draft — not approved | [Pending] | [Pending] | [Pending] | docs/csms/requirement-evidence-matrix.md |
 | TNCV-CSMS-FRM-001 | CSMS Readiness Assessment Form | [To be assigned] | 0.2 | Draft — not approved | [Pending] | [Pending] | [Pending] | docs/csms/readiness-assessment-form.md |
 | TNCV-CSMS-RPT-001 (proposed) | CSMS Readiness Review Report Template | [To be assigned] | Template | Draft — not approved for issue | [Pending] | [Pending] | [Pending] | docs/csms/readiness-report-template.md |
+| TNCV-CSMS-PRO-FR-001 (proposed) | CSMS Client Factual Review & Correction Procedure | [To be assigned] | 0.1 | Draft — not approved for customer use | [Pending] | [Pending] | [Pending] | docs/csms/client-factual-review-procedure.md |
+| TNCV-CSMS-REG-FR-001 (proposed) | CSMS Client Factual Correction Log | [To be assigned] | 0.1 | Draft — blank template | [Pending] | [Pending] | [Pending] | docs/csms/client-factual-correction-log.md |
 | TNCV-CSMS-COMP-001 | CSMS Competence Matrix | [To be assigned] | 0.1 | Draft — no personnel authorized | [Pending] | [Pending] | [Pending] | docs/csms/competence-matrix.md |
 | TNCV-CSMS-IMP-001 | CSMS Impartiality & Conflict Register | [To be assigned] | 0.1 | Draft — not approved | [Pending] | [Pending] | [Pending] | docs/csms/impartiality-conflict-register.md |
 | TNCV-CSMS-PRO-DG-001 (proposed) | CSMS Data Governance & Information Security Procedure | [To be assigned] | 0.1 | Draft — not approved | [Pending] | [Pending] | [Pending] | docs/csms/data-governance-information-security-procedure.md |
@@ -154,3 +156,8 @@ Before operational use, management must approve:
 The document-control and retention framework is the record-control foundation; the more detailed privacy, data-flow, access and incident controls are defined in the [Data Governance & Information Security Procedure](data-governance-information-security-procedure.md). Use its linked [Data Asset Inventory & Classification Register](data-asset-inventory-register.md), [Access Authorization & Review Register](access-authorization-register.md) and [Data Incident Response Playbook](data-incident-response-playbook.md) for engagement-specific evidence.
 
 The proposed classification and control requirements in those documents are not effective until management approves the enterprise classification scheme or an aligned service-specific scheme, privacy/legal review, approved systems and channels, access model, supplier arrangements, incident contacts and retention schedule. The placeholder retention periods in Section 7 remain unapproved; this update does not create or imply a retention period.
+
+
+## 13. RA-09 client factual review records
+
+The [Client Factual Review & Correction Procedure](client-factual-review-procedure.md) governs controlled draft review, comment evaluation, reasoned disposition, technical escalation, revision history and release. Use the [Client Factual Correction Log](client-factual-correction-log.md) as the engagement record. Preserve the exact draft sent, original findings, client comments, supporting evidence references, disposition rationale, revised versions, technical re-review and delegated release evidence. These records remain subject to approved classification, access, secure transfer and retention controls; this draft does not approve any channel or retention period.
