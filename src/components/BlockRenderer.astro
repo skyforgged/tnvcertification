@@ -28,58 +28,69 @@ interface Props {
 }
 
 const { blocks = [] } = Astro.props;
-const faqs = blocks.filter((block): block is FaqBlock => block.type === "faq");
-const howtos = blocks.filter((block): block is HowToBlock => block.type === "howto");
-const ctas = blocks.filter((block): block is CtaBlock => block.type === "cta");
+
 const ctaClass = (variant?: CtaBlock["variant"]) =>
   variant === "secondary"
-    ? "bg-brand-blue text-white"
+    ? "border border-brand-deepblue bg-white text-brand-deepblue hover:bg-surface-muted"
     : variant === "ghost"
-      ? "border border-brand-deepblue text-brand-deepblue"
-      : "bg-brand-orange text-white";
+      ? "text-brand-deepblue underline decoration-brand-blue underline-offset-4 hover:text-brand-blue"
+      : "bg-brand-deepblue text-white hover:bg-brand-blue";
 ---
 
-{faqs.map((block) => (
-  <section class="mt-12">
-    <h2 class="text-2xl font-semibold text-brand-deepblue">Pertanyaan Umum</h2>
-    <dl class="mt-6 space-y-6">
-      {block.items.map((item) => (
-        <div class="border-l-4 border-brand-mint pl-4">
-          <dt class="font-semibold text-slate-900">{item.question}</dt>
-          <dd class="mt-2 text-sm leading-relaxed text-slate-700">{item.answer}</dd>
-        </div>
-      ))}
-    </dl>
-  </section>
-))}
-
-{howtos.map((block) => (
-  <section class="mt-12">
-    <h2 class="text-2xl font-semibold text-brand-deepblue">Langkah Pelaksanaan</h2>
-    <ol class="mt-6 space-y-6">
-      {block.steps.map((step, index) => (
-        <li class="border-t border-brand-blue/20 pt-4">
-          <h3 class="text-lg font-semibold text-brand-deepblue">
-            {index + 1}. {step.title}
-          </h3>
-          <p class="mt-2 text-sm leading-relaxed text-slate-700">{step.description}</p>
-        </li>
-      ))}
-    </ol>
-  </section>
-))}
-
-{ctas.map((block) => (
-  <aside class="mt-12 border-t-4 border-brand-yellow bg-white p-6">
-    {block.title && <h2 class="text-xl font-semibold text-brand-deepblue">{block.title}</h2>}
-    {block.description && <p class="mt-2 text-sm text-slate-700">{block.description}</p>}
-    {block.link && (
-      <a
-        href={block.link.url}
-        class={`mt-4 inline-block px-5 py-2 text-sm font-semibold ${ctaClass(block.variant)}`}
-      >
-        {block.link.label}
-      </a>
-    )}
-  </aside>
-))}
+<div class="space-y-12">
+  {blocks.map((block) =>
+    block.type === "faq" ? (
+      <section class="border-t border-border pt-8" aria-labelledby="faq-heading">
+        <h2 id="faq-heading" class="text-2xl font-semibold tracking-tight text-ink">Pertanyaan Umum</h2>
+        <dl class="mt-6 divide-y divide-border">
+          {block.items.map((item) => (
+            <div class="py-5 first:pt-0 last:pb-0">
+              <dt class="font-semibold text-ink">{item.question}</dt>
+              <dd class="mt-2 max-w-[var(--container-reading)] leading-relaxed text-ink-muted">{item.answer}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+    ) : block.type === "howto" ? (
+      <section class="border-t border-border pt-8" aria-labelledby="howto-heading">
+        <h2 id="howto-heading" class="text-2xl font-semibold tracking-tight text-ink">Langkah Pelaksanaan</h2>
+        <ol class="mt-6 divide-y divide-border">
+          {block.steps.map((step, index) => (
+            <li class="grid gap-3 py-5 first:pt-0 sm:grid-cols-[3rem_minmax(0,1fr)]">
+              <span class="text-sm font-semibold tabular-nums text-ink-subtle">{String(index + 1).padStart(2, "0")}</span>
+              <div>
+                <h3 class="text-lg font-semibold text-ink">{step.title}</h3>
+                <p class="mt-2 max-w-[var(--container-reading)] leading-relaxed text-ink-muted">{step.description}</p>
+                {step.image && (
+                  <figure class="mt-5 max-w-2xl">
+                    <img
+                      src={step.image.src}
+                      alt={step.image.alt}
+                      loading="lazy"
+                      decoding="async"
+                      class="h-auto w-full rounded-[var(--radius-panel)] object-cover"
+                    />
+                    {step.image.caption && <figcaption class="mt-2 text-sm text-ink-subtle">{step.image.caption}</figcaption>}
+                  </figure>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+    ) : (
+      <aside class="border-y border-border bg-surface-muted px-6 py-7 sm:px-8" aria-label={block.title ?? "Informasi selanjutnya"}>
+        {block.title && <h2 class="text-xl font-semibold tracking-tight text-ink">{block.title}</h2>}
+        {block.description && <p class="mt-2 max-w-[var(--container-reading)] leading-relaxed text-ink-muted">{block.description}</p>}
+        {block.link && (
+          <a
+            href={block.link.url}
+            class={`mt-5 inline-flex min-h-11 items-center justify-center rounded-[var(--radius-control)] px-5 py-2.5 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue ${ctaClass(block.variant)}`}
+          >
+            {block.link.label}
+          </a>
+        )}
+      </aside>
+    ),
+  )}
+</div>
