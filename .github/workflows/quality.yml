@@ -40,6 +40,11 @@ jobs:
           cache: pnpm
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+      - name: Validate changed editorial content
+        if: steps.build_changes.outputs.build_mode == 'content-only'
+        env:
+          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+        run: pnpm validate:changed "$BASE_SHA" "$GITHUB_SHA"
       - name: Type and Astro checks
         run: pnpm check
       - name: Lint
