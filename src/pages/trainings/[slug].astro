@@ -1,7 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
-import Layout from "../../layouts/Layout.astro";
-import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import TrainingLayout from "../../layouts/TrainingLayout.astro";
 import BlockRenderer from "../../components/BlockRenderer.astro";
 import { siteSettings } from "../../site";
 
@@ -37,16 +36,15 @@ const statusLabel = (status?: string) => ({
   full: "Kuota terpenuhi",
 }[status ?? ""] ?? "Informasi pendaftaran menyusul");
 ---
-<Layout
+<TrainingLayout
   title={`${training.data.title} | Pelatihan | ${siteSettings.title}`}
   description={training.data.metaDescription}
   canonical={`/trainings/${training.data.slug}/`}
   lang={training.data.lang}
   ogImage={training.data.featuredImage.src}
+  imageAlt={training.data.featuredImage.alt}
 >
-  <article class="w-full">
-    <Breadcrumbs items={[{ label: "Beranda", href: "/" }, { label: "Pelatihan", href: "/trainings/" }, { label: training.data.title }]} />
-    <img data-page-image src={training.data.featuredImage.src} alt={training.data.featuredImage.alt} width="1200" height="675" loading="eager" fetchpriority="high" class="mt-8 aspect-video w-full max-w-3xl rounded-xl object-cover" />
+  <div class="w-full">
     <div class="prose mt-8 max-w-3xl">
       <Content />
     </div>
@@ -73,5 +71,5 @@ const statusLabel = (status?: string) => ({
         <p class="mt-3 text-slate-700">Belum ada jadwal yang dipublikasikan untuk program ini.</p>
       )}
     </section>
-  </article>
-</Layout>
+  </div>
+</TrainingLayout>
