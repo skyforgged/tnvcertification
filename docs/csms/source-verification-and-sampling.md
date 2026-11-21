@@ -122,3 +122,54 @@ Preserve the original observation, comment, evidence, disposition and reason. Es
 **Outstanding limitations:** [Complete]
 
 This record is a process-control tool. It does not establish certification, principal approval, contractor qualification, legal compliance or acceptance in procurement.
+
+
+## E1. Sampling design decision record (RA-04)
+
+Complete before selecting samples. The method must match the assessment objective and the nature of the population; do not choose a sample size merely because it is convenient.
+
+| Design question | Required rationale / record |
+|---|---|
+| What question is the sample intended to answer? | [Define the criterion, control or activity being examined] |
+| What is the complete relevant population? | [Define records/sites/personnel/activities and period; identify source of population listing] |
+| Is the population sufficiently complete and reliable? | [Reconcile totals, duplicates, missing ranges, exclusions and known gaps] |
+| What are the risk factors? | [Severity of potential harm, change, incident history, complexity, contractor tier, criticality, prior findings; only where relevant and evidenced] |
+| What selection method is suitable? | [Random / targeted / risk-based / stratified / full review; explain why] |
+| How is sample size determined? | [Explain population size, risk, variability, access, time period and objective; no arbitrary universal number] |
+| What could the sample fail to detect? | [State limitations and residual uncertainty] |
+| Who approved the plan? | [Assessor, technical reviewer, approval date/reference] |
+
+### Selection method guidance
+
+- **Full review:** use where the population is small or every item is critical; state completeness checks.
+- **Random selection:** use only when a reliable population frame exists and the selection process can be reproduced.
+- **Risk-based/targeted selection:** select items because of documented risk indicators; results are not statistically representative.
+- **Stratified selection:** define meaningful groups (for example, site, work type, shift or record category), explain allocation and selection within each group.
+- **Convenience selection:** avoid where possible. If unavoidable, disclose the bias and restrict conclusions to the items actually examined.
+
+Do not claim statistical confidence, statistical representativeness or a population-wide pass rate unless a competent statistical sampling design supports that specific claim and it has been approved.
+
+## E2. Sample selection and deviation log
+
+| Sample ID | Population frame/version | Selection method | Selection date / selector | Selected item | Inclusion rationale | Substitution / refusal / unavailable reason | Actual examination result |
+|---|---|---|---|---|---|---|---|
+| SMP-001 | [Reference] | [Method] | [Complete] | [Complete] | [Complete] | [None / explain] | [Complete] |
+
+Any substitution, refusal, inaccessible item or deviation must be recorded before interpreting results. Do not silently replace an unavailable or adverse sample with a more convenient item. Assess whether the deviation changes the sample's limitations or requires a revised plan.
+
+## E3. Sampling conclusion and limitations
+
+| Conclusion field | Required entry |
+|---|---|
+| Planned population and period | [Complete] |
+| Population actually accessible | [Complete] |
+| Planned sample / actual sample | [Complete] |
+| Deviations and unresolved access gaps | [Complete] |
+| Findings attributable to selected items | [Complete] |
+| Conclusions that cannot be drawn | [Complete] |
+| Need for expanded sample / full review | [Yes/No + rationale] |
+| Technical reviewer decision | [Accept / revise / hold + evidence] |
+
+A sample is not proof that unselected records, workers, sites or activities conform. If the population frame is incomplete or access is materially restricted, state that the review is limited and consider holding the conclusion.
+
+This design record strengthens the sampling template only. RA-04 remains open until a real, authorized engagement demonstrates a justified plan, execution record, deviation handling and independent technical review.
