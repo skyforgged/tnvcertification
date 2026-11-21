@@ -414,3 +414,23 @@ Management must assign owners and approve deadlines, then close RA-01 through RA
 - `2b2e01a` — pilot remediation register.
 - `974f532` — record pilot remediation plan.
 - `ab647ca` — fix assessment form section numbering.
+
+
+## CSMS management approval and resource readiness checkpoint (2026-11-21)
+
+The next governance stage has prepared two additional internal draft documents:
+
+- `docs/csms/management-approval-register.md` — twelve management decisions covering business model, scheme basis, legal/claims, competence, impartiality, methodology, privacy/security, resources, commercial terms, pilot authorization, pilot review and publication.
+- `docs/csms/roles-responsibilities-resource-plan.md` — proposed functions, role-segregation safeguards, RACI, assignment authorization checklist and resource-readiness plan.
+
+### Current decision state
+
+- All twelve management decisions are **Pending**; this register is a decision aid, not evidence of approval.
+- No management sponsor, approver, role holder or individual assessor has been appointed by this documentation work.
+- No personnel competence authorization, staffing capacity, budget, software/storage approval, secure communication channel or resource allocation is evidenced.
+- No customer pilot or public launch is authorized.
+- The public CSMS service page remains `draft: true`.
+
+### Required management action
+
+Management must appoint accountable role holders, complete and evidence the decision register, approve actual resource commitments, and close all prerequisite gates before considering a controlled pilot. Any role combination must undergo competence, capacity and impartiality review; unresolved threats require scope restriction or refusal.
