@@ -101,3 +101,36 @@ Open items, in order:
 3. **Update this strategy and the master prelaunch status with the evidence.** Do not introduce incremental production rendering; the full Astro build remains mandatory.
 
 **Resume CSMS only after these build-strategy verification items are closed and recorded.** CSMS status and safeguards remain as recorded in [the CSMS implementation status tracker](csms/implementation-status.md); this priority note does not change CSMS approvals, remediation statuses, or phase numbering.
+
+
+## Verification results — 2026-11-21
+
+**Checkpoint: completed for the current implementation baseline.** The evidence below closes the two outstanding verification actions. Timing is a baseline observation only; it does not demonstrate a performance improvement.
+
+### 1. CI/build duration baseline — [x] Measured
+
+| Change class | Workflow run | Commit | Total elapsed | Astro production build | Result |
+|---|---:|---|---:|---:|---|
+| Content-only editorial Markdown | [44867371518](https://github.com/tnvcertification/tnvcertification/actions/runs/44867371518) | `88f19a19e8e164f480d3443a6d20b2de7e1367be` | 28 s | 761 ms (13 pages) | Success; selective preflight and all full gates passed |
+| Source/build tooling | [44864063830](https://github.com/tnvcertification/tnvcertification/actions/runs/44864063830) | `455bb7313d029d999d7c8c608ac8d7f4ac1d104f` | 28 s | 1.02 s (13 pages) | Success; full gates passed; selective preflight correctly skipped |
+| Source/build tooling | [44864868895](https://github.com/tnvcertification/tnvcertification/actions/runs/44864868895) | `bef1c3b89ef23a9ff1ca92ade8495eea5fa56846` | 23 s | 700 ms (13 pages) | Success; full gates passed; selective preflight correctly skipped |
+
+Run elapsed time is measured from `run_started_at` to `updated_at`; Astro duration is taken from the production-build log. The sample contains one confirmed content-only run and two source/tooling runs. These are useful baseline observations, not a statistically robust comparison: runner/cache conditions and change sizes differ, and the observed 23–28 s workflow totals do not establish a speedup. Continue collecting comparable samples during future ordinary changes; do not claim a performance gain from this dataset.
+
+### 2. Earlier error detection — [x] Verified in CI
+
+- Negative test: [workflow run 44867324725](https://github.com/tnvcertification/tnvcertification/actions/runs/44867324725), commit `f3212076480bb221b3db5f6ee17adf9bf30bc7bd`, completed as failure after 18 s.
+- The changed editorial file was classified as `content-only`; step **Validate changed editorial content** failed with `[CONTENT-002]` because the article had two intro paragraphs after H1 instead of exactly one.
+- The general type/Astro checks, lint, tests, production build, and SEO audit were skipped after the preflight failure, proving the invalid entry is rejected before those later gates.
+- Positive control: [workflow run 44867371518](https://github.com/tnvcertification/tnvcertification/actions/runs/44867371518), commit `88f19a19e8e164f480d3443a6d20b2de7e1367be`, passed the selective preflight and all general gates, including the complete 13-page Astro build and SEO/link audit.
+- The CI test suite also reports passing isolated CLI tests for valid editorial Markdown, malformed YAML, and editorial rule violations in that positive run.
+
+### Closure and operating decision
+
+- [x] CI timing baseline captured and documented with run/commit evidence.
+- [x] Earlier-error behavior demonstrated by a real failing CI run and a valid positive-control run.
+- [x] Full production build and global quality gates remain mandatory for valid changes.
+- [x] No incremental production rendering adopted.
+- [x] Build-strategy verification checkpoint closed for the current baseline; CSMS work may resume from its existing tracker without changing CSMS approval or readiness statuses.
+
+Future timing observations should be added here when additional ordinary content-only and source/configuration runs are available. Do not rewrite the baseline as a performance improvement claim.
