@@ -169,6 +169,102 @@ These organizations are included to show why contractor CSMS qualification is sc
 - SQN Training — https://sqn-training.co.id/training-contractor-safety-management-system-csms/
 - BMD Training Centre — https://www.sertifikasibnsp.id/training-csms-contractor-safety-management-system
 
+### CSMS service definition — proposed operating model
+
+**Decision status:** Proposed for internal review only; not approved for public launch.  
+**Recommended initial service name:** CSMS Readiness Review & Documentation Support  
+**Indonesian working name:** Tinjauan Kesiapan CSMS dan Dukungan Dokumentasi  
+**Service status:** Planned / Pending Management, Legal, Competence, and Impartiality Review.
+
+#### 1. Recommended initial positioning
+
+TNCVCertification should initially evaluate a narrowly scoped **readiness and documentation support** offer, not a generic CSMS certification service. The work would help a contractor understand and organize evidence against a clearly identified client/principal requirement set.
+
+The service must always identify:
+- The named principal/client or other requirement owner.
+- The source document title, revision/date, and applicable business unit/project where available.
+- Whether the engagement is document-only or includes interviews/site verification.
+- The limitations of the review and the fact that the principal retains its own qualification/approval decision.
+
+No universal CSMS checklist, score, pass/fail result, or certificate should be implied.
+
+#### 2. Proposed service modules
+
+| Module | Proposed scope | Tangible deliverable | Boundary |
+|---|---|---|---|
+| A. Requirement Mapping | Identify and map the selected principal's published CSMS requirements to contractor evidence | Requirement-to-evidence matrix with source/revision references | Does not interpret unpublished requirements or represent principal endorsement |
+| B. Documentation Review | Review documents supplied by the contractor against the agreed reference requirements | Document review register, missing-evidence list, and observations | Document review only unless site/implementation verification is separately agreed |
+| C. Readiness / Gap Review | Identify gaps, risk-ranked observations, and evidence readiness against the agreed reference | Readiness report with scope, method, evidence sampled, limitations, and action priorities | Not the principal's official score, prequalification decision, or certificate |
+| D. Documentation Organization | Help organize document registers, version control, evidence folders, and submission structure | Controlled document index and evidence pack structure | Do not create false records or claim implementation that has not occurred |
+| E. Awareness Workshop | Explain CSMS lifecycle and evidence expectations to contractor personnel | Attendance record and training materials | Attendance is not a competency certification or principal qualification |
+
+Modules should be sold separately or as a clearly defined package. Site visits, interviews, sampling, travel, translation, and follow-up reviews require explicit scope and pricing.
+
+#### 3. Recommended engagement workflow
+
+1. **Enquiry and scope screening:** identify contractor activity, sector, target principal/project, deadline, and intended outcome.
+2. **Reference confirmation:** obtain the current official requirement document from the client/principal or a verifiable public source; record title, revision, and date.
+3. **Conflict and competence check:** determine whether the requested work creates an impartiality conflict and whether competent personnel are available.
+4. **Proposal and acceptance:** define modules, exclusions, evidence access, schedule, fees, confidentiality, and deliverables.
+5. **Evidence intake:** receive the contractor's controlled documents and establish an evidence register.
+6. **Review and sampling:** perform the agreed document review, interviews, or site sampling using a documented method.
+7. **Reporting:** issue factual observations and readiness status with scope, reference, sampling limits, and disclaimers.
+8. **Close-out:** explain findings and close the engagement; any follow-up review is a separately defined activity.
+
+#### 4. Minimum report contents
+
+A readiness report should contain:
+- Client/contractor identity and engagement reference.
+- Target principal, project, and sector.
+- Applicable CSMS requirement source, revision, and assessment date.
+- Scope, criteria, method, sample size, locations, and personnel involved.
+- Evidence reviewed and documents not made available.
+- Findings categorized using a defined, non-misleading scale (for example: conforming evidence, partial evidence, missing evidence, and not applicable).
+- Limitations, assumptions, and unresolved items.
+- Recommended action priorities and report approval/sign-off.
+
+Do not use “passed”, “certified”, “approved”, “qualified”, official principal scoring, or similar language unless the relevant scheme owner expressly authorizes that result and the authorization is documented.
+
+#### 5. Explicit exclusions for the initial offer
+
+Until separately verified and approved, TNCVCertification must not:
+- Issue or advertise a generic CSMS certificate.
+- Claim to issue a principal's CSMS qualification, vendor approval, prequalification result, or official score.
+- Claim recognition, accreditation, appointment, or authorization by Pertamina, PLN, PGN, or another principal without documentary evidence.
+- Guarantee contractor acceptance, tender eligibility, project award, or a passing score.
+- Present training attendance as a professional competency credential or principal qualification.
+- Use a competitor's nine elements as the universal assessment criteria.
+- Backdate, fabricate, or certify implementation evidence supplied by a client.
+
+#### 6. Impartiality and conflict-of-interest control
+
+Before offering both advisory support and independent assessment, management must document how impartiality will be protected. In particular:
+- Do not have the same personnel advise a client on how to close gaps and then make an independent conformity decision on that same work where this creates a conflict.
+- Keep advisory/readiness outputs clearly separate from any independent assessment or certification decision.
+- Establish conflict screening, role separation, review/approval authority, confidentiality, and records.
+- If these controls cannot be demonstrated, restrict the offer to one service model rather than combining consulting and independent certification activity.
+
+#### 7. Internal approval gates before launch
+
+| Gate | Required evidence / decision | Owner to assign |
+|---|---|---|
+| Business model | Confirm whether TNCVCertification intends to provide advisory readiness support, independent assessment, or both with safeguards | Management |
+| Scheme basis | Select target principal(s) and obtain current requirement documents and written permission where needed | Service owner |
+| Legal and claims review | Verify legal permissibility, use of principal names/logos, authorization, recognition, and marketing wording | Legal / Compliance |
+| Competence | Define required HSE/CSMS experience, qualifications, training, technical reviewer, and evaluator authorization | Technical manager |
+| Impartiality | Approve conflict-of-interest controls and separation of advisory and independent decision-making | Impartiality function / Management |
+| Methodology | Approve procedure, criteria, sampling, rating scale, reporting template, and records retention | Technical manager / Quality |
+| Commercial | Approve modules, deliverables, pricing basis, terms, and exclusions | Management / Commercial |
+| Publication | Approve final service page and CTA only after all applicable gates are closed | Management / Marketing |
+
+No public launch should occur while any mandatory gate remains open.
+
+#### 8. Safe draft positioning statement
+
+> TNCVCertification is evaluating a planned CSMS readiness and documentation support service to help contractors organize and review their occupational health and safety evidence against identified client or principal requirements. The scope, applicable scheme, methodology, and service availability remain subject to verification and approval. This planned service does not represent a principal's official CSMS qualification, approval, or certificate.
+
+This statement is an internal drafting reference only and must not be published before approval.
+
 ### Relationship to other services
 
 - **ISO 45001:** A relevant occupational health and safety management-system reference, but CSMS is not identical to ISO 45001 certification.
