@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated commit: `c4934aa` (check and build); full gate suite last passed at `fe2f175`
+- Validated commit: `c6f9015` (full gate suite)
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -45,6 +45,7 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 | P15 | Content expansion and editorial strategy | Completed; topic gaps and an eight-article editorial queue documented; no articles published |
 | P16 | Editorial content production | In progress; first Indonesian/English article draft created in docs for review; not published |
 | P16.2 | Article integration and SEO readiness | Review checkpoint; collection schema, metadata gates, and publication gates documented |
+| P16.3 | Bilingual article integration | Validation and article rendering updated for English entries; no article records published |
 
 ## Verified repository facts
 
@@ -79,18 +80,18 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-Local validation used the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain. This update requested only `check` and `build`, which ran on `main` at `c4934aa`:
+Local full validation ran on `main` at `c6f9015` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
 
 | Command | Result |
 |---|---|
-| `npm run check` (at `c4934aa`) | PASS, exit `0` |
-| `npm run build` (at `c4934aa`) | PASS, exit `0`, 13 pages |
-| `npm run typecheck` (at `fe2f175`) | PASS, exit `0` |
-| `npm run lint` (at `fe2f175`) | PASS, exit `0` |
-| `npm run test` (at `fe2f175`) | PASS, exit `0`, 35 tests |
-| `npm run audit:seo` (at `fe2f175`) | PASS, exit `0`, 13 pages and 13 unique canonicals |
+| `npm run check` | PASS, exit `0` |
+| `npm run build` | PASS, exit `0`, 13 pages |
+| `npm run typecheck` | PASS, exit `0` |
+| `npm run lint` | PASS, exit `0` |
+| `npm run test` | PASS, exit `0`, 37 tests |
+| `npm run audit:seo` | PASS, exit `0`, 13 pages and 13 unique canonicals |
 
-GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Runs `44845274570` (`6151e50`), `44854428984` (`2733047`), `44855036386` (`0ce7f0b`), `44855490692` (`15daddb`) and `44856851545` (`c4934aa`) completed with `conclusion: success`. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
+GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Runs `44845274570` (`6151e50`), `44854428984` (`2733047`), `44855036386` (`0ce7f0b`), `44855490692` (`15daddb`), `44856851545` (`c4934aa`) and `44858182875` (`c6f9015`) completed with `conclusion: success`. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
 
 
 ## P5 completion — certification scheme catalog and CI
@@ -262,4 +263,13 @@ Branch: `docs/p16-2-article-integration-readiness` (merged at `fe2f175`).
 - Added `docs/p16-3-bilingual-article-integration-audit.md` with findings, proposed paired metadata, and safe implementation order.
 - No public article records/routes or fabricated publication metadata were added.
 - Pulled commits `02e0d2b` and `c4934aa`; local `check` and `build` ran on `c4934aa` with exit `0`; see validation note above.
-- Next: address validator and locale SEO/image rendering, verify licensed image assets, approve dates, then integrate records as drafts and run full CI gates.
+- Next: verify licensed image assets, approve dates, then integrate records as drafts and run full CI gates.
+- Pulled commits `f5447ce` and `c6f9015` address validator and locale rendering gaps below.
+
+### Pulled implementation on `c6f9015`
+
+- `src/lib/content-validation.ts` now accepts a language-appropriate copula: `adalah` for `id`, `is` for `en`, for both the intro and `featuredImage.alt`.
+- `src/pages/articles/[slug].astro` derives hreflang alternates from `translationKey` matches and passes them to `ArticleLayout`.
+- `src/layouts/ArticleLayout.astro` renders `featuredImage` as a real `<img>` with supplied alt text, formats dates per locale, and forwards alternates to the SEO layout.
+- `tests/content-validation.test.mjs` adds two English-rule cases; suite is now 37 tests.
+- No publishable article records, routes, dates, or image assets were added. Full gate suite passed locally on `c6f9015`; see validation note above.
