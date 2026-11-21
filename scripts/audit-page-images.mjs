@@ -31,6 +31,8 @@ const records = [];
 const errors = [];
 for (const file of walk(dist)) {
   const html = readFileSync(file, "utf8");
+  // Legacy route redirects are transport documents, not independently addressable content URLs.
+  if (/<meta\\b[^>]*http-equiv=["\x27]refresh["\x27]/i.test(html)) continue;
   const canonicalTag = html.match(/<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>/i)?.[0];
   const canonical = canonicalTag ? attr(canonicalTag, "href") : "";
   const route = canonical
