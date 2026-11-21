@@ -71,10 +71,27 @@ function loadCategoryEntries(): TaxonomyRecordLike[] {
   });
 }
 
+function findRestrictedLanguageFiles(): string[] {
+  const files = globSync(
+    ["src/content/**/*.{md,mdx}", "src/pages/**/*.astro", "src/components/**/*.astro", "src/layouts/**/*.astro", "src/site.ts"],
+    { onlyFiles: true },
+  );
+  const restrictedTerms = /(?:konsult\\p{L}*|consult\\p{L}*)/iu;
+  return files.filter((file) => restrictedTerms.test(readFileSync(file, "utf8")));
+}
+
 export const contentValidationIntegration = {
   name: "validate-content",
   hooks: {
     "astro:build:done": async () => {
+      const restrictedLanguageFiles = findRestrictedLanguageFiles();
+      if (restrictedLanguageFiles.length > 0) {
+        throw new Error([
+          "Content policy violation: consultation/consulting terminology is prohibited in public-facing content and components.",
+          ...restrictedLanguageFiles.map((file) => `  [CONTENT-013] ${file}`),
+        ].join("\\n"));
+      }
+
       const contentEntries = loadContentEntries();
       const categories = loadCategoryEntries();
       const diagnostics = [
