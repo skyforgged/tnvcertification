@@ -96,11 +96,18 @@ Use only the approved status vocabulary:
 
 ## 7. Client factual review and disposition
 
-| Finding ID | Client comment / correction requested | Evidence supplied | Disposition and rationale | Reviewer / date |
-|---|---|---|---|---|
-| [FR-001] | [Complete] | [Reference] | [Accepted / partly accepted / not accepted + reason] | [Complete] |
+Conduct this stage only on a controlled **draft** after the applicable engagement, privacy/security and recipient-authority gates are satisfied. Follow the [Client Factual Review & Correction Procedure](client-factual-review-procedure.md) and complete the [Client Factual Correction Log](client-factual-correction-log.md).
 
-Preserve the original finding and the correction history. A disagreement does not automatically remove a substantiated observation.
+| Comment ID | Report version / section / Finding ID | Original statement (verbatim or controlled reference) | Client comment / correction requested | Supporting evidence ID / source / version | Disposition and evidence-based rationale | Effect on finding / conclusion | Author / date | Technical re-review reference |
+|---|---|---|---|---|---|---|---|---|
+| FCR-001 | [Complete] | [Preserve original wording] | [Complete] | [Complete] | [Accepted / partly accepted / not accepted / clarification required / out of scope + rationale] | [Complete] | [Complete] | [Reference / N/A with rationale] |
+
+**Control rules**
+- Preserve the exact original observation, client comment, supporting evidence reference and reasoned disposition; never silently overwrite a finding.
+- Client factual review is not authority to negotiate or dictate a technical conclusion. A technical disagreement must be escalated for independent technical review; a service complaint follows the complaint process.
+- Accepted corrections must be linked to the exact revised report version. Material changes affecting evidence sufficiency, findings or conclusions require technical re-review.
+- Client non-response is not factual confirmation or acceptance. Record the agreed deadline and non-response; hold release where unresolved issues or approval gates require it.
+- Keep the draft marked as draft and do not release until all comments are dispositioned, blocking issues are closed, and a separately delegated report approver authorizes the exact final version.
 
 ## 8. Summary of open actions
 
