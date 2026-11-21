@@ -16,6 +16,11 @@ package dependencies, or the lockfile.
 
 ## Validation
 
-GitHub Actions is the authoritative validation for the workflow changes. Confirm
-that the run completes and the Node.js 20 deprecation notice is no longer emitted
-before merging.
+Local validation on `main` at `cf666d3`: `npm run check`, `npm run build`,
+`npm run typecheck`, `npm run lint`, `npm run test` and `npm run audit:seo` all
+passed with exit `0`; 33 tests passed and 13 pages built.
+
+The `v6`, `v6` and `v7` major tags for `actions/checkout`, `pnpm/action-setup`
+and `actions/setup-node` were confirmed to exist. No CI run result was
+independently verified locally. Confirm that the GitHub Actions run completes and
+that the Node.js 20 deprecation notice is gone after push.

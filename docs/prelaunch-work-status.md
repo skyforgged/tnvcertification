@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated commit: `221d7bc` (merge `0f418b2` plus integration fix)
+- Validated commit: `cf666d3` (merge `0f418b2` plus integration fix `221d7bc`)
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -75,7 +75,7 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-Local full validation ran on `main` at `221d7bc` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
+Local full validation ran on `main` at `cf666d3` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
 
 | Command | Result |
 |---|---|
@@ -190,3 +190,13 @@ Branch: `feat/seo-link-integrity` (merged at `0f418b2`).
 - The quality workflow runs the audit after the production build.
 - Integration fix at `221d7bc`: layouts no longer duplicate the validated H1 and intro from markdown content. The audit found two H1s on nine article pages and the corporate page; the rendered document now has one H1.
 - See `docs/technical-seo-audit.md` for scope and validation notes. Browser verification remains a separate manual task.
+
+
+## P13 — GitHub Actions runtime refresh
+
+Branch: `chore/github-actions-node24-runtime` (merged at `cf666d3`).
+
+- Workflow now uses `actions/checkout@v6`, `pnpm/action-setup@v6`, and `actions/setup-node@v7`, removing the Node.js 20 action runtime dependency.
+- Project Node.js from `.node-version` and pnpm `12.21.0` are unchanged.
+- Major action tags were confirmed to exist. No CI run result was independently verified locally.
+- See `docs/github-actions-runtime.md` for scope and validation notes.
