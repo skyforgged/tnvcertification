@@ -1,9 +1,12 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import WidePageLayout from "../../layouts/WidePageLayout.astro";
 import MainMenuHero from "../../components/MainMenuHero.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
+import Section from "../../components/Section.astro";
 import { getPublishedArticles } from "../../data/articles";
 import { getAdjacentPageHrefs, getPageLinks } from "../../lib/pagination";
+import { siteSettings } from "../../site";
+
 const articles = getPublishedArticles();
 const pageSize = 9;
 const pageCount = Math.max(1, Math.ceil(articles.length / pageSize));
@@ -11,8 +14,15 @@ const pageArticles = articles.slice(0, pageSize);
 const pageLinks = getPageLinks(1, pageCount, "/articles/");
 const adjacent = getAdjacentPageHrefs(1, pageCount, "/articles/");
 ---
-<Layout path="/articles/" title="Artikel | PT. Intiprima Sertifikasi" description="Artikel, wawasan, dan panduan sertifikasi serta kepatuhan." ogImage="/images/illustrations/articles-editorial.webp">
-  <section class="w-full space-y-10">
+
+<WidePageLayout
+  title={`Artikel | ${siteSettings.title}`}
+  description="Artikel, wawasan, dan panduan sertifikasi serta kepatuhan."
+  canonical="/articles/"
+  lang="id"
+  ogImage="/images/illustrations/articles-editorial.webp"
+>
+  <div class="w-full">
     <MainMenuHero
       eyebrow="Wawasan dan publikasi"
       title="Artikel"
@@ -21,18 +31,24 @@ const adjacent = getAdjacentPageHrefs(1, pageCount, "/articles/");
       imageAlt="Ilustrasi publikasi editorial, dokumen, dan bahan bacaan profesional"
     />
     {pageArticles.length > 0 ? (
-      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <Section spacing="default" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {pageArticles.map((article) => <ArticleCard article={article} />)}
-      </div>
-    ) : <p>Artikel belum tersedia.</p>}
-    {pageCount > 1 && (
-      <nav class="flex flex-wrap items-center gap-4" aria-label="Pagination">
-        {pageLinks.map((link) => link.current
-          ? <span aria-current="page" class="font-semibold text-brand-deepblue">{link.label}</span>
-          : <a href={link.href} class="underline">{link.label}</a>
-        )}
-        {adjacent.next && <a href={adjacent.next} class="underline">Berikutnya</a>}
-      </nav>
+      </Section>
+    ) : (
+      <Section spacing="default">
+        <p>Artikel belum tersedia.</p>
+      </Section>
     )}
-  </section>
-</Layout>
+    {pageCount > 1 && (
+      <Section spacing="spacious">
+        <nav class="flex flex-wrap items-center gap-4" aria-label="Pagination">
+          {pageLinks.map((link) => link.current
+            ? <span aria-current="page" class="font-semibold text-brand-deepblue">{link.label}</span>
+            : <a href={link.href} class="underline">{link.label}</a>
+          )}
+          {adjacent.next && <a href={adjacent.next} class="underline">Berikutnya</a>}
+        </nav>
+      </Section>
+    )}
+  </div>
+</WidePageLayout>
