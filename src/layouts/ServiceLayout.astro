@@ -1,6 +1,8 @@
 ---
 import Layout from "./Layout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
+import Container from "../components/Container.astro";
+import FeaturedImage from "../components/FeaturedImage.astro";
 import BlockRenderer, { type Block } from "../components/BlockRenderer.astro";
 interface Props {
   title: string;
@@ -15,16 +17,12 @@ interface Props {
 const { title, description, lang, canonical, ogImage, imageAlt, blocks = [], structuredData = [] } = Astro.props;
 ---
 <Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage} structuredData={structuredData}>
-  <article class="mx-auto w-full max-w-[var(--container-wide)]">
+  <Container as="article" variant="wide" gutter={false}>
     <Breadcrumbs items={[{ label: "Beranda", href: "/" }, { label: "Layanan", href: "/services/" }, { label: title }]} />
-    {ogImage && <figure class="mb-8 max-w-5xl overflow-hidden rounded-xl border border-border bg-surface-muted">
-      <img data-page-image src={ogImage} alt={imageAlt} width="1200" height="675" loading="eager" decoding="async" fetchpriority="high" class="aspect-video w-full object-cover" />
-    </figure>}
-    <div class="prose mt-8 max-w-3xl">
-      <slot />
-    </div>
+    {ogImage && <FeaturedImage src={ogImage} alt={imageAlt} priority class="mb-8 mt-8 max-w-5xl" />}
+    <div class="prose mt-8 max-w-3xl"><slot /></div>
     <BlockRenderer blocks={blocks} lang={lang} />
-  </article>
+  </Container>
 </Layout>
 
 <style>

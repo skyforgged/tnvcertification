@@ -1,8 +1,9 @@
 ---
 import Layout from "./Layout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
+import Container from "../components/Container.astro";
+import FeaturedImage from "../components/FeaturedImage.astro";
 import type { SeoAlternate } from "../lib/seo";
-
 interface Props {
   title: string;
   description: string;
@@ -12,52 +13,14 @@ interface Props {
   imageAlt: string;
   alternates?: SeoAlternate[];
 }
-
-const {
-  title,
-  description,
-  lang = "id",
-  canonical,
-  ogImage,
-  imageAlt,
-  alternates = [],
-} = Astro.props;
-
+const { title, description, lang = "id", canonical, ogImage, imageAlt, alternates = [] } = Astro.props;
 const homeLabel = lang === "en" ? "Home" : "Beranda";
 const trainingLabel = lang === "en" ? "Training" : "Pelatihan";
 ---
-
-<Layout
-  title={title}
-  description={description}
-  lang={lang}
-  canonical={canonical}
-  ogImage={ogImage}
-  alternates={alternates}
->
-  <article class="mx-auto w-full max-w-[var(--container-wide)]">
-    <Breadcrumbs
-      items={[
-        { label: homeLabel, href: "/" },
-        { label: trainingLabel, href: "/trainings/" },
-        { label: title },
-      ]}
-    />
-    {ogImage && (
-      <figure class="mt-8 max-w-5xl overflow-hidden rounded-xl border border-border bg-surface-muted">
-        <img
-          data-page-image
-          src={ogImage}
-          alt={imageAlt}
-          width="1200"
-          height="675"
-          loading="eager"
-          decoding="async"
-          fetchpriority="high"
-          class="aspect-video w-full object-cover"
-        />
-      </figure>
-    )}
+<Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage} alternates={alternates}>
+  <Container as="article" variant="wide" gutter={false}>
+    <Breadcrumbs items={[{ label: homeLabel, href: "/" }, { label: trainingLabel, href: "/trainings/" }, { label: title }]} />
+    {ogImage && <FeaturedImage src={ogImage} alt={imageAlt} priority class="mt-8 max-w-5xl" />}
     <slot />
-  </article>
+  </Container>
 </Layout>

@@ -1,6 +1,8 @@
 ---
 import Layout from "./Layout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
+import Container from "../components/Container.astro";
+import FeaturedImage from "../components/FeaturedImage.astro";
 import type { SeoAlternate } from "../lib/seo";
 interface Props {
   title: string;
@@ -15,36 +17,15 @@ interface Props {
 const { title, description, lang = "id", canonical, ogImage, date, imageAlt, alternates = [] } = Astro.props;
 const homeLabel = lang === "en" ? "Home" : "Beranda";
 const archiveLabel = lang === "en" ? "Articles" : "Artikel";
-const dateFormatter = new Intl.DateTimeFormat(lang === "en" ? "en-US" : "id-ID", {
-  day: "numeric",
-  month: "long",
-  year: "numeric",
-  timeZone: "UTC",
-});
+const dateFormatter = new Intl.DateTimeFormat(lang === "en" ? "en-US" : "id-ID", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 ---
 <Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage} alternates={alternates}>
-  <article class="mx-auto w-full max-w-3xl">
+  <Container as="article" variant="reading" gutter={false}>
     <Breadcrumbs items={[{ label: homeLabel, href: "/" }, { label: archiveLabel, href: "/articles/" }, { label: title }]} />
-    {ogImage && (
-      <figure class="mb-8 overflow-hidden rounded-xl bg-brand-blue/10">
-        <img
-          data-page-image
-          src={ogImage}
-          alt={imageAlt}
-          width="1200"
-          height="675"
-          loading="eager"
-          decoding="async"
-          fetchpriority="high"
-          class="aspect-video w-full object-cover"
-        />
-      </figure>
-    )}
-    <p class="text-sm text-slate-500">
-      <time datetime={date.toISOString().slice(0, 10)}>{dateFormatter.format(date)}</time>
-    </p>
+    {ogImage && <FeaturedImage src={ogImage} alt={imageAlt} priority class="mb-8 mt-8" />}
+    <p class="text-sm text-ink-subtle"><time datetime={date.toISOString().slice(0, 10)}>{dateFormatter.format(date)}</time></p>
     <div class="prose mt-4"><slot /></div>
-  </article>
+  </Container>
 </Layout>
 
 <style>
@@ -54,12 +35,12 @@ const dateFormatter = new Intl.DateTimeFormat(lang === "en" ? "en-US" : "id-ID",
     line-height: 1.2;
     font-weight: 600;
     letter-spacing: -0.025em;
-    color: var(--color-brand-deepblue);
+    color: var(--color-ink);
   }
   .prose :global(h1 + p) {
     margin-top: 0.75rem;
     font-size: 1.125rem;
     line-height: 1.75;
-    color: #334155;
+    color: var(--color-ink-muted);
   }
 </style>

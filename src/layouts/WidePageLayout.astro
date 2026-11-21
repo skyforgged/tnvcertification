@@ -1,8 +1,8 @@
 ---
 import Layout from "./Layout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
+import Container from "../components/Container.astro";
 import type { SeoAlternate } from "../lib/seo";
-
 interface Props {
   title: string;
   description: string;
@@ -13,32 +13,11 @@ interface Props {
   structuredData?: unknown[];
   breadcrumbs?: Array<{ label: string; href?: string }>;
 }
-
-const {
-  title,
-  description,
-  lang = "id",
-  canonical,
-  ogImage,
-  alternates = [],
-  structuredData = [],
-  breadcrumbs = [],
-} = Astro.props;
+const { title, description, lang = "id", canonical, ogImage, alternates = [], structuredData = [], breadcrumbs = [] } = Astro.props;
 ---
-
-<Layout
-  title={title}
-  description={description}
-  lang={lang}
-  canonical={canonical}
-  ogImage={ogImage}
-  alternates={alternates}
-  structuredData={structuredData}
->
-  <div class="mx-auto w-full max-w-[var(--container-landing)]">
+<Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage} alternates={alternates} structuredData={structuredData}>
+  <Container variant="landing" gutter={false}>
     {breadcrumbs.length > 0 && <Breadcrumbs items={breadcrumbs} />}
-    <div class="min-w-0">
-      <slot />
-    </div>
-  </div>
+    <div class="min-w-0"><slot /></div>
+  </Container>
 </Layout>
