@@ -6,12 +6,14 @@ interface Props {
   variant?: ContainerVariant;
   as?: ContainerTag;
   class?: string;
+  gutter?: boolean;
 }
 
 const {
   variant = "wide",
   as = "div",
   class: className = "",
+  gutter = true,
 } = Astro.props;
 
 const Tag = as;
@@ -23,6 +25,6 @@ const widthClasses: Record<ContainerVariant, string> = {
 };
 ---
 
-<Tag class:list={["mx-auto w-full px-[var(--page-gutter)]", widthClasses[variant], className]}>
+<Tag class:list={["mx-auto w-full", gutter && "px-[var(--page-gutter)]", widthClasses[variant], className]}>
   <slot />
 </Tag>

@@ -1,4 +1,5 @@
 ---
+import FeaturedImage from "./FeaturedImage.astro";
 interface Props {
   eyebrow?: string;
   title: string;
@@ -7,39 +8,14 @@ interface Props {
   imageAlt: string;
   imagePriority?: boolean;
 }
-
-const {
-  eyebrow,
-  title,
-  description,
-  image,
-  imageAlt,
-  imagePriority = false,
-} = Astro.props;
+const { eyebrow, title, description, image, imageAlt, imagePriority = false } = Astro.props;
 ---
-
-<section
-  data-main-menu-hero
-  class="grid w-full items-center gap-8 border-b border-border py-8 sm:gap-10 sm:py-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] lg:gap-14 lg:py-16"
-  aria-labelledby="main-menu-hero-title"
->
+<section data-main-menu-hero class="grid w-full items-center gap-8 border-b border-border py-8 sm:gap-10 sm:py-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] lg:gap-14 lg:py-16" aria-labelledby="main-menu-hero-title">
   <div class="max-w-3xl">
     {eyebrow && <p class="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-brand-deepblue sm:text-sm">{eyebrow}</p>}
     <h1 id="main-menu-hero-title" class="max-w-3xl text-3xl font-semibold leading-[1.12] tracking-tight text-ink sm:text-4xl lg:text-5xl">{title}</h1>
     <p class="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg">{description}</p>
     <slot name="actions" />
   </div>
-  <div class="relative w-full overflow-hidden rounded-panel bg-surface-muted">
-    <img
-      data-page-image
-      src={image}
-      alt={imageAlt}
-      width="1200"
-      height="900"
-      loading={imagePriority ? "eager" : "lazy"}
-      decoding="async"
-      fetchpriority={imagePriority ? "high" : "auto"}
-      class="aspect-[4/3] h-full w-full object-cover"
-    />
-  </div>
+  <FeaturedImage src={image} alt={imageAlt} width={1200} height={900} aspect="fourThree" priority={imagePriority} class="relative w-full" />
 </section>

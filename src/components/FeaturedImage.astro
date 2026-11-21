@@ -1,0 +1,22 @@
+---
+type Aspect = "video" | "fourThree";
+type Fit = "cover" | "contain";
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  aspect?: Aspect;
+  fit?: Fit;
+  priority?: boolean;
+  class?: string;
+}
+const { src, alt, width = 1200, height = 675, aspect = "video", fit = "cover", priority = false, class: className = "" } = Astro.props;
+const aspectClasses: Record<Aspect, string> = { video: "aspect-video", fourThree: "aspect-[4/3]" };
+const fitClasses: Record<Fit, string> = { cover: "object-cover", contain: "object-contain" };
+---
+<figure class:list={["overflow-hidden rounded-panel border border-border bg-surface-muted", className]}>
+  <img data-page-image src={src} alt={alt} width={width} height={height}
+    loading={priority ? "eager" : "lazy"} decoding="async" fetchpriority={priority ? "high" : "auto"}
+    class:list={["h-full w-full", aspectClasses[aspect], fitClasses[fit]]} />
+</figure>

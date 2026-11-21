@@ -1,0 +1,19 @@
+---
+type SectionSpacing = "compact" | "default" | "spacious";
+interface Props {
+  spacing?: SectionSpacing;
+  id?: string;
+  "aria-label"?: string;
+  "aria-labelledby"?: string;
+  class?: string;
+}
+const { spacing = "default", id, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy, class: className = "" } = Astro.props;
+const spacingClasses: Record<SectionSpacing, string> = {
+  compact: "mt-8 sm:mt-10",
+  default: "mt-12 sm:mt-14",
+  spacious: "mt-16 sm:mt-20",
+};
+---
+<section id={id} aria-label={ariaLabel} aria-labelledby={ariaLabelledBy} class:list={["w-full", spacingClasses[spacing], className]}>
+  <slot />
+</section>
