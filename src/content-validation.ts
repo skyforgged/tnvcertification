@@ -76,7 +76,7 @@ function findRestrictedLanguageFiles(): string[] {
     ["src/content/**/*.{md,mdx}", "src/pages/**/*.astro", "src/components/**/*.astro", "src/layouts/**/*.astro", "src/site.ts"],
     { onlyFiles: true },
   );
-  const restrictedTerms = /(?:konsult\\p{L}*|consult\\p{L}*)/iu;
+  const restrictedTerms = /(?:konsult\p{L}*|consult\p{L}*)/iu;
   return files.filter((file) => restrictedTerms.test(readFileSync(file, "utf8")));
 }
 
