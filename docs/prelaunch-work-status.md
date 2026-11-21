@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated commit: `fe2f175` (merge `docs/p16-2-article-integration-readiness`)
+- Validated commit: `c4934aa` (check and build); full gate suite last passed at `fe2f175`
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -79,18 +79,18 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-Local full validation ran on `main` at `fe2f175` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
+Local validation used the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain. This update requested only `check` and `build`, which ran on `main` at `c4934aa`:
 
 | Command | Result |
 |---|---|
-| `npm run check` | PASS, exit `0` |
-| `npm run build` | PASS, exit `0`, 13 pages |
-| `npm run typecheck` | PASS, exit `0` |
-| `npm run lint` | PASS, exit `0` |
-| `npm run test` | PASS, exit `0`, 35 tests |
-| `npm run audit:seo` | PASS, exit `0`, 13 pages and 13 unique canonicals |
+| `npm run check` (at `c4934aa`) | PASS, exit `0` |
+| `npm run build` (at `c4934aa`) | PASS, exit `0`, 13 pages |
+| `npm run typecheck` (at `fe2f175`) | PASS, exit `0` |
+| `npm run lint` (at `fe2f175`) | PASS, exit `0` |
+| `npm run test` (at `fe2f175`) | PASS, exit `0`, 35 tests |
+| `npm run audit:seo` (at `fe2f175`) | PASS, exit `0`, 13 pages and 13 unique canonicals |
 
-GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Runs `44845274570` (`6151e50`), `44854428984` (`2733047`), `44855036386` (`0ce7f0b`) and `44855490692` (`15daddb`) completed with `conclusion: success`. No CI result was available for the current merge before this status update. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
+GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Runs `44845274570` (`6151e50`), `44854428984` (`2733047`), `44855036386` (`0ce7f0b`), `44855490692` (`15daddb`) and `44856851545` (`c4934aa`) completed with `conclusion: success`. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
 
 
 ## P5 completion — certification scheme catalog and CI
@@ -260,4 +260,6 @@ Branch: `docs/p16-2-article-integration-readiness` (merged at `fe2f175`).
 - Reviewed the bilingual ISO 9001 document-control draft against the article collection, routes, SEO helper, content validator, and repository asset inventory.
 - Confirmed English article integration is blocked by Indonesian-only validator rules, missing reciprocal hreflang wiring, generic article-image placeholder rendering, unverified/missing tracked image assets, and required-but-unapproved publication dates.
 - Added `docs/p16-3-bilingual-article-integration-audit.md` with findings, proposed paired metadata, and safe implementation order.
-- No public article records/routes or fabricated publication metadata were added. Next: address validator and locale SEO/image rendering, verify licensed image assets, approve dates, then integrate records as drafts and run full CI gates.
+- No public article records/routes or fabricated publication metadata were added.
+- Pulled commits `02e0d2b` and `c4934aa`; local `check` and `build` ran on `c4934aa` with exit `0`; see validation note above.
+- Next: address validator and locale SEO/image rendering, verify licensed image assets, approve dates, then integrate records as drafts and run full CI gates.
