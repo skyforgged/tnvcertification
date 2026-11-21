@@ -1,0 +1,189 @@
+Laporan Build — Siklus 2026-11-21
+=================================
+
+1. Pull
+-------
+Perintah: git pull origin main
+Hasil: ok 4 files +257 -0
+HEAD sebelum: 3ff404b
+HEAD sesudah: 613595e (= origin/main)
+6 commit, 4 file:
+
+- deef7b2 content(services): add ISO 14001:2026 Indonesian draft
+- 487dde4 content(services): add ISO 14001:2026 English draft
+- 167eaaa assets(illustrations): add ISO 14001 environmental management artwork
+- f0b7573 assets(illustrations): add English ISO 14001 artwork
+- 5242097 content(services): assign localized ISO 14001 artwork
+- 613595e fix(content): align ISO 14001 editorial copy
+
+Perubahan konten: dua draft layanan baru ISO 14001:2026 (ID dan EN),
+beserta dua master SVG dan WebP turunannya. Keduanya berstatus draft: true.
+
+2. Gate pertama (sebelum perbaikan)
+-----------------------------------
+check=0  build=1  typecheck=0  lint=0  test=0  page_images=0  seo=1
+
+Test: 55 pass, 0 fail.
+Build: 19 halaman sempat di-generate, lalu gagal di hook astro:build:done.
+
+Penyebab build gagal:
+  [CONTENT-008] src/content/services/sertifikasi-iso-14001-2026.md
+  -> featuredImage.alt: featuredImage.alt must be title-relevant.
+
+Aturan CONTENT-008 mewajibkan alt memuat judul lengkap dan frasa "adalah",
+serta lebih pendek dari intro. Alt lama hanya memuat "Sertifikasi
+ISO 14001:2026", bukan judul penuh "Sertifikasi Sistem Manajemen Lingkungan
+ISO 14001:2026".
+
+Penyebab SEO gagal:
+  17 issue: 16 x "broken internal link /sitemap-index.xml" dan
+  "No sitemap XML found in build output."
+
+Ini efek lanjutan dari build yang abort di hook astro:build:done. Karena hook
+validasi melempar error, plugin sitemap tidak sempat menulis sitemap-index.xml.
+SEO audit sendiri tidak menemukan masalah metadata, canonical, atau link lain.
+
+3. Perbaikan yang diterapkan
+----------------------------
+
+a. Alt featured image ISO 14001:2026 Bahasa Indonesia
+
+   Sebelum:
+   "Sertifikasi ISO 14001:2026 adalah penilaian sistem manajemen lingkungan
+    organisasi."
+
+   Sesudah:
+   "Sertifikasi Sistem Manajemen Lingkungan ISO 14001:2026 adalah penilaian
+    kesesuaian EMS organisasi."
+
+   Alt EN 14001 dan alt ISO 9001:2026 tidak diubah.
+
+b. Publikasi tiga draft layanan (draft: true -> draft: false)
+
+   - src/content/services/sertifikasi-iso-14001-2026.md
+   - src/content/services/iso-14001-2026-certification.md
+   - src/content/services/sertifikasi-iso-9001-2026.md
+
+   Draft lain sengaja dibiarkan: CSMS dan dua artikel pengendalian dokumen.
+
+c. Metadata tanggal
+
+   pubDate: "2026-11-21" -> pubDate: "2026-11-21T00:00:00Z"
+   Ditambahkan: updatedDate: "2026-11-21T00:00:00Z"
+
+   Format UTC tanpa milliseconds. Nama field di schema adalah updatedDate,
+   bukan updateDate. Schema: src/content.config.ts:84.
+
+   Presisi UTC sampai detik: YYYY-MM-DDTHH:mm:ssZ. Bagian jam, menit, dan
+   detik wajib ditulis; suffix Z menandakan UTC. Tidak memakai milliseconds
+   (tidak ada .000Z) dan tidak memakai offset lokal seperti +07:00.
+
+   Setiap entri konten bersifat unik. Judul, intro, metaDescription, dan
+   featuredImage.alt berbeda antar entri. Aturan CONTENT-006 menolak
+   metaDescription yang sama dengan entri lain, intro, atau alt gambar.
+   Ketiga draft yang dipublikasikan sudah lolos aturan ini.
+
+d. Gambar unik untuk ISO 9001:2026
+
+   featuredImage.src sebelumnya memakai article-iso9001-certification.webp,
+   yang juga dipakai artikel 0002. Publikasi akan melanggar aturan primary
+   image unik per URL.
+
+   Src diganti ke /images/illustrations/service-iso9001-2026.webp.
+   Master baru: assets/illustrations/source/service-iso9001-2026.svg.
+   WebP dihasilkan lewat npm run images:illustrations (20 master diproses).
+
+4. Gate akhir (sesudah perbaikan)
+---------------------------------
+check=0  build=0  typecheck=0  lint=0  test=0  page_images=0  seo=0
+
+- Test: 55 pass, 0 fail.
+- Build: 19 page(s) built.
+- Image audit: 19 generated URL, satu primary image unik per URL.
+- SEO audit: 22 HTML pages, 19 canonical unik. Tidak ada issue.
+- Terminologi terlarang: 0 kemunculan konsult*/consult* di HTML build.
+
+Warning non-fatal tetap ada: collection training dan trainingSchedules kosong,
+serta slug kategori bilingual yang sama antar file ID dan EN.
+
+5. Kondisi worktree saat laporan dibuat
+---------------------------------------
+Belum ada commit atau push, sesuai permintaan.
+
+Modified:
+  src/content/services/sertifikasi-iso-14001-2026.md
+  src/content/services/iso-14001-2026-certification.md
+  src/content/services/sertifikasi-iso-9001-2026.md
+
+Untracked:
+  assets/illustrations/source/service-iso9001-2026.svg
+  public/images/illustrations/article-iso14001-certification-en.webp
+  public/images/illustrations/article-iso14001-certification.webp
+  public/images/illustrations/service-iso9001-2026.webp
+
+6. Tindakan yang masih perlu
+----------------------------
+- Daftarkan tiga aset ilustrasi ke docs/illustration-library/asset-register.md
+  (dua aset ISO 14001 dari pull, satu aset ISO 9001:2026 baru).
+- Commit perubahan konten dan aset setelah reviewer menyetujui alt dan
+  metadata tanggal.
+- Pastikan klaim tanggal terbit standar di dalam konten (ISO 14001:2026
+  15 April 2026 dan ISO 9001:2026 16 September 2026) diverifikasi terhadap
+  sumber resmi ISO sebelum layanan dipublikasikan ke produksi. Klaim ini
+  berasal dari konten pull, bukan diverifikasi sesi ini.
+
+7. Sitemap lastmod
+------------------
+Sitemap awalnya tidak memuat lastmod sama sekali. Konfigurasi lama di
+astro.config.mjs menghapus lastmod untuk semua URL.
+
+Sudah diubah: lastmod kini diambil dari updatedDate, atau pubDate bila
+updatedDate tidak ada, pada entri konten yang dipublikasikan. Sumber:
+src/lib/sitemap-lastmod.mjs. Nilai ditulis dalam UTC presisi detik tanpa
+milliseconds, misalnya 2026-11-21T00:00:00Z. Entri draft tidak ikut.
+
+Hasil build:
+  14 lastmod pada 19 URL sitemap.
+  1 x 2026-10-01T00:00:00Z
+  6 x 2026-11-10T00:00:00Z
+  7 x 2026-11-21T00:00:00Z
+Contoh: /about-us/ -> 2026-10-01T00:00:00Z,
+/services/sertifikasi-iso-9001-2026/ -> 2026-11-21T00:00:00Z.
+
+Halaman yang tidak bersumber konten, seperti beranda dan indeks menu, sengaja
+tanpa lastmod agar tidak memakai waktu build atau waktu file.
+
+8. Beranda dan halaman menu belum berbasis markdown
+----------------------------------------------------
+Pertanyaan: apakah halaman menu termasuk halaman depan dan apakah beranda
+sudah memakai markdown, seperti contoh di
+https://github.com/arisciwek/pusattraining/tree/main/src/content/pages
+
+Temuan pada repositori ini:
+
+- src/content/pages/ hanya berisi satu entri:
+  0010-halaman-about-us.md.
+- Beranda / adalah src/pages/index.astro, bukan entri markdown. Judul hero,
+  deskripsi, tautan menu, dan judul bagian ditulis di file Astro dan komponen.
+- Halaman menu /services/, /csms/, /trainings/, /schedules/, dan /articles/
+  semuanya file .astro. Copy hero (eyebrow, title, description) dan CTA
+  ditulis langsung di komponen, bukan di collection pages.
+- Yang sudah markdown adalah halaman detail: artikel, layanan, dan training.
+  Ini berbeda dengan halaman menu/indeks yang masih hardcoded.
+
+Perbandingan dengan repo contoh:
+
+- src/content/pages/ di repo contoh berisi home.md, jadwal.md, kontak.md,
+  pelatihan.md, dan tentang-kami.md.
+- home.md memakai pubDate dan updatedDate berformat ISO dengan offset
+  +07:00, draft: false, serta blok seperti home-hero, home-introduction,
+  home-category-overview, home-benefits, home-upcoming-schedule, dan
+  home-contact.
+- Dengan begitu, beranda dan halaman menu dikelola sebagai konten markdown,
+  bukan copy di file .astro.
+
+Kesimpulan: belum. Beranda dan halaman menu di repositori ini belum
+mengikuti pola markdown pada repo contoh. Jika ingin konsisten, kopi teks
+beranda dan tiap halaman menu perlu dipindahkan ke entri pages baru, lalu
+halaman .astro menjadi renderer dari blok tersebut. Ini belum dikerjakan
+karena di luar permintaan publikasi draft.
