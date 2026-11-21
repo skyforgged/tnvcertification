@@ -7,7 +7,7 @@ draft: false
 categoryIds:
   - "quality-management"
 featuredImage:
-  src: "/images/articles/0002.jpg"
+  src: "/images/illustrations/article-iso9001-certification.webp"
   alt: "Sertifikasi ISO 9001:2015 adalah pengakuan atas sistem manajemen mutu."
 slug: "sertifikasi-iso-9001-2015"
 translationKey: "article-sertifikasi-iso-9001-2015"

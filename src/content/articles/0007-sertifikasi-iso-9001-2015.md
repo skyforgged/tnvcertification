@@ -7,7 +7,7 @@ draft: false
 categoryIds:
   - "quality-management"
 featuredImage:
-  src: "/images/articles/0007.jpg"
+  src: "/images/illustrations/article-audit-process.webp"
   alt: "Proses Audit Sertifikasi ISO 9001:2015 adalah pemeriksaan sistem mutu."
 slug: "proses-audit-sertifikasi-iso-9001-2015"
 translationKey: "article-proses-audit-sertifikasi-iso-9001-2015"

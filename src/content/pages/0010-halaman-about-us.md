@@ -5,7 +5,7 @@ metaDescription: "Profil dan tujuan PT. Intiprima Sertifikasi dalam layanan sert
 pubDate: "2026-10-01"
 draft: false
 featuredImage:
-  src: "/images/articles/0010.jpg"
+  src: "/images/illustrations/about-organization.webp"
   alt: "Deskripsi Halaman Tentang adalah pengantar profil organisasi."
 slug: "hal-about-us"
 translationKey: "page-hal-about-us"

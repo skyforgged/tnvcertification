@@ -7,7 +7,7 @@ draft: false
 categoryIds:
   - "quality-management"
 featuredImage:
-  src: "/images/articles/0009.jpg"
+  src: "/images/illustrations/article-iso9001-benefits.webp"
   alt: "Manfaat Sertifikasi ISO 9001:2015 bagi Perusahaan adalah efisiensi proses."
 slug: "manfaat-sertifikasi-iso-9001-2015-bagi-perusahaan"
 translationKey: "article-manfaat-sertifikasi-iso-9001-2015-bagi-perusahaan"

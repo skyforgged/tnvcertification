@@ -59,10 +59,11 @@ for (const file of walk(dist)) {
     dist,
     "." + decodeURIComponent(new URL(src, "https://tnvcertification.invalid").pathname),
   );
-  const hash =
-    existsSync(asset) && asset.startsWith(dist + path.sep)
-      ? createHash("sha256").update(readFileSync(asset)).digest("hex")
-      : "";
+  if (!asset.startsWith(dist + path.sep) || !existsSync(asset)) {
+    errors.push("[PAGE-IMAGE-005] " + route + ": primary image asset is missing from build output: " + src + ".");
+    continue;
+  }
+  const hash = createHash("sha256").update(readFileSync(asset)).digest("hex");
   records.push({ route, src, hash });
 }
 

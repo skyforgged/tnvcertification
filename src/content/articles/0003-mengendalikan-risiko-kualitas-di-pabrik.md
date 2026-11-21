@@ -7,7 +7,7 @@ draft: false
 categoryIds:
   - "quality-management"
 featuredImage:
-  src: "/images/articles/0003.jpg"
+  src: "/images/illustrations/article-factory-risk.webp"
   alt: "Mengendalikan Risiko Kualitas di Pabrik adalah pengendalian mutu produksi."
 slug: "mengendalikan-risiko-kualitas-di-pabrik"
 translationKey: "article-mengendalikan-risiko-kualitas-di-pabrik"

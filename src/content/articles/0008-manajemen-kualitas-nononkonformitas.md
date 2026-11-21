@@ -7,7 +7,7 @@ draft: false
 categoryIds:
   - "quality-management"
 featuredImage:
-  src: "/images/articles/0008.jpg"
+  src: "/images/illustrations/article-nonconformity.webp"
   alt: "Manajemen Kualitas Nonkonformitas adalah penanganan penyimpangan mutu."
 slug: "manajemen-kualitas-nononkonformitas"
 translationKey: "article-manajemen-kualitas-nononkonformitas"

@@ -7,7 +7,7 @@ draft: false
 categoryIds:
   - "occupational-health-safety"
 featuredImage:
-  src: "/images/articles/0004.jpg"
+  src: "/images/illustrations/article-iso45001-safety.webp"
   alt: "Sertifikasi ISO 45001:2018 adalah sistem manajemen keselamatan kerja."
 slug: "sertifikasi-iso-45001-2018"
 translationKey: "article-sertifikasi-iso-45001-2018"
