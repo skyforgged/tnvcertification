@@ -158,3 +158,40 @@ A client disclosure or consent does not replace effective safeguards. If no comp
 - [ ] Reassessment triggers and responsible contact identified.
 
 Use the [Impartiality & Conflict of Interest Register](impartiality-conflict-register.md) as the controlled engagement record. No engagement may start while a material conflict field, safeguard or required approval remains pending.
+
+
+## 11. Technical review and report-release governance (RA-07)
+
+The technical reviewer must be appointed for the specific sector, principal criteria, CSMS subject matter, assessment method and report scope. Before assignment, the service owner must verify the reviewer's current competence evidence, authorization scope, availability and engagement-specific conflict clearance. A course certificate or job title alone is not sufficient evidence of competence.
+
+### Required decision separation
+
+| Activity / decision | Minimum accountable role | Separation / evidence control |
+|---|---|---|
+| Perform assessment and draft report | Assessor / report author | Records objective evidence and identifies all contributors |
+| Technical review | Appointed technical reviewer | Must not have performed or materially authored the work under review; independent competence and conflict clearance recorded |
+| Correct review comments | Author / assessor | Responds with evidence; preserves original record and revision history |
+| Resolve technical disagreement | Independent technical authority / senior reviewer | Competent for disputed scope, not involved in disputed work, with decision rationale retained |
+| Confirm impartiality and conflicts | Appointed impartiality reviewer | Separate from sales/delivery pressure; clearance remains valid through review and release |
+| Authorize report release | Delegated report approver | Separate, documented release authority; verifies review outcome and exact report version |
+| Control review records | Document controller / designated record owner | Retains checklist, comment log, escalation, approval and distribution evidence |
+
+### Technical reviewer authority
+
+The reviewer is authorized, within the approved delegation, to request source/evidence clarification, require correction or rework, reject unsupported findings or conclusions, place the report on hold, and escalate unresolved disagreement. The reviewer cannot alter evidence history, silently change assessor conclusions, waive impartiality hard stops, or authorize release unless separately delegated as report approver with appropriate separation.
+
+### Minimum reviewer competence and appointment record
+
+- [ ] Named individual, role, appointment date and approving authority.
+- [ ] Defined review scope, criteria, sector and permitted report types.
+- [ ] Verified relevant qualifications/credentials and experience.
+- [ ] Demonstrated competence in evidence evaluation, traceability, sampling, findings and report review.
+- [ ] Observed review/work-sample assessment and evaluator decision where required.
+- [ ] Current authorization, restrictions, supervision and reassessment date.
+- [ ] Engagement-specific conflict declaration and independence decision.
+- [ ] Capacity and availability confirmation.
+- [ ] Signed acceptance of review responsibilities and escalation route.
+
+No reviewer may be assigned while any mandatory competence, authorization or independence requirement remains unverified. If a suitable independent reviewer is unavailable, the report remains on hold; commercial or schedule pressure is not an exception.
+
+The technical review is an internal quality-control step only. It is not a principal's qualification decision, certification, accreditation, statutory inspection, or regulatory approval. Report release authority must not be represented as authority to make those external decisions.
