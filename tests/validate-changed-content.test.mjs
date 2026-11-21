@@ -1,13 +1,11 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { execFileSync, spawnSync } from "node:child_process";
-import { createRequire } from "node:module";
 import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const require = createRequire(import.meta.url);
 const repoRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const validator = join(repoRoot, "scripts/validate-changed-content.mjs");
 const classifier = join(repoRoot, "scripts/classify-build-changes.mjs");
