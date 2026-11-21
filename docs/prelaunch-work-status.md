@@ -465,3 +465,8 @@ Documentation consistency improved; operational readiness is **not demonstrated*
 - The public CSMS content remains `draft: true`; no publication or launch is authorized.
 
 The audit is a documentation review only. It is not a legal opinion, accreditation assessment, management approval, or proof of operational effectiveness.
+
+
+## CSMS implementation status tracker
+
+For one authoritative view of which CSMS documents have been prepared versus which approvals and real-world implementation actions remain open, see [CSMS Implementation & Document Status Tracker](csms/implementation-status.md). The tracker distinguishes completed documentation from operational readiness; it does not create or renumber implementation phases. Current baseline: management decisions 12/12 Pending, pilot remediation actions 10/10 Open, audit findings AUD-01–AUD-03 corrected, AUD-04–AUD-09 open, and AUD-10 publication safeguard maintained. The public CSMS page remains `draft: true`.
