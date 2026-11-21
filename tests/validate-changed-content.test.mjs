@@ -11,7 +11,7 @@ const require = createRequire(import.meta.url);
 const repoRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const validator = join(repoRoot, "scripts/validate-changed-content.mjs");
 const classifier = join(repoRoot, "scripts/classify-build-changes.mjs");
-const tsxLoader = require.resolve("tsx/loader");
+const tsxLoader = join(repoRoot, "node_modules/tsx/dist/loader.mjs");
 
 function git(cwd, ...args) {
   return execFileSync("git", args, { cwd, encoding: "utf8" }).trim();
