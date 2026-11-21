@@ -17,7 +17,7 @@ Track the ten observations from the desk-top simulation through implementation e
 | RA-02 | Requirement/evidence mapping | Use unique source-clause and evidence IDs; verify traceability from source to criterion, evidence, finding and report. | [Assign] | [Approve] | Open |
 | RA-03 | Evidence sufficiency | Update assessment form and report to distinguish received, examined and sufficient evidence; test with contradictory/incomplete examples. | [Assign] | [Approve] | Open |
 | RA-04 | Sampling | Use a documented population, selection method, sample size, period, rationale, exclusions and inference limitations. | [Assign] | [Approve] | Open |
-| RA-05 | Competence authorization | Approve assignment-specific competence criteria and verify actual personnel records, mandatory credentials and reviewer authority. | [Assign] | [Approve] | Open |
+| RA-05 | Competence authorization | Approve assignment-specific competence criteria; verify actual personnel records, qualification issuers, mandatory credential validity/scope, demonstrated task competence, supervision restrictions, reviewer competence/independence and delegated authorization. Retain completed engagement-specific authorization records. | [Assign] | [Approve] | **OPEN — DOCUMENT FRAMEWORK UPDATED; IMPLEMENTATION NOT EVIDENCED** |
 | RA-06 | Impartiality | Complete engagement-specific conflict screening, threat evaluation, safeguards and independent approval; decline unresolved conflicts. | [Assign] | [Approve] | Open |
 | RA-07 | Technical review | Approve reviewer competence and a review checklist; retain comments, corrections, disagreement escalation and sign-off. | [Assign] | [Approve] | Open |
 | RA-08 | Data governance | Approve privacy, security, access, storage, transfer, retention and disposal controls; verify channels before receiving real evidence. | [Assign] | [Approve] | Open |
@@ -42,3 +42,36 @@ A real customer pilot remains **not authorized** until management documents appr
 | Version | Date | Change |
 |---|---|---|
 | 0.1 | 2026-11-21 | Initial register from simulated pilot observations |
+
+
+## RA-05 — Competence and personnel authorization evidence criteria
+
+**Current status: OPEN.** The competence matrix is a strengthened working template only. No individual has been appointed or authorized by this register, and no credential or experience claim is verified by the existence of the template.
+
+### Required implementation evidence
+
+1. Management-approved role descriptions, competence criteria and delegated authorization authority.
+2. Named personnel register with relevant education, qualifications, sector/activity experience and task-specific evidence.
+3. Independent verification record for every mandatory licence, registration, client/principal credential or scheme authorization, including issuer, validity, scope and expiry where applicable.
+4. Demonstrated competence evidence (for example, observed task, reviewed work sample, supervised assignment and documented evaluator decision); course attendance alone is insufficient.
+5. Engagement-specific assignment authorization mapping each person to permitted tasks, scope, supervision and restrictions.
+6. Evidence that the technical reviewer is competent for the relevant scope and independent from the work reviewed.
+7. Conflict screening, site induction/safety readiness where relevant, and controlled storage of personnel records.
+8. Independent closure review confirming the above evidence is complete and current.
+
+### Closure decision
+
+RA-05 may be marked **Closed** only after actual personnel and assignment records exist, mandatory credentials have been verified with reliable issuing sources, authorization is approved by a delegated authority, and an independent reviewer records acceptance. Draft criteria, blank forms, hypothetical names, training plans or statements in chat do not satisfy closure.
+
+### Current evidence state
+
+| Evidence item | Status |
+|---|---|
+| Competence framework and task-specific authorization template | **Document updated** |
+| Approved competence criteria / role descriptions | Not evidenced |
+| Named and appointed personnel | Not evidenced |
+| Verified credentials and experience | Not evidenced |
+| Demonstrated task competence / effectiveness | Not evidenced |
+| Assignment-specific authorization records | Not evidenced |
+| Competent and independent reviewer appointment | Not evidenced |
+| Independent RA-05 closure verification | Not evidenced |
