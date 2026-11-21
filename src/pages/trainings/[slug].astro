@@ -3,6 +3,7 @@ import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import BlockRenderer from "../../components/BlockRenderer.astro";
+import { siteSettings } from "../../site";
 
 export async function getStaticPaths() {
   const trainings = await getCollection(
@@ -37,7 +38,7 @@ const statusLabel = (status?: string) => ({
 }[status ?? ""] ?? "Informasi pendaftaran menyusul");
 ---
 <Layout
-  title={`${training.data.title} | Pelatihan | PT. Intiprima Sertifikasi`}
+  title={`${training.data.title} | Pelatihan | ${siteSettings.title}`}
   description={training.data.metaDescription}
   canonical={`/trainings/${training.data.slug}/`}
   lang={training.data.lang}
