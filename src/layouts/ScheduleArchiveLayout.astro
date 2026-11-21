@@ -1,6 +1,7 @@
 ---
 import Layout from "./Layout.astro";
 import MainMenuHero from "../components/MainMenuHero.astro";
+import Container from "../components/Container.astro";
 
 interface Props {
   title: string;
@@ -30,7 +31,7 @@ const {
   lang={lang}
   ogImage={image}
 >
-  <div class="mx-auto w-full max-w-[var(--container-wide)] space-y-10">
+  <Container variant="wide" gutter={false} class="space-y-10">
     <MainMenuHero
       eyebrow={eyebrow}
       title={title}
@@ -39,5 +40,5 @@ const {
       imageAlt={imageAlt}
     />
     <slot />
-  </div>
+  </Container>
 </Layout>

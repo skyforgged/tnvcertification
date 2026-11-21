@@ -2,7 +2,7 @@
 
 > **Purpose:** Single tracking document for the TNV Certification website redesign. Checkboxes are the source of truth for task progress. A task may be checked only after its implementation and relevant validation are complete.
 >
-> **Current status (2026-11-21):** P17 layout implementation and P18 block/component refinements are in progress. Core block schemas/renderer, shared content cards, schedule presentation, and shell-token alignment have been implemented. P18 remains open for completing shared primitive consolidation, accessibility/browser verification, and final content compatibility checks. Initial shared Container and ButtonLink primitives are now implemented and used by the global shell, homepage hero, and schedule registration CTA. P19 page migration and P20 release QA have not started. Latest ArticleCard hover fix is committed as `c7d3496`; its CI validation is not yet recorded.
+> **Current status (2026-11-21):** P17 layout architecture and P18 component/block implementation are in progress. Shared Container, ButtonLink, Section, SectionHeading, and FeaturedImage primitives are implemented and applied to representative layouts/pages. Latest shared-primitive rollout is committed as `72a5090`; GitHub Actions run `44897584966` passed all configured checks. P18 remains open for browser/responsive, keyboard/focus, contrast, bilingual-content, and compatibility verification. P19 migration is partially prepared through homepage and catalog index work but is not complete; P20 release QA has not started.
 >
 > **Approved direction:** Premium, modern, mature, professional, corporate. This document records the latest design decisions and takes precedence over older visual proposals where they conflict.
 
@@ -77,12 +77,12 @@ Layouts are selected by page purpose. They may share primitives and components, 
 Components are focused, reusable presentation units. They receive explicit typed props and must not hardcode organization details that belong in `src/site.ts`.
 
 ### 3.1 Shared UI primitives
-- [ ] Audit and consolidate container, button, link, badge, icon, and image primitives.
-- [ ] Implement or refine shared `Container` variants for wide and reading widths.
-- [ ] Implement or refine button variants and interaction states.
+- [x] Audit and consolidate container, button-like link, section, and featured-image primitives; document the intentional deferral of a generic badge until a second use case exists.
+- [x] Implement shared `Container` variants for standard, wide, landing, and reading widths, including nested gutter control.
+- [x] Implement shared `ButtonLink` primary, secondary, and accent variants with keyboard focus treatment.
 - [ ] Implement or refine badges/status indicators with accessible contrast.
-- [ ] Implement reusable section heading and section wrapper patterns.
-- [ ] Implement consistent image presentation, aspect ratios, loading priority, and responsive behavior.
+- [x] Implement reusable `Section` spacing and `SectionHeading` hierarchy patterns.
+- [x] Implement `FeaturedImage` with shared frame, aspect ratio, dimensions, alt text, and loading priority behavior.
 
 ### 3.2 Reusable content components
 - [x] Audit and refine service cards with a dedicated semantic-token component.
@@ -90,7 +90,7 @@ Components are focused, reusable presentation units. They receive explicit typed
 - [x] Audit and refine training cards with a dedicated component and distinct catalog treatment.
 - [x] Audit and refine schedule rows with restrained separators, readable metadata, and consistent actions.
 - [ ] Audit and refine FAQ, process, statistics, gallery, testimonial, and CTA presentation where these patterns are needed.
-- [ ] Ensure cards do not all look identical when their information architecture differs.
+- [x] Ensure service, training, and article cards use distinct structures; homepage navigation links use open editorial rows rather than another rounded-card grid.
 - [ ] Ensure all components are keyboard accessible and use semantic HTML.
 
 ### 3.3 Site shell and SSOT
@@ -272,10 +272,11 @@ Complete phases in order unless an explicit dependency requires a different sequ
 
 | 2026-11-21 | P18 — Component and block renderer improvements | Updated `BlockRenderer.astro` to preserve authored block order, apply readable FAQ/HowTo/CTA presentation, localize shared headings, and use high-contrast primary CTA. Added discriminated block schemas and minimum HowTo steps; passed page language from service/training routes. Reworked `ArticleCard.astro` to render canonical featured images and localized metadata; corrected homepage secondary CTA contrast. | GitHub Actions run `44894509764` passed. Browser visual, keyboard, responsive, and component-level contrast review remains outstanding. | `dcddd63` |
 
-| 2026-11-21 | P18 — Shared shell component consistency | Audited the seven current shared components. Replaced remaining slate-specific text colors with semantic design tokens in breadcrumbs/header/footer, localized breadcrumb navigation labeling, and aligned footer width/gutters/borders to the shared design system. Deferred a central registry because three block types do not yet justify registry indirection. | Source changes committed directly to main. Latest CI run for the code commit passed earlier; documentation update has a new run pending. Screenshot, keyboard, and contrast review remain pending. | `acae27f` |\n\n| 2026-11-21 | P18 — Catalog and schedule component refinement | Added dedicated `ServiceCard` and `TrainingCard` components and migrated their index pages. Refined schedule archive rows and schedule detail metadata/CTA to use shared semantic tokens, accessible contrast, consistent control radius, and responsive action sizing. Finished remaining footer token/gutter inconsistencies. | Source updates committed directly to main. Production validation for the latest commits is pending; responsive screenshots, keyboard review, and rendered contrast audit remain outstanding. | `0797069` |
+| 2026-11-21 | P18 — Shared shell component consistency | Audited the seven current shared components. Replaced remaining slate-specific text colors with semantic design tokens in breadcrumbs/header/footer, localized breadcrumb navigation labeling, and aligned footer width/gutters/borders to the shared design system. Deferred a central registry because three block types do not yet justify registry indirection. | Source changes committed directly to main. Latest CI run for the code commit passed earlier; documentation update has a new run pending. Screenshot, keyboard, and contrast review remain pending. | `acae27f` |\n| 2026-11-21 | P18 — Catalog and schedule component refinement | Added dedicated `ServiceCard` and `TrainingCard` components and migrated their index pages. Refined schedule archive rows and schedule detail metadata/CTA to use shared semantic tokens, accessible contrast, consistent control radius, and responsive action sizing. Finished remaining footer token/gutter inconsistencies. | Source updates committed directly to main. Production validation for the latest commits is pending; responsive screenshots, keyboard review, and rendered contrast audit remain outstanding. | `0797069` |
 | 2026-11-21 | P18 — ArticleCard interaction correction | Added the missing `group` class to the ArticleCard parent so the existing image `group-hover` scale interaction can activate. No content or layout structure changed. | Commit `c7d3496` is on main. CI status for this commit has not yet been confirmed; actual hover behavior still requires browser verification. | `c7d3496` |
 | 2026-11-21 | P18 — Shared primitive foundation | Added typed `Container.astro` width variants and a reusable `ButtonLink.astro` with primary, secondary, and accent treatments. Migrated the global page shell, homepage hero actions, and schedule registration CTA; replaced remaining slate metadata colors in schedule details with semantic tokens. | CI run `44896931764` passed type/Astro checks, lint, tests, production build, page-image uniqueness, and SEO/link audit. Browser-level visual/keyboard validation remains pending. Container, button, section, heading, and featured-image primitives are now consolidated; a generic Badge is intentionally deferred until a second use case exists. | Pending |
-| 2026-11-21 | P18 — Shared layout and presentation primitives | Added `Section`, `SectionHeading`, and `FeaturedImage`; migrated service/training/article layouts to shared Container widths without double gutters; migrated main-menu hero/detail images to the shared image frame; applied shared section patterns to homepage and service/training catalog; replaced schedule list button styling with `ButtonLink`. | Source implementation is committed; CI and browser responsive, keyboard, and rendered contrast review are pending. | `7646732` |
+| 2026-11-21 | P18 — Shared layout and presentation primitives | Added `Section`, `SectionHeading`, and `FeaturedImage`; migrated service/training/article layouts to shared Container widths without double gutters; migrated main-menu hero/detail images to the shared image frame; applied shared section patterns to homepage and service/training catalog; replaced schedule list button styling with `ButtonLink`. | CI run `44897584966` for final docs/source state at `72a5090` passed. Browser responsive, keyboard, and rendered contrast review remain pending. | `72a5090` |
+| 2026-11-21 | P18 — Homepage and schedule archive consistency | Replaced rounded, shadowed homepage navigation cards with restrained open editorial links using semantic text tokens; migrated schedule archive wrapper to the shared Container primitive. | Source update committed; CI and browser visual/keyboard verification pending. | Pending |
 ## 10. Change control
 
 - Update this checklist as work progresses; do not silently remove unfinished tasks.
