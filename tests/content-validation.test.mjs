@@ -185,8 +185,8 @@ test("draft articles may omit publication date and featured image pending approv
 
 test("published articles require publication date and featured image", () => {
   const data = { ...makeEntry().data, draft: false };
-  delete data.featuredImage;
-  delete data.pubDate;
+  data.featuredImage = undefined;
+  data.pubDate = undefined;
   const diagnostics = validateEntry(makeEntry({ data }));
   assert.ok(diagnostics.some((d) => d.rule === "CONTENT-007"));
   assert.ok(diagnostics.some((d) => d.rule === "CONTENT-012"));
