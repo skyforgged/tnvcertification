@@ -31,11 +31,9 @@ function classifyDiff(raw) {
   const fields = raw.toString("utf8").split("\0");
   const files = [];
   let index = 0;
-
   while (index < fields.length - 1) {
     const status = fields[index++];
     if (!status) continue;
-
     if (/^[RC]/.test(status)) {
       const oldPath = fields[index++];
       const newPath = fields[index++];
@@ -43,11 +41,9 @@ function classifyDiff(raw) {
       if (newPath) files.push({ status, path: newPath });
       return { mode: FULL, reason: "renamed-or-copied-path", files };
     }
-
     const path = fields[index++];
     if (!path) continue;
     files.push({ status, path });
-
     if (status !== "A" && status !== "M") {
       return { mode: FULL, reason: "deleted-or-ambiguous-path", files };
     }
@@ -55,7 +51,6 @@ function classifyDiff(raw) {
       return { mode: FULL, reason: "build-wide-or-unrecognized-path", files };
     }
   }
-
   return files.length
     ? { mode: CONTENT, reason: "editorial-markdown-only", files }
     : { mode: FULL, reason: "empty-or-unavailable-diff", files };
@@ -88,6 +83,8 @@ console.log(JSON.stringify({ ...output, files: result.files }, null, 2));
 if (process.env.GITHUB_OUTPUT) {
   appendFileSync(
     process.env.GITHUB_OUTPUT,
-    \`build_mode=\${output.build_mode}\nreason=\${output.reason}\nchanged_files=\${output.changed_files}\n\`,
+    "build_mode=" + output.build_mode + "\n" +
+      "reason=" + output.reason + "\n" +
+      "changed_files=" + output.changed_files + "\n",
   );
 }
