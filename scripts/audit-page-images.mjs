@@ -30,10 +30,8 @@ function walk(dir) {
 }
 
 function attr(tag, name) {
-  const match = tag.match(
-    new RegExp("(?:^|\\s)" + name + "\\s*=\\s*(?:\"([^\"]*)\"|'([^']*)')", "i"),
-  );
-  return match ? (match[1] ?? match[2] ?? "") : "";
+  const match = tag.match(new RegExp(name + "=[\"']([^\"']*)[\"']", "i"));
+  return match ? match[1] : "";
 }
 
 const records = [];
