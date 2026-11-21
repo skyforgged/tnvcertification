@@ -36,7 +36,7 @@ const howToBlock = z.object({
       description: z.string().min(1),
       image: imageObjectSchema.optional(),
     }),
-  ),
+  ).min(1, "howto requires at least one step"),
 });
 
 const ctaBlock = z.object({
@@ -52,7 +52,7 @@ const ctaBlock = z.object({
     .optional(),
 });
 
-const blockSchema = z.union([faqBlock, howToBlock, ctaBlock]);
+const blockSchema = z.discriminatedUnion("type", [faqBlock, howToBlock, ctaBlock]);
 
 /**
  * Fields shared by every publishable page-like entry. Schedule and category
