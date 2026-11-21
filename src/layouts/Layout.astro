@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
+import Container from "../components/Container.astro";
 import { buildSeo, type LayoutProps } from "../lib/seo";
 import { pageJsonLdGraph, serializeJsonLd } from "../lib/structured-data";
 
@@ -39,8 +40,10 @@ const jsonLd = serializeJsonLd(pageJsonLdGraph(structuredData));
       Lewati ke konten utama
     </a>
     <SiteHeader />
-    <main id="main-content" class="mx-auto flex w-full max-w-[var(--container-landing)] flex-1 px-[var(--page-gutter)] py-8 sm:py-10 lg:py-12">
-      <slot />
+    <main id="main-content" class="flex w-full flex-1">
+      <Container variant="landing" class="py-8 sm:py-10 lg:py-12">
+        <slot />
+      </Container>
     </main>
     <SiteFooter />
   </body>

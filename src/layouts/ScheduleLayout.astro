@@ -1,5 +1,7 @@
 ---
 import Layout from "./Layout.astro";
+import Container from "../components/Container.astro";
+import ButtonLink from "../components/ButtonLink.astro";
 
 interface Props {
   title: string;
@@ -39,7 +41,7 @@ function formatDate(value: Date | string): string {
 ---
 
 <Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage}>
-  <article class="mx-auto w-full max-w-[var(--container-standard)]">
+  <Container as="article" variant="standard">
     <h1 class="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{title}</h1>
     <dl class="mt-8 grid gap-6 border-y border-border py-6 sm:grid-cols-2">
       <div>
@@ -58,8 +60,8 @@ function formatDate(value: Date | string): string {
       )}
       {location && (
         <div>
-          <dt class="text-xs font-semibold uppercase tracking-widest text-slate-500">Lokasi</dt>
-          <dd class="mt-1 text-slate-900">{location}</dd>
+          <dt class="text-xs font-semibold uppercase tracking-widest text-ink-subtle">Lokasi</dt>
+          <dd class="mt-1 text-ink">{location}</dd>
         </div>
       )}
       {registrationStatus && (
@@ -72,12 +74,9 @@ function formatDate(value: Date | string): string {
     <p class="mt-8 max-w-3xl text-lg leading-relaxed text-ink-muted">{description}</p>
     <div class="mt-8"><slot /></div>
     {registrationUrl && (
-      <a
-        href={registrationUrl}
-        class="mt-8 inline-flex items-center rounded-[var(--radius-control)] bg-brand-deepblue px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-deepblue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue"
-      >
+      <ButtonLink href={registrationUrl} class="mt-8">
         Daftar
-      </a>
+      </ButtonLink>
     )}
   </article>
 </Layout>

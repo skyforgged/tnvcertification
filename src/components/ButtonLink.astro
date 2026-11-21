@@ -1,0 +1,28 @@
+---
+type ButtonVariant = "primary" | "secondary" | "accent";
+
+interface Props {
+  href: string;
+  variant?: ButtonVariant;
+  class?: string;
+}
+
+const { href, variant = "primary", class: className = "" } = Astro.props;
+
+const variantClasses: Record<ButtonVariant, string> = {
+  primary: "bg-brand-deepblue text-white hover:bg-brand-blue",
+  secondary: "border border-brand-deepblue text-brand-deepblue hover:bg-surface-muted",
+  accent: "bg-brand-yellow text-brand-deepblue hover:bg-brand-yellow/80",
+};
+---
+
+<a
+  href={href}
+  class:list={[
+    "inline-flex min-h-11 items-center justify-center gap-2 rounded-[var(--radius-control)] px-5 py-3 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue",
+    variantClasses[variant],
+    className,
+  ]}
+>
+  <slot />
+</a>

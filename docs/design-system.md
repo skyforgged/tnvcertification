@@ -85,6 +85,13 @@ These are palette spot-checks, not a full accessibility audit. They do not valid
 
 ## 6. Shared component patterns
 
+### Shared primitives
+
+- `Container.astro` owns the shared max-width variants: standard, wide, landing, and reading. Page gutters come from `--page-gutter`; layouts should choose a variant instead of inventing a local max-width.
+- `ButtonLink.astro` owns the shared link-button geometry, minimum target height, focus treatment, and primary/secondary/accent variants. Use it for navigation actions; keep ordinary inline text links visually distinct.
+- Keep semantic HTML at the call site with the Container `as` prop (`div`, `article`, or `section`).
+- Do not create a generic card or badge abstraction until at least two real use cases share the same information structure and accessibility behavior.
+
 ### Hero
 - One page-level H1, followed immediately in content hierarchy by the introductory paragraph.
 - Main-menu hero includes one meaningful featured image with accurate alt text.

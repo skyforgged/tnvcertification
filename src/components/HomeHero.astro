@@ -1,5 +1,6 @@
 ---
 import MainMenuHero from "./MainMenuHero.astro";
+import ButtonLink from "./ButtonLink.astro";
 
 interface Props {
   title: string;
@@ -18,11 +19,11 @@ const { title, description } = Astro.props;
   imagePriority
 >
   <div slot="actions" class="mt-8 flex flex-wrap gap-3">
-    <a href="/articles/" class="inline-flex items-center rounded-full bg-brand-yellow px-5 py-3 text-sm font-semibold text-brand-deepblue transition hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-yellow">
-      Baca artikel <span class="ml-2" aria-hidden="true">↗</span>
-    </a>
-    <a href="/services/" class="inline-flex items-center rounded-[var(--radius-control)] border border-brand-deepblue px-5 py-3 text-sm font-semibold text-brand-deepblue transition hover:bg-surface-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue">
-      Lihat informasi layanan <span class="ml-2" aria-hidden="true">→</span>
-    </a>
+    <ButtonLink href="/articles/" variant="accent">
+      Baca artikel <span aria-hidden="true">↗</span>
+    </ButtonLink>
+    <ButtonLink href="/services/" variant="secondary">
+      Lihat informasi layanan <span aria-hidden="true">→</span>
+    </ButtonLink>
   </div>
 </MainMenuHero>

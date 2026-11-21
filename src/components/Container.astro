@@ -1,0 +1,28 @@
+---
+type ContainerVariant = "standard" | "wide" | "landing" | "reading";
+type ContainerTag = "div" | "article" | "section";
+
+interface Props {
+  variant?: ContainerVariant;
+  as?: ContainerTag;
+  class?: string;
+}
+
+const {
+  variant = "wide",
+  as = "div",
+  class: className = "",
+} = Astro.props;
+
+const Tag = as;
+const widthClasses: Record<ContainerVariant, string> = {
+  standard: "max-w-[var(--container-standard)]",
+  wide: "max-w-[var(--container-wide)]",
+  landing: "max-w-[var(--container-landing)]",
+  reading: "max-w-[var(--container-reading)]",
+};
+---
+
+<Tag class:list={["mx-auto w-full px-[var(--page-gutter)]", widthClasses[variant], className]}>
+  <slot />
+</Tag>
