@@ -4,8 +4,6 @@ intro: "Penilaian Kepatuhan Terhadap Standar Global adalah proses memetakan pers
 metaDescription: "Cara menilai kepatuhan terhadap standar global melalui audit internal, dokumentasi, dan verifikasi praktik kerja."
 pubDate: "2026-11-10"
 draft: false
-categoryIds:
-  - "quality-management"
 featuredImage:
   src: "/images/articles/0006.jpg"
   alt: "Penilaian Kepatuhan Terhadap Standar Global adalah verifikasi praktik kerja."
