@@ -11,5 +11,3 @@ lang: "id"
 # Draft Pengujian CI Content-Only
 
 Draft Pengujian CI Content-Only adalah konten sementara untuk memverifikasi jalur preflight editorial pada GitHub Actions.
-
-Konten ini hanya digunakan sebagai fixture pengujian pipeline. Entri berstatus draft dan akan dihapus setelah verifikasi.
