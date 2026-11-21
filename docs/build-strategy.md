@@ -86,14 +86,14 @@ For the current 13-page site, keep full production builds. The measured build is
 
 - Baseline before this note: `main` at `e7f8857`. Fresh local gates all exited `0`: `check`, `build` (13 pages), `typecheck`, `lint`, `test` (49 tests), and `audit:seo` (13 canonicals). CI run `44871598897` completed with `conclusion: success`.
 - The `content-only` conditional step is verified, not pending. Fixture commits `f321207` and `88f19a1` exercised a real editorial-only push; `9049434` removed the fixture. The local classifier returned `content-only` for `70eb5a7..88f19a1`, `npm run validate:changed -- 70eb5a7 88f19a1` exited `0`, and CI run `44867371518` completed with `conclusion: success`, including the `Validate changed editorial content` step.
-- Still open: measure CI/build time and confirm that selective preflight catches changed-file errors earlier than the main gates. Do not adopt incremental production rendering solely to reduce a few seconds.
+- Closed: CI/build timing baseline captured and earlier-error rejection verified in CI; see "Verification results — 2026-11-21" below. Do not adopt incremental production rendering solely to reduce a few seconds.
 - Commit-level evidence lives in `docs/prelaunch-work-status.md`, sections "Build strategy (adopted baseline)" and "Selective editorial preflight".
 - Any future status change must cite verifiable evidence and update this note together with the master status document in the same commit.
 
 
 ## Priority before resuming CSMS work
 
-**Priority: complete the remaining build-strategy verification before starting another CSMS work item.** This is a separate website/build-engineering track and must not be counted as a CSMS phase.
+**Priority (historical; closed by the verification results below): complete the remaining build-strategy verification before starting another CSMS work item.** This is a separate website/build-engineering track and must not be counted as a CSMS phase.
 
 Open items, in order:
 1. **Measure CI/build duration:** collect comparable workflow timings across representative content-only and source/configuration changes. Record run IDs, commit SHAs, start/end times, and relevant step durations. A single successful run is not enough to claim a performance improvement.

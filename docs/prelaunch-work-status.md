@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated commit: `f0d8105` (full gate suite; CSMS audit and status tracker added)
+- Validated commit: `b37e8ea` (full gate suite; build-strategy verification checkpoint closed)
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -46,7 +46,7 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 | P16 | Editorial content production | In progress; first Indonesian/English article draft created in docs for review; not published |
 | P16.2 | Article integration and SEO readiness | Review checkpoint; collection schema, metadata gates, and publication gates documented |
 | P16.3 | Bilingual article integration | Bilingual document-control draft pair integrated as `draft: true`; no public article published |
-| Build strategy | Content-first full-build baseline | Classifier, preflight, end-to-end CLI tests, and real content-only CI path verified; full checks mandatory |
+| Build strategy | Content-first full-build baseline | Verification checkpoint closed for current baseline; timing baseline captured, negative preflight verified in CI; full checks mandatory |
 
 ## Verified repository facts
 
@@ -82,7 +82,7 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-Local full validation ran on `main` at `f0d8105` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
+Local full validation ran on `main` at `b37e8ea` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
 
 | Command | Result |
 |---|---|
@@ -97,7 +97,7 @@ Local full validation ran on `main` at `f0d8105` with the pinned Node.js `26.13.
 
 Earlier pulled commits `9bc16d1` and `ddac326` failed local `lint`; final pulled commit `67b56b3` still had both errors. Commit `455bb73` fixed `no-useless-assignment` in the classifier and `preserve-caught-error` in the preflight.
 
-GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Runs `44845274570` (`6151e50`), `44854428984` (`2733047`), `44855036386` (`0ce7f0b`), `44855490692` (`15daddb`), `44856851545` (`c4934aa`), `44858182875` (`c6f9015`), `44859275893` (`ef84389`) and `44862425784` (`2a44281`) completed with `conclusion: success`. Runs `44863006246` (`9bc16d1`) and `44863375398` (`ddac326`) completed with `conclusion: failure` before the lint fixes. Runs `44864063830` (`455bb73`), `44864122309` (`c0764c6`), `44864948124` (`2c2828b`), `44865216807` (`70eb5a7`), `44867371518` (`88f19a1`), `44867438542` (`9049434`), `44867757684` (`41df5b9`), `44868225838` (`d828d81`), `44868734147` (`d9ce3be`), `44869018493` (`7101e27`), `44869711362` (`ab647ca`), `44870176304` (`d29c72b`) and `44871266120` (`f0d8105`) completed with `conclusion: success`. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
+GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Runs `44845274570` (`6151e50`), `44854428984` (`2733047`), `44855036386` (`0ce7f0b`), `44855490692` (`15daddb`), `44856851545` (`c4934aa`), `44858182875` (`c6f9015`), `44859275893` (`ef84389`) and `44862425784` (`2a44281`) completed with `conclusion: success`. Runs `44863006246` (`9bc16d1`) and `44863375398` (`ddac326`) completed with `conclusion: failure` before the lint fixes. Runs `44864063830` (`455bb73`), `44864122309` (`c0764c6`), `44864948124` (`2c2828b`), `44865216807` (`70eb5a7`), `44867371518` (`88f19a1`), `44867438542` (`9049434`), `44867757684` (`41df5b9`), `44868225838` (`d828d81`), `44868734147` (`d9ce3be`), `44869018493` (`7101e27`), `44869711362` (`ab647ca`), `44870176304` (`d29c72b`), `44871266120` (`f0d8105`), `44872016416` (`7a7a1eb`) and `44872496114` (`b37e8ea`) completed with `conclusion: success`. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
 
 
 ## P5 completion — certification scheme catalog and CI
@@ -295,7 +295,7 @@ Branch: `docs/p16-2-article-integration-readiness` (merged at `fe2f175`).
 - `.github/workflows/quality.yml` runs the preflight only when `build_mode=content-only`, after install and before the normal gates. Production behavior stays unchanged.
 - Verified manually: classifier returned `content-only` for `2be9036..ef84389` (2 article files), and `pnpm validate:changed 2be9036 ef84389` exited `0`.
 - Pulled commits `94562ab` (end-to-end CLI tests), `9bb4538` (tsx loader resolution), `bef1c3b` (unused import), and `2c2828b` (docs) verified the real preflight CLI in isolated temporary Git repositories: valid Markdown passes, malformed YAML fails, editorial rule violations fail.
-- Full local gate suite passed on `f0d8105`: 49 tests, 13 pages, 13 canonicals. CI run `44871266120` completed with `conclusion: success`.
+- Full local gate suite passed on `b37e8ea`: 49 tests, 13 pages, 13 canonicals. CI run `44872496114` completed with `conclusion: success`.
 - Real editorial-only push verified on `88f19a1`: local classifier returned `content-only`, `npm run validate:changed -- 70eb5a7 88f19a1` exited `0`, and CI job step `Validate changed editorial content` completed with `conclusion: success` before the full gates. The temporary `ci-content-only-fixture.md` was then removed on `9049434`.
 - Remaining: measure CI/build time and confirm the preflight catches changed-file errors earlier before considering incremental rendering.
 
@@ -505,3 +505,10 @@ The latest repository commit at this checkpoint is `7a7a1eb` (`docs: record buil
 | Adopt incremental production rendering | [x] Not adopted | No partial `dist`, route-only build, or incremental production renderer is approved. |
 
 **Priority gate closed:** the build-strategy verification no longer blocks continuation of the CSMS workstream. Resume CSMS from the existing [CSMS implementation status tracker](csms/implementation-status.md). This closure does not approve CSMS launch, customer pilot, personnel appointments, formal certification claims, or any pending management decision/remediation action. The initial CI timing sample remains provisional; add future comparable runs before making performance claims.
+
+### Repository changes
+
+- `20a4c9d` — set build verification as immediate priority before CSMS continuation.
+- `e695732` — record build verification as immediate project priority.
+- `0f809b9` — record CI timing and negative-preflight verification evidence.
+- `b37e8ea` — close build-strategy verification checkpoint for the current baseline.
