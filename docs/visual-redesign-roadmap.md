@@ -252,6 +252,8 @@ Complete phases in order unless an explicit dependency requires a different sequ
 
 | 2026-11-21 | P16 — Shared design system foundation | Defined semantic color, typography, spacing/container, border/radius, image, hero, section, button, card, form, responsive, and accessibility rules; updated global CSS token foundation and white-dominant base surface | Source-level changes committed. Build, contrast verification, and representative-page visual review remain pending. | 7788cca |
 
+| 2026-11-21 | P16 — Shared design system application | Applied the shared system to the main-menu hero, page canvas, site header, and footer; replaced decorative blue hero panel with restrained editorial split composition; removed pill-style active navigation; aligned shell widths to shared wide container | GitHub Actions for token foundation passed type/Astro, lint, tests, production build, image uniqueness, and SEO/link audit. A new workflow is running for component/layout changes; contrast and screenshot review remain pending. | `0497632` |
+
 ## 10. Change control
 
 - Update this checklist as work progresses; do not silently remove unfinished tasks.
