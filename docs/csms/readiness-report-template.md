@@ -127,13 +127,31 @@ This report:
 5. Does not replace the principal/client's own evaluation, verification, or decision.
 6. Must not be represented as an official principal result or used beyond the agreed purpose without written permission.
 
-## 11. Authorization
+## 11. Technical review and authorization
 
-| Role | Name | Approval / signature | Date |
+Record the review against the exact report version. The review must follow the controlled [Technical Review & Quality Assurance Procedure](technical-review-procedure.md) and use the [Independent Technical Review Checklist](independent-review-checklist.md). Store the completed review, comments and release record in the [Review Evidence Register](review-evidence-register.md) or its controlled record location.
+
+| Review / approval field | Entry |
+|---|---|
+| Report version submitted for review | [Complete] |
+| Review record ID / checklist reference | [Complete] |
+| Reviewer name and competence/authorization reference | [Complete] |
+| Reviewer independence / conflict clearance reference | [Complete] |
+| Review outcome | [Accept / Accept subject to minor corrections / Return for rework / Escalate] |
+| Open major or release-blocking comments | [None / list] |
+| Correction and re-review record | [Complete / N/A with rationale] |
+| Reviewed final report version | [Complete] |
+| Report approver and delegation reference | [Complete] |
+| Release decision / date | [Release / Hold / Reject — date] |
+| Controlled distribution record | [Complete] |
+
+| Role | Name | Approval / signature or controlled record reference | Date |
 |---|---|---|---|
 | Prepared by | [Complete] | [Complete] | [Complete] |
-| Technical reviewer | [Complete] | [Complete] | [Complete] |
-| Authorized report approver | [Complete] | [Complete] | [Complete] |
+| Independent technical reviewer | [Complete] | [Complete] | [Complete] |
+| Separately authorized report approver | [Complete] | [Complete] | [Complete] |
+
+**Release restriction:** Technical review acceptance is not report-release authorization. Do not release while a major issue or required correction remains open, if the released version differs materially from the reviewed version without re-review, or if the approver's delegation is not evidenced. This report remains a readiness-review deliverable and is not a principal, certification, accreditation or regulatory decision.
 
 ## Appendix A — Requirement and evidence matrix
 
