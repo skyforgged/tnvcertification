@@ -52,6 +52,6 @@ ISO 45001 dapat menjadi referensi sistem manajemen keselamatan dan kesehatan ker
 
 Informasi ini tidak boleh dianggap sebagai pengumuman bahwa layanan atau penerbitan sertifikat CSMS formal sudah tersedia.
 
-## Konsultasi
+## Informasi layanan
 
-Informasi konsultasi layanan akan ditambahkan setelah skema dan detail pelaksanaan disetujui.
+Informasi mengenai skema, ruang lingkup, persyaratan, dan ketersediaan layanan akan diterbitkan setelah proses verifikasi selesai.
