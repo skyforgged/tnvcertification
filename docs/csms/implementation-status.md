@@ -229,11 +229,31 @@ Jangan mengubahnya menjadi published, menambahkan CTA aktif, atau membuat klaim 
 
 **Status RA-09:** **BELUM — OPEN (DOKUMENTASI DIPERKUAT; IMPLEMENTASI BELUM DIBUKTIKAN)**. Dua artefak baru dan integrasi dokumen telah disiapkan sebagai draft. Belum ada approval, engagement factual review nyata, komentar klien, correction log terisi, revisi report, technical re-review, release authorization atau independent closure verification. Jangan menyamakan kesempatan factual review dengan hak klien mengubah kesimpulan teknis.
 
+### Tahap CSMS-DOC-09 — Complaints Handling (RA-10)
+
+- [x] Menyusun draft Complaints Handling Procedure untuk intake, triage, investigasi, keputusan, respons, eskalasi, reopening dan pembelajaran.
+- [x] Membuat Complaints Register & Case Record dengan pencatatan original complaint, evidence, investigator, temuan, keputusan, corrective action dan effectiveness verification.
+- [x] Memperkuat Operational Procedure dan memisahkan complaint dari RA-09 factual correction, technical disagreement, principal decision dispute dan incident response.
+- [x] Memperjelas role separation: complaint coordinator, investigator, independent decision reviewer, management escalation authority, corrective-action owner dan effectiveness verifier.
+- [x] Menghubungkan dokumen RA-10 ke Document Control & Retention master register.
+- [x] Memperluas MGT-09 agar mencakup complaint channel, response targets, independence, decision authority dan escalation.
+- [x] Menetapkan bukti objektif dan syarat closure RA-10 pada Pilot Remediation Register.
+- [ ] Dapatkan persetujuan manajemen atas prosedur, kanal pengaduan, no-retaliation safeguards, kewenangan, remedy dan escalation route.
+- [ ] Tetapkan dan komunikasikan target acknowledgement, progress update dan final response berdasarkan kewajiban serta kapasitas yang disetujui.
+- [ ] Tunjuk complaint coordinator, investigator, independent decision reviewer dan management escalation authority; verifikasi kompetensi, konflik dan independensi, termasuk external fallback.
+- [ ] Aktifkan approved complaint intake channel dan restricted record storage setelah privacy/security gate RA-08 disetujui serta diverifikasi.
+- [ ] Uji kesiapan melalui controlled exercise tanpa mengakuinya sebagai complaint aktual; proses setiap complaint nyata sesuai prosedur setelah otorisasi berlaku.
+- [ ] Lengkapi investigation, evidence assessment, independent decision review dan approved response untuk complaint aktual bila diterima.
+- [ ] Terapkan corrective action dan lakukan independent effectiveness verification; pertahankan action yang belum efektif tetap Open.
+- [ ] Jalankan trend monitoring dan management review; lakukan independent closure verification RA-10.
+
+**Status RA-10:** **BELUM — OPEN (DOKUMENTASI DIPERKUAT; IMPLEMENTASI BELUM DIBUKTIKAN)**. Prosedur dan register masih draft. Belum ada complaint channel yang disetujui, target response, appointment/investigator aktual, case record, exercise, keputusan independen, corrective action efektif atau closure verification. Jangan membuat kasus atau response deadline fiktif.
+
 ## 5. Kesimpulan status saat ini
 
 - Pekerjaan riset, definisi layanan, toolkit, framework governance, simulasi, register, dan audit dokumentasi: **sudah dibuat sebagai artefak internal**.
 - Persetujuan manajemen: **belum — 12/12 Pending**.
-- Remediasi simulasi: **belum — 10/10 Open** (RA-02 sampai RA-09 memiliki penguatan dokumentasi; status remediasinya tetap Open).
+- Remediasi simulasi: **belum — 10/10 Open** (RA-02 sampai RA-10 memiliki penguatan dokumentasi; seluruh status remediasi tetap Open).
 - Kesiapan operasional untuk customer delivery: **belum dibuktikan**.
 - Otorisasi pilot customer: **belum diberikan**.
 - Persetujuan publikasi: **belum diberikan**.
