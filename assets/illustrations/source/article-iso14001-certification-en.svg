@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-labelledby="environment-en-title">
+<title id="environment-en-title">Environmental management system</title>
+<rect width="800" height="600" rx="40" fill="#eef3ff"/>
+<circle cx="400" cy="300" r="230" fill="#fff" opacity=".8"/>
+<path d="M130 440h540" stroke="#173b63" stroke-width="16" stroke-linecap="round"/>
+<path d="M175 435V300h125v135M500 435V270h125v165" fill="#dce9f4" stroke="#173b63" stroke-width="14"/>
+<path d="M198 330h78m-78 38h78m247-60h80m-80 38h80" stroke="#8aa9c5" stroke-width="12" stroke-linecap="round"/>
+<circle cx="400" cy="300" r="112" fill="#dff2e8" stroke="#145b4a" stroke-width="14"/>
+<path d="M400 375c-73-40-82-115-18-169 68 55 58 130 18 169Z" fill="#4a9b79"/>
+<path d="M400 365V245m0 78 38-36m-38 11-29-33" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round"/>
+<circle cx="125" cy="140" r="28" fill="#f28a42"/><circle cx="680" cy="465" r="37" fill="#8aa9c5" opacity=".45"/>
+</svg>
