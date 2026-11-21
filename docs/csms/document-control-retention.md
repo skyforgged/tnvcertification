@@ -131,6 +131,7 @@ The register below is a draft inventory of the current repository documents. A l
 | TNCV-CSMS-ORG-001 (proposed) | CSMS Roles, Responsibilities & Resource Readiness Plan | [To be assigned] | 0.1 | Draft — no appointments evidenced | [Pending] | [Pending] | [Pending] | docs/csms/roles-responsibilities-resource-plan.md |
 | TNCV-CSMS-PILOT-001 | CSMS Simulated Case and Requirement/Evidence Matrix | [To be assigned] | Simulation | Simulation only — not customer evidence | N/A | N/A | N/A | docs/csms/pilot/pilot-case-simulation.md |
 | TNCV-CSMS-PILOT-002 (proposed) | CSMS Pilot Assessment Record and Sample Report | [To be assigned] | Simulation | Simulation only — not for issue | N/A | N/A | N/A | docs/csms/pilot/pilot-assessment-and-report.md |
+| TNCV-CSMS-AUD-001 (proposed) | CSMS Governance Consistency Audit | [To be assigned] | 0.1 | Internal audit record — documentation review only | [Pending] | [Pending] | [Pending] | docs/csms/governance-consistency-audit.md |
 
 ## 11. Approval and implementation gates
 
