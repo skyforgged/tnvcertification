@@ -284,6 +284,7 @@ Branch: `docs/p16-2-article-integration-readiness` (merged at `fe2f175`).
 - No incremental renderer is in use. Future incremental production output must prove equivalence on routes, assets, canonicals, hreflang, sitemap, and internal links first.
 - `check` and `build` ran on `2a44281` with exit `0`; CI run `44862425784` completed with `conclusion: success`.
 - Pulled `2c2828b` records that the preflight CLI has isolated end-to-end CI coverage. Pulled fixture commits `f321207` and `88f19a1` exercised the real `content-only` step with an editorial-only push; `9049434` removed the temporary fixture afterward.
+- `docs/build-strategy.md` carries a continuation note (2026-11-21) recording the verified `content-only` step and the still-open timing measurement. Keep both documents in sync on any future status change.
 
 
 ## Selective editorial preflight

@@ -2,7 +2,7 @@
 
 ## Status
 
-Adopted architecture. Selective editorial preflight is implemented and its CLI is covered by isolated end-to-end CI tests. The content-only conditional workflow step has not yet been exercised by a real editorial-only push. Production output continues to use a complete Astro build.
+Adopted architecture. Selective editorial preflight is implemented and its CLI is covered by isolated end-to-end CI tests. The content-only conditional workflow step was exercised by a real editorial-only push. Timing measurement and earlier-error-detection confirmation remain open. Production output continues to use a complete Astro build.
 
 ## Operating phases
 
@@ -48,7 +48,7 @@ The content-only allowlist is limited to the canonical editorial collections: ar
 1. Record and preserve the safe full-build baseline. **Complete.**
 2. Add Git-based change classification with conservative full-build fallback. **Implemented.**
 3. Add selective per-entry validation for changed editorial Markdown, without weakening global checks. **Implemented; CLI integration tests pass in CI.**
-4. Verify the content-only conditional workflow step with a real editorial-only push and measure CI/build time. **Pending.**
+4. Verify the content-only conditional workflow step with a real editorial-only push and measure CI/build time. **Push verification complete on `88f19a1`; timing measurement remains open.**
 5. Evaluate incremental production rendering only if the full build becomes a material bottleneck. Do not adopt it solely to reduce a few seconds from the current build.
 
 ## Git change classification
@@ -81,3 +81,11 @@ All of these full checks continue to run for every CI workflow.
 ## Decision
 
 For the current 13-page site, keep full production builds. The measured build is only a few seconds, while partial static output introduces correctness and deployment risks. Optimize validation first; revisit incremental production generation when content volume or measured build duration justifies it.
+
+## Continuation note (2026-11-21)
+
+- Baseline before this note: `main` at `e7f8857`. Fresh local gates all exited `0`: `check`, `build` (13 pages), `typecheck`, `lint`, `test` (49 tests), and `audit:seo` (13 canonicals). CI run `44871598897` completed with `conclusion: success`.
+- The `content-only` conditional step is verified, not pending. Fixture commits `f321207` and `88f19a1` exercised a real editorial-only push; `9049434` removed the fixture. The local classifier returned `content-only` for `70eb5a7..88f19a1`, `npm run validate:changed -- 70eb5a7 88f19a1` exited `0`, and CI run `44867371518` completed with `conclusion: success`, including the `Validate changed editorial content` step.
+- Still open: measure CI/build time and confirm that selective preflight catches changed-file errors earlier than the main gates. Do not adopt incremental production rendering solely to reduce a few seconds.
+- Commit-level evidence lives in `docs/prelaunch-work-status.md`, sections "Build strategy (adopted baseline)" and "Selective editorial preflight".
+- Any future status change must cite verifiable evidence and update this note together with the master status document in the same commit.
