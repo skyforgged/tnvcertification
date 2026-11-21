@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480" fill="none">
+  <title>Keselamatan dan perlindungan kontraktor</title>
+  <circle cx="320" cy="236" r="188" fill="#EAF0FF"/>
+  <path d="M320 86 450 132v105c0 91-54 154-130 190-76-36-130-99-130-190V132L320 86Z" fill="#315CFF"/>
+  <path d="M320 119 419 154v83c0 69-39 119-99 150-60-31-99-81-99-150v-83l99-35Z" fill="#1736A8"/>
+  <path d="M242 225c0-43 35-78 78-78s78 35 78 78v21H242v-21Z" fill="#FFD447"/>
+  <path d="M228 246h184v22c0 13-10 23-23 23H251c-13 0-23-10-23-23v-22Z" fill="#FF6B35"/>
+  <path d="M280 226v-17m80 17v-17" stroke="#1736A8" stroke-width="11" stroke-linecap="round"/>
+  <path d="m284 333 25 25 53-61" stroke="#fff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="116" cy="152" r="20" fill="#36C9A5"/>
+  <circle cx="526" cy="326" r="28" fill="#FFD447"/>
+  <path d="M516 326h20m-10-10v20" stroke="#1736A8" stroke-width="6" stroke-linecap="round"/>
+</svg>
