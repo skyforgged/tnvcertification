@@ -5,6 +5,11 @@ import ArticleLayout from "../../layouts/ArticleLayout.astro";
 export async function getStaticPaths() {
   const articles = await getCollection("articles", ({ data }) => data.draft !== true);
   return articles.map((entry) => {
+    const pubDate = entry.data.pubDate;
+    const featuredImage = entry.data.featuredImage;
+    if (!(pubDate instanceof Date) || !featuredImage) {
+      throw new Error(`Published article "${entry.id}" is missing its approved pubDate or featuredImage.`);
+    }
     const translationPair = articles.filter(
       (candidate) => candidate.data.translationKey === entry.data.translationKey,
     );
@@ -16,11 +21,11 @@ export async function getStaticPaths() {
       : [];
     return {
       params: { slug: entry.data.slug },
-      props: { entry, alternates },
+      props: { entry, alternates, pubDate, featuredImage },
     };
   });
 }
-const { entry, alternates } = Astro.props;
+const { entry, alternates, pubDate, featuredImage } = Astro.props;
 const { Content } = await render(entry);
 const canonical = `/articles/${entry.data.slug}/`;
 ---
@@ -30,9 +35,9 @@ const canonical = `/articles/${entry.data.slug}/`;
   description={entry.data.metaDescription}
   lang={entry.data.lang}
   canonical={canonical}
-  ogImage={entry.data.featuredImage.src}
-  date={entry.data.updatedDate ?? entry.data.pubDate}
-  imageAlt={entry.data.featuredImage.alt}
+  ogImage={featuredImage.src}
+  date={entry.data.updatedDate ?? pubDate}
+  imageAlt={featuredImage.alt}
   alternates={alternates}
 >
   <Content />

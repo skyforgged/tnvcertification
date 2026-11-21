@@ -13,6 +13,8 @@ interface Props {
   alternates?: SeoAlternate[];
 }
 const { title, description, lang = "id", canonical, ogImage, date, imageAlt, alternates = [] } = Astro.props;
+const homeLabel = lang === "en" ? "Home" : "Beranda";
+const archiveLabel = lang === "en" ? "Articles" : "Artikel";
 const dateFormatter = new Intl.DateTimeFormat(lang === "en" ? "en-US" : "id-ID", {
   day: "numeric",
   month: "long",
@@ -22,7 +24,7 @@ const dateFormatter = new Intl.DateTimeFormat(lang === "en" ? "en-US" : "id-ID",
 ---
 <Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage} alternates={alternates}>
   <article class="mx-auto w-full max-w-3xl">
-    <Breadcrumbs items={[{ label: "Beranda", href: "/" }, { label: "Artikel", href: "/articles/" }, { label: title }]} />
+    <Breadcrumbs items={[{ label: homeLabel, href: "/" }, { label: archiveLabel, href: "/articles/" }, { label: title }]} />
     {ogImage && (
       <figure class="mb-8 overflow-hidden rounded-xl bg-brand-blue/10">
         <img
