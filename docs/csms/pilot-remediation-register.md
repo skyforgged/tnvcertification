@@ -20,7 +20,7 @@ Track the ten observations from the desk-top simulation through implementation e
 | RA-05 | Competence authorization | Approve assignment-specific competence criteria; verify actual personnel records, qualification issuers, mandatory credential validity/scope, demonstrated task competence, supervision restrictions, reviewer competence/independence and delegated authorization. Retain completed engagement-specific authorization records. | [Assign] | [Approve] | **OPEN — DOCUMENT FRAMEWORK UPDATED; IMPLEMENTATION NOT EVIDENCED** |
 | RA-06 | Impartiality | Approve impartiality policy, threat criteria and hard-stop rules; collect declarations from all assigned personnel/external resources; evaluate actual, potential and perceived conflicts; implement and test safeguards; record independent approval before work; decline or stop where threats cannot be controlled. | [Assign] | [Approve] | **OPEN — DOCUMENT FRAMEWORK UPDATED; IMPLEMENTATION NOT EVIDENCED** |
 | RA-07 | Technical review | Approve the technical review procedure, reviewer competence/independence criteria, escalation authority and release delegation; appoint and verify competent independent reviewer(s); retain completed engagement review checklist, comment/correction closure, disagreement record where applicable, and separately authorized report-release evidence tied to the reviewed version. | [Assign] | [Approve] | **OPEN — DOCUMENT FRAMEWORK UPDATED; IMPLEMENTATION NOT EVIDENCED** |
-| RA-08 | Data governance | Approve privacy, security, access, storage, transfer, retention and disposal controls; verify channels before receiving real evidence. | [Assign] | [Approve] | Open |
+| RA-08 | Data governance | Approve privacy/security policy and data classification; complete legal-purpose and party-role review; inventory/minimize data; approve systems, storage, transfer, access, suppliers, incident response and retention/return/deletion controls; verify configurations and exercise evidence before real data intake. | [Assign] | [Approve] | **OPEN — DOCUMENT FRAMEWORK UPDATED; IMPLEMENTATION NOT EVIDENCED** |
 | RA-09 | Client factual review | Implement a correction log preserving original findings, client comments, supporting evidence and reasoned disposition. | [Assign] | [Approve] | Open |
 | RA-10 | Complaints | Approve complaint route, independent investigator, acknowledgement/response targets, decision authority, corrective action and effectiveness checks. | [Assign] | [Approve] | Open |
 
@@ -151,3 +151,50 @@ A blank checklist, draft procedure, hypothetical simulation, reviewer name witho
 | Technical disagreement escalation record, if triggered | Not evidenced |
 | Separately authorized report approver and release/distribution record | Not evidenced |
 | Independent RA-07 closure verification | Not evidenced |
+
+
+## RA-08 — Data governance and information-security evidence criteria
+
+**Current status: OPEN.** Draft procedure, inventory/classification template, access register, incident playbook and role controls have been added. They do not prove lawful processing, approved systems, configured safeguards, trained personnel, tested incident response or management approval.
+
+### Required implementation evidence
+
+1. Management-approved privacy and information-security policy/standard, data classification and handling scheme, risk appetite, control owners, exception authority and MGT-07 decision record.
+2. Legal/privacy review for the proposed service and each relevant engagement: defined purpose and necessity, applicable legal basis/authority, notices, data-subject handling, contractual terms, party roles and responsibilities, disclosure and any cross-border access/transfer. Retain the legal review reference and approved client instructions.
+3. Completed data inventory and flow map covering categories, data subjects, source, purpose, classification, volume, systems/locations, users, recipients, suppliers/subprocessors, transfer locations, retention trigger and disposal route.
+4. Data minimization decisions and approved evidence request list, including redaction/masking or sampling alternatives for personal, sensitive, security or excessive information.
+5. Approved storage and transfer systems/channels with objective configuration/capability evidence appropriate to classification (for example access controls, MFA where supported, encryption, audit logs, backup/recovery, endpoint controls and deletion capability). Supplier due diligence, hosting/subprocessor locations and contract terms where relevant.
+6. Named access appointments and least-privilege records; verified account settings, access reviews, privileged access controls, revocation evidence and external sharing logs.
+7. Approved retention schedule with legal/contractual basis, legal-hold process, return/deletion procedure, backup treatment and actual disposal evidence; no placeholder period may be treated as approved.
+8. Approved incident response roles, current contact/escalation list, legal notification assessment route, communication authority and evidence-preservation method.
+9. Completed tabletop exercise(s) for material scenarios such as misdirected client evidence, compromised account and supplier incident; record decisions, timing, gaps, corrective actions and effectiveness re-test.
+10. Approved supplier/processor agreements and periodic review where third parties can access or store information.
+11. User confidentiality commitments and role-appropriate privacy/security awareness with attendance and effectiveness evidence.
+12. Independent verification of the complete control package, including configuration, test records, risk treatment and residual-risk acceptance by authorized management.
+
+### Closure decision
+
+RA-08 may be marked **Closed** only after management approves MGT-07 and the relevant policy/delegations; legal/privacy review and engagement data-flow decisions are complete; data inventory and minimization are approved; systems, channels, access and suppliers are verified; retention/return/deletion and incident arrangements are approved and tested; and an independent reviewer confirms objective implementation evidence and accepted residual risk.
+
+A draft policy, blank register, vendor marketing statement, unchecked configuration list, generic confidentiality clause, planned training, or untested incident playbook is not sufficient. Do not receive real client evidence before the mandatory privacy/security gate is approved and verified.
+
+### Current evidence state
+
+| Evidence item | Status |
+|---|---|
+| Data Governance & Information Security Procedure | **Document updated — draft** |
+| Data Asset Inventory & Classification Register | **Document updated — blank draft template** |
+| Access Authorization & Review Register | **Document updated — blank draft template** |
+| Data Incident Response Playbook | **Document updated — draft** |
+| Role accountability and stop conditions | **Document updated — draft framework** |
+| Document master register linkage and operational intake gate | **Document updated — draft framework** |
+| Management-approved privacy/security policy and MGT-07 decision | Not evidenced |
+| Legal/privacy assessment, notices, party roles and engagement instructions | Not evidenced |
+| Approved data classification and completed data inventory / minimization | Not evidenced |
+| Approved and verified storage/transfer systems and security configurations | Not evidenced |
+| Named access grants, access reviews and revocation evidence | Not evidenced |
+| Supplier due diligence and approved contracts | Not evidenced |
+| Approved retention schedule and actual return/deletion evidence | Not evidenced |
+| Appointed incident roles, current contacts and tested response exercise | Not evidenced |
+| Security/privacy awareness and confidentiality commitments | Not evidenced |
+| Independent RA-08 closure verification | Not evidenced |
