@@ -1,0 +1,117 @@
+---
+title: "Sertifikasi Sistem Manajemen Lingkungan ISO 14001:2026"
+intro: "Sertifikasi Sistem Manajemen Lingkungan ISO 14001:2026 adalah penilaian kesesuaian independen terhadap sistem manajemen lingkungan organisasi berdasarkan persyaratan edisi terbaru ISO 14001."
+metaDescription: "Pelajari ISO 14001:2026, ruang lingkup sistem manajemen lingkungan, aspek dan dampak lingkungan, proses audit, serta ketentuan transisi sertifikasi."
+pubDate: "2026-11-21"
+draft: true
+id: 3
+featuredImage:
+  src: "/images/illustrations/article-iso14001-certification.webp"
+  alt: "Sertifikasi ISO 14001:2026 adalah penilaian sistem manajemen lingkungan organisasi."
+slug: "sertifikasi-iso-14001-2026"
+translationKey: "service-sertifikasi-iso-14001-2026"
+lang: "id"
+serviceType: "Certification"
+category: "Sistem Manajemen Lingkungan"
+categoryIds:
+  - "environmental-management"
+blocks:
+  - type: "content-section"
+    surface: "blue"
+    eyebrow: "Standar terkini"
+    title: "ISO 14001:2026 sebagai acuan sistem manajemen lingkungan"
+    description: "ISO 14001:2026 merupakan edisi keempat standar internasional untuk sistem manajemen lingkungan (Environmental Management System/EMS). Standar ini menyediakan kerangka bagi organisasi untuk mengelola tanggung jawab lingkungan, meningkatkan kinerja lingkungan, dan memenuhi kewajiban kepatuhan yang relevan. ISO menerbitkannya pada 15 April 2026 sebagai pengganti ISO 14001:2015."
+    items:
+      - title: "Pengelolaan lingkungan secara sistematis"
+        description: "Organisasi menetapkan proses untuk mengidentifikasi aspek lingkungan, memahami dampak yang terkait, menetapkan pengendalian, serta mengevaluasi hasil pengelolaan lingkungan."
+      - title: "Kinerja dan perlindungan lingkungan"
+        description: "EMS membantu organisasi mengelola penggunaan sumber daya, limbah, emisi, pencemaran, dan isu lingkungan lain yang relevan dengan konteks serta aktivitasnya."
+  - type: "content-section"
+    surface: "mint"
+    eyebrow: "Area sistem"
+    title: "Pokok bahasan dalam sistem manajemen lingkungan"
+    description: "Area berikut merupakan gambaran umum topik EMS. Daftar ini tidak menggantikan naskah lengkap ISO 14001:2026 dan tidak boleh diperlakukan sebagai daftar seluruh persyaratan audit."
+    items:
+      - title: "Konteks organisasi dan kepemimpinan"
+        description: "Memahami kondisi internal dan eksternal, kebutuhan pihak berkepentingan yang relevan, ruang lingkup EMS, kebijakan lingkungan, serta tanggung jawab dan kepemimpinan."
+      - title: "Aspek dan dampak lingkungan"
+        description: "Mengidentifikasi aspek lingkungan dari aktivitas, produk, dan layanan serta menentukan dampak lingkungan yang terkait dengan mempertimbangkan perspektif daur hidup."
+      - title: "Kewajiban kepatuhan"
+        description: "Menentukan dan memiliki akses terhadap kewajiban kepatuhan lingkungan yang berlaku, memahami penerapannya, serta mengevaluasi pemenuhannya."
+      - title: "Risiko, peluang, dan perencanaan"
+        description: "Menilai risiko dan peluang yang perlu ditangani, menetapkan sasaran lingkungan, serta merencanakan tindakan dan perubahan yang relevan."
+      - title: "Pengendalian operasional"
+        description: "Menetapkan pengendalian terhadap proses, aktivitas, produk, layanan, dan penyedia eksternal yang relevan, termasuk perspektif daur hidup."
+      - title: "Evaluasi dan peningkatan kinerja"
+        description: "Memantau dan mengevaluasi kinerja lingkungan, mengevaluasi kepatuhan, melaksanakan audit internal dan tinjauan manajemen, serta menangani ketidaksesuaian."
+  - type: "content-section"
+    surface: "cream"
+    eyebrow: "Edisi 2026"
+    title: "Perubahan dan fokus ISO 14001:2026"
+    description: "Edisi 2026 mempertahankan kerangka dasar EMS sekaligus memperjelas sejumlah persyaratan dan panduan. Organisasi perlu menelaah naskah resmi untuk menentukan dampak perubahan terhadap sistem dan bukti kesesuaian masing-masing."
+    items:
+      - title: "Kondisi lingkungan yang lebih luas"
+        description: "Pertimbangan konteks lingkungan mencakup isu yang relevan bagi organisasi, seperti perubahan iklim, kondisi lingkungan, keanekaragaman hayati, ketersediaan sumber daya, dan tingkat pencemaran."
+      - title: "Perspektif daur hidup dan rantai nilai"
+        description: "Pertimbangan aspek lingkungan dan pengendalian operasional memperhatikan tahapan daur hidup serta proses, produk, layanan, dan pihak eksternal yang relevan."
+      - title: "Risiko, peluang, dan perubahan"
+        description: "Persyaratan terkait penentuan risiko dan peluang serta perencanaan dan pengelolaan perubahan dibuat lebih jelas dan terstruktur."
+      - title: "Kepemimpinan dan hasil lingkungan"
+        description: "Peran kepemimpinan, tanggung jawab, serta evaluasi kinerja lingkungan menjadi bagian penting dalam memastikan EMS menghasilkan hasil yang dimaksud."
+  - type: "content-section"
+    surface: "coral"
+    eyebrow: "Siklus sertifikasi"
+    title: "Tahapan audit sertifikasi ISO 14001"
+    description: "Proses sertifikasi sistem manajemen lingkungan pada umumnya mencakup tahapan berikut. Urutan dan penerapannya mengikuti skema, prosedur lembaga sertifikasi, ruang lingkup, serta ketentuan akreditasi yang berlaku."
+    items:
+      - title: "Permohonan dan penetapan ruang lingkup"
+        description: "Informasi organisasi, lokasi, aktivitas, proses, dan ruang lingkup EMS ditinjau untuk menentukan kelayakan serta perencanaan audit."
+      - title: "Audit tahap pertama"
+        description: "Jika berlaku, audit tahap pertama meninjau informasi terdokumentasi, kondisi lokasi, aspek penting EMS, dan kesiapan organisasi menghadapi audit tahap kedua."
+      - title: "Audit tahap kedua"
+        description: "Tim audit mengevaluasi penerapan dan efektivitas EMS berdasarkan bukti objektif serta persyaratan standar dan kriteria audit yang ditetapkan."
+      - title: "Tindak lanjut dan keputusan sertifikasi"
+        description: "Ketidaksesuaian ditangani sesuai prosedur. Hasil audit menjalani tinjauan independen sebelum keputusan sertifikasi dibuat oleh pihak yang berwenang."
+      - title: "Surveilans dan sertifikasi ulang"
+        description: "Setelah sertifikasi diberikan, kegiatan surveilans dan sertifikasi ulang dilakukan sesuai siklus sertifikasi dan ketentuan yang berlaku."
+  - type: "content-section"
+    surface: "navy"
+    eyebrow: "Transisi standar"
+    title: "Peralihan dari ISO 14001:2015 ke ISO 14001:2026"
+    description: "ISO 14001:2026 diterbitkan pada 15 April 2026. Persyaratan transisi Global ACI menetapkan 30 April 2029 sebagai akhir periode transisi bagi skema dan pihak yang berada dalam cakupannya. Organisasi harus mengonfirmasi jadwal dan persyaratan yang berlaku kepada lembaga sertifikasi penerbit sertifikatnya; ketentuan dapat bergantung pada badan akreditasi, ruang lingkup pengakuan, dan status lembaga sertifikasi."
+    items:
+      - title: "Tinjau ketentuan transisi"
+        description: "Gunakan publikasi ISO, persyaratan transisi badan akreditasi yang relevan, serta pemberitahuan resmi lembaga sertifikasi penerbit sebagai acuan."
+      - title: "Rencanakan audit transisi"
+        description: "Waktu dan metode audit transisi ditentukan sesuai ketentuan yang berlaku dan siklus sertifikasi organisasi."
+  - type: "faq"
+    surface: "white"
+    items:
+      - question: "Apakah ISO 14001:2026 merupakan edisi terbaru?"
+        answer: "Ya. ISO 14001:2026 adalah edisi keempat yang diterbitkan pada 15 April 2026 dan menggantikan ISO 14001:2015 serta amendemen 2024 pada katalog ISO."
+      - question: "Kapan batas akhir transisi ISO 14001:2026?"
+        answer: "Persyaratan transisi Global ACI menetapkan 30 April 2029 sebagai akhir periode transisi bagi pihak dan skema dalam cakupannya. Organisasi perlu memeriksa ketentuan badan akreditasi dan lembaga sertifikasi yang menerbitkan sertifikatnya."
+      - question: "Apakah sertifikat ISO 14001:2015 langsung tidak berlaku setelah edisi baru diterbitkan?"
+        answer: "Tidak serta-merta. Sertifikat dan proses transisi mengikuti ketentuan transisi yang berlaku. Organisasi harus mengonfirmasi jadwal dan persyaratan kepada lembaga sertifikasi penerbit."
+      - question: "Apakah TNCV saat ini menerima permohonan sertifikasi ISO 14001:2026?"
+        answer: "Halaman ini masih berstatus draft untuk pengembangan konten. Ketersediaan layanan, ruang lingkup, dan kewenangan PT. Intiprima Sertifikasi belum dinyatakan disetujui untuk publikasi. Informasi layanan hanya akan ditampilkan setelah verifikasi internal selesai."
+---
+# Sertifikasi Sistem Manajemen Lingkungan ISO 14001:2026
+
+Sertifikasi Sistem Manajemen Lingkungan ISO 14001:2026 adalah penilaian kesesuaian independen terhadap sistem manajemen lingkungan organisasi berdasarkan persyaratan edisi terbaru ISO 14001.
+
+## Status pengembangan layanan
+
+Informasi pada halaman ini disusun untuk pengembangan katalog layanan. **Layanan sertifikasi ISO 14001:2026 PT. Intiprima Sertifikasi belum dinyatakan tersedia.** Ruang lingkup, status skema, dan kewenangan yang diperlukan masih harus diverifikasi sebelum halaman dapat dipublikasikan.
+
+Publikasi halaman ini kelak tidak boleh ditafsirkan sebagai pernyataan bahwa PT. Intiprima Sertifikasi telah memperoleh akreditasi, pengakuan, atau kewenangan untuk menerbitkan sertifikat ISO 14001:2026.
+
+## Proses sertifikasi secara umum
+
+Apabila layanan disetujui dan tersedia, proses sertifikasi sistem manajemen lingkungan pada umumnya mencakup permohonan, penetapan ruang lingkup, perencanaan audit, audit tahap pertama bila berlaku, audit tahap kedua, penyelesaian temuan, tinjauan keputusan sertifikasi, dan surveilans sesuai siklus sertifikasi. Ketentuan aktual mengikuti skema, standar, dan prosedur lembaga sertifikasi yang berwenang.
+
+## Referensi resmi
+
+- [ISO 14001:2026 — Environmental management systems — Requirements with guidance for use](https://www.iso.org/standard/14001)
+- [ISO announcement: ISO 14001:2026 published on 15 April 2026](https://www.iso.org/news/2026/04/iso-14001-2026-published)
+- [Global ACI: Transition Requirements for ISO 14001:2026](https://global-aci.org/en/news/global-aci-publishes-transition-requirements-for-iso-140012026/)
