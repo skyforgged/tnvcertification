@@ -195,3 +195,33 @@ The reviewer is authorized, within the approved delegation, to request source/ev
 No reviewer may be assigned while any mandatory competence, authorization or independence requirement remains unverified. If a suitable independent reviewer is unavailable, the report remains on hold; commercial or schedule pressure is not an exception.
 
 The technical review is an internal quality-control step only. It is not a principal's qualification decision, certification, accreditation, statutory inspection, or regulatory approval. Report release authority must not be represented as authority to make those external decisions.
+
+
+## 12. Data governance and information-security accountability (RA-08)
+
+The following roles must be formally appointed with documented authority, competence, capacity and escalation routes before client evidence is accepted. Role labels in this plan do not constitute appointments.
+
+| Control activity | Accountable role | Required separation / evidence |
+|---|---|---|
+| Approve privacy/security policy, risk appetite, resources and exceptions | Management | Formal decision under MGT-07; residual-risk acceptance recorded |
+| Assess purpose, necessity, party roles, notices, legal basis, rights and notification duties | Privacy / legal responsible person | Competent legal/privacy review; current requirements verified; advice and decision references retained |
+| Approve systems, storage, channels, security baseline and incident response | Information-security responsible person | Technical capability and configuration evidence; supplier due diligence; independent verification where appropriate |
+| Define engagement purpose, minimum data request and authorized recipients | Engagement owner | Approved scope, minimization rationale, client instructions and data inventory reference |
+| Maintain data inventory, classification, transfer, access and disposal records | Data custodian / document controller | Restricted record access; traceable updates; no secrets stored in registers |
+| Grant, review and revoke individual access | Designated access approver / system owner | Named account, least privilege, MFA where supported, time limit, review and revocation evidence |
+| Coordinate suspected incidents and containment | Incident coordinator / security lead | Immediate escalation route, incident log, evidence preservation and tested contacts |
+| Decide external notification and communications | Authorized management with privacy/legal advice | Documented legal/contract assessment, decision rationale and authorized spokesperson |
+| Verify retention, return and secure deletion | Data custodian with legal/privacy and system owner | Approved schedule, legal-hold check, deletion/return evidence and supplier confirmation where applicable |
+
+### Mandatory segregation and stop conditions
+
+- The engagement owner must not unilaterally approve a new processing purpose, legal basis, supplier, cross-border transfer or high-risk exception.
+- System administrators must not approve their own privileged access without an independent authorization and review.
+- Users must not investigate or communicate externally about incidents beyond their delegated role.
+- No real client evidence may be requested or received until MGT-07-related privacy/security controls, approved channels, access roles and retention/return arrangements are approved and verified.
+- No unapproved personal email, personal cloud storage, public sharing link, public code repository or unapproved AI service may be used for client evidence.
+- If data purpose, legal authority, security capability, recipient identity or safe storage cannot be demonstrated, pause collection and escalate; narrow scope or decline if unresolved.
+- Any exception must be documented, risk-assessed, time-limited and approved by the authorized role; it cannot override legal requirements or hard-stop risks.
+- A suspected incident triggers immediate internal reporting and the approved incident-response route. No one may conceal, delete or alter potential incident evidence.
+
+Use the [Data Governance & Information Security Procedure](data-governance-information-security-procedure.md), [Data Asset Inventory & Classification Register](data-asset-inventory-register.md), [Access Authorization & Review Register](access-authorization-register.md), and [Data Incident Response Playbook](data-incident-response-playbook.md) as proposed controlled records. No role appointment, system approval, security control or incident capability is evidenced by this draft.
