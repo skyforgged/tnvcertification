@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="560" viewBox="0 0 720 560" fill="none">
+  <title>Organisasi dan kepatuhan</title>
+  <rect x="118" y="78" width="484" height="390" rx="34" fill="#fff" fill-opacity=".08"/>
+  <circle cx="530" cy="136" r="58" fill="#FFD447" fill-opacity=".2"/>
+  <path d="M182 384V206c0-12 10-22 22-22h212c12 0 22 10 22 22v178" stroke="#fff" stroke-width="13" stroke-linecap="round"/>
+  <path d="M156 384h308" stroke="#fff" stroke-width="13" stroke-linecap="round"/>
+  <rect x="224" y="232" width="172" height="122" rx="16" fill="#fff"/>
+  <path d="M252 267h116M252 296h82M252 325h104" stroke="#315CFF" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="504" cy="338" r="82" fill="#315CFF"/>
+  <path d="m466 338 26 26 53-59" stroke="#fff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M142 442h434" stroke="#FF6B35" stroke-width="16" stroke-linecap="round"/>
+  <circle cx="192" cy="142" r="24" fill="#36C9A5"/>
+  <circle cx="580" cy="420" r="18" fill="#FFD447"/>
+</svg>
