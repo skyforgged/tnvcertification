@@ -1,59 +1,55 @@
 /**
  * PT. Intiprima Sertifikasi — single source of truth for company identity
- * and shared site settings. All components, pages, layouts, navigation,
- * footers, SEO metadata, CTAs, and contact sections must read identity
- * values from this module; nothing company-wide is hardcoded.
+ * and shared site settings. Company-wide data must not be hardcoded elsewhere.
  */
-/** Canonical deployed URL. The only place the production domain is written. */
-const SITE_URL = "https://www.intiprima-sertifikasi.dev";
-/** Canonical Organization entity. Referenced by @id from structured data. */
+const SITE_URL = "https://tnv-certification.com";
+
 export const organization = {
   id: "organization",
   name: "PT. Intiprima Sertifikasi",
+  groupName: "TNV Group",
   slug: "pt-intiprima-sertifikasi",
   shortName: "Intiprima Sertifikasi",
   description:
-    "Sertifikasi, pelatihan, dan penilaian kepatuhan profesional untuk industri manufaktur, konstruksi, dan energi.",
+    "PT. Intiprima Sertifikasi merupakan bagian dari TNV Group yang berfokus pada layanan sertifikasi dengan komitmen terhadap kredibilitas dan hasil yang bernilai bagi klien.",
   url: SITE_URL,
   logo: {
     url: "/logo.svg",
-    width: 200,
-    height: 58,
+    width: 480,
+    height: 128,
     format: "svg",
   },
   contact: {
-    email: "sertifikasi@intiprima.example",
-    phone: "+62-21-5555-0000",
+    email: "tnvcertification25@gmail.com",
+    phone: "+62 822-2721-7776",
+    whatsapp: "+62 822-2721-7776",
     address: {
-      street: "Jalan Pahlawan No. 123",
-      city: "Jakarta",
+      street: "WTC 3, Lantai 20 R30, Jl. Jendral Sudirman Kav. 29–31",
+      city: "Jakarta Selatan",
       province: "DKI Jakarta",
       countryCode: "ID",
-      postalCode: "10110",
+      postalCode: "12920",
     },
     addressLabels: {
       country: "Indonesia",
     },
   },
-  sameAs: [
-    "https://www.linkedin.com/company/pt-intiprima-sertifikasi",
-    "https://www.instagram.com/intiprima.sertifikasi",
-  ],
+  sameAs: [],
 } as const;
-/** Shared site settings. */
+
 export const siteSettings = {
   url: SITE_URL,
   title: "PT. Intiprima Sertifikasi",
   description:
-    "Sertifikasi, pelatihan kepatuhan, dan penilaian risiko profesional bagi industri manufaktur, konstruksi, dan energi.",
-  tagline: "Informasi sertifikasi dan kepatuhan",
+    "PT. Intiprima Sertifikasi — bagian dari TNV Group. Informasi layanan sertifikasi dan standar sistem manajemen.",
+  tagline: "Bagian dari TNV Group",
   defaultLanguage: "id",
   languages: [
     { code: "id", label: "Bahasa Indonesia" },
     { code: "en", label: "English" },
   ],
 } as const;
-/** Primary links used by the sitewide header. Keep routes centralized here. */
+
 export const primaryNavigation = [
   { label: "Beranda", href: "/" },
   { label: "Layanan", href: "/services/" },
@@ -63,7 +59,7 @@ export const primaryNavigation = [
   { label: "Jadwal", href: "/schedules/" },
   { label: "Artikel", href: "/articles/" },
 ] as const;
-/** Footer navigation grouped by visitor intent; no unverified contact details. */
+
 export const footerNavigation = [
   {
     title: "Mulai",
@@ -78,8 +74,6 @@ export const footerNavigation = [
   },
   {
     title: "Baca",
-    links: [
-      { label: "Artikel dan panduan", href: "/articles/" },
-    ],
+    links: [{ label: "Artikel dan panduan", href: "/articles/" }],
   },
 ] as const;
