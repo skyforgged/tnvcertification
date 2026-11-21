@@ -89,3 +89,15 @@ For the current 13-page site, keep full production builds. The measured build is
 - Still open: measure CI/build time and confirm that selective preflight catches changed-file errors earlier than the main gates. Do not adopt incremental production rendering solely to reduce a few seconds.
 - Commit-level evidence lives in `docs/prelaunch-work-status.md`, sections "Build strategy (adopted baseline)" and "Selective editorial preflight".
 - Any future status change must cite verifiable evidence and update this note together with the master status document in the same commit.
+
+
+## Priority before resuming CSMS work
+
+**Priority: complete the remaining build-strategy verification before starting another CSMS work item.** This is a separate website/build-engineering track and must not be counted as a CSMS phase.
+
+Open items, in order:
+1. **Measure CI/build duration:** collect comparable workflow timings across representative content-only and source/configuration changes. Record run IDs, commit SHAs, start/end times, and relevant step durations. A single successful run is not enough to claim a performance improvement.
+2. **Verify earlier error detection:** demonstrate that an invalid changed editorial entry fails at the selective preflight step before the general quality gates; retain the failing run/step evidence and confirm the normal full gates still run for valid changes.
+3. **Update this strategy and the master prelaunch status with the evidence.** Do not introduce incremental production rendering; the full Astro build remains mandatory.
+
+**Resume CSMS only after these build-strategy verification items are closed and recorded.** CSMS status and safeguards remain as recorded in [the CSMS implementation status tracker](csms/implementation-status.md); this priority note does not change CSMS approvals, remediation statuses, or phase numbering.
