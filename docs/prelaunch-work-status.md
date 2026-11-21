@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated commit: `cf666d3` (merge `0f418b2` plus integration fix `221d7bc`)
+- Validated commit: `aae693a` (merge `feat/p14-content-taxonomy-integrity`)
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -41,6 +41,7 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 | P6 | Article-to-service relationships | Cross-collection validation implemented and merged; no article linked to the draft CSMS service |
 | P7 | Service SEO and structured data | Implemented and merged; local checks passed on pinned toolchain |
 | P8 | Full quality gate | Local checks passed on pinned toolchain; deployment runtime verification still pending |
+| P14 | Content quality and taxonomy integrity | Completed; article assignments corrected and bilingual slug/status validation added |
 
 ## Verified repository facts
 
@@ -75,7 +76,7 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-Local full validation ran on `main` at `cf666d3` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
+Local full validation ran on `main` at `aae693a` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
 
 | Command | Result |
 |---|---|
@@ -83,10 +84,10 @@ Local full validation ran on `main` at `cf666d3` with the pinned Node.js `26.13.
 | `npm run build` | PASS, exit `0`, 13 pages |
 | `npm run typecheck` | PASS, exit `0` |
 | `npm run lint` | PASS, exit `0` |
-| `npm run test` | PASS, exit `0`, 33 tests |
+| `npm run test` | PASS, exit `0`, 35 tests |
 | `npm run audit:seo` | PASS, exit `0`, 13 pages and 13 unique canonicals |
 
-GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. No CI run result was independently verifiable in this environment. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
+GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Run `44845274570` for the prior `main` commit `6151e50` completed with `conclusion: success`. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
 
 
 ## P5 completion — certification scheme catalog and CI
@@ -198,11 +199,13 @@ Branch: `chore/github-actions-node24-runtime` (merged at `cf666d3`).
 
 - Workflow now uses `actions/checkout@v6`, `pnpm/action-setup@v6`, and `actions/setup-node@v7`, removing the Node.js 20 action runtime dependency.
 - Project Node.js from `.node-version` and pnpm `12.21.0` are unchanged.
-- Major action tags were confirmed to exist. No CI run result was independently verified locally.
+- Major action tags were confirmed to exist. CI run `44845274570` for `6151e50` completed with `conclusion: success`.
 - See `docs/github-actions-runtime.md` for scope and validation notes.
 
 
-## P14 — Content Quality & Taxonomy Integrity (in progress)
+## P14 — Content Quality & Taxonomy Integrity
+
+Branch: `feat/p14-content-taxonomy-integrity` (merged at `aae693a`).
 
 - Audited the nine existing article category assignments against their subjects.
 - Corrected the ISO 45001 article from `quality-management` to `occupational-health-safety`.
@@ -210,5 +213,5 @@ Branch: `chore/github-actions-node24-runtime` (merged at `cf666d3`).
 - Added taxonomy validator checks for lowercase kebab-case slugs and bilingual category status parity.
 - Added tests for malformed slugs and mismatched translation statuses.
 - Added `docs/p14-content-quality-taxonomy-integrity.md` with mapping decisions and editorial boundaries.
-- Local validation (check/typecheck/lint/test/build) has not been run in this environment; maintainer must run the pinned toolchain locally before merging.
+- Local validation ran on merge commit `aae693a`; see the validation note above for command results.
 - Categories remain `planned`; no certification/service scope claims were activated.
