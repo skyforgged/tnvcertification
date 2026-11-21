@@ -92,3 +92,42 @@ Counts are descriptive only. Do not convert them into a percentage, grade, pass/
 ## 7. Disclaimer for internal use
 
 This matrix supports a scoped document/readiness review only. It does not itself establish compliance, certification, contractor qualification, vendor approval, or acceptance by a principal. The principal/client retains its own decision-making authority unless a separate, documented authorization states otherwise.
+
+
+## 8. Mandatory traceability chain (RA-02)
+
+Assign stable identifiers and preserve the links below throughout the engagement:
+
+| Record type | ID pattern | Minimum linkage |
+|---|---|---|
+| Requirement | REQ-### | Source ID, exact revision, clause/page, applicability decision |
+| Evidence | EV-### | Requirement ID(s), title, owner/source, version/date, receipt and examination record |
+| Finding | FR-### | Requirement ID, examined Evidence ID(s), evidence status, objective observation |
+| Action | ACT-### | Finding ID, action owner, target date, closure evidence and reviewer |
+| Report statement | RPT-§-### | Finding/requirement IDs supporting the statement |
+
+**Traceability rules**
+1. IDs are unique within one engagement and must not be reused after withdrawal; mark withdrawn records and retain the reason.
+2. Every finding must link to at least one requirement or be explicitly labelled an out-of-criteria observation.
+3. Every evidence item must identify the requirement(s) it is intended to support; evidence that supports no criterion is retained only when justified.
+4. Every recommendation/action must link to the finding that triggered it.
+5. Every material report statement must be traceable to the finding, requirement and evidence records.
+6. A missing link is recorded as a traceability exception; do not silently infer or repair it.
+7. Corrections preserve the original ID and audit history. A materially different requirement/source revision receives a new controlled reference.
+
+### Traceability completeness review
+
+| Check | Result / exception reference |
+|---|---|
+| Every REQ has source + clause/page + applicability | [Pass / exception IDs] |
+| Every EV has version/date + owner/source + receipt/examination status | [Pass / exception IDs] |
+| Every FR links to REQ and examined EV, or is labelled observation | [Pass / exception IDs] |
+| Every ACT links to FR and has closure criteria | [Pass / exception IDs] |
+| Every material report statement links to FR/REQ/EV | [Pass / exception IDs] |
+| Withdrawn, superseded and corrected records retain history | [Pass / exception IDs] |
+
+**Review outcome:** [Complete / incomplete / not tested]  
+**Reviewed by / date:** [Complete]  
+**Open exceptions and disposition:** [Complete]
+
+This section defines a documentation control only. RA-02 remains open until the chain is exercised against an authorized, verified principal source and its completed engagement records are independently reviewed.
