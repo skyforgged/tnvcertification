@@ -43,6 +43,7 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 | P8 | Full quality gate | Local checks passed on pinned toolchain; deployment runtime verification still pending |
 | P14 | Content quality and taxonomy integrity | Completed; article assignments corrected and bilingual slug/status validation added |
 | P15 | Content expansion and editorial strategy | Completed; topic gaps and an eight-article editorial queue documented; no articles published |
+| P16 | Editorial content production | In progress; first Indonesian/English article draft created in docs for review; not published |
 
 ## Verified repository facts
 
@@ -228,3 +229,12 @@ Branch: `feat/p15-editorial-strategy` (merged at `c210dfe`).
 - No new articles, public category routes, service/scheme activation, or unsupported certification claims were introduced.
 - Local validation ran on merge commit `c210dfe`; see the validation note above for command results.
 - Production identity/contact/domain and certification-scope verification remain separate launch blockers.
+
+
+## P16 — Editorial Content Production (in progress)
+
+- Started first prioritized editorial topic: document control for ISO 9001.
+- Drafted Indonesian and English versions in `docs/drafts/p16-document-control-iso9001.md` for editorial/technical review before entering the publishable article collection.
+- Research notes reference ISO's documented-information guidance and the current ISO 9001 edition status page; exact edition-specific requirements and clause references are intentionally not asserted pending technical review.
+- No public article routes/content were added. No local build or tests were run; this is a documentation-only draft branch.
+- Remaining work: technical review, language/SEO review, image selection, internal-link review, metadata/schema verification, and final conversion into the article collection if approved.
