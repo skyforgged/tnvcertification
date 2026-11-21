@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated commit: `aae693a` (merge `feat/p14-content-taxonomy-integrity`)
+- Validated commit: `c210dfe` (merge `feat/p15-editorial-strategy`)
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -77,7 +77,7 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-Local full validation ran on `main` at `aae693a` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
+Local full validation ran on `main` at `c210dfe` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
 
 | Command | Result |
 |---|---|
@@ -88,7 +88,7 @@ Local full validation ran on `main` at `aae693a` with the pinned Node.js `26.13.
 | `npm run test` | PASS, exit `0`, 35 tests |
 | `npm run audit:seo` | PASS, exit `0`, 13 pages and 13 unique canonicals |
 
-GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Run `44845274570` for the prior `main` commit `6151e50` completed with `conclusion: success`. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
+GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Runs `44845274570` (`6151e50`) and `44854428984` (`2733047`) completed with `conclusion: success`. No CI result was available for the current merge before this status update. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
 
 
 ## P5 completion — certification scheme catalog and CI
@@ -220,8 +220,11 @@ Branch: `feat/p14-content-taxonomy-integrity` (merged at `aae693a`).
 
 ## P15 — Content Expansion & Editorial Strategy
 
-- P15 is completed as a planning/documentation phase on branch `feat/p15-editorial-strategy`.
+Branch: `feat/p15-editorial-strategy` (merged at `c210dfe`).
+
+- P15 is completed as a planning/documentation phase.
 - Added `docs/p15-content-expansion-editorial-strategy.md`, recording the current article-topic baseline, three editorial clusters, eight proposed topics with a prioritized publishing order, editorial quality checks, and a review workflow.
 - The next editorial priority is document control; content should be drafted and researched one article at a time, not generated in bulk.
 - No new articles, public category routes, service/scheme activation, or unsupported certification claims were introduced.
+- Local validation ran on merge commit `c210dfe`; see the validation note above for command results.
 - Production identity/contact/domain and certification-scope verification remain separate launch blockers.
