@@ -182,18 +182,26 @@ Restrict access to authorized personnel. Apply applicable privacy, confidentiali
 
 ## 6. Complaints, factual corrections, and disputes
 
-Before customer delivery is authorized, management must approve a complaint-handling route and designate an impartial complaint owner. For each complaint:
-1. Register a unique ID, receipt date, complainant/contact route, issue, affected engagement/report and requested outcome.
-2. Acknowledge receipt within the service target approved by management; record communications and any urgent containment.
-3. Screen for conflicts and assign an investigator who was not responsible for the activity complained about, where practicable.
-4. Review the engagement file, source criteria, evidence, decisions and communications; obtain relevant responses without allowing the subject of the complaint to control the outcome.
-5. Record findings, decision rationale, corrective/preventive action, responsible owner and due date.
-6. Obtain independent approval of the response, communicate the outcome, and retain closure evidence.
-7. Track trends and verify whether corrective action was effective.
+Complaints about TNCVCertification's own service, personnel, process, communication, confidentiality or deliverables must be handled under the [CSMS Complaints Handling Procedure](complaints-handling-procedure.md), with the [CSMS Complaints Register & Case Record](complaints-register-case-record.md). These are internal draft controls only until management approval, channels, targets, role appointments, authority, privacy/security controls and resources are verified.
 
-Factual corrections to a draft report are handled separately from complaints under the [Client Factual Review & Correction Procedure](client-factual-review-procedure.md), using the [Client Factual Correction Log](client-factual-correction-log.md). Preserve the exact original observation, client comment, supporting evidence reference, reasoned disposition and report-version history. The client may identify factual errors and submit authorized supporting information; the client cannot require removal of a substantiated finding or dictate a technical conclusion. Material changes to evidence sufficiency, findings or conclusions require independent technical re-review before release. Client non-response is not factual confirmation. A draft must remain clearly labeled and no report may be released with unresolved blocking issues or without separate delegated report approval.
+### 6.1 Complaint route and safeguards
 
-Because this service does not make a formal certification or principal qualification decision, do not describe this process as an appeal against a certification decision. Direct disputes about principal scoring, qualification or procurement outcomes to the relevant principal/client.
+- Accept complaints through approved channels; record verbal complaints and assess anonymous complaints to the extent possible. Do not retaliate against a person raising a concern in good faith.
+- Register each complaint with a unique ID, preserve original wording and relevant records, acknowledge within the target formally approved by management, and communicate progress where required.
+- Screen conflicts and appoint a competent investigator independent of the challenged activity/person. If internal independence is not practicable, use an external or otherwise independent investigator. The subject of the complaint must not control the investigation, findings or response.
+- Obtain an independent review and delegated approval of the findings and response. Record evidence, rationale, remedies, corrective actions, owners, due dates and independent effectiveness checks.
+- Management must approve and publish acknowledgement, progress-update and final-response targets; this procedure does not invent numerical deadlines.
+- Escalate serious allegations, retaliation, privacy/security incidents, legal concerns or management conflicts through independent routes. A complaint record does not replace incident response or legal notification obligations.
+
+### 6.2 Separation from related processes
+
+- **Draft factual correction:** handled under the [Client Factual Review & Correction Procedure](client-factual-review-procedure.md) and [Client Factual Correction Log](client-factual-correction-log.md). If the client also alleges unfair treatment, misconduct or procedural failure, register a linked complaint.
+- **Technical disagreement:** route for independent technical review; register a complaint as well if service failure, misconduct or procedural unfairness is alleged.
+- **Principal/client decision dispute:** disputes about principal scoring, qualification, vendor status or procurement outcome must be referred to that principal/client. TNCVCertification must not imply appeal authority over those decisions.
+- **Privacy/security or safety incident:** immediately escalate through the relevant incident procedure; do not wait for complaint investigation.
+
+Do not release complaint records or sensitive attachments through unapproved channels. Apply the approved data-governance, access, retention and legal-hold controls. If safe intake/storage is not available, do not invite sensitive attachments through an unapproved route; escalate and provide an approved alternative when established.
+
 
 ## 7. Service suspension or refusal conditions
 
@@ -229,6 +237,8 @@ Use the controlled versions of:
 - [CSMS Readiness Review Report Template](readiness-report-template.md)
 - [CSMS Client Factual Review & Correction Procedure](client-factual-review-procedure.md)
 - [CSMS Client Factual Correction Log](client-factual-correction-log.md)
+- [CSMS Complaints Handling Procedure](complaints-handling-procedure.md)
+- [CSMS Complaints Register & Case Record](complaints-register-case-record.md)
 - [CSMS Competence Matrix](competence-matrix.md)
 - [CSMS Impartiality & Conflict of Interest Register](impartiality-conflict-register.md)
 - [CSMS Document Control & Record Retention](document-control-retention.md)
