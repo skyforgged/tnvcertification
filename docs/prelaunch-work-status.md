@@ -42,6 +42,7 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 | P7 | Service SEO and structured data | Implemented and merged; local checks passed on pinned toolchain |
 | P8 | Full quality gate | Local checks passed on pinned toolchain; deployment runtime verification still pending |
 | P14 | Content quality and taxonomy integrity | Completed; article assignments corrected and bilingual slug/status validation added |
+| P15 | Content expansion and editorial strategy | Completed; topic gaps and an eight-article editorial queue documented; no articles published |
 
 ## Verified repository facts
 
@@ -69,10 +70,10 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Next implementation sequence
 
-1. Resolve the site identity inputs above, then update `src/site.ts` and any optional-field consumers in a dedicated code commit.
-2. Add verified certification scheme records and explicit service-to-scheme relationships; do not publish unverified standards.
-3. Complete service/article mapping and service SEO.
-4. Re-run `check`, `typecheck`, `lint`, `test` and `build` on the deployment runtime, then inspect generated routes and JSON-LD.
+1. Start P16 with a researched, reviewed draft of the first editorial priority (document control); avoid bulk article generation.
+2. Resolve official company identity/contact/domain inputs and update `src/site.ts` only after confirmation.
+3. Verify certification/assessment scope, authorization and accreditation evidence before activating any scheme or service records.
+4. Continue content/service relationship and launch-readiness reviews using the SSOT and build-time validations.
 
 ## Validation note
 
@@ -215,3 +216,12 @@ Branch: `feat/p14-content-taxonomy-integrity` (merged at `aae693a`).
 - Added `docs/p14-content-quality-taxonomy-integrity.md` with mapping decisions and editorial boundaries.
 - Local validation ran on merge commit `aae693a`; see the validation note above for command results.
 - Categories remain `planned`; no certification/service scope claims were activated.
+
+
+## P15 — Content Expansion & Editorial Strategy
+
+- P15 is completed as a planning/documentation phase on branch `feat/p15-editorial-strategy`.
+- Added `docs/p15-content-expansion-editorial-strategy.md`, recording the current article-topic baseline, three editorial clusters, eight proposed topics with a prioritized publishing order, editorial quality checks, and a review workflow.
+- The next editorial priority is document control; content should be drafted and researched one article at a time, not generated in bulk.
+- No new articles, public category routes, service/scheme activation, or unsupported certification claims were introduced.
+- Production identity/contact/domain and certification-scope verification remain separate launch blockers.
