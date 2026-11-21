@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated commit: `c6f9015` (full gate suite)
+- Validated commit: `ef84389` (full gate suite)
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -45,7 +45,7 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 | P15 | Content expansion and editorial strategy | Completed; topic gaps and an eight-article editorial queue documented; no articles published |
 | P16 | Editorial content production | In progress; first Indonesian/English article draft created in docs for review; not published |
 | P16.2 | Article integration and SEO readiness | Review checkpoint; collection schema, metadata gates, and publication gates documented |
-| P16.3 | Bilingual article integration | Validation and article rendering updated for English entries; no article records published |
+| P16.3 | Bilingual article integration | Bilingual document-control draft pair integrated as `draft: true`; no public article published |
 
 ## Verified repository facts
 
@@ -80,7 +80,7 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-Local full validation ran on `main` at `c6f9015` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
+Local full validation ran on `main` at `ef84389` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
 
 | Command | Result |
 |---|---|
@@ -88,10 +88,10 @@ Local full validation ran on `main` at `c6f9015` with the pinned Node.js `26.13.
 | `npm run build` | PASS, exit `0`, 13 pages |
 | `npm run typecheck` | PASS, exit `0` |
 | `npm run lint` | PASS, exit `0` |
-| `npm run test` | PASS, exit `0`, 37 tests |
+| `npm run test` | PASS, exit `0`, 39 tests |
 | `npm run audit:seo` | PASS, exit `0`, 13 pages and 13 unique canonicals |
 
-GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Runs `44845274570` (`6151e50`), `44854428984` (`2733047`), `44855036386` (`0ce7f0b`), `44855490692` (`15daddb`), `44856851545` (`c4934aa`) and `44858182875` (`c6f9015`) completed with `conclusion: success`. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
+GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Runs `44845274570` (`6151e50`), `44854428984` (`2733047`), `44855036386` (`0ce7f0b`), `44855490692` (`15daddb`), `44856851545` (`c4934aa`), `44858182875` (`c6f9015`) and `44859275893` (`ef84389`) completed with `conclusion: success`. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
 
 
 ## P5 completion — certification scheme catalog and CI
@@ -265,5 +265,6 @@ Branch: `docs/p16-2-article-integration-readiness` (merged at `fe2f175`).
 - Draft records intentionally omit publication dates and featured-image paths. The planned `quality-management` category remains `planned`; no public route or index entry is created for these drafts.
 - Official ISO catalogue research confirms ISO 9001:2026 (sixth edition) was published on 16 September 2026 and replaces ISO 9001:2015. Both article drafts now cite the 2026 edition and the official transition guidance; clause-specific interpretation remains deferred pending review against a licensed standard copy.
 - Technical/editorial approval, approved image assets, and publication dates remain outstanding. Do not change either record from draft until these gates are met.
-- Commit history: `359152a` (draft integration/schema), `11f2c8b` (published metadata guards and localized breadcrumbs), `69801b5` (test fixture correction), `fdb072e` (ISO 9001:2026 source alignment). Full CI status is being verified after the latest update.
+- Commit history: `359152a` (draft integration/schema), `11f2c8b` (published metadata guards and localized breadcrumbs), `69801b5` (test fixture correction), `fdb072e` (ISO 9001:2026 source alignment), `bd0697e` and `2be9036` (bilingual intro alignment), `ef84389` (editorial title-rule alignment).
+- Local full gate suite passed on `ef84389`; CI run `44859275893` completed with `conclusion: success`. Both records remain drafts.
 
