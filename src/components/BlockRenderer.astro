@@ -25,9 +25,12 @@ export type Block = FaqBlock | HowToBlock | CtaBlock;
 
 interface Props {
   blocks?: Block[];
+  lang?: string;
 }
 
-const { blocks = [] } = Astro.props;
+const { blocks = [], lang = "id" } = Astro.props;
+const faqHeading = lang === "en" ? "Frequently asked questions" : "Pertanyaan Umum";
+const howToHeading = lang === "en" ? "Implementation steps" : "Langkah Pelaksanaan";
 
 const ctaClass = (variant?: CtaBlock["variant"]) =>
   variant === "secondary"
@@ -40,8 +43,8 @@ const ctaClass = (variant?: CtaBlock["variant"]) =>
 <div class="space-y-12">
   {blocks.map((block) =>
     block.type === "faq" ? (
-      <section class="border-t border-border pt-8" aria-labelledby="faq-heading">
-        <h2 id="faq-heading" class="text-2xl font-semibold tracking-tight text-ink">Pertanyaan Umum</h2>
+      <section class="border-t border-border pt-8" aria-label={faqHeading}>
+        <h2 class="text-2xl font-semibold tracking-tight text-ink">{faqHeading}</h2>
         <dl class="mt-6 divide-y divide-border">
           {block.items.map((item) => (
             <div class="py-5 first:pt-0 last:pb-0">
@@ -52,8 +55,8 @@ const ctaClass = (variant?: CtaBlock["variant"]) =>
         </dl>
       </section>
     ) : block.type === "howto" ? (
-      <section class="border-t border-border pt-8" aria-labelledby="howto-heading">
-        <h2 id="howto-heading" class="text-2xl font-semibold tracking-tight text-ink">Langkah Pelaksanaan</h2>
+      <section class="border-t border-border pt-8" aria-label={howToHeading}>
+        <h2 class="text-2xl font-semibold tracking-tight text-ink">{howToHeading}</h2>
         <ol class="mt-6 divide-y divide-border">
           {block.steps.map((step, index) => (
             <li class="grid gap-3 py-5 first:pt-0 sm:grid-cols-[3rem_minmax(0,1fr)]">
