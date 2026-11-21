@@ -66,27 +66,37 @@ Reuse components across layouts where appropriate, but preserve meaningful diffe
 
 ## Visual identity and color system
 
-The visual direction is cheerful, energetic, bold, and professional. Avoid pale, washed-out, pastel-heavy palettes and conventional monochrome corporate styling.
+The current approved visual direction is **premium, modern, mature, professional, and corporate**. This direction supersedes any earlier proposal for cheerful multi-color section backgrounds or frequent saturated color blocks.
 
-### Preferred palette direction
-- Electric blue: primary brand/action color (suggested `#315CFF`).
-- Deep blue: strong contrast, typography, dark sections (suggested `#1736A8`).
-- Vivid orange/coral: secondary accent and CTA variation (suggested `#FF6B35`).
-- Sunshine yellow: highlights, badges, editorial accents (suggested `#FFD447`).
-- Fresh mint: supporting accent (suggested `#36C9A5`).
-- Bright pink: optional accent used sparingly (suggested `#F45B91`).
-- Warm cream and white: primary light surfaces (suggested `#FFF8EC` and `#FFFFFF`).
+### Core visual principles
+- Use white as the dominant page surface.
+- Use very light neutral gray sparingly to distinguish selected sections.
+- Use deep blue for intentional emphasis such as selected hero or CTA surfaces; do not make every section a colored panel.
+- Orange, mint, yellow, and pink are restrained accents for small highlights, badges, icons, or interaction states—not section background themes.
+- Create visual hierarchy through whitespace, typography, grid, image composition, content width, alignment, subtle borders, and restrained shadows.
+- Avoid giving every section a different background color.
+- Avoid childish, school-project, template-like SaaS, or generic AI-generated visual patterns.
+- Keep a consistent design language across all page types even when their layouts and content structures differ.
 
-Treat these values as proposed design tokens, subject to accessibility contrast checks and refinement during implementation.
+### Shared design system
+Define and document reusable tokens and rules for:
+- Typography scale, font weights, line heights, and readable text measure.
+- Wide and reading container widths, responsive gutters, and breakpoints.
+- Spacing scale and vertical rhythm.
+- Brand colors, neutral surfaces, borders, and accessible contrast pairs.
+- Buttons, links, badges, cards, section headers, image frames, and form controls.
+- Focus states, keyboard interaction, reduced motion, and responsive behavior.
 
-### Application rules
-- Give colors clear roles; do not use all accents at once or create visual noise.
-- Maintain strong contrast and readable text, including text placed on colored surfaces; verify accessible combinations.
-- Create page rhythm with purposeful alternation of light surfaces, saturated color sections, and occasional dark/strong contrast sections. Avoid a site where every section is plain white.
-- Use bold color blocks, expressive but disciplined typography, and authentic imagery that supports certification, training, audit, industry, and professional contexts.
-- Use color to communicate hierarchy, section identity, interaction, or emphasis—not as random decoration.
-- Avoid pastel washout, generic corporate navy-only designs, excessive gradients/glows, glassmorphism, repetitive card grids, and template-like SaaS/AI visuals.
-- The target impression is credible, energetic, modern, human, and distinctive—not childish or chaotic.
+All layouts and reusable blocks must consume the shared design system rather than inventing unrelated visual rules.
+
+### Image and hero direction
+- Every main-menu page must have a purposeful hero containing one H1, its introductory paragraph, and a featured image.
+- The hero composition may vary by page purpose, but its hierarchy, spacing, image treatment, and responsive behavior must remain consistent.
+- Each page URL must use a unique featured-image URL. Do not reuse one image URL across different page URLs.
+- Images must be relevant, credible, and appropriate to certification, auditing, training, industry, or corporate context.
+- Never imply a stock/placeholder image depicts TNV staff, clients, facilities, or events.
+- If a suitable authentic image is unavailable, use an explicitly neutral visual rather than a misleading representation.
+
 
 ## Rendering and data
 - Avoid duplicating content in page templates.
