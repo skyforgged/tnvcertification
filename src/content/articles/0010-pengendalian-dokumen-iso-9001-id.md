@@ -12,7 +12,7 @@ lang: "id"
 
 # Pengendalian Dokumen ISO 9001: Cara Menjaga Informasi Tetap Terkendali
 
-Pengendalian Dokumen ISO 9001 adalah cara organisasi memastikan informasi yang digunakan dalam menjalankan proses tetap akurat, mudah ditemukan, sesuai kebutuhan, dan terlindungi dari penggunaan versi yang keliru. Dokumen yang tertata membantu karyawan bekerja dengan instruksi yang tepat, sementara rekaman yang dipelihara dengan baik memberikan bukti tentang aktivitas dan hasil yang telah dilakukan.
+Pengendalian Dokumen ISO 9001 adalah cara organisasi memastikan informasi yang digunakan dalam menjalankan proses tetap akurat, mudah ditemukan, sesuai kebutuhan, dan terlindungi dari penggunaan versi yang keliru.
 
 ## Catatan edisi standar
 

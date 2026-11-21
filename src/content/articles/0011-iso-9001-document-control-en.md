@@ -12,7 +12,7 @@ lang: "en"
 
 # ISO 9001 Document Control: Keeping Documented Information Under Control
 
-ISO 9001 Document Control is the way an organization ensures that information used to operate its processes remains accurate, easy to find, suitable for its purpose, and protected against unintended use of incorrect versions. Well-managed documents help people follow appropriate instructions, while properly maintained records provide evidence of activities and results.
+ISO 9001 Document Control is the way an organization ensures that information used to operate its processes remains accurate, easy to find, suitable for its purpose, and protected against unintended use of incorrect versions.
 
 ## Current edition note
 
