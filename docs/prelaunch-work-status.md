@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated commit: `b37e8ea` (full gate suite; build-strategy verification checkpoint closed)
+- Validated commit: `579ed86` (full gate suite; CSMS documentation-control templates strengthened)
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -82,7 +82,7 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-Local full validation ran on `main` at `b37e8ea` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
+Local full validation ran on `main` at `579ed86` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
 
 | Command | Result |
 |---|---|
@@ -97,7 +97,7 @@ Local full validation ran on `main` at `b37e8ea` with the pinned Node.js `26.13.
 
 Earlier pulled commits `9bc16d1` and `ddac326` failed local `lint`; final pulled commit `67b56b3` still had both errors. Commit `455bb73` fixed `no-useless-assignment` in the classifier and `preserve-caught-error` in the preflight.
 
-GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Runs `44845274570` (`6151e50`), `44854428984` (`2733047`), `44855036386` (`0ce7f0b`), `44855490692` (`15daddb`), `44856851545` (`c4934aa`), `44858182875` (`c6f9015`), `44859275893` (`ef84389`) and `44862425784` (`2a44281`) completed with `conclusion: success`. Runs `44863006246` (`9bc16d1`) and `44863375398` (`ddac326`) completed with `conclusion: failure` before the lint fixes. Runs `44864063830` (`455bb73`), `44864122309` (`c0764c6`), `44864948124` (`2c2828b`), `44865216807` (`70eb5a7`), `44867371518` (`88f19a1`), `44867438542` (`9049434`), `44867757684` (`41df5b9`), `44868225838` (`d828d81`), `44868734147` (`d9ce3be`), `44869018493` (`7101e27`), `44869711362` (`ab647ca`), `44870176304` (`d29c72b`), `44871266120` (`f0d8105`), `44872016416` (`7a7a1eb`) and `44872496114` (`b37e8ea`) completed with `conclusion: success`. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
+GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. Runs `44845274570` (`6151e50`), `44854428984` (`2733047`), `44855036386` (`0ce7f0b`), `44855490692` (`15daddb`), `44856851545` (`c4934aa`), `44858182875` (`c6f9015`), `44859275893` (`ef84389`) and `44862425784` (`2a44281`) completed with `conclusion: success`. Runs `44863006246` (`9bc16d1`) and `44863375398` (`ddac326`) completed with `conclusion: failure` before the lint fixes. Runs `44864063830` (`455bb73`), `44864122309` (`c0764c6`), `44864948124` (`2c2828b`), `44865216807` (`70eb5a7`), `44867371518` (`88f19a1`), `44867438542` (`9049434`), `44867757684` (`41df5b9`), `44868225838` (`d828d81`), `44868734147` (`d9ce3be`), `44869018493` (`7101e27`), `44869711362` (`ab647ca`), `44870176304` (`d29c72b`), `44871266120` (`f0d8105`), `44872016416` (`7a7a1eb`), `44872496114` (`b37e8ea`), `44872936117` (`ce8d66d`), `44873398903` (`f6ac2da`) and `44873764078` (`579ed86`) completed with `conclusion: success`. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
 
 
 ## P5 completion — certification scheme catalog and CI
@@ -295,9 +295,9 @@ Branch: `docs/p16-2-article-integration-readiness` (merged at `fe2f175`).
 - `.github/workflows/quality.yml` runs the preflight only when `build_mode=content-only`, after install and before the normal gates. Production behavior stays unchanged.
 - Verified manually: classifier returned `content-only` for `2be9036..ef84389` (2 article files), and `pnpm validate:changed 2be9036 ef84389` exited `0`.
 - Pulled commits `94562ab` (end-to-end CLI tests), `9bb4538` (tsx loader resolution), `bef1c3b` (unused import), and `2c2828b` (docs) verified the real preflight CLI in isolated temporary Git repositories: valid Markdown passes, malformed YAML fails, editorial rule violations fail.
-- Full local gate suite passed on `b37e8ea`: 49 tests, 13 pages, 13 canonicals. CI run `44872496114` completed with `conclusion: success`.
+- Full local gate suite passed on `579ed86`: 49 tests, 13 pages, 13 canonicals. CI run `44873764078` completed with `conclusion: success`.
 - Real editorial-only push verified on `88f19a1`: local classifier returned `content-only`, `npm run validate:changed -- 70eb5a7 88f19a1` exited `0`, and CI job step `Validate changed editorial content` completed with `conclusion: success` before the full gates. The temporary `ci-content-only-fixture.md` was then removed on `9049434`.
-- Remaining: measure CI/build time and confirm the preflight catches changed-file errors earlier before considering incremental rendering.
+- Closed: timing baseline captured and negative preflight verified in CI; see the build-strategy verification closure section below. Incremental rendering remains not adopted.
 
 ## CSMS readiness service — governance toolkit checkpoint (2026-11-21)
 
@@ -483,14 +483,53 @@ The audit is a documentation review only. It is not a legal opinion, accreditati
 
 ## CSMS implementation status tracker
 
-For one authoritative view of which CSMS documents have been prepared versus which approvals and real-world implementation actions remain open, see [CSMS Implementation & Document Status Tracker](csms/implementation-status.md). The tracker distinguishes completed documentation from operational readiness; it does not create or renumber implementation phases. Current baseline: management decisions 12/12 Pending, pilot remediation actions 10/10 Open, audit findings AUD-01–AUD-03 corrected, AUD-04–AUD-09 open, and AUD-10 publication safeguard maintained. The public CSMS page remains `draft: true`.
+For one authoritative view of which CSMS documents have been prepared versus which approvals and real-world implementation actions remain open, see [CSMS Implementation & Document Status Tracker](csms/implementation-status.md). The tracker distinguishes completed documentation from operational readiness; it does not create or renumber implementation phases. Current baseline: management decisions 12/12 Pending, pilot remediation actions 10/10 Open, audit findings AUD-01–AUD-03 corrected, AUD-04–AUD-09 open, and AUD-10 publication safeguard maintained. The public CSMS page remains `draft: true`. The tracker now reconciles to `e4ea09b` and records stages CSMS-DOC-01..04 in its continuation log.
 
 
-## Immediate project priority — finish build-strategy verification before resuming CSMS
+## CSMS documentation-control reinforcement checkpoint (2026-11-21)
 
-The latest repository commit at this checkpoint is `7a7a1eb` (`docs: record build strategy continuation note`). The active priority is to close the two remaining items in [Build Strategy](build-strategy.md): (1) collect comparable CI/build timing evidence, and (2) verify with a retained CI failure record that selective preflight rejects an invalid changed editorial entry before the general gates. The content-only workflow was exercised successfully on `88f19a1` (run `44867371518`); the full workflow also succeeded on `e7f8857` (run `44871598897`). These successes do not by themselves close the timing or negative-preflight verification items.
+Four remediation templates gained documentation controls. These are template-level changes only. RA-02, RA-03, RA-04 and RA-05 remain **Open**.
 
-**Sequence rule:** do not start the next CSMS implementation task until both build-strategy items are verified, documented, and this checkpoint is updated. This is a separate build-engineering priority, not a new CSMS phase. CSMS remains governed by [its implementation status tracker](csms/implementation-status.md); no CSMS status or approval is changed by this priority decision.
+### Added controls
+
+- `docs/csms/requirement-evidence-matrix.md` — stable REQ / EV / FR / ACT / RPT identifiers, mandatory requirement → evidence → finding → action → report traceability, exception handling, and a completeness review (RA-02).
+- `docs/csms/readiness-assessment-form.md` — separate received / examined / sufficient status, decision rules, and six synthetic challenge tests EV-T01..EV-T06 (RA-03).
+- `docs/csms/source-verification-and-sampling.md` — sampling design decision record, selection-method guidance, sample selection and deviation log, and sampling conclusion limits (RA-04).
+- `docs/csms/competence-matrix.md` — competence dimensions and verifiable evidence examples, internal 0–4 rating limits, personnel register fields, activity-based authorization matrix, effectiveness monitoring, expiry/reassessment, suspension, and reviewer independence (RA-05).
+- `docs/csms/pilot-remediation-register.md` — explicit RA-05 implementation evidence list and closure decision; template alone cannot close the action.
+- `docs/csms/implementation-status.md` — baseline reconciled to `e4ea09b`; continuation log records CSMS-DOC-01..04 with explicit open items.
+
+### Current restrictions
+
+- No verified principal source, authorized pilot, populated engagement record, or independent review is evidenced.
+- Management decisions remain 12/12 Pending; remediation actions 10/10 Open; AUD-04..AUD-09 open.
+- Synthetic challenge tests check form logic only. They do not close RA-03.
+- No named or appointed personnel, verified credentials, task-competence evaluation, assignment authorization, or independent reviewer appointment is evidenced. RA-05 stays Open.
+- The public CSMS page remains `draft: true`; no launch, certification claim, or customer pilot is authorized.
+
+### Repository changes
+
+- `60124f6` — define end-to-end requirement traceability.
+- `6c2a5c7` — mark traceability template stage complete.
+- `6bb4173` — separate evidence receipt, examination and sufficiency.
+- `d571c08` — mark evidence sufficiency design stage complete.
+- `70dd3b8` — strengthen sampling design and deviation controls.
+- `a240a3f` — mark sampling design stage complete.
+- `f6ac2da` — reconcile implementation tracker baseline.
+- `cd14bb2` — strengthen RA-05 competence and authorization controls.
+- `e4ea09b` — define RA-05 objective closure evidence.
+- `579ed86` — record RA-05 document completion and open gates.
+
+Full gate suite passed on `579ed86`; CI run `44873764078` completed with `conclusion: success`. No code, schema, config, or content collection changed in this pull.
+
+
+## Historical checkpoint — build-strategy verification priority (closed 2026-11-21)
+
+**Closed.** See the build-strategy verification closure section below. This checkpoint is retained for history only and is not the active priority.
+
+At this historical checkpoint the repository was at `7a7a1eb` (`docs: record build strategy continuation note`). The priority then was to close two items in [Build Strategy](build-strategy.md): (1) collect comparable CI/build timing evidence, and (2) verify with a retained CI failure record that selective preflight rejects an invalid changed editorial entry before the general gates. The content-only workflow had succeeded on `88f19a1` (run `44867371518`); the full workflow had succeeded on `e7f8857` (run `44871598897`). Those successes alone did not close the timing or negative-preflight items.
+
+**Historical sequence rule:** the next CSMS task was to wait until both build-strategy items were verified and documented. That rule is now satisfied by the closure section below. It was a separate build-engineering priority, not a new CSMS phase. CSMS remains governed by [its implementation status tracker](csms/implementation-status.md); no CSMS status or approval was changed by this priority decision.
 
 
 ## Build strategy verification closure — 2026-11-21
