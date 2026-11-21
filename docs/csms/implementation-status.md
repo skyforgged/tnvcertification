@@ -95,7 +95,17 @@ Jangan mengubahnya menjadi published, menambahkan CTA aktif, atau membuat klaim 
 
 **Status RA-02:** **BELUM — OPEN**. Yang selesai baru penguatan template; belum ada source principal aktual, engagement record, maupun verifikasi independen. Tidak dihitung sebagai remediasi operasional yang ditutup.
 
-## 5. Kesimpulan status saat ini
+### Tahap CSMS-DOC-02 — Evidence sufficiency controls (RA-03)
+
+- [x] Memisahkan status received, examined, dan sufficient dalam register evidence.
+- [x] Menambahkan aturan keputusan untuk dokumen tidak lengkap, konflik, tidak relevan, atau tidak terverifikasi.
+- [x] Menambahkan enam synthetic challenge tests untuk menguji konsistensi penilaian.
+- [ ] Jalankan dan simpan hasil test pada dokumen assessment terkontrol.
+- [ ] Uji penerapan pada pilot yang diotorisasi dan review independen.
+
+**Status RA-03:** **BELUM — OPEN**. Penguatan form dan rancangan test selesai; belum ada hasil uji yang dijalankan maupun bukti operasional.
+
+## 6. Kesimpulan status saat ini
 
 - Pekerjaan riset, definisi layanan, toolkit, framework governance, simulasi, register, dan audit dokumentasi: **sudah dibuat sebagai artefak internal**.
 - Persetujuan manajemen: **belum — 12/12 Pending**.
