@@ -1,11 +1,11 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
 import { getCollection } from "astro:content";
 import { getPublishedArticles, getServiceIndexArticles } from "../../data/articles";
 import { siteSettings } from "../../site";
 import { serviceIndexJsonLd } from "../../lib/structured-data";
-
 const services = await getCollection("services", ({ data }) => data.draft !== true);
 const articles = getServiceIndexArticles(getPublishedArticles());
 const structuredData = serviceIndexJsonLd(
@@ -16,9 +16,9 @@ const structuredData = serviceIndexJsonLd(
   })),
 );
 ---
-
 <Layout title={`Layanan | ${siteSettings.title}`} description="Layanan sertifikasi, pelatihan, dan penilaian kepatuhan." canonical="/service/" lang="id" structuredData={structuredData}>
   <section class="w-full" aria-labelledby="service-index">
+    <Breadcrumbs items={[{ label: "Beranda", href: "/" }, { label: "Layanan" }]} />
     <h1 id="service-index" class="text-3xl font-semibold tracking-tight text-brand-deepblue">Layanan Kami</h1>
     <p class="mt-4 max-w-2xl text-lg text-slate-700">Layanan sertifikasi, pelatihan, dan penilaian kepatuhan untuk mendukung organisasi.</p>
     {services.length > 0 ? (
@@ -33,11 +33,11 @@ const structuredData = serviceIndexJsonLd(
     ) : <p class="mt-8">Informasi layanan akan segera tersedia.</p>}
     {articles.length > 0 && (
       <section class="mt-16" aria-labelledby="artikel-terbaru-layanan">
-        <h2 id="artikel-terbaru-layanan" class="text-2xl font-semibold text-brand-deepblue">Artikel Terbaru</h2>
-        <div class="mt-6 grid gap-8 md:grid-cols-3">
-          {articles.map((article) => <ArticleCard article={article} />)}
-        </div>
-      </section>
+      <h2 id="artikel-terbaru-layanan" class="text-2xl font-semibold text-brand-deepblue">Artikel Terbaru</h2>
+      <div class="mt-6 grid gap-8 md:grid-cols-3">
+        {articles.map((article) => <ArticleCard article={article} />)}
+      </div>
+    </section>
     )}
   </section>
 </Layout>
