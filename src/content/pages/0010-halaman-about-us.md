@@ -1,26 +1,32 @@
 ---
-title: "Deskripsi Halaman Tentang"
-intro: "Deskripsi Halaman Tentang adalah uraian singkat mengenai profil, nilai, dan tujuan organisasi PT. Intiprima Sertifikasi."
-metaDescription: "Profil dan tujuan PT. Intiprima Sertifikasi dalam layanan sertifikasi, pelatihan, dan penilaian kepatuhan."
+title: "Tentang Intiprima Sertifikasi"
+intro: "PT. Intiprima Sertifikasi berfokus pada informasi dan layanan terkait sertifikasi, pelatihan, serta penilaian kepatuhan bagi organisasi. Kami menempatkan kejelasan proses, ketepatan informasi, dan tanggung jawab sebagai landasan dalam membangun kepercayaan."
+metaDescription: "Kenali fokus, prinsip kerja, dan komitmen PT. Intiprima Sertifikasi dalam informasi sertifikasi, pelatihan, dan penilaian kepatuhan."
 pubDate: "2026-10-01"
 draft: false
 featuredImage:
   src: "/images/illustrations/about-organization.webp"
-  alt: "Deskripsi Halaman Tentang adalah pengantar profil organisasi."
+  alt: "Ilustrasi organisasi profesional sebagai representasi halaman tentang Intiprima Sertifikasi."
 slug: "hal-about-us"
 translationKey: "page-hal-about-us"
 lang: "id"
 ---
-# Deskripsi Halaman Tentang
+## Fokus organisasi
 
-Deskripsi Halaman Tentang adalah uraian singkat mengenai profil, nilai, dan tujuan organisasi PT. Intiprima Sertifikasi.
+Kami berfokus pada penyediaan informasi yang jelas mengenai sertifikasi, pelatihan, dan penilaian kepatuhan. Setiap kebutuhan organisasi memiliki konteks dan ruang lingkup yang berbeda; karena itu, informasi mengenai persyaratan, proses, dan cakupan layanan perlu disampaikan secara tepat dan dapat dipahami.
 
-## Nilai yang Kami Jaga
+## Prinsip yang kami jaga
 
-Kami meyakini bahwa mutu tumbuh dari proses yang jujur dan konsisten. Setiap layanan dijalankan dengan mengutamakan kejelasan, ketepatan, dan tanggung jawab kepada pemangku kepentingan.
+**Kejelasan.** Informasi mengenai layanan, persyaratan, dan tahapan perlu disampaikan dengan bahasa yang lugas agar organisasi dapat memahami pilihan dan tanggung jawabnya.
 
-## Fokus Kami
+**Ketepatan.** Ruang lingkup dan dasar penilaian harus mengacu pada persyaratan yang relevan. Klaim mengenai skema, pengakuan, maupun kewenangan tidak boleh melampaui dasar yang telah diverifikasi.
 
-Kami mendampingi organisasi membangun sistem yang andal melalui sertifikasi, pelatihan, dan penilaian kepatuhan yang sesuai dengan kebutuhan lapangan.
+**Tanggung jawab.** Kepercayaan dibangun melalui komunikasi yang proporsional, proses yang konsisten, dan perhatian terhadap kebutuhan pemangku kepentingan.
 
-> "Kepercayaan tumbuh dari konsistensi."
+## Komitmen terhadap informasi yang dapat dipercaya
+
+Kami memahami bahwa keputusan terkait sertifikasi dan kepatuhan dapat berdampak pada operasional serta reputasi organisasi. Karena itu, informasi layanan perlu dibedakan secara jelas antara layanan yang telah tersedia, yang sedang dikembangkan, dan hal-hal yang masih memerlukan konfirmasi.
+
+Kami terus menata informasi agar pengunjung dapat mengenali konteks layanan dan menentukan langkah berikutnya berdasarkan informasi yang relevan.
+
+> Kepercayaan tumbuh dari kejelasan, ketepatan, dan konsistensi.
