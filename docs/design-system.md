@@ -1,6 +1,6 @@
 # TNV Certification Design System
 
-**Status:** P16 foundation and P17 layout/container implementation — shared tokens and bounded layout widths are applied; representative-page visual and responsive validation remains pending.
+**Status:** P16 foundation and P17 layout/container implementation — shared tokens, bounded layout widths, and reusable UI primitives are applied; representative-page visual and responsive validation remains pending.
 
 ## 1. Design intent
 
@@ -87,8 +87,10 @@ These are palette spot-checks, not a full accessibility audit. They do not valid
 
 ### Shared primitives
 
-- `Container.astro` owns the shared max-width variants: standard, wide, landing, and reading. Page gutters come from `--page-gutter`; layouts should choose a variant instead of inventing a local max-width.
-- `ButtonLink.astro` owns the shared link-button geometry, minimum target height, focus treatment, and primary/secondary/accent variants. Use it for navigation actions; keep ordinary inline text links visually distinct.
+- `Container.astro` owns the shared max-width variants: standard, wide, landing, and reading. Page gutters come from `--page-gutter`; nested layouts use `gutter={false}` when the global shell already owns the page gutter.
+- `ButtonLink.astro` owns shared link-button geometry, minimum target height, focus treatment, and primary/secondary/accent variants. Use it for button-like navigation actions; keep ordinary inline text links visually distinct.
+- `Section.astro` owns consistent section top-spacing and accessible section labeling; `SectionHeading.astro` provides a shared eyebrow/title hierarchy with configurable heading level.
+- `FeaturedImage.astro` owns the image frame, border/surface, intrinsic dimensions, aspect ratio, cover/contain behavior, lazy/eager loading, and page-image audit marker. Use it for canonical page featured images.
 - Keep semantic HTML at the call site with the Container `as` prop (`div`, `article`, or `section`).
 - Do not create a generic card or badge abstraction until at least two real use cases share the same information structure and accessibility behavior.
 
@@ -101,7 +103,7 @@ These are palette spot-checks, not a full accessibility audit. They do not valid
 - Keep CTA placement and button hierarchy consistent.
 
 ### Sections
-- Each section has a clear heading and coherent content purpose.
+- Each section has a clear heading and coherent content purpose; use `Section.astro` for vertical rhythm and `SectionHeading.astro` for consistent section title hierarchy.
 - Distinguish sections through spacing, alignment, subtle neutral surfaces, dividers, and composition—not arbitrary background colors.
 - Use a consistent section-heading pattern and avoid repeating the same card grid in every section.
 
