@@ -341,3 +341,35 @@ The Service Catalog and Operational Procedure link to these supporting documents
 - `4260e5f` — link governance documents from Service Catalog.
 - `d9ce3be` — record governance checkpoint and remaining approval gates.
 
+
+
+## CSMS pilot simulation checkpoint (2026-11-21)
+
+A desk-top process simulation was completed using a wholly fictional contractor, fictional principal and invented requirement pack. The exercise is explicitly not based on a real principal scheme and is not a customer assessment.
+
+### Pilot artifacts
+
+- `docs/csms/pilot/pilot-case-simulation.md` — fictional contractor profile, invented criteria, mock evidence register, completed requirement/evidence matrix and limitations.
+- `docs/csms/pilot/pilot-assessment-and-report.md` — completed simulated assessment record, sample report, process observations and corrective actions.
+
+### Pilot outcome
+
+- The workflow produced a traceable matrix, assessment record and descriptive sample report.
+- All five fictional requirements were classified as **Partially evidenced** against mock records. No score, percentage, pass/fail or official result was generated.
+- Process prototype demonstrated; **real-world/customer pilot is not authorized**.
+- Competence and impartiality could not be demonstrated with fictional role labels. Data protection, real source verification, client factual review, complaint handling and operational effectiveness were not tested.
+- The pilot identified ten process improvement actions, including controlled verification of principal sources, evidence sufficiency language, sampling records, personnel authorization, conflict screening, technical review, information governance, client factual review and complaint handling.
+
+### Mandatory next gates
+
+1. Close and document the pilot observations in the controlled procedure and supporting forms.
+2. Approve competence and technical reviewer authorization for the actual scope.
+3. Approve impartiality/conflict decision authority and safeguards.
+4. Approve privacy, information security, storage, retention and disposal controls.
+5. Verify one actual principal's current requirement source and applicability before any external pilot.
+6. Obtain legal, commercial and management approval for engagement terms, claims and report issuance.
+
+### Public-content safeguard
+
+The CSMS service page remains a draft and must not be activated. The simulation artifacts must not be used as customer evidence, marketing proof, or a representation of completed assessment work.
+
