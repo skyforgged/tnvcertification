@@ -117,3 +117,44 @@ Review this plan before the first pilot, after a material change, and at the man
 ## 9. Current readiness statement
 
 At issue, no role appointment, individual competence authorization, resource allocation, software approval, budget approval, customer pilot or operational release is evidenced. All resource-readiness rows remain unassessed unless objective approval records are added.
+
+
+## 10. Impartiality governance and decision authority (RA-06)
+
+The impartiality / conflict reviewer must be appointed with documented authority to:
+- Require declarations from employees, management, subcontractors and external experts before assignment.
+- Obtain relevant engagement, relationship and commercial information needed for screening.
+- Evaluate actual, potential and perceived threats independently of sales targets and delivery pressure.
+- Require safeguards, reassignment, scope restrictions, pause, rejection or termination.
+- Escalate attempted influence, concealment or retaliation directly to the designated management authority.
+- Verify implementation and effectiveness evidence before authorizing a proceed decision.
+
+### Minimum segregation
+
+| Decision / activity | Required separation |
+|---|---|
+| Conflict declaration | Made by each assigned person and relevant external resource; not completed solely by the service owner on their behalf |
+| Initial screening | Coordinated by service owner; facts and declarations retained |
+| Threat evaluation | Performed by appointed impartiality reviewer who is not commercially accountable for winning the engagement |
+| High-risk / unacceptable decision | Escalated to independent management authority; unacceptable hard-stop cannot be overridden for commercial reasons |
+| Safeguard implementation | Assigned to named owner other than the impartiality approver where practicable |
+| Safeguard effectiveness check | Verified by impartiality reviewer or another competent independent person |
+| Final proceed approval | Recorded by delegated approver after independent impartiality clearance and all other engagement gates |
+| Conflict-related complaint | Investigated by a person independent of the challenged work; external support used if internal independence is not practicable |
+
+A client disclosure or consent does not replace effective safeguards. If no competent and independent reviewer is available, or a hard-stop conflict cannot be removed, the engagement must not proceed.
+
+### Engagement-level conflict gate
+
+- [ ] Declarations collected from all assigned personnel and external resources.
+- [ ] Prior advisory, training, implementation and document-preparation services checked for the same client and scope.
+- [ ] Personal, financial, ownership, employment, referral and commercial interests assessed.
+- [ ] Fee terms checked for success-based or outcome-linked incentives.
+- [ ] Confidentiality, competing duties and information access evaluated.
+- [ ] Threat level, rationale and specific safeguards recorded.
+- [ ] Safeguards implemented and effectiveness evidence reviewed.
+- [ ] Independent reviewer and delegated approver identified.
+- [ ] Proceed / restricted / pause / decline decision recorded before work starts.
+- [ ] Reassessment triggers and responsible contact identified.
+
+Use the [Impartiality & Conflict of Interest Register](impartiality-conflict-register.md) as the controlled engagement record. No engagement may start while a material conflict field, safeguard or required approval remains pending.
