@@ -209,11 +209,31 @@ Jangan mengubahnya menjadi published, menambahkan CTA aktif, atau membuat klaim 
 
 **Status RA-08:** **BELUM — OPEN**. Pekerjaan dokumentasi draft telah selesai dan ditandai [x]. Belum ada bukti persetujuan MGT-07, legal/privacy assessment, inventory aktual, konfigurasi sistem/channel yang disetujui, access grant/review/revocation, due diligence supplier, retention/deletion, incident contacts/exercise, atau independent closure verification. **Jangan menerima data klien nyata** sebelum mandatory privacy/security gate disetujui dan diverifikasi.
 
+### Tahap CSMS-DOC-08 — Client Factual Review (RA-09)
+
+- [x] Menyusun draft Client Factual Review & Correction Procedure dengan batas review faktual, peran, intake komentar, disposisi, eskalasi, revisi dan release gate.
+- [x] Membuat Client Factual Correction Log untuk menjaga original finding, komentar klien, bukti pendukung, alasan disposisi dan jejak versi laporan.
+- [x] Menyelaraskan bagian factual review pada Readiness Report Template dengan ID komentar, versi laporan, bukti, dampak, disposisi dan re-review.
+- [x] Mengintegrasikan proses RA-09 ke Operational Procedure dan memisahkannya dari complaint handling serta sengketa keputusan principal.
+- [x] Memperjelas tanggung jawab factual review coordinator, assessor/author, technical reviewer dan report approver dalam Roles & Responsibilities Resource Plan.
+- [x] Menambahkan kedua artefak ke Document Control & Retention master register.
+- [x] Menetapkan bukti objektif dan syarat closure RA-09 dalam Pilot Remediation Register.
+- [ ] Dapatkan persetujuan manajemen atas prosedur, role authority, batas review faktual, escalation route dan release controls.
+- [ ] Tetapkan klausul kontrak/engagement, penerima klien yang berwenang, secure channel dan response period yang disepakati.
+- [ ] Jalankan factual review pada draft report engagement nyata yang telah diotorisasi; simpan bukti transmittal dan versi draft yang dikirim.
+- [ ] Catat seluruh komentar aktual dengan ID unik, original wording, supporting evidence/provenance dan reasoned disposition.
+- [ ] Pertahankan original dan revised report versions serta revision history; lakukan independent technical re-review atas perubahan material.
+- [ ] Dokumentasikan non-response, unresolved comment, technical disagreement atau complaint sesuai jalur yang berlaku.
+- [ ] Dapatkan separate delegated report approval dan controlled distribution untuk versi final.
+- [ ] Lakukan independent closure verification atas paket bukti RA-09.
+
+**Status RA-09:** **BELUM — OPEN (DOKUMENTASI DIPERKUAT; IMPLEMENTASI BELUM DIBUKTIKAN)**. Dua artefak baru dan integrasi dokumen telah disiapkan sebagai draft. Belum ada approval, engagement factual review nyata, komentar klien, correction log terisi, revisi report, technical re-review, release authorization atau independent closure verification. Jangan menyamakan kesempatan factual review dengan hak klien mengubah kesimpulan teknis.
+
 ## 5. Kesimpulan status saat ini
 
 - Pekerjaan riset, definisi layanan, toolkit, framework governance, simulasi, register, dan audit dokumentasi: **sudah dibuat sebagai artefak internal**.
 - Persetujuan manajemen: **belum — 12/12 Pending**.
-- Remediasi simulasi: **belum — 10/10 Open** (RA-02 sampai RA-08 memiliki penguatan dokumentasi; status remediasinya tetap Open).
+- Remediasi simulasi: **belum — 10/10 Open** (RA-02 sampai RA-09 memiliki penguatan dokumentasi; status remediasinya tetap Open).
 - Kesiapan operasional untuk customer delivery: **belum dibuktikan**.
 - Otorisasi pilot customer: **belum diberikan**.
 - Persetujuan publikasi: **belum diberikan**.
