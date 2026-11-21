@@ -105,7 +105,18 @@ Jangan mengubahnya menjadi published, menambahkan CTA aktif, atau membuat klaim 
 
 **Status RA-03:** **BELUM — OPEN**. Penguatan form dan rancangan test selesai; belum ada hasil uji yang dijalankan maupun bukti operasional.
 
-## 6. Kesimpulan status saat ini
+### Tahap CSMS-DOC-03 — Sampling design controls (RA-04)
+
+- [x] Menambahkan rekaman keputusan desain sampling berbasis tujuan dan populasi.
+- [x] Menjelaskan kapan full, random, targeted/risk-based, stratified, dan convenience sampling dapat digunakan.
+- [x] Menambahkan log pemilihan sampel, substitusi, penolakan, dan deviasi.
+- [x] Menambahkan format kesimpulan sampling dan batas inferensi.
+- [ ] Terapkan pada populasi dan data engagement nyata setelah otorisasi.
+- [ ] Review independen atas desain, pelaksanaan, deviasi, dan kesimpulan.
+
+**Status RA-04:** **BELUM — OPEN**. Dokumen sampling diperkuat; belum ada populasi klien, sampel aktual, pelaksanaan, atau review independen.
+
+## 7. Kesimpulan status saat ini
 
 - Pekerjaan riset, definisi layanan, toolkit, framework governance, simulasi, register, dan audit dokumentasi: **sudah dibuat sebagai artefak internal**.
 - Persetujuan manajemen: **belum — 12/12 Pending**.
