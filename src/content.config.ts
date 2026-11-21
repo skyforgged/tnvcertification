@@ -18,8 +18,12 @@ const imageObjectSchema = z.object({
 // --- Shared blocks (discriminated union) ---
 // Explicit surface overrides the renderer's accessible alternating section palette.
 const sectionSurfaceSchema = z.enum(["white", "blue", "navy", "mint", "coral", "cream"]);
+const blockIdSchema = z
+  .string()
+  .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "block id must be lowercase kebab-case");
 const faqBlock = z.object({
   type: z.literal("faq"),
+  id: blockIdSchema.optional(),
   surface: sectionSurfaceSchema.optional(),
   items: z
     .array(
@@ -33,6 +37,7 @@ const faqBlock = z.object({
 
 const contentSectionBlock = z.object({
   type: z.literal("content-section"),
+  id: blockIdSchema.optional(),
   surface: sectionSurfaceSchema.optional(),
   eyebrow: z.string().optional(),
   title: z.string().min(1),
@@ -45,6 +50,7 @@ const contentSectionBlock = z.object({
 
 const howToBlock = z.object({
   type: z.literal("howto"),
+  id: blockIdSchema.optional(),
   surface: sectionSurfaceSchema.optional(),
   steps: z.array(
     z.object({
@@ -57,6 +63,7 @@ const howToBlock = z.object({
 
 const ctaBlock = z.object({
   type: z.literal("cta"),
+  id: blockIdSchema.optional(),
   surface: sectionSurfaceSchema.optional(),
   variant: z.enum(["primary", "secondary", "ghost"]).optional().default("primary"),
   title: z.string().optional(),

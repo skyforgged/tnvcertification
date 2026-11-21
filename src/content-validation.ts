@@ -14,6 +14,7 @@ import { validateTaxonomy, type TaxonomyRecordLike } from "./lib/taxonomy-valida
 import { certificationSchemes } from "./data/certification-schemes";
 import { validateCertificationSchemes } from "./lib/certification-scheme-validation";
 import { validateArticleServiceRelations } from "./lib/article-service-relations";
+import { validateBlockIds } from "./lib/block-ids";
 import { collectionRegistry, editorialCollections } from "./data/collections";
 
 function readFrontmatter(filePath: string): FrontmatterPayload | null {
@@ -97,6 +98,7 @@ export const contentValidationIntegration = {
       const diagnostics = [
         ...validateAllEntries(contentEntries),
         ...validateTaxonomy(categories, contentEntries),
+        ...validateBlockIds(contentEntries.map((entry) => ({ path: entry.path ?? entry.id, data: entry.data }))),
       ];
       const relationDiagnostics = validateArticleServiceRelations(contentEntries);
       const schemeDiagnostics = validateCertificationSchemes(
