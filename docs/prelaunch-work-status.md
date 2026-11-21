@@ -256,20 +256,14 @@ Branch: `docs/p16-2-article-integration-readiness` (merged at `fe2f175`).
 - Next: confirm article directory patterns, approve the draft technically, verify category/image metadata, then integrate both locale records as drafts.
 
 
-## P16.3 — Bilingual Article Integration Audit (in progress)
+## P16.3 — Bilingual Article Integration (in progress)
 
-- Reviewed the bilingual ISO 9001 document-control draft against the article collection, routes, SEO helper, content validator, and repository asset inventory.
-- Confirmed English article integration is blocked by Indonesian-only validator rules, missing reciprocal hreflang wiring, generic article-image placeholder rendering, unverified/missing tracked image assets, and required-but-unapproved publication dates.
-- Added `docs/p16-3-bilingual-article-integration-audit.md` with findings, proposed paired metadata, and safe implementation order.
-- No public article records/routes or fabricated publication metadata were added.
-- Pulled commits `02e0d2b` and `c4934aa`; local `check` and `build` ran on `c4934aa` with exit `0`; see validation note above.
-- Next: verify licensed image assets, approve dates, then integrate records as drafts and run full CI gates.
-- Pulled commits `f5447ce` and `c6f9015` address validator and locale rendering gaps below.
+- Updated the article schema so internal drafts may omit `pubDate` and `featuredImage`; published articles must provide both. Added CONTENT-012 and tests for the publication-date gate.
+- Made editorial validation language-aware: Indonesian intro/alt wording uses `adalah`; English uses `is`.
+- Added reciprocal article hreflang generation from shared `translationKey`, visible featured-image rendering, locale-specific date formatting, and localized article breadcrumbs.
+- Added the first bilingual document-control article pair as collection records, both `draft: true`: `pengendalian-dokumen-iso-9001` (ID) and `iso-9001-document-control` (EN). Shared translation key: `article-document-control-iso-9001`.
+- Draft records intentionally omit publication dates and featured-image paths. The planned `quality-management` category remains `planned`; no public route or index entry is created for these drafts.
+- Official ISO catalogue research confirms ISO 9001:2026 (sixth edition) was published on 16 September 2026 and replaces ISO 9001:2015. Both article drafts now cite the 2026 edition and the official transition guidance; clause-specific interpretation remains deferred pending review against a licensed standard copy.
+- Technical/editorial approval, approved image assets, and publication dates remain outstanding. Do not change either record from draft until these gates are met.
+- Commit history: `359152a` (draft integration/schema), `11f2c8b` (published metadata guards and localized breadcrumbs), `69801b5` (test fixture correction), `fdb072e` (ISO 9001:2026 source alignment). Full CI status is being verified after the latest update.
 
-### Pulled implementation on `c6f9015`
-
-- `src/lib/content-validation.ts` now accepts a language-appropriate copula: `adalah` for `id`, `is` for `en`, for both the intro and `featuredImage.alt`.
-- `src/pages/articles/[slug].astro` derives hreflang alternates from `translationKey` matches and passes them to `ArticleLayout`.
-- `src/layouts/ArticleLayout.astro` renders `featuredImage` as a real `<img>` with supplied alt text, formats dates per locale, and forwards alternates to the SEO layout.
-- `tests/content-validation.test.mjs` adds two English-rule cases; suite is now 37 tests.
-- No publishable article records, routes, dates, or image assets were added. Full gate suite passed locally on `c6f9015`; see validation note above.
