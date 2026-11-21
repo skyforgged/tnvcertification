@@ -241,3 +241,12 @@ Branch: `feat/p16-document-control-article-draft` (merged at `72b843c`).
 - No public article routes or publishable article records were added; this branch only created a documentation draft.
 - Local validation ran on merge commit `72b843c`; see the validation note above for command results.
 - Remaining work: technical review, language/SEO review, image selection, internal-link review, metadata/schema verification, and final conversion into the article collection if approved.
+
+
+## P16.2 — Article Integration & SEO Readiness (review checkpoint)
+
+- Added `docs/p16-2-article-integration-readiness.md` with the article collection schema requirements, proposed bilingual metadata, and editorial/technical publication gates.
+- No publishable article records or routes were created; dates, featured image, category slug, and technical approval remain unconfirmed.
+- GitHub connector did not reliably enumerate the article directory, so filenames and existing locale conventions were not guessed or overwritten.
+- This is a documentation-only checkpoint; local build and automated checks are not run here.
+- Next: confirm article directory patterns, approve the draft technically, verify category/image metadata, then integrate both locale records as drafts.
