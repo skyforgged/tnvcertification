@@ -28,7 +28,7 @@ Standar ini tidak menentukan satu bentuk struktur organisasi atau satu paket dok
 
 Sebelum proses sertifikasi, organisasi perlu menetapkan ruang lingkup sistem manajemen mutu secara jelas. Ruang lingkup tersebut menjelaskan produk atau layanan, lokasi, fungsi, dan proses organisasi yang termasuk dalam sistem yang dinilai.
 
-Organisasi juga perlu memahami proses utama dan proses pendukung, interaksi ant proses, tanggung jawab, serta cara memantau pencapaian sasaran mutu. Informasi terdokumentasi digunakan sejauh diperlukan untuk mendukung efektivitas sistem dan menyediakan bukti pelaksanaannya.
+Organisasi juga perlu memahami proses utama dan proses pendukung, interaksi antarproses, tanggung jawab, serta cara memantau pencapaian sasaran mutu. Informasi terdokumentasi digunakan sejauh diperlukan untuk mendukung efektivitas sistem dan menyediakan bukti pelaksanaannya.
 
 ## Gambaran Tahapan Sertifikasi
 
