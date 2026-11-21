@@ -106,7 +106,7 @@ Use the controlled statuses below. Record one finding per applicable requirement
 
 Preserve the original finding and its history. Do not delete a substantiated finding solely because the client disagrees.
 
-## F. Closing discussion
+## G. Closing discussion
 
 | Topic | Notes |
 |---|---|
@@ -116,7 +116,7 @@ Preserve the original finding and its history. Do not delete a substantiated fin
 | Limitations communicated | [Details] |
 | Follow-up requested | [Yes/No; scope to be agreed] |
 
-## G. Assessment conclusion (readiness review only)
+## H. Assessment conclusion (readiness review only)
 
 Select one descriptive conclusion, supported by the findings and agreed scope:
 
@@ -128,7 +128,7 @@ Select one descriptive conclusion, supported by the findings and agreed scope:
 **Conclusion rationale:**  
 [Summarize the evidence reviewed, main gaps, and limits. Do not state that the contractor passed, failed, is certified, or is officially qualified.]
 
-## H. Approval and record control
+## I. Approval and record control
 
 | Role | Name | Signature / approval reference | Date |
 |---|---|---|---|
@@ -136,7 +136,7 @@ Select one descriptive conclusion, supported by the findings and agreed scope:
 | Technical reviewer | [Complete] | [Complete] | [Complete] |
 | Engagement approver | [Complete] | [Complete] | [Complete] |
 
-## I. Complaint and post-issue control
+## J. Complaint and post-issue control
 
 | Field | Entry |
 |---|---|
@@ -146,6 +146,6 @@ Select one descriptive conclusion, supported by the findings and agreed scope:
 | Revised report / addendum reference | [If applicable] |
 | Closure and effectiveness evidence | [Reference / pending] |
 
-## J. Client-facing limitation statement
+## K. Client-facing limitation statement
 
 This readiness review is limited to the scope, criteria, evidence, sampling, and dates stated in the report. It is not a certification, principal-issued CSMS qualification, vendor approval, or guarantee of tender/project acceptance. The relevant principal/client retains authority over its own qualification and procurement decisions.
