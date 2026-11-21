@@ -196,10 +196,10 @@ Complete phases in order unless an explicit dependency requires a different sequ
 **Exit criteria:** audit findings and page/layout matrix are documented. P15 remains open until generated-output image validation, screenshot review, and detailed design-system approval are complete.
 
 ### P16 — Shared Design System
-- [ ] Define typography, color, spacing, container, border, and responsive tokens.
-- [ ] Define hero, section, image, button, card, and form visual patterns.
+- [x] Define typography, color, spacing, container, border, and responsive tokens in `docs/design-system.md` and `src/styles/global.css`.
+- [x] Define hero, section, image, button, card, and form visual patterns in `docs/design-system.md`.
 - [ ] Verify color contrast and interaction states.
-- [ ] Update shared global styles without introducing page-specific inconsistencies.
+- [x] Update shared global styles with semantic tokens, white page surface, shared gutters, focus visibility, and reduced-motion defaults.
 
 **Exit criteria:** shared tokens and primitives are implemented and validated on representative pages.
 
@@ -249,6 +249,8 @@ Complete phases in order unless an explicit dependency requires a different sequ
 |---|---|---|---|---|
 | 2026-11-21 | Documentation baseline | Recorded approved visual direction and roadmap; aligned architecture visual identity section | Documentation update committed; implementation not yet started | See repository history |
 | 2026-11-21 | P15 — Visual audit | Audited layout files, route assignments, shared shell, hero, components, block renderer, global CSS, design docs, and image audit implementation; recorded findings in `docs/visual-audit.md` | Source audit completed. Production build, generated image audit, and screenshot review remain pending. | `6dcdbda` |
+
+| 2026-11-21 | P16 — Shared design system foundation | Defined semantic color, typography, spacing/container, border/radius, image, hero, section, button, card, form, responsive, and accessibility rules; updated global CSS token foundation and white-dominant base surface | Source-level changes committed. Build, contrast verification, and representative-page visual review remain pending. | 7788cca |
 
 ## 10. Change control
 
