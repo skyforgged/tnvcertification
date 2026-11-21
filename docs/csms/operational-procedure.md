@@ -101,6 +101,14 @@ Before assignment, the service owner and designated impartiality reviewer must c
 
 Do not use fictional role labels or blank placeholders as evidence of authorization in a real engagement. If competence, independence, or required authorization is not demonstrated, do not assign the person; restrict scope, appoint a suitable independent reviewer, or decline. No formal certification, accreditation, official qualification or principal authorization claim may be made without documentary evidence and approval.
 
+### 5.4A Privacy, data governance and information-security gate (RA-08)
+
+Before any client evidence is requested or received, complete the [Data Governance & Information Security Procedure](data-governance-information-security-procedure.md) gate and create the required [Data Asset Inventory & Classification Register](data-asset-inventory-register.md) entry. Confirm the engagement purpose and minimum data request, legal/privacy review, party roles and client instructions, data classification, approved storage and transfer channels, named access roles, supplier arrangements, incident contacts, and approved retention/return/deletion terms.
+
+Use the [Access Authorization & Review Register](access-authorization-register.md) to record individual access grants, reviews, external sharing and revocation. Suspected loss, disclosure, unauthorized access, alteration or unavailability must be escalated under the [Data Incident Response Playbook](data-incident-response-playbook.md).
+
+**STOP:** do not request, receive, transfer or process real client evidence if the MGT-07 privacy/security decision and required engagement controls are pending, if the approved channel/system is not verified, or if access/retention responsibilities are unclear. Do not use personal email, personal cloud storage, public sharing links or unapproved AI tools for client evidence. An engagement owner cannot waive a legal or security hard stop.
+
 ### 5.5 Planning and evidence intake
 
 The assessor prepares the assessment form, matrix and [Source Verification & Sampling Record](source-verification-and-sampling.md) with:
