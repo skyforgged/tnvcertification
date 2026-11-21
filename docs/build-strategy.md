@@ -45,7 +45,7 @@ Astro components, layouts, route files, content schemas, collection definitions,
 
 1. Record and preserve the safe full-build baseline (this document). **Complete.**
 2. Add Git-based change classification with conservative full-build fallback. **Implemented.**
-3. Add selective per-entry validation for changed editorial Markdown, without weakening global checks. **Pending.**
+3. Add selective per-entry validation for changed editorial Markdown, without weakening global checks. **Implemented; CI verification pending.**
 4. Measure actual CI/build time and verify that the new preflight catches changed-file errors earlier. **Pending.**
 5. Evaluate incremental production rendering only if the full build becomes a material bottleneck. Do not adopt it solely to reduce a few seconds from the current build.
 
@@ -53,12 +53,12 @@ Astro components, layouts, route files, content schemas, collection definitions,
 
 `scripts/classify-build-changes.mjs` compares a base and head commit and writes GitHub Actions outputs:
 
-- `build_mode=content-only` only when every changed path is an added or modified editorial Markdown/MDX file under `src/content/` (excluding categories).
+- `build_mode=content-only` only when every changed path is an added or modified Markdown/MDX file in one of the canonical editorial collections: articles, services, certifications, training, or pages.
 - `build_mode=full` for Astro/source/configuration/assets/taxonomy changes, deletions, renames, copies, unknown paths, empty diffs, missing base commits, or any diff error.
 
 The Quality gates workflow fetches full Git history and runs this classifier before dependency installation. The output is currently informational and deliberately does not skip any checks: type checking, lint, tests, the complete `astro build`, and SEO audit continue to run for every workflow. This keeps deployment behavior unchanged while establishing a tested classification boundary.
 
-Automated tests cover editorial Markdown changes, Astro component changes, taxonomy changes, deletions, and unavailable base commits.
+Automated tests cover editorial Markdown changes, Astro component changes, taxonomy changes, deletions, unavailable base commits, non-editorial collections, and mixed source/content changes.
 
 ## Decision
 
