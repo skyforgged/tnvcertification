@@ -231,10 +231,11 @@ Complete phases in order unless an explicit dependency requires a different sequ
 **Exit criteria:** components and blocks are reusable, typed, accessible, and do not override layout responsibilities. Central registry remains deferred until block count or complexity justifies it.
 
 ### P19 — Page and Content Migration
-- [ ] Migrate homepage and corporate/main-menu pages.
+- [x] Migrate homepage, service index, training index, and schedule archive to shared page/section patterns.
+- [ ] Migrate remaining corporate/main-menu pages, including About and CSMS.
 - [ ] Migrate service pages.
 - [ ] Migrate article pages and archive.
-- [ ] Migrate training pages.
+- [ ] Migrate training detail pages; the schedule presentation now uses shared semantic tokens, editorial rows, localized labels, and `ButtonLink`.
 - [ ] Migrate schedule pages using `ScheduleLayout`.
 - [ ] Resolve featured-image uniqueness and alt-text requirements.
 - [ ] Verify relationships, navigation, and localized routes.
@@ -276,7 +277,8 @@ Complete phases in order unless an explicit dependency requires a different sequ
 | 2026-11-21 | P18 — ArticleCard interaction correction | Added the missing `group` class to the ArticleCard parent so the existing image `group-hover` scale interaction can activate. No content or layout structure changed. | Commit `c7d3496` is on main. CI status for this commit has not yet been confirmed; actual hover behavior still requires browser verification. | `c7d3496` |
 | 2026-11-21 | P18 — Shared primitive foundation | Added typed `Container.astro` width variants and a reusable `ButtonLink.astro` with primary, secondary, and accent treatments. Migrated the global page shell, homepage hero actions, and schedule registration CTA; replaced remaining slate metadata colors in schedule details with semantic tokens. | CI run `44896931764` passed type/Astro checks, lint, tests, production build, page-image uniqueness, and SEO/link audit. Browser-level visual/keyboard validation remains pending. Container, button, section, heading, and featured-image primitives are now consolidated; a generic Badge is intentionally deferred until a second use case exists. | Pending |
 | 2026-11-21 | P18 — Shared layout and presentation primitives | Added `Section`, `SectionHeading`, and `FeaturedImage`; migrated service/training/article layouts to shared Container widths without double gutters; migrated main-menu hero/detail images to the shared image frame; applied shared section patterns to homepage and service/training catalog; replaced schedule list button styling with `ButtonLink`. | CI run `44897584966` for final docs/source state at `72a5090` passed. Browser responsive, keyboard, and rendered contrast review remain pending. | `72a5090` |
-| 2026-11-21 | P18 — Homepage and schedule archive consistency | Replaced rounded, shadowed homepage navigation cards with restrained open editorial links using semantic text tokens; migrated schedule archive wrapper to the shared Container primitive. | Source update committed; CI and browser visual/keyboard verification pending. | Pending |
+| 2026-11-21 | P18 — Homepage and schedule archive consistency | Replaced rounded, shadowed homepage navigation cards with restrained open editorial links using semantic text tokens; migrated schedule archive wrapper to the shared Container primitive. | GitHub Actions run `44897844490` passed type/Astro checks, lint, tests, production build, image uniqueness, and SEO/link audit. | `d46d328` |
+| 2026-11-21 | P18 — Training detail schedule refinement | Replaced legacy rounded schedule cards and slate/brand-specific styles with restrained editorial rows, shared section/heading/button components, semantic tokens, and locale-aware labels/date/price formatting; displays quota only when source data provides it. | Source committed; CI and browser visual/keyboard verification pending. | Pending |
 ## 10. Change control
 
 - Update this checklist as work progresses; do not silently remove unfinished tasks.

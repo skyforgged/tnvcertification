@@ -2,6 +2,9 @@
 import { getCollection, render } from "astro:content";
 import TrainingLayout from "../../layouts/TrainingLayout.astro";
 import BlockRenderer from "../../components/BlockRenderer.astro";
+import ButtonLink from "../../components/ButtonLink.astro";
+import Section from "../../components/Section.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
 import { siteSettings } from "../../site";
 
 export async function getStaticPaths() {
@@ -23,18 +26,33 @@ const schedules = await getCollection(
     data.trainingSlug === training.data.slug &&
     data.registrationStatus !== "cancelled",
 );
+const isEnglish = training.data.lang === "en";
+const locale = isEnglish ? "en-US" : "id-ID";
+const labels = isEnglish
+  ? {
+      schedule: "Training schedule", online: "Online", hybrid: "Hybrid", offline: "In person",
+      locationPending: "Location to be confirmed", open: "Registration open",
+      closed: "Registration closed", full: "Fully booked", pending: "Registration details to follow",
+      price: "Fee", quota: "Available seats", register: "Register",
+      noSchedule: "No published schedule is available for this program yet.",
+    }
+  : {
+      schedule: "Jadwal pelatihan", online: "Online", hybrid: "Hybrid", offline: "Tatap muka",
+      locationPending: "Lokasi menyusul", open: "Pendaftaran dibuka",
+      closed: "Pendaftaran ditutup", full: "Kuota terpenuhi", pending: "Informasi pendaftaran menyusul",
+      price: "Biaya", quota: "Kuota", register: "Daftar pelatihan",
+      noSchedule: "Belum ada jadwal yang dipublikasikan untuk program ini.",
+    };
 const formatDate = (value: string) =>
-  new Date(`${value}T00:00:00Z`).toLocaleDateString("id-ID", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
+  new Date(`${value}T00:00:00Z`).toLocaleDateString(locale, {
+    day: "numeric", month: "long", year: "numeric", timeZone: "UTC",
   });
 const statusLabel = (status?: string) => ({
-  open: "Pendaftaran dibuka",
-  closed: "Pendaftaran ditutup",
-  full: "Kuota terpenuhi",
-}[status ?? ""] ?? "Informasi pendaftaran menyusul");
+  open: labels.open, closed: labels.closed, full: labels.full,
+}[status ?? ""] ?? labels.pending);
+const locationLabel = (type?: string) => ({
+  online: labels.online, hybrid: labels.hybrid, offline: labels.offline,
+}[type ?? ""] ?? labels.locationPending);
 ---
 <TrainingLayout
   title={`${training.data.title} | Pelatihan | ${siteSettings.title}`}
@@ -50,26 +68,40 @@ const statusLabel = (status?: string) => ({
     </div>
     <BlockRenderer blocks={training.data.blocks ?? []} lang={training.data.lang} />
 
-    <section class="mt-12 border-t border-brand-blue/15 pt-8" aria-labelledby="jadwal-pelatihan">
-      <h2 id="jadwal-pelatihan" class="text-2xl font-semibold text-brand-deepblue">Jadwal pelatihan</h2>
+    <Section spacing="spacious" aria-labelledby="jadwal-pelatihan">
+      <SectionHeading id="jadwal-pelatihan" title={labels.schedule} />
       {schedules.length > 0 ? (
-        <div class="mt-6 grid gap-5 md:grid-cols-2">
+        <div class="mt-6 divide-y divide-border border-y border-border">
           {schedules.map((schedule) => (
-            <article class="rounded-xl border border-brand-blue/15 bg-white p-5">
-              <h3 class="text-lg font-semibold text-brand-deepblue">{formatDate(schedule.data.startDate)} – {formatDate(schedule.data.endDate)}</h3>
-              <p class="mt-2 text-sm text-slate-700">{schedule.data.locationType === "online" ? "Online" : schedule.data.locationType === "hybrid" ? "Hybrid" : schedule.data.locationType === "offline" ? "Tatap muka" : "Lokasi menyusul"}</p>
-              {(schedule.data.venue || schedule.data.city) && <p class="mt-1 text-sm text-slate-700">{[schedule.data.venue, schedule.data.city, schedule.data.province].filter(Boolean).join(", ")}</p>}
-              <p class="mt-3 text-sm font-medium text-brand-deepblue">{statusLabel(schedule.data.registrationStatus)}</p>
-              {schedule.data.price !== undefined && <p class="mt-2 text-sm text-slate-700">Biaya: {schedule.data.currency === "IDR" || !schedule.data.currency ? "Rp " : `${schedule.data.currency} `}{schedule.data.price.toLocaleString("id-ID")}</p>}
+            <article class="grid gap-4 py-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
+              <div>
+                <h3 class="text-lg font-semibold tracking-tight text-ink">{formatDate(schedule.data.startDate)} – {formatDate(schedule.data.endDate)}</h3>
+                <p class="mt-2 text-sm text-ink-muted">{locationLabel(schedule.data.locationType)}</p>
+                {(schedule.data.venue || schedule.data.city) && (
+                  <p class="mt-1 text-sm text-ink-muted">{[schedule.data.venue, schedule.data.city, schedule.data.province].filter(Boolean).join(", ")}</p>
+                )}
+                <p class="mt-3 text-sm font-medium text-ink">{statusLabel(schedule.data.registrationStatus)}</p>
+                {schedule.data.price !== undefined && (
+                  <p class="mt-1 text-sm text-ink-muted">
+                    {labels.price}: {schedule.data.currency === "IDR" || !schedule.data.currency ? "Rp " : `${schedule.data.currency} `}
+                    {schedule.data.price.toLocaleString(locale)}
+                  </p>
+                )}
+                {schedule.data.quota !== undefined && (
+                  <p class="mt-1 text-sm text-ink-muted">{labels.quota}: {schedule.data.quota}</p>
+                )}
+              </div>
               {schedule.data.registrationUrl && schedule.data.registrationStatus === "open" && (
-                <a href={schedule.data.registrationUrl} class="mt-4 inline-flex rounded-full bg-brand-blue px-4 py-2 text-sm font-semibold text-white hover:bg-brand-deepblue">Daftar pelatihan</a>
+                <div class="md:justify-self-end">
+                  <ButtonLink href={schedule.data.registrationUrl}>{labels.register}</ButtonLink>
+                </div>
               )}
             </article>
           ))}
         </div>
       ) : (
-        <p class="mt-3 text-slate-700">Belum ada jadwal yang dipublikasikan untuk program ini.</p>
+        <p class="mt-4 max-w-3xl border-y border-border py-6 leading-relaxed text-ink-muted">{labels.noSchedule}</p>
       )}
-    </section>
+    </Section>
   </div>
 </TrainingLayout>
