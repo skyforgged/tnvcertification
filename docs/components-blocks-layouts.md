@@ -30,3 +30,23 @@
 - Avoid inconsistent conventions and appearance-only class names.
 - Keep styling scoped to avoid leakage.
 - Design must feel authored for TNV, not assembled from a generic theme.
+
+## Approved page layouts
+
+The website maintains five purpose-specific layouts with one shared visual system:
+
+- `WidePageLayout.astro`: homepage, corporate pages, and wide main-menu/index pages.
+- `ServiceLayout.astro`: certification/service detail pages.
+- `ArticleLayout.astro`: articles and editorial content.
+- `TrainingLayout.astro`: training/course detail pages.
+- `ScheduleLayout.astro`: schedule archive and schedule/batch detail pages.
+
+The layouts may share the site shell, design tokens, and UI primitives, but must preserve distinct content hierarchy and user experience. Schedule pages must not be forced into an article or training layout.
+
+## Approved visual direction
+
+Use a premium, modern, mature, professional, corporate visual language. White is the dominant surface; very light gray is used sparingly; deep blue is reserved for deliberate emphasis. Orange, mint, yellow, and pink are restrained accents rather than section background themes.
+
+Do not assign a different background color to every section. Establish hierarchy through whitespace, typography, grid, content width, image composition, borders, and restrained shadows. Main-menu pages use a wide composition and a consistent hero containing one H1, the introductory paragraph, and a featured image. Featured-image URLs must be unique across page URLs.
+
+For the full requirements, phase sequence, and task-by-task progress checkboxes, see [Visual Redesign & Architecture Roadmap](./visual-redesign-roadmap.md).
