@@ -2,7 +2,7 @@
 title: "Manajemen Beasiswa Kualitas di Industri"
 intro: "Manajemen Beasiswa Kualitas di Industri adalah strategi mengembangkan talenta mutu melalui dukungan pendidikan, pelatihan, dan jalur karier yang jelas."
 metaDescription: "Strategi beasiswa dan pengembangan talenta kualitas untuk membangun kompetensi mutu yang berkelanjutan di industri."
-pubDate: "2026-11-10"
+pubDate: "2026-11-10T00:00:00Z"
 draft: false
 categoryIds:
   - "quality-management"

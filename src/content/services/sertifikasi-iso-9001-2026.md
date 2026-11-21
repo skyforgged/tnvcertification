@@ -2,11 +2,12 @@
 title: "Sertifikasi Sistem Manajemen Mutu ISO 9001:2026"
 intro: "Sertifikasi Sistem Manajemen Mutu ISO 9001:2026 adalah proses penilaian kesesuaian oleh lembaga sertifikasi terhadap sistem manajemen mutu organisasi berdasarkan persyaratan edisi ISO 9001 yang berlaku."
 metaDescription: "Informasi standar ISO 9001:2026, ruang lingkup penilaian sistem manajemen mutu, tahapan audit sertifikasi, dan status pengembangan layanan TNCV."
-pubDate: "2026-11-21"
-draft: true
+pubDate: "2026-11-21T00:00:00Z"
+updatedDate: "2026-11-21T00:00:00Z"
+draft: false
 id: 2
 featuredImage:
-  src: "/images/illustrations/article-iso9001-certification.webp"
+  src: "/images/illustrations/service-iso9001-2026.webp"
   alt: "Sertifikasi Sistem Manajemen Mutu ISO 9001:2026 adalah penilaian kesesuaian sistem mutu."
 slug: "sertifikasi-iso-9001-2026"
 translationKey: "service-sertifikasi-iso-9001-2026"

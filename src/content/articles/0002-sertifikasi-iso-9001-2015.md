@@ -2,8 +2,8 @@
 title: "Sertifikasi ISO 9001:2026"
 intro: "Sertifikasi ISO 9001:2026 adalah proses penilaian independen terhadap sistem manajemen mutu organisasi berdasarkan persyaratan standar edisi keenam yang diterbitkan pada 16 September 2026."
 metaDescription: "Kenali ruang lingkup, tahapan audit, dan hal yang perlu diperhatikan organisasi saat mengajukan sertifikasi sistem manajemen mutu ISO 9001:2026."
-pubDate: "2026-11-10"
-updatedDate: "2026-11-21"
+pubDate: "2026-11-10T00:00:00Z"
+updatedDate: "2026-11-21T00:00:00Z"
 draft: false
 categoryIds:
   - "quality-management"

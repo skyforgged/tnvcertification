@@ -2,7 +2,7 @@
 title: "Mengendalikan Risiko Kualitas di Pabrik"
 intro: "Mengendalikan Risiko Kualitas di Pabrik adalah upaya sistematis mengidentifikasi, menilai, dan mengendalikan ancaman mutu di lantai produksi."
 metaDescription: "Metode identifikasi, penilaian, dan pencegahan risiko kualitas di lingkungan produksi pabrik."
-pubDate: "2026-11-10"
+pubDate: "2026-11-10T00:00:00Z"
 draft: false
 categoryIds:
   - "quality-management"

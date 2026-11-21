@@ -2,8 +2,8 @@
 title: "Manfaat Sertifikasi ISO 9001:2026 bagi Perusahaan"
 intro: "Manfaat Sertifikasi ISO 9001:2026 bagi Perusahaan adalah nilai yang dapat diperoleh organisasi ketika sistem manajemen mutu diterapkan secara konsisten, dievaluasi, dan ditingkatkan."
 metaDescription: "Pahami manfaat sistem manajemen mutu ISO 9001:2026 bagi konsistensi proses, pengalaman pelanggan, pengendalian risiko, dan kinerja organisasi."
-pubDate: "2026-11-10"
-updatedDate: "2026-11-21"
+pubDate: "2026-11-10T00:00:00Z"
+updatedDate: "2026-11-21T00:00:00Z"
 draft: false
 categoryIds:
   - "quality-management"

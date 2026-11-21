@@ -2,12 +2,13 @@
 title: "Sertifikasi Sistem Manajemen Lingkungan ISO 14001:2026"
 intro: "Sertifikasi Sistem Manajemen Lingkungan ISO 14001:2026 adalah penilaian kesesuaian independen terhadap sistem manajemen lingkungan organisasi berdasarkan persyaratan edisi terbaru ISO 14001."
 metaDescription: "Pelajari ISO 14001:2026, ruang lingkup sistem manajemen lingkungan, aspek dan dampak lingkungan, proses audit, serta ketentuan transisi sertifikasi."
-pubDate: "2026-11-21"
-draft: true
+pubDate: "2026-11-21T00:00:00Z"
+updatedDate: "2026-11-21T00:00:00Z"
+draft: false
 id: 3
 featuredImage:
   src: "/images/illustrations/article-iso14001-certification.webp"
-  alt: "Sertifikasi ISO 14001:2026 adalah penilaian sistem manajemen lingkungan organisasi."
+  alt: "Sertifikasi Sistem Manajemen Lingkungan ISO 14001:2026 adalah penilaian kesesuaian EMS organisasi."
 slug: "sertifikasi-iso-14001-2026"
 translationKey: "service-sertifikasi-iso-14001-2026"
 lang: "id"

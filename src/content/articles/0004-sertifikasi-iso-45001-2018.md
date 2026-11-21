@@ -2,7 +2,7 @@
 title: "Sertifikasi ISO 45001:2018"
 intro: "Sertifikasi ISO 45001:2018 adalah pengakuan atas sistem manajemen keselamatan dan kesehatan kerja yang melindungi pekerja secara berkelanjutan."
 metaDescription: "Panduan sertifikasi ISO 45001:2018 untuk membangun sistem K3, mengelola risiko kerja, dan meningkatkan keselamatan pekerja."
-pubDate: "2026-11-10"
+pubDate: "2026-11-10T00:00:00Z"
 draft: false
 categoryIds:
   - "occupational-health-safety"

@@ -2,8 +2,9 @@
 title: "ISO 14001:2026 Environmental Management System Certification"
 intro: "ISO 14001:2026 Environmental Management System Certification is an independent conformity assessment of an organization's environmental management system against the requirements of the latest ISO 14001 edition."
 metaDescription: "Explore ISO 14001:2026, environmental management system scope, environmental aspects and impacts, certification audits, and transition requirements."
-pubDate: "2026-11-21"
-draft: true
+pubDate: "2026-11-21T00:00:00Z"
+updatedDate: "2026-11-21T00:00:00Z"
+draft: false
 id: 4
 featuredImage:
   src: "/images/illustrations/article-iso14001-certification-en.webp"

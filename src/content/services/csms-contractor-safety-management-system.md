@@ -2,7 +2,7 @@
 title: "Penilaian Contractor Safety Management System (CSMS)"
 intro: "Penilaian Contractor Safety Management System (CSMS) adalah rencana layanan peninjauan kesiapan kontraktor dalam memenuhi persyaratan keselamatan dan kesehatan kerja yang ditetapkan pemberi kerja atau pemilik proyek; skema, kriteria, ruang lingkup, dan kewenangannya masih diverifikasi."
 metaDescription: "Informasi rencana penilaian Contractor Safety Management System (CSMS) untuk kontraktor. Skema, kriteria, ruang lingkup, dan kewenangan masih dalam tahap verifikasi."
-pubDate: "2026-11-20"
+pubDate: "2026-11-20T00:00:00Z"
 draft: true
 id: 1
 featuredImage:
