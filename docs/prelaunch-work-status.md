@@ -491,3 +491,17 @@ For one authoritative view of which CSMS documents have been prepared versus whi
 The latest repository commit at this checkpoint is `7a7a1eb` (`docs: record build strategy continuation note`). The active priority is to close the two remaining items in [Build Strategy](build-strategy.md): (1) collect comparable CI/build timing evidence, and (2) verify with a retained CI failure record that selective preflight rejects an invalid changed editorial entry before the general gates. The content-only workflow was exercised successfully on `88f19a1` (run `44867371518`); the full workflow also succeeded on `e7f8857` (run `44871598897`). These successes do not by themselves close the timing or negative-preflight verification items.
 
 **Sequence rule:** do not start the next CSMS implementation task until both build-strategy items are verified, documented, and this checkpoint is updated. This is a separate build-engineering priority, not a new CSMS phase. CSMS remains governed by [its implementation status tracker](csms/implementation-status.md); no CSMS status or approval is changed by this priority decision.
+
+
+## Build strategy verification closure — 2026-11-21
+
+**Status: [x] Completed for the current implementation baseline.** The two verification actions previously blocking CSMS continuation have now been performed and their evidence recorded in [Build Strategy](build-strategy.md).
+
+| Verification | Status | Evidence |
+|---|---|---|
+| Capture CI/build timing across content-only and source/tooling changes | [x] Baseline measured | Content-only run `44867371518` (`88f19a1`): 28 s total / 761 ms Astro build. Source/tooling runs `44864063830` (`455bb73`): 28 s / 1.02 s, and `44864868895` (`bef1c3b`): 23 s / 700 ms. This is an initial baseline, not a statistically robust performance comparison or proof of speedup. |
+| Demonstrate early rejection of invalid changed editorial content | [x] Verified in CI | Run `44867324725` (`f321207`) failed at **Validate changed editorial content** with `CONTENT-002` before general gates; valid positive-control run `44867371518` passed preflight and all full gates. |
+| Preserve full production output and global checks | [x] Confirmed | Positive-control run built all 13 pages and passed SEO/link audit. Full Astro production build remains mandatory. |
+| Adopt incremental production rendering | [x] Not adopted | No partial `dist`, route-only build, or incremental production renderer is approved. |
+
+**Priority gate closed:** the build-strategy verification no longer blocks continuation of the CSMS workstream. Resume CSMS from the existing [CSMS implementation status tracker](csms/implementation-status.md). This closure does not approve CSMS launch, customer pilot, personnel appointments, formal certification claims, or any pending management decision/remediation action. The initial CI timing sample remains provisional; add future comparable runs before making performance claims.
