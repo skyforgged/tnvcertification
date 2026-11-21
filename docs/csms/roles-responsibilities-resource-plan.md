@@ -25,6 +25,9 @@ This framework does not authorize certification, principal qualification, offici
 | Impartiality / conflict reviewer | Evaluate threats, safeguards, role combinations and engagement restrictions | Independence, authority to restrict or reject engagements, documented evaluation |
 | Engagement approver | Approve acceptance, scope, contract and resources before work starts | Delegated authority and evidence that all pre-engagement gates are closed |
 | Report approver | Authorize release of the readiness report after technical and factual review | Approved authority, competence and independence appropriate to the report |
+| Client factual review coordinator | Issue controlled draft to authorized client contact, log comments, preserve versions and route factual corrections | Appointment, recipient-authority check, approved secure channel and competence in records control |
+| Assessor / report author (factual disposition) | Evaluate factual comments against original records and criteria; document accepted/partial/rejected rationale | Must not silently overwrite original finding; material changes independently re-reviewed |
+| Technical reviewer (change re-review) | Independently review corrections affecting evidence sufficiency, finding status, criteria interpretation or conclusion | Competent and independent for scope; record exact revised version and review outcome |
 | Complaint handler | Receive, acknowledge, investigate and resolve complaints independently where practicable | Complaint-handling competence and no involvement in the matter under complaint |
 | Document controller | Maintain controlled templates, source records, revisions, access and retention/disposal records | Document-control and information-security competence |
 | Privacy / information-security responsible function | Review data purpose, access, transfer, storage, incidents and retention arrangements | Approved responsibility, relevant competence and escalation route |
@@ -225,3 +228,8 @@ The following roles must be formally appointed with documented authority, compet
 - A suspected incident triggers immediate internal reporting and the approved incident-response route. No one may conceal, delete or alter potential incident evidence.
 
 Use the [Data Governance & Information Security Procedure](data-governance-information-security-procedure.md), [Data Asset Inventory & Classification Register](data-asset-inventory-register.md), [Access Authorization & Review Register](access-authorization-register.md), and [Data Incident Response Playbook](data-incident-response-playbook.md) as proposed controlled records. No role appointment, system approval, security control or incident capability is evidenced by this draft.
+
+
+## 13. Client factual review governance (RA-09)
+
+The client may identify factual inaccuracies in a controlled draft and submit authorized supporting information. The client does not approve TNCVCertification's findings or direct technical conclusions. The factual review coordinator preserves the exact draft version, original finding, client comment, evidence reference and disposition. The assessor records a reasoned decision; material changes affecting evidence sufficiency, findings or conclusions are independently re-reviewed by a competent technical reviewer. A separate delegated report approver authorizes release. No role is appointed by this draft, and no customer review is evidenced. See the [Client Factual Review & Correction Procedure](client-factual-review-procedure.md) and [Client Factual Correction Log](client-factual-correction-log.md).
