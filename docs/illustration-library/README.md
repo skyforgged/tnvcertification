@@ -27,7 +27,7 @@ Never assume that all assets on an aggregator share one license. A source URL or
 
 ## Conversion defaults
 
-The conversion script uses Sharp with:
+The conversion script uses the pinned `sharp-cli@6.1.0` package (powered by Sharp) through `pnpm dlx`, without adding a permanent dependency to the website install graph, with:
 - SVG rasterization density: 144 DPI;
 - maximum output width: 1600 px (no enlargement);
 - WebP quality: 82;
