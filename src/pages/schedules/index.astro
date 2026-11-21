@@ -1,6 +1,7 @@
 ---
 import ScheduleArchiveLayout from "../../layouts/ScheduleArchiveLayout.astro";
 import { getCollection } from "astro:content";
+import ButtonLink from "../../components/ButtonLink.astro";
 
 const [schedules, trainings] = await Promise.all([
   getCollection("trainingSchedules"),
@@ -70,20 +71,20 @@ const statusLabel = (status?: string) => ({
                 </p>
                 <p class="mt-2 text-sm font-medium text-ink">{statusLabel(schedule.data.registrationStatus)}</p>
                 {schedule.data.price !== undefined && (
-                  <p class="mt-1 text-sm text-slate-700">
+                  <p class="mt-1 text-sm text-ink-muted">
                     Biaya: {schedule.data.currency === "IDR" || !schedule.data.currency ? "Rp " : `${schedule.data.currency} `}
                     {schedule.data.price.toLocaleString("id-ID")}
                   </p>
                 )}
               </div>
               <div class="flex flex-wrap gap-3 md:justify-end">
-                <a href={`/trainings/${training.data.slug}/`} class="inline-flex min-h-11 items-center rounded-[var(--radius-control)] border border-brand-deepblue px-4 py-2 text-sm font-semibold text-brand-deepblue transition-colors hover:bg-surface-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue">
+                <ButtonLink href={`/trainings/${training.data.slug}/`} variant="secondary" class="px-4 py-2">
                   Detail program
-                </a>
+                </ButtonLink>
                 {schedule.data.registrationUrl && schedule.data.registrationStatus === "open" && (
-                  <a href={schedule.data.registrationUrl} class="inline-flex min-h-11 items-center rounded-[var(--radius-control)] bg-brand-deepblue px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue">
+                  <ButtonLink href={schedule.data.registrationUrl} class="px-4 py-2">
                     Daftar
-                  </a>
+                  </ButtonLink>
                 )}
               </div>
             </article>

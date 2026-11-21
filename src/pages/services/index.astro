@@ -3,6 +3,8 @@ import WidePageLayout from "../../layouts/WidePageLayout.astro";
 import MainMenuHero from "../../components/MainMenuHero.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
 import ServiceCard from "../../components/ServiceCard.astro";
+import Section from "../../components/Section.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
 import { getCollection } from "astro:content";
 import { getPublishedArticles, getServiceIndexArticles } from "../../data/articles";
 import { siteSettings } from "../../site";
@@ -18,7 +20,7 @@ const structuredData = serviceIndexJsonLd(
 );
 ---
 <WidePageLayout title={`Layanan | ${siteSettings.title}`} description="Layanan sertifikasi, pelatihan, dan penilaian kepatuhan." canonical="/services/" lang="id" ogImage="/images/illustrations/services-assessment.webp" structuredData={structuredData}>
-  <div class="w-full space-y-12">
+  <div class="w-full">
     <MainMenuHero
       eyebrow="Layanan profesional"
       title="Layanan Kami"
@@ -27,7 +29,7 @@ const structuredData = serviceIndexJsonLd(
       imageAlt="Ilustrasi proses asesmen layanan sertifikasi dan evaluasi kepatuhan"
     />
     {services.length > 0 ? (
-      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <Section spacing="default" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {services.map((service) => (
           <ServiceCard
             title={service.data.title}
@@ -35,15 +37,15 @@ const structuredData = serviceIndexJsonLd(
             href={`/services/${service.data.slug}/`}
           />
         ))}
-      </div>
-    ) : <p>Informasi layanan akan segera tersedia.</p>}
+      </Section>
+    ) : <Section spacing="default"><p>Informasi layanan akan segera tersedia.</p></Section>}
     {articles.length > 0 && (
-      <section aria-labelledby="artikel-terbaru-layanan">
-        <h2 id="artikel-terbaru-layanan" class="text-2xl font-semibold tracking-tight text-ink">Artikel Terbaru</h2>
+      <Section spacing="spacious" aria-labelledby="artikel-terbaru-layanan">
+        <SectionHeading id="artikel-terbaru-layanan" title="Artikel Terbaru" />
         <div class="mt-6 grid gap-8 md:grid-cols-3">
           {articles.map((article) => <ArticleCard article={article} />)}
         </div>
-      </section>
+      </Section>
     )}
   </div>
 </WidePageLayout>
