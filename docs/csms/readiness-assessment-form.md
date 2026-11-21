@@ -2,7 +2,7 @@
 
 **Status:** Internal working form — subject to technical, legal, competence, and impartiality approval.  
 **Form ID:** TNCV-CSMS-FRM-001 (proposed)  
-**Version:** 0.1
+**Version:** 0.2 — remediation draft
 
 ## A. Engagement details
 
@@ -32,7 +32,7 @@
 | Exclusions | [Complete] |
 | Criteria clarification received from | [Name / role / date] |
 
-**Mandatory check:** If the applicable requirement source is not identified or its applicability cannot be established, stop the assessment and record the limitation. Do not substitute an internally invented checklist.
+**Mandatory source gate:** Complete and attach the [Source Verification & Sampling Record](source-verification-and-sampling.md). Record the exact source, issuer, revision/effective date, origin, retrieval date, supersession check, applicability rationale and independent verification. If source identity, currentness or applicability cannot be established, stop the readiness conclusion; do not substitute an internally invented checklist.
 
 ## C. Independence, competence, and conflict screening
 
@@ -47,6 +47,16 @@
 **Conflict / safeguard notes:**  
 [Record prior services, relationships, safeguards, reviewer decision, or reason the engagement is declined.]
 
+### B1. Source verification approval
+
+| Check | Evidence / reference | Verified by | Date | Result / limitation |
+|---|---|---|---|---|
+| Authentic source / issuing owner | [Complete] | [Complete] | [Date] | [Complete] |
+| Current revision / supersession check | [Complete] | [Complete] | [Date] | [Complete] |
+| Applicability to entity, scope, site and period | [Complete] | [Complete] | [Date] | [Complete] |
+| Appendices, portal updates and clarifications | [Complete] | [Complete] | [Date] | [Complete] |
+| Independent verification approval | [Complete] | [Complete] | [Date] | [Approved / hold / rejected] |
+
 ## D. Assessment method and sampling
 
 | Method | Used? | Details / sample |
@@ -57,7 +67,7 @@
 | Record sampling | [Yes/No] | [Period and sample basis] |
 | Other | [Yes/No] | [Describe] |
 
-Record why the sample was selected and any access restrictions. Sampling does not establish that every record, site, worker, or activity was reviewed.
+Record the population, period, selection method, sample size, selection rationale, exclusions, access restrictions and deviations in the Source Verification & Sampling Record. Sampling does not establish that every record, site, worker or activity was reviewed.
 
 ## E. Evidence status and findings
 
@@ -77,7 +87,9 @@ Use the controlled statuses below. Record one finding per applicable requirement
 **Finding ID:** [FR-001]  
 **Requirement reference:** [Document / revision / clause / page]  
 **Requirement summary:** [Accurate summary]  
-**Evidence reviewed:** [Document ID, title, version/date, interview, observation]  
+**Evidence received:** [IDs and receipt references]  
+**Evidence actually examined:** [Document ID, title, version/date, source and review date]  
+**Sufficiency / authenticity checks:** [Relevance, completeness, approval, currency, traceability, consistency; checks not possible]  
 **Evidence status:** [Select controlled status]  
 **Objective observation:** [Factual, evidence-based description]  
 **Gap / uncertainty:** [What remains unverified or incomplete]  
@@ -85,6 +97,14 @@ Use the controlled statuses below. Record one finding per applicable requirement
 **Recommended next action:** [Specific action]  
 **Responsible role / target date:** [Complete]  
 **Reviewer:** [Name / date]
+
+## F. Client factual-correction record
+
+| Finding ID | Client comment / correction requested | Supporting evidence supplied | Assessor disposition and rationale | Technical reviewer | Date |
+|---|---|---|---|---|---|
+| [FR-001] | [Complete] | [Reference] | [Accepted / partly accepted / not accepted + reason] | [Name] | [Date] |
+
+Preserve the original finding and its history. Do not delete a substantiated finding solely because the client disagrees.
 
 ## F. Closing discussion
 
@@ -116,6 +136,16 @@ Select one descriptive conclusion, supported by the findings and agreed scope:
 | Technical reviewer | [Complete] | [Complete] | [Complete] |
 | Engagement approver | [Complete] | [Complete] | [Complete] |
 
-## I. Client-facing limitation statement
+## I. Complaint and post-issue control
+
+| Field | Entry |
+|---|---|
+| Complaint route communicated | [Approved channel / date] |
+| Complaint register reference (if any) | [ID / N/A] |
+| Investigator independence checked by | [Name / date] |
+| Revised report / addendum reference | [If applicable] |
+| Closure and effectiveness evidence | [Reference / pending] |
+
+## J. Client-facing limitation statement
 
 This readiness review is limited to the scope, criteria, evidence, sampling, and dates stated in the report. It is not a certification, principal-issued CSMS qualification, vendor approval, or guarantee of tender/project acceptance. The relevant principal/client retains authority over its own qualification and procurement decisions.
