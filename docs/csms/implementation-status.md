@@ -2,7 +2,7 @@
 
 **Status keseluruhan:** INTERNAL PLANNING — NOT APPROVED FOR CUSTOMER DELIVERY OR PUBLIC LAUNCH  
 **Baseline repository:** `main`  
-**Baseline commit checked:** `e4ea09b7b837cff36e8a6240d5418c98abfe0647`  
+**Baseline commit checked:** `057fd0e102468c80aab8b1071861dd7df9054302`  
 **Last repository check:** 21 November 2026
 
 > **Cara membaca status**
@@ -22,7 +22,7 @@
 | [Readiness Report Template](readiness-report-template.md) | **SELESAI — DRAFT TEMPLATE** | Struktur laporan, bukti, temuan, tindakan, batasan, dan otorisasi laporan | Tetapkan reviewer/approver yang kompeten; jangan menerbitkan sebelum disetujui |
 | [Operational Procedure](operational-procedure.md) | **SELESAI — DRAFT v0.2** | Alur enquiry hingga pelaporan, pengendalian, keluhan, dan stop/go | Review dan persetujuan formal; implementasikan sebelum layanan berjalan |
 | [Competence Matrix](competence-matrix.md) | **SELESAI — FRAMEWORK** | Dimensi kompetensi, skala internal, register, dan otorisasi penugasan | Tetapkan personel aktual; verifikasi bukti kompetensi dan otorisasi per penugasan |
-| [Impartiality & Conflict Register](impartiality-conflict-register.md) | **SELESAI — FRAMEWORK** | Metode identifikasi ancaman, evaluasi, safeguard, dan register konflik | Deklarasi aktual, evaluasi konflik per engagement, dan penunjukan reviewer independen |
+| [Impartiality & Conflict Register](impartiality-conflict-register.md) | **SELESAI — DRAFT FRAMEWORK v0.2** | Kategori ancaman, risk decision rules, hard stops, safeguard effectiveness, engagement record, monitoring dan eskalasi | Persetujuan kebijakan/delegasi; deklarasi aktual, evaluasi per engagement, safeguard efektif dan keputusan independen |
 | [Document Control & Retention](document-control-retention.md) | **SELESAI — FRAMEWORK** | Kontrol dokumen, inventaris, akses, legal hold, disposal, dan master register | Setujui klasifikasi, akses, retensi, keamanan, dan jadwal penyimpanan aktual |
 | [Management Approval Register](management-approval-register.md) | **SELESAI — REGISTER DRAFT** | 12 keputusan manajemen dan bukti minimum untuk menutupnya | Seluruh keputusan masih Pending; isi hanya setelah keputusan nyata diberikan |
 | [Roles, Responsibilities & Resource Plan](roles-responsibilities-resource-plan.md) | **SELESAI — RENCANA DRAFT** | Fungsi, pemisahan peran, RACI, checklist otorisasi, dan kebutuhan sumber daya | Tunjuk role holder; setujui kapasitas, anggaran, fasilitas, dan sistem |
@@ -134,11 +134,33 @@ Jangan mengubahnya menjadi published, menambahkan CTA aktif, atau membuat klaim 
 
 **Status RA-05:** **BELUM — OPEN**. Framework dan kriteria bukti dokumentasi diperkuat; belum ada bukti personel aktual, verifikasi kredensial, appointment, otorisasi penugasan, maupun independent closure review. Tidak dihitung sebagai remediasi operasional yang ditutup.
 
+
+### Tahap CSMS-DOC-05 — Impartiality & Conflict of Interest (RA-06)
+
+- [x] Memperluas definisi actual, potential dan perceived conflict serta prinsip impartiality.
+- [x] Menetapkan titik screening wajib sejak enquiry hingga report approval dan perubahan engagement.
+- [x] Memetakan kategori ancaman: self-review, advocacy, familiarity, financial, commercial pressure, intimidation, dependency, confidentiality, subcontractor dan role incompatibility.
+- [x] Memperjelas evaluasi risiko Low / Medium / High / Unacceptable dengan keputusan dan respons minimum.
+- [x] Menambahkan hard-stop conditions; disclosure atau client consent tidak dianggap otomatis menyelesaikan konflik.
+- [x] Memperluas engagement-level declaration dan decision record, termasuk bukti safeguard, residual risk, approver dan reassessment trigger.
+- [x] Menetapkan safeguard owner, due date, implementation evidence dan effectiveness check.
+- [x] Memperjelas segregation antara delivery, impartiality review, technical review, report approval dan complaint investigation.
+- [x] Menambahkan otoritas impartiality reviewer dan engagement gate pada Roles & Responsibilities Resource Plan.
+- [x] Menetapkan bukti objektif dan syarat closure RA-06 dalam Pilot Remediation Register.
+- [ ] Setujui impartiality policy, threat criteria, hard-stop rules, fee restrictions dan escalation authority oleh manajemen.
+- [ ] Tunjuk impartiality reviewer dengan delegasi dan independensi yang terdokumentasi.
+- [ ] Kumpulkan deklarasi aktual seluruh personel dan external resources pada engagement yang akan dijalankan.
+- [ ] Laksanakan screening, evaluasi ancaman, implementasi safeguard dan effectiveness check pada engagement aktual.
+- [ ] Rekam keputusan proceed / restricted / pause / decline yang disetujui secara independen sebelum pekerjaan dimulai.
+- [ ] Lakukan independent closure review atas paket bukti RA-06.
+
+**Status RA-06:** **BELUM — OPEN**. Framework dan kontrol peran telah diperkuat sebagai pekerjaan dokumentasi. Belum ada persetujuan kebijakan, penunjukan reviewer, deklarasi engagement aktual, bukti safeguard efektif, atau keputusan independen. Tidak dihitung sebagai remediasi operasional yang ditutup.
+
 ## 5. Kesimpulan status saat ini
 
 - Pekerjaan riset, definisi layanan, toolkit, framework governance, simulasi, register, dan audit dokumentasi: **sudah dibuat sebagai artefak internal**.
 - Persetujuan manajemen: **belum — 12/12 Pending**.
-- Remediasi simulasi: **belum — 10/10 Open** (RA-02 sampai RA-05 memiliki penguatan dokumentasi; status remediasinya tetap Open).
+- Remediasi simulasi: **belum — 10/10 Open** (RA-02 sampai RA-06 memiliki penguatan dokumentasi; status remediasinya tetap Open).
 - Kesiapan operasional untuk customer delivery: **belum dibuktikan**.
 - Otorisasi pilot customer: **belum diberikan**.
 - Persetujuan publikasi: **belum diberikan**.
