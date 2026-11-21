@@ -484,3 +484,10 @@ The audit is a documentation review only. It is not a legal opinion, accreditati
 ## CSMS implementation status tracker
 
 For one authoritative view of which CSMS documents have been prepared versus which approvals and real-world implementation actions remain open, see [CSMS Implementation & Document Status Tracker](csms/implementation-status.md). The tracker distinguishes completed documentation from operational readiness; it does not create or renumber implementation phases. Current baseline: management decisions 12/12 Pending, pilot remediation actions 10/10 Open, audit findings AUD-01–AUD-03 corrected, AUD-04–AUD-09 open, and AUD-10 publication safeguard maintained. The public CSMS page remains `draft: true`.
+
+
+## Immediate project priority — finish build-strategy verification before resuming CSMS
+
+The latest repository commit at this checkpoint is `7a7a1eb` (`docs: record build strategy continuation note`). The active priority is to close the two remaining items in [Build Strategy](build-strategy.md): (1) collect comparable CI/build timing evidence, and (2) verify with a retained CI failure record that selective preflight rejects an invalid changed editorial entry before the general gates. The content-only workflow was exercised successfully on `88f19a1` (run `44867371518`); the full workflow also succeeded on `e7f8857` (run `44871598897`). These successes do not by themselves close the timing or negative-preflight verification items.
+
+**Sequence rule:** do not start the next CSMS implementation task until both build-strategy items are verified, documented, and this checkpoint is updated. This is a separate build-engineering priority, not a new CSMS phase. CSMS remains governed by [its implementation status tracker](csms/implementation-status.md); no CSMS status or approval is changed by this priority decision.
