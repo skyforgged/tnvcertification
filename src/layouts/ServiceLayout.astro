@@ -15,7 +15,7 @@ const { title, description, lang, canonical, ogImage, blocks = [], structuredDat
 ---
 <Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage} structuredData={structuredData}>
   <article class="w-full">
-    <Breadcrumbs items={[{ label: "Beranda", href: "/" }, { label: "Layanan", href: "/service/" }, { label: title }]} />
+    <Breadcrumbs items={[{ label: "Beranda", href: "/" }, { label: "Layanan", href: "/services/" }, { label: title }]} />
     <div class="prose mt-8 max-w-3xl">
       <slot />
     </div>
