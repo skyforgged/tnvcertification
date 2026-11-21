@@ -15,7 +15,8 @@
     "format": "prettier --write .",
     "preview": "astro preview",
     "audit:seo": "node scripts/audit-seo-build.mjs",
-    "validate:changed": "node --import tsx scripts/validate-changed-content.mjs"
+    "validate:changed": "node --import tsx scripts/validate-changed-content.mjs",
+    "images:illustrations": "node scripts/convert-illustrations.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.6",
