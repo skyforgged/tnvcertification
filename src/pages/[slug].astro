@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const canonical = `/${entry.data.slug}/`;
-const isAboutPage = entry.data.slug === "hal-about-us";
+const isAboutPage = entry.data.slug === "about-us";
 ---
 
 {isAboutPage ? (
