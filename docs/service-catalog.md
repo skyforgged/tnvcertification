@@ -273,6 +273,9 @@ The following working templates support the proposed readiness/documentation ser
 - [CSMS Readiness Assessment Form](csms/readiness-assessment-form.md)
 - [CSMS Readiness Review Report Template](csms/readiness-report-template.md)
 - [CSMS Readiness Review Operational Procedure](csms/operational-procedure.md)
+- [CSMS Competence Matrix](csms/competence-matrix.md)
+- [CSMS Impartiality & Conflict of Interest Register](csms/impartiality-conflict-register.md)
+- [CSMS Document Control & Record Retention](csms/document-control-retention.md)
 
 These templates require a current, identified principal/client requirement source. They do not establish a universal CSMS standard, official score, certification, vendor qualification, or principal approval.
 
