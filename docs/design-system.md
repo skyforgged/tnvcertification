@@ -32,6 +32,24 @@ White is the default page surface. Very light neutral gray is reserved for subtl
 
 Do not assume every brand color is suitable for text on white. Verify actual foreground/background pairs before using an accent for text, controls, or status communication. Never communicate status by color alone.
 
+### Contrast spot-check (sRGB, against white)
+
+The following ratios were calculated for the current palette as a preliminary token-level check. WCAG 2.2 AA requires 4.5:1 for normal text and 3:1 for large text; non-text UI boundaries and meaningful graphics generally require 3:1 against adjacent colors.
+
+| Color | Contrast on white | Preliminary use |
+|---|---:|---|
+| Ink `#172033` | 16.1:1 | Passes normal text |
+| Muted ink `#536174` | 6.3:1 | Passes normal text |
+| Subtle ink `#697586` | 4.7:1 | Passes normal text, narrowly |
+| Deep blue `#1736A8` | 9.9:1 | Passes normal text |
+| Brand blue `#315CFF` | 5.1:1 | Passes normal text |
+| Orange `#FF6B35` | 2.8:1 | Do not use for text or essential UI on white |
+| Mint `#36C9A5` | 2.1:1 | Decorative accent only on white |
+| Pink `#F45B91` | 3.1:1 | Not for normal text on white; verify large text/non-text use |
+| Yellow `#FFD447` | — | Treat as decorative on white until a pair is verified |
+
+These are palette spot-checks, not a full accessibility audit. They do not validate hover, active, disabled, error, selected, border, focus-ring, or text-on-colored-surface combinations. Use deep ink/blue foregrounds on bright accent surfaces only after checking the exact pair. Complete component-level and keyboard interaction review before marking P16 accessibility validation complete.
+
 ## 3. Typography
 
 - Primary family: Inter with system sans-serif fallbacks.
