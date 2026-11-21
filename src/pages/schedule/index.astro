@@ -1,0 +1,112 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { getCollection } from "astro:content";
+import { siteSettings } from "../../site";
+
+const [schedules, trainings] = await Promise.all([
+  getCollection("trainingSchedules"),
+  getCollection(
+    "training",
+    ({ data }) => data.draft !== true && data.lang === "id",
+  ),
+]);
+
+const trainingBySlug = new Map(
+  trainings.map((training) => [training.data.slug, training]),
+);
+
+const publishedSchedules = schedules
+  .filter(
+    (schedule) =>
+      schedule.data.registrationStatus !== "cancelled" &&
+      trainingBySlug.has(schedule.data.trainingSlug),
+  )
+  .sort((a, b) =>
+    a.data.startDate.localeCompare(b.data.startDate) ||
+    a.data.slug.localeCompare(b.data.slug),
+  );
+
+const formatDate = (value: string) =>
+  new Date(`${value}T00:00:00Z`).toLocaleDateString("id-ID", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+
+const statusLabel = (status?: string) => ({
+  open: "Pendaftaran dibuka",
+  closed: "Pendaftaran ditutup",
+  full: "Kuota terpenuhi",
+}[status ?? ""] ?? "Informasi pendaftaran menyusul");
+---
+
+<Layout
+  title={`Jadwal Pelatihan | ${siteSettings.title}`}
+  description="Agenda pelaksanaan pelatihan, tanggal kelas, lokasi, biaya, kuota, dan informasi pendaftaran."
+  canonical="/schedule/"
+  lang="id"
+>
+  <section class="w-full" aria-labelledby="schedule-index">
+    <Breadcrumbs items={[{ label: "Beranda", href: "/" }, { label: "Jadwal" }]} />
+    <header class="max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-widest text-brand-orange">Training Schedule</p>
+      <h1 id="schedule-index" class="mt-3 text-3xl font-semibold tracking-tight text-brand-deepblue sm:text-4xl">Jadwal Pelatihan</h1>
+      <p class="mt-4 text-lg leading-relaxed text-slate-700">
+        Temukan agenda kelas dan pelaksanaan program pelatihan, termasuk tanggal, metode, lokasi, biaya, kuota, serta status pendaftaran. Jadwal dikelola terpisah dari informasi program agar perubahan pelaksanaan dapat diperbarui tanpa mengubah halaman program.
+      </p>
+    </header>
+
+    {publishedSchedules.length > 0 ? (
+      <div class="mt-10 divide-y divide-brand-blue/15 border-y border-brand-blue/15">
+        {publishedSchedules.map((schedule) => {
+          const training = trainingBySlug.get(schedule.data.trainingSlug)!;
+          return (
+            <article class="grid gap-4 py-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
+              <div>
+                <p class="text-sm font-semibold text-brand-orange">
+                  {formatDate(schedule.data.startDate)} – {formatDate(schedule.data.endDate)}
+                </p>
+                <h2 class="mt-2 text-xl font-semibold text-brand-deepblue">
+                  <a href={`/trainings/${training.data.slug}/`} class="hover:text-brand-blue">
+                    {training.data.title}
+                  </a>
+                </h2>
+                <p class="mt-2 text-sm text-slate-700">
+                  {schedule.data.locationType === "online" ? "Online" : schedule.data.locationType === "hybrid" ? "Hybrid" : schedule.data.locationType === "offline" ? "Tatap muka" : "Metode menyusul"}
+                  {(schedule.data.venue || schedule.data.city) && ` · ${[schedule.data.venue, schedule.data.city, schedule.data.province].filter(Boolean).join(", ")}`}
+                </p>
+                <p class="mt-2 text-sm font-medium text-brand-deepblue">{statusLabel(schedule.data.registrationStatus)}</p>
+                {schedule.data.price !== undefined && (
+                  <p class="mt-1 text-sm text-slate-700">
+                    Biaya: {schedule.data.currency === "IDR" || !schedule.data.currency ? "Rp " : `${schedule.data.currency} `}
+                    {schedule.data.price.toLocaleString("id-ID")}
+                  </p>
+                )}
+              </div>
+              <div class="flex flex-wrap gap-3 md:justify-end">
+                <a href={`/trainings/${training.data.slug}/`} class="inline-flex items-center rounded-full border border-brand-blue px-4 py-2 text-sm font-semibold text-brand-blue hover:bg-brand-blue/5">
+                  Detail program
+                </a>
+                {schedule.data.registrationUrl && schedule.data.registrationStatus === "open" && (
+                  <a href={schedule.data.registrationUrl} class="inline-flex items-center rounded-full bg-brand-blue px-4 py-2 text-sm font-semibold text-white hover:bg-brand-deepblue">
+                    Daftar
+                  </a>
+                )}
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    ) : (
+      <div class="mt-10 max-w-3xl border-y border-brand-blue/15 py-8">
+        <h2 class="text-xl font-semibold text-brand-deepblue">Belum ada jadwal yang dipublikasikan</h2>
+        <p class="mt-3 leading-relaxed text-slate-700">
+          Agenda pelaksanaan akan ditampilkan setelah tanggal, program terkait, dan informasi pendaftaran dikonfirmasi. Kunjungi katalog untuk mengenal program pelatihan yang sedang disiapkan.
+        </p>
+        <a href="/trainings/" class="mt-5 inline-flex font-semibold text-brand-blue underline underline-offset-4">Lihat katalog pelatihan →</a>
+      </div>
+    )}
+  </section>
+</Layout>
