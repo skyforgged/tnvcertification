@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480" fill="none">
+  <title>Service assessment and conformity evaluation</title>
+  <rect x="120" y="40" width="400" height="400" rx="32" fill="#EEF3FF"/>
+  <circle cx="320" cy="240" r="164" fill="#fff" opacity=".85"/>
+  <rect x="200" y="118" width="226" height="176" rx="18" fill="#fff" stroke="#1736A8" stroke-width="10"/>
+  <rect x="234" y="152" width="150" height="14" rx="7" fill="#1736A8"/>
+  <rect x="234" y="184" width="112" height="10" rx="5" fill="#AAB9EA"/>
+  <rect x="234" y="208" width="136" height="10" rx="5" fill="#AAB9EA"/>
+  <circle cx="418" cy="322" r="58" fill="#36C9A5" stroke="#0F7F68" stroke-width="9"/>
+  <path d="m394 322 17 17 31-35" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M170 366h300" stroke="#1736A8" stroke-width="11" stroke-linecap="round"/>
+  <circle cx="164" cy="104" r="26" fill="#FF6B35"/>
+  <circle cx="482" cy="136" r="32" fill="#FFD447"/>
+  <circle cx="486" cy="386" r="16" fill="#315CFF" opacity=".65"/>
+</svg>
