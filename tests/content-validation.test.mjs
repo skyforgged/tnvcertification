@@ -174,3 +174,20 @@ test("English entries still reject Indonesian-only intro and image-alt wording",
   assert.ok(diagnostics.some((d) => d.rule === "CONTENT-003"));
   assert.ok(diagnostics.some((d) => d.rule === "CONTENT-008"));
 });
+
+test("draft articles may omit publication date and featured image pending approval", () => {
+  const data = { ...makeEntry().data, draft: true };
+  delete data.featuredImage;
+  delete data.pubDate;
+  const diagnostics = validateEntry(makeEntry({ data }));
+  assert.equal(diagnostics.filter((d) => d.rule === "CONTENT-007" || d.rule === "CONTENT-012").length, 0);
+});
+
+test("published articles require publication date and featured image", () => {
+  const data = { ...makeEntry().data, draft: false };
+  delete data.featuredImage;
+  delete data.pubDate;
+  const diagnostics = validateEntry(makeEntry({ data }));
+  assert.ok(diagnostics.some((d) => d.rule === "CONTENT-007"));
+  assert.ok(diagnostics.some((d) => d.rule === "CONTENT-012"));
+});

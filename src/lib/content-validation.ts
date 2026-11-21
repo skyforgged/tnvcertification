@@ -147,6 +147,11 @@ export function validateEntry(entry: ContentEntryLike): Diagnostic[] {
     );
   }
 
+  // CONTENT-012: published entries require an approved publication date.
+  if (data.draft !== true && data.pubDate === undefined) {
+    add("pubDate", "CONTENT-012", "Published entries require an approved pubDate; drafts may omit it.");
+  }
+
   // CONTENT-005: metaDescription is required and non-empty.
   if (!metaDescription) {
     add("metaDescription", "CONTENT-005", "metaDescription is required and must be non-empty.");
@@ -162,7 +167,9 @@ export function validateEntry(entry: ContentEntryLike): Diagnostic[] {
     | { src?: unknown; alt?: unknown }
     | undefined;
   if (!image || typeof image !== "object" || Array.isArray(image)) {
-    add("featuredImage", "CONTENT-007", "featuredImage must be a single image object.");
+    if (data.draft !== true) {
+      add("featuredImage", "CONTENT-007", "Published entries require a single featuredImage object; drafts may omit it until an asset is approved.");
+    }
   } else {
     const src = toStr(image.src);
     const alt = toStr(image.alt);

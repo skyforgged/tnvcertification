@@ -73,6 +73,9 @@ const baseEntrySchema = z.object({
 
 // --- Articles ---
 const articleSchema = baseEntrySchema.extend({
+  // Drafts may omit unapproved publication metadata and imagery.
+  pubDate: z.coerce.date().optional(),
+  featuredImage: imageObjectSchema.optional(),
   draft: z.boolean().optional(),
   categoryIds: z.array(z.string()).optional(),
   // Explicit optional association; never inferred from labels, categories or slugs.
