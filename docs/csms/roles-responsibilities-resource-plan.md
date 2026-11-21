@@ -28,7 +28,12 @@ This framework does not authorize certification, principal qualification, offici
 | Client factual review coordinator | Issue controlled draft to authorized client contact, log comments, preserve versions and route factual corrections | Appointment, recipient-authority check, approved secure channel and competence in records control |
 | Assessor / report author (factual disposition) | Evaluate factual comments against original records and criteria; document accepted/partial/rejected rationale | Must not silently overwrite original finding; material changes independently re-reviewed |
 | Technical reviewer (change re-review) | Independently review corrections affecting evidence sufficiency, finding status, criteria interpretation or conclusion | Competent and independent for scope; record exact revised version and review outcome |
-| Complaint handler | Receive, acknowledge, investigate and resolve complaints independently where practicable | Complaint-handling competence and no involvement in the matter under complaint |
+| Complaint coordinator / recipient | Receive and register complaints, acknowledge, manage safe communication and due-date monitoring | Appointed and trained; no decision authority over own complaint |
+| Complaint investigator | Investigate allegations, obtain evidence and prepare findings | Competent; independent of challenged activity/person; conflict clearance recorded |
+| Independent complaint decision reviewer | Review investigation sufficiency, findings, proposed remedy and response | Delegated authority; not investigator or subject of complaint where practicable |
+| Corrective-action owner | Implement approved correction and corrective action | Named owner, resources and approved due date; cannot self-verify effectiveness |
+| Effectiveness verifier | Verify implementation and effectiveness of corrective action | Competent and independent from action implementation |
+| Management escalation authority | Decide serious, high-risk, unresolved or conflict-related complaints | Formal authority independent of commercial pressure and challenged activity |
 | Document controller | Maintain controlled templates, source records, revisions, access and retention/disposal records | Document-control and information-security competence |
 | Privacy / information-security responsible function | Review data purpose, access, transfer, storage, incidents and retention arrangements | Approved responsibility, relevant competence and escalation route |
 
@@ -233,3 +238,8 @@ Use the [Data Governance & Information Security Procedure](data-governance-infor
 ## 13. Client factual review governance (RA-09)
 
 The client may identify factual inaccuracies in a controlled draft and submit authorized supporting information. The client does not approve TNCVCertification's findings or direct technical conclusions. The factual review coordinator preserves the exact draft version, original finding, client comment, evidence reference and disposition. The assessor records a reasoned decision; material changes affecting evidence sufficiency, findings or conclusions are independently re-reviewed by a competent technical reviewer. A separate delegated report approver authorizes release. No role is appointed by this draft, and no customer review is evidenced. See the [Client Factual Review & Correction Procedure](client-factual-review-procedure.md) and [Client Factual Correction Log](client-factual-correction-log.md).
+
+
+## 14. Complaints handling governance (RA-10)
+
+Complaint receipt, investigation, decision and corrective action must be separated so that the subject of a complaint cannot control its investigation or outcome. The complaint coordinator preserves the original complaint and communications; an independent investigator examines supporting and contradictory evidence; an independent decision reviewer approves the findings and response; corrective actions are assigned to owners and their effectiveness is checked by a separate verifier. Where internal independence is impracticable or senior management is implicated, appoint an external or otherwise independent route. Management must approve the complaint channel, acknowledgement/progress/final-response targets, decision authority, remedy limits and escalation route before customer use. No appointment, deadline or operational complaint channel is established by this draft. See the [Complaints Handling Procedure](complaints-handling-procedure.md) and [Complaints Register & Case Record](complaints-register-case-record.md).
