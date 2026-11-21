@@ -12,12 +12,9 @@ const isCurrent = (href: string) => {
 ---
 <header class="border-b border-border bg-page">
   <div class="mx-auto flex max-w-[var(--content-wide)] flex-col gap-4 px-[var(--page-gutter)] py-4 md:flex-row md:items-center md:justify-between">
-    <a href="/" class="group flex items-center gap-3 rounded-sm text-brand-deepblue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-blue" aria-label={`${organization.name} — beranda`}>
-      <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-blue text-sm font-bold text-white" aria-hidden="true">IP</span>
-      <span class="leading-tight">
-        <span class="block text-base font-bold tracking-tight">{organization.shortName}</span>
-        <span class="block text-xs text-ink-muted">{siteSettings.tagline}</span>
-      </span>
+    <a href="/" class="group flex items-center gap-3 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-blue" aria-label={`${organization.name} — beranda`}>
+      <img src={organization.logo.url} width="240" height="64" alt={`${organization.groupName} — ${organization.name}`} class="h-12 w-auto max-w-[min(72vw,240px)] object-contain object-left" />
+      <span class="sr-only">{siteSettings.title}</span>
     </a>
     <nav aria-label="Navigasi utama">
       <ul class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-semibold">
