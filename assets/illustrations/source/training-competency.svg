@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480" fill="none">
+  <title>Pelatihan dan pengembangan kompetensi</title>
+  <rect x="80" y="72" width="480" height="336" rx="30" fill="#EAF0FF"/>
+  <path d="M162 329V173c0-16 13-29 29-29h114v214H191c-16 0-29-13-29-29Z" fill="#fff"/>
+  <path d="M478 329V173c0-16-13-29-29-29H335v214h114c16 0 29-13 29-29Z" fill="#fff"/>
+  <path d="M335 144v214" stroke="#315CFF" stroke-width="12"/>
+  <path d="M198 190h76m-76 31h76m-76 31h55m128-62h76m-76 31h76m-76 31h55" stroke="#AAB9EA" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="202" cy="104" r="36" fill="#FF6B35"/>
+  <path d="M145 384c0-39 25-65 57-65s57 26 57 65" fill="#315CFF"/>
+  <circle cx="438" cy="104" r="36" fill="#36C9A5"/>
+  <path d="M381 384c0-39 25-65 57-65s57 26 57 65" fill="#1736A8"/>
+  <path d="m292 90 28-26 28 26v32h-56V90Z" fill="#FFD447"/>
+  <path d="M304 104h32" stroke="#1736A8" stroke-width="6" stroke-linecap="round"/>
+</svg>
