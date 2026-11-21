@@ -5,23 +5,37 @@ import BlockRenderer, { type Block } from "../components/BlockRenderer.astro";
 interface Props {
   title: string;
   description: string;
-  intro?: string;
   lang?: string;
   canonical?: string;
   ogImage?: string;
   blocks?: Block[];
   structuredData?: unknown[];
 }
-const { title, description, intro, lang, canonical, ogImage, blocks = [], structuredData = [] } = Astro.props;
+const { title, description, lang, canonical, ogImage, blocks = [], structuredData = [] } = Astro.props;
 ---
 <Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage} structuredData={structuredData}>
   <article class="w-full">
     <Breadcrumbs items={[{ label: "Beranda", href: "/" }, { label: "Layanan", href: "/service/" }, { label: title }]} />
-    <h1 class="text-3xl font-semibold tracking-tight text-brand-deepblue">{title}</h1>
-    {intro && <p class="mt-4 max-w-3xl text-lg leading-relaxed text-slate-700">{intro}</p>}
-    <div class="mt-8 max-w-3xl">
+    <div class="prose mt-8 max-w-3xl">
       <slot />
     </div>
     <BlockRenderer blocks={blocks} />
   </article>
 </Layout>
+
+<style>
+  .prose :global(h1) {
+    margin: 0;
+    font-size: 1.875rem;
+    line-height: 1.2;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: var(--color-brand-deepblue);
+  }
+  .prose :global(h1 + p) {
+    margin-top: 0.75rem;
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: #334155;
+  }
+</style>
