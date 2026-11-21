@@ -39,12 +39,12 @@ function formatDate(value: Date | string): string {
 ---
 
 <Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage}>
-  <article class="mx-auto max-w-3xl">
-    <h1 class="text-3xl font-semibold tracking-tight text-brand-deepblue">{title}</h1>
-    <dl class="mt-8 grid gap-4 border-y-4 border-brand-mint py-6 sm:grid-cols-2">
+  <article class="mx-auto w-full max-w-4xl">
+    <h1 class="text-3xl font-semibold tracking-tight text-ink sm:text-4xl">{title}</h1>
+    <dl class="mt-8 grid gap-6 border-y border-border py-6 sm:grid-cols-2">
       <div>
-        <dt class="text-xs font-semibold uppercase tracking-widest text-slate-500">Mulai</dt>
-        <dd class="mt-1 text-slate-900">
+        <dt class="text-xs font-semibold uppercase tracking-widest text-ink-subtle">Mulai</dt>
+        <dd class="mt-1 text-ink">
           <time datetime={String(startDate).slice(0, 10)}>{formatDate(startDate)}</time>
         </dd>
       </div>
@@ -69,12 +69,12 @@ function formatDate(value: Date | string): string {
         </div>
       )}
     </dl>
-    <p class="mt-8 text-lg leading-relaxed text-slate-700">{description}</p>
+    <p class="mt-8 max-w-3xl text-lg leading-relaxed text-ink-muted">{description}</p>
     <div class="mt-8"><slot /></div>
     {registrationUrl && (
       <a
         href={registrationUrl}
-        class="mt-8 inline-block bg-brand-orange px-5 py-2 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-orange"
+        class="mt-8 inline-flex items-center rounded-md bg-brand-blue px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-deepblue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue"
       >
         Daftar
       </a>
