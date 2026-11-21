@@ -1,10 +1,10 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import WidePageLayout from "../../layouts/WidePageLayout.astro";
 import MainMenuHero from "../../components/MainMenuHero.astro";
 import { siteSettings } from "../../site";
 ---
 
-<Layout
+<WidePageLayout
   title={`Contractor Safety Management System (CSMS) | ${siteSettings.title}`}
   description="Informasi Contractor Safety Management System (CSMS), konteks penilaian kesiapan kontraktor, area persiapan, dan status pengembangan layanan."
   canonical="/csms/"
@@ -57,4 +57,4 @@ import { siteSettings } from "../../site";
       <a href="/services/" class="mt-5 inline-flex rounded-full bg-brand-blue px-5 py-3 font-semibold text-white hover:bg-brand-deepblue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue">Lihat layanan</a>
     </section>
   </article>
-</Layout>
+</WidePageLayout>
