@@ -3,7 +3,7 @@
  *
  * Category references use stable category slugs, never localized labels or
  * filenames. Each translationKey must have exactly one Indonesian and one
- * English record with the same stable slug.
+ * English record with the same stable slug and publication-planning status.
  */
 export interface TaxonomyRecordLike {
   id: string;
@@ -53,15 +53,21 @@ export function validateTaxonomy(
     const slug = text(category.data.slug);
     const lang = text(category.data.lang);
     const translationKey = text(category.data.translationKey);
+    const status = text(category.data.status) || "planned";
 
     if (!slug) {
       diagnostics.push(diagnostic(category.id, category.path, "slug", "TAXONOMY-001", "Category slug is required."));
+    } else if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
+      diagnostics.push(diagnostic(category.id, category.path, "slug", "TAXONOMY-012", "Category slug must use lowercase kebab-case."));
     }
     if (lang !== "id" && lang !== "en") {
       diagnostics.push(diagnostic(category.id, category.path, "lang", "TAXONOMY-002", 'Category language must be "id" or "en".'));
     }
     if (!translationKey) {
       diagnostics.push(diagnostic(category.id, category.path, "translationKey", "TAXONOMY-003", "Category translationKey is required."));
+    }
+    if (status !== "planned" && status !== "active") {
+      diagnostics.push(diagnostic(category.id, category.path, "status", "TAXONOMY-013", 'Category status must be "planned" or "active".'));
     }
 
     if (slug && lang) {
@@ -100,8 +106,15 @@ export function validateTaxonomy(
       if (record) {
         diagnostics.push(diagnostic(record.id, record.path, "translationKey", "TAXONOMY-006", `translationKey "${translationKey}" must have both id and en records.`));
       }
-    } else if (text(idRecord.data.slug) !== text(enRecord.data.slug)) {
-      diagnostics.push(diagnostic(enRecord.id, enRecord.path, "slug", "TAXONOMY-007", `Translated category records for "${translationKey}" must share the same stable slug.`));
+    } else {
+      if (text(idRecord.data.slug) !== text(enRecord.data.slug)) {
+        diagnostics.push(diagnostic(enRecord.id, enRecord.path, "slug", "TAXONOMY-007", `Translated category records for "${translationKey}" must share the same stable slug.`));
+      }
+      const idStatus = text(idRecord.data.status) || "planned";
+      const enStatus = text(enRecord.data.status) || "planned";
+      if (idStatus !== enStatus) {
+        diagnostics.push(diagnostic(enRecord.id, enRecord.path, "status", "TAXONOMY-014", `Translated category records for "${translationKey}" must share the same status.`));
+      }
     }
   }
 
