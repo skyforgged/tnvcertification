@@ -33,18 +33,23 @@ for (const file of htmlFiles) {
   const html = await readFile(file, "utf8");
   const rel = path.relative(root, file).split(path.sep).join("/");
   const pageUrl = rel === "index.html" ? "/" : rel.endsWith("/index.html") ? "/" + rel.slice(0, -"index.html".length) : "/" + rel;
-  const titleCount = (html.match(/<title(?:\s[^>]*)?>[\s\S]*?<\/title>/gi) ?? []).length;
-  const descriptionCount = (html.match(/<meta\s+name=["']description["'][^>]*>/gi) ?? []).length;
-  const canonicalMatches = [...html.matchAll(/<link\s+rel=["']canonical["']\s+href=["']([^"']+)["'][^>]*>/gi)];
-  const h1Count = (html.match(/<h1(?:\s[^>]*)?>[\s\S]*?<\/h1>/gi) ?? []).length;
-  if (titleCount !== 1) errors.push(rel + ": expected one title, found " + titleCount);
-  if (descriptionCount !== 1) errors.push(rel + ": expected one meta description, found " + descriptionCount);
-  if (canonicalMatches.length !== 1) errors.push(rel + ": expected one canonical link, found " + canonicalMatches.length);
-  if (h1Count !== 1) errors.push(rel + ": expected exactly one H1, found " + h1Count);
-  if (canonicalMatches[0]) {
-    const canonical = new URL(canonicalMatches[0][1], origin).toString();
-    if (canonicalMap.has(canonical)) errors.push("Duplicate canonical: " + canonical + " (" + canonicalMap.get(canonical) + " and " + rel + ")");
-    else canonicalMap.set(canonical, rel);
+  // Static-host redirects are lightweight HTML stubs, not indexable content pages.
+  // Validate their internal links below, but do not require editorial metadata or canonicals.
+  const isRedirect = /<meta\\b(?=[^>]*\\bhttp-equiv=["']refresh["'])[^>]*>/i.test(html);
+  const titleCount = (html.match(/<title(?:\\s[^>]*)?>[\\s\\S]*?<\\/title>/gi) ?? []).length;
+  const descriptionCount = (html.match(/<meta\\s+name=["']description["'][^>]*>/gi) ?? []).length;
+  const canonicalMatches = [...html.matchAll(/<link\\s+rel=["']canonical["']\\s+href=["']([^"']+)["'][^>]*>/gi)];
+  const h1Count = (html.match(/<h1(?:\\s[^>]*)?>[\\s\\S]*?<\\/h1>/gi) ?? []).length;
+  if (!isRedirect) {
+    if (titleCount !== 1) errors.push(rel + ": expected one title, found " + titleCount);
+    if (descriptionCount !== 1) errors.push(rel + ": expected one meta description, found " + descriptionCount);
+    if (canonicalMatches.length !== 1) errors.push(rel + ": expected one canonical link, found " + canonicalMatches.length);
+    if (h1Count !== 1) errors.push(rel + ": expected exactly one H1, found " + h1Count);
+    if (canonicalMatches[0]) {
+      const canonical = new URL(canonicalMatches[0][1], origin).toString();
+      if (canonicalMap.has(canonical)) errors.push("Duplicate canonical: " + canonical + " (" + canonicalMap.get(canonical) + " and " + rel + ")");
+      else canonicalMap.set(canonical, rel);
+    }
   }
   for (const match of html.matchAll(/\bhref=["']([^"']+)["']/gi)) {
     const href = match[1].trim();
