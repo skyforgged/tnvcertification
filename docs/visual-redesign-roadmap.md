@@ -185,14 +185,15 @@ Blocks define content composition and order; components define presentation. A b
 Complete phases in order unless an explicit dependency requires a different sequence. Do not mark a phase complete while any mandatory task inside it remains unchecked.
 
 ### P15 — Visual Design Audit & Requirements
-- [ ] Audit existing pages, layouts, components, blocks, styles, and design tokens.
-- [ ] Review existing architecture documentation and identify conflicts with the approved visual direction.
-- [ ] Inventory page types and map every route to its intended layout.
-- [ ] Inventory featured images and identify duplicate image URLs across page URLs.
-- [ ] Record visual defects and migration risks.
-- [ ] Approve the design-system specification before broad implementation.
+- [x] Audit existing pages, layouts, components, blocks, styles, and design tokens.
+- [x] Review existing architecture documentation and identify conflicts with the approved visual direction.
+- [x] Inventory page types and map every inspected route to its intended layout.
+- [ ] Complete the generated-output featured-image audit and confirm duplicate image URLs/bytes across all page URLs.
+- [x] Record visual defects and migration risks in [P15 Visual Audit Findings](./visual-audit.md).
+- [ ] Complete screenshot-based visual review at desktop, tablet, and mobile sizes.
+- [ ] Approve the detailed design-system specification before broad implementation.
 
-**Exit criteria:** audit findings, page/layout matrix, and approved design specification are documented.
+**Exit criteria:** audit findings and page/layout matrix are documented. P15 remains open until generated-output image validation, screenshot review, and detailed design-system approval are complete.
 
 ### P16 — Shared Design System
 - [ ] Define typography, color, spacing, container, border, and responsive tokens.
@@ -247,6 +248,7 @@ Complete phases in order unless an explicit dependency requires a different sequ
 | Date | Phase | Work completed | Validation | Commit |
 |---|---|---|---|---|
 | 2026-11-21 | Documentation baseline | Recorded approved visual direction and roadmap; aligned architecture visual identity section | Documentation update committed; implementation not yet started | See repository history |
+| 2026-11-21 | P15 — Visual audit | Audited layout files, route assignments, shared shell, hero, components, block renderer, global CSS, design docs, and image audit implementation; recorded findings in `docs/visual-audit.md` | Source audit completed. Production build, generated image audit, and screenshot review remain pending. | `6dcdbda` |
 
 ## 10. Change control
 
