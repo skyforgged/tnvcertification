@@ -2,7 +2,7 @@
 
 > **Purpose:** Single tracking document for the TNV Certification website redesign. Checkboxes are the source of truth for task progress. A task may be checked only after its implementation and relevant validation are complete.
 >
-> **Current status:** P15 audit findings documented; P16 shared design-system foundation and first shell components applied. CI passed for the component/layout changes. Screenshot-based visual QA and component-level accessibility review remain outstanding.
+> **Current status (2026-11-21):** P17 layout implementation and P18 block/component refinements are in progress. Core block schemas/renderer, shared content cards, schedule presentation, and shell-token alignment have been implemented. P18 remains open for shared primitive consolidation, accessibility/browser verification, and final content compatibility checks. P19 page migration and P20 release QA have not started. Latest ArticleCard hover fix is committed as `c7d3496`; its CI validation is not yet recorded.
 >
 > **Approved direction:** Premium, modern, mature, professional, corporate. This document records the latest design decisions and takes precedence over older visual proposals where they conflict.
 
@@ -219,13 +219,15 @@ Complete phases in order unless an explicit dependency requires a different sequ
 **Exit criteria:** all five layouts are implemented and connected to the correct page types. Responsive screenshot verification remains tracked in P20.
 
 ### P18 — Components & Blocks
-- [ ] Refactor shared UI primitives and content components.
-- [ ] Define/validate typed block schemas.
-- [ ] Implement central registry and order-preserving renderer.
-- [ ] Add or refine page-type-specific blocks where required.
-- [ ] Preserve existing content compatibility and localization.
+- [ ] Consolidate shared UI primitives: container variants, buttons, links, badges/status, section wrappers, and image presentation.
+- [x] Define typed block schemas with discriminated unions and minimum-content validation.
+- [x] Implement the order-preserving block renderer; central registry is intentionally deferred while the block set remains small.
+- [x] Refine shared FAQ, HowTo, and CTA block presentation, including localized headings and CTA contrast.
+- [x] Refine reusable service, training, article, and schedule-list components with semantic tokens and consistent interaction patterns.
+- [ ] Complete keyboard, focus, contrast, responsive, and browser-based visual verification for the refined components.
+- [ ] Verify existing authored content compatibility and complete the bilingual audit of block labels/content.
 
-**Exit criteria:** components and blocks are reusable, typed, accessible, and do not override layout responsibilities.
+**Exit criteria:** components and blocks are reusable, typed, accessible, and do not override layout responsibilities. Central registry remains deferred until block count or complexity justifies it.
 
 ### P19 — Page and Content Migration
 - [ ] Migrate homepage and corporate/main-menu pages.
@@ -269,7 +271,9 @@ Complete phases in order unless an explicit dependency requires a different sequ
 
 | 2026-11-21 | P18 — Component and block renderer improvements | Updated `BlockRenderer.astro` to preserve authored block order, apply readable FAQ/HowTo/CTA presentation, localize shared headings, and use high-contrast primary CTA. Added discriminated block schemas and minimum HowTo steps; passed page language from service/training routes. Reworked `ArticleCard.astro` to render canonical featured images and localized metadata; corrected homepage secondary CTA contrast. | GitHub Actions run `44894509764` passed. Browser visual, keyboard, responsive, and component-level contrast review remains outstanding. | `dcddd63` |
 
-| 2026-11-21 | P18 — Shared shell component consistency | Audited the seven current shared components. Replaced remaining slate-specific text colors with semantic design tokens in breadcrumbs/header/footer, localized breadcrumb navigation labeling, and aligned footer width/gutters/borders to the shared design system. Deferred a central registry because three block types do not yet justify registry indirection. | Source changes committed directly to main. Latest CI run for the code commit passed earlier; documentation update has a new run pending. Screenshot, keyboard, and contrast review remain pending. | `acae27f` |\n\n| 2026-11-21 | P18 — Catalog and schedule component refinement | Added dedicated `ServiceCard` and `TrainingCard` components and migrated their index pages. Refined schedule archive rows and schedule detail metadata/CTA to use shared semantic tokens, accessible contrast, consistent control radius, and responsive action sizing. Finished remaining footer token/gutter inconsistencies. | Source updates committed directly to main. Production validation for the latest commits is pending; responsive screenshots, keyboard review, and rendered contrast audit remain outstanding. | `0797069` |\n\n## 10. Change control
+| 2026-11-21 | P18 — Shared shell component consistency | Audited the seven current shared components. Replaced remaining slate-specific text colors with semantic design tokens in breadcrumbs/header/footer, localized breadcrumb navigation labeling, and aligned footer width/gutters/borders to the shared design system. Deferred a central registry because three block types do not yet justify registry indirection. | Source changes committed directly to main. Latest CI run for the code commit passed earlier; documentation update has a new run pending. Screenshot, keyboard, and contrast review remain pending. | `acae27f` |\n\n| 2026-11-21 | P18 — Catalog and schedule component refinement | Added dedicated `ServiceCard` and `TrainingCard` components and migrated their index pages. Refined schedule archive rows and schedule detail metadata/CTA to use shared semantic tokens, accessible contrast, consistent control radius, and responsive action sizing. Finished remaining footer token/gutter inconsistencies. | Source updates committed directly to main. Production validation for the latest commits is pending; responsive screenshots, keyboard review, and rendered contrast audit remain outstanding. | `0797069` |
+| 2026-11-21 | P18 — ArticleCard interaction correction | Added the missing `group` class to the ArticleCard parent so the existing image `group-hover` scale interaction can activate. No content or layout structure changed. | Commit `c7d3496` is on main. CI status for this commit has not yet been confirmed; actual hover behavior still requires browser verification. | `c7d3496` |
+## 10. Change control
 
 - Update this checklist as work progresses; do not silently remove unfinished tasks.
 - Mark a checkbox `[x]` only when the task is actually complete and verified.
