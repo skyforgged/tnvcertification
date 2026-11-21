@@ -1,0 +1,82 @@
+---
+title: "Sertifikasi Sistem Manajemen Mutu ISO 9001:2026"
+intro: "Sertifikasi Sistem Manajemen Mutu ISO 9001:2026 adalah proses penilaian kesesuaian oleh lembaga sertifikasi terhadap sistem manajemen mutu organisasi berdasarkan persyaratan edisi ISO 9001 yang berlaku."
+metaDescription: "Informasi standar ISO 9001:2026, ruang lingkup penilaian sistem manajemen mutu, tahapan audit sertifikasi, dan status pengembangan layanan TNCV."
+pubDate: "2026-11-21"
+draft: true
+id: 2
+featuredImage:
+  src: "/images/illustrations/article-iso9001-certification.webp"
+  alt: "Sertifikasi Sistem Manajemen Mutu ISO 9001:2026 adalah penilaian kesesuaian sistem mutu."
+slug: "sertifikasi-iso-9001-2026"
+translationKey: "service-sertifikasi-iso-9001-2026"
+lang: "id"
+serviceType: "Certification"
+category: "Sistem Manajemen Mutu"
+categoryIds:
+  - "quality-management"
+blocks:
+  - type: "content-section"
+    surface: "blue"
+    eyebrow: "Standar terkini"
+    title: "ISO 9001:2026 sebagai acuan sistem manajemen mutu"
+    description: "ISO 9001:2026 merupakan edisi keenam standar internasional untuk sistem manajemen mutu. Edisi ini diterbitkan pada 16 September 2026 dan menggantikan ISO 9001:2015. Organisasi perlu merujuk pada naskah resmi standar untuk memahami seluruh persyaratan yang berlaku."
+    items:
+      - title: "Fokus pada mutu"
+        description: "Standar menyediakan kerangka bagi organisasi untuk mengelola proses, memenuhi persyaratan pelanggan dan ketentuan yang berlaku, serta meningkatkan kinerja secara berkelanjutan."
+      - title: "Penerapan sesuai konteks"
+        description: "Sistem manajemen mutu diterapkan dengan mempertimbangkan konteks organisasi, jenis proses, produk atau layanan, serta kebutuhan pihak berkepentingan yang relevan."
+  - type: "content-section"
+    surface: "mint"
+    eyebrow: "Area sistem"
+    title: "Pokok bahasan dalam sistem manajemen mutu"
+    description: "Area berikut memberi gambaran umum tentang unsur sistem manajemen mutu yang dapat menjadi bagian dari penilaian kesesuaian. Daftar ini bukan pengganti persyaratan lengkap ISO 9001:2026."
+    items:
+      - title: "Konteks dan kepemimpinan"
+        description: "Konteks organisasi, kebutuhan pihak berkepentingan, arah kebijakan mutu, tanggung jawab, dan kepemimpinan."
+      - title: "Perencanaan dan risiko"
+        description: "Sasaran mutu, pengelolaan risiko dan peluang, serta perencanaan perubahan yang relevan."
+      - title: "Operasi dan pengendalian proses"
+        description: "Perencanaan operasional, pengendalian penyedia eksternal, pelaksanaan proses, dan pengendalian keluaran."
+      - title: "Evaluasi dan peningkatan"
+        description: "Pemantauan, pengukuran, audit internal, tinjauan manajemen, penanganan ketidaksesuaian, dan peningkatan."
+  - type: "content-section"
+    surface: "cream"
+    eyebrow: "Periode transisi"
+    title: "Peralihan dari ISO 9001:2015 ke ISO 9001:2026"
+    description: "Persyaratan transisi global menetapkan 30 September 2029 sebagai batas penyelesaian transisi organisasi yang telah tersertifikasi ISO 9001:2015. Jadwal dan ketentuan penerapannya mengikuti persyaratan badan akreditasi serta lembaga sertifikasi yang relevan. Organisasi perlu mengonfirmasi ketentuan yang berlaku bagi sertifikatnya kepada lembaga sertifikasi penerbit."
+    items:
+      - title: "Tinjau informasi resmi"
+        description: "Gunakan publikasi ISO dan dokumen transisi dari badan akreditasi yang relevan sebagai sumber utama."
+      - title: "Rencanakan transisi"
+        description: "Organisasi bersertifikat perlu mengatur penyesuaian sistem dan waktu audit transisi sesuai ketentuan lembaga sertifikasi penerbit."
+  - type: "faq"
+    surface: "coral"
+    items:
+      - question: "Apakah ISO 9001:2026 sudah menggantikan ISO 9001:2015?"
+        answer: "Ya. ISO 9001:2026 diterbitkan pada 16 September 2026 dan menjadi edisi terkini. ISO 9001:2015 tercatat sebagai edisi yang telah ditarik pada katalog resmi ISO."
+      - question: "Apakah organisasi yang memiliki sertifikat ISO 9001:2015 harus melakukan transisi?"
+        answer: "Organisasi yang telah tersertifikasi perlu menyelesaikan transisi sesuai jadwal dan ketentuan yang berlaku. Batas global yang diumumkan adalah 30 September 2029, dengan penerapan mengikuti persyaratan transisi yang relevan."
+      - question: "Apakah TNCV saat ini menerima permohonan sertifikasi ISO 9001:2026?"
+        answer: "Halaman ini masih berstatus draft. Ketersediaan layanan, ruang lingkup, dan kewenangan TNCV belum dinyatakan disetujui untuk publikasi. Informasi resmi hanya akan ditampilkan setelah proses verifikasi internal selesai."
+---
+# Sertifikasi Sistem Manajemen Mutu ISO 9001:2026
+
+Sertifikasi Sistem Manajemen Mutu ISO 9001:2026 adalah proses penilaian kesesuaian oleh lembaga sertifikasi terhadap sistem manajemen mutu organisasi berdasarkan persyaratan edisi ISO 9001 yang berlaku.
+
+## Status pengembangan layanan
+
+Informasi pada halaman ini disusun untuk pengembangan katalog layanan. **Layanan sertifikasi ISO 9001:2026 TNCV belum dinyatakan tersedia.** Katalog internal masih mencatat skema ISO 9001 sebagai rencana, dan ruang lingkup serta kewenangan yang diperlukan masih harus diverifikasi.
+
+Publikasi halaman ini tidak merupakan pernyataan bahwa TNCV telah memperoleh akreditasi, pengakuan, atau kewenangan untuk menerbitkan sertifikat ISO 9001:2026.
+
+## Proses sertifikasi secara umum
+
+Apabila layanan kelak disetujui dan tersedia, proses sertifikasi sistem manajemen mutu pada umumnya mencakup pengajuan, penetapan ruang lingkup, perencanaan audit, audit tahap pertama bila berlaku, audit tahap kedua, penyelesaian temuan, tinjauan keputusan sertifikasi, dan surveilans sesuai siklus sertifikasi. Ketentuan aktual akan mengikuti skema, standar, dan prosedur lembaga sertifikasi yang berwenang.
+
+## Referensi resmi
+
+- [ISO 9001:2026 — Quality management systems — Requirements](https://www.iso.org/standard/9001)
+- [ISO announcement: ISO 9001:2026 published on 16 September 2026](https://www.iso.org/news/2026/09/ISO9001-2026)
+- [ISO/TC 176/SC 2 — ISO 9001:2026 transition guidance](https://committee.iso.org/sites/tc176sc2/home/news/content-left-area/news-and-updates/news-2.html)
+
