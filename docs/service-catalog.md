@@ -125,7 +125,6 @@ The providers below are grouped by the service they publicly advertise. A provid
 | AhliK3.id | Document review, scoring simulation, and prequalification preparation (from preliminary desk research) | Not confirmed | Readiness / advisory | Confirm whether this is a current standalone offer and identify the applicable principal scheme |
 | Serkom.co.id | K3 management documentation (from preliminary desk research) | Not confirmed | Documentation support | CSMS-specific scope requires further verification |
 | Segoro Interkon | CSMS training (from preliminary desk research) | Not confirmed | Training | Confirm current course availability and certificate issuer |
-| BMD Training Centre | CSMS training (also listed above) | See row above | Training / competency pathway | Duplicate mention consolidated; count once |
 
 **Count and interpretation:** the table contains more than ten named market participants, but the strength of public evidence differs. The first twelve rows have a directly identified public CSMS offer in the current desk-research set; the remaining entries are retained as leads from preliminary research and require revalidation. Do not present all entries as equally verified or as accredited certification bodies.
 
