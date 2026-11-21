@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated merge commit: `e4f3bc2`
+- Validated commit: `221d7bc` (merge `0f418b2` plus integration fix)
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -75,7 +75,7 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-Local full validation ran on `main` at merge commit `e4f3bc2` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
+Local full validation ran on `main` at `221d7bc` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
 
 | Command | Result |
 |---|---|
@@ -84,8 +84,9 @@ Local full validation ran on `main` at merge commit `e4f3bc2` with the pinned No
 | `npm run typecheck` | PASS, exit `0` |
 | `npm run lint` | PASS, exit `0` |
 | `npm run test` | PASS, exit `0`, 33 tests |
+| `npm run audit:seo` | PASS, exit `0`, 13 pages and 13 unique canonicals |
 
-GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test and build on pull requests and pushes to `main`. No CI run result was independently verifiable in this environment. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
+GitHub Actions workflow `.github/workflows/quality.yml` is present and configured for install, check, lint, test, build and the post-build SEO audit on pull requests and pushes to `main`. No CI run result was independently verifiable in this environment. Build success above comes from local execution on the pinned toolchain, not from CI. Non-fatal warnings remain for bilingual category records sharing one slug across languages and for empty content collections.
 
 
 ## P5 completion — certification scheme catalog and CI
@@ -179,3 +180,13 @@ Branch: `feat/content-breadcrumbs` (merged at `e4f3bc2`).
 - Article and service detail pages now show Home → archive → current page trails.
 - Archive indexes carried updated context labels. SEO metadata, JSON-LD, and related-article sections were preserved.
 - See `docs/content-breadcrumbs.md` for scope and validation notes. Visual and keyboard review remain separate manual tasks.
+
+
+## P12 — Technical SEO and internal link integrity
+
+Branch: `feat/seo-link-integrity` (merged at `0f418b2`).
+
+- Added `scripts/audit-seo-build.mjs` and `npm run audit:seo` for title, meta description, canonical, H1, internal-link and sitemap checks.
+- The quality workflow runs the audit after the production build.
+- Integration fix at `221d7bc`: layouts no longer duplicate the validated H1 and intro from markdown content. The audit found two H1s on nine article pages and the corporate page; the rendered document now has one H1.
+- See `docs/technical-seo-audit.md` for scope and validation notes. Browser verification remains a separate manual task.
