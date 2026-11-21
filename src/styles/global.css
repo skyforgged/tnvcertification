@@ -12,6 +12,7 @@
   /* Brand palette */
   --color-brand-blue: #315cff;
   --color-brand-deepblue: #1736a8;
+  --color-brand-deepblue-hover: #2449c7;
   --color-brand-orange: #ff6b35;
   --color-brand-yellow: #ffd447;
   --color-brand-mint: #36c9a5;
@@ -27,6 +28,43 @@
   --color-ink-subtle: #697586;
   --color-border: #dce2ea;
   --color-border-strong: #b8c2d0;
+
+  /* Content block surfaces: background / line / heading / body / divider. */
+  --color-block-white: #ffffff;
+  --color-block-white-line: #dce2ea;
+  --color-block-white-heading: #172033;
+  --color-block-white-body: #536174;
+  --color-block-white-divider: #dce2ea;
+
+  --color-block-blue: #eef3ff;
+  --color-block-blue-line: #d7e2ff;
+  --color-block-blue-heading: #1736a8;
+  --color-block-blue-body: #34476f;
+  --color-block-blue-divider: #cbd8f4;
+
+  --color-block-navy: #1736a8;
+  --color-block-navy-line: #1736a8;
+  --color-block-navy-heading: #ffffff;
+  --color-block-navy-body: #dbeafe;
+  --color-block-navy-divider: rgb(255 255 255 / 0.2);
+
+  --color-block-mint: #eaf8f3;
+  --color-block-mint-line: #c7eee3;
+  --color-block-mint-heading: #145b4a;
+  --color-block-mint-body: #365f55;
+  --color-block-mint-divider: #c7e6dc;
+
+  --color-block-coral: #fff1eb;
+  --color-block-coral-line: #f6d4c9;
+  --color-block-coral-heading: #8d3e2b;
+  --color-block-coral-body: #704d43;
+  --color-block-coral-divider: #f2d5ca;
+
+  --color-block-cream: #fbf7eb;
+  --color-block-cream-line: #eee4c8;
+  --color-block-cream-heading: #55451e;
+  --color-block-cream-body: #655b43;
+  --color-block-cream-divider: #e9dfc5;
 
   /* Backwards-compatible legacy token; now white-dominant. */
   --color-cream: #ffffff;
@@ -120,5 +158,11 @@
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
+  }
+}
+
+@layer components {
+  .block-section {
+    @apply border-y px-5 py-8 sm:px-9 sm:py-10;
   }
 }
