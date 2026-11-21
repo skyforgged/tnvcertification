@@ -17,7 +17,9 @@ const { title, description, lang, canonical, ogImage, imageAlt, blocks = [], str
 <Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage} structuredData={structuredData}>
   <article class="w-full">
     <Breadcrumbs items={[{ label: "Beranda", href: "/" }, { label: "Layanan", href: "/services/" }, { label: title }]} />
-    {ogImage && <img data-page-image src={ogImage} alt={imageAlt} width="1200" height="675" loading="eager" fetchpriority="high" class="mb-8 aspect-video w-full max-w-3xl rounded-xl object-cover" />}
+    {ogImage && <figure class="mb-8 max-w-5xl overflow-hidden rounded-xl border border-border bg-surface-muted">
+      <img data-page-image src={ogImage} alt={imageAlt} width="1200" height="675" loading="eager" decoding="async" fetchpriority="high" class="aspect-video w-full object-cover" />
+    </figure>}
     <div class="prose mt-8 max-w-3xl">
       <slot />
     </div>
@@ -32,12 +34,12 @@ const { title, description, lang, canonical, ogImage, imageAlt, blocks = [], str
     line-height: 1.2;
     font-weight: 600;
     letter-spacing: -0.025em;
-    color: var(--color-brand-deepblue);
+    color: var(--color-ink);
   }
   .prose :global(h1 + p) {
     margin-top: 0.75rem;
     font-size: 1.125rem;
     line-height: 1.75;
-    color: #334155;
+    color: var(--color-ink-muted);
   }
 </style>
