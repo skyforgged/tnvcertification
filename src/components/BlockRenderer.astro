@@ -44,6 +44,14 @@ const surfaces: Record<string, SurfaceStyles> = {
   },
 };
 
+interface ContentSectionBlock {
+  type: "content-section";
+  surface?: keyof typeof surfaces;
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  items?: Array<{ title: string; description: string }>;
+}
 interface FaqBlock {
   type: "faq";
   surface?: keyof typeof surfaces;
@@ -66,7 +74,7 @@ interface CtaBlock {
   description?: string;
   link?: { label: string; url: string };
 }
-export type Block = FaqBlock | HowToBlock | CtaBlock;
+export type Block = ContentSectionBlock | FaqBlock | HowToBlock | CtaBlock;
 interface Props {
   blocks?: Block[];
   lang?: string;
@@ -88,7 +96,24 @@ const ctaClass = (variant?: CtaBlock["variant"], surface?: keyof typeof surfaces
   {blocks.map((block, index) => {
     const surface = block.surface ?? palette[index % palette.length] ?? "white";
     const style = surfaces[surface];
-    return block.type === "faq" ? (
+    return block.type === "content-section" ? (
+      <section class:list={["px-5 py-8 sm:px-9 sm:py-10", style.section]}>
+        {block.eyebrow && <p class:list={["text-xs font-bold uppercase tracking-[0.16em]", style.body]}>{block.eyebrow}</p>}
+        <h2 class:list={["mt-2 text-2xl font-semibold tracking-tight sm:text-3xl", style.heading]}>{block.title}</h2>
+        {block.description && <p class:list={["mt-4 max-w-[var(--container-reading)] leading-relaxed", style.body]}>{block.description}</p>}
+        {block.items && (
+          <ul class="mt-7 grid gap-x-10 gap-y-6 sm:grid-cols-2">
+            {block.items.map((item, itemIndex) => (
+              <li class:list={["border-t pt-4", style.divider.replace("divide-", "border-")]}>
+                <span class:list={["text-xs font-bold tabular-nums", style.body]}>{String(itemIndex + 1).padStart(2, "0")}</span>
+                <h3 class:list={["mt-2 text-lg font-semibold", style.heading]}>{item.title}</h3>
+                <p class:list={["mt-2 leading-relaxed", style.body]}>{item.description}</p>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+    ) : block.type === "faq" ? (
       <section class:list={["px-5 py-8 sm:px-9 sm:py-10", style.section]} aria-label={faqHeading}>
         <h2 class:list={["text-2xl font-semibold tracking-tight sm:text-3xl", style.heading]}>{faqHeading}</h2>
         <dl class:list={["mt-6 divide-y", style.divider]}>
