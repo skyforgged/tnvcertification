@@ -191,3 +191,23 @@ test("published articles require publication date and featured image", () => {
   assert.ok(diagnostics.some((d) => d.rule === "CONTENT-007"));
   assert.ok(diagnostics.some((d) => d.rule === "CONTENT-012"));
 });
+
+
+test("consultation terminology is rejected in body and nested frontmatter block copy", () => {
+  const bodyDiagnostics = validateEntry(makeEntry({
+    body: "# Judul Uji\\n\\nJudul Uji adalah penjelasan yang valid.\\n\\n## Informasi\\n\\nSilakan konsultasikan kebutuhan.",
+  }));
+  assert.ok(bodyDiagnostics.some((d) => d.rule === "CONTENT-013"));
+
+  const blockDiagnostics = validateEntry(makeEntry({
+    data: { blocks: [{ type: "cta", title: "Konsultasi gratis", link: { label: "Consult our team", url: "https://example.com" } }] },
+  }));
+  assert.ok(blockDiagnostics.some((d) => d.rule === "CONTENT-013"));
+});
+
+test("certification-focused wording passes consultation terminology validation", () => {
+  const diagnostics = validateEntry(makeEntry({
+    data: { blocks: [{ type: "cta", title: "Ajukan Sertifikasi", link: { label: "Informasi Sertifikasi", url: "https://example.com" } }] },
+  }));
+  assert.equal(diagnostics.filter((d) => d.rule === "CONTENT-013").length, 0);
+});
