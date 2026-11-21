@@ -267,6 +267,8 @@ Complete phases in order unless an explicit dependency requires a different sequ
 
 | 2026-11-21 | P17 — Page-width normalization | Added standard (64rem), wide (72rem), landing (76rem), and reading (48rem) container tokens. Bounded the shared page shell; applied wide limits to service, training, and schedule archive pages; kept schedule detail narrower and article pages reading-focused. | Source changes committed directly to main. Production build and screenshot-based responsive review are still required; do not treat this as visually signed off. | `745dad2` |
 
+| 2026-11-21 | P18 — Component and block renderer improvements | Updated `BlockRenderer.astro` to render blocks in authored order, use readable FAQ/HowTo/CTA presentation, use high-contrast deep-blue primary CTA, and localize block headings by page language. Changed the content schema to a discriminated union and require at least one HowTo step. Passed page language from service/training routes. Reworked `ArticleCard.astro` to render canonical featured images and localized date/category labels; corrected the homepage secondary CTA contrast. | Implementation committed directly to main. Latest CI run is pending; do not mark P18 tasks complete until CI passes. Browser visual, keyboard, and contrast review remains outstanding. | `18537e7` |
+
 ## 10. Change control
 
 - Update this checklist as work progresses; do not silently remove unfinished tasks.
