@@ -222,6 +222,8 @@ Use the controlled versions of:
 - [CSMS Document Control & Record Retention](document-control-retention.md)
 - [CSMS Source Verification & Sampling Record](source-verification-and-sampling.md)
 - [CSMS Pilot Remediation Register](pilot-remediation-register.md)
+- [CSMS Management Decision & Approval Register](management-approval-register.md)
+- [CSMS Roles, Responsibilities & Resource Readiness Plan](roles-responsibilities-resource-plan.md)
 
 The competence, impartiality, and document-control frameworks must be approved and implemented before assigning personnel, accepting sensitive client evidence, or issuing deliverables.
 
