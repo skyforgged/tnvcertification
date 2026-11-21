@@ -1,0 +1,75 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import BlockRenderer from "../../components/BlockRenderer.astro";
+
+export async function getStaticPaths() {
+  const trainings = await getCollection(
+    "training",
+    ({ data }) => data.draft !== true && data.lang === "id",
+  );
+  return trainings.map((training) => ({
+    params: { slug: training.data.slug },
+    props: { training },
+  }));
+}
+
+const { training } = Astro.props;
+const { Content } = await render(training);
+const schedules = await getCollection(
+  "trainingSchedules",
+  ({ data }) =>
+    data.trainingSlug === training.data.slug &&
+    data.registrationStatus !== "cancelled",
+);
+const formatDate = (value: string) =>
+  new Date(`${value}T00:00:00Z`).toLocaleDateString("id-ID", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+const statusLabel = (status?: string) => ({
+  open: "Pendaftaran dibuka",
+  closed: "Pendaftaran ditutup",
+  full: "Kuota terpenuhi",
+}[status ?? ""] ?? "Informasi pendaftaran menyusul");
+---
+<Layout
+  title={`${training.data.title} | Pelatihan | PT. Intiprima Sertifikasi`}
+  description={training.data.metaDescription}
+  canonical={`/trainings/${training.data.slug}/`}
+  lang={training.data.lang}
+  ogImage={training.data.featuredImage.src}
+>
+  <article class="w-full">
+    <Breadcrumbs items={[{ label: "Beranda", href: "/" }, { label: "Pelatihan", href: "/trainings/" }, { label: training.data.title }]} />
+    <div class="prose mt-8 max-w-3xl">
+      <Content />
+    </div>
+    <BlockRenderer blocks={training.data.blocks ?? []} />
+
+    <section class="mt-12 border-t border-brand-blue/15 pt-8" aria-labelledby="jadwal-pelatihan">
+      <h2 id="jadwal-pelatihan" class="text-2xl font-semibold text-brand-deepblue">Jadwal pelatihan</h2>
+      {schedules.length > 0 ? (
+        <div class="mt-6 grid gap-5 md:grid-cols-2">
+          {schedules.map((schedule) => (
+            <article class="rounded-xl border border-brand-blue/15 bg-white p-5">
+              <h3 class="text-lg font-semibold text-brand-deepblue">{formatDate(schedule.data.startDate)} – {formatDate(schedule.data.endDate)}</h3>
+              <p class="mt-2 text-sm text-slate-700">{schedule.data.locationType === "online" ? "Online" : schedule.data.locationType === "hybrid" ? "Hybrid" : schedule.data.locationType === "offline" ? "Tatap muka" : "Lokasi menyusul"}</p>
+              {(schedule.data.venue || schedule.data.city) && <p class="mt-1 text-sm text-slate-700">{[schedule.data.venue, schedule.data.city, schedule.data.province].filter(Boolean).join(", ")}</p>}
+              <p class="mt-3 text-sm font-medium text-brand-deepblue">{statusLabel(schedule.data.registrationStatus)}</p>
+              {schedule.data.price !== undefined && <p class="mt-2 text-sm text-slate-700">Biaya: {schedule.data.currency === "IDR" || !schedule.data.currency ? "Rp " : `${schedule.data.currency} `}{schedule.data.price.toLocaleString("id-ID")}</p>}
+              {schedule.data.registrationUrl && schedule.data.registrationStatus === "open" && (
+                <a href={schedule.data.registrationUrl} class="mt-4 inline-flex rounded-full bg-brand-blue px-4 py-2 text-sm font-semibold text-white hover:bg-brand-deepblue">Daftar pelatihan</a>
+              )}
+            </article>
+          ))}
+        </div>
+      ) : (
+        <p class="mt-3 text-slate-700">Belum ada jadwal yang dipublikasikan untuk program ini.</p>
+      )}
+    </section>
+  </article>
+</Layout>
