@@ -56,18 +56,20 @@ Layouts are selected by page purpose. They may share primitives and components, 
 | `ServiceLayout.astro` | Certification/service detail pages | Service scope, benefits, process, evidence, FAQs, and next steps |
 | `ArticleLayout.astro` | Articles and editorial content | Reading-focused typography, metadata, article body, and related content |
 | `TrainingLayout.astro` | Training/course detail pages | Course overview, objectives, audience, curriculum, delivery, schedule references, and registration |
-| `ScheduleLayout.astro` | Schedule archive and schedule/batch detail pages | Schedule discovery, dates, status, delivery mode, venue, training relationship, and registration |
+| `ScheduleArchiveLayout.astro` | Schedule archive/listing page | Schedule-specific hero and discovery/list composition within the shared site shell |
+| `ScheduleLayout.astro` | Individual schedule/batch detail pages | Dates, status, delivery mode, venue, training relationship, and registration |
 
 ### 2.2 Layout implementation tracking
 - [x] Audit current layouts and all route-to-layout assignments.
 - [ ] Define the shared shell used by all layouts (site header, navigation, footer, SEO, breadcrumbs where appropriate).
-- [ ] Design and implement `WidePageLayout.astro`.
-- [ ] Design and implement `ServiceLayout.astro`.
-- [ ] Design and implement `ArticleLayout.astro`.
-- [ ] Design and implement `TrainingLayout.astro`.
-- [ ] Design and implement `ScheduleLayout.astro`.
-- [ ] Confirm `ScheduleLayout` is used for schedule listing/detail routes where appropriate—not an article or training layout by convenience.
-- [ ] Confirm all layouts use shared design tokens and UI primitives.
+- [x] Design and implement `WidePageLayout.astro`.
+- [x] Design and implement `ServiceLayout.astro`.
+- [x] Design and implement `ArticleLayout.astro`.
+- [x] Design and implement `TrainingLayout.astro`.
+- [x] Refine `ScheduleLayout.astro` for individual schedule/batch detail presentation.
+- [x] Add `ScheduleArchiveLayout.astro` for the schedule listing route.
+- [x] Confirm `/schedules/` uses `ScheduleArchiveLayout`; keep `ScheduleLayout` for individual schedule detail routes when schedule records and detail routes are introduced.
+- [x] Confirm all current purpose-specific layouts inherit the shared site shell through `Layout.astro`; align service and schedule detail styling to shared semantic tokens.
 - [ ] Confirm responsive behavior at mobile, tablet, laptop, and wide desktop sizes.
 
 ## 3. Component architecture
@@ -254,6 +256,7 @@ Complete phases in order unless an explicit dependency requires a different sequ
 | 2026-11-21 | P16 — Shared design system foundation | Defined semantic color, typography, spacing/container, border/radius, image, hero, section, button, card, form, responsive, and accessibility rules; updated global CSS token foundation and white-dominant base surface | Source-level changes committed. Build, contrast verification, and representative-page visual review remain pending. | 7788cca |
 
 | 2026-11-21 | P16 — Shared design system application | Applied the shared system to the main-menu hero, page canvas, site header, and footer; replaced decorative blue hero panel with restrained editorial split composition; removed pill-style active navigation; aligned shell widths to shared wide container | GitHub Actions run `44890885770` passed type/Astro checks, lint, tests, production build, page-image uniqueness, and SEO/link audit. Screenshot review and component-level interaction/contrast review remain pending. | `538927a` |
+| 2026-11-21 | P17 — Schedule archive layout | Added `ScheduleArchiveLayout.astro` to give the schedule listing its own hero and schedule-specific page composition; migrated `/schedules/` from the generic wide wrapper. Removed the now-unused site settings import after CI caught it. | First CI attempt failed only on the unused import; corrected in `a403e9b`. Latest GitHub Actions run `44891990470` passed type/Astro checks, lint, tests, production build, page-image uniqueness, and SEO/link audit. | `a403e9b` |
 | 2026-11-21 | P17 — Detail layout consistency | Aligned service and schedule detail layouts with shared semantic tokens, restrained borders, consistent image framing, readable content widths, and accessible blue registration CTA (replacing white-on-orange text with insufficient contrast). | GitHub Actions run `44891724985` passed type/Astro checks, lint, tests, production build, page-image uniqueness, and SEO/link audit. Browser screenshot and keyboard-state review remain pending. | `f44d634` |
 | 2026-11-21 | P17 — Wide page layout and index migration | Added `WidePageLayout.astro` as a shared wide corporate/catalog shell and applied it to `/services/`, `/csms/`, `/schedules/`, and `/trainings/`. The schedule index is a listing page, so it uses the wide shell rather than event-detail metadata; `ScheduleLayout` remains reserved for a future individual schedule route. | GitHub Actions run `44891590583` passed type/Astro checks, lint, tests, production build, page-image uniqueness, and SEO/link audit. Visual screenshot review remains pending. | `92a2678` |
 | 2026-11-21 | P17 — Training detail layout | Added `TrainingLayout.astro` with shared site shell, localized breadcrumbs, canonical featured-image presentation, and a content slot; migrated the training detail route to use it while retaining the existing content blocks and schedule section. | GitHub Actions validation is pending for commits `093fa9a` and `e3de529`. Responsive and visual review remains pending. | `e3de529` |
