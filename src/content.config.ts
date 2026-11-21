@@ -16,8 +16,11 @@ const imageObjectSchema = z.object({
 });
 
 // --- Shared blocks (discriminated union) ---
+// Explicit surface overrides the renderer's accessible alternating section palette.
+const sectionSurfaceSchema = z.enum(["white", "blue", "navy", "mint", "coral", "cream"]);
 const faqBlock = z.object({
   type: z.literal("faq"),
+  surface: sectionSurfaceSchema.optional(),
   items: z
     .array(
       z.object({
@@ -30,6 +33,7 @@ const faqBlock = z.object({
 
 const howToBlock = z.object({
   type: z.literal("howto"),
+  surface: sectionSurfaceSchema.optional(),
   steps: z.array(
     z.object({
       title: z.string().min(1),
@@ -41,6 +45,7 @@ const howToBlock = z.object({
 
 const ctaBlock = z.object({
   type: z.literal("cta"),
+  surface: sectionSurfaceSchema.optional(),
   variant: z.enum(["primary", "secondary", "ghost"]).optional().default("primary"),
   title: z.string().optional(),
   description: z.string().optional(),
