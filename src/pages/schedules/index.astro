@@ -1,6 +1,5 @@
 ---
-import WidePageLayout from "../../layouts/WidePageLayout.astro";
-import MainMenuHero from "../../components/MainMenuHero.astro";
+import ScheduleArchiveLayout from "../../layouts/ScheduleArchiveLayout.astro";
 import { getCollection } from "astro:content";
 import { siteSettings } from "../../site";
 
@@ -42,21 +41,14 @@ const statusLabel = (status?: string) => ({
 }[status ?? ""] ?? "Informasi pendaftaran menyusul");
 ---
 
-<WidePageLayout
-  title={`Jadwal Pelatihan | ${siteSettings.title}`}
-  description="Agenda pelaksanaan pelatihan, tanggal kelas, lokasi, biaya, kuota, dan informasi pendaftaran."
+<ScheduleArchiveLayout
+  title="Jadwal Pelatihan"
+  description="Temukan agenda kelas dan pelaksanaan program pelatihan, termasuk tanggal, metode, lokasi, biaya, kuota, serta status pendaftaran. Jadwal dikelola terpisah dari informasi program agar perubahan pelaksanaan dapat diperbarui tanpa mengubah halaman program."
   canonical="/schedules/"
   lang="id"
-  ogImage="/images/illustrations/schedules-calendar.webp"
+  image="/images/illustrations/schedules-calendar.webp"
+  imageAlt="Ilustrasi kalender agenda kelas dan jadwal pelaksanaan pelatihan"
 >
-  <section class="w-full space-y-10">
-    <MainMenuHero
-      eyebrow="Training Schedule"
-      title="Jadwal Pelatihan"
-      description="Temukan agenda kelas dan pelaksanaan program pelatihan, termasuk tanggal, metode, lokasi, biaya, kuota, serta status pendaftaran. Jadwal dikelola terpisah dari informasi program agar perubahan pelaksanaan dapat diperbarui tanpa mengubah halaman program."
-      image="/images/illustrations/schedules-calendar.webp"
-      imageAlt="Ilustrasi kalender agenda kelas dan jadwal pelaksanaan pelatihan"
-    />
 
     {publishedSchedules.length > 0 ? (
       <div class="divide-y divide-brand-blue/15 border-y border-brand-blue/15">
@@ -108,5 +100,4 @@ const statusLabel = (status?: string) => ({
         <a href="/trainings/" class="mt-5 inline-flex font-semibold text-brand-blue underline underline-offset-4">Lihat katalog pelatihan →</a>
       </div>
     )}
-  </section>
-</WidePageLayout>
+</ScheduleArchiveLayout>
