@@ -1,5 +1,6 @@
 ---
-import { blockAnchorId, type BlockAnchorSource } from "../lib/block-ids";\nimport CtaSection from "./CtaSection.astro";
+import { blockAnchorId, type BlockAnchorSource } from "../lib/block-ids";
+import CtaSection from "./CtaSection.astro";
 
 interface SurfaceStyles {
   section: string;
@@ -223,6 +224,7 @@ const ctaClass = (variant?: CtaBlock["variant"], surface?: Surface) =>
         headingClass={style.heading}
         bodyClass={style.body}
         buttonClass={ctaClass(block.variant, surface)}
+        ariaLabel={block.title ?? ctaHeading}
         title={block.title}
         description={block.description}
         link={block.link}
