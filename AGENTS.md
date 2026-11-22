@@ -5,7 +5,7 @@ Build and maintain the PT. Intiprima Sertifikasi website as a polished, content-
 
 ## Work rules
 - Read relevant existing code and documentation before changing it. Follow the established patterns unless there is a concrete reason to improve them.
-- Commit directly to `main`; do not create pull requests or feature branches unless explicitly requested.
+- Commit directly to `main` only when working in the upstream repository (`tnvcertification/tnvcertification`). When working in a fork, create a branch from the latest `upstream/main`, commit there, and open a pull request against upstream `main`; do not commit fork work directly to the fork's `main`.
 - Keep changes focused. Do not rewrite unrelated files, introduce speculative abstractions, or add dependencies without a clear need.
 - Report what changed, validation performed, and any validation that could not be run. Never claim tests/builds succeeded without actually running them.
 - Before merge, release validation, push, or merged-branch deletion work, read `docs/agent-operational-memory.md`.
