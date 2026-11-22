@@ -1,74 +1,76 @@
 ---
+import { blockAnchorId, type BlockAnchorSource } from "../lib/block-ids";
+
 interface SurfaceStyles {
   section: string;
   heading: string;
   body: string;
   divider: string;
 }
-const surfaces: Record<"white" | "blue" | "navy" | "mint" | "coral" | "cream", SurfaceStyles> = {
+type Surface = "white" | "blue" | "navy" | "mint" | "coral" | "cream";
+const surfaces: Record<Surface, SurfaceStyles> = {
   white: {
-    section: "border-y border-border bg-white",
-    heading: "text-ink",
-    body: "text-ink-muted",
-    divider: "divide-border",
+    section: "border-block-white-line bg-block-white",
+    heading: "text-block-white-heading",
+    body: "text-block-white-body",
+    divider: "divide-block-white-divider",
   },
   blue: {
-    section: "border-y border-[#d7e2ff] bg-[#eef3ff]",
-    heading: "text-[#1736a8]",
-    body: "text-[#34476f]",
-    divider: "divide-[#cbd8f4]",
+    section: "border-block-blue-line bg-block-blue",
+    heading: "text-block-blue-heading",
+    body: "text-block-blue-body",
+    divider: "divide-block-blue-divider",
   },
   navy: {
-    section: "border-y border-[#1736a8] bg-[#1736a8]",
-    heading: "text-white",
-    body: "text-blue-100",
-    divider: "divide-white/20",
+    section: "border-block-navy-line bg-block-navy",
+    heading: "text-block-navy-heading",
+    body: "text-block-navy-body",
+    divider: "divide-block-navy-divider",
   },
   mint: {
-    section: "border-y border-[#c7eee3] bg-[#eaf8f3]",
-    heading: "text-[#145b4a]",
-    body: "text-[#365f55]",
-    divider: "divide-[#c7e6dc]",
+    section: "border-block-mint-line bg-block-mint",
+    heading: "text-block-mint-heading",
+    body: "text-block-mint-body",
+    divider: "divide-block-mint-divider",
   },
   coral: {
-    section: "border-y border-[#f6d4c9] bg-[#fff1eb]",
-    heading: "text-[#8d3e2b]",
-    body: "text-[#704d43]",
-    divider: "divide-[#f2d5ca]",
+    section: "border-block-coral-line bg-block-coral",
+    heading: "text-block-coral-heading",
+    body: "text-block-coral-body",
+    divider: "divide-block-coral-divider",
   },
   cream: {
-    section: "border-y border-[#eee4c8] bg-[#fbf7eb]",
-    heading: "text-[#55451e]",
-    body: "text-[#655b43]",
-    divider: "divide-[#e9dfc5]",
+    section: "border-block-cream-line bg-block-cream",
+    heading: "text-block-cream-heading",
+    body: "text-block-cream-body",
+    divider: "divide-block-cream-divider",
   },
 };
 
-interface ContentSectionBlock {
+interface BlockBase extends BlockAnchorSource {
+  surface?: Surface;
+}
+interface ContentSectionBlock extends BlockBase {
   type: "content-section";
-  surface?: keyof typeof surfaces;
-  eyebrow?: string;
   title: string;
+  eyebrow?: string;
   description?: string;
   items?: Array<{ title: string; description: string }>;
 }
-interface FaqBlock {
+interface FaqBlock extends BlockBase {
   type: "faq";
-  surface?: keyof typeof surfaces;
   items: Array<{ question: string; answer: string }>;
 }
-interface HowToBlock {
+interface HowToBlock extends BlockBase {
   type: "howto";
-  surface?: keyof typeof surfaces;
   steps: Array<{
     title: string;
     description: string;
     image?: { src: string; alt: string; caption?: string };
   }>;
 }
-interface CtaBlock {
+interface CtaBlock extends BlockBase {
   type: "cta";
-  surface?: keyof typeof surfaces;
   variant?: "primary" | "secondary" | "ghost";
   title?: string;
   description?: string;
@@ -82,27 +84,30 @@ interface Props {
 const { blocks = [], lang = "id" } = Astro.props;
 const faqHeading = lang === "en" ? "Frequently asked questions" : "Pertanyaan Umum";
 const howToHeading = lang === "en" ? "Certification process" : "Proses Sertifikasi";
-const palette: Array<keyof typeof surfaces> = ["blue", "mint", "cream", "coral", "white", "navy"];
-const ctaClass = (variant?: CtaBlock["variant"], surface?: keyof typeof surfaces) =>
+const ctaHeading = lang === "en" ? "Certification information" : "Informasi sertifikasi";
+const palette: Surface[] = ["blue", "mint", "cream", "coral", "white", "navy"];
+const ctaClass = (variant?: CtaBlock["variant"], surface?: Surface) =>
   variant === "secondary"
     ? "border border-current bg-transparent text-current hover:bg-black/5"
     : variant === "ghost"
       ? "text-current underline decoration-current underline-offset-4 hover:opacity-75"
       : surface === "navy"
-        ? "bg-white text-[#1736a8] hover:bg-blue-50"
-        : "bg-[#1736a8] text-white hover:bg-[#2449c7]";
+        ? "bg-white text-brand-deepblue hover:bg-blue-50"
+        : "bg-brand-deepblue text-white hover:bg-brand-deepblue-hover";
 ---
 <div class="space-y-10 sm:space-y-14">
   {blocks.map((block, index) => {
     const surface = block.surface ?? palette[index % palette.length] ?? "white";
     const style = surfaces[surface];
+    const id = blockAnchorId(block, index);
+    const semanticClasses = ["block-section", `block-section--${block.type}`, `block-section--surface-${surface}`];
     return block.type === "content-section" ? (
-      <section class:list={["px-5 py-8 sm:px-9 sm:py-10", style.section]}>
+      <section id={id} aria-labelledby={`${id}-heading`} class:list={[...semanticClasses, style.section]}>
         {block.eyebrow && <p class:list={["text-xs font-bold uppercase tracking-[0.16em]", style.body]}>{block.eyebrow}</p>}
-        <h2 class:list={["mt-2 text-2xl font-semibold tracking-tight sm:text-3xl", style.heading]}>{block.title}</h2>
+        <h2 id={`${id}-heading`} class:list={["mt-2 text-2xl font-semibold tracking-tight sm:text-3xl", style.heading]}>{block.title}</h2>
         {block.description && <p class:list={["mt-4 max-w-[var(--container-reading)] leading-relaxed", style.body]}>{block.description}</p>}
         {block.items && (
-          <ul class="mt-7 grid gap-x-10 gap-y-6 sm:grid-cols-2">
+          <ul class:list={["mt-7 grid gap-x-10 gap-y-6 sm:grid-cols-2", style.divider]}>
             {block.items.map((item, itemIndex) => (
               <li class:list={["border-t pt-4", style.divider.replace("divide-", "border-")]}>
                 <span class:list={["text-xs font-bold tabular-nums", style.body]}>{String(itemIndex + 1).padStart(2, "0")}</span>
@@ -114,8 +119,8 @@ const ctaClass = (variant?: CtaBlock["variant"], surface?: keyof typeof surfaces
         )}
       </section>
     ) : block.type === "faq" ? (
-      <section class:list={["px-5 py-8 sm:px-9 sm:py-10", style.section]} aria-label={faqHeading}>
-        <h2 class:list={["text-2xl font-semibold tracking-tight sm:text-3xl", style.heading]}>{faqHeading}</h2>
+      <section id={id} aria-label={faqHeading} aria-labelledby={`${id}-heading`} class:list={[...semanticClasses, style.section]}>
+        <h2 id={`${id}-heading`} class:list={["text-2xl font-semibold tracking-tight sm:text-3xl", style.heading]}>{faqHeading}</h2>
         <dl class:list={["mt-6 divide-y", style.divider]}>
           {block.items.map((item) => (
             <div class="py-5 first:pt-0 last:pb-0">
@@ -126,8 +131,8 @@ const ctaClass = (variant?: CtaBlock["variant"], surface?: keyof typeof surfaces
         </dl>
       </section>
     ) : block.type === "howto" ? (
-      <section class:list={["px-5 py-8 sm:px-9 sm:py-10", style.section]} aria-label={howToHeading}>
-        <h2 class:list={["text-2xl font-semibold tracking-tight sm:text-3xl", style.heading]}>{howToHeading}</h2>
+      <section id={id} aria-label={howToHeading} aria-labelledby={`${id}-heading`} class:list={[...semanticClasses, style.section]}>
+        <h2 id={`${id}-heading`} class:list={["text-2xl font-semibold tracking-tight sm:text-3xl", style.heading]}>{howToHeading}</h2>
         <ol class:list={["mt-6 divide-y", style.divider]}>
           {block.steps.map((step, stepIndex) => (
             <li class="grid gap-3 py-5 first:pt-0 sm:grid-cols-[3rem_minmax(0,1fr)]">
@@ -147,8 +152,12 @@ const ctaClass = (variant?: CtaBlock["variant"], surface?: keyof typeof surfaces
         </ol>
       </section>
     ) : (
-      <aside class:list={["border-y px-5 py-8 sm:px-9 sm:py-10", style.section]} aria-label={block.title ?? "Informasi sertifikasi"}>
-        {block.title && <h2 class:list={["text-xl font-semibold tracking-tight sm:text-2xl", style.heading]}>{block.title}</h2>}
+      <aside id={id} aria-label={block.title ?? ctaHeading} aria-labelledby={`${id}-heading`} class:list={[...semanticClasses, style.section]}>
+        {block.title ? (
+          <h2 id={`${id}-heading`} class:list={["text-xl font-semibold tracking-tight sm:text-2xl", style.heading]}>{block.title}</h2>
+        ) : (
+          <h2 id={`${id}-heading`} class="sr-only">{ctaHeading}</h2>
+        )}
         {block.description && <p class:list={["mt-2 max-w-[var(--container-reading)] leading-relaxed", style.body]}>{block.description}</p>}
         {block.link && (
           <a href={block.link.url} class:list={["mt-5 inline-flex min-h-11 items-center justify-center px-5 py-2.5 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue", ctaClass(block.variant, surface)]}>

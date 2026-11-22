@@ -18,6 +18,7 @@ categoryIds:
   - "quality-management"
 blocks:
   - type: "content-section"
+    id: "iso9001-standar-terkini"
     surface: "blue"
     eyebrow: "Standar terkini"
     title: "ISO 9001:2026 sebagai acuan sistem manajemen mutu"
@@ -28,6 +29,7 @@ blocks:
       - title: "Penerapan sesuai konteks"
         description: "Sistem manajemen mutu diterapkan dengan mempertimbangkan konteks organisasi, jenis proses, produk atau layanan, serta kebutuhan pihak berkepentingan yang relevan."
   - type: "content-section"
+    id: "iso9001-area-sistem"
     surface: "mint"
     eyebrow: "Area sistem"
     title: "Pokok bahasan dalam sistem manajemen mutu"
@@ -42,6 +44,7 @@ blocks:
       - title: "Evaluasi dan peningkatan"
         description: "Pemantauan, pengukuran, audit internal, tinjauan manajemen, penanganan ketidaksesuaian, dan peningkatan."
   - type: "content-section"
+    id: "iso9001-periode-transisi"
     surface: "cream"
     eyebrow: "Periode transisi"
     title: "Peralihan dari ISO 9001:2015 ke ISO 9001:2026"
@@ -52,6 +55,7 @@ blocks:
       - title: "Rencanakan transisi"
         description: "Organisasi bersertifikat perlu mengatur penyesuaian sistem dan waktu audit transisi sesuai ketentuan lembaga sertifikasi penerbit."
   - type: "faq"
+    id: "faq"
     surface: "coral"
     items:
       - question: "Apakah ISO 9001:2026 sudah menggantikan ISO 9001:2015?"

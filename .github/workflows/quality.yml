@@ -57,3 +57,5 @@ jobs:
         run: pnpm audit:page-images
       - name: SEO and link audit
         run: pnpm audit:seo
+      - name: Block section audit
+        run: pnpm audit:blocks
