@@ -1,5 +1,5 @@
 ---
-import { blockAnchorId, type BlockAnchorSource } from "../lib/block-ids";
+import { blockAnchorId, type BlockAnchorSource } from "../lib/block-ids";\nimport CtaSection from "./CtaSection.astro";
 
 interface SurfaceStyles {
   section: string;
@@ -77,7 +77,7 @@ interface CtaBlock extends BlockBase {
   variant?: "primary" | "secondary" | "ghost";
   title?: string;
   description?: string;
-  link?: { label: string; url: string };
+  link?: { label: string; url?: string };
 }
 export type Block = ContentSectionBlock | FaqBlock | HowToBlock | CtaBlock;
 interface Props {
@@ -217,19 +217,16 @@ const ctaClass = (variant?: CtaBlock["variant"], surface?: Surface) =>
         )}
       </section>
     ) : (
-      <aside id={id} aria-label={block.title ?? ctaHeading} aria-labelledby={`${id}-heading`} class:list={[...semanticClasses, style.section]}>
-        {block.title ? (
-          <h2 id={`${id}-heading`} class:list={["text-xl font-semibold tracking-tight sm:text-2xl", style.heading]}>{block.title}</h2>
-        ) : (
-          <h2 id={`${id}-heading`} class="sr-only">{ctaHeading}</h2>
-        )}
-        {block.description && <p class:list={["mt-2 max-w-[var(--container-reading)] leading-relaxed", style.body]}>{block.description}</p>}
-        {block.link && (
-          <a href={block.link.url} class:list={["mt-5 inline-flex min-h-11 items-center justify-center px-5 py-2.5 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue", ctaClass(block.variant, surface)]}>
-            {block.link.label}
-          </a>
-        )}
-      </aside>
+      <CtaSection
+        id={id}
+        surfaceClass={style.section}
+        headingClass={style.heading}
+        bodyClass={style.body}
+        buttonClass={ctaClass(block.variant, surface)}
+        title={block.title}
+        description={block.description}
+        link={block.link}
+      />
     );
   })}
 </div>
