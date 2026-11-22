@@ -75,7 +75,7 @@ const ctaBlock = z.object({
   link: z
     .object({
       label: z.string().min(1),
-      url: z.string().refine(isSupportedLinkUrl, "link URL must be an absolute http(s) URL or a root-relative path"),
+      url: z.string().refine(isSupportedLinkUrl, "link URL must be an absolute http(s) URL or a root-relative path").optional(),
     })
     .optional(),
 });
