@@ -54,7 +54,7 @@ for (const [lang, source] of Object.entries(routes)) {
     assert.match(source, /hero=\{hero\}/);
     assert.match(source, /blocks=\{blocks\}/);
     assert.doesNotMatch(source, /<Content/);
-    assert.match(source, /siteCrumb\("\/services\/"\)/);
+    assert.match(source, /siteCrumb\("\/services\/", lang\)/);
     assert.match(source, /relatedArticles/);
   });
 }

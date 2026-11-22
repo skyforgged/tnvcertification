@@ -34,6 +34,25 @@ test("service page graph omits unsupported optional claims", () => {
   assert.equal("image" in service, false);
 });
 
+test("service page graph localizes breadcrumbs for English services", () => {
+  const graph = servicePageJsonLd({
+    name: "ISO 14001 certification",
+    description: "Environmental management certification.",
+    path: "/en/services/iso-14001-2026-certification/",
+    lang: "en",
+  });
+  const breadcrumbs = graph.find((item) => item["@type"] === "BreadcrumbList");
+  assert.ok(breadcrumbs);
+  assert.deepEqual(
+    breadcrumbs.itemListElement.map((item) => [item.name, item.item]),
+    [
+      ["Home", siteSettings.url],
+      ["Services", new URL("/en/services/", siteSettings.url).toString()],
+      ["ISO 14001 certification", new URL("/en/services/iso-14001-2026-certification/", siteSettings.url).toString()],
+    ],
+  );
+});
+
 test("service index lists only the supplied visible services", () => {
   const graph = serviceIndexJsonLd([
     { name: "Service A", description: "Description A", path: "/services/a/" },

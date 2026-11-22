@@ -19,6 +19,24 @@ export function findHeadingViolations(html) {
   return violations;
 }
 
+/** English block components emit English auto-headings; verify the built HTML agrees. */
+export function findLocalizedBlockHeadingViolations(html) {
+  const lang = html.match(/<html\b[^>]*\blang=["']([^"']+)["']/i)?.[1]?.toLowerCase().split("-")[0] ?? "id";
+  if (lang !== "en") return [];
+  const expected = {
+    faq: "Frequently asked questions",
+    howto: "Certification process",
+  };
+  const violations = [];
+  for (const [type, label] of Object.entries(expected)) {
+    const pattern = new RegExp(`<section\\b[^>]*block-section--${type}[^>]*>([\\s\\S]*?)<\\/section>`, "i");
+    const heading = html.match(pattern)?.[1]?.match(/<h2\b[^>]*>([\s\S]*?)<\/h2>/i)?.[1]
+      ?.replace(/<[^>]*>/g, "").trim();
+    if (heading && heading !== label) violations.push(`${type}: ${heading}`);
+  }
+  return violations;
+}
+
 function htmlFiles(directory) {
   let entries;
   try {
@@ -38,14 +56,18 @@ if (isCli) {
   const root = process.argv[2] ?? "dist";
   const errors = [];
   for (const file of htmlFiles(root)) {
-    const violations = findHeadingViolations(readFileSync(file, "utf8"));
+    const html = readFileSync(file, "utf8");
+    const violations = [
+      ...findHeadingViolations(html),
+      ...findLocalizedBlockHeadingViolations(html),
+    ];
     if (violations.length > 0) {
       errors.push(`${path.relative(root, file)}: ${violations.join(", ")}`);
     }
   }
 
   if (errors.length > 0) {
-    console.error(`Rendered heading audit: ${errors.length} page(s) with skipped levels.`);
+    console.error(`Rendered heading audit: ${errors.length} page(s) with skipped levels or mismatched localized block headings.`);
     for (const error of errors) console.error(`- ${error}`);
     process.exit(1);
   }

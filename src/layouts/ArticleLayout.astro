@@ -40,6 +40,6 @@ const dateFormatter = new Intl.DateTimeFormat(lang === "en" ? "en-US" : "id-ID",
     <Breadcrumbs items={breadcrumbs} lang={lang === "en" ? "en" : "id"} />
     {hero && <PageHero block={hero} fallbackImage={fallbackImage} />}
     <p class="text-sm text-ink-subtle"><time datetime={date.toISOString().slice(0, 10)}>{dateFormatter.format(date)}</time></p>
-    <PageBlockRenderer blocks={blocks} fallbackImage={fallbackImage} />
+    <PageBlockRenderer blocks={blocks} fallbackImage={fallbackImage} lang={lang} />
   </Container>
 </Layout>

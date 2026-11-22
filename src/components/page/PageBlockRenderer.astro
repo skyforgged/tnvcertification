@@ -13,6 +13,7 @@ import type {
 interface Props {
   blocks: PageBlock[];
   fallbackImage: { src: string; alt: string };
+  lang?: string;
 }
 
 type EditorialBlock = Extract<PageBlock, { type: "content-section" | "faq" | "howto" | "cta" }>;
@@ -22,7 +23,7 @@ type RenderGroup =
   | { kind: "contact"; block: ContactBlock }
   | { kind: "editorial"; blocks: EditorialBlock[] };
 
-const { blocks, fallbackImage } = Astro.props;
+const { blocks, fallbackImage, lang = "id" } = Astro.props;
 
 const isEditorial = (block: PageBlock): block is EditorialBlock =>
   block.type === "content-section" || block.type === "faq" || block.type === "howto" || block.type === "cta";
@@ -58,7 +59,7 @@ for (const block of blocks) {
     ) : group.kind === "contact" ? (
       <ContactPanel block={group.block} />
     ) : (
-      <BlockRenderer blocks={group.blocks} lang="id" />
+      <BlockRenderer blocks={group.blocks} lang={lang} />
     )
   ))}
 </div>

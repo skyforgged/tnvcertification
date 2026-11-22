@@ -212,6 +212,24 @@ test("certification-focused wording passes consultation terminology validation",
   assert.equal(diagnostics.filter((d) => d.rule === "CONTENT-013").length, 0);
 });
 
+test("body-less hero without a description reports CONTENT-002 on blocks", () => {
+  const diagnostics = validateEntry(makeEntry({
+    body: "",
+    data: { blocks: [{ type: "hero", title: "Judul Uji" }] },
+  }));
+  const found = diagnostics.find((d) => d.rule === "CONTENT-002" && d.field === "blocks");
+  assert.ok(found, "expected CONTENT-002 diagnostic on blocks");
+});
+
+test("body-less hero without a title reports CONTENT-001 on blocks", () => {
+  const diagnostics = validateEntry(makeEntry({
+    body: "",
+    data: { blocks: [{ type: "hero", description: "Judul Uji adalah intro yang menjelaskan topik halaman ini." }] },
+  }));
+  const found = diagnostics.find((d) => d.rule === "CONTENT-001" && d.field === "blocks");
+  assert.ok(found, "expected CONTENT-001 diagnostic on blocks");
+});
+
 test("body-less entry with a hero and valid block headings has no CONTENT-001/002/011", () => {
   const diagnostics = validateEntry(makeEntry({
     body: "",
