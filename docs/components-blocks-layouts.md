@@ -23,6 +23,21 @@ This combined page pattern is provisional; do not treat it as a final universal 
 
 All editorial `.md` entries — pages, services, and articles — contain frontmatter blocks only and no Markdown body; CONTENT-014 enforces this at build time and in changed-content preflight. The `hero` block carries the H1, introductory paragraph, and image (falling back to `featuredImage`). Use `/services/` (`hero-layanan`) as the canonical hero example, not `/csms/`.
 
+## Editorial block layouts
+
+The shared `content-section` block supports optional presentation-only `layout` values. Omit the value to retain the existing numbered-grid layout.
+
+- `numbered-grid`: balanced numbered items (default).
+- `editorial`: typographic rows with generous reading space.
+- `bento`: asymmetric modular grid for grouped concepts.
+- `highlight`: restrained emphasis with prominent numbered statements.
+- `feature-list`: simple marker-led list for sequential or related points.
+- `comparison`: two-column comparison; use for a clear pair such as editions or states, and author exactly two meaningful items.
+
+The `howto` block also supports optional `layout`: `steps` (default), `timeline`, or `compact`. These values change presentation only; copy and order remain authored in frontmatter.
+
+Choose layout according to the information being communicated. Do not create layout variation through section background colors alone. FAQ blocks render as native `details`/`summary` disclosures to support keyboard and browser interaction.
+
 ## Layouts
 - Choose layouts by page purpose, not convenience.
 - Certification, article, training, schedule, and corporate pages should have distinct hierarchies and layouts.

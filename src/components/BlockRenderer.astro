@@ -52,6 +52,7 @@ interface BlockBase extends BlockAnchorSource {
 }
 interface ContentSectionBlock extends BlockBase {
   type: "content-section";
+  layout?: "numbered-grid" | "editorial" | "bento" | "highlight" | "feature-list" | "comparison";
   title: string;
   eyebrow?: string;
   description?: string;
@@ -63,6 +64,8 @@ interface FaqBlock extends BlockBase {
 }
 interface HowToBlock extends BlockBase {
   type: "howto";
+  layout?: "steps" | "timeline" | "compact";
+  title?: string;
   steps: Array<{
     title: string;
     description: string;
@@ -101,12 +104,65 @@ const ctaClass = (variant?: CtaBlock["variant"], surface?: Surface) =>
     const style = surfaces[surface];
     const id = blockAnchorId(block, index);
     const semanticClasses = ["block-section", `block-section--${block.type}`, `block-section--surface-${surface}`];
+    const layout = block.type === "content-section" ? (block.layout ?? "numbered-grid") : undefined;
     return block.type === "content-section" ? (
-      <section id={id} aria-labelledby={`${id}-heading`} class:list={[...semanticClasses, style.section]}>
+      <section id={id} aria-labelledby={`${id}-heading`} class:list={[...semanticClasses, style.section, "relative overflow-hidden"]}>
         {block.eyebrow && <p class:list={["text-xs font-bold uppercase tracking-[0.16em]", style.body]}>{block.eyebrow}</p>}
-        <h2 id={`${id}-heading`} class:list={["mt-2 text-2xl font-semibold tracking-tight sm:text-3xl", style.heading]}>{block.title}</h2>
+        <h2 id={`${id}-heading`} class:list={[layout === "highlight" ? "mt-2 text-3xl font-semibold tracking-tight sm:text-5xl" : "mt-2 text-2xl font-semibold tracking-tight sm:text-3xl", style.heading]}>{block.title}</h2>
         {block.description && <p class:list={["mt-4 max-w-[var(--container-reading)] leading-relaxed", style.body]}>{block.description}</p>}
-        {block.items && (
+        {block.items && layout === "editorial" && (
+          <ul class="mt-9 space-y-0">
+            {block.items.map((item, itemIndex) => (
+              <li class="grid gap-3 border-t border-current/15 py-6 sm:grid-cols-[5rem_minmax(0,1fr)]">
+                <span class:list={["font-mono text-sm opacity-65", style.body]}>{String(itemIndex + 1).padStart(2, "0")}</span>
+                <div><h3 class:list={["text-xl font-semibold tracking-tight", style.heading]}>{item.title}</h3><p class:list={["mt-2 max-w-[var(--container-reading)] leading-relaxed", style.body]}>{item.description}</p></div>
+              </li>
+            ))}
+          </ul>
+        )}
+        {block.items && layout === "bento" && (
+          <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {block.items.map((item, itemIndex) => (
+              <li class:list={["border border-current/15 p-5 sm:p-6", itemIndex === 0 ? "sm:col-span-2 lg:row-span-2" : "", style.body]}>
+                <span class="text-xs font-semibold tracking-widest opacity-60">{String(itemIndex + 1).padStart(2, "0")}</span>
+                <h3 class:list={["mt-3 text-lg font-semibold tracking-tight", style.heading]}>{item.title}</h3>
+                <p class="mt-2 leading-relaxed">{item.description}</p>
+              </li>
+            ))}
+          </ul>
+        )}
+        {block.items && layout === "highlight" && (
+          <ul class="mt-8 space-y-0">
+            {block.items.map((item, itemIndex) => (
+              <li class="grid gap-3 border-t border-current/20 py-5 sm:grid-cols-[2.5rem_minmax(0,1fr)]">
+                <span class="text-lg font-semibold opacity-60">{String(itemIndex + 1).padStart(2, "0")}</span>
+                <div><h3 class:list={["text-xl font-semibold", style.heading]}>{item.title}</h3><p class="mt-2 max-w-[var(--container-reading)] leading-relaxed">{item.description}</p></div>
+              </li>
+            ))}
+          </ul>
+        )}
+        {block.items && layout === "feature-list" && (
+          <ul class="mt-8 space-y-5">
+            {block.items.map((item) => (
+              <li class="flex gap-4">
+                <span aria-hidden="true" class="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-current"></span>
+                <div><h3 class:list={["text-lg font-semibold", style.heading]}>{item.title}</h3><p class:list={["mt-1 leading-relaxed", style.body]}>{item.description}</p></div>
+              </li>
+            ))}
+          </ul>
+        )}
+        {block.items && layout === "comparison" && (
+          <div class="mt-8 grid gap-px bg-current/15 sm:grid-cols-2">
+            {block.items.slice(0,2).map((item, itemIndex) => (
+              <article class:list={["p-5 sm:p-7", surface === "navy" ? "bg-block-navy" : surface === "cream" ? "bg-block-cream" : "bg-white"]}>
+                <span class="text-xs font-bold uppercase tracking-widest opacity-65">{String(itemIndex + 1).padStart(2, "0")}</span>
+                <h3 class:list={["mt-3 text-xl font-semibold tracking-tight", style.heading]}>{item.title}</h3>
+                <p class:list={["mt-3 leading-relaxed", style.body]}>{item.description}</p>
+              </article>
+            ))}
+          </div>
+        )}
+        {block.items && layout === "numbered-grid" && (
           <ul class:list={["mt-7 grid gap-x-10 gap-y-6 sm:grid-cols-2", style.divider]}>
             {block.items.map((item, itemIndex) => (
               <li class:list={["border-t pt-4", style.divider.replace("divide-", "border-")]}>
@@ -121,35 +177,44 @@ const ctaClass = (variant?: CtaBlock["variant"], surface?: Surface) =>
     ) : block.type === "faq" ? (
       <section id={id} aria-label={faqHeading} aria-labelledby={`${id}-heading`} class:list={[...semanticClasses, style.section]}>
         <h2 id={`${id}-heading`} class:list={["text-2xl font-semibold tracking-tight sm:text-3xl", style.heading]}>{faqHeading}</h2>
-        <dl class:list={["mt-6 divide-y", style.divider]}>
+        <div class:list={["mt-6 divide-y", style.divider]}>
           {block.items.map((item) => (
-            <div class="py-5 first:pt-0 last:pb-0">
-              <dt class:list={["font-semibold", style.heading]}>{item.question}</dt>
-              <dd class:list={["mt-2 max-w-[var(--container-reading)] leading-relaxed", style.body]}>{item.answer}</dd>
-            </div>
+            <details class="group py-5 first:pt-0 last:pb-0">
+              <summary class:list={["flex cursor-pointer list-none items-start justify-between gap-4 font-semibold marker:hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-blue", style.heading]}>
+                <span>{item.question}</span><span aria-hidden="true" class="mt-0.5 text-xl transition-transform group-open:rotate-45">+</span>
+              </summary>
+              <p class:list={["mt-3 max-w-[var(--container-reading)] leading-relaxed", style.body]}>{item.answer}</p>
+            </details>
           ))}
-        </dl>
+        </div>
       </section>
     ) : block.type === "howto" ? (
-      <section id={id} aria-label={howToHeading} aria-labelledby={`${id}-heading`} class:list={[...semanticClasses, style.section]}>
-        <h2 id={`${id}-heading`} class:list={["text-2xl font-semibold tracking-tight sm:text-3xl", style.heading]}>{howToHeading}</h2>
-        <ol class:list={["mt-6 divide-y", style.divider]}>
-          {block.steps.map((step, stepIndex) => (
-            <li class="grid gap-3 py-5 first:pt-0 sm:grid-cols-[3rem_minmax(0,1fr)]">
-              <span class:list={["text-sm font-semibold tabular-nums", style.body]}>{String(stepIndex + 1).padStart(2, "0")}</span>
-              <div>
-                <h3 class:list={["text-lg font-semibold", style.heading]}>{step.title}</h3>
-                <p class:list={["mt-2 max-w-[var(--container-reading)] leading-relaxed", style.body]}>{step.description}</p>
-                {step.image && (
-                  <figure class="mt-5 max-w-2xl">
-                    <img src={step.image.src} alt={step.image.alt} loading="lazy" decoding="async" class="h-auto w-full object-cover" />
-                    {step.image.caption && <figcaption class:list={["mt-2 text-sm", style.body]}>{step.image.caption}</figcaption>}
-                  </figure>
-                )}
-              </div>
-            </li>
-          ))}
-        </ol>
+      <section id={id} aria-label={block.title ?? howToHeading} aria-labelledby={`${id}-heading`} class:list={[...semanticClasses, style.section]}>
+        <h2 id={`${id}-heading`} class:list={["text-2xl font-semibold tracking-tight sm:text-3xl", style.heading]}>{block.title ?? howToHeading}</h2>
+        {block.layout === "timeline" ? (
+          <ol class="mt-8 space-y-0">
+            {block.steps.map((step, stepIndex) => (
+              <li class="relative grid gap-3 border-l-2 border-current/20 pb-8 pl-6 last:border-transparent sm:grid-cols-[4rem_minmax(0,1fr)] sm:pl-8">
+                <span class="absolute -left-[0.45rem] top-1 h-3 w-3 rounded-full bg-current" aria-hidden="true"></span>
+                <span class:list={["font-mono text-xs opacity-65", style.body]}>{String(stepIndex + 1).padStart(2, "0")}</span>
+                <div><h3 class:list={["text-lg font-semibold", style.heading]}>{step.title}</h3><p class:list={["mt-2 max-w-[var(--container-reading)] leading-relaxed", style.body]}>{step.description}</p>
+                  {step.image && <figure class="mt-5 max-w-2xl"><img src={step.image.src} alt={step.image.alt} loading="lazy" decoding="async" class="h-auto w-full object-cover" />{step.image.caption && <figcaption class:list={["mt-2 text-sm", style.body]}>{step.image.caption}</figcaption>}</figure>}
+                </div>
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <ol class:list={["mt-6 divide-y", style.divider]}>
+            {block.steps.map((step, stepIndex) => (
+              <li class:list={["grid gap-3 py-5 first:pt-0 sm:grid-cols-[3rem_minmax(0,1fr)]", block.layout === "compact" ? "sm:gap-2" : ""]}>
+                <span class:list={["text-sm font-semibold tabular-nums", style.body]}>{String(stepIndex + 1).padStart(2, "0")}</span>
+                <div><h3 class:list={["text-lg font-semibold", style.heading]}>{step.title}</h3><p class:list={["mt-2 max-w-[var(--container-reading)] leading-relaxed", style.body]}>{step.description}</p>
+                  {step.image && <figure class="mt-5 max-w-2xl"><img src={step.image.src} alt={step.image.alt} loading="lazy" decoding="async" class="h-auto w-full object-cover" />{step.image.caption && <figcaption class:list={["mt-2 text-sm", style.body]}>{step.image.caption}</figcaption>}</figure>}
+                </div>
+              </li>
+            ))}
+          </ol>
+        )}
       </section>
     ) : (
       <aside id={id} aria-label={block.title ?? ctaHeading} aria-labelledby={`${id}-heading`} class:list={[...semanticClasses, style.section]}>
