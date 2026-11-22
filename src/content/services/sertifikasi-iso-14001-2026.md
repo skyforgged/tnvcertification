@@ -110,6 +110,7 @@ blocks:
     id: "proses-sertifikasi-umum"
     layout: "timeline"
     surface: "navy"
+    title: "Proses sertifikasi secara umum"
     steps:
       - title: "Permohonan dan penetapan ruang lingkup"
         description: "Informasi organisasi, lokasi, aktivitas, proses, dan ruang lingkup EMS ditinjau untuk menentukan kelayakan serta perencanaan audit."
