@@ -40,6 +40,7 @@ const contentSectionBlock = z.object({
   type: z.literal("content-section"),
   id: blockIdSchema.optional(),
   surface: sectionSurfaceSchema.optional(),
+  layout: z.enum(["numbered-grid", "editorial", "bento", "highlight", "feature-list", "comparison"]).optional(),
   eyebrow: z.string().optional(),
   title: z.string().min(1),
   description: z.string().optional(),
@@ -53,6 +54,7 @@ const howToBlock = z.object({
   type: z.literal("howto"),
   id: blockIdSchema.optional(),
   surface: sectionSurfaceSchema.optional(),
+  layout: z.enum(["steps", "timeline", "compact"]).optional(),
   steps: z.array(
     z.object({
       title: z.string().min(1),
