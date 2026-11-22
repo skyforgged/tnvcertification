@@ -55,6 +55,7 @@ const howToBlock = z.object({
   id: blockIdSchema.optional(),
   surface: sectionSurfaceSchema.optional(),
   layout: z.enum(["steps", "timeline", "compact"]).optional(),
+  title: z.string().optional(),
   steps: z.array(
     z.object({
       title: z.string().min(1),
