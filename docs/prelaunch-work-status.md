@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated commit: `7b74dd0` (full gate suite; CSMS complaints handling documentation controls added)
+- Validated commit: `c728ddf` (full gate suite; PR #26 editorial localization/hero validation and PR #27 ISO 14001 layout variants merged)
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -46,6 +46,7 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 | P16 | Editorial content production | In progress; first Indonesian/English article draft created in docs for review; not published |
 | P16.2 | Article integration and SEO readiness | Review checkpoint; collection schema, metadata gates, and publication gates documented |
 | P16.3 | Bilingual article integration | Bilingual document-control draft pair integrated as `draft: true`; no public article published |
+| P17 | Editorial localization and ISO 14001 layouts | Completed; PR #26 and PR #27 merged, full gate suite passed on `c728ddf`; visual QA remains manual |
 | Build strategy | Content-first full-build baseline | Verification checkpoint closed for current baseline; timing baseline captured, negative preflight verified in CI; full checks mandatory |
 
 ## Verified repository facts
@@ -82,18 +83,18 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-Local full validation ran on `main` at `7b74dd0` with the pinned Node.js `26.13.1` and pnpm `12.21.0` toolchain:
+Local full validation ran on `main` at `c728ddf` with the pinned Node.js `26.13.1` toolchain:
 
 | Command | Result |
 |---|---|
 | `npm run check` | PASS, exit `0` |
-| `npm run build` | PASS, exit `0`, 13 pages |
+| `npm run build` | PASS, exit `0`, 36 pages |
 | `npm run typecheck` | PASS, exit `0` |
 | `npm run lint` | PASS, exit `0` |
-| `npm run test` | PASS, exit `0`, 49 tests |
-| `npm run audit:seo` | PASS, exit `0`, 13 pages and 13 unique canonicals |
-| `npm run validate:changed -- 2be9036 ef84389` | PASS, exit `0`, 2 editorial files |
-| `node scripts/classify-build-changes.mjs 70eb5a7 88f19a1` | `content-only`, 1 added editorial file |
+| `npm run test` | PASS, exit `0`, 330 tests |
+| `npm run audit:seo` | PASS, exit `0`, 40 HTML pages and 20 unique canonicals |
+
+Build warnings about empty `training` and `trainingSchedules` collections remain non-fatal. No CI result is claimed for `c728ddf`; only the local command output above is recorded.
 
 Earlier pulled commits `9bc16d1` and `ddac326` failed local `lint`; final pulled commit `67b56b3` still had both errors. Commit `455bb73` fixed `no-useless-assignment` in the classifier and `preserve-caught-error` in the preflight.
 
@@ -612,3 +613,16 @@ At this historical checkpoint the repository was at `7a7a1eb` (`docs: record bui
 - `e695732` — record build verification as immediate project priority.
 - `0f809b9` — record CI timing and negative-preflight verification evidence.
 - `b37e8ea` — close build-strategy verification checkpoint for the current baseline.
+
+
+## P17 — Editorial localization and ISO 14001 layouts (2026-11-22)
+
+Merged PR #26 (`08e9626`) and PR #27 (`c728ddf`) into `main`, in that order. Both pull requests branched from `f59b314`. Both merge orders were simulated first and produced the identical tree `f3fe2cd`; the chosen order was not required to avoid a conflict.
+
+- PR #26 passes `lang` through `PageBlockRenderer` to `BlockRenderer`, localizes English FAQ/HowTo/CTA headings, shares localized breadcrumb labels between `siteCrumb(href, lang)` and service JSON-LD, requires a non-empty hero `description`, and checks generated English headings in `audit:headings`.
+- PR #27 adds presentation-only `layout` variants for `content-section` and `howto` blocks, recomposes the ISO 14001:2026 service page, renders FAQ blocks as native disclosures, and adds regression tests.
+- Editorial `.md` entries remain frontmatter-only; no Markdown body was reintroduced.
+- Full gate suite passed on `c728ddf`: 330 tests, 36 built pages, 40 HTML pages and 20 canonicals in the SEO audit.
+- Expected non-fatal warnings for empty `training` and `trainingSchedules` collections remain.
+- CI status for the merge commits was not verified; no CI result is claimed.
+- Visual review of the new ISO 14001 layouts at desktop, tablet and mobile widths remains a separate manual task.
