@@ -85,8 +85,9 @@ export function parseContent(body: string): ParsedContent {
 export function parseFrontmatterContent(data: Record<string, unknown>): ParsedContent {
   const blocks = Array.isArray(data.blocks) ? data.blocks : [];
   const lang = toStr(data.lang, "id").toLowerCase().split("-")[0];
-  const faqHeading = lang === "en" ? "FAQ" : "Pertanyaan umum";
-  const ctaHeading = lang === "en" ? "Call to action" : "Ajukan Sertifikasi";
+  const faqHeading = lang === "en" ? "Frequently asked questions" : "Pertanyaan Umum";
+  const howtoHeading = lang === "en" ? "Certification process" : "Proses Sertifikasi";
+  const ctaHeading = lang === "en" ? "Certification information" : "Informasi sertifikasi";
   const headings: Heading[] = [];
   const introParagraphs: string[] = [];
 
@@ -111,7 +112,7 @@ export function parseFrontmatterContent(data: Record<string, unknown>): ParsedCo
     } else if (type === "faq") {
       sectionHeading = headingText || faqHeading;
     } else if (type === "howto") {
-      sectionHeading = headingText || type;
+      sectionHeading = headingText || howtoHeading;
       children = Array.isArray(block.steps) ? block.steps : [];
     } else if (type === "cta") {
       sectionHeading = headingText || ctaHeading;
@@ -192,6 +193,24 @@ export function validateEntry(entry: ContentEntryLike): Diagnostic[] {
   // CONTENT-001: an H1 must exist, from the body or from the hero block.
   if (!headings.some((h) => h.level === 1)) {
     add(structureField, "CONTENT-001", "Missing H1. The page must start with an H1 heading.");
+  }
+
+  // A body-less entry renders its H1 and intro from the hero; an empty hero
+  // description would emit an empty paragraph that superficially looks valid.
+  if (!hasBody) {
+    const heroBlocks = (Array.isArray(data.blocks) ? data.blocks : []).filter(
+      (block): block is Record<string, unknown> =>
+        typeof block === "object" && block !== null && !Array.isArray(block)
+          && (block as Record<string, unknown>).type === "hero",
+    );
+    for (const hero of heroBlocks) {
+      if (!toStr(hero.title)) {
+        add("blocks", "CONTENT-001", "The hero block must provide the H1 text.");
+      }
+      if (!toStr(hero.description).trim()) {
+        add("blocks", "CONTENT-002", "The hero block must include one introductory paragraph immediately after the H1.");
+      }
+    }
   }
 
   // CONTENT-002: an intro field is always required. Body-based entries additionally

@@ -84,7 +84,7 @@ const heroBlock = z.object({
   surface: sectionSurfaceSchema.optional(),
   eyebrow: z.string().optional(),
   title: z.string().min(1),
-  description: z.string().optional(),
+  description: z.string().min(1, "hero description is required"),
   image: z.string().optional(),
   imageAlt: z.string().optional(),
 });

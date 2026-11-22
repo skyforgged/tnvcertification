@@ -25,10 +25,10 @@ const fallbackImage = { src: entry.data.featuredImage.src, alt: entry.data.featu
   lang={entry.data.lang}
   canonical={canonical}
   ogImage={entry.data.featuredImage.src}
-  breadcrumbs={[siteCrumb("/"), { label: entry.data.title }]}
+  breadcrumbs={[siteCrumb("/", entry.data.lang), { label: entry.data.title }]}
 >
   <article class="w-full">
     {hero && <PageHero block={hero} fallbackImage={fallbackImage} />}
-    <PageBlockRenderer blocks={blocks} fallbackImage={fallbackImage} />
+    <PageBlockRenderer blocks={blocks} fallbackImage={fallbackImage} lang={entry.data.lang} />
   </article>
 </WidePageLayout>

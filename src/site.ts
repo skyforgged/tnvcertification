@@ -67,6 +67,15 @@ export const primaryNavigation = [
   { label: "Artikel", href: "/articles/" },
 ] as const;
 
+/** Localized breadcrumb labels and hrefs for routes with an English surface. */
+export const localizedCrumbs = {
+  en: {
+    "/": { label: "Home", href: "/" },
+    "/services/": { label: "Services", href: "/en/services/" },
+    "/articles/": { label: "Articles", href: "/articles/" },
+  },
+} as const;
+
 export const footerNavigation = [
   {
     title: "Mulai",

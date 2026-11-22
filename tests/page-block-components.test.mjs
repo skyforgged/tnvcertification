@@ -58,3 +58,9 @@ test("PageBlockRenderer delegates editorial blocks to BlockRenderer", () => {
     assert.ok(source.includes(`"${type}"`), `missing delegation for ${type}`);
   }
 });
+
+test("PageBlockRenderer forwards the entry language to BlockRenderer", () => {
+  const source = files.PageBlockRenderer;
+  assert.match(source, /lang\?: string/);
+  assert.match(source, /<BlockRenderer blocks=\{group\.blocks\} lang=\{lang\}/);
+});

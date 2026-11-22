@@ -12,6 +12,7 @@ export async function getStaticPaths() {
   return services.map((service) => ({ params: { slug: service.data.slug }, props: { service } }));
 }
 const { service } = Astro.props;
+const lang = service.data.lang;
 const serviceId = service.data.id;
 const relatedArticles = serviceId ? getRelatedArticles(getPublishedArticles(), serviceId) : [];
 const structuredData = servicePageJsonLd({
@@ -21,6 +22,7 @@ const structuredData = servicePageJsonLd({
   image: service.data.featuredImage.src,
   serviceType: service.data.serviceType,
   category: service.data.category,
+  lang,
 });
 const allBlocks = service.data.blocks ?? [];
 const hero = allBlocks.find((block): block is HeroBlock => block.type === "hero");
@@ -35,7 +37,7 @@ const blocks = allBlocks.filter((block) => block.type !== "hero");
   canonical={servicePath(service.data)}
   ogImage={service.data.featuredImage.src}
   imageAlt={service.data.featuredImage.alt}
-  breadcrumbs={[siteCrumb("/"), siteCrumb("/services/"), { label: service.data.title }]}
+  breadcrumbs={[siteCrumb("/", lang), siteCrumb("/services/", lang), { label: service.data.title }]}
   hero={hero}
   blocks={blocks}
   structuredData={structuredData}

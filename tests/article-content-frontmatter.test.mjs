@@ -40,7 +40,7 @@ test("article route passes frontmatter blocks without rendering a body", () => {
   assert.match(route, /hero=\{hero\}/);
   assert.match(route, /blocks=\{blocks\}/);
   assert.doesNotMatch(route, /<Content/);
-  assert.match(route, /siteCrumb\("\/articles\/"\)/);
+  assert.match(route, /siteCrumb\("\/articles\/", lang\)/);
 });
 
 const layout = await readFile(new URL("../src/layouts/ArticleLayout.astro", import.meta.url), "utf8");

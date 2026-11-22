@@ -28,6 +28,7 @@ export async function getStaticPaths() {
   });
 }
 const { entry, alternates, pubDate, featuredImage } = Astro.props;
+const lang = entry.data.lang;
 const canonical = `/articles/${entry.data.slug}/`;
 const allBlocks = entry.data.blocks ?? [];
 const hero = allBlocks.find((block): block is HeroBlock => block.type === "hero");
@@ -44,7 +45,7 @@ const blocks: PageBlock[] = allBlocks.filter((block) => block.type !== "hero");
   date={entry.data.updatedDate ?? pubDate}
   imageAlt={featuredImage.alt}
   alternates={alternates}
-  breadcrumbs={[siteCrumb("/"), siteCrumb("/articles/"), { label: entry.data.title }]}
+  breadcrumbs={[siteCrumb("/", lang), siteCrumb("/articles/", lang), { label: entry.data.title }]}
   hero={hero}
   blocks={blocks}
 />

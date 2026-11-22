@@ -3,6 +3,7 @@
  * referenced by @id from other entity graphs (for example service pages).
  */
 import { organization, siteSettings } from "../site.ts";
+import { siteCrumb } from "../data/breadcrumbs.ts";
 
 export const ORGANIZATION_ID = `${siteSettings.url}/#organization`;
 
@@ -47,6 +48,7 @@ export interface ServiceStructuredDataInput {
   image?: string;
   serviceType?: string;
   category?: string;
+  lang?: string;
 }
 
 /**
@@ -58,6 +60,8 @@ export function servicePageJsonLd(input: ServiceStructuredDataInput) {
   const serviceId = `${url}#service`;
   const breadcrumbId = `${url}#breadcrumb`;
   const pageId = `${url}#webpage`;
+  const homeCrumb = siteCrumb("/", input.lang);
+  const servicesCrumb = siteCrumb("/services/", input.lang);
 
   const service: Record<string, unknown> = {
     "@type": "Service",
@@ -86,8 +90,8 @@ export function servicePageJsonLd(input: ServiceStructuredDataInput) {
       "@type": "BreadcrumbList",
       "@id": breadcrumbId,
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Beranda", item: siteSettings.url },
-        { "@type": "ListItem", position: 2, name: "Layanan", item: `${siteSettings.url}/services/` },
+        { "@type": "ListItem", position: 1, name: homeCrumb.label, item: homeCrumb.href === "/" ? siteSettings.url : new URL(homeCrumb.href, siteSettings.url).toString() },
+        { "@type": "ListItem", position: 2, name: servicesCrumb.label, item: new URL(servicesCrumb.href, siteSettings.url).toString() },
         { "@type": "ListItem", position: 3, name: input.name, item: url },
       ],
     },

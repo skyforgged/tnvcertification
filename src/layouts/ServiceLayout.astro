@@ -38,7 +38,7 @@ const fallbackImage = { src: ogImage ?? "", alt: imageAlt };
   <Container as="article" variant="wide" gutter={false}>
     <Breadcrumbs items={breadcrumbs} lang={lang === "en" ? "en" : "id"} />
     {hero && <PageHero block={hero} fallbackImage={fallbackImage} />}
-    <PageBlockRenderer blocks={blocks} fallbackImage={fallbackImage} />
+    <PageBlockRenderer blocks={blocks} fallbackImage={fallbackImage} lang={lang} />
     <slot />
   </Container>
 </Layout>
