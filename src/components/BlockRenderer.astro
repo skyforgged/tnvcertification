@@ -107,7 +107,7 @@ const ctaClass = (variant?: CtaBlock["variant"], surface?: Surface) =>
     return block.type === "content-section" ? (
       <section id={id} aria-labelledby={`${id}-heading`} class:list={[...semanticClasses, style.section, "relative overflow-hidden"]}>
         {block.eyebrow && <p class:list={["text-xs font-bold uppercase tracking-[0.16em]", style.body]}>{block.eyebrow}</p>}
-        <h2 id={`${id}-heading`} class:list={["mt-2 text-2xl font-semibold tracking-tight sm:text-3xl", style.heading]}>{block.title}</h2>
+        <h2 id={`${id}-heading`} class:list={[layout === "highlight" ? "mt-2 text-3xl font-semibold tracking-tight sm:text-5xl" : "mt-2 text-2xl font-semibold tracking-tight sm:text-3xl", style.heading]}>{block.title}</h2>
         {block.description && <p class:list={["mt-4 max-w-[var(--container-reading)] leading-relaxed", style.body]}>{block.description}</p>}
         {block.items && layout === "editorial" && (
           <ul class="mt-9 space-y-0">
