@@ -1,6 +1,7 @@
 ---
 import { getLanguageOptions } from "../data/locale-switch";
 import { siteSettings } from "../site";
+import LanguageFlag from "./LanguageFlag.astro";
 
 interface Props {
   lang: string;
@@ -20,31 +21,32 @@ const unavailableText = siteSettings.languageSwitcher.unavailable[uiLang];
 ---
 
 <nav aria-label={ariaLabel}>
-  <ul class="flex items-center gap-1 text-sm font-semibold">
+  <ul class="flex items-center gap-0 text-sm font-semibold">
     {
       options.map((option) => (
         <li class="flex">
           {option.available ? (
             <a
               href={option.href}
+              aria-label={option.label}
               aria-current={option.active ? "page" : undefined}
               class:list={[
-                "inline-flex min-h-11 items-center border-b-2 px-3 py-2 transition-colors",
+                "inline-flex min-h-11 items-center border-b-2 px-2.5 py-2 transition-colors",
                 "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue",
                 option.active
                   ? "border-brand-deepblue text-brand-deepblue"
                   : "border-transparent text-ink-muted hover:border-border-strong hover:text-ink",
               ]}
             >
-              {option.label}
+              <LanguageFlag lang={option.lang} />
             </a>
           ) : (
             <span
               aria-disabled="true"
-              class="inline-flex min-h-11 items-center border-b-2 border-transparent px-3 py-2 text-ink-subtle"
+              class="inline-flex min-h-11 items-center border-b-2 border-transparent px-2.5 py-2 text-ink-subtle"
             >
-              {option.label}
-              <span class="sr-only"> — {unavailableText}</span>
+              <LanguageFlag lang={option.lang} />
+              <span class="sr-only">{option.label} — {unavailableText}</span>
             </span>
           )}
         </li>
