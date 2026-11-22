@@ -65,6 +65,7 @@ interface FaqBlock extends BlockBase {
 interface HowToBlock extends BlockBase {
   type: "howto";
   layout?: "steps" | "timeline" | "compact";
+  title?: string;
   steps: Array<{
     title: string;
     description: string;
@@ -188,8 +189,8 @@ const ctaClass = (variant?: CtaBlock["variant"], surface?: Surface) =>
         </div>
       </section>
     ) : block.type === "howto" ? (
-      <section id={id} aria-label={howToHeading} aria-labelledby={`${id}-heading`} class:list={[...semanticClasses, style.section]}>
-        <h2 id={`${id}-heading`} class:list={["text-2xl font-semibold tracking-tight sm:text-3xl", style.heading]}>{howToHeading}</h2>
+      <section id={id} aria-label={block.title ?? howToHeading} aria-labelledby={`${id}-heading`} class:list={[...semanticClasses, style.section]}>
+        <h2 id={`${id}-heading`} class:list={["text-2xl font-semibold tracking-tight sm:text-3xl", style.heading]}>{block.title ?? howToHeading}</h2>
         {block.layout === "timeline" ? (
           <ol class="mt-8 space-y-0">
             {block.steps.map((step, stepIndex) => (
