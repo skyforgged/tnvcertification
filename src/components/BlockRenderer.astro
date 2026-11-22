@@ -49,7 +49,6 @@ const surfaces: Record<Surface, SurfaceStyles> = {
 
 interface BlockBase extends BlockAnchorSource {
   surface?: Surface;
-  layout?: string;
 }
 interface ContentSectionBlock extends BlockBase {
   type: "content-section";
@@ -154,7 +153,7 @@ const ctaClass = (variant?: CtaBlock["variant"], surface?: Surface) =>
         {block.items && layout === "comparison" && (
           <div class="mt-8 grid gap-px bg-current/15 sm:grid-cols-2">
             {block.items.slice(0,2).map((item, itemIndex) => (
-              <article class:list={["p-5 sm:p-7", surface === "navy" ? "bg-block-navy" : "bg-white"]}>
+              <article class:list={["p-5 sm:p-7", surface === "navy" ? "bg-block-navy" : surface === "cream" ? "bg-block-cream" : "bg-white"]}>
                 <span class="text-xs font-bold uppercase tracking-widest opacity-65">{itemIndex === 0 ? "Sebelumnya" : "Edisi terbaru"}</span>
                 <h3 class:list={["mt-3 text-xl font-semibold tracking-tight", style.heading]}>{item.title}</h3>
                 <p class:list={["mt-3 leading-relaxed", style.body]}>{item.description}</p>
