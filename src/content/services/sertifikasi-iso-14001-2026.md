@@ -55,6 +55,13 @@ blocks:
       - title: "Evaluasi dan peningkatan kinerja"
         description: "Memantau dan mengevaluasi kinerja lingkungan, mengevaluasi kepatuhan, melaksanakan audit internal dan tinjauan manajemen, serta menangani ketidaksesuaian."
   - type: "content-section"
+  - type: "cta"
+    id: "cta-iso14001-sertifikasi"
+    surface: "navy"
+    title: "Siapkan sistem manajemen lingkungan Anda untuk sertifikasi"
+    description: "Diskusikan ruang lingkup, kesiapan sistem, dan kebutuhan audit ISO 14001 dengan tim kami untuk memahami langkah yang sesuai bagi organisasi Anda."
+    link:
+      label: "Diskusikan kebutuhan sertifikasi"
     id: "iso14001-edisi-2026"
     layout: "highlight"
     surface: "cream"
