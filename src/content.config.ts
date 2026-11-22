@@ -2,6 +2,7 @@ import { defineCollection } from "astro/content/config";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 import { collectionRegistry } from "./data/collections";
+import { isSupportedLinkUrl } from "./lib/link-url";
 
 /**
  * Shared image-object schema (single primary / optional gallery).
@@ -71,12 +72,80 @@ const ctaBlock = z.object({
   link: z
     .object({
       label: z.string().min(1),
-      url: z.string().url(),
+      url: z.string().refine(isSupportedLinkUrl, "link URL must be an absolute http(s) URL or a root-relative path"),
     })
     .optional(),
 });
 
+// --- Page structure blocks (development-mode combined page pattern) ---
+const heroBlock = z.object({
+  type: z.literal("hero"),
+  id: blockIdSchema.optional(),
+  surface: sectionSurfaceSchema.optional(),
+  eyebrow: z.string().optional(),
+  title: z.string().min(1),
+  description: z.string().optional(),
+  image: z.string().optional(),
+  imageAlt: z.string().optional(),
+});
+
+const linkGridBlock = z.object({
+  type: z.literal("link-grid"),
+  id: blockIdSchema.optional(),
+  surface: sectionSurfaceSchema.optional(),
+  eyebrow: z.string().optional(),
+  title: z.string().optional(),
+  items: z.array(z.object({
+    eyebrow: z.string().optional(),
+    title: z.string().min(1),
+    description: z.string().optional(),
+    href: z.string().refine(isSupportedLinkUrl, "link href must be an absolute http(s) URL or a root-relative path"),
+    actionLabel: z.string().optional(),
+  })).min(1),
+});
+
+const listingBlock = z.object({
+  type: z.literal("listing"),
+  id: blockIdSchema.optional(),
+  surface: sectionSurfaceSchema.optional(),
+  source: z.enum(["services", "trainings", "schedules", "articles"]),
+  eyebrow: z.string().optional(),
+  title: z.string().optional(),
+  description: z.string().optional(),
+  emptyTitle: z.string().optional(),
+  emptyDescription: z.string().optional(),
+  emptyActionLabel: z.string().optional(),
+  emptyActionHref: z.string().optional(),
+  actionLabel: z.string().optional(),
+  actionHref: z.string().optional(),
+});
+
+const contactBlock = z.object({
+  type: z.literal("contact"),
+  id: blockIdSchema.optional(),
+  surface: sectionSurfaceSchema.optional(),
+  eyebrow: z.string().optional(),
+  title: z.string().min(1),
+  description: z.string().optional(),
+  labels: z.object({
+    email: z.string().optional(),
+    phone: z.string().optional(),
+    address: z.string().optional(),
+  }).optional(),
+});
+
 const blockSchema = z.discriminatedUnion("type", [contentSectionBlock, faqBlock, howToBlock, ctaBlock]);
+
+const pageBlockSchema = z.discriminatedUnion("type", [
+  heroBlock,
+  linkGridBlock,
+  listingBlock,
+  contactBlock,
+  contentSectionBlock,
+  faqBlock,
+  howToBlock,
+  ctaBlock,
+]);
 
 /**
  * Fields shared by every publishable page-like entry. Schedule and category
@@ -182,6 +251,7 @@ const trainingScheduleSchema = z.object({
 // --- General pages ---
 const pageSchema = baseEntrySchema.extend({
   draft: z.boolean().optional(),
+  blocks: z.array(pageBlockSchema).optional(),
 });
 
 function collection<T extends z.ZodTypeAny>(name: keyof typeof collectionRegistry, schema: T) {
