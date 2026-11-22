@@ -49,6 +49,13 @@ blocks:
       - title: "Evaluasi dan peningkatan"
         description: "Pemantauan, pengukuran, audit internal, tinjauan manajemen, penanganan ketidaksesuaian, dan peningkatan."
   - type: "content-section"
+  - type: "cta"
+    id: "cta-iso9001-sertifikasi"
+    surface: "navy"
+    title: "Petakan kesiapan sistem manajemen mutu Anda"
+    description: "Sampaikan konteks organisasi dan ruang lingkup sistem mutu Anda untuk mendiskusikan langkah persiapan dan proses penilaian yang relevan."
+    link:
+      label: "Diskusikan kebutuhan sertifikasi"
     id: "iso9001-periode-transisi"
     surface: "cream"
     eyebrow: "Periode transisi"
