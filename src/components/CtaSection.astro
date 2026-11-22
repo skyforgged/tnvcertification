@@ -1,0 +1,30 @@
+---
+import { organization } from "../site";
+
+interface Props {
+  id: string;
+  surfaceClass: string;
+  headingClass: string;
+  bodyClass: string;
+  buttonClass: string;
+  title?: string;
+  description?: string;
+  link?: { label: string; url?: string };
+  ariaLabel?: string;
+}
+const { id, surfaceClass, headingClass, bodyClass, buttonClass, title, description, link, ariaLabel } = Astro.props;
+const fallbackUrl = `https://wa.me/${organization.contact.whatsapp.replace(/[^0-9]/g, "")}`;
+const href = link?.url ?? fallbackUrl;
+const label = link?.label ?? (Astro.props.lang === "en" ? "Contact certification team" : "Hubungi tim sertifikasi");
+---
+<aside id={id} aria-label={ariaLabel ?? title ?? "Informasi sertifikasi"} class:list={["block-section block-section--cta relative overflow-hidden border-y py-8 sm:py-10", surfaceClass]}>
+  <div class="grid gap-6 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
+    <div>
+      {title && <h2 class:list={["text-xl font-semibold tracking-tight sm:text-2xl", headingClass]}>{title}</h2>}
+      {description && <p class:list={["mt-2 max-w-[var(--container-reading)] leading-relaxed", bodyClass]}>{description}</p>}
+    </div>
+    <a href={href} target={link?.url ? undefined : "_blank"} rel={link?.url ? undefined : "noopener noreferrer"} class:list={["inline-flex min-h-11 w-fit items-center justify-center px-5 py-2.5 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue", buttonClass]}>
+      {label}<span class="ml-2" aria-hidden="true">↗</span>
+    </a>
+  </div>
+</aside>
