@@ -177,14 +177,16 @@ const ctaClass = (variant?: CtaBlock["variant"], surface?: Surface) =>
     ) : block.type === "faq" ? (
       <section id={id} aria-label={faqHeading} aria-labelledby={`${id}-heading`} class:list={[...semanticClasses, style.section]}>
         <h2 id={`${id}-heading`} class:list={["text-2xl font-semibold tracking-tight sm:text-3xl", style.heading]}>{faqHeading}</h2>
-        <dl class:list={["mt-6 divide-y", style.divider]}>
+        <div class:list={["mt-6 divide-y", style.divider]}>
           {block.items.map((item) => (
-            <div class="py-5 first:pt-0 last:pb-0">
-              <dt class:list={["font-semibold", style.heading]}>{item.question}</dt>
-              <dd class:list={["mt-2 max-w-[var(--container-reading)] leading-relaxed", style.body]}>{item.answer}</dd>
-            </div>
+            <details class="group py-5 first:pt-0 last:pb-0">
+              <summary class:list={["flex cursor-pointer list-none items-start justify-between gap-4 font-semibold marker:hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-blue", style.heading]}>
+                <span>{item.question}</span><span aria-hidden="true" class="mt-0.5 text-xl transition-transform group-open:rotate-45">+</span>
+              </summary>
+              <p class:list={["mt-3 max-w-[var(--container-reading)] leading-relaxed", style.body]}>{item.answer}</p>
+            </details>
           ))}
-        </dl>
+        </div>
       </section>
     ) : block.type === "howto" ? (
       <section id={id} aria-label={howToHeading} aria-labelledby={`${id}-heading`} class:list={[...semanticClasses, style.section]}>
