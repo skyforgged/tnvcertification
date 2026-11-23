@@ -15,7 +15,6 @@ const { service } = Astro.props;
 const otherServices = (await getPublishedServices("id")).map((item) => ({
   id: item.data.id,
   title: item.data.title,
-  description: item.data.intro,
   href: servicePath(item.data),
   category: item.data.category,
 }));
