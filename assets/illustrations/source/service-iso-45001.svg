@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-labelledby="iso45001-title">
+  <title id="iso45001-title">Sertifikasi sistem manajemen kesehatan dan keselamatan kerja ISO 45001</title>
+  <rect width="800" height="600" rx="40" fill="#eaf6f1"/>
+  <circle cx="400" cy="300" r="222" fill="#fff" opacity=".85"/>
+  <path d="M244 250c0-82 70-148 156-148s156 66 156 148v42H244z" fill="#ffd447" stroke="#1736a8" stroke-width="14"/>
+  <path d="M218 292h364v30a26 26 0 0 1-26 26H244a26 26 0 0 1-26-26z" fill="#315cff" stroke="#1736a8" stroke-width="12"/>
+  <rect x="286" y="380" width="228" height="132" rx="18" fill="#fff" stroke="#1736a8" stroke-width="12"/>
+  <path d="M322 418h62M322 452h106M322 486h80" stroke="#36c9a5" stroke-width="14" stroke-linecap="round"/>
+  <path d="m470 452 26 26 44-52" fill="none" stroke="#1736a8" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="150" cy="150" r="24" fill="#ff6b35"/>
+  <circle cx="660" cy="160" r="16" fill="#36c9a5"/>
+  <circle cx="652" cy="486" r="20" fill="#315cff" opacity=".55"/>
+</svg>

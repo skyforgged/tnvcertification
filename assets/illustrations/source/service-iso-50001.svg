@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-labelledby="iso50001-title">
+  <title id="iso50001-title">Sertifikasi sistem manajemen energi ISO 50001</title>
+  <rect width="800" height="600" rx="40" fill="#fff5e9"/>
+  <circle cx="400" cy="300" r="222" fill="#fff" opacity=".88"/>
+  <path d="M428 112 286 336h96l-30 158 166-238H414z" fill="#ffd447" stroke="#1736a8" stroke-width="14" stroke-linejoin="round"/>
+  <path d="M210 424h380" stroke="#1736a8" stroke-width="14" stroke-linecap="round"/>
+  <path d="M248 424a152 152 0 0 1 304 0" fill="none" stroke="#315cff" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="400" cy="424" r="12" fill="#ff6b35" stroke="#fff" stroke-width="6"/>
+  <path d="M605 420c-44-4-72-34-68-78 44 4 72 34 68 78z" fill="#36c9a5" stroke="#0f7f68" stroke-width="8"/>
+  <path d="M548 428c20-30 42-50 60-64" fill="none" stroke="#0f7f68" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="168" cy="176" r="20" fill="#ff6b35"/>
+  <circle cx="648" cy="172" r="14" fill="#315cff"/>
+  <circle cx="158" cy="478" r="16" fill="#36c9a5"/>
+</svg>
