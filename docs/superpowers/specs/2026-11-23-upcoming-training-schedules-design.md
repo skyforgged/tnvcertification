@@ -78,6 +78,15 @@ Add `upcomingSchedulesBlock` to `pageBlockSchema`:
 Append the block to `src/content/pages/0023-halaman-trainings.md` after the catalog
 `listing` block.
 
+Copy lama pada `emptyTitle` / `emptyDescription` blok `listing` katalog —
+"Katalog pelatihan sedang disiapkan" dan "Informasi program, materi, persyaratan peserta,
+dan jadwal akan ditampilkan setelah masing-masing program siap dipublikasikan. Jadwal
+pelaksanaan akan dikelola terpisah dari informasi program agar perubahan tanggal, lokasi,
+kuota, dan status pendaftaran tetap akurat." — dicatat sebagai teks usang. Teks ini
+tidak tampil di build saat ini karena sudah ada 3 entri pelatihan publish, dan juga tidak
+akan tampil setelah 14 program tayang. Akan diganti atau dihapus mengikuti keputusan owner
+saat implementasi katalog 14 program dikerjakan.
+
 ### Data
 
 Add `selectUpcomingSchedules(items, today, limit)` to `src/lib/schedule-display.ts`:
