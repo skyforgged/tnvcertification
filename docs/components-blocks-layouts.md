@@ -17,6 +17,7 @@
 - `hero`: eyebrow, title, description, and optional image/alt; `PageHero` falls back to the entry's featured image.
 - `link-grid`: a short set of curated internal links with per-item eyebrow, title, description, and action label; rendered by `LinkGrid`.
 - `listing`: a source selector (`services`, `trainings`, `schedules`, `articles`) plus heading and empty-state copy; `ListingSection` renders the shell while the route supplies item markup from the canonical collection.
+- `upcoming-schedules`: heading, description, and empty-state copy for the nearest dated sessions; `UpcomingSchedules` is presentational and receives its items from the route (never from frontmatter), using the shared `selectUpcomingSchedules` selector.
 - `contact`: heading, description, and label overrides; `ContactPanel` always reads email, phone, and address from `site.ts`.
 
 This combined page pattern is provisional; do not treat it as a final universal layout abstraction.

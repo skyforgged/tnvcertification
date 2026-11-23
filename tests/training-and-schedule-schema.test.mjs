@@ -1,0 +1,67 @@
+import assert from "node:assert/strict";
+import test from "node:test";
+import { collections } from "../src/content.config.ts";
+
+const trainingInput = {
+  title: "Pelatihan Auditor Internal ISO 9001",
+  intro: "Pelatihan Auditor Internal ISO 9001 adalah program pemahaman proses sertifikasi sistem manajemen mutu.",
+  slug: "pelatihan-auditor-internal-iso-9001",
+  metaDescription: "Program pemahaman ruang lingkup, audit, dan administrasi sertifikasi ISO 9001:2026.",
+  pubDate: "2026-11-23T00:00:00Z",
+  featuredImage: {
+    src: "/images/illustrations/training-iso9001-2026.webp",
+    alt: "Pelatihan Auditor Internal ISO 9001 adalah program pemahaman sertifikasi mutu.",
+  },
+  lang: "id",
+  translationKey: "training-pelatihan-auditor-internal-iso-9001",
+  blocks: [
+    {
+      type: "hero",
+      id: "hero-trainings",
+      title: "Pelatihan Auditor Internal ISO 9001",
+      description: "Pelatihan Auditor Internal ISO 9001 adalah program pemahaman proses sertifikasi sistem manajemen mutu.",
+    },
+  ],
+};
+
+const scheduleInput = {
+  trainingSlug: "pelatihan-auditor-internal-iso-9001",
+  slug: "jadwal-pelatihan-iso-9001-2026",
+  notes: "Jadwal angkatan akan diumumkan.",
+};
+
+test("training schema accepts a hero block", () => {
+  const result = collections.training.schema.safeParse(trainingInput);
+  assert.equal(result.success, true, result.success ? "" : JSON.stringify(result.error.issues));
+});
+
+test("schedule schema accepts a placeholder without dates", () => {
+  const result = collections.trainingSchedules.schema.safeParse(scheduleInput);
+  assert.equal(result.success, true, result.success ? "" : JSON.stringify(result.error.issues));
+});
+
+test("schedule schema rejects a record with only one date", () => {
+  const result = collections.trainingSchedules.schema.safeParse({
+    ...scheduleInput,
+    startDate: "2027-01-01",
+  });
+  assert.equal(result.success, false);
+});
+
+test("schedule schema rejects an impossible calendar date", () => {
+  const result = collections.trainingSchedules.schema.safeParse({
+    ...scheduleInput,
+    startDate: "2027-13-45",
+    endDate: "2027-13-45",
+  });
+  assert.equal(result.success, false);
+});
+
+test("schedule schema rejects an end date before the start date", () => {
+  const result = collections.trainingSchedules.schema.safeParse({
+    ...scheduleInput,
+    startDate: "2027-03-10",
+    endDate: "2027-03-01",
+  });
+  assert.equal(result.success, false);
+});

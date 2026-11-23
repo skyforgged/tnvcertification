@@ -123,6 +123,17 @@ const listingBlock = z.object({
   actionHref: z.string().optional(),
 });
 
+const upcomingSchedulesBlock = z.object({
+  type: z.literal("upcoming-schedules"),
+  id: blockIdSchema.optional(),
+  surface: sectionSurfaceSchema.optional(),
+  eyebrow: z.string().optional(),
+  title: z.string().min(1),
+  description: z.string().optional(),
+  emptyTitle: z.string().optional(),
+  emptyDescription: z.string().optional(),
+});
+
 const contactBlock = z.object({
   type: z.literal("contact"),
   id: blockIdSchema.optional(),
@@ -137,12 +148,11 @@ const contactBlock = z.object({
   }).optional(),
 });
 
-const blockSchema = z.discriminatedUnion("type", [contentSectionBlock, faqBlock, howToBlock, ctaBlock]);
-
 const pageBlockSchema = z.discriminatedUnion("type", [
   heroBlock,
   linkGridBlock,
   listingBlock,
+  upcomingSchedulesBlock,
   contactBlock,
   contentSectionBlock,
   faqBlock,
@@ -218,7 +228,7 @@ const trainingSchema = baseEntrySchema.extend({
   draft: z.boolean().optional(),
   categoryIds: z.array(z.string()).optional(),
   hero: trainingHeroSchema.optional(),
-  blocks: z.array(blockSchema).optional(),
+  blocks: z.array(pageBlockSchema).optional(),
 });
 
 // --- Categories (taxonomy records, not editorial pages) ---
@@ -233,15 +243,21 @@ const categorySchema = z.object({
 });
 
 // --- Training schedules (event records; training link is required) ---
+// Shape alone admits impossible dates such as 2027-13-45, which would render as
+// "Invalid Date". A round-trip through UTC keeps only real calendar dates.
+const calendarDateSchema = z
+  .string()
+  .regex(/^\d{4}-\d{2}-\d{2}$/, "date must be YYYY-MM-DD")
+  .refine((value) => {
+    const parsed = new Date(`${value}T00:00:00Z`);
+    return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value;
+  }, "date must be a valid calendar date");
+
 const trainingScheduleSchema = z.object({
   trainingSlug: z.string().min(1, "trainingSlug is required"),
   serviceSlug: z.string().optional(),
-  startDate: z
-    .string()
-    .regex(/^\d{4}-\d{2}-\d{2}$/, "startDate must be YYYY-MM-DD"),
-  endDate: z
-    .string()
-    .regex(/^\d{4}-\d{2}-\d{2}$/, "endDate must be YYYY-MM-DD"),
+  startDate: calendarDateSchema.optional(),
+  endDate: calendarDateSchema.optional(),
   timezone: z.string().optional(),
   locationType: z.enum(["offline", "online", "hybrid"]).optional(),
   venue: z.string().optional(),
@@ -256,6 +272,21 @@ const trainingScheduleSchema = z.object({
   registrationUrl: z.string().url().optional(),
   notes: z.string().optional(),
   slug: z.string().min(1),
+}).superRefine((data, ctx) => {
+  if (Boolean(data.startDate) !== Boolean(data.endDate)) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "startDate and endDate must be provided together",
+      path: [data.startDate ? "endDate" : "startDate"],
+    });
+  }
+  if (data.startDate && data.endDate && data.endDate < data.startDate) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "endDate must not be before startDate",
+      path: ["endDate"],
+    });
+  }
 });
 
 // --- General pages ---

@@ -1,0 +1,250 @@
+---
+import type { CollectionEntry } from "astro:content";
+import ButtonLink from "../ButtonLink.astro";
+import {
+  monthKeyFromStartDate,
+  scheduleDateLabel,
+  selectDefaultScheduleMonth,
+  sortSchedulesByStartDate,
+} from "../../lib/schedule-display";
+
+export interface ScheduleMonthLabels {
+  showPast: string;
+  summaryActive: string;
+  summaryAll: string;
+  emptyMonth: string;
+  note: string;
+  past: string;
+  ongoing: string;
+  open: string;
+  closed: string;
+  full: string;
+  pending: string;
+  online: string;
+  hybrid: string;
+  offline: string;
+  locationPending: string;
+  register: string;
+  monthPickerLabel: string;
+  monthButtonLabel: string;
+}
+
+interface Props {
+  schedules: CollectionEntry<"trainingSchedules">[];
+  labels: ScheduleMonthLabels;
+  locale: string;
+  todayKey: string;
+}
+
+const { schedules, labels, locale, todayKey } = Astro.props;
+const dated = schedules.filter((item) => monthKeyFromStartDate(item.data.startDate));
+const ordered = sortSchedulesByStartDate(dated);
+const defaultMonth = selectDefaultScheduleMonth(ordered, todayKey);
+const years = [...new Set(ordered.map((item) => item.data.startDate!.slice(0, 4)))].sort();
+const monthName = new Intl.DateTimeFormat(locale, { month: "short", timeZone: "UTC" });
+const monthGroupLabel = new Intl.DateTimeFormat(locale, { month: "long", year: "numeric", timeZone: "UTC" });
+const months = years.flatMap((year) =>
+  Array.from({ length: 12 }, (_, index) => {
+    const key = `${year}-${String(index + 1).padStart(2, "0")}`;
+    const count = ordered.filter((item) => monthKeyFromStartDate(item.data.startDate) === key).length;
+    return {
+      key,
+      short: monthName.format(new Date(`${key}-01T00:00:00Z`)),
+      long: monthGroupLabel.format(new Date(`${key}-01T00:00:00Z`)),
+      count,
+    };
+  }),
+);
+const groups = [...new Set(ordered.map((item) => monthKeyFromStartDate(item.data.startDate)!))]
+  .sort()
+  .map((key) => ({
+    key,
+    label: monthGroupLabel.format(new Date(`${key}-01T00:00:00Z`)),
+    items: ordered.filter((item) => monthKeyFromStartDate(item.data.startDate) === key),
+  }));
+const registrationLabels: Record<string, string> = {
+  open: labels.open, closed: labels.closed, full: labels.full,
+};
+const statusLabel = (data: CollectionEntry<"trainingSchedules">["data"]): string => {
+  if (data.endDate && data.endDate < todayKey) return labels.past;
+  if (data.startDate && data.startDate <= todayKey) return labels.ongoing;
+  return registrationLabels[data.registrationStatus ?? ""] ?? labels.pending;
+};
+const locationLabel = (type?: string): string =>
+  ({ online: labels.online, hybrid: labels.hybrid, offline: labels.offline }[type ?? ""] ?? labels.locationPending);
+const activeCount = ordered.filter((item) => (item.data.endDate ?? "") >= todayKey).length;
+const summaryTemplate = labels.summaryActive.replace("{count}", String(activeCount));
+---
+
+<div
+  data-schedule-months
+  class="training-schedule-months"
+  data-default-month={defaultMonth ?? ""}
+  data-label-past={labels.past}
+  data-label-ongoing={labels.ongoing}
+  data-label-open={labels.open}
+  data-label-closed={labels.closed}
+  data-label-full={labels.full}
+  data-label-pending={labels.pending}
+  data-label-summary-active={labels.summaryActive}
+  data-label-summary-all={labels.summaryAll}
+  data-label-empty={labels.emptyMonth}
+>
+  {months.length > 0 && (
+    <div class="mt-6">
+      <ol class="training-schedule-month-list flex flex-wrap gap-2" aria-label={labels.monthPickerLabel}>
+        {months.map((month) => (
+          <li>
+            <button
+              type="button"
+              data-month-filter={month.key}
+              data-month-base={month.long}
+              aria-label={labels.monthButtonLabel.replace("{month}", month.long).replace("{count}", String(month.count))}
+              aria-pressed={month.key === defaultMonth}
+              disabled={month.count === 0}
+              class:list={[
+                "training-schedule-month-button inline-flex min-h-11 items-center gap-2 rounded-md border px-3 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue disabled:cursor-not-allowed disabled:opacity-40",
+                month.key === defaultMonth
+                  ? "border-brand-blue bg-brand-blue text-white"
+                  : "border-border bg-surface-muted text-ink hover:border-brand-blue",
+              ]}
+            >
+              <span>{month.short}</span><b data-month-count class="training-schedule-month-count">{month.count}</b>
+            </button>
+          </li>
+        ))}
+      </ol>
+      <div class="mt-4 flex flex-wrap items-center justify-between gap-3 border-y border-border py-3">
+        <p data-schedule-summary aria-live="polite" class="training-schedule-summary text-sm font-medium text-ink">{summaryTemplate}</p>
+        <label class="inline-flex min-h-11 cursor-pointer items-center gap-2 text-sm text-ink-muted">
+          <input type="checkbox" data-show-past class="training-schedule-show-past h-4 w-4 accent-brand-blue" />
+          <span>{labels.showPast}</span>
+        </label>
+      </div>
+    </div>
+  )}
+
+  <div data-schedule-list class="mt-2 divide-y divide-border">
+    {groups.map((group) => (
+      <section data-month-group={group.key} class="training-schedule-month-group" hidden={group.key !== defaultMonth} aria-labelledby={`month-${group.key}`}>
+        <h3 id={`month-${group.key}`} class="training-schedule-month-heading mt-6 text-lg font-semibold tracking-tight text-ink">{group.label}</h3>
+        <ol class="divide-y divide-border">
+          {group.items.map((item) => {
+            const data = item.data;
+            const status = statusLabel(data);
+            return (
+              <li
+                data-schedule-item
+                data-month={group.key}
+                data-start-date={data.startDate ?? ""}
+                data-end-date={data.endDate ?? ""}
+                data-timezone={data.timezone ?? "Asia/Jakarta"}
+                data-registration-status={data.registrationStatus ?? "unknown"}
+                data-status={data.endDate && data.endDate < todayKey ? "past" : data.startDate && data.startDate <= todayKey ? "ongoing" : "available"}
+                data-active={String((data.endDate ?? "") >= todayKey)}
+                class="training-schedule-item grid gap-2 py-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-6"
+              >
+                <div>
+                  <p class="training-schedule-date text-base font-semibold text-ink">
+                    {scheduleDateLabel(data.startDate, data.endDate, { locale, pendingLabel: labels.pending })}
+                  </p>
+                  <p class="training-schedule-location mt-1 text-sm text-ink-muted">{locationLabel(data.locationType)}</p>
+                  {(data.venue || data.city) && (
+                    <p class="training-schedule-venue mt-1 text-sm text-ink-muted">{[data.venue, data.city, data.province].filter(Boolean).join(", ")}</p>
+                  )}
+                  <p data-status-label class="training-schedule-status mt-2 text-sm font-medium text-ink">{status}</p>
+                  {data.price !== undefined && (
+                    <p class="training-schedule-price mt-1 text-sm text-ink-muted">
+                      {data.currency === "IDR" || !data.currency ? "Rp " : `${data.currency} `}{data.price.toLocaleString(locale)}
+                    </p>
+                  )}
+                  {data.quota !== undefined && <p class="training-schedule-quota mt-1 text-sm text-ink-muted">{data.quota}</p>}
+                </div>
+                {data.registrationUrl && data.registrationStatus === "open" && (
+                  <div class="training-schedule-register sm:justify-self-end"><ButtonLink href={data.registrationUrl}>{labels.register}</ButtonLink></div>
+                )}
+              </li>
+            );
+          })}
+        </ol>
+      </section>
+    ))}
+  </div>
+  <p data-schedule-empty hidden class="training-schedule-empty mt-6 border-y border-border py-6 text-ink-muted">{labels.emptyMonth}</p>
+  <p class="training-schedule-note mt-6 text-sm leading-relaxed text-ink-muted">{labels.note}</p>
+</div>
+
+<script>
+  document.querySelectorAll("[data-schedule-months]").forEach((node) => {
+    const root = node as HTMLElement;
+    const list = root.querySelector<HTMLElement>("[data-schedule-list]");
+    const toggle = root.querySelector<HTMLInputElement>("[data-show-past]");
+    if (!list || !toggle) return;
+
+    const cards = Array.from(root.querySelectorAll<HTMLElement>("[data-schedule-item]"));
+    const groups = Array.from(root.querySelectorAll<HTMLElement>("[data-month-group]"));
+    const buttons = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-month-filter]"));
+    const summary = root.querySelector<HTMLElement>("[data-schedule-summary]");
+    const empty = root.querySelector<HTMLElement>("[data-schedule-empty]");
+    const label = (key: string) => root.dataset[`label${key.charAt(0).toUpperCase()}${key.slice(1)}`] ?? "";
+    let selected = root.dataset.defaultMonth ?? "";
+
+    const refreshStatuses = () => {
+      const today = new Intl.DateTimeFormat("en-CA", {
+        timeZone: "Asia/Jakarta", year: "numeric", month: "2-digit", day: "2-digit",
+      }).format(new Date());
+      cards.forEach((card) => {
+        const start = card.dataset.startDate;
+        const end = card.dataset.endDate;
+        const registration = card.dataset.registrationStatus;
+        if (!start || !end) return;
+        const key = end < today ? "past" : start <= today ? "ongoing" : "available";
+        const text = key === "past" ? label("past") : key === "ongoing" ? label("ongoing")
+          : registration === "open" ? label("open") : registration === "closed" ? label("closed")
+          : registration === "full" ? label("full") : label("pending");
+        card.dataset.status = key;
+        card.dataset.active = String(key !== "past");
+        const badge = card.querySelector<HTMLElement>("[data-status-label]");
+        if (badge) badge.textContent = text;
+      });
+    };
+
+    const render = () => {
+      const showPast = toggle.checked;
+      let visible = 0;
+      cards.forEach((card) => {
+        const shown = (showPast || card.dataset.active === "true") && (!selected || card.dataset.month === selected);
+        card.hidden = !shown;
+        if (shown) visible += 1;
+      });
+      groups.forEach((group) => {
+        group.hidden = !group.querySelector("[data-schedule-item]:not([hidden])");
+      });
+      buttons.forEach((button) => {
+        const key = button.dataset.monthFilter ?? "";
+        const count = cards.filter((card) => card.dataset.month === key && (showPast || card.dataset.active === "true")).length;
+        const node = button.querySelector<HTMLElement>("[data-month-count]");
+        if (node) node.textContent = String(count);
+        button.disabled = count === 0;
+        button.setAttribute("aria-pressed", String(selected === key));
+      });
+      list.hidden = visible === 0;
+      if (empty) empty.hidden = visible > 0;
+      if (summary) {
+        const template = showPast ? label("summaryAll") : label("summaryActive");
+        summary.textContent = template.replace("{count}", String(visible));
+      }
+    };
+
+    refreshStatuses();
+    render();
+    toggle.addEventListener("change", render);
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const key = button.dataset.monthFilter ?? "";
+        selected = selected === key ? "" : key;
+        render();
+      });
+    });
+  });
+</script>

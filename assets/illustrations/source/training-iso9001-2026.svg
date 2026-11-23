@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-labelledby="training-iso9001-title">
+  <title id="training-iso9001-title">Pelatihan sertifikasi sistem manajemen mutu ISO 9001:2026</title>
+  <rect width="800" height="600" rx="40" fill="#eef3ff"/>
+  <circle cx="402" cy="298" r="222" fill="#fff" opacity=".82"/>
+  <rect x="188" y="146" width="424" height="288" rx="20" fill="#fff" stroke="#1736a8" stroke-width="14"/>
+  <path d="M232 206h132m-132 38h176m-176 38h112" stroke="#315cff" stroke-width="14" stroke-linecap="round" opacity=".55"/>
+  <circle cx="508" cy="300" r="76" fill="#36c9a5" stroke="#0f7f68" stroke-width="12"/>
+  <path d="m474 300 24 24 44-52" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M252 434h296" stroke="#1736a8" stroke-width="16" stroke-linecap="round"/>
+  <circle cx="234" cy="434" r="16" fill="#ff6b35"/>
+  <circle cx="566" cy="434" r="16" fill="#ffd447"/>
+  <path d="M150 152c0-24 18-42 42-42s42 18 42 42-18 42-42 42-42-18-42-42Z" fill="#ffd447"/>
+  <path d="M566 152c0-24 18-42 42-42s42 18 42 42-18 42-42 42-42-18-42-42Z" fill="#ff6b35"/>
+</svg>
