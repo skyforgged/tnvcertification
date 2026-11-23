@@ -9,6 +9,7 @@ import {
   getPageHero,
   type ListingBlock,
 } from "../../data/pages";
+import { scheduleDateLabel, sortSchedulesByStartDate } from "../../lib/schedule-display";
 
 const entry = await getPageEntry("schedules");
 const hero = getPageHero(entry);
@@ -27,24 +28,13 @@ const trainingBySlug = new Map(
   trainings.map((training) => [training.data.slug, training]),
 );
 
-const publishedSchedules = schedules
-  .filter(
+const publishedSchedules = sortSchedulesByStartDate(
+  schedules.filter(
     (schedule) =>
       schedule.data.registrationStatus !== "cancelled" &&
       trainingBySlug.has(schedule.data.trainingSlug),
-  )
-  .sort((a, b) =>
-    a.data.startDate.localeCompare(b.data.startDate) ||
-    a.data.slug.localeCompare(b.data.slug),
-  );
-
-const formatDate = (value: string) =>
-  new Date(`${value}T00:00:00Z`).toLocaleDateString("id-ID", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
-  });
+  ),
+);
 
 const statusLabel = (status?: string) => ({
   open: "Pendaftaran dibuka",
@@ -71,7 +61,7 @@ const statusLabel = (status?: string) => ({
             <article class="grid gap-4 py-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
               <div>
                 <p class="text-sm font-semibold text-ink-muted">
-                  {formatDate(schedule.data.startDate)} – {formatDate(schedule.data.endDate)}
+                  {scheduleDateLabel(schedule.data.startDate, schedule.data.endDate)}
                 </p>
                 <h2 class="mt-2 text-xl font-semibold tracking-tight text-ink">
                   <a href={`/trainings/${training.data.slug}/`} class="hover:text-brand-blue">

@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 import {
+  parseFrontmatterContent,
   validateAllEntries,
   validateEntry,
 } from "../src/lib/content-validation.ts";
@@ -275,4 +276,16 @@ test("body-less entry without hero reports CONTENT-001 on blocks", () => {
   const found = diagnostics.find((d) => d.rule === "CONTENT-001");
   assert.ok(found, "expected CONTENT-001 diagnostic");
   assert.equal(found.field, "blocks");
+});
+
+test("upcoming-schedules block is parsed as an H2 heading", () => {
+  const { headings } = parseFrontmatterContent({
+    lang: "id",
+    blocks: [
+      { type: "hero", title: "H1", description: "H1 adalah intro halaman ini." },
+      { type: "upcoming-schedules", title: "H2" },
+    ],
+  });
+  assert.equal(headings.length, 2);
+  assert.deepEqual(headings[1], { level: 2, text: "H2" });
 });

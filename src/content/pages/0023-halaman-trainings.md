@@ -19,6 +19,12 @@ blocks:
   - type: listing
     id: katalog-pelatihan
     source: "trainings"
-    emptyTitle: "Katalog pelatihan sedang disiapkan"
-    emptyDescription: "Informasi program, materi, persyaratan peserta, dan jadwal akan ditampilkan setelah masing-masing program siap dipublikasikan. Jadwal pelaksanaan akan dikelola terpisah dari informasi program agar perubahan tanggal, lokasi, kuota, dan status pendaftaran tetap akurat."
+  - type: upcoming-schedules
+    id: pelatihan-terdekat
+    surface: cream
+    eyebrow: "Jadwal mendatang"
+    title: "Pelatihan Terdekat"
+    description: "Sesi pelatihan dengan tanggal mulai terdekat. Sesi paling jauh ditampilkan lebih atas, sesi terdekat paling bawah."
+    emptyTitle: "Belum ada jadwal pelatihan terdekat"
+    emptyDescription: "Jadwal pelatihan akan ditampilkan setelah tanggal pelaksanaan tersedia."
 ---

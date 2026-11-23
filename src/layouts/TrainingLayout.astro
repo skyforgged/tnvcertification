@@ -2,7 +2,9 @@
 import Layout from "./Layout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import Container from "../components/Container.astro";
-import FeaturedImage from "../components/FeaturedImage.astro";
+import PageHero from "../components/page/PageHero.astro";
+import PageBlockRenderer from "../components/page/PageBlockRenderer.astro";
+import type { HeroBlock, PageBlock } from "../data/pages";
 import type { SeoAlternate } from "../lib/seo";
 interface Props {
   title: string;
@@ -12,15 +14,21 @@ interface Props {
   ogImage?: string;
   imageAlt: string;
   alternates?: SeoAlternate[];
+  hero: HeroBlock;
+  blocks: PageBlock[];
 }
-const { title, description, lang = "id", canonical, ogImage, imageAlt, alternates = [] } = Astro.props;
+const { title, description, lang = "id", canonical, ogImage, imageAlt, alternates = [], hero, blocks } = Astro.props;
 const homeLabel = lang === "en" ? "Home" : "Beranda";
 const trainingLabel = lang === "en" ? "Training" : "Pelatihan";
+const fallbackImage = { src: ogImage ?? "", alt: imageAlt };
 ---
 <Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage} alternates={alternates}>
   <Container as="article" variant="wide" gutter={false}>
     <Breadcrumbs items={[{ label: homeLabel, href: "/" }, { label: trainingLabel, href: "/trainings/" }, { label: title }]} />
-    {ogImage && <FeaturedImage src={ogImage} alt={imageAlt} priority class="mt-8 max-w-5xl" />}
+    <PageHero block={hero} fallbackImage={fallbackImage} />
+    <div class="mt-10">
+      <PageBlockRenderer blocks={blocks} fallbackImage={fallbackImage} lang={lang} />
+    </div>
     <slot />
   </Container>
 </Layout>
