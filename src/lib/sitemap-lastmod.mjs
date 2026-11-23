@@ -8,6 +8,7 @@ const contentRoot = path.join(root, "content");
 const routePrefixes = new Map([
   ["articles", "/articles/"],
   ["services", "/services/"],
+  ["training", "/trainings/"],
   ["pages", "/"],
 ]);
 

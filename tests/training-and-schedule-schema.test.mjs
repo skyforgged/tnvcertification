@@ -47,3 +47,12 @@ test("schedule schema rejects a record with only one date", () => {
   });
   assert.equal(result.success, false);
 });
+
+test("schedule schema rejects an impossible calendar date", () => {
+  const result = collections.trainingSchedules.schema.safeParse({
+    ...scheduleInput,
+    startDate: "2027-13-45",
+    endDate: "2027-13-45",
+  });
+  assert.equal(result.success, false);
+});

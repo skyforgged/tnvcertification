@@ -12,3 +12,10 @@ test("other page entries keep their own lastmod", () => {
   assert.equal(getContentLastmod("/about-us/"), "2026-10-01T00:00:00Z");
   assert.equal(getContentLastmod("/articles/"), "2026-11-07T00:00:00Z");
 });
+
+test("training detail lastmod comes from the training entry", () => {
+  assert.equal(
+    getContentLastmod("/trainings/pelatihan-sertifikasi-iso-9001-2026/"),
+    "2026-11-23T00:00:00Z",
+  );
+});

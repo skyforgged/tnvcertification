@@ -18,7 +18,7 @@ const mainMenuRoutes = new Set([
 
 /** Editorial detail routes must carry a hero block with H1, intro and image. */
 export function isHeroRequiredRoute(route) {
-  return mainMenuRoutes.has(route) || /^\/(?:en\/)?(?:services|articles)\/[^/]+\/$/.test(route);
+  return mainMenuRoutes.has(route) || /^\/(?:en\/)?(?:services|articles|trainings)\/[^/]+\/$/.test(route);
 }
 
 function walk(dir) {

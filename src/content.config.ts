@@ -231,17 +231,21 @@ const categorySchema = z.object({
 });
 
 // --- Training schedules (event records; training link is required) ---
+// Shape alone admits impossible dates such as 2027-13-45, which would render as
+// "Invalid Date". A round-trip through UTC keeps only real calendar dates.
+const calendarDateSchema = z
+  .string()
+  .regex(/^\d{4}-\d{2}-\d{2}$/, "date must be YYYY-MM-DD")
+  .refine((value) => {
+    const parsed = new Date(`${value}T00:00:00Z`);
+    return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value;
+  }, "date must be a valid calendar date");
+
 const trainingScheduleSchema = z.object({
   trainingSlug: z.string().min(1, "trainingSlug is required"),
   serviceSlug: z.string().optional(),
-  startDate: z
-    .string()
-    .regex(/^\d{4}-\d{2}-\d{2}$/, "startDate must be YYYY-MM-DD")
-    .optional(),
-  endDate: z
-    .string()
-    .regex(/^\d{4}-\d{2}-\d{2}$/, "endDate must be YYYY-MM-DD")
-    .optional(),
+  startDate: calendarDateSchema.optional(),
+  endDate: calendarDateSchema.optional(),
   timezone: z.string().optional(),
   locationType: z.enum(["offline", "online", "hybrid"]).optional(),
   venue: z.string().optional(),
