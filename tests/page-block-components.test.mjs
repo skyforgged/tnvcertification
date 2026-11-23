@@ -48,6 +48,10 @@ test("UpcomingSchedules is presentational and keeps empty copy in the empty bran
   assert.equal((source.match(/block\.emptyDescription/g) ?? []).length, 1);
 });
 
+test("UpcomingSchedules does not claim the audited block-section class", () => {
+  assert.doesNotMatch(files.UpcomingSchedules, /"block-section"/);
+});
+
 test("LinkGrid only sets aria-labelledby when its heading renders", () => {
   const source = files.LinkGrid;
   assert.match(source, /const headingId = block\.title && block\.id \?/);

@@ -34,7 +34,7 @@ const surfaces = {
 const surface = surfaces[block.surface ?? "white"];
 ---
 
-<Section id={block.id} aria-labelledby={headingId} class:list={["block-section", surface.section]}>
+<Section id={block.id} aria-labelledby={headingId} class:list={["border-y px-5 py-8 sm:px-9 sm:py-10", surface.section]}>
   {block.eyebrow && <p class:list={["text-xs font-bold uppercase tracking-[0.16em]", surface.body]}>{block.eyebrow}</p>}
   {block.title && <h2 id={headingId} class:list={["mt-2 text-2xl font-semibold tracking-tight sm:text-3xl", surface.heading]}>{block.title}</h2>}
   {block.description && <p class:list={["mt-4 max-w-[var(--container-reading)] leading-relaxed", surface.body]}>{block.description}</p>}
