@@ -53,6 +53,7 @@ This combined pattern is still in development and is not a final architecture de
 - CTA language must focus on certification applications, certification information, audit processes, certification status, or administrative requirements. Preferred wording includes “Ajukan Sertifikasi”, “Informasi Sertifikasi”, and “Hubungi Kami” where appropriate.
 - Describe audit and certification activities accurately and independently. Never imply that the certification body implements or advises on the management system it audits.
 - Treat this policy as a build-blocking editorial requirement for both published entries and drafts. Every new or edited content entry must comply before commit.
+- **NO INTERNAL SERVICE-STATUS COPY: internal development-status, service-availability, and self-audited authorization disclaimers are prohibited in every content entry, published or draft.** Describe certification scope, requirements, and audit process in factual public language instead. Validators, tests, plans, and specs must not require, restore, or generate these blocks. Content validation rejects the pattern as a class.
 
 ## Stack and conventions
 - Astro 7+ stable (confirm actual compatibility and release status before upgrades).

@@ -257,7 +257,7 @@ git commit -m "feat(pages): feed listing routes from page entries"
 - [ ] **Step 1: Write the failing route test**
 
 `tests/page-content-routes.test.mjs` reads the two route files plus `src/pages/[slug].astro` and asserts:
-- `csms/index.astro` contains `getPageEntry("csms")` and `PageBlockRenderer`, and does not contain any of the four old section headings (`Status layanan TNCVCertification`, `Area kesiapan yang dapat dipersiapkan`, `Hubungan CSMS dengan ISO 45001`, `Informasi layanan lainnya`) or the six old readiness list items;
+- `csms/index.astro` contains `getPageEntry("csms")` and `PageBlockRenderer`, and does not contain any of the three old section headings (`Area kesiapan yang dapat dipersiapkan`, `Hubungan CSMS dengan ISO 45001`, `Informasi layanan lainnya`) or the six old readiness list items;
 - `schedules/index.astro` contains `getPageEntry("schedules")` and `ListingSection`, and does not contain `Belum ada jadwal yang dipublikasikan` or `Jadwal Pelatihan`;
 - `[slug].astro` still renders `about-us` body and delegates its blocks to `PageBlockRenderer` so the `contact` block is rendered through `ContactPanel`.
 

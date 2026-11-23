@@ -29,7 +29,7 @@
 ### Konten
 
 - **7 page entries**: hapus body. Tambah blok `hero` pada `about-us` (belum punya).
-- **4 service entries**: hapus body; pindahkan isi “Status pengembangan layanan”, “Proses sertifikasi secara umum”, “Referensi resmi” ke blok `content-section` / `link-grid`; tambah blok `hero` dan `relatedArticles`.
+- **4 service entries**: hapus body; buang bagian “Status pengembangan layanan” karena copy status internal dilarang di semua konten; pindahkan hanya “Proses sertifikasi secara umum” dan “Referensi resmi” ke blok `content-section` / `link-grid`; tambah blok `hero` dan `relatedArticles`.
 - **11 article entries**: hapus body; H1 + intro menjadi blok `hero`; setiap `##` menjadi `content-section` dengan `description` dari paragraf di bawahnya; kutipan dimasukkan ke blok.
 
 ### Validator (`src/lib/content-validation.ts`, `src/content-validation.ts`, `scripts/validate-changed-content.mjs`)

@@ -8,6 +8,8 @@
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
 - Validated commit: working tree after `b68e4b4` (full gate suite; service self-audit pattern removed)
 
+Permanent rule: internal service-status copy — `Status pengembangan layanan`, `Status layanan`, `Service development status`, and every variant — is prohibited in all content, published or draft. Validators, tests, plans, and specs must not require or generate these blocks. Historical mentions in this file are incident records, not instructions.
+
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
 ## Completed in the previous audit branch
