@@ -4,7 +4,7 @@ intro: "ISO 14001:2026 Environmental Management System Certification is an indep
 metaDescription: "Explore ISO 14001:2026, environmental management system scope, environmental aspects and impacts, certification audits, and transition requirements."
 pubDate: "2026-11-21T00:00:00Z"
 updatedDate: "2026-11-23T00:00:00Z"
-draft: true
+draft: false
 id: 4
 featuredImage:
   src: "/images/illustrations/article-iso14001-certification-en.webp"
@@ -128,7 +128,7 @@ blocks:
       - question: "Do ISO 14001:2015 certificates become invalid immediately after the new edition is published?"
         answer: "No, not automatically. Certificates and transition activities are governed by the applicable transition requirements. Organizations should confirm the schedule and requirements with the certificate-issuing certification body."
       - question: "Is TNVC currently accepting applications for ISO 14001:2026 certification?"
-        answer: "The availability and authorized scope of TNV Certification for this scheme have not been confirmed for publication. Contact the company for information, but do not assume it is accepting certification applications until service availability is formally confirmed."
+        answer: "Contact TNV Certification to discuss your organization’s needs, request information about the certification process, and inquire about application and scope requirements for ISO 14001:2026."
 relatedArticles:
   title: "Related articles"
 ---
