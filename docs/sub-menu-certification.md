@@ -13,8 +13,12 @@ Setiap submenu/accordion memiliki referensi tersendiri. Sumber primer digunakan 
 - **Kompetitor:** [NQA Indonesia — Standards](https://www.nqa.com/en-id/certification/standards) (katalog layanan keamanan pangan); [SGS — Certification Process](https://www.sgs.com/en-gb/our-company/about-sgs/sgs-in-united-kingdom/your-certification-process-explained) (cakupan layanan ISO 22000).
 
 ### FSSC 22000 — Referensi
-- **Pemilik skema:** [Foundation FSSC — Become FSSC 22000 Certified](https://www.fssc.com/fssc-22000/become-fssc-22000-certified/) (komponen skema: ISO 22000, PRP sektoral, dan persyaratan tambahan).
-- **Kompetitor:** [SGS — Certification Process](https://www.sgs.com/en-gb/our-company/about-sgs/sgs-in-united-kingdom/your-certification-process-explained) (katalog layanan food safety); [NQA Indonesia — Standards](https://www.nqa.com/en-id/certification/standards) (pemetaan layanan keamanan pangan).
+**Ditinjau: 23 November 2026.** Sumber resmi dan halaman pembanding berikut telah ditinjau untuk penyusunan konten sub-menu FSSC 22000.
+
+- **Pemilik skema / sumber primer:** [Foundation FSSC — Become FSSC 22000 Certified](https://www.fssc.com/fssc-22000/become-fssc-22000-certified/) (struktur skema, ISO 22000, PRP sektoral, persyaratan tambahan, audit, dan pemeliharaan sertifikat).
+- **Dokumen normatif skema:** [Foundation FSSC — Scheme Documents](https://www.fssc.com/fssc-22000/scheme-documents/) (Scheme Version 7, daftar keputusan Board of Stakeholders, annex, dan upgrade requirements).
+- **Pembaruan versi:** [Foundation FSSC — Version 7 FAQ](https://www.fssc.com/fssc-22000/version-7-faq/) (PRP ISO 22002-x:2025 dan ketentuan transisi).
+- **Kompetitor / market reference:** [SGS Indonesia — FSSC 22000](https://www.sgs.com/en-id/services/fssc-22000) (cakupan layanan audit dan sertifikasi FSSC 22000 di Indonesia); [NQA — FSSC 22000 Version 7 Update](https://www.nqa.com/en-id/resources/news/fssc-22000-version-7-update) (pembanding penjelasan perubahan Version 7 dan transisi).
 
 ### ISO 14001 — Referensi
 - **Sumber primer:** [ISO — Management System Standards](https://committee.iso.org/management-system-standards.html) (keluarga standar sistem manajemen dan konteks EMS; cek status/edisi terkini di direktori ISO).
