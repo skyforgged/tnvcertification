@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated commit: `7cb7246` (full gate suite; schedule month-label syntax fixed after remote commit `eb4b702`)
+- Validated commit: `bf8fb81` (full gate suite; 10 remote service-content commits integrated and corrected)
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -52,6 +52,7 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 | P20 | Service detail sidebar integration | Completed; four remote sidebar commits pulled, optional `category` type mismatch fixed, full gate suite passed on `f05f473` |
 | P21 | FSSC 22000 publication and compact sidebar | Completed; five remote commits pulled, no regression found, full gate suite passed on `0415e8a` |
 | P22 | Training and schedule content | Completed; PR #30 merged upstream at `8638c2f`, three local ISO service drafts preserved through `e34639a`, remote schedule-label syntax fixed at `7cb7246`, full gate suite passed |
+| P23 | Service content integration | Completed; 10 remote content commits merged, consultation wording and five missing block titles restored, FSSC intro/alt corrected, full gate suite passed on `bf8fb81` |
 | Build strategy | Content-first full-build baseline | Verification checkpoint closed for current baseline; timing baseline captured, negative preflight verified in CI; full checks mandatory |
 
 ## Verified repository facts
@@ -676,3 +677,18 @@ Full gate suite passed locally on `e34639a` with Node.js `26.13.1`:
 Generated HTML contained 0 matches for `konsult*` or `consult*`. CI status for `e34639a` is not claimed; only local evidence is recorded.
 
 Remote commit `eb4b702` then rewrote `TrainingScheduleMonths.astro` layout and dropped a closing backtick from a template literal. CI `Validate and build` failed on that commit (run `45179628541`). Fix `7cb7246` restored the delimiter without reverting the intended layout changes. Full gate suite passed again on `7cb7246`: all nine commands exit `0`, with 402 tests, 66 built pages, 70 HTML pages, 35 canonicals and 35 generated image URLs unchanged. CI status for `7cb7246` is not claimed here.
+
+
+## P23 — Service content integration (2026-11-23)
+
+Ten remote commits (`80b38e6`–`03a33f4`) were merged with `git merge --ff-only`. They expanded the FSSC 22000, ISO 9001:2026 and ISO 14001:2026 service guides, removed outbound competitor references, and restored publication of the two ISO 2026 pages. CI `Validate and build` failed at remote head `03a33f4` (run `45214868125`, job `137833204473`).
+
+Full failure inventory and remediation are recorded in `docs/build-report.txt`. Summary:
+
+- `CONTENT-013`: `konsultasi` in the ISO 9001:2026 FAQ. Replaced with certification-information wording.
+- Five `preserves body sections as block titles` assertions across three service files. Required titles restored with minimal content edits; tests were not changed. Two failures were masked by an earlier assertion in the same file and appeared only on the second test run.
+- `CONTENT-003` and `CONTENT-008` in FSSC 22000: intro did not begin with the exact title + `adalah`, and `featuredImage.alt` used `merupakan` instead of `adalah`. Both corrected. These were hidden while `CONTENT-013` aborted the build early.
+- `audit:seo` failed only because the aborted build emitted no sitemap. No sitemap fix was needed.
+
+Fix commit: `bf8fb81`. Full gate suite passed: all nine commands exit `0`, 402 tests, 66 built pages, 70 HTML pages, 35 canonicals, 35 generated image URLs, 57 sections in 39 pages, and 0 restricted terms in source and generated HTML. Test suite was not weakened. CI status for `bf8fb81` is not claimed here.
+
