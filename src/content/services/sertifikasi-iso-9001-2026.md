@@ -1,7 +1,7 @@
 ---
 title: "Sertifikasi Sistem Manajemen Mutu ISO 9001:2026"
 intro: "Sertifikasi Sistem Manajemen Mutu ISO 9001:2026 adalah proses penilaian kesesuaian oleh lembaga sertifikasi terhadap sistem manajemen mutu organisasi berdasarkan persyaratan edisi ISO 9001 yang berlaku."
-metaDescription: "Informasi standar ISO 9001:2026, ruang lingkup penilaian sistem manajemen mutu, tahapan audit sertifikasi, dan status pengembangan layanan TNCV."
+metaDescription: "Informasi standar ISO 9001:2026, ruang lingkup penilaian sistem manajemen mutu, tahapan audit sertifikasi, dan status pengembangan layanan TNVC."
 pubDate: "2026-11-21T00:00:00Z"
 updatedDate: "2026-11-23T00:00:00Z"
 draft: true
@@ -108,7 +108,7 @@ blocks:
         answer: "Ya. ISO 9001:2026 diterbitkan pada 16 September 2026 dan menjadi edisi terkini. ISO 9001:2015 tercatat sebagai edisi yang telah ditarik pada katalog resmi ISO."
       - question: "Apakah organisasi yang memiliki sertifikat ISO 9001:2015 harus melakukan transisi?"
         answer: "Organisasi yang telah tersertifikasi perlu menyelesaikan transisi sesuai jadwal dan ketentuan yang berlaku. Batas global yang diumumkan adalah 30 September 2029, dengan penerapan mengikuti persyaratan transisi yang relevan."
-      - question: "Apakah TNCV saat ini menerima permohonan sertifikasi ISO 9001:2026?"
+      - question: "Apakah TNVC saat ini menerima permohonan sertifikasi ISO 9001:2026?"
         answer: "Ketersediaan dan ruang lingkup kewenangan TNV Certification untuk skema ini belum dikonfirmasi untuk publikasi. Hubungi perusahaan untuk memperoleh informasi, tetapi jangan menganggap permohonan sertifikasi sedang diterima sebelum ketersediaan layanan dikonfirmasi."
 relatedArticles:
   title: "Artikel Terkait"
