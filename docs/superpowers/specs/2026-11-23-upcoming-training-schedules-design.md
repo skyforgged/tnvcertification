@@ -22,6 +22,10 @@ without leaving `/trainings/` for the schedule archive.
   Wednesday**, January–December 2027. With 6 trainings this is **144 schedule entries**.
 - Fill dates only. Method, venue, price, quota, and registration status stay unset and
   render as “menyusul”.
+- Harga di `docs/training-schedule-catalogue.csv` hanya **referensi indikatif untuk
+  tinjauan visual**, bukan konten produksi: Rp 2–5 juta/peserta untuk internal auditor
+  (Dilatih.co, 16 Jun 2026) dan Rp 7,9–8,75 juta untuk lead auditor IRCA (26 Agu 2026).
+  Owner akan mengganti angka finalnya.
 
 ## Goals
 
