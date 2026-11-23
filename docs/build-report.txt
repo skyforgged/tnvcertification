@@ -84,3 +84,22 @@ Keduanya menggagalkan `npm run build` (exit `1`) dan membuat `npm run audit:seo`
 9. `audit:seo` — kaskade dari build gagal: sitemap tidak dihasilkan, 30 tautan `/sitemap-index.xml` broken. Hilang dengan sendirinya setelah `build=0`.
 
 Status: selesai, belum di-commit pada saat catatan ini ditutup.
+
+## P24 — pola audit-diri pada konten layanan (2026-11-24)
+
+Temuan pengguna: H2 `status-pengembangan-layanan-heading` pada `/services/sertifikasi-iso-14001-2026` berisi pernyataan internal bahwa layanan "belum dinyatakan tersedia", masih perlu diverifikasi, dan publikasi tidak boleh ditafsirkan sebagai klaim akreditasi. Ini mengaudit layanan sendiri yang dipakai untuk menjual jasa. Pola ini dilarang pada konten layanan, published maupun draft.
+
+Catatan penting: perbaikan P23 sebelumnya salah mengembalikan blok `Status pengembangan layanan` dan `Service development status` demi test lama. Test lama itu mewajibkan judul terlarang, sehingga ikut melanggengkan pola. P24 membalik keputusan itu.
+
+Daftar lengkap temuan P24:
+
+1. `sertifikasi-iso-14001-2026.md` (published) — blok `Status pengembangan layanan` plus FAQ `Apakah TNCV saat ini menerima permohonan sertifikasi ISO 14001:2026?` dengan copy draft/verifikasi.
+2. `sertifikasi-iso-9001-2026.md` (published) — blok `Status pengembangan layanan` plus FAQ `Apakah TNVC saat ini menerima permohonan sertifikasi ISO 9001:2026?`.
+3. `iso-14001-2026-certification.md` (published) — blok `Service development status` plus FAQ `Is TNVC currently accepting applications for ISO 14001:2026 certification?`.
+4. `sertifikasi-iso-45001.md` (draft) — blok `Status pengembangan layanan`, FAQ `Status dan kewenangan TNCV ... masih diverifikasi`, metaDescription `status pengembangan layanan TNCV`.
+5. `sertifikasi-iso-50001.md` (draft) — pola sama seperti ISO 45001.
+6. `sertifikasi-iso-iec-27001.md` (draft) — blok `Status pengembangan layanan`, FAQ `Status dan kewenangan TNCV ... masih diverifikasi`, metaDescription `status layanan TNCV`.
+
+Perbaikan: keenam blok status dihapus; FAQ yang menanyakan ketersediaan/kewenangan perusahaan dihapus; FAQ penerbit sertifikat dibersihkan menjadi pernyataan faktual generik; tiga metaDescription diganti dengan wording persyaratan sertifikasi. Tidak ada test yang dilemahkan: test lama yang mewajibkan judul status dihapus, dan 16 test baru ditambahkan untuk menolak judul status serta 9 frasa audit-diri.
+
+Hasil gate akhir: semua sembilan perintah exit `0`; 418 test lulus / 0 gagal; 66 halaman; 70 HTML; 35 canonical; 35 URL gambar; 0 `konsult*`/`consult*`; 0 frasa audit-diri di HTML hasil build.

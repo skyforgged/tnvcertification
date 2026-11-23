@@ -107,12 +107,6 @@ blocks:
         description: "Gunakan publikasi ISO, persyaratan transisi badan akreditasi yang relevan, serta pemberitahuan resmi lembaga sertifikasi penerbit sebagai acuan."
       - title: "Rencanakan audit transisi"
         description: "Waktu dan metode audit transisi ditentukan sesuai ketentuan yang berlaku dan siklus sertifikasi organisasi."
-  - type: "content-section"
-    id: "status-pengembangan-layanan"
-    layout: "highlight"
-    surface: "white"
-    title: "Status pengembangan layanan"
-    description: "Informasi pada halaman ini disusun untuk pengembangan katalog layanan. Layanan sertifikasi ISO 14001:2026 PT. Intiprima Sertifikasi belum dinyatakan tersedia. Ruang lingkup, status skema, dan kewenangan yang diperlukan masih harus diverifikasi sebelum halaman dapat dipublikasikan. Publikasi halaman ini kelak tidak boleh ditafsirkan sebagai pernyataan bahwa PT. Intiprima Sertifikasi telah memperoleh akreditasi, pengakuan, atau kewenangan untuk menerbitkan sertifikat ISO 14001:2026."
   - type: "howto"
     id: "proses-sertifikasi-umum"
     layout: "timeline"
@@ -151,8 +145,6 @@ blocks:
         answer: "Persyaratan transisi Global ACI menetapkan 30 April 2029 sebagai akhir periode transisi bagi pihak dan skema dalam cakupannya. Organisasi perlu memeriksa ketentuan badan akreditasi dan lembaga sertifikasi yang menerbitkan sertifikatnya."
       - question: "Apakah sertifikat ISO 14001:2015 langsung tidak berlaku setelah edisi baru diterbitkan?"
         answer: "Tidak serta-merta. Sertifikat dan proses transisi mengikuti ketentuan transisi yang berlaku. Organisasi harus mengonfirmasi jadwal dan persyaratan kepada lembaga sertifikasi penerbit."
-      - question: "Apakah TNCV saat ini menerima permohonan sertifikasi ISO 14001:2026?"
-        answer: "Halaman ini masih berstatus draft untuk pengembangan konten. Ketersediaan layanan, ruang lingkup, dan kewenangan PT. Intiprima Sertifikasi belum dinyatakan disetujui untuk publikasi. Informasi layanan hanya akan ditampilkan setelah verifikasi internal selesai."
 relatedArticles:
   title: "Artikel Terkait"
 ---

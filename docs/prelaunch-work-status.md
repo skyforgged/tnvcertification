@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated commit: `bf8fb81` (full gate suite; 10 remote service-content commits integrated and corrected)
+- Validated commit: working tree after `b68e4b4` (full gate suite; service self-audit pattern removed)
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -53,6 +53,7 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 | P21 | FSSC 22000 publication and compact sidebar | Completed; five remote commits pulled, no regression found, full gate suite passed on `0415e8a` |
 | P22 | Training and schedule content | Completed; PR #30 merged upstream at `8638c2f`, three local ISO service drafts preserved through `e34639a`, remote schedule-label syntax fixed at `7cb7246`, full gate suite passed |
 | P23 | Service content integration | Completed; 10 remote content commits merged, consultation wording and five missing block titles restored, FSSC intro/alt corrected, full gate suite passed on `bf8fb81` |
+| P24 | Service self-audit copy | Completed; six internal status blocks and availability/authorization FAQs removed, three metaDescriptions rewritten, regression tests added, full gate suite passed |
 | Build strategy | Content-first full-build baseline | Verification checkpoint closed for current baseline; timing baseline captured, negative preflight verified in CI; full checks mandatory |
 
 ## Verified repository facts
@@ -691,4 +692,12 @@ Full failure inventory and remediation are recorded in `docs/build-report.txt`. 
 - `audit:seo` failed only because the aborted build emitted no sitemap. No sitemap fix was needed.
 
 Fix commit: `bf8fb81`. Full gate suite passed: all nine commands exit `0`, 402 tests, 66 built pages, 70 HTML pages, 35 canonicals, 35 generated image URLs, 57 sections in 39 pages, and 0 restricted terms in source and generated HTML. Test suite was not weakened. CI status for `bf8fb81` is not claimed here.
+
+## P24 — Service self-audit copy removed (2026-11-24)
+
+A published H2 `status-pengembangan-layanan-heading` on `/services/sertifikasi-iso-14001-2026` stated that the service was not yet available and that publication was not an accreditation claim. That is an internal audit of the service being sold and is prohibited in service content.
+
+The same pattern existed in six service files, published and draft. All six internal status blocks and availability/authorization FAQs were removed. Three `metaDescription` values were rewritten without service-status language. P23 had wrongly restored two of those blocks because an older test required their titles; that expectation was removed and replaced with 16 regression tests that reject status block titles and self-audit phrases.
+
+Full gate suite passed: all nine commands exit `0`, 418 tests, 66 built pages, 70 HTML pages, 35 canonicals, 35 generated image URLs, and 0 restricted or self-audit phrases in generated HTML. CI status is not claimed here.
 

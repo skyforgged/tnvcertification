@@ -50,7 +50,7 @@ blocks:
   - type: content-section
     id: 0002-hal-yang-perlu-diperhatikan
     title: Hal yang Perlu Diperhatikan
-    description: Sertifikasi tidak menggantikan tanggung jawab organisasi untuk mengendalikan proses dan memenuhi persyaratan pelanggan maupun peraturan. Sertifikat juga bukan jaminan bahwa setiap produk atau layanan selalu bebas dari ketidaksesuaian. Nilai sistem manajemen mutu terletak pada penerapan yang konsisten, evaluasi berbasis bukti, dan tindak lanjut yang efektif. Status ketersediaan layanan sertifikasi harus dikonfirmasi berdasarkan ruang lingkup dan kewenangan badan sertifikasi yang relevan. Artikel ini menjelaskan informasi umum mengenai standar dan proses sertifikasi, bukan pernyataan bahwa suatu layanan tertentu telah memperoleh pengakuan atau otorisasi.
+    description: Sertifikasi tidak menggantikan tanggung jawab organisasi untuk mengendalikan proses dan memenuhi persyaratan pelanggan maupun peraturan. Sertifikat juga bukan jaminan bahwa setiap produk atau layanan selalu bebas dari ketidaksesuaian. Nilai sistem manajemen mutu terletak pada penerapan yang konsisten, evaluasi berbasis bukti, dan tindak lanjut yang efektif. 
   - type: link-grid
     id: 0002-sumber-resmi
     title: Sumber Resmi

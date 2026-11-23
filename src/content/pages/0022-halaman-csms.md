@@ -1,7 +1,7 @@
 ---
 title: "Contractor Safety Management System (CSMS)"
 intro: "Contractor Safety Management System (CSMS) adalah pendekatan yang digunakan pemberi kerja atau pemilik proyek untuk memastikan kontraktor memahami persyaratan keselamatan dan kesehatan kerja."
-metaDescription: "Informasi Contractor Safety Management System (CSMS), status pengembangannya, area persiapan kontraktor, dan hubungannya dengan ISO 45001."
+metaDescription: "Informasi Contractor Safety Management System (CSMS), area persiapan kontraktor, dan hubungannya dengan ISO 45001."
 pubDate: "2026-11-04T00:00:00Z"
 draft: false
 featuredImage:
@@ -17,17 +17,11 @@ blocks:
     title: "CSMS untuk kesiapan keselamatan kontraktor"
     description: "Contractor Safety Management System (CSMS) merupakan pendekatan yang digunakan pemberi kerja atau pemilik proyek untuk memastikan kontraktor memahami dan memenuhi persyaratan keselamatan dan kesehatan kerja sebelum serta selama pekerjaan berlangsung."
   - type: content-section
-    id: status-csms
-    surface: "cream"
-    eyebrow: "Status informasi"
-    title: "Status layanan TNCVCertification"
-    description: "Informasi CSMS di situs ini masih dalam tahap pengembangan dan verifikasi. Skema, kriteria, ruang lingkup, metode penilaian, serta kewenangan penyelenggaraan perlu dikonfirmasi terlebih dahulu. Halaman ini bukan pengumuman bahwa layanan penilaian atau penerbitan sertifikat CSMS formal telah tersedia."
-  - type: content-section
     id: area-kesiapan
     surface: "white"
     eyebrow: "Panduan persiapan"
     title: "Area kesiapan yang dapat dipersiapkan"
-    description: "Sambil menunggu persyaratan skema yang berlaku diverifikasi, kontraktor dapat mulai menata informasi dan bukti penerapan K3 yang umumnya diminta oleh pemberi kerja. Area di bawah ini merupakan panduan persiapan awal, bukan kriteria penilaian final."
+    description: "Kontraktor dapat menata informasi dan bukti penerapan K3 yang umumnya diminta oleh pemberi kerja. Area di bawah ini menjadi gambaran persiapan awal, bukan kriteria penilaian final."
     items:
       - title: "Kebijakan dan tata kelola"
         description: "Kebijakan, tanggung jawab, dan tata kelola keselamatan kerja."
@@ -52,7 +46,7 @@ blocks:
     surface: "blue"
     eyebrow: "Jelajahi lebih lanjut"
     title: "Informasi layanan lainnya"
-    description: "Kunjungi katalog layanan untuk melihat informasi lain yang telah dipublikasikan. Informasi layanan CSMS akan diperbarui setelah dasar skema dan ruang lingkupnya selesai diverifikasi."
+    description: "Kunjungi katalog layanan untuk melihat informasi lain yang telah dipublikasikan."
     link:
       label: "Lihat layanan"
       url: "/services/"

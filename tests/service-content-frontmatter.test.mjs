@@ -12,6 +12,7 @@ const entries = await Promise.all(files.map(async (file) => {
     file,
     data: match ? parseYaml(match[1]) : {},
     body: match ? match[2] : "",
+    raw,
   };
 }));
 
@@ -30,9 +31,37 @@ for (const { file, data, body } of entries) {
   });
 }
 
+const prohibitedSectionTitles = ["Status pengembangan layanan", "Service development status"];
+const prohibitedSelfAuditPhrases = [
+  "pengembangan katalog layanan",
+  "belum dinyatakan tersedia",
+  "masih berstatus draft",
+  "belum dinyatakan disetujui untuk publikasi",
+  "status pengembangan layanan",
+  "status layanan tncv",
+  "status dan kewenangan tncv",
+  "menerima permohonan sertifikasi",
+  "accepting applications for",
+];
+for (const { file, data, raw } of entries) {
+  test(`${file} has no internal development-status section`, () => {
+    const titles = (data.blocks ?? []).map((block) => block.title).filter(Boolean);
+    for (const title of prohibitedSectionTitles) {
+      assert.ok(!titles.includes(title), `${file}: prohibited block title "${title}"`);
+    }
+  });
+
+  test(`${file} has no self-audit disclaimer copy`, () => {
+    const lowered = raw.toLowerCase();
+    for (const phrase of prohibitedSelfAuditPhrases) {
+      assert.ok(!lowered.includes(phrase), `${file}: prohibited phrase "${phrase}"`);
+    }
+  });
+}
+
 const expectedSections = {
-  id: ["Status pengembangan layanan", "Proses sertifikasi secara umum", "Referensi resmi"],
-  en: ["Service development status", "Certification process overview", "Official references"],
+  id: ["Proses sertifikasi secara umum", "Referensi resmi"],
+  en: ["Certification process overview", "Official references"],
 };
 const sectionOverrides = {
   "sertifikasi-fssc-22000.md": [
