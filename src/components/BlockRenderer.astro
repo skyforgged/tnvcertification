@@ -220,6 +220,8 @@ const ctaClass = (variant?: CtaBlock["variant"], surface?: Surface) =>
     ) : (
       <CtaSection
         id={id}
+        headingId={`${id}-heading`}
+        semanticClasses={semanticClasses}
         surfaceClass={style.section}
         headingClass={style.heading}
         bodyClass={style.body}
