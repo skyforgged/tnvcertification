@@ -127,7 +127,7 @@ blocks:
         answer: "Global ACI transition requirements set 30 April 2029 as the end of the transition period for parties and schemes within their scope. Organizations should verify the requirements of their accreditation body and certificate-issuing certification body."
       - question: "Do ISO 14001:2015 certificates become invalid immediately after the new edition is published?"
         answer: "No, not automatically. Certificates and transition activities are governed by the applicable transition requirements. Organizations should confirm the schedule and requirements with the certificate-issuing certification body."
-      - question: "Is TNCV currently accepting applications for ISO 14001:2026 certification?"
+      - question: "Is TNVC currently accepting applications for ISO 14001:2026 certification?"
         answer: "The availability and authorized scope of TNV Certification for this scheme have not been confirmed for publication. Contact the company for information, but do not assume it is accepting certification applications until service availability is formally confirmed."
 relatedArticles:
   title: "Related articles"
