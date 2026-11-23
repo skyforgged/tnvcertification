@@ -5,6 +5,7 @@ import Container from "../components/Container.astro";
 import PageHero from "../components/page/PageHero.astro";
 import PageBlockRenderer from "../components/page/PageBlockRenderer.astro";
 import type { HeroBlock, PageBlock } from "../data/pages";
+import { organization } from "../site";
 
 interface Props {
   title: string;
@@ -36,6 +37,7 @@ const {
   otherServices,
 } = Astro.props;
 const fallbackImage = { src: ogImage ?? "", alt: imageAlt };
+const contactHref = `https://wa.me/${organization.contact.whatsapp.replace(/[^0-9]/g, "")}`;
 ---
 
 <Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage} structuredData={structuredData}>
@@ -68,7 +70,7 @@ const fallbackImage = { src: ogImage ?? "", alt: imageAlt };
           </nav>
           <div class="border-t border-slate-100 bg-slate-50 px-5 py-4">
             <p class="text-xs leading-relaxed text-ink-muted">{lang === "en" ? "Need help finding the right scheme?" : "Belum yakin standar yang sesuai?"}</p>
-            <a href={lang === "en" ? "/en/contact/" : "/contact/"} class="mt-2 inline-flex items-center text-sm font-semibold text-brand-deepblue underline underline-offset-4 hover:text-brand-blue">{lang === "en" ? "Talk to our team" : "Diskusikan kebutuhan"} <span class="ml-1" aria-hidden="true">→</span></a>
+            <a href={contactHref} class="mt-2 inline-flex items-center text-sm font-semibold text-brand-deepblue underline underline-offset-4 hover:text-brand-blue">{lang === "en" ? "Talk to our team" : "Diskusikan kebutuhan"} <span class="ml-1" aria-hidden="true">→</span></a>
           </div>
         </div>
       </aside>
