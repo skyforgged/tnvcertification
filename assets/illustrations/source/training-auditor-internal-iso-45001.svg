@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480" fill="none">
+  <title>Audit internal kesehatan dan keselamatan kerja</title>
+  <rect x="64" y="48" width="512" height="384" rx="30" fill="#FFEDD5"/>
+  <circle cx="320" cy="206" r="104" fill="#ffffff"/>
+  <path d="M250 226c0-52 31-88 70-88s70 36 70 88v20H250v-20z" fill="#C2410C"/><path d="M238 246h164v20a16 16 0 0 1-16 16H254a16 16 0 0 1-16-16v-20z" fill="#C2410C"/>
+  <rect x="152" y="332" width="336" height="64" rx="16" fill="#C2410C"/>
+  <text x="320" y="374" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" fill="#ffffff">ISO 45001</text>
+</svg>

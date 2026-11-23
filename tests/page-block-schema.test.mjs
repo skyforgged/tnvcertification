@@ -7,8 +7,8 @@ const config = await read("src/content.config.ts");
 const helper = await read("src/data/pages.ts");
 const slugRoute = await read("src/pages/[slug].astro");
 
-test("page block schema declares the four structural block types", () => {
-  for (const type of ["hero", "link-grid", "listing", "contact"]) {
+test("page block schema declares the structural block types", () => {
+  for (const type of ["hero", "link-grid", "listing", "contact", "upcoming-schedules"]) {
     assert.ok(config.includes(`type: z.literal("${type}")`), `missing ${type} block`);
   }
 });

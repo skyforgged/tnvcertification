@@ -2,9 +2,17 @@
 import WidePageLayout from "../../layouts/WidePageLayout.astro";
 import PageHero from "../../components/page/PageHero.astro";
 import ListingSection from "../../components/page/ListingSection.astro";
+import UpcomingSchedules, { type UpcomingScheduleItem } from "../../components/page/UpcomingSchedules.astro";
 import TrainingCard from "../../components/TrainingCard.astro";
 import { getCollection } from "astro:content";
-import { getPageBlocks, getPageEntry, getPageHero, type ListingBlock } from "../../data/pages";
+import {
+  getPageBlocks,
+  getPageEntry,
+  getPageHero,
+  type ListingBlock,
+  type UpcomingSchedulesBlock,
+} from "../../data/pages";
+import { scheduleDateLabel, selectUpcomingSchedules } from "../../lib/schedule-display";
 import { siteSettings } from "../../site";
 
 const entry = await getPageEntry("trainings");
@@ -15,6 +23,45 @@ const trainings = await getCollection(
   "training",
   ({ data }) => data.draft !== true && data.lang === "id",
 );
+const upcomingBlocks = getPageBlocks(entry).filter(
+  (block): block is UpcomingSchedulesBlock => block.type === "upcoming-schedules",
+);
+const trainingBySlug = new Map(trainings.map((training) => [training.data.slug, training]));
+const datedSchedules = (await getCollection("trainingSchedules")).filter((schedule) =>
+  trainingBySlug.has(schedule.data.trainingSlug),
+);
+const upcomingItems: UpcomingScheduleItem[] = selectUpcomingSchedules(
+  datedSchedules,
+  new Date().toISOString().slice(0, 10),
+  12,
+).flatMap((schedule) => {
+  const training = trainingBySlug.get(schedule.data.trainingSlug);
+  if (!training) return [];
+
+  const locationType = schedule.data.locationType;
+  const methodLabel = locationType
+    ? { offline: "Offline", online: "Online", hybrid: "Hybrid" }[locationType]
+    : "Metode menyusul";
+  const place = [schedule.data.city, schedule.data.venue].filter(Boolean).join(", ");
+  const registrationStatus = schedule.data.registrationStatus;
+  const statusLabel = registrationStatus
+    ? {
+        open: "Pendaftaran dibuka",
+        closed: "Pendaftaran ditutup",
+        full: "Kuota penuh",
+        cancelled: "Pendaftaran dibatalkan",
+      }[registrationStatus]
+    : "Informasi pendaftaran menyusul";
+
+  return [{
+    key: schedule.data.slug,
+    dateLabel: scheduleDateLabel(schedule.data.startDate, schedule.data.endDate),
+    title: training.data.title,
+    href: `/trainings/${training.data.slug}/`,
+    detailLabel: place ? `${methodLabel} · ${place}` : methodLabel,
+    statusLabel,
+  }];
+});
 ---
 
 <WidePageLayout
@@ -38,6 +85,9 @@ const trainings = await getCollection(
           ))}
         </div>
       </ListingSection>
+    ))}
+    {upcomingBlocks.map((block) => (
+      <UpcomingSchedules block={block} items={upcomingItems} />
     ))}
   </div>
 </WidePageLayout>

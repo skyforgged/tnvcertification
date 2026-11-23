@@ -1,10 +1,11 @@
 ---
-import { getCollection, render } from "astro:content";
+import { getCollection } from "astro:content";
 import TrainingLayout from "../../layouts/TrainingLayout.astro";
-import BlockRenderer from "../../components/BlockRenderer.astro";
-import ButtonLink from "../../components/ButtonLink.astro";
 import Section from "../../components/Section.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
+import TrainingScheduleMonths from "../../components/page/TrainingScheduleMonths.astro";
+import { getTrainingView } from "../../data/training-view";
+import { sortSchedulesByStartDate } from "../../lib/schedule-display";
 import { siteSettings } from "../../site";
 
 export async function getStaticPaths() {
@@ -19,12 +20,18 @@ export async function getStaticPaths() {
 }
 
 const { training } = Astro.props;
-const { Content } = await render(training);
-const schedules = await getCollection(
-  "trainingSchedules",
-  ({ data }) =>
-    data.trainingSlug === training.data.slug &&
-    data.registrationStatus !== "cancelled",
+const { hero, blocks } = getTrainingView({
+  title: training.data.title,
+  blocks: training.data.blocks,
+});
+const schedules = sortSchedulesByStartDate(
+  await getCollection(
+    "trainingSchedules",
+    ({ data }) =>
+      data.trainingSlug === training.data.slug &&
+      Boolean(data.startDate) &&
+      data.registrationStatus !== "cancelled",
+  ),
 );
 const isEnglish = training.data.lang === "en";
 const locale = isEnglish ? "en-US" : "id-ID";
@@ -35,6 +42,16 @@ const labels = isEnglish
       closed: "Registration closed", full: "Fully booked", pending: "Registration details to follow",
       price: "Fee", quota: "Available seats", register: "Register",
       noSchedule: "No published schedule is available for this program yet.",
+      datePending: "Schedule to be announced",
+      showPast: "Show past sessions",
+      summaryActive: "Showing {count} upcoming sessions.",
+      summaryAll: "Showing {count} sessions.",
+      emptyMonth: "No sessions for the selected month.",
+      note: "Schedules may change. Confirm the details before registering.",
+      past: "Already passed",
+      ongoing: "In progress",
+      monthPickerLabel: "Choose a schedule month",
+      monthButtonLabel: "{month}, {count} sessions",
     }
   : {
       schedule: "Jadwal pelatihan", online: "Online", hybrid: "Hybrid", offline: "Tatap muka",
@@ -42,17 +59,20 @@ const labels = isEnglish
       closed: "Pendaftaran ditutup", full: "Kuota terpenuhi", pending: "Informasi pendaftaran menyusul",
       price: "Biaya", quota: "Kuota", register: "Daftar pelatihan",
       noSchedule: "Belum ada jadwal yang dipublikasikan untuk program ini.",
+      datePending: "Jadwal akan diumumkan",
+      showPast: "Tampilkan jadwal yang sudah lewat",
+      summaryActive: "Menampilkan {count} jadwal aktif dan mendatang.",
+      summaryAll: "Menampilkan {count} jadwal.",
+      emptyMonth: "Tidak ada jadwal untuk bulan yang dipilih.",
+      note: "Jadwal dapat berubah. Konfirmasikan kembali informasi pelaksanaan sebelum mendaftar.",
+      past: "Sudah terlewati",
+      ongoing: "Sedang berlangsung",
+      monthPickerLabel: "Pilih bulan jadwal",
+      monthButtonLabel: "{month}, {count} jadwal",
     };
-const formatDate = (value: string) =>
-  new Date(`${value}T00:00:00Z`).toLocaleDateString(locale, {
-    day: "numeric", month: "long", year: "numeric", timeZone: "UTC",
-  });
-const statusLabel = (status?: string) => ({
-  open: labels.open, closed: labels.closed, full: labels.full,
-}[status ?? ""] ?? labels.pending);
-const locationLabel = (type?: string) => ({
-  online: labels.online, hybrid: labels.hybrid, offline: labels.offline,
-}[type ?? ""] ?? labels.locationPending);
+const todayKey = new Intl.DateTimeFormat("en-CA", {
+  timeZone: "Asia/Jakarta", year: "numeric", month: "2-digit", day: "2-digit",
+}).format(new Date());
 ---
 <TrainingLayout
   title={`${training.data.title} | Pelatihan | ${siteSettings.title}`}
@@ -61,44 +81,19 @@ const locationLabel = (type?: string) => ({
   lang={training.data.lang}
   ogImage={training.data.featuredImage.src}
   imageAlt={training.data.featuredImage.alt}
+  hero={hero}
+  blocks={blocks}
 >
   <div class="w-full">
-    <div class="prose mt-8 max-w-3xl">
-      <Content />
-    </div>
-    <BlockRenderer blocks={training.data.blocks ?? []} lang={training.data.lang} />
-
     <Section spacing="spacious" aria-labelledby="jadwal-pelatihan">
       <SectionHeading id="jadwal-pelatihan" title={labels.schedule} />
       {schedules.length > 0 ? (
-        <div class="mt-6 divide-y divide-border border-y border-border">
-          {schedules.map((schedule) => (
-            <article class="grid gap-4 py-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
-              <div>
-                <h3 class="text-lg font-semibold tracking-tight text-ink">{formatDate(schedule.data.startDate)} – {formatDate(schedule.data.endDate)}</h3>
-                <p class="mt-2 text-sm text-ink-muted">{locationLabel(schedule.data.locationType)}</p>
-                {(schedule.data.venue || schedule.data.city) && (
-                  <p class="mt-1 text-sm text-ink-muted">{[schedule.data.venue, schedule.data.city, schedule.data.province].filter(Boolean).join(", ")}</p>
-                )}
-                <p class="mt-3 text-sm font-medium text-ink">{statusLabel(schedule.data.registrationStatus)}</p>
-                {schedule.data.price !== undefined && (
-                  <p class="mt-1 text-sm text-ink-muted">
-                    {labels.price}: {schedule.data.currency === "IDR" || !schedule.data.currency ? "Rp " : `${schedule.data.currency} `}
-                    {schedule.data.price.toLocaleString(locale)}
-                  </p>
-                )}
-                {schedule.data.quota !== undefined && (
-                  <p class="mt-1 text-sm text-ink-muted">{labels.quota}: {schedule.data.quota}</p>
-                )}
-              </div>
-              {schedule.data.registrationUrl && schedule.data.registrationStatus === "open" && (
-                <div class="md:justify-self-end">
-                  <ButtonLink href={schedule.data.registrationUrl}>{labels.register}</ButtonLink>
-                </div>
-              )}
-            </article>
-          ))}
-        </div>
+        <TrainingScheduleMonths
+          schedules={schedules}
+          labels={labels}
+          locale={locale}
+          todayKey={todayKey}
+        />
       ) : (
         <p class="mt-4 max-w-3xl border-y border-border py-6 leading-relaxed text-ink-muted">{labels.noSchedule}</p>
       )}

@@ -38,6 +38,14 @@ for (const [name, source] of Object.entries(sources)) {
   }
 }
 
+test("trainings route resolves upcoming sessions without owning section copy", () => {
+  const source = sources.trainings;
+  for (const symbol of ["selectUpcomingSchedules", "UpcomingSchedules", "trainingBySlug"]) {
+    assert.ok(source.includes(symbol), `trainings route is missing ${symbol}`);
+  }
+  assert.ok(!source.includes("Pelatihan Terdekat"));
+});
+
 test("locale fallback skips slugs owned by dedicated routes", async () => {
   const source = await readFile(new URL("../src/data/locale-fallback.ts", import.meta.url), "utf8");
   assert.match(source, /routeOwnedPageSlugs/);

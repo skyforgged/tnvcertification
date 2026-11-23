@@ -11,6 +11,7 @@ export type PageBlock = PageBlockUnion;
 export type HeroBlock = Extract<PageBlockUnion, { type: "hero" }>;
 export type LinkGridBlock = Extract<PageBlockUnion, { type: "link-grid" }>;
 export type ListingBlock = Extract<PageBlockUnion, { type: "listing" }>;
+export type UpcomingSchedulesBlock = Extract<PageBlockUnion, { type: "upcoming-schedules" }>;
 export type ContactBlock = Extract<PageBlockUnion, { type: "contact" }>;
 
 /** Slugs owned by a dedicated route; the generic [slug].astro must skip them. */

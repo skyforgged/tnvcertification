@@ -68,6 +68,17 @@ for (const { file, raw, data, body } of entries) {
   });
 }
 
+test("no page entry still says the training catalogue is being prepared", () => {
+  for (const { file, raw } of entries) {
+    assert.doesNotMatch(raw, /Katalog pelatihan sedang disiapkan/i, `${file}: stale catalogue copy`);
+    assert.doesNotMatch(
+      raw,
+      /akan ditampilkan setelah masing-masing program siap dipublikasikan/i,
+      `${file}: stale catalogue copy`,
+    );
+  }
+});
+
 test("each page surface has exactly one published entry", () => {
   const expected = ["home", "services", "csms", "about-us", "trainings", "schedules", "articles"];
   const slugs = entries.map((entry) => entry.data.slug).sort();

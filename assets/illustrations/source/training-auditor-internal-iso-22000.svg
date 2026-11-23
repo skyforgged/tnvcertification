@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480" fill="none">
+  <title>Audit internal keamanan pangan</title>
+  <rect x="64" y="48" width="512" height="384" rx="30" fill="#CCFBF1"/>
+  <circle cx="320" cy="206" r="104" fill="#ffffff"/>
+  <circle cx="320" cy="208" r="70" stroke="#0F766E" stroke-width="16"/><path d="M320 138v140" stroke="#0F766E" stroke-width="10"/><path d="M292 150v50m56-50v50" stroke="#0F766E" stroke-width="8" stroke-linecap="round"/>
+  <rect x="152" y="332" width="336" height="64" rx="16" fill="#0F766E"/>
+  <text x="320" y="374" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" fill="#ffffff">ISO 22000</text>
+</svg>
