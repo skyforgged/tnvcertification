@@ -1,0 +1,86 @@
+# Build report — remote head 03a33f4 (2026-11-23)
+
+Sumber: 10 commit remote dari `5e374d9` sampai `03a33f4`, dimerge ke `main` dengan `git merge --ff-only origin/main`. Semua kegagalan di bawah diamati sebelum perbaikan apa pun.
+
+## Kegagalan gate
+
+| Gate | Exit | Penyebab |
+|---|---|---|
+| `npm run check` | 0 | Tidak ada temuan. |
+| `npm run build` | 1 | `CONTENT-013`: terminologi `konsult*` pada `src/content/services/sertifikasi-iso-9001-2026.md`. |
+| `npm run typecheck` | 0 | Tidak ada temuan. |
+| `npm run lint` | 0 | Tidak ada temuan. |
+| `npm run test` | 1 | 3 test gagal, 402 lulus, 3 gagal. |
+| `npm run audit:page-images` | 0 | Tidak ada temuan. |
+| `npm run audit:seo` | 1 | Kaskade dari build gagal: tidak ada sitemap di `dist`, 30 tautan `/sitemap-index.xml` dianggap broken. |
+| `npm run audit:headings` | 0 | Tidak ada temuan. |
+| `npm run audit:blocks` | 0 | Tidak ada temuan. |
+
+## Akar masalah 1 — CONTENT-013
+
+- File: `src/content/services/sertifikasi-iso-9001-2026.md`, baris 112.
+- Teks: `Hubungi TNV Certification untuk informasi layanan, konsultasi kebutuhan sertifikasi, serta proses pengajuan dan penentuan ruang lingkup ISO 9001:2026.`
+- Kata terlarang: `konsultasi`.
+- Error build:
+  `Content policy violation: consultation/consulting terminology is prohibited in public-facing content and components.\n  [CONTENT-013] src/content/services/sertifikasi-iso-9001-2026.md`
+- Build abort di hook `astro:build:done`, sebelum `dist/sitemap-index.xml` dihasilkan. Inilah penyebab `audit:seo` gagal; bukan masalah sitemap mandiri.
+
+## Akar masalah 2 — judul blok yang hilang
+
+Test: `tests/service-content-frontmatter.test.mjs:44`, `preserves body sections as block titles`. Lima assertion gagal, tiga terlihat di putaran pertama dan dua lagi muncul setelah tiga pertama diperbaiki:
+
+1. `iso-14001-2026-certification.md` — missing block title `Service development status`.
+2. `sertifikasi-fssc-22000.md` — missing block title `Tahapan umum menuju sertifikasi FSSC 22000`.
+3. `sertifikasi-iso-9001-2026.md` — missing block title `Status pengembangan layanan`.
+4. `iso-14001-2026-certification.md` — missing block title `Official references` (terselubung oleh assertion pertama pada file yang sama).
+5. `sertifikasi-fssc-22000.md` — missing block title `Referensi resmi dan pembanding layanan` (terselubung oleh assertion pertama pada file yang sama).
+
+Output test putaran pertama: `ℹ tests 402`, `ℹ pass 399`, `ℹ fail 3`.
+Output test putaran kedua: `ℹ tests 402`, `ℹ pass 400`, `ℹ fail 2`.
+
+## Akar masalah 3 — aturan editorial FSSC 22000
+
+Muncul setelah `CONTENT-013` diperbaiki; sebelumnya build berhenti lebih awal.
+
+1. `[CONTENT-003]` `src/content/services/sertifikasi-fssc-22000.md` → `intro`: intro harus diawali judul persis diikuti `adalah`. Berisi `FSSC 22000 adalah ...`, bukan `Sertifikasi Sistem Manajemen Keamanan Pangan FSSC 22000 adalah ...`.
+2. `[CONTENT-008]` file yang sama → `featuredImage.alt`: alt wajib memuat frasa `adalah`. Berisi `... merupakan penilaian sistem manajemen keamanan pangan dalam rantai pangan.`
+
+Keduanya menggagalkan `npm run build` (exit `1`) dan membuat `npm run audit:seo` gagal (exit `1`) karena build tidak menghasilkan sitemap. Setelah perbaikan 5 judul blok, `npm run test` sudah lolos: `ℹ tests 402`, `ℹ pass 402`, `ℹ fail 0`.
+
+## CI
+
+- Check run: `Validate and build`, status `completed`, conclusion `failure`.
+- commit: `03a33f447ba25b7a5fad9d4913b58c577588fd97`
+- run: `45214868125`, job: `137833204473`
+- Log CI mencatat seluruh 3 AssertionError di atas, lalu `Process completed with exit code 1`.
+
+## Perbaikan yang direncanakan
+
+1. Ganti frasa `konsultasi kebutuhan sertifikasi` dengan wording informasi sertifikasi yang diizinkan. Jangan melemahkan validator `CONTENT-013`.
+2. Kembalikan 5 judul blok yang dihapus dengan edit minimal pada konten. Jangan mengubah atau menonaktifkan test.
+3. Jalankan ulang seluruh 9 gate dan catat exit code serta jumlah.
+4. Commit perbaikan secara terpisah, lalu push ke `main`.
+
+## Status perbaikan
+
+- `konsultasi` pada FAQ ISO 9001:2026 sudah diganti dengan `informasi sertifikasi`.
+- Blok `Status pengembangan layanan` (ISO 9001:2026) dan `Service development status` (ISO 14001:2026) sudah dikembalikan dengan deskripsi status netral, tanpa klaim ketersediaan atau kewenangan yang tidak diverifikasi.
+- Judul blok audit FSSC 22000 sudah dikembalikan menjadi `Tahapan umum menuju sertifikasi FSSC 22000`.
+- Judul `Official references` (ISO 14001:2026) dan `Referensi resmi dan pembanding layanan` (FSSC 22000) sudah dikembalikan tanpa tautan keluar baru. Test kini 402/402.
+- `intro` FSSC 22000 kini diawali judul persis diikuti `adalah`; `featuredImage.alt` memakai `adalah` dan tetap lebih pendek dari intro.
+- Gate ulang lengkap lolos: `check=0`, `build=0`, `typecheck=0`, `lint=0`, `test=0`, `page-images=0`, `seo=0`, `headings=0`, `blocks=0`.
+- Jumlah akhir: 402 test lulus / 0 gagal; 66 halaman dibangun; 70 HTML; 35 canonical; 35 URL gambar; 57 section dalam 39 halaman; 0 `konsult*`/`consult*` di sumber dan HTML hasil build.
+
+## Daftar lengkap kegagalan yang diperbaiki
+
+1. `CONTENT-013` — `konsultasi` pada FAQ `sertifikasi-iso-9001-2026.md`.
+2. Test `preserves body sections as block titles` — `Status pengembangan layanan` (`sertifikasi-iso-9001-2026.md`).
+3. Test `preserves body sections as block titles` — `Service development status` (`iso-14001-2026-certification.md`).
+4. Test `preserves body sections as block titles` — `Tahapan umum menuju sertifikasi FSSC 22000` (`sertifikasi-fssc-22000.md`).
+5. Test `preserves body sections as block titles` — `Official references` (`iso-14001-2026-certification.md`).
+6. Test `preserves body sections as block titles` — `Referensi resmi dan pembanding layanan` (`sertifikasi-fssc-22000.md`).
+7. `CONTENT-003` — `intro` FSSC 22000 tidak diawali judul + `adalah`.
+8. `CONTENT-008` — `featuredImage.alt` FSSC 22000 tidak memuat `adalah`.
+9. `audit:seo` — kaskade dari build gagal: sitemap tidak dihasilkan, 30 tautan `/sitemap-index.xml` broken. Hilang dengan sendirinya setelah `build=0`.
+
+Status: selesai, belum di-commit pada saat catatan ini ditutup.
