@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated commit: `0415e8a` (full gate suite; FSSC 22000 publication and compact service sidebar pulled from remote)
+- Validated commit: `e34639a` (full gate suite; PR #30 training and schedule content merged with three local ISO service drafts)
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -51,6 +51,7 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 | P19 | Localized navigation labels | Completed; English URLs show English menu and UI chrome labels, all hrefs unchanged, full gate suite passed on `7a6ccd3` |
 | P20 | Service detail sidebar integration | Completed; four remote sidebar commits pulled, optional `category` type mismatch fixed, full gate suite passed on `f05f473` |
 | P21 | FSSC 22000 publication and compact sidebar | Completed; five remote commits pulled, no regression found, full gate suite passed on `0415e8a` |
+| P22 | Training and schedule content | Completed; PR #30 merged upstream at `8638c2f`, three local ISO service drafts preserved through integration merge `e34639a`, full gate suite passed |
 | Build strategy | Content-first full-build baseline | Verification checkpoint closed for current baseline; timing baseline captured, negative preflight verified in CI; full checks mandatory |
 
 ## Verified repository facts
@@ -645,3 +646,31 @@ Pulled six remote commits (`d3e2f16`..`7321320`) that add a reusable contextual 
 - Full gate suite passed on `5b8b9eb`: 330 tests, 36 built pages, 40 HTML pages and 20 canonicals in the SEO audit; block audit checked 24 sections in 9 pages.
 - CI status for `5b8b9eb` is not claimed; only the local evidence above is recorded.
 - Visual review of the mid-page CTAs and of the ISO 14001 layouts remains a separate manual task.
+
+
+## P22 — Training and schedule content, local draft preservation (2026-11-23)
+
+PR #30 was merged at `8638c2f`. Its head `94bade0` had a successful `Validate and build` check, no reviews and no comments. Diff contents differed from the PR description: 14 training programs and 336 dated 2027 schedules, not three of each. The site owner confirmed the dates are owner-authored source data, so they were accepted.
+
+Local `main` held three unpushed ISO service drafts (`d20c0c4` and its two parents). A rebase conflicted, so `origin/main` was merged into them. Pre-merge backup: `backup/local-iso-drafts` at `d20c0c4`.
+
+- Merge commit: `e34639a`.
+- Conflict: `docs/illustration-library/asset-register.md` reused `ILL-023`–`ILL-025` on both sides.
+- Resolution: kept the PR training IDs `ILL-023`–`ILL-036`; renumbered the three service illustrations to `ILL-037`–`ILL-039`. All 39 IDs are unique.
+- Draft service entries `sertifikasi-iso-45001`, `sertifikasi-iso-iec-27001` and `sertifikasi-iso-50001` keep `draft: true`; no new service was published.
+
+Full gate suite passed locally on `e34639a` with Node.js `26.13.1`:
+
+| Command | Result |
+|---|---|
+| `npm run check` | PASS, exit `0` |
+| `npm run build` | PASS, exit `0`, 66 pages |
+| `npm run typecheck` | PASS, exit `0` |
+| `npm run lint` | PASS, exit `0` |
+| `npm run test` | PASS, exit `0`, 402 tests |
+| `npm run audit:page-images` | PASS, exit `0`, 35 generated URLs |
+| `npm run audit:seo` | PASS, exit `0`, 70 HTML pages and 35 canonicals |
+| `npm run audit:headings` | PASS, exit `0`, 70 HTML pages |
+| `npm run audit:blocks` | PASS, exit `0`, 47 sections in 39 pages |
+
+Generated HTML contained 0 matches for `konsult*` or `consult*`. CI status for `e34639a` is not claimed; only local evidence is recorded.
