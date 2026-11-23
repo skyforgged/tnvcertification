@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated commit: `7a6ccd3` (full gate suite; localized navigation labels wired through header, footer, and layout)
+- Validated commit: `f05f473` (full gate suite; optional service sidebar category type fixed after four remote sidebar commits)
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -49,6 +49,7 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 | P17 | Editorial localization and ISO 14001 layouts | Completed; PR #26 and PR #27 merged, full gate suite passed on `c728ddf`; visual QA remains manual |
 | P18 | Contextual service CTA integration | Completed; six remote commits pulled, YAML/renderer/audit regressions fixed, full gate suite passed on `5b8b9eb` |
 | P19 | Localized navigation labels | Completed; English URLs show English menu and UI chrome labels, all hrefs unchanged, full gate suite passed on `7a6ccd3` |
+| P20 | Service detail sidebar integration | Completed; four remote sidebar commits pulled, optional `category` type mismatch fixed, full gate suite passed on `f05f473` |
 | Build strategy | Content-first full-build baseline | Verification checkpoint closed for current baseline; timing baseline captured, negative preflight verified in CI; full checks mandatory |
 
 ## Verified repository facts
@@ -85,7 +86,7 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-Local full validation ran on `main` at `7a6ccd3` with the pinned Node.js `26.13.1` toolchain:
+Local full validation ran on `main` at `f05f473` with the pinned Node.js `26.13.1` toolchain:
 
 | Command | Result |
 |---|---|
@@ -97,7 +98,7 @@ Local full validation ran on `main` at `7a6ccd3` with the pinned Node.js `26.13.
 | `npm run audit:seo` | PASS, exit `0`, 40 HTML pages and 20 unique canonicals |
 | `npm run audit:blocks` | PASS, exit `0`, 24 sections in 9 pages |
 
-Build warnings about empty `training` and `trainingSchedules` collections remain non-fatal. The navigation work was rebased onto remote certificate-submenu and draft FSSC 22000 commits `53c567d`..`cf6b81b`; the full suite passed again on that combined tree with 343 tests. Built-output checks confirmed English menu, navigation, and back-to-top labels in `dist/en/services/index.html` and Indonesian labels in `dist/index.html`. No CI result is claimed for `7a6ccd3`; only the local command output above is recorded.
+Build warnings about empty `training` and `trainingSchedules` collections remain non-fatal. The navigation work was rebased onto remote certificate-submenu and draft FSSC 22000 commits `53c567d`..`cf6b81b`; the full suite passed again on that combined tree with 343 tests. Built-output checks confirmed English menu, navigation, and back-to-top labels in `dist/en/services/index.html` and Indonesian labels in `dist/index.html`. Four later remote commits `d7afd18`..`4025014` added the service-detail sidebar. Initial `npm run check` and `npm run typecheck` failed with `TS2322`: `ServiceLayout.astro` required `category: string`, while the service schema makes `category` optional. Commit `f05f473` changed the prop to `category?: string` and omitted the category span when absent. The full suite passed again after that fix. No CI result is claimed for `f05f473`; only the local command output above is recorded.
 
 Earlier pulled commits `9bc16d1` and `ddac326` failed local `lint`; final pulled commit `67b56b3` still had both errors. Commit `455bb73` fixed `no-useless-assignment` in the classifier and `preserve-caught-error` in the preflight.
 
