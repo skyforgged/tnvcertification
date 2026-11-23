@@ -218,7 +218,7 @@ const trainingSchema = baseEntrySchema.extend({
   draft: z.boolean().optional(),
   categoryIds: z.array(z.string()).optional(),
   hero: trainingHeroSchema.optional(),
-  blocks: z.array(blockSchema).optional(),
+  blocks: z.array(pageBlockSchema).optional(),
 });
 
 // --- Categories (taxonomy records, not editorial pages) ---
@@ -238,10 +238,12 @@ const trainingScheduleSchema = z.object({
   serviceSlug: z.string().optional(),
   startDate: z
     .string()
-    .regex(/^\d{4}-\d{2}-\d{2}$/, "startDate must be YYYY-MM-DD"),
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "startDate must be YYYY-MM-DD")
+    .optional(),
   endDate: z
     .string()
-    .regex(/^\d{4}-\d{2}-\d{2}$/, "endDate must be YYYY-MM-DD"),
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "endDate must be YYYY-MM-DD")
+    .optional(),
   timezone: z.string().optional(),
   locationType: z.enum(["offline", "online", "hybrid"]).optional(),
   venue: z.string().optional(),
@@ -256,6 +258,14 @@ const trainingScheduleSchema = z.object({
   registrationUrl: z.string().url().optional(),
   notes: z.string().optional(),
   slug: z.string().min(1),
+}).superRefine((data, ctx) => {
+  if (Boolean(data.startDate) !== Boolean(data.endDate)) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "startDate and endDate must be provided together",
+      path: [data.startDate ? "endDate" : "startDate"],
+    });
+  }
 });
 
 // --- General pages ---
