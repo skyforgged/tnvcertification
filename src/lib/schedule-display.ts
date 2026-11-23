@@ -61,3 +61,24 @@ export function sortSchedulesByStartDate<T extends ScheduleSortItem>(items: T[])
     return aDate.localeCompare(bDate) || a.data.slug.localeCompare(b.data.slug);
   });
 }
+
+export function monthKeyFromStartDate(startDate?: string): string | undefined {
+  if (!startDate || !/^\d{4}-\d{2}-\d{2}$/.test(startDate)) return undefined;
+  const parsed = new Date(`${startDate}T00:00:00Z`);
+  if (Number.isNaN(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== startDate) {
+    return undefined;
+  }
+  return startDate.slice(0, 7);
+}
+
+export function selectDefaultScheduleMonth<T extends { data: { startDate?: string } }>(
+  items: T[],
+  todayKey: string,
+): string | undefined {
+  const dated = items
+    .map((item) => item.data.startDate)
+    .filter((date): date is string => Boolean(date && monthKeyFromStartDate(date)));
+  if (dated.length === 0) return undefined;
+  const upcoming = dated.filter((date) => date >= todayKey).sort()[0];
+  return monthKeyFromStartDate(upcoming ?? [...dated].sort()[0]);
+}

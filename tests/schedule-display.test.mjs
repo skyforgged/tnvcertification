@@ -5,6 +5,10 @@ import {
   selectUpcomingSchedules,
   sortSchedulesByStartDate,
 } from "../src/lib/schedule-display.ts";
+import {
+  monthKeyFromStartDate,
+  selectDefaultScheduleMonth,
+} from "../src/lib/schedule-display.ts";
 
 test("schedule date label uses a pending message when dates are absent", () => {
   assert.equal(scheduleDateLabel(undefined, undefined), "Jadwal akan diumumkan");
@@ -90,4 +94,26 @@ test("schedule sorting places date-less records after dated records", () => {
   const sorted = sortSchedulesByStartDate(items).map((item) => item.data.slug);
 
   assert.deepEqual(sorted, ["earlier", "later", "pending"]);
+});
+
+test("month key is derived from a calendar date", () => {
+  assert.equal(monthKeyFromStartDate("2027-01-13"), "2027-01");
+  assert.equal(monthKeyFromStartDate(undefined), undefined);
+});
+
+test("default month is the first month containing an upcoming session", () => {
+  const items = [
+    { data: { startDate: "2027-03-10" } },
+    { data: { startDate: "2027-01-13" } },
+    { data: { startDate: "2027-02-24" } },
+  ];
+  assert.equal(selectDefaultScheduleMonth(items, "2026-11-23"), "2027-01");
+});
+
+test("default month falls back to the earliest available month when all are past", () => {
+  const items = [
+    { data: { startDate: "2027-05-12" } },
+    { data: { startDate: "2027-02-10" } },
+  ];
+  assert.equal(selectDefaultScheduleMonth(items, "2028-01-01"), "2027-02");
 });
