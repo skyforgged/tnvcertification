@@ -1,10 +1,10 @@
 ---
 title: "Sertifikasi Sistem Manajemen Mutu ISO 9001:2026"
 intro: "Sertifikasi Sistem Manajemen Mutu ISO 9001:2026 adalah proses penilaian kesesuaian oleh lembaga sertifikasi terhadap sistem manajemen mutu organisasi berdasarkan persyaratan edisi ISO 9001 yang berlaku."
-metaDescription: "Informasi standar ISO 9001:2026, ruang lingkup penilaian sistem manajemen mutu, tahapan audit sertifikasi, dan status pengembangan layanan TNVC."
+metaDescription: "Informasi ISO 9001:2026, ruang lingkup sistem manajemen mutu, proses sertifikasi, persiapan audit, dan persyaratan transisi."
 pubDate: "2026-11-21T00:00:00Z"
 updatedDate: "2026-11-23T00:00:00Z"
-draft: true
+draft: false
 id: 2
 featuredImage:
   src: "/images/illustrations/service-iso9001-2026.webp"
@@ -70,7 +70,7 @@ blocks:
     id: "proses-sertifikasi-umum"
     surface: "navy"
     title: "Proses sertifikasi secara umum"
-    description: "Apabila layanan kelak disetujui dan tersedia, proses sertifikasi sistem manajemen mutu pada umumnya mencakup pengajuan, penetapan ruang lingkup, perencanaan audit, audit tahap pertama bila berlaku, audit tahap kedua, penyelesaian temuan, tinjauan keputusan sertifikasi, dan surveilans sesuai siklus sertifikasi. Ketentuan aktual akan mengikuti skema, standar, dan prosedur lembaga sertifikasi yang berwenang."
+    description: "Proses sertifikasi sistem manajemen mutu pada umumnya mencakup pengajuan, penetapan ruang lingkup, perencanaan audit, audit tahap pertama bila berlaku, audit tahap kedua, penyelesaian temuan, tinjauan keputusan sertifikasi, dan surveilans sesuai siklus sertifikasi. Tahapan dan ketentuan mengikuti skema, standar, serta prosedur sertifikasi yang berlaku."
   - type: "link-grid"
     id: "referensi-resmi"
     surface: "cream"
@@ -109,7 +109,7 @@ blocks:
       - question: "Apakah organisasi yang memiliki sertifikat ISO 9001:2015 harus melakukan transisi?"
         answer: "Organisasi yang telah tersertifikasi perlu menyelesaikan transisi sesuai jadwal dan ketentuan yang berlaku. Batas global yang diumumkan adalah 30 September 2029, dengan penerapan mengikuti persyaratan transisi yang relevan."
       - question: "Apakah TNVC saat ini menerima permohonan sertifikasi ISO 9001:2026?"
-        answer: "Ketersediaan dan ruang lingkup kewenangan TNV Certification untuk skema ini belum dikonfirmasi untuk publikasi. Hubungi perusahaan untuk memperoleh informasi, tetapi jangan menganggap permohonan sertifikasi sedang diterima sebelum ketersediaan layanan dikonfirmasi."
+        answer: "Hubungi TNV Certification untuk informasi layanan, konsultasi kebutuhan sertifikasi, serta proses pengajuan dan penentuan ruang lingkup ISO 9001:2026."
 relatedArticles:
   title: "Artikel Terkait"
 ---
