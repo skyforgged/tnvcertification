@@ -19,7 +19,7 @@ interface Props {
   hero: HeroBlock;
   blocks: PageBlock[];
   currentServiceId: number;
-  otherServices: Array<{ id: number; title: string; description: string; href: string; category?: string }>;
+  otherServices: Array<{ id: number; title: string; href: string; category?: string }>;
 }
 
 const {
@@ -54,7 +54,6 @@ const contactHref = `https://wa.me/${organization.contact.whatsapp.replace(/[^0-
             <div aria-hidden="true" class="absolute -right-8 -top-8 h-28 w-28 rounded-full border border-white/15"></div>
             <p class="text-xs font-semibold uppercase tracking-[.16em] text-white/70">Explore our services</p>
             <h2 id="other-services-title" class="mt-2 text-xl font-bold tracking-tight">{lang === "en" ? "Other Services" : "Layanan Lainnya"}</h2>
-            <p class="mt-2 text-sm leading-relaxed text-white/80">{lang === "en" ? "Discover other certification services for your organization." : "Temukan layanan sertifikasi lain yang sesuai dengan kebutuhan organisasi."}</p>
           </div>
           <nav aria-label={lang === "en" ? "Other certification services" : "Layanan sertifikasi lainnya"} class="divide-y divide-slate-100 p-2">
             {otherServices.filter((item) => item.id !== currentServiceId).map((item) => (
@@ -63,7 +62,6 @@ const contactHref = `https://wa.me/${organization.contact.whatsapp.replace(/[^0-
                 <span class="min-w-0">
                   <span class="block text-sm font-semibold leading-snug text-ink group-hover:text-brand-deepblue">{item.title}</span>
                   {item.category && <span class="mt-1 block text-xs leading-relaxed text-ink-muted">{item.category}</span>}
-                  <span class="mt-1.5 block line-clamp-2 text-xs leading-relaxed text-ink-subtle">{item.description}</span>
                 </span>
               </a>
             ))}
