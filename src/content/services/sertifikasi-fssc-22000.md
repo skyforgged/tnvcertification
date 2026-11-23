@@ -4,10 +4,10 @@ intro: "Sertifikasi Sistem Manajemen Keamanan Pangan FSSC 22000 adalah skema pen
 metaDescription: "Pelajari skema FSSC 22000, komponen ISO 22000, PRP sektoral, persyaratan tambahan, cakupan industri pangan, audit, dan transisi Version 7."
 pubDate: "2026-11-23T00:00:00Z"
 updatedDate: "2026-11-23T00:00:00Z"
-draft: true
+draft: false
 id: 5
 featuredImage:
-  src: "/images/illustrations/services-assessment.webp"
+  src: "/images/illustrations/service-fssc-22000.webp"
   alt: "Sertifikasi Sistem Manajemen Keamanan Pangan FSSC 22000 adalah skema penilaian sistem keamanan pangan."
 slug: "sertifikasi-fssc-22000"
 translationKey: "service-sertifikasi-fssc-22000"
