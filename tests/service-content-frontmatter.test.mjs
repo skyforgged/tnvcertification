@@ -34,10 +34,17 @@ const expectedSections = {
   id: ["Status pengembangan layanan", "Proses sertifikasi secara umum", "Referensi resmi"],
   en: ["Service development status", "Certification process overview", "Official references"],
 };
+const sectionOverrides = {
+  "sertifikasi-fssc-22000.md": [
+    "Tahapan umum menuju sertifikasi FSSC 22000",
+    "Referensi resmi dan pembanding layanan",
+  ],
+};
 for (const entry of entries.filter((candidate) => candidate.data.draft !== true)) {
   test(`${entry.file} preserves body sections as block titles`, () => {
     const titles = (entry.data.blocks ?? []).map((block) => block.title).filter(Boolean);
-    for (const section of expectedSections[entry.data.lang]) {
+    const sections = sectionOverrides[entry.file] ?? expectedSections[entry.data.lang];
+    for (const section of sections) {
       assert.ok(titles.includes(section), `${entry.file}: missing block title "${section}"`);
     }
   });
