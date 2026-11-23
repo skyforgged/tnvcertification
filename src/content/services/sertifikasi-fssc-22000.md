@@ -1,6 +1,6 @@
 ---
 title: "Sertifikasi Sistem Manajemen Keamanan Pangan FSSC 22000"
-intro: "FSSC 22000 adalah skema sertifikasi sistem manajemen keamanan pangan yang menggabungkan ISO 22000, program prasyarat (PRP) sesuai kategori rantai pangan, dan persyaratan tambahan skema. Penerapannya membantu organisasi mengendalikan bahaya pangan secara sistematis, menjaga konsistensi proses, dan menunjukkan kesesuaian melalui audit independen."
+intro: "Sertifikasi Sistem Manajemen Keamanan Pangan FSSC 22000 adalah skema penilaian sistem keamanan pangan yang menggabungkan ISO 22000, program prasyarat (PRP) sesuai kategori rantai pangan, dan persyaratan tambahan skema. Penerapannya membantu organisasi mengendalikan bahaya pangan secara sistematis, menjaga konsistensi proses, dan menunjukkan kesesuaian melalui audit independen."
 metaDescription: "Panduan lengkap FSSC 22000: komponen skema, ISO 22000, PRP sektoral, HACCP, food defense, food fraud, ketertelusuran, audit sertifikasi, dan transisi Version 7."
 pubDate: "2026-11-23T00:00:00Z"
 updatedDate: "2026-11-23T00:00:00Z"
@@ -8,7 +8,7 @@ draft: false
 id: 5
 featuredImage:
   src: "/images/illustrations/service-fssc-22000.webp"
-  alt: "Sertifikasi FSSC 22000 merupakan penilaian sistem manajemen keamanan pangan dalam rantai pangan."
+  alt: "Sertifikasi Sistem Manajemen Keamanan Pangan FSSC 22000 adalah penilaian sistem keamanan pangan dalam rantai pangan."
 slug: "sertifikasi-fssc-22000"
 translationKey: "service-sertifikasi-fssc-22000"
 lang: "id"
@@ -167,7 +167,7 @@ blocks:
     layout: "numbered-grid"
     surface: "white"
     eyebrow: "Proses penilaian"
-    title: "Bagaimana audit sertifikasi FSSC 22000 berlangsung?"
+    title: "Tahapan umum menuju sertifikasi FSSC 22000"
     description: "Audit sertifikasi dilakukan oleh Certification Body (CB) berlisensi FSSC. Audit menggunakan bukti objektif dan sampling; auditor tidak memeriksa setiap produk, catatan, atau transaksi. Keputusan sertifikasi dilakukan melalui proses review yang terpisah dari kegiatan audit."
     items:
       - title: "Permohonan dan penetapan ruang lingkup"
@@ -262,6 +262,17 @@ blocks:
         answer: "Sertifikat FSSC 22000 diterbitkan oleh Certification Body yang memiliki lisensi Foundation FSSC dan cakupan kategori yang sesuai. Status lisensi serta cakupan dapat diperiksa melalui direktori resmi Foundation FSSC."
       - question: "Apa yang harus dilakukan pemegang sertifikat Version 6?"
         answer: "Tinjau dokumen Version 7, petakan perubahan terhadap sistem saat ini, perbarui PRP dan dokumentasi yang relevan, siapkan bukti penerapan, dan koordinasikan jadwal audit upgrade dengan CB penerbit."
+  - type: "content-section"
+    id: "fssc22000-referensi"
+    surface: "cream"
+    eyebrow: "Sumber resmi"
+    title: "Referensi resmi dan pembanding layanan"
+    description: "Gunakan publikasi resmi Foundation FSSC dan ISO serta dokumen skema yang berlaku sebagai acuan persyaratan. Informasi pada halaman ini menjelaskan proses sertifikasi dan tidak menggantikan ketentuan resmi skema."
+    items:
+      - title: "Dokumen skema FSSC"
+        description: "Periksa edisi skema, Part 2, serta keputusan dan interpretasi yang berlaku melalui kanal resmi Foundation FSSC."
+      - title: "Publikasi ISO"
+        description: "Periksa edisi ISO 22000 dan seri ISO 22002-x yang relevan melalui katalog resmi ISO."
   - type: "cta"
     id: "cta-fssc22000"
     surface: "navy"
