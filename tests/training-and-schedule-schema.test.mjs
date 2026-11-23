@@ -3,29 +3,29 @@ import test from "node:test";
 import { collections } from "../src/content.config.ts";
 
 const trainingInput = {
-  title: "Pelatihan Sertifikasi ISO 9001:2026",
-  intro: "Pelatihan Sertifikasi ISO 9001:2026 adalah program pemahaman proses sertifikasi sistem manajemen mutu.",
-  slug: "pelatihan-sertifikasi-iso-9001-2026",
+  title: "Pelatihan Auditor Internal ISO 9001",
+  intro: "Pelatihan Auditor Internal ISO 9001 adalah program pemahaman proses sertifikasi sistem manajemen mutu.",
+  slug: "pelatihan-auditor-internal-iso-9001",
   metaDescription: "Program pemahaman ruang lingkup, audit, dan administrasi sertifikasi ISO 9001:2026.",
   pubDate: "2026-11-23T00:00:00Z",
   featuredImage: {
     src: "/images/illustrations/training-iso9001-2026.webp",
-    alt: "Pelatihan Sertifikasi ISO 9001:2026 adalah program pemahaman sertifikasi mutu.",
+    alt: "Pelatihan Auditor Internal ISO 9001 adalah program pemahaman sertifikasi mutu.",
   },
   lang: "id",
-  translationKey: "training-pelatihan-sertifikasi-iso-9001-2026",
+  translationKey: "training-pelatihan-auditor-internal-iso-9001",
   blocks: [
     {
       type: "hero",
       id: "hero-trainings",
-      title: "Pelatihan Sertifikasi ISO 9001:2026",
-      description: "Pelatihan Sertifikasi ISO 9001:2026 adalah program pemahaman proses sertifikasi sistem manajemen mutu.",
+      title: "Pelatihan Auditor Internal ISO 9001",
+      description: "Pelatihan Auditor Internal ISO 9001 adalah program pemahaman proses sertifikasi sistem manajemen mutu.",
     },
   ],
 };
 
 const scheduleInput = {
-  trainingSlug: "pelatihan-sertifikasi-iso-9001-2026",
+  trainingSlug: "pelatihan-auditor-internal-iso-9001",
   slug: "jadwal-pelatihan-iso-9001-2026",
   notes: "Jadwal angkatan akan diumumkan.",
 };
