@@ -55,16 +55,22 @@ export const siteSettings = {
       en: "Translation not available",
     },
   },
+  ui: {
+    skipToContent: { id: "Lewati ke konten utama", en: "Skip to main content" },
+    mainNavigation: { id: "Navigasi utama", en: "Main navigation" },
+    logoHome: { id: "beranda", en: "home" },
+    backToTop: { id: "Kembali ke atas ↑", en: "Back to top ↑" },
+  },
 } as const;
 
 export const primaryNavigation = [
-  { label: "Beranda", href: "/" },
-  { label: "Layanan", href: "/services/" },
-  { label: "CSMS", href: "/csms/" },
-  { label: "Tentang", href: "/about-us/" },
-  { label: "Pelatihan", href: "/trainings/" },
-  { label: "Jadwal", href: "/schedules/" },
-  { label: "Artikel", href: "/articles/" },
+  { label: "Beranda", labelEn: "Home", href: "/" },
+  { label: "Layanan", labelEn: "Services", href: "/services/" },
+  { label: "CSMS", labelEn: "CSMS", href: "/csms/" },
+  { label: "Tentang", labelEn: "About", href: "/about-us/" },
+  { label: "Pelatihan", labelEn: "Trainings", href: "/trainings/" },
+  { label: "Jadwal", labelEn: "Schedules", href: "/schedules/" },
+  { label: "Artikel", labelEn: "Articles", href: "/articles/" },
 ] as const;
 
 /** Localized breadcrumb labels and hrefs for routes with an English surface. */
@@ -79,17 +85,19 @@ export const localizedCrumbs = {
 export const footerNavigation = [
   {
     title: "Mulai",
+    titleEn: "Get started",
     links: [
-      { label: "Beranda", href: "/" },
-      { label: "Layanan", href: "/services/" },
-      { label: "CSMS", href: "/csms/" },
-      { label: "Tentang", href: "/about-us/" },
-      { label: "Pelatihan", href: "/trainings/" },
-      { label: "Jadwal pelatihan", href: "/schedules/" },
+      { label: "Beranda", labelEn: "Home", href: "/" },
+      { label: "Layanan", labelEn: "Services", href: "/services/" },
+      { label: "CSMS", labelEn: "CSMS", href: "/csms/" },
+      { label: "Tentang", labelEn: "About", href: "/about-us/" },
+      { label: "Pelatihan", labelEn: "Trainings", href: "/trainings/" },
+      { label: "Jadwal pelatihan", labelEn: "Training schedules", href: "/schedules/" },
     ],
   },
   {
     title: "Baca",
-    links: [{ label: "Artikel dan panduan", href: "/articles/" }],
+    titleEn: "Read",
+    links: [{ label: "Artikel dan panduan", labelEn: "Articles and guides", href: "/articles/" }],
   },
 ] as const;
