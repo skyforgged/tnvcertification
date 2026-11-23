@@ -137,8 +137,6 @@ const contactBlock = z.object({
   }).optional(),
 });
 
-const blockSchema = z.discriminatedUnion("type", [contentSectionBlock, faqBlock, howToBlock, ctaBlock]);
-
 const pageBlockSchema = z.discriminatedUnion("type", [
   heroBlock,
   linkGridBlock,
