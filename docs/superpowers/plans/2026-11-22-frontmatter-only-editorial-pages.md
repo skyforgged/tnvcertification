@@ -168,7 +168,7 @@ Expected: all exit 0; no page loses its H1.
 
 `tests/service-content-frontmatter.test.mjs`:
 - every file in `src/content/services` has empty body, exactly one `hero` block, and a `relatedArticles.title`;
-- for the three published services, the body-derived sections “Status pengembangan layanan”, “Proses sertifikasi secara umum”, “Referensi resmi” (or their EN equivalents) each appear as a `content-section`/`link-grid` block title;
+- for the three published services, the body-derived sections “Proses sertifikasi secara umum” and “Referensi resmi” (or their EN equivalents) appear as `content-section`/`link-grid` block titles; internal status sections must not be carried over;
 - both service detail route sources contain `PageHero` prop passing and no `<Content`; `ServiceLayout.astro` contains `PageHero`, `PageBlockRenderer`, `siteCrumb`-supplied breadcrumbs, and no `<FeaturedImage` or hardcoded `"Beranda"`/`"Layanan"` labels.
 
 - [ ] **Step 2: Run tests to confirm they fail**
@@ -180,7 +180,7 @@ Expected: FAIL on empty body, missing hero, and route source assertions.
 
 For each entry:
 - Add `hero` as first block: `id: hero-layanan`, `eyebrow` from `category`, `title` = existing `title`, `description` = existing `intro`; do **not** set `image` (fallback to `featuredImage`).
-- Convert body section “Status pengembangan layanan” / “Service development status” to a `content-section` (surface `white`), using the two paragraphs as `items` with short verbatim titles.
+- Delete the body section “Status pengembangan layanan” / “Service development status”. Internal service-status copy is prohibited in every content entry, so do not convert it into a block.
 - Convert “Proses sertifikasi secara umum” / “Certification process overview” to a `content-section` (surface `navy`) with one `item` per process stage, split from the existing comma-separated list; keep the closing sentence in `description`.
 - Convert “Referensi resmi” / “Official references” to a `link-grid` (surface `cream`) whose `items` use the link text as `title` and the URL as `href`.
 - Add `relatedArticles: { title: "Artikel Terkait" }` for `id` entries and `title: "Related articles"` for `lang: en`.

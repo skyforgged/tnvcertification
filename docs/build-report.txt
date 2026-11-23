@@ -1,5 +1,7 @@
 # Build report — remote head 03a33f4 (2026-11-23)
 
+Aturan permanen: copy status internal — `Status pengembangan layanan`, `Status layanan`, `Service development status`, dan semua variasinya — dilarang di konten apa pun, published maupun draft. Validator, test, rencana, dan spesifikasi tidak boleh mewajibkan atau membuat blok tersebut. Catatan di bawah adalah riwayat insiden, bukan instruksi.
+
 Sumber: 10 commit remote dari `5e374d9` sampai `03a33f4`, dimerge ke `main` dengan `git merge --ff-only origin/main`. Semua kegagalan di bawah diamati sebelum perbaikan apa pun.
 
 ## Kegagalan gate
