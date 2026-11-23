@@ -6,6 +6,11 @@ test("schedule date label uses a pending message when dates are absent", () => {
   assert.equal(scheduleDateLabel(undefined, undefined), "Jadwal akan diumumkan");
 });
 
+test("date-less label never exposes invalid or placeholder date text", () => {
+  const label = scheduleDateLabel(undefined, undefined);
+  assert.doesNotMatch(label, /invalid|nan|undefined|null|\d{4}/i);
+});
+
 test("schedule date label formats a complete date range", () => {
   const label = scheduleDateLabel("2027-03-01", "2027-03-03");
   assert.match(label, /2027/);
