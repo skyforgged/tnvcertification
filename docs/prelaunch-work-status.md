@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated commit: `f05f473` (full gate suite; optional service sidebar category type fixed after four remote sidebar commits)
+- Validated commit: `0415e8a` (full gate suite; FSSC 22000 publication and compact service sidebar pulled from remote)
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -50,6 +50,7 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 | P18 | Contextual service CTA integration | Completed; six remote commits pulled, YAML/renderer/audit regressions fixed, full gate suite passed on `5b8b9eb` |
 | P19 | Localized navigation labels | Completed; English URLs show English menu and UI chrome labels, all hrefs unchanged, full gate suite passed on `7a6ccd3` |
 | P20 | Service detail sidebar integration | Completed; four remote sidebar commits pulled, optional `category` type mismatch fixed, full gate suite passed on `f05f473` |
+| P21 | FSSC 22000 publication and compact sidebar | Completed; five remote commits pulled, no regression found, full gate suite passed on `0415e8a` |
 | Build strategy | Content-first full-build baseline | Verification checkpoint closed for current baseline; timing baseline captured, negative preflight verified in CI; full checks mandatory |
 
 ## Verified repository facts
@@ -60,7 +61,7 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 - The content registry includes articles, services, categories, certifications, training, training schedules and pages.
 - The category collection now contains 12 candidate groups as 24 localized records, all `status: planned`; no public category routes exist.
 - The certification collection currently has no content records.
-- The services collection contains a CSMS draft and three ISO 2026 records with `draft: false`: ISO 14001:2026 (Indonesian and English) and ISO 9001:2026 (Indonesian). The ISO records are included for publication, while their page copy still says service availability, scope, and authority are not confirmed. Treat this as a publication-state/approval-copy mismatch; do not add or activate further service records until it is resolved.
+- The services collection contains a CSMS draft and four records with `draft: false`: ISO 14001:2026 (Indonesian and English), ISO 9001:2026 (Indonesian), and FSSC 22000 (Indonesian). The ISO records are included for publication, while their page copy still says service availability, scope, and authority are not confirmed. Treat this as a publication-state/approval-copy mismatch; do not add or activate further service records until it is resolved. The FSSC record was published in PR #29 with a unique featured image; its copy describes the scheme and audit process without claiming company authorization or accreditation.
 - Internal CSMS research now includes an expanded competitor benchmark, a proposed service model, a requirement/evidence matrix, a readiness assessment form, and a readiness review report template. These are planning documents only; CSMS stays out of the published catalog until competence, authorization, and claims are approved.
 - Current repository runtime policy pins Node.js `26.13.1` in `.node-version` / `.nvmrc`, with `package.json` engine `>=26.13.1 <27`; pnpm is `12.21.0`.
 - Current TypeScript is `7.1.0-beta`; TypeScript 6.x is prohibited by repository policy. This is a beta exception, not a stable release.
@@ -86,19 +87,19 @@ Do not replace these values with guesses. If a field is optional and not confirm
 
 ## Validation note
 
-Local full validation ran on `main` at `f05f473` with the pinned Node.js `26.13.1` toolchain:
+Local full validation ran on `main` at `0415e8a` with the pinned Node.js `26.13.1` toolchain:
 
 | Command | Result |
 |---|---|
 | `npm run check` | PASS, exit `0` |
-| `npm run build` | PASS, exit `0`, 36 pages |
+| `npm run build` | PASS, exit `0`, 38 pages |
 | `npm run typecheck` | PASS, exit `0` |
 | `npm run lint` | PASS, exit `0` |
-| `npm run test` | PASS, exit `0`, 343 tests |
-| `npm run audit:seo` | PASS, exit `0`, 40 HTML pages and 20 unique canonicals |
-| `npm run audit:blocks` | PASS, exit `0`, 24 sections in 9 pages |
+| `npm run test` | PASS, exit `0`, 344 tests |
+| `npm run audit:seo` | PASS, exit `0`, 42 HTML pages and 21 unique canonicals |
+| `npm run audit:blocks` | PASS, exit `0`, 33 sections in 11 pages |
 
-Build warnings about empty `training` and `trainingSchedules` collections remain non-fatal. The navigation work was rebased onto remote certificate-submenu and draft FSSC 22000 commits `53c567d`..`cf6b81b`; the full suite passed again on that combined tree with 343 tests. Built-output checks confirmed English menu, navigation, and back-to-top labels in `dist/en/services/index.html` and Indonesian labels in `dist/index.html`. Four later remote commits `d7afd18`..`4025014` added the service-detail sidebar. Initial `npm run check` and `npm run typecheck` failed with `TS2322`: `ServiceLayout.astro` required `category: string`, while the service schema makes `category` optional. Commit `f05f473` changed the prop to `category?: string` and omitted the category span when absent. The full suite passed again after that fix. No CI result is claimed for `f05f473`; only the local command output above is recorded.
+Build warnings about empty `training` and `trainingSchedules` collections remain non-fatal. The navigation work was rebased onto remote certificate-submenu and draft FSSC 22000 commits `53c567d`..`cf6b81b`; the full suite passed again on that combined tree with 343 tests. Built-output checks confirmed English menu, navigation, and back-to-top labels in `dist/en/services/index.html` and Indonesian labels in `dist/index.html`. Four later remote commits `d7afd18`..`4025014` added the service-detail sidebar. Initial `npm run check` and `npm run typecheck` failed with `TS2322`: `ServiceLayout.astro` required `category: string`, while the service schema makes `category` optional. Commit `f05f473` changed the prop to `category?: string` and omitted the category span when absent. The full suite passed again after that fix. Five later remote commits `ed2501a`..`0415e8a` revised and published the FSSC 22000 service, added its illustration, and compacted the service sidebar. No code revision was needed on the pulled tree. The full suite passed on `0415e8a` with 344 tests, 38 pages, 42 HTML pages, 21 canonicals, and 33 sections in 11 pages. No CI result is claimed for `0415e8a`; only the local command output above is recorded.
 
 Earlier pulled commits `9bc16d1` and `ddac326` failed local `lint`; final pulled commit `67b56b3` still had both errors. Commit `455bb73` fixed `no-useless-assignment` in the classifier and `preserve-caught-error` in the preflight.
 
