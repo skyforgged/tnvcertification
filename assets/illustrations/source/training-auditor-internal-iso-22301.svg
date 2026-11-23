@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480" fill="none">
+  <title>Audit internal kontinuitas bisnis</title>
+  <rect x="64" y="48" width="512" height="384" rx="30" fill="#E0E7FF"/>
+  <circle cx="320" cy="206" r="104" fill="#ffffff"/>
+  <path d="M320 128a80 80 0 0 1 74 50" stroke="#4338CA" stroke-width="16" stroke-linecap="round"/><path d="M394 178l-6-34 34 10" stroke="#4338CA" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><path d="M320 284a80 80 0 0 1-74-50" stroke="#4338CA" stroke-width="16" stroke-linecap="round"/><path d="M246 234l6 34-34-10" stroke="#4338CA" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="152" y="332" width="336" height="64" rx="16" fill="#4338CA"/>
+  <text x="320" y="374" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" fill="#ffffff">ISO 22301</text>
+</svg>

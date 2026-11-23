@@ -73,3 +73,11 @@ test("no training entry uses consultation wording", () => {
     assert.doesNotMatch(raw, /konsult|consult/i, `${file}: prohibited terminology`);
   }
 });
+
+test("each training uses a distinct primary image source", () => {
+  const sources = entries.map((entry) => entry.data.featuredImage?.src);
+  assert.equal(new Set(sources).size, sources.length, "training primary images must be unique");
+  for (const source of sources) {
+    assert.match(String(source), /^\/images\/illustrations\/training-[\w-]+\.webp$/);
+  }
+});

@@ -6,7 +6,7 @@ pubDate: "2026-11-23T00:00:00Z"
 updatedDate: "2026-11-23T00:00:00Z"
 draft: false
 featuredImage:
-  src: "/images/illustrations/training-competency.webp"
+  src: "/images/illustrations/training-auditor-internal-iatf-16949.webp"
   alt: "Pelatihan Auditor Internal IATF 16949 adalah ilustrasi kegiatan audit internal sistem manajemen mutu otomotif IATF 16949."
 slug: "pelatihan-auditor-internal-iatf-16949"
 translationKey: "training-pelatihan-auditor-internal-iatf-16949"

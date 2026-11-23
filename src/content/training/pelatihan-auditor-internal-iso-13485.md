@@ -6,7 +6,7 @@ pubDate: "2026-11-23T00:00:00Z"
 updatedDate: "2026-11-23T00:00:00Z"
 draft: false
 featuredImage:
-  src: "/images/illustrations/training-competency.webp"
+  src: "/images/illustrations/training-auditor-internal-iso-13485.webp"
   alt: "Pelatihan Auditor Internal ISO 13485 adalah ilustrasi kegiatan audit internal sistem manajemen mutu perangkat medis ISO 13485."
 slug: "pelatihan-auditor-internal-iso-13485"
 translationKey: "training-pelatihan-auditor-internal-iso-13485"

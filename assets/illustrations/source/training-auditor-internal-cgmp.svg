@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480" fill="none">
+  <title>Audit internal praktik produksi baik</title>
+  <rect x="64" y="48" width="512" height="384" rx="30" fill="#CFFAFE"/>
+  <circle cx="320" cy="206" r="104" fill="#ffffff"/>
+  <rect x="252" y="158" width="136" height="96" rx="12" fill="#0E7490"/><path d="M272 158v-28h24v28m32 0v-28h24v28" stroke="#0E7490" stroke-width="12"/><path d="M286 206h68" stroke="#fff" stroke-width="12" stroke-linecap="round"/>
+  <rect x="152" y="332" width="336" height="64" rx="16" fill="#0E7490"/>
+  <text x="320" y="374" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" fill="#ffffff">cGMP</text>
+</svg>

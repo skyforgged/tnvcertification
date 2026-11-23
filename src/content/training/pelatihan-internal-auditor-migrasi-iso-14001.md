@@ -6,7 +6,7 @@ pubDate: "2026-11-23T00:00:00Z"
 updatedDate: "2026-11-23T00:00:00Z"
 draft: false
 featuredImage:
-  src: "/images/illustrations/training-iso14001-2026.webp"
+  src: "/images/illustrations/training-internal-auditor-migrasi-iso-14001.webp"
   alt: "Pelatihan Internal Auditor Migrasi ISO 14001 adalah ilustrasi kegiatan audit internal migrasi sistem manajemen lingkungan ISO 14001."
 slug: "pelatihan-internal-auditor-migrasi-iso-14001"
 translationKey: "training-pelatihan-internal-auditor-migrasi-iso-14001"

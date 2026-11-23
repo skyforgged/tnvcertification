@@ -6,7 +6,7 @@ pubDate: "2026-11-23T00:00:00Z"
 updatedDate: "2026-11-23T00:00:00Z"
 draft: false
 featuredImage:
-  src: "/images/illustrations/training-competency.webp"
+  src: "/images/illustrations/training-auditor-internal-iso-15189.webp"
   alt: "Pelatihan Auditor Internal ISO 15189 adalah ilustrasi kegiatan audit internal sistem manajemen mutu laboratorium medik ISO 15189."
 slug: "pelatihan-auditor-internal-iso-15189"
 translationKey: "training-pelatihan-auditor-internal-iso-15189"

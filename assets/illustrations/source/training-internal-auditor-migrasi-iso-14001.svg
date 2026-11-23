@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480" fill="none">
+  <title>Audit internal migrasi sistem manajemen lingkungan</title>
+  <rect x="64" y="48" width="512" height="384" rx="30" fill="#DCFCE7"/>
+  <circle cx="320" cy="206" r="104" fill="#ffffff"/>
+  <path d="M392 132c-72 0-118 34-118 90 0 26 12 46 30 58 8-40 34-66 70-80-30 20-50 46-56 82 46-6 74-40 74-94V132z" fill="#15803D"/><path d="M258 292h84" stroke="#15803D" stroke-width="12" stroke-linecap="round"/><path d="M330 276l20 16-20 16" stroke="#15803D" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="152" y="332" width="336" height="64" rx="16" fill="#15803D"/>
+  <text x="320" y="374" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#ffffff">MIGRASI ISO 14001</text>
+</svg>

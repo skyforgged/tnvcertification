@@ -6,7 +6,7 @@ pubDate: "2026-11-23T00:00:00Z"
 updatedDate: "2026-11-23T00:00:00Z"
 draft: false
 featuredImage:
-  src: "/images/illustrations/training-competency.webp"
+  src: "/images/illustrations/training-auditor-internal-cgmp.webp"
   alt: "Pelatihan Auditor Internal cGMP adalah ilustrasi kegiatan audit internal praktik produksi baik cGMP."
 slug: "pelatihan-auditor-internal-cgmp"
 translationKey: "training-pelatihan-auditor-internal-cgmp"
