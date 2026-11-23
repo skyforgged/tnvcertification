@@ -96,12 +96,6 @@ blocks:
       - title: "Plan the transition audit"
         description: "The timing and method of the transition audit are determined in accordance with applicable requirements and the organization's certification cycle."
   - type: "content-section"
-    id: "service-development-status"
-    surface: "white"
-    eyebrow: "Service status"
-    title: "Service development status"
-    description: "This page explains the scope and certification process for ISO 14001:2026. Service availability, scope, and certificate-issuing authority follow the organization's official information and internal verification."
-  - type: "content-section"
     id: "certification-process-overview"
     surface: "navy"
     title: "Certification process overview"
@@ -144,8 +138,6 @@ blocks:
         answer: "Global ACI transition requirements set 30 April 2029 as the end of the transition period for parties and schemes within their scope. Organizations should verify the requirements of their accreditation body and certificate-issuing certification body."
       - question: "Do ISO 14001:2015 certificates become invalid immediately after the new edition is published?"
         answer: "No, not automatically. Certificates and transition activities are governed by the applicable transition requirements. Organizations should confirm the schedule and requirements with the certificate-issuing certification body."
-      - question: "Is TNVC currently accepting applications for ISO 14001:2026 certification?"
-        answer: "Contact TNV Certification to discuss your organization’s needs, request information about the certification process, and inquire about application and scope requirements for ISO 14001:2026."
 relatedArticles:
   title: "Related articles"
 ---

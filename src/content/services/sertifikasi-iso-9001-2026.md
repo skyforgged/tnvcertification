@@ -67,12 +67,6 @@ blocks:
       - title: "Rencanakan transisi"
         description: "Petakan perubahan yang berdampak pada proses, dokumentasi, kompetensi, risiko, sasaran mutu, dan audit internal. Susun rencana implementasi serta jadwal audit transisi bersama lembaga sertifikasi penerbit."
   - type: "content-section"
-    id: "status-pengembangan-layanan"
-    surface: "white"
-    eyebrow: "Status layanan"
-    title: "Status pengembangan layanan"
-    description: "Informasi pada halaman ini disusun untuk menjelaskan ruang lingkup dan proses sertifikasi ISO 9001:2026. Ketersediaan layanan serta cakupan kewenangan penerbitan sertifikat mengikuti data resmi dan verifikasi internal yang berlaku."
-  - type: "content-section"
     id: "proses-sertifikasi-umum"
     surface: "navy"
     title: "Proses sertifikasi secara umum"
@@ -114,8 +108,6 @@ blocks:
         answer: "Ya. ISO 9001:2026 diterbitkan pada 16 September 2026 dan menjadi edisi terkini. ISO 9001:2015 tercatat sebagai edisi yang telah ditarik pada katalog resmi ISO."
       - question: "Apakah organisasi yang memiliki sertifikat ISO 9001:2015 harus melakukan transisi?"
         answer: "Organisasi yang telah tersertifikasi perlu menyelesaikan transisi sesuai jadwal dan ketentuan yang berlaku. Batas global yang diumumkan adalah 30 September 2029, dengan penerapan mengikuti persyaratan transisi yang relevan."
-      - question: "Apakah TNVC saat ini menerima permohonan sertifikasi ISO 9001:2026?"
-        answer: "Hubungi kami untuk informasi sertifikasi, proses pengajuan, dan penentuan ruang lingkup ISO 9001:2026."
 relatedArticles:
   title: "Artikel Terkait"
 ---
