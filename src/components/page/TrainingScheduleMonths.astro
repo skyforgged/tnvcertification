@@ -30,7 +30,7 @@ const months = years.flatMap((year) =>
   Array.from({ length: 12 }, (_, index) => {
     const key = `${year}-${String(index + 1).padStart(2, "0")}`;
     const count = ordered.filter((item) => monthKeyFromStartDate(item.data.startDate) === key).length;
-    return { key, short: monthName.format(new Date(`${key}-01T00:00:00Z)), long: monthGroupLabel.format(new Date(`${key}-01T00:00:00Z`)), count };
+    return { key, short: monthName.format(new Date(`${key}-01T00:00:00Z`)), long: monthGroupLabel.format(new Date(`${key}-01T00:00:00Z`)), count };
   }),
 );
 const groups = [...new Set(ordered.map((item) => monthKeyFromStartDate(item.data.startDate)!))]
