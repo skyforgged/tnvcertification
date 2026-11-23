@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated commit: `e34639a` (full gate suite; PR #30 training and schedule content merged with three local ISO service drafts)
+- Validated commit: `7cb7246` (full gate suite; schedule month-label syntax fixed after remote commit `eb4b702`)
 
 The taxonomy implementation is merged into `main`. It contains taxonomy schema, planned bilingual category records, and build-time reference validation. Integration fixed stale `categoryIds` references so the build passes. No category routes, certification scheme records, or active service claims have been published.
 
@@ -51,7 +51,7 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 | P19 | Localized navigation labels | Completed; English URLs show English menu and UI chrome labels, all hrefs unchanged, full gate suite passed on `7a6ccd3` |
 | P20 | Service detail sidebar integration | Completed; four remote sidebar commits pulled, optional `category` type mismatch fixed, full gate suite passed on `f05f473` |
 | P21 | FSSC 22000 publication and compact sidebar | Completed; five remote commits pulled, no regression found, full gate suite passed on `0415e8a` |
-| P22 | Training and schedule content | Completed; PR #30 merged upstream at `8638c2f`, three local ISO service drafts preserved through integration merge `e34639a`, full gate suite passed |
+| P22 | Training and schedule content | Completed; PR #30 merged upstream at `8638c2f`, three local ISO service drafts preserved through `e34639a`, remote schedule-label syntax fixed at `7cb7246`, full gate suite passed |
 | Build strategy | Content-first full-build baseline | Verification checkpoint closed for current baseline; timing baseline captured, negative preflight verified in CI; full checks mandatory |
 
 ## Verified repository facts
@@ -674,3 +674,5 @@ Full gate suite passed locally on `e34639a` with Node.js `26.13.1`:
 | `npm run audit:blocks` | PASS, exit `0`, 47 sections in 39 pages |
 
 Generated HTML contained 0 matches for `konsult*` or `consult*`. CI status for `e34639a` is not claimed; only local evidence is recorded.
+
+Remote commit `eb4b702` then rewrote `TrainingScheduleMonths.astro` layout and dropped a closing backtick from a template literal. CI `Validate and build` failed on that commit (run `45179628541`). Fix `7cb7246` restored the delimiter without reverting the intended layout changes. Full gate suite passed again on `7cb7246`: all nine commands exit `0`, with 402 tests, 66 built pages, 70 HTML pages, 35 canonicals and 35 generated image URLs unchanged. CI status for `7cb7246` is not claimed here.
