@@ -130,12 +130,6 @@ blocks:
         description: "Audit upgrade terhadap persyaratan Version 7 dilaksanakan dalam periode yang ditentukan. Organisasi perlu memastikan implementasi persyaratan baru telah siap sebelum audit."
       - title: "Periksa informasi resmi"
         description: "Jadwal, keputusan BoS, ketentuan audit, dan pembaruan skema harus diperiksa melalui dokumen resmi Foundation FSSC dan Certification Body terkait."
-  - type: "content-section"
-    id: "fssc22000-status-layanan"
-    layout: "editorial"
-    surface: "white"
-    title: "Status pengembangan layanan TNCV"
-    description: "Halaman FSSC 22000 ini merupakan konten tahap pengembangan. PT. Intiprima Sertifikasi belum menyatakan bahwa layanan sertifikasi FSSC 22000 tersedia. Ruang lingkup, lisensi skema, kompetensi, pengakuan, akreditasi, dan kewenangan yang diperlukan harus diverifikasi dan disetujui sebelum publikasi. Draft ini tidak menyatakan TNCV berlisensi Foundation FSSC atau berwenang menerbitkan sertifikat FSSC 22000."
   - type: "cta"
     id: "cta-fssc22000"
     surface: "navy"
@@ -181,8 +175,7 @@ blocks:
         answer: "Foundation FSSC mengumumkan bahwa Version 7 memperoleh pengakuan terhadap GFSI Benchmarking Requirements 2024 pada November 2026. Periksa pengumuman Foundation FSSC untuk status dan detail pengakuan."
       - question: "Siapa yang dapat menerbitkan sertifikat FSSC 22000?"
         answer: "Sertifikat harus diterbitkan melalui Certification Body yang berlisensi FSSC dan memiliki cakupan kategori serta status yang sesuai. Gunakan daftar Certification Bodies resmi Foundation FSSC untuk memeriksa badan sertifikasi."
-      - question: "Apakah TNCV saat ini menyediakan sertifikasi FSSC 22000?"
-        answer: "Belum ada konfirmasi publik mengenai ketersediaan, lisensi, ruang lingkup, atau kewenangan TNCV untuk sertifikasi FSSC 22000. Konten ini masih draft internal dan tidak menyatakan layanan telah tersedia."
+
 relatedArticles:
   title: "Artikel terkait"
 ---
