@@ -3,13 +3,16 @@ import "../styles/global.css";
 import SiteHeader from "../components/SiteHeader.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import Container from "../components/Container.astro";
+import { siteSettings } from "../site";
 import { buildSeo, type LayoutProps } from "../lib/seo";
+import { uiLang } from "../lib/navigation";
 import { pageJsonLdGraph, serializeJsonLd } from "../lib/structured-data";
 
 export type Props = LayoutProps;
 const { structuredData = [] } = Astro.props;
 const seo = buildSeo(Astro.props);
 const jsonLd = serializeJsonLd(pageJsonLdGraph(structuredData));
+const ui = uiLang(seo.lang);
 ---
 <!doctype html>
 <html lang={seo.lang}>
@@ -40,7 +43,7 @@ const jsonLd = serializeJsonLd(pageJsonLdGraph(structuredData));
   </head>
   <body id="top" class="flex min-h-screen flex-col bg-page text-ink">
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-3 focus:text-brand-deepblue focus:shadow-lg">
-      Lewati ke konten utama
+      {siteSettings.ui.skipToContent[ui]}
     </a>
     <SiteHeader lang={seo.lang} />
     <main id="main-content" class="flex w-full flex-1">
@@ -48,6 +51,6 @@ const jsonLd = serializeJsonLd(pageJsonLdGraph(structuredData));
         <slot />
       </Container>
     </main>
-    <SiteFooter />
+    <SiteFooter lang={seo.lang} />
   </body>
 </html>
