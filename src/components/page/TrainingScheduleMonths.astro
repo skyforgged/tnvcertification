@@ -7,35 +7,18 @@ import {
   selectDefaultScheduleMonth,
   sortSchedulesByStartDate,
 } from "../../lib/schedule-display";
-
 export interface ScheduleMonthLabels {
-  showPast: string;
-  summaryActive: string;
-  summaryAll: string;
-  emptyMonth: string;
-  note: string;
-  past: string;
-  ongoing: string;
-  open: string;
-  closed: string;
-  full: string;
-  pending: string;
-  online: string;
-  hybrid: string;
-  offline: string;
-  locationPending: string;
-  register: string;
-  monthPickerLabel: string;
-  monthButtonLabel: string;
+  showPast: string; summaryActive: string; summaryAll: string; emptyMonth: string; note: string;
+  past: string; ongoing: string; open: string; closed: string; full: string; pending: string;
+  online: string; hybrid: string; offline: string; locationPending: string; register: string;
+  monthPickerLabel: string; monthButtonLabel: string;
 }
-
 interface Props {
   schedules: CollectionEntry<"trainingSchedules">[];
   labels: ScheduleMonthLabels;
   locale: string;
   todayKey: string;
 }
-
 const { schedules, labels, locale, todayKey } = Astro.props;
 const dated = schedules.filter((item) => monthKeyFromStartDate(item.data.startDate));
 const ordered = sortSchedulesByStartDate(dated);
@@ -47,24 +30,16 @@ const months = years.flatMap((year) =>
   Array.from({ length: 12 }, (_, index) => {
     const key = `${year}-${String(index + 1).padStart(2, "0")}`;
     const count = ordered.filter((item) => monthKeyFromStartDate(item.data.startDate) === key).length;
-    return {
-      key,
-      short: monthName.format(new Date(`${key}-01T00:00:00Z`)),
-      long: monthGroupLabel.format(new Date(`${key}-01T00:00:00Z`)),
-      count,
-    };
+    return { key, short: monthName.format(new Date(`${key}-01T00:00:00Z)), long: monthGroupLabel.format(new Date(`${key}-01T00:00:00Z`)), count };
   }),
 );
 const groups = [...new Set(ordered.map((item) => monthKeyFromStartDate(item.data.startDate)!))]
   .sort()
   .map((key) => ({
-    key,
-    label: monthGroupLabel.format(new Date(`${key}-01T00:00:00Z`)),
+    key, label: monthGroupLabel.format(new Date(`${key}-01T00:00:00Z`)),
     items: ordered.filter((item) => monthKeyFromStartDate(item.data.startDate) === key),
   }));
-const registrationLabels: Record<string, string> = {
-  open: labels.open, closed: labels.closed, full: labels.full,
-};
+const registrationLabels: Record<string, string> = { open: labels.open, closed: labels.closed, full: labels.full };
 const statusLabel = (data: CollectionEntry<"trainingSchedules">["data"]): string => {
   if (data.endDate && data.endDate < todayKey) return labels.past;
   if (data.startDate && data.startDate <= todayKey) return labels.ongoing;
@@ -75,7 +50,6 @@ const locationLabel = (type?: string): string =>
 const activeCount = ordered.filter((item) => (item.data.endDate ?? "") >= todayKey).length;
 const summaryTemplate = labels.summaryActive.replace("{count}", String(activeCount));
 ---
-
 <div
   data-schedule-months
   class="training-schedule-months"
@@ -91,7 +65,7 @@ const summaryTemplate = labels.summaryActive.replace("{count}", String(activeCou
   data-label-empty={labels.emptyMonth}
 >
   {months.length > 0 && (
-    <div class="mt-6">
+    <div class="training-schedule-month-controls mt-6">
       <ol class="training-schedule-month-list flex flex-wrap gap-2" aria-label={labels.monthPickerLabel}>
         {months.map((month) => (
           <li>
@@ -104,9 +78,7 @@ const summaryTemplate = labels.summaryActive.replace("{count}", String(activeCou
               disabled={month.count === 0}
               class:list={[
                 "training-schedule-month-button inline-flex min-h-11 items-center gap-2 rounded-md border px-3 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue disabled:cursor-not-allowed disabled:opacity-40",
-                month.key === defaultMonth
-                  ? "border-brand-blue bg-brand-blue text-white"
-                  : "border-border bg-surface-muted text-ink hover:border-brand-blue",
+                month.key === defaultMonth ? "border-brand-blue bg-brand-blue text-white" : "border-border bg-surface-muted text-ink hover:border-brand-blue",
               ]}
             >
               <span>{month.short}</span><b data-month-count class="training-schedule-month-count">{month.count}</b>
@@ -114,21 +86,20 @@ const summaryTemplate = labels.summaryActive.replace("{count}", String(activeCou
           </li>
         ))}
       </ol>
-      <div class="mt-4 flex flex-wrap items-center justify-between gap-3 border-y border-border py-3">
+      <div class="training-schedule-toolbar mt-4 flex flex-wrap items-center justify-between gap-3 border-y border-border py-3">
         <p data-schedule-summary aria-live="polite" class="training-schedule-summary text-sm font-medium text-ink">{summaryTemplate}</p>
-        <label class="inline-flex min-h-11 cursor-pointer items-center gap-2 text-sm text-ink-muted">
+        <label class="training-schedule-past-filter inline-flex min-h-11 cursor-pointer items-center gap-2 text-sm text-ink-muted">
           <input type="checkbox" data-show-past class="training-schedule-show-past h-4 w-4 accent-brand-blue" />
           <span>{labels.showPast}</span>
         </label>
       </div>
     </div>
   )}
-
-  <div data-schedule-list class="mt-2 divide-y divide-border">
+  <div data-schedule-list class="training-schedule-list mt-2 divide-y divide-border">
     {groups.map((group) => (
       <section data-month-group={group.key} class="training-schedule-month-group" hidden={group.key !== defaultMonth} aria-labelledby={`month-${group.key}`}>
         <h3 id={`month-${group.key}`} class="training-schedule-month-heading mt-6 text-lg font-semibold tracking-tight text-ink">{group.label}</h3>
-        <ol class="divide-y divide-border">
+        <ol class="training-schedule-items divide-y divide-border">
           {group.items.map((item) => {
             const data = item.data;
             const status = statusLabel(data);
@@ -142,13 +113,15 @@ const summaryTemplate = labels.summaryActive.replace("{count}", String(activeCou
                 data-registration-status={data.registrationStatus ?? "unknown"}
                 data-status={data.endDate && data.endDate < todayKey ? "past" : data.startDate && data.startDate <= todayKey ? "ongoing" : "available"}
                 data-active={String((data.endDate ?? "") >= todayKey)}
-                class="training-schedule-item grid gap-2 py-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-6"
+                class="training-schedule-item grid grid-cols-1 gap-4 py-5 sm:grid-cols-[minmax(9rem,12rem)_minmax(0,1fr)_auto] sm:items-start sm:gap-6"
               >
-                <div>
-                  <p class="training-schedule-date text-base font-semibold text-ink">
+                <div class="training-schedule-date-column sm:pt-1">
+                  <p class="training-schedule-date text-base font-semibold leading-snug text-ink">
                     {scheduleDateLabel(data.startDate, data.endDate, { locale, pendingLabel: labels.pending })}
                   </p>
-                  <p class="training-schedule-location mt-1 text-sm text-ink-muted">{locationLabel(data.locationType)}</p>
+                </div>
+                <div class="training-schedule-details min-w-0">
+                  <p class="training-schedule-location text-sm text-ink-muted">{locationLabel(data.locationType)}</p>
                   {(data.venue || data.city) && (
                     <p class="training-schedule-venue mt-1 text-sm text-ink-muted">{[data.venue, data.city, data.province].filter(Boolean).join(", ")}</p>
                   )}
@@ -161,7 +134,7 @@ const summaryTemplate = labels.summaryActive.replace("{count}", String(activeCou
                   {data.quota !== undefined && <p class="training-schedule-quota mt-1 text-sm text-ink-muted">{data.quota}</p>}
                 </div>
                 {data.registrationUrl && data.registrationStatus === "open" && (
-                  <div class="training-schedule-register sm:justify-self-end"><ButtonLink href={data.registrationUrl}>{labels.register}</ButtonLink></div>
+                  <div class="training-schedule-register sm:justify-self-end sm:pt-1"><ButtonLink href={data.registrationUrl}>{labels.register}</ButtonLink></div>
                 )}
               </li>
             );
@@ -173,14 +146,12 @@ const summaryTemplate = labels.summaryActive.replace("{count}", String(activeCou
   <p data-schedule-empty hidden class="training-schedule-empty mt-6 border-y border-border py-6 text-ink-muted">{labels.emptyMonth}</p>
   <p class="training-schedule-note mt-6 text-sm leading-relaxed text-ink-muted">{labels.note}</p>
 </div>
-
 <script>
   document.querySelectorAll("[data-schedule-months]").forEach((node) => {
     const root = node as HTMLElement;
     const list = root.querySelector<HTMLElement>("[data-schedule-list]");
     const toggle = root.querySelector<HTMLInputElement>("[data-show-past]");
     if (!list || !toggle) return;
-
     const cards = Array.from(root.querySelectorAll<HTMLElement>("[data-schedule-item]"));
     const groups = Array.from(root.querySelectorAll<HTMLElement>("[data-month-group]"));
     const buttons = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-month-filter]"));
@@ -188,7 +159,6 @@ const summaryTemplate = labels.summaryActive.replace("{count}", String(activeCou
     const empty = root.querySelector<HTMLElement>("[data-schedule-empty]");
     const label = (key: string) => root.dataset[`label${key.charAt(0).toUpperCase()}${key.slice(1)}`] ?? "";
     let selected = root.dataset.defaultMonth ?? "";
-
     const refreshStatuses = () => {
       const today = new Intl.DateTimeFormat("en-CA", {
         timeZone: "Asia/Jakarta", year: "numeric", month: "2-digit", day: "2-digit",
@@ -208,7 +178,6 @@ const summaryTemplate = labels.summaryActive.replace("{count}", String(activeCou
         if (badge) badge.textContent = text;
       });
     };
-
     const render = () => {
       const showPast = toggle.checked;
       let visible = 0;
@@ -235,7 +204,6 @@ const summaryTemplate = labels.summaryActive.replace("{count}", String(activeCou
         summary.textContent = template.replace("{count}", String(visible));
       }
     };
-
     refreshStatuses();
     render();
     toggle.addEventListener("change", render);
