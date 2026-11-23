@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-labelledby="iso27001-title">
+  <title id="iso27001-title">Sertifikasi sistem manajemen keamanan informasi ISO/IEC 27001</title>
+  <rect width="800" height="600" rx="40" fill="#e9eefc"/>
+  <circle cx="400" cy="300" r="222" fill="#fff" opacity=".88"/>
+  <path d="M400 116 544 172v128c0 96-62 158-144 188-82-30-144-92-144-188V172z" fill="#1736a8" stroke="#0b1f66" stroke-width="12"/>
+  <path d="M400 116 544 172v128c0 96-62 158-144 188-82-30-144-92-144-188V172z" fill="none" stroke="#36c9a5" stroke-width="6" opacity=".85"/>
+  <rect x="352" y="260" width="96" height="76" rx="14" fill="#fff"/>
+  <path d="M370 260v-22a30 30 0 0 1 60 0v22" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="400" cy="296" r="10" fill="#1736a8"/>
+  <path d="M400 304v18" stroke="#1736a8" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="186" cy="196" r="18" fill="#ff6b35"/>
+  <circle cx="628" cy="186" r="14" fill="#315cff"/>
+  <circle cx="614" cy="450" r="20" fill="#ffd447" stroke="#1736a8" stroke-width="6"/>
+  <path d="M204 208 342 274M606 198 470 268M612 436 480 354" stroke="#315cff" stroke-width="6" stroke-dasharray="12 12" opacity=".7"/>
+</svg>
