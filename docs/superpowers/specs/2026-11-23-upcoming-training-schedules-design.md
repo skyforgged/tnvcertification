@@ -82,10 +82,9 @@ Copy lama pada `emptyTitle` / `emptyDescription` blok `listing` katalog —
 "Katalog pelatihan sedang disiapkan" dan "Informasi program, materi, persyaratan peserta,
 dan jadwal akan ditampilkan setelah masing-masing program siap dipublikasikan. Jadwal
 pelaksanaan akan dikelola terpisah dari informasi program agar perubahan tanggal, lokasi,
-kuota, dan status pendaftaran tetap akurat." — dicatat sebagai teks usang. Teks ini
-tidak tampil di build saat ini karena sudah ada 3 entri pelatihan publish, dan juga tidak
-akan tampil setelah 14 program tayang. Akan diganti atau dihapus mengikuti keputusan owner
-saat implementasi katalog 14 program dikerjakan.
+kuota, dan status pendaftaran tetap akurat." — sudah dihapus bersamaan dengan peluncuran
+14 program. Kedua kunci tidak diperlukan lagi karena katalog selalu memiliki entri publish;
+`tests/page-content-frontmatter.test.mjs` mencegah teks usang ini muncul kembali.
 
 ### Data
 
