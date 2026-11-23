@@ -123,6 +123,17 @@ const listingBlock = z.object({
   actionHref: z.string().optional(),
 });
 
+const upcomingSchedulesBlock = z.object({
+  type: z.literal("upcoming-schedules"),
+  id: blockIdSchema.optional(),
+  surface: sectionSurfaceSchema.optional(),
+  eyebrow: z.string().optional(),
+  title: z.string().min(1),
+  description: z.string().optional(),
+  emptyTitle: z.string().optional(),
+  emptyDescription: z.string().optional(),
+});
+
 const contactBlock = z.object({
   type: z.literal("contact"),
   id: blockIdSchema.optional(),
@@ -141,6 +152,7 @@ const pageBlockSchema = z.discriminatedUnion("type", [
   heroBlock,
   linkGridBlock,
   listingBlock,
+  upcomingSchedulesBlock,
   contactBlock,
   contentSectionBlock,
   faqBlock,
@@ -266,6 +278,13 @@ const trainingScheduleSchema = z.object({
       code: z.ZodIssueCode.custom,
       message: "startDate and endDate must be provided together",
       path: [data.startDate ? "endDate" : "startDate"],
+    });
+  }
+  if (data.startDate && data.endDate && data.endDate < data.startDate) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "endDate must not be before startDate",
+      path: ["endDate"],
     });
   }
 });

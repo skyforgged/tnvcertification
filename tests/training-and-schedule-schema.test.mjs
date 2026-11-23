@@ -56,3 +56,12 @@ test("schedule schema rejects an impossible calendar date", () => {
   });
   assert.equal(result.success, false);
 });
+
+test("schedule schema rejects an end date before the start date", () => {
+  const result = collections.trainingSchedules.schema.safeParse({
+    ...scheduleInput,
+    startDate: "2027-03-10",
+    endDate: "2027-03-01",
+  });
+  assert.equal(result.success, false);
+});

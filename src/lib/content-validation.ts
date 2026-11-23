@@ -119,7 +119,7 @@ export function parseFrontmatterContent(data: Record<string, unknown>): ParsedCo
     } else if (type === "link-grid") {
       sectionHeading = headingText || null;
       children = Array.isArray(block.items) ? block.items : [];
-    } else if (type === "listing" || type === "contact") {
+    } else if (type === "listing" || type === "upcoming-schedules" || type === "contact") {
       sectionHeading = headingText || null;
     }
 
