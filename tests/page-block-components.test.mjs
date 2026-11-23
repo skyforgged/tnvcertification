@@ -11,6 +11,7 @@ const files = {
   PageHero: await read("PageHero"),
   LinkGrid: await read("LinkGrid"),
   ListingSection: await read("ListingSection"),
+  UpcomingSchedules: await read("UpcomingSchedules"),
   ContactPanel: await read("ContactPanel"),
   PageBlockRenderer: await read("PageBlockRenderer"),
 };
@@ -34,6 +35,15 @@ test("ListingSection renders its items through a slot and keeps empty copy in th
   const source = files.ListingSection;
   assert.match(source, /<slot \/>/);
   assert.match(source, /hasItems/);
+  assert.equal((source.match(/block\.emptyTitle/g) ?? []).length, 1);
+  assert.equal((source.match(/block\.emptyDescription/g) ?? []).length, 1);
+});
+
+test("UpcomingSchedules is presentational and keeps empty copy in the empty branch", () => {
+  const source = files.UpcomingSchedules;
+  assert.ok(source.length > 0, "UpcomingSchedules.astro is missing");
+  assert.match(source, /<slot|items\.map\(/);
+  assert.doesNotMatch(source, /\bgetCollection\b/);
   assert.equal((source.match(/block\.emptyTitle/g) ?? []).length, 1);
   assert.equal((source.match(/block\.emptyDescription/g) ?? []).length, 1);
 });

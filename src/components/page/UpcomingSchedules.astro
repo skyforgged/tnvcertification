@@ -1,0 +1,63 @@
+---
+import Section from "../Section.astro";
+import type { UpcomingSchedulesBlock } from "../../data/pages";
+
+export interface UpcomingScheduleItem {
+  key: string;
+  dateLabel: string;
+  title: string;
+  href: string;
+  detailLabel: string;
+  statusLabel: string;
+}
+
+interface Props {
+  block: UpcomingSchedulesBlock;
+  items: UpcomingScheduleItem[];
+}
+
+const { block, items } = Astro.props;
+const hasItems = items.length > 0;
+const headingId = block.title && block.id ? `${block.id}-heading` : undefined;
+const EmptyHeading = block.title ? "h3" : "h2";
+const emptyTitle = block.emptyTitle;
+const emptyDescription = block.emptyDescription;
+
+const surfaces = {
+  white: { section: "border-block-white-line bg-block-white", heading: "text-block-white-heading", body: "text-block-white-body", divider: "divide-block-white-divider" },
+  blue: { section: "border-block-blue-line bg-block-blue", heading: "text-block-blue-heading", body: "text-block-blue-body", divider: "divide-block-blue-divider" },
+  navy: { section: "border-block-navy-line bg-block-navy", heading: "text-block-navy-heading", body: "text-block-navy-body", divider: "divide-block-navy-divider" },
+  mint: { section: "border-block-mint-line bg-block-mint", heading: "text-block-mint-heading", body: "text-block-mint-body", divider: "divide-block-mint-divider" },
+  coral: { section: "border-block-coral-line bg-block-coral", heading: "text-block-coral-heading", body: "text-block-coral-body", divider: "divide-block-coral-divider" },
+  cream: { section: "border-block-cream-line bg-block-cream", heading: "text-block-cream-heading", body: "text-block-cream-body", divider: "divide-block-cream-divider" },
+} as const;
+const surface = surfaces[block.surface ?? "white"];
+---
+
+<Section id={block.id} aria-labelledby={headingId} class:list={["block-section", surface.section]}>
+  {block.eyebrow && <p class:list={["text-xs font-bold uppercase tracking-[0.16em]", surface.body]}>{block.eyebrow}</p>}
+  {block.title && <h2 id={headingId} class:list={["mt-2 text-2xl font-semibold tracking-tight sm:text-3xl", surface.heading]}>{block.title}</h2>}
+  {block.description && <p class:list={["mt-4 max-w-[var(--container-reading)] leading-relaxed", surface.body]}>{block.description}</p>}
+
+  {hasItems ? (
+    <ul class:list={["mt-8 divide-y", surface.divider]}>
+      {items.map((item) => (
+        <li class="py-4 sm:py-5">
+          <article class="grid gap-1 sm:grid-cols-[10rem_minmax(0,1fr)_14rem] sm:items-baseline sm:gap-6">
+            <p class:list={["text-sm font-semibold", surface.heading]}>{item.dateLabel}</p>
+            <div>
+              <a href={item.href} class:list={["inline-flex min-h-11 items-center text-lg font-semibold underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue", surface.heading]}>{item.title}</a>
+              <p class:list={["text-sm", surface.body]}>{item.detailLabel}</p>
+            </div>
+            <p class:list={["text-sm", surface.body]}>{item.statusLabel}</p>
+          </article>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <div class:list={["mt-8 max-w-3xl border-y py-8", surface.divider]}>
+      {emptyTitle && <EmptyHeading class:list={["text-xl font-semibold tracking-tight", surface.heading]}>{emptyTitle}</EmptyHeading>}
+      {emptyDescription && <p class:list={["mt-3 leading-relaxed", surface.body]}>{emptyDescription}</p>}
+    </div>
+  )}
+</Section>
