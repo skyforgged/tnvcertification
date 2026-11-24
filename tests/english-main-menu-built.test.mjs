@@ -89,3 +89,30 @@ test("real English pages keep every main-menu link inside /en/", () => {
     }
   }
 });
+
+test("English home and service surfaces use English article records", () => {
+  const homeRoute = readFileSync("src/pages/en/index.astro", "utf8");
+  const serviceRoute = readFileSync("src/pages/en/services/[slug].astro", "utf8");
+  assert.match(homeRoute, /getPublishedArticles\("en"\)/);
+  assert.match(serviceRoute, /getPublishedArticles\("en"\)/);
+
+  const html = readFileSync("dist/en/index.html", "utf8");
+  const cards = [...html.matchAll(/<article\b[\s\S]*?<\/article>/g)]
+    .map((match) => match[0])
+    .filter((card) => /href="\/en\/articles\//.test(card));
+  assert.equal(cards.length, 3, "English home must show three translated article cards");
+
+  for (const card of cards) {
+    const href = card.match(/href="(\/en\/articles\/[^"]+)"/)?.[1];
+    assert.ok(href, `missing English article link in card: ${card}`);
+    const title = card.match(/<h3[^>]*>\s*<a[^>]*>([\s\S]*?)<\/a>/)?.[1]
+      ?.replace(/<[^>]+>/g, "")
+      .trim();
+    assert.ok(title, `missing article title in card: ${card}`);
+    const detail = readFileSync(`dist${href}index.html`, "utf8");
+    const heading = detail.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1]
+      ?.replace(/<[^>]+>/g, "")
+      .trim();
+    assert.equal(title, heading, `${href}: card title must match its English detail page`);
+  }
+});

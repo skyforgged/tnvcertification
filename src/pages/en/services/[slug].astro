@@ -20,7 +20,7 @@ const otherServices = (await getPublishedServices("en")).map((item) => ({
 }));
 const lang = service.data.lang;
 const serviceId = service.data.id;
-const relatedArticles = serviceId ? getRelatedArticles(getPublishedArticles(), serviceId) : [];
+const relatedArticles = serviceId ? getRelatedArticles(getPublishedArticles("en"), serviceId) : [];
 const structuredData = servicePageJsonLd({
   name: service.data.title,
   description: service.data.metaDescription,

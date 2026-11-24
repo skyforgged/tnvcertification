@@ -21,7 +21,7 @@ blocks:
     id: schedule-archive-en
     source: "schedules"
     emptyTitle: "No published training schedules"
-    emptyDescription: "Sessions will appear once dates, related programmes, and registration information are confirmed. Visit the catalogue to explore the training programmes being prepared."
+    emptyDescription: "This archive lists training sessions with their dates, delivery methods, locations, and registration details. Browse the training catalogue for programme descriptions."
     emptyActionLabel: "View training catalogue →"
     emptyActionHref: "/en/trainings/"
 ---

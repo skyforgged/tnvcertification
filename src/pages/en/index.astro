@@ -18,7 +18,7 @@ const entry = await getPageEntry("home", "en");
 const hero = getPageHero(entry);
 const blocks = getPageBlocks(entry);
 const fallbackImage = { src: entry.data.featuredImage.src, alt: entry.data.featuredImage.alt };
-const articles = getHomepageArticles(getPublishedArticles());
+const articles = getHomepageArticles(getPublishedArticles("en"));
 const linkGrids = blocks.filter((block): block is LinkGridBlock => block.type === "link-grid");
 const listings = blocks.filter((block): block is ListingBlock => block.type === "listing");
 ---

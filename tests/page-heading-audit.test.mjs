@@ -38,6 +38,11 @@ test("rendered heading audit accepts custom English block headings", () => {
   assert.deepEqual(findLocalizedBlockHeadingViolations(html), []);
 });
 
+test("rendered English FAQ blocks reject other Indonesian headings", () => {
+  const html = '<html lang="en"><section class="block-section--faq"><h2>Pertanyaan Umum Sertifikasi</h2></section></html>';
+  assert.deepEqual(findLocalizedBlockHeadingViolations(html), ["faq: Pertanyaan Umum Sertifikasi"]);
+});
+
 test("rendered heading audit does not localize Indonesian pages", () => {
   const html = '<html lang="id"><section class="block-section--faq"><h2>Pertanyaan Umum</h2></section></html>';
   assert.deepEqual(findLocalizedBlockHeadingViolations(html), []);

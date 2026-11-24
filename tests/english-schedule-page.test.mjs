@@ -41,6 +41,7 @@ test("English schedules entry satisfies editorial and pairing rules", async () =
   assert.notEqual(data.metaDescription, data.featuredImage.alt);
   assert.doesNotMatch(raw, /konsult\p{L}*|consult\p{L}*/iu);
   assert.doesNotMatch(raw, /development status|not yet available|not yet approved|belum dinyatakan|status pengembangan/iu);
+  assert.doesNotMatch(raw, /being prepared|will appear once|are confirmed|currently available/iu);
 
   const hero = data.blocks?.find((block) => block.type === "hero");
   assert.ok(hero);
