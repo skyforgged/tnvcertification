@@ -1,4 +1,5 @@
 ---
+id: 30
 title: "Perencanaan dan Prosedur CSMS"
 intro: "Perencanaan dan Prosedur CSMS adalah rangkaian arahan kerja, metode, dan langkah pengendalian yang digunakan kontraktor untuk melaksanakan pekerjaan secara aman dan konsisten."
 metaDescription: "Melihat peran prosedur kerja aman, izin kerja, dan perencanaan pekerjaan dalam sistem manajemen keselamatan kontraktor."

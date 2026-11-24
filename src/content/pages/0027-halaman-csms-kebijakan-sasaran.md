@@ -1,4 +1,5 @@
 ---
+id: 27
 title: "Kebijakan dan Sasaran Strategis CSMS"
 intro: "Kebijakan dan Sasaran Strategis CSMS adalah arah tertulis organisasi kontraktor yang mengaitkan komitmen keselamatan dan kesehatan kerja dengan kegiatan operasional yang terukur."
 metaDescription: "Penjelasan kebijakan dan sasaran strategis CSMS, mencakup komitmen tertulis, keterkaitan dengan operasi, indikator terukur, dan peninjauan berkala."

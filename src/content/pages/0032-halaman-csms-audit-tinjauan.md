@@ -1,4 +1,5 @@
 ---
+id: 32
 title: "Audit dan Tinjauan CSMS"
 intro: "Audit dan Tinjauan CSMS adalah pemeriksaan berkala terhadap penerapan sistem keselamatan kontraktor untuk menilai kesesuaian, efektivitas, dan kebutuhan perbaikannya."
 metaDescription: "Menguraikan audit internal, tinjauan manajemen, dan tindak koreksi sebagai bagian dari evaluasi penerapan CSMS pada kontraktor."

@@ -3,6 +3,7 @@ import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 import { collectionRegistry } from "./data/collections";
 import { isSupportedLinkUrl } from "./lib/link-url";
+import { pageEntryId } from "./lib/page-entry-id";
 
 /**
  * Shared image-object schema (single primary / optional gallery).
@@ -291,15 +292,23 @@ const trainingScheduleSchema = z.object({
 
 // --- General pages ---
 const pageSchema = baseEntrySchema.extend({
+  id: z.number().int().positive(),
   draft: z.boolean().optional(),
   blocks: z.array(pageBlockSchema).optional(),
 });
 
-function collection<T extends z.ZodTypeAny>(name: keyof typeof collectionRegistry, schema: T) {
+type LoaderOptions = Pick<Parameters<typeof glob>[0], "generateId">;
+
+function collection<T extends z.ZodTypeAny>(
+  name: keyof typeof collectionRegistry,
+  schema: T,
+  options: LoaderOptions = {},
+) {
   return defineCollection({
     loader: glob({
       base: `./${collectionRegistry[name].dir}`,
       pattern: "**/*.{md,mdx}",
+      ...options,
     }),
     schema,
   });
@@ -312,5 +321,7 @@ export const collections = {
   certifications: collection("certifications", certificationSchema),
   training: collection("training", trainingSchema),
   trainingSchedules: collection("trainingSchedules", trainingScheduleSchema),
-  pages: collection("pages", pageSchema),
+  pages: collection("pages", pageSchema, {
+    generateId: ({ data }) => pageEntryId(data),
+  }),
 };

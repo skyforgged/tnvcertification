@@ -1,0 +1,45 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import PageHero from "../../components/page/PageHero.astro";
+import HomeLinkGrid from "../../components/home/HomeLinkGrid.astro";
+import HomeListingSection from "../../components/home/HomeListingSection.astro";
+import { getHomepageArticles, getPublishedArticles } from "../../data/articles";
+import {
+  getPageBlocks,
+  getPageEntry,
+  getPageHero,
+  type LinkGridBlock,
+  type ListingBlock,
+} from "../../data/pages";
+import { pageAlternates } from "../../lib/page-alternates";
+
+const entry = await getPageEntry("home", "en");
+const hero = getPageHero(entry);
+const blocks = getPageBlocks(entry);
+const fallbackImage = { src: entry.data.featuredImage.src, alt: entry.data.featuredImage.alt };
+const articles = getHomepageArticles(getPublishedArticles());
+const linkGrids = blocks.filter((block): block is LinkGridBlock => block.type === "link-grid");
+const listings = blocks.filter((block): block is ListingBlock => block.type === "listing");
+---
+
+<Layout
+  title={entry.data.title}
+  description={entry.data.metaDescription}
+  lang={entry.data.lang}
+  canonical="/en/"
+  alternates={pageAlternates("home")}
+  ogImage={fallbackImage.src}
+>
+  {hero && <PageHero slot="fullBleed" block={hero} fallbackImage={fallbackImage} lang={entry.data.lang} isHomepage />}
+  <div class="w-full">
+    {linkGrids.map((block) => <HomeLinkGrid block={block} />)}
+    {listings.map((block) => (
+      <HomeListingSection block={block} hasItems={articles.length > 0}>
+        <div class="grid gap-8 md:grid-cols-3">
+          {articles.map((article) => <ArticleCard article={article} />)}
+        </div>
+      </HomeListingSection>
+    ))}
+  </div>
+</Layout>

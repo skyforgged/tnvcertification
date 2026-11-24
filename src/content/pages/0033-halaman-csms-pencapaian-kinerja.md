@@ -1,4 +1,5 @@
 ---
+id: 33
 title: "Pencapaian Kinerja K3LL dalam CSMS"
 intro: "Pencapaian Kinerja K3LL dalam CSMS adalah gambaran hasil pengelolaan keselamatan kontraktor yang dinyatakan melalui data, tren, dan tindak lanjut perbaikan yang dapat ditelusuri."
 metaDescription: "Mengenal indikator kinerja K3LL, pencatatan insiden, analisis tren, dan penggunaan data untuk perbaikan berkelanjutan pada CSMS."

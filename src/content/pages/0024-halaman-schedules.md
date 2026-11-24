@@ -1,4 +1,5 @@
 ---
+id: 24
 title: "Jadwal Pelatihan Intiprima Sertifikasi"
 intro: "Jadwal Pelatihan Intiprima Sertifikasi adalah halaman yang memuat agenda kelas, tanggal pelaksanaan, metode, lokasi, dan status pendaftaran program pelatihan."
 metaDescription: "Telusuri jadwal pelatihan berdasarkan tanggal, program terkait, metode, lokasi, kuota, dan status pendaftarannya."

@@ -1,4 +1,5 @@
 ---
+id: 25
 title: "Artikel Intiprima Sertifikasi"
 intro: "Artikel Intiprima Sertifikasi adalah arsip wawasan, panduan, dan pembahasan seputar sertifikasi, sistem manajemen, mutu, serta kepatuhan organisasi."
 metaDescription: "Baca artikel dan panduan tentang sertifikasi, sistem manajemen, peningkatan mutu, serta kepatuhan dari Intiprima Sertifikasi."

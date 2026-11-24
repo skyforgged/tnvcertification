@@ -1,4 +1,5 @@
 ---
+id: 26
 title: "Kepemimpinan dan Komitmen CSMS"
 intro: "Kepemimpinan dan Komitmen CSMS adalah peran manajemen dalam menetapkan arah, memberi teladan, dan mengalokasikan sumber daya untuk pengelolaan keselamatan dan kesehatan kerja kontraktor."
 metaDescription: "Memahami peran manajemen dalam CSMS: komitmen pimpinan, penetapan sasaran keselamatan, alokasi sumber daya, dan pemantauan komitmen di lingkungan kerja kontraktor."

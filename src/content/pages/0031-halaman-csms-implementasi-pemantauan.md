@@ -1,4 +1,5 @@
 ---
+id: 31
 title: "Implementasi dan Pemantauan CSMS"
 intro: "Implementasi dan Pemantauan CSMS adalah pelaksanaan pengendalian keselamatan di lapangan yang disertai pengawasan, inspeksi, dan tindak lanjut atas setiap temuan."
 metaDescription: "Memahami bagaimana pengendalian K3LL dijalankan, diawasi, dan ditindaklanjuti attravers inspeksi, observasi, dan perbaikan."

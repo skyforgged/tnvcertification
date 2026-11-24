@@ -49,7 +49,17 @@ for (const [directory, prefix] of routePrefixes) {
     if (Number.isNaN(parsed.getTime())) continue;
 
     // `home` is a page entry but its canonical URL is the site root, not /home/.
-    const urlPath = directory === "pages" && slug === "home" ? "/" : `${prefix}${slug}/`;
+    // English page variants use their own /en/ routes and must not overwrite
+    // the Indonesian entry's lastmod.
+    let urlPath = `${prefix}${slug}/`;
+    if (directory === "pages") {
+      const lang = quotedField(fm, "lang") ?? "id";
+      if (lang === "en") {
+        urlPath = slug === "home" ? "/en/" : `/en/${slug}/`;
+      } else if (slug === "home") {
+        urlPath = "/";
+      }
+    }
 
     // Keep UTC precision to the second, matching the authored metadata.
     lastmodByUrl.set(urlPath, parsed.toISOString().replace(/\.\d{3}Z$/, "Z"));

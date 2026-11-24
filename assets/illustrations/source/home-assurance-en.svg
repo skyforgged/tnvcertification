@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="560" viewBox="0 0 720 560" fill="none">
+  <title>Certification information and assurance</title>
+  <rect x="96" y="72" width="528" height="416" rx="36" fill="#fff" fill-opacity=".08"/>
+  <circle cx="574" cy="132" r="52" fill="#FFD447" fill-opacity=".25"/>
+  <path d="M188 380V216c0-14 11-25 25-25h180c14 0 25 11 25 25v164" stroke="#fff" stroke-width="13" stroke-linecap="round"/>
+  <path d="M162 380h282" stroke="#fff" stroke-width="13" stroke-linecap="round"/>
+  <rect x="226" y="244" width="154" height="112" rx="14" fill="#fff"/>
+  <path d="M252 280h102M252 310h76M252 338h94" stroke="#315CFF" stroke-width="11" stroke-linecap="round"/>
+  <circle cx="510" cy="332" r="76" fill="#315CFF"/>
+  <path d="M510 290v44l34 22" stroke="#fff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="510" cy="332" r="7" fill="#fff"/>
+  <path d="M474 332c0-22 16-40 36-40s36 18 36 40" stroke="#fff" stroke-width="10" stroke-linecap="round"/>
+  <path d="M470 400c13 10 27 15 40 15s27-5 40-15" stroke="#FF6B35" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="168" cy="150" r="22" fill="#36C9A5"/>
+  <circle cx="586" cy="430" r="16" fill="#FFD447"/>
+  <path d="M118 446h484" stroke="#FF6B35" stroke-width="14" stroke-linecap="round"/>
+</svg>

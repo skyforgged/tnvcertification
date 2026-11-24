@@ -1,4 +1,5 @@
 ---
+id: 21
 title: "Layanan Intiprima Sertifikasi"
 intro: "Layanan Intiprima Sertifikasi adalah kumpulan informasi mengenai layanan sertifikasi, pelatihan, dan penilaian kepatuhan yang disediakan untuk organisasi."
 metaDescription: "Lihat katalog layanan sertifikasi, pelatihan, dan penilaian kepatuhan dari PT. Intiprima Sertifikasi beserta informasi setiap layanannya."

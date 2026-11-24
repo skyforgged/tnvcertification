@@ -1,4 +1,5 @@
 ---
+id: 29
 title: "Manajemen Risiko CSMS"
 intro: "Manajemen Risiko CSMS adalah proses mengidentifikasi bahaya, menilai risiko, menetapkan pengendalian, dan memantau efektivitasnya pada pekerjaan yang dijalankan kontraktor."
 metaDescription: "Mengulas identifikasi bahaya, penilaian risiko, hierarki pengendalian, dan pemantauan risiko dalam konteks Contractor Safety Management System."

@@ -8,6 +8,10 @@ test("homepage sitemap lastmod comes from the home page entry", () => {
   assert.equal(getContentLastmod("/home/"), undefined);
 });
 
+test("English page entries use their own routes and metadata", () => {
+  assert.equal(getContentLastmod("/en/"), "2026-11-24T00:00:00Z");
+});
+
 test("other page entries keep their own lastmod", () => {
   assert.equal(getContentLastmod("/about-us/"), "2026-10-01T00:00:00Z");
   assert.equal(getContentLastmod("/articles/"), "2026-11-07T00:00:00Z");
