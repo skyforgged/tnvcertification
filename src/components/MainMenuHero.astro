@@ -3,7 +3,7 @@ import FeaturedImage from "./FeaturedImage.astro";
 import { organization, siteSettings } from "../site";
 interface Props {
   eyebrow?: string; title: string; description: string; image: string; imageAlt: string;
-  imagePriority?: boolean; variant?: "default" | "home" | "services" | "csms" | "trainings" | "schedules" | "articles";
+  imagePriority?: boolean; variant?: "default" | "home" | "services" | "csms" | "trainings" | "schedules" | "articles" | "about";
 }
 const { eyebrow, title, description, image, imageAlt, imagePriority = false, variant = "default" } = Astro.props;
 const isHome = variant === "home";
@@ -12,7 +12,8 @@ const isCsms = variant === "csms";
 const isTrainings = variant === "trainings";
 const isSchedules = variant === "schedules";
 const isArticles = variant === "articles";
-const isElevated = isHome || isServices || isCsms || isTrainings || isSchedules || isArticles;
+const isAbout = variant === "about";
+const isElevated = isHome || isServices || isCsms || isTrainings || isSchedules || isArticles || isAbout;
 ---
 <section data-main-menu-hero class:list={[
   "grid w-full items-center border-b",
@@ -32,7 +33,7 @@ const isElevated = isHome || isServices || isCsms || isTrainings || isSchedules 
       {eyebrow && <p class:list={["font-semibold uppercase", isElevated ? "mb-5 inline-flex items-center gap-2 text-[0.7rem] tracking-[0.18em] text-blue-100 sm:text-xs" : "mb-4 text-xs tracking-[0.14em] text-brand-deepblue sm:text-sm"]}>
         {isElevated && <span aria-hidden="true" class="h-1.5 w-1.5 rounded-full bg-brand-orange"></span>}{eyebrow}
       </p>}
-      <h1 id="main-menu-hero-title" class:list={["font-semibold", isHome ? "max-w-[14ch] text-white text-[2.45rem] leading-[1.08] tracking-[-0.045em] sm:text-5xl lg:text-[3.65rem]" : isServices || isCsms || isTrainings || isSchedules || isArticles ? "max-w-[13ch] text-white text-[2.65rem] leading-[1.06] tracking-[-0.045em] sm:text-5xl lg:text-[3.8rem]" : "max-w-3xl text-ink text-3xl leading-[1.12] tracking-tight sm:text-4xl lg:text-5xl"]}>{title}</h1>
+      <h1 id="main-menu-hero-title" class:list={["font-semibold", isHome ? "max-w-[14ch] text-white text-[2.45rem] leading-[1.08] tracking-[-0.045em] sm:text-5xl lg:text-[3.65rem]" : isServices || isCsms || isTrainings || isSchedules || isArticles || isAbout ? "max-w-[13ch] text-white text-[2.65rem] leading-[1.06] tracking-[-0.045em] sm:text-5xl lg:text-[3.8rem]" : "max-w-3xl text-ink text-3xl leading-[1.12] tracking-tight sm:text-4xl lg:text-5xl"]}>{title}</h1>
       <p class:list={[isElevated ? "mt-6 max-w-[42rem] text-blue-100/90 text-base leading-[1.8] sm:text-lg" : "mt-5 max-w-2xl text-ink-muted text-base leading-relaxed sm:text-lg"]}>{description}</p>
       {isElevated && <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"><slot name="actions" /></div>}
       {isHome && <p class="mt-7 flex items-center gap-3 text-xs font-medium tracking-wide text-blue-100/75"><span aria-hidden="true" class="h-px w-8 bg-brand-orange"></span>{organization.name} · {siteSettings.tagline}</p>}

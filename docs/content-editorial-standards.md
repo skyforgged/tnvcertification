@@ -67,11 +67,13 @@ Ketika jumlah berkas konten melebihi ratusan, alat yang dibutuhkan adalah conten
 
 ### Yang perlu ditambahkan bertahap
 
-- **Inventory script** yang merangkum slug, collection, `lang`, `translationKey`, status draft, judul, tanggal, gambar, jumlah kata, dan halaman tanpa tautan masuk.
-- **Translation parity check** yang membandingkan pasangan ID/EN berdasarkan `translationKey`, status draft, dan metadata wajib.
-- **Link audit** untuk tautan internal di berkas `.md`, anchor, dan route hasil build. Pemeriksaan tautan eksternal bersifat opsional dan harus dibedakan dari referensi riset; jangan mengubah sumber riset menjadi backlink kompetitor.
-- **Duplicate dan near-duplicate check** untuk judul, intro, `metaDescription`, dan kesamaan isi antar halaman.
-- **Terminology check** untuk istilah baku dan larangan kata tertentu, termasuk larangan kata berawalan `konsult`/`consult` dan larangan salinan status internal pada konten publik.
-- **Full-text search** untuk kerja harian. `rg` sudah cukup. SQLite FTS5 baru diperlukan bila dibuat antarmuka pencarian sendiri.
+Keenam alat ini adalah backlog content tooling. Rincian implementasi Fase 1 ada di `docs/superpowers/plans/2026-11-24-content-audit-report.md`.
+
+1. **Inventory script** — merangkum slug, collection, `lang`, `translationKey`, status draft, judul, tanggal, jumlah kata, gambar, dan halaman tanpa tautan masuk. *Status: direncanakan di Fase 1 sebagai laporan.*
+2. **Translation parity check** — membandingkan pasangan ID/EN berdasarkan `translationKey`, status draft, dan metadata wajib. *Status: direncanakan di Fase 1 sebagai laporan; belum mewajibkan setiap entri ID memiliki pasangan EN.*
+3. **Link audit** — memeriksa tautan internal di berkas `.md`, anchor, dan route hasil build. Pemeriksaan tautan eksternal bersifat opsional dan harus dibedakan dari referensi riset; jangan mengubah sumber riset menjadi backlink kompetitor. *Status: direncanakan di Fase 1 untuk tautan internal dan anchor; opsi `--external` ditunda.*
+4. **Duplicate dan near-duplicate check** — memeriksa judul, intro, `metaDescription`, dan kesamaan isi antar halaman. *Status: duplikat persis dan near-duplicate masuk Fase 1 sebagai laporan; hanya duplikat persis yang diusulkan menjadi gate setelah baseline dibersihkan.*
+5. **Terminology check** — memeriksa istilah baku dan larangan kata tertentu. *Status: mekanisme config masuk Fase 1; larangan `konsult`/`consult` dan salinan status internal tetap ditangani validator `CONTENT-013` dan aturan konten yang sudah ada, agar tidak diduplikasi.*
+6. **Full-text search** — untuk kerja harian, `rg` sudah cukup. SQLite FTS5 baru diperlukan bila dibuat antarmuka pencarian sendiri. *Status: tidak diimplementasikan; tetap menjadi catatan untuk keperluan di masa depan.*
 
 Validator harus tetap deterministik dan berada di repository. AI boleh membantu menulis atau meninjau konten, tetapi tidak menggantikan aturan yang dijalankan pada `check`, `build`, `test`, dan `audit:*`. Obsidian atau alat sejenis boleh dipakai untuk menjelajah konten secara manual, tetapi repository tetap source of truth.

@@ -36,9 +36,15 @@ const fallbackImage = { src: ogImage ?? "", alt: imageAlt };
 const dateFormatter = new Intl.DateTimeFormat(lang === "en" ? "en-US" : "id-ID", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 ---
 <Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage} alternates={alternates}>
+  <Fragment slot="fullBleed">
+    <div class="mx-auto w-full max-w-[var(--container-landing)] px-[var(--page-gutter)] pt-8 sm:pt-10 lg:pt-12">
+      <div class="mx-auto w-full max-w-[var(--container-reading)]">
+        <Breadcrumbs items={breadcrumbs} lang={lang === "en" ? "en" : "id"} />
+      </div>
+    </div>
+    {hero && <PageHero block={hero} fallbackImage={fallbackImage} isArticles />}
+  </Fragment>
   <Container as="article" variant="reading" gutter={false}>
-    <Breadcrumbs items={breadcrumbs} lang={lang === "en" ? "en" : "id"} />
-    {hero && <PageHero block={hero} fallbackImage={fallbackImage} />}
     <p class="text-sm text-ink-subtle"><time datetime={date.toISOString().slice(0, 10)}>{dateFormatter.format(date)}</time></p>
     <PageBlockRenderer blocks={blocks} fallbackImage={fallbackImage} lang={lang} />
   </Container>
