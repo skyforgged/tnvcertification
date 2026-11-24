@@ -69,6 +69,20 @@ test("excludes paths that already have a real English page", () => {
   assert.ok(!paths.includes("/services/"));
 });
 
+test("excludes English paths backed by real page entries", () => {
+  const paths = buildEnglishFallbackPaths({
+    ...empty,
+    pages: [
+      { slug: "home", lang: "en" },
+      { slug: "csms", lang: "en" },
+      { slug: "about-us", lang: "en" },
+    ],
+    existingEnglishPaths: ["/en/", "/en/csms/", "/en/about-us/"],
+  });
+  assert.ok(!paths.includes("/csms/"));
+  assert.ok(!paths.includes("/about-us/"));
+});
+
 test("returns deduplicated absolute paths without an /en/ segment", () => {
   const paths = buildEnglishFallbackPaths({
     ...empty,

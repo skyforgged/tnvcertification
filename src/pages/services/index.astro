@@ -9,6 +9,7 @@ import { getPublishedServices, servicePath } from "../../data/services";
 import { getPageBlocks, getPageEntry, getPageHero, type ListingBlock } from "../../data/pages";
 import { siteSettings } from "../../site";
 import { serviceIndexJsonLd } from "../../lib/structured-data";
+import { pageAlternates } from "../../lib/page-alternates";
 
 const entry = await getPageEntry("services");
 const hero = getPageHero(entry);
@@ -31,6 +32,7 @@ const structuredData = serviceIndexJsonLd(
   canonical="/services/"
   lang={entry.data.lang}
   ogImage={fallbackImage.src}
+  alternates={pageAlternates("services")}
   structuredData={structuredData}
 >
   {hero && <PageHero slot="fullBleed" block={hero} fallbackImage={fallbackImage} isServices />}

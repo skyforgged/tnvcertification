@@ -28,6 +28,11 @@ export async function getEnglishFallbackPaths(): Promise<string[]> {
     existingEnglishPaths: [
       "/en/services/",
       ...englishServices.map((entry) => `/en/services/${entry.data.slug}/`),
+      ...pages
+        .filter((entry) => entry.data.lang === "en")
+        .map((entry) =>
+          entry.data.slug === "home" ? "/en/" : `/en/${entry.data.slug}/`,
+        ),
     ],
   });
 }
