@@ -10,7 +10,7 @@ const trainingLayout = await read("../src/layouts/TrainingLayout.astro");
 
 test("trainings hero uses the elevated navy surface", () => {
   assert.match(hero, /const isTrainings = variant === "trainings";/);
-  assert.match(hero, /const isElevated = isHome \|\| isServices \|\| isCsms \|\| isTrainings;/);
+  assert.match(hero, /const isElevated = isHome \|\| isServices \|\| isCsms \|\| isTrainings \|\| isSchedules;/);
   assert.match(hero, /isServices \|\| isCsms \|\| isTrainings/);
 });
 
