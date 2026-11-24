@@ -12,7 +12,7 @@ const servicesPage = await readFile(
 );
 
 test("services hero uses the same navy surface as the homepage hero", () => {
-  assert.match(source, /const isElevated = isHome \|\| isServices \|\| isCsms;/);
+  assert.match(source, /const isElevated = isHome \|\| isServices \|\| isCsms \|\| isTrainings;/);
   assert.doesNotMatch(source, /bg-\[#f1f5ff\]/);
   assert.doesNotMatch(source, /border-\[#dce7fb\]/);
   assert.match(source, /isElevated[\s\S]*?bg-\[#102b55\]/);
