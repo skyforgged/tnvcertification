@@ -1,7 +1,7 @@
 ---
 import MainMenuHero from "../MainMenuHero.astro";
 import ButtonLink from "../ButtonLink.astro";
-import { organization } from "../../site";
+import { organization, primaryNavigation } from "../../site";
 import type { HeroBlock } from "../../data/pages";
 
 interface Props {
@@ -12,6 +12,7 @@ interface Props {
 const { block, fallbackImage } = Astro.props;
 const whatsappNumber = organization.contact.whatsapp.replace(/\D/g, "");
 const whatsappHref = `https://wa.me/${whatsappNumber}`;
+const servicesHref = primaryNavigation.find((item) => item.href === "/services/")?.href ?? "/";
 ---
 
 <div id={block.id}>
@@ -27,7 +28,7 @@ const whatsappHref = `https://wa.me/${whatsappNumber}`;
       Konsultasi via WhatsApp
       <span aria-hidden="true">↗</span>
     </ButtonLink>
-    <ButtonLink href="/services/" variant="secondary">
+    <ButtonLink href={servicesHref} variant="secondary">
       Jelajahi layanan
     </ButtonLink>
   </MainMenuHero>
