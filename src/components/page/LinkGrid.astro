@@ -1,15 +1,10 @@
 ---
 import Section from "../Section.astro";
 import type { LinkGridBlock } from "../../data/pages";
-
-interface Props {
-  block: LinkGridBlock;
-}
-
+interface Props { block: LinkGridBlock; }
 const { block } = Astro.props;
 const headingId = block.title && block.id ? `${block.id}-heading` : undefined;
 ---
-
 <Section id={block.id} aria-labelledby={headingId} spacing="spacious">
   {block.eyebrow && <p class="text-xs font-semibold uppercase tracking-[0.12em] text-ink-subtle">{block.eyebrow}</p>}
   {block.title && <h2 id={headingId} class="mt-2 text-2xl font-semibold tracking-tight text-ink">{block.title}</h2>}

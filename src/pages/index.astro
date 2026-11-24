@@ -2,8 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import ArticleCard from "../components/ArticleCard.astro";
 import PageHero from "../components/page/PageHero.astro";
-import LinkGrid from "../components/page/LinkGrid.astro";
-import ListingSection from "../components/page/ListingSection.astro";
+import HomeLinkGrid from "../components/home/HomeLinkGrid.astro";
+import HomeListingSection from "../components/home/HomeListingSection.astro";
 import { getHomepageArticles, getPublishedArticles } from "../data/articles";
 import {
   getPageBlocks,
@@ -24,14 +24,14 @@ const listings = blocks.filter((block): block is ListingBlock => block.type === 
 
 <Layout title={entry.data.title} description={entry.data.metaDescription} ogImage={fallbackImage.src}>
   <div class="w-full">
-    {hero && <PageHero block={hero} fallbackImage={fallbackImage} />}
-    {linkGrids.map((block) => <LinkGrid block={block} />)}
+    {hero && <PageHero block={hero} fallbackImage={fallbackImage} isHomepage />}
+    {linkGrids.map((block) => <HomeLinkGrid block={block} />)}
     {listings.map((block) => (
-      <ListingSection block={block} hasItems={articles.length > 0}>
+      <HomeListingSection block={block} hasItems={articles.length > 0}>
         <div class="grid gap-8 md:grid-cols-3">
           {articles.map((article) => <ArticleCard article={article} />)}
         </div>
-      </ListingSection>
+      </HomeListingSection>
     ))}
   </div>
 </Layout>
