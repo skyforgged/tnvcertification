@@ -37,7 +37,10 @@ const schedules = sortSchedulesByStartDate(
   ),
 );
 const publishedServices = await getPublishedServices(training.data.lang === "en" ? "en" : "id");
-const relatedServiceSlugs = [...new Set([\n  ...(training.data.relatedServiceSlugs ?? []),\n  ...schedules.map(({ data }) => data.serviceSlug).filter((slug): slug is string => Boolean(slug)),\n])];
+const relatedServiceSlugs = [...new Set([
+  ...(training.data.relatedServiceSlugs ?? []),
+  ...schedules.map(({ data }) => data.serviceSlug).filter((slug): slug is string => Boolean(slug)),
+])];
 const relatedServices = relatedServiceSlugs.map((slug) => {
   const service = publishedServices.find((item) => item.data.slug === slug);
   if (!service) throw new Error(`Training "${training.data.slug}" references missing or unpublished service "${slug}".`);
