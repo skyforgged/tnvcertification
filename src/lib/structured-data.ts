@@ -4,6 +4,7 @@
  */
 import { organization, siteSettings } from "../site.ts";
 import { siteCrumb } from "../data/breadcrumbs.ts";
+import type { PageBlock } from "../data/pages";
 
 export const ORGANIZATION_ID = `${siteSettings.url}/#organization`;
 
@@ -153,7 +154,7 @@ export interface TrainingStructuredDataInput {
   path: string;
   image?: string;
   lang?: string;
-  blocks: Array<Record<string, any>>;
+  blocks: PageBlock[];
   relatedServices?: Array<{ name: string; description: string; path: string }>;
   schedules?: Array<{
     slug: string;
@@ -289,6 +290,130 @@ export function trainingPageJsonLd(input: TrainingStructuredDataInput) {
       itemListElement: [
         { "@type": "ListItem", position: 1, name: input.lang === "en" ? "Home" : "Beranda", item: siteSettings.url },
         { "@type": "ListItem", position: 2, name: input.lang === "en" ? "Training" : "Pelatihan", item: new URL("/trainings/", siteSettings.url).toString() },
+        { "@type": "ListItem", position: 3, name: input.name, item: url },
+      ],
+    },
+  );
+  return entities;
+}
+
+
+export interface ArticleStructuredDataInput {
+  name: string;
+  description: string;
+  path: string;
+  image: string;
+  lang: string;
+  datePublished: string;
+  dateModified: string;
+  blocks: PageBlock[];
+  relatedServices?: Array<{ name: string; description: string; path: string }>;
+  relatedCourses?: Array<{ name: string; description: string; path: string }>;
+}
+
+/** Article graph with explicit links to the service/course entities it discusses. */
+export function articlePageJsonLd(input: ArticleStructuredDataInput) {
+  const url = new URL(input.path, siteSettings.url).toString();
+  const articleId = `${url}#article`;
+  const pageId = `${url}#webpage`;
+  const breadcrumbId = `${url}#breadcrumb`;
+  const about: Array<{ "@id": string }> = [];
+  const entities: Array<Record<string, unknown>> = [];
+  const pageParts: Array<{ "@id": string }> = [];
+
+  for (const service of input.relatedServices ?? []) {
+    const serviceUrl = new URL(service.path, siteSettings.url).toString();
+    const id = `${serviceUrl}#service`;
+    entities.push({
+      "@type": "Service",
+      "@id": id,
+      name: service.name,
+      description: service.description,
+      url: serviceUrl,
+      provider: { "@id": ORGANIZATION_ID },
+    });
+    about.push({ "@id": id });
+  }
+  for (const course of input.relatedCourses ?? []) {
+    const courseUrl = new URL(course.path, siteSettings.url).toString();
+    const id = `${courseUrl}#course`;
+    entities.push({
+      "@type": "Course",
+      "@id": id,
+      name: course.name,
+      description: course.description,
+      url: courseUrl,
+      provider: { "@id": ORGANIZATION_ID },
+    });
+    about.push({ "@id": id });
+  }
+
+  entities.push({
+    "@type": "Article",
+    "@id": articleId,
+    headline: input.name,
+    name: input.name,
+    description: input.description,
+    url,
+    image: new URL(input.image, siteSettings.url).toString(),
+    datePublished: input.datePublished,
+    dateModified: input.dateModified,
+    inLanguage: input.lang,
+    publisher: { "@id": ORGANIZATION_ID },
+    mainEntityOfPage: { "@id": pageId },
+    ...(about.length ? { about } : {}),
+  });
+
+  input.blocks.forEach((block, index) => {
+    if (block.type === "faq" && block.items.length) {
+      const id = `${url}#faq-${block.id ?? index + 1}`;
+      entities.push({
+        "@type": "FAQPage",
+        "@id": id,
+        mainEntity: block.items.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: { "@type": "Answer", text: item.answer },
+        })),
+      });
+      pageParts.push({ "@id": id });
+    }
+    if (block.type === "howto" && block.steps.length) {
+      const id = `${url}#howto-${block.id ?? index + 1}`;
+      entities.push({
+        "@type": "HowTo",
+        "@id": id,
+        name: block.title ?? input.name,
+        step: block.steps.map((step, stepIndex) => ({
+          "@type": "HowToStep",
+          position: stepIndex + 1,
+          name: step.title,
+          text: step.description,
+          ...(step.image?.src ? { image: new URL(step.image.src, siteSettings.url).toString() } : {}),
+        })),
+      });
+      pageParts.push({ "@id": id });
+    }
+  });
+
+  entities.push(
+    {
+      "@type": "WebPage",
+      "@id": pageId,
+      url,
+      name: input.name,
+      description: input.description,
+      inLanguage: input.lang,
+      mainEntity: { "@id": articleId },
+      breadcrumb: { "@id": breadcrumbId },
+      ...(pageParts.length ? { hasPart: pageParts } : {}),
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": breadcrumbId,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: input.lang === "en" ? "Home" : "Beranda", item: siteSettings.url },
+        { "@type": "ListItem", position: 2, name: input.lang === "en" ? "Articles" : "Artikel", item: new URL("/articles/", siteSettings.url).toString() },
         { "@type": "ListItem", position: 3, name: input.name, item: url },
       ],
     },
