@@ -1,0 +1,45 @@
+---
+import WidePageLayout from "../../layouts/WidePageLayout.astro";
+import PageHero from "../../components/page/PageHero.astro";
+import PageBlockRenderer from "../../components/page/PageBlockRenderer.astro";
+import {
+  CSMS_TOPIC_PREFIX,
+  getCsmsTopicEntries,
+  getPageBlocks,
+  getPageHero,
+} from "../../data/pages";
+import { siteCrumb } from "../../data/breadcrumbs";
+
+export async function getStaticPaths() {
+  const entries = await getCsmsTopicEntries();
+  return entries.map((entry) => ({
+    params: { slug: entry.data.slug.slice(CSMS_TOPIC_PREFIX.length) },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const slug = entry.data.slug.slice(CSMS_TOPIC_PREFIX.length);
+const canonical = `/csms/${slug}/`;
+const hero = getPageHero(entry);
+const blocks = getPageBlocks(entry).filter((block) => block.type !== "hero");
+const fallbackImage = { src: entry.data.featuredImage.src, alt: entry.data.featuredImage.alt };
+---
+
+<WidePageLayout
+  title={`${entry.data.title} | CSMS`}
+  description={entry.data.metaDescription}
+  canonical={canonical}
+  lang={entry.data.lang}
+  ogImage={fallbackImage.src}
+  breadcrumbs={[
+    siteCrumb("/", entry.data.lang),
+    siteCrumb("/csms/", entry.data.lang),
+    { label: entry.data.title },
+  ]}
+>
+  <article class="w-full">
+    {hero && <PageHero block={hero} fallbackImage={fallbackImage} />}
+    <PageBlockRenderer blocks={blocks} fallbackImage={fallbackImage} lang={entry.data.lang} />
+  </article>
+</WidePageLayout>

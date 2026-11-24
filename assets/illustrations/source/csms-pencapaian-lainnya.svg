@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480" fill="none">
+  <title>Ilustrasi Pencapaian Lainnya dalam CSMS</title>
+  <rect width="640" height="480" rx="28" fill="#F5F8FF"/>
+  <circle cx="320" cy="236" r="182" fill="#EC4899" opacity=".10"/>
+  <path d="M320 80 462 128v104c0 94-56 158-142 196-86-38-142-102-142-196V128L320 80Z" fill="#EC4899"/>
+  <path d="M320 108 435 149v86c0 72-43 124-115 156-72-32-115-84-115-156v-86l115-41Z" fill="#12345E" opacity=".92"/>
+  <circle cx="320" cy="222" r="52" fill="#FFD447"/><path d="M296 262h48l14 78-38-24-38 24 14-78Z" fill="#fff"/><path d="m308 218 9 18 20 3-14 14 3 20-18-10-18 10 3-20-14-14 20-3 9-18Z" fill="#EC4899"/>
+  <circle cx="462" cy="366" r="32" fill="#EC4899" stroke="#fff" stroke-width="5"/>
+  <text x="462" y="376" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" fill="#fff">9</text>
+</svg>

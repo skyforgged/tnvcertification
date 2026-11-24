@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480" fill="none">
+  <title>Ilustrasi Implementasi dan Pemantauan CSMS</title>
+  <rect width="640" height="480" rx="28" fill="#F5F8FF"/>
+  <circle cx="320" cy="236" r="182" fill="#0EA5E9" opacity=".10"/>
+  <path d="M320 80 462 128v104c0 94-56 158-142 196-86-38-142-102-142-196V128L320 80Z" fill="#0EA5E9"/>
+  <path d="M320 108 435 149v86c0 72-43 124-115 156-72-32-115-84-115-156v-86l115-41Z" fill="#12345E" opacity=".92"/>
+  <circle cx="320" cy="246" r="58" fill="#fff"/><circle cx="320" cy="246" r="34" fill="#0EA5E9" opacity=".25"/><path d="M320 196v20m0 60v20m-50-50h20m60 0h20" stroke="#1736A8" stroke-width="8" stroke-linecap="round"/><path d="M256 344h128" stroke="#fff" stroke-width="9" stroke-linecap="round"/><path d="m368 328 20 16-20 16" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="462" cy="366" r="32" fill="#0EA5E9" stroke="#fff" stroke-width="5"/>
+  <text x="462" y="376" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" fill="#fff">6</text>
+</svg>

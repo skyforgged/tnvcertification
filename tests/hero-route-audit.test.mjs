@@ -7,6 +7,8 @@ for (const route of [
   "/en/services/iso-14001-2026-certification/",
   "/articles/0001-posisi-kualitas-sebagai-talenta-kompetitif/",
   "/trainings/pelatihan-auditor-internal-iso-9001/",
+  "/csms/manajemen-risiko/",
+  "/en/csms/manajemen-risiko/",
   "/services/",
 ]) {
   test(`${route} requires a frontmatter hero`, () => {
