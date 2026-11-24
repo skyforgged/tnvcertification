@@ -17,13 +17,14 @@ interface Props {
   alternates?: SeoAlternate[];
   hero: HeroBlock;
   blocks: PageBlock[];
+  structuredData?: unknown[];
 }
-const { title, description, lang = "id", canonical, ogImage, imageAlt, footerDescription, alternates = [], hero, blocks } = Astro.props;
+const { title, description, lang = "id", canonical, ogImage, imageAlt, footerDescription, alternates = [], hero, blocks, structuredData = [] } = Astro.props;
 const homeLabel = lang === "en" ? "Home" : "Beranda";
 const trainingLabel = lang === "en" ? "Training" : "Pelatihan";
 const fallbackImage = { src: ogImage ?? "", alt: imageAlt };
 ---
-<Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage} footerDescription={footerDescription} alternates={alternates}>
+<Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage} footerDescription={footerDescription} alternates={alternates} structuredData={structuredData}>
   <Fragment slot="fullBleed">
     <div class="mx-auto w-full max-w-[var(--container-landing)] px-[var(--page-gutter)] pt-8 sm:pt-10 lg:pt-12">
       <div class="mx-auto w-full max-w-[var(--container-wide)]">

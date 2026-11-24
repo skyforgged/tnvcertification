@@ -187,6 +187,8 @@ const articleSchema = baseEntrySchema.extend({
   categoryIds: z.array(z.string()).optional(),
   // Explicit optional association; never inferred from labels, categories or slugs.
   serviceId: z.number().int().positive().optional(),
+  // Explicit course relationships for article topic graphs.
+  relatedTrainingSlugs: z.array(z.string().min(1)).optional(),
   // Frontmatter-only article pages: hero + content blocks replace the Markdown body.
   blocks: z.array(pageBlockSchema).optional(),
 });
@@ -228,6 +230,8 @@ const trainingHeroSchema = z.object({
 const trainingSchema = baseEntrySchema.extend({
   draft: z.boolean().optional(),
   categoryIds: z.array(z.string()).optional(),
+  // Explicit links to published service entries; never infer from course title.
+  relatedServiceSlugs: z.array(z.string().min(1)).optional(),
   hero: trainingHeroSchema.optional(),
   blocks: z.array(pageBlockSchema).optional(),
 });

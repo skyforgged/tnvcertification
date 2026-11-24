@@ -3,6 +3,8 @@ import { getCollection } from "astro:content";
 import ArticleLayout from "../../layouts/ArticleLayout.astro";
 import type { HeroBlock, PageBlock } from "../../data/pages";
 import { siteCrumb } from "../../data/breadcrumbs";
+import { getPublishedServices, servicePath } from "../../data/services";
+import { articlePageJsonLd } from "../../lib/structured-data";
 
 export async function getStaticPaths() {
   const articles = await getCollection("articles", ({ data }) => data.draft !== true);
@@ -34,6 +36,38 @@ const allBlocks = entry.data.blocks ?? [];
 const hero = allBlocks.find((block): block is HeroBlock => block.type === "hero");
 if (!hero) throw new Error(`Article "${entry.id}" is missing a hero block.`);
 const blocks: PageBlock[] = allBlocks.filter((block) => block.type !== "hero");
+const publishedServices = await getPublishedServices(lang === "en" ? "en" : "id");
+const matchedService = entry.data.serviceId
+  ? publishedServices.find((service) => service.data.id === entry.data.serviceId)
+  : undefined;
+if (entry.data.serviceId && !matchedService) {
+  throw new Error(`Article "${entry.data.slug}" references missing or unpublished service ID "${entry.data.serviceId}".`);
+}
+const relatedServices = matchedService
+  ? [{ name: matchedService.data.title, description: matchedService.data.metaDescription, path: servicePath(matchedService.data) }]
+  : [];
+const publishedTrainings = await getCollection("training", ({ data }) => data.draft !== true && data.lang === lang);
+const relatedCourses = (entry.data.relatedTrainingSlugs ?? []).map((slug) => {
+  const course = publishedTrainings.find((item) => item.data.slug === slug);
+  if (!course) throw new Error(`Article "${entry.data.slug}" references missing or unpublished training "${slug}".`);
+  return {
+    name: course.data.title,
+    description: course.data.metaDescription,
+    path: `/trainings/${course.data.slug}/`,
+  };
+});
+const structuredData = articlePageJsonLd({
+  name: entry.data.title,
+  description: entry.data.metaDescription,
+  path: canonical,
+  image: featuredImage.src,
+  lang,
+  datePublished: pubDate.toISOString(),
+  dateModified: (entry.data.updatedDate ?? pubDate).toISOString(),
+  blocks,
+  relatedServices,
+  relatedCourses,
+});
 ---
 
 <ArticleLayout
@@ -48,4 +82,5 @@ const blocks: PageBlock[] = allBlocks.filter((block) => block.type !== "hero");
   breadcrumbs={[siteCrumb("/", lang), siteCrumb("/articles/", lang), { label: entry.data.title }]}
   hero={hero}
   blocks={blocks}
+  structuredData={structuredData}
 />

@@ -1,0 +1,197 @@
+{
+  "version": 1,
+  "entries": {
+    "about-organization.svg": {
+      "source": "5d6f66595dce144d7386482514ff67c2768e73e4185fef79a7628bdb8e76cdfc",
+      "output": "dd782b92dedca30406ebebb06a52fe26e563771106fcad96757bd688c5db02f3"
+    },
+    "article-audit-process.svg": {
+      "source": "d1dccec14d077adbf4a1b4c98dcfa9a531e12fbd9173c7cbf402908cb6675fdc",
+      "output": "4205bb34ff4b4e3d971fa118f23010822363dc414e5fd3869f26c9a9b4e65e0d"
+    },
+    "article-factory-risk.svg": {
+      "source": "cbc23f53ce6e6130f496d5e41fb175472720af3c5e0108c77b359d062981c21a",
+      "output": "8422f800ec45c7e6da5451a220f5d8888f816c88dea28241a3d1a3741327a65e"
+    },
+    "article-global-compliance.svg": {
+      "source": "b523dfb831e39859f205ba9c6f36d089dc0b4ab4bed963c5e694bc80ecf2c416",
+      "output": "2d71e00ccea957603c6f9473e0e365ad0e06b819724f2488e19d73c7cd3273a6"
+    },
+    "article-iso14001-certification-en.svg": {
+      "source": "98159da13e5cbffaf35146459d4e12744bd8675f81b94281139c07d0a0032620",
+      "output": "b6bd6f726832128a6c465ddc83aef22a5f54998a97c2f2e399c8f7bb934f1c45"
+    },
+    "article-iso14001-certification.svg": {
+      "source": "548933466990d99b35183ae63c2c8b0e1aff3a70c055f2611360bd55e820af5b",
+      "output": "7add14683dadc6d018487255f9a27392e098e1d02a0c006aa0a9771a9977f9e3"
+    },
+    "article-iso45001-safety.svg": {
+      "source": "c6805de89a577b9c5c5dbc55fa997ca1fca091f98f89d8cbaa79e30cbde707cb",
+      "output": "6d94bf6f28c693ed7c36b3f4b2ff98885a532d7c6e585bd007d0b88d5ead81be"
+    },
+    "article-iso9001-benefits.svg": {
+      "source": "7d2b05597c1a1120f9b26affabfcd1a2a4ffd8d36c2cb9af857e411bf903573e",
+      "output": "2c00f94b64cdab09387756ef3690f5feb129117146c7fc0c1016ea3f33d14522"
+    },
+    "article-iso9001-certification.svg": {
+      "source": "81a584af32ed09afacdbd246cad58db2da83f66401741d6f0d747dca45f381b6",
+      "output": "96e52bfe9657212c15eb66761742a4a17c64b9e0a66ee8fee8e2b33947a9ff7b"
+    },
+    "article-nonconformity.svg": {
+      "source": "1d18c6f7f984a6e56cd31a4117a78a313f5ad3cf7231474bd6dbfd8ecbd9a60a",
+      "output": "899cde68a0b5ea396ba67a522dc997eba3b9008b1da76c9e4a3613b46f4acb7e"
+    },
+    "article-quality-talent.svg": {
+      "source": "296412a99753bc5c12ed73cc12f14dabe46cc07eebd3de1fd26e2472e7455a93",
+      "output": "e8be4c00098dfe22474685b3b4637c82c97ee94d2c357ba40f05a18d8f732807"
+    },
+    "article-scholarship.svg": {
+      "source": "549552618cb6c5f2395b7416c3f742673049b5cbf45a54288db4f4fccca6d746",
+      "output": "167de06316e88cc7b999d7d5e1eaf95357664e2ab35bf71d79aaccd3a6f523e0"
+    },
+    "articles-archive-page-2.svg": {
+      "source": "af0b81d2848b884d42754eef4316661f2af3dce562f8f63711a57dc98af63fe5",
+      "output": "f58129a3af4049e07c0c2b2925984cb1b686a15c600e543523870a8f42767f16"
+    },
+    "articles-editorial.svg": {
+      "source": "ede74b098dc3449d7d5542eaa6cb673cef7b39a9c53b4d8926903ffc2816e9af",
+      "output": "8ea803e0c99399d2976748bf2609f7eedb394763c4bf3d6385a75fb683a250d2"
+    },
+    "csms-audit-tinjauan.svg": {
+      "source": "8d1d68fed923f095c333572ebb6fe19d96d087c096e8c8697a4b2b17d03caca6",
+      "output": "da3763e22d3144efb9d97966dd23f0c355e59ddb2beba546ef8770451273576e"
+    },
+    "csms-implementasi-pemantauan.svg": {
+      "source": "5bb5fe9a7baa17ef011062390165a950d04fd03c654a0099f4a9de2528eac271",
+      "output": "af776fcc2ea8f69894a585e6e39a1fbe08cef99094a80ed57892bf7b309d4098"
+    },
+    "csms-kebijakan-sasaran.svg": {
+      "source": "93eafc92cdde4001a847380283bece670247c134c4469017d5bce8bc2b444c54",
+      "output": "bfe3459ac7782b4e3bf85f4798561ba3919d38722879f218e9933f81aa530567"
+    },
+    "csms-kepemimpinan-komitmen.svg": {
+      "source": "0b7a1a23c49eaf7579939fe3a0b4a9741ab88c5b8816ff7d2d25f1bbe79ccf1e",
+      "output": "c337d782715c22dd5514a983f6b287ea4597cfc60f3c2ee25b89b31fe05c25df"
+    },
+    "csms-manajemen-risiko.svg": {
+      "source": "294e3b450658041804ac43d6b9dd416d9785002fab02478ffd7e0568b781e718",
+      "output": "95055d908711b67de75a1978b01a3d41b8df00f475f6b7e44c366bdab9f77277"
+    },
+    "csms-organisasi-tanggungjawab.svg": {
+      "source": "315c6f6139c4136e453ae6d1ca95fb3663a6c0ffc820aed6d5c04725e495506a",
+      "output": "05d1a72654a2877eb5aec69d51ab62726a4abdb0d12b9900286e1bd402032bc0"
+    },
+    "csms-pencapaian-kinerja.svg": {
+      "source": "4d9da9f7fa7de27cee0c06639d1f488f16a844b80c3bda43f04c1110b9bcc1f6",
+      "output": "841a4ff94014e8c9c0d7fa540466fc3cc0c2524ce1ef28448335137cd9d3f0da"
+    },
+    "csms-pencapaian-lainnya.svg": {
+      "source": "177f8aec0ce657effc0b79410e5d0c73a306d895a269317e80e17e40a5a03844",
+      "output": "814ab38dde8238a4efa1a0f263c380fabb20b22e05c477f28e7e30a6066ad16b"
+    },
+    "csms-perencanaan-prosedur.svg": {
+      "source": "33af4ab6f142679ca19a9e7d92f6772d319e753754bce23b98a67e6c1652231a",
+      "output": "2e8fafe6bdb7eacc39eceb4109c5546b676ac9c80e62aa797da5e1f3955fec09"
+    },
+    "csms-safety.svg": {
+      "source": "4860c58ae10a568552583c0b2bdb250551761b4af9adb3bae294fb9d624c2e6d",
+      "output": "f228fa6fbf0929cd7deb7314c6c4f8f7d5119e20aa604c047d495b9292ebd7a2"
+    },
+    "home-assurance.svg": {
+      "source": "da1f731f7685840ac31aad927ade9e70d2ea4789d1cfb2b023acd3941af317a2",
+      "output": "d79a0301ae47182e6929904d2f72d679b35477dead8e23c2621ec0089bb348e4"
+    },
+    "schedules-calendar.svg": {
+      "source": "ea63412e1d53307f64aedaf1713e0723fb35cf849bd5d1c7aca4f93426ece1bd",
+      "output": "99c773ac0a5c0b5b6bfa277886ebb9a615672bd1ca224fda6c3e9c35f403c4ab"
+    },
+    "service-fssc-22000.svg": {
+      "source": "58487eddb0d6ee91336faeed066547a6514236b57b9ff550c556f34a3c518113",
+      "output": "7890acc63dfade15ebdc2faabda73108970cb52e51d0c216cebf6f2d3c373cb7"
+    },
+    "service-iso-45001.svg": {
+      "source": "2c681a47c2ac08744f974a885d2455ff6e689b51fe5856fa4aedc5633fe1b2fa",
+      "output": "f6ee890485d8426cf677dc8db96a78bcf25e23d428a93f23b669a57cb76ac247"
+    },
+    "service-iso-50001.svg": {
+      "source": "b4be914ed81e14f3141bb38c6e8f6f1b7490405f25ff68b3b5dcc22da74e941b",
+      "output": "2a98470343ff8f5a5cbab5b1104c64ceddb6af646ba2feed663b3f93fe5de861"
+    },
+    "service-iso-iec-27001.svg": {
+      "source": "2e3115d777a6a06576b222264749d1d6867eaa96be6b0cbe8376138b6496552f",
+      "output": "6a171902d231330d6a835bc57dc214f851a85e7e5b488fd737ef61162f57246b"
+    },
+    "service-iso9001-2026.svg": {
+      "source": "c5340bda90e936314c4fa3fe1eac5499fde73de069bdad35c26f0d37ad5268e2",
+      "output": "42b7a66adcf18f237039133dc33173fd800cb3a3159d714853b87e38c3e59491"
+    },
+    "services-assessment-en.svg": {
+      "source": "151eddfe539c7baef0d365b1f036dd008b3fc4c7532553e45c76a1165fbd8f7a",
+      "output": "2166422ae8437e3c836a217a39716b0b6f410477a9d042faba4417f32191b456"
+    },
+    "services-assessment.svg": {
+      "source": "b592088ed1de3d41e4b3c22449f4fdbe552059dfac3f2cbb31748ab6078fe859",
+      "output": "a0d9d6a1ec334839ad5352d6efe80845819712d24221e2eb256a132734080678"
+    },
+    "training-auditor-internal-cgmp.svg": {
+      "source": "93b3ec98a88b228b6b59c15ece7f4dc46f4757cd9ef393e03d750d6ec782dc72",
+      "output": "b2886e2570e7196a4cc0faba5dd7700d4c127a31c6d5258a714709066bceacec"
+    },
+    "training-auditor-internal-iatf-16949.svg": {
+      "source": "eb49af84654a2e489ec07277d553751f276cc6979b7f6aa1c92c780c867b95bc",
+      "output": "203efc1ae3b62e8dbdfb633e2a1252f29abb3658d70a735548a87ec6168fe0f3"
+    },
+    "training-auditor-internal-iso-13485.svg": {
+      "source": "c8eac95115d8c7df394ad50f40c28fcbabf7b24ccd5bfe18bb719d64659cc86a",
+      "output": "5e95f87579ea8374f0a80d851f4eed5ebbc30edae611a066ab07a5189018ce14"
+    },
+    "training-auditor-internal-iso-15189.svg": {
+      "source": "6ab2b98851966e944ed742d0b6b0fe1dae162864708c0fa2f4e8bd85ce9cd6a8",
+      "output": "5fa6f728aaf20edc28d6896a3d348afe8aedf5cf24f15564a40ab50ea3ab2592"
+    },
+    "training-auditor-internal-iso-17025.svg": {
+      "source": "4555b8c3e9818be1992d01359cd8def11ce2235effd5d6bcffede8af557429e6",
+      "output": "63ef22f0564db7522f0ab3b30d61efe4c87a1d5d64f179f84a4c66fff9bba5db"
+    },
+    "training-auditor-internal-iso-22000.svg": {
+      "source": "2b1a2b1b9aa55ff7d1235902ad23c95c1bd77d692ab52f2ebaff6120c7ec2c60",
+      "output": "82341cdb516d47a420400bf404f5c53f9e5bb222e8e1beda84a9da08c9d80ffc"
+    },
+    "training-auditor-internal-iso-22301.svg": {
+      "source": "c394a7be9736ad91b796cc878ee2c2369da7fe53a1955c2dac61aa385ccd148e",
+      "output": "35082b416533e12c5af55f9596439f249a87d1e9dd326194b1003e981edd3da4"
+    },
+    "training-auditor-internal-iso-27001.svg": {
+      "source": "806b5645737d7db02f19f07f07712f31b3ff05c7ef655fa4f3ac4e75da6c042f",
+      "output": "a90eeaec68c841b17c3f35b2514f832c9811288c2bf04fef9bdfb992ae30ed9e"
+    },
+    "training-auditor-internal-iso-45001.svg": {
+      "source": "39cdf46c0104d03761c3ac10b27566498201846791d9b857a5cef4bd8a54f9c9",
+      "output": "cbe9de4a82dc43bdf46b9477de5e42cc050895200f23fe8bd04ed4878093965f"
+    },
+    "training-auditor-internal-iso-50001.svg": {
+      "source": "a1d58360e18e8d80f03dc8c2ced3bac06f92a41b8ba4645dab433a4a12c22c6d",
+      "output": "356c0814bcdef9b3ce1ce9c93969dcd38dbba68e4b3a7c48efcb819cc60d18d5"
+    },
+    "training-competency.svg": {
+      "source": "848f818f7ad63a6d68949f7f61a9f4af3e5cd9c51b4351e35416d089dcd08da2",
+      "output": "ff23dd358705d02af490b11c030a3f70d49ea4f78ba77f1a141bb2050764c27b"
+    },
+    "training-fssc-22000.svg": {
+      "source": "00c107d79939694fa7035a29a2c82192910696101e543ebae6b6d6a4077a861e",
+      "output": "304555374a7d49759dcfde83a47d9ba55d90d542ca2d9a0dd3258673e023838b"
+    },
+    "training-internal-auditor-migrasi-iso-14001.svg": {
+      "source": "dfe2abc9fc0591ce64f7b4a74318524ff704cd4fa49ac39c9e6d0b920c722531",
+      "output": "58e05c7c5dba7a10cda33b940cadfcab6b3accbb0fad65d5d5080bf2995db491"
+    },
+    "training-iso14001-2026.svg": {
+      "source": "308c10b0b28b02aa6c4af75d9a236083ee3d513aaa6e7105d6d461a5e1ff224a",
+      "output": "7dfc104ac54af22debfcd55d144a43d71cf564fb6c668ab250e76c7df812c930"
+    },
+    "training-iso9001-2026.svg": {
+      "source": "1ea978620d94259e4bbe8e9a612df10e2f4ac73621a9ea1a62cbbdf4ee7c51bf",
+      "output": "eaca96b9639868479d0f26c15d715cc9dfcc97561b788d4a073d9dc3e4646e65"
+    }
+  }
+}
