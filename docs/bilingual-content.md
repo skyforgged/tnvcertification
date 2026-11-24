@@ -14,7 +14,7 @@ Both languages are supported consistently across page content, frontmatter, bloc
 
 ## Page entries (development mode)
 
-Page entries are no longer ID-only. English page entries exist for Home, CSMS, and About us; Services already has English pages; the remaining menu routes stay `/en/` redirect stubs. Paired entries use the same `slug` and `translationKey`, distinct positive numeric `id` values, and explicit `lang`. Keep editorial copy in the validated entry, not in route files.
+Page entries are no longer ID-only. English page entries exist for Home, CSMS, About us, Services, Trainings, Schedules, and Articles. Every main-menu route now has a real English page: `/en/`, `/en/services/`, `/en/csms/`, `/en/trainings/`, `/en/schedules/`, `/en/articles/`, and `/en/about-us/`. Paired entries use the same `slug` and `translationKey`, distinct positive numeric `id` values, and explicit `lang`. Keep editorial copy in the validated entry, not in route files.
 
 ## UI and blocks
 - Localize every user-facing string; pass labels/copy through props or a translation dictionary.
