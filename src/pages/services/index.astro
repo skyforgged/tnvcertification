@@ -34,7 +34,7 @@ const structuredData = serviceIndexJsonLd(
   structuredData={structuredData}
 >
   <div class="w-full">
-    {hero && <PageHero block={hero} fallbackImage={fallbackImage} />}
+    {hero && <PageHero block={hero} fallbackImage={fallbackImage} isServices />}
     {listings.map((block) => block.source === "services" ? (
       <ListingSection block={block} hasItems={services.length > 0}>
         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
