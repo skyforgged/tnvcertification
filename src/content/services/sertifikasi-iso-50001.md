@@ -4,7 +4,7 @@ intro: "Sertifikasi Sistem Manajemen Energi ISO 50001 adalah penilaian kesesuaia
 metaDescription: "Informasi ISO 50001:2018 dan Amd 1:2024, tinjauan energi, indikator kinerja energi, garis dasar energi, tahapan audit, dan persyaratan sertifikasi."
 pubDate: "2026-11-23T00:00:00Z"
 updatedDate: "2026-11-23T00:00:00Z"
-draft: true
+draft: false
 id: 8
 featuredImage:
   src: "/images/illustrations/service-iso-50001.webp"
@@ -69,6 +69,22 @@ blocks:
         description: "Organisasi menyelesaikan temuan sesuai ketentuan skema. Lembaga sertifikasi meninjau bukti dan mengambil keputusan sertifikasi."
       - title: "Pemeliharaan sertifikat"
         description: "Organisasi menjalani surveilans dan audit sertifikasi ulang sesuai siklus yang ditetapkan skema dan lembaga sertifikasi."
+  - type: "content-section"
+    id: "iso50001-proses-sertifikasi"
+    surface: "navy"
+    title: "Proses sertifikasi secara umum"
+    description: "Sertifikasi sistem manajemen energi pada umumnya mencakup pengajuan, penetapan ruang lingkup, tinjauan energi, serta penetapan garis dasar dan indikator kinerja energi. Audit menilai pengelolaan penggunaan dan konsumsi energi, pengendalian operasional, pemantauan kinerja, dan peningkatan berkelanjutan. Temuan ditindaklanjuti sebelum keputusan sertifikasi, kemudian sertifikat dipelihara melalui surveilans dan audit ulang sesuai siklus skema. Persyaratan yang berlaku mengikuti edisi standar dan prosedur lembaga sertifikasi penerbit sertifikat."
+  - type: "link-grid"
+    id: "iso50001-referensi-resmi"
+    surface: "cream"
+    title: "Referensi resmi"
+    items:
+      - title: "ISO 50001:2018 — Energy management systems"
+        href: "https://www.iso.org/standard/69426.html"
+      - title: "ISO 50001:2018/Amd 1:2024 — Climate action changes"
+        href: "https://www.iso.org/standard/88430.html"
+      - title: "International Accreditation Forum — informasi akreditasi dan skema"
+        href: "https://www.iaf.nu/"
   - type: "faq"
     id: "iso50001-faq"
     surface: "cream"

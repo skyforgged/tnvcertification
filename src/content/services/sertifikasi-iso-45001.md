@@ -4,7 +4,7 @@ intro: "Sertifikasi Sistem Manajemen Kesehatan dan Keselamatan Kerja ISO 45001 a
 metaDescription: "Informasi ISO 45001:2018 dan Amd 1:2024, cakupan sistem manajemen K3, bahaya dan risiko kerja, tahapan audit, serta persyaratan sertifikasi."
 pubDate: "2026-11-23T00:00:00Z"
 updatedDate: "2026-11-23T00:00:00Z"
-draft: true
+draft: false
 id: 6
 featuredImage:
   src: "/images/illustrations/service-iso-45001.webp"
@@ -69,6 +69,22 @@ blocks:
         description: "Organisasi menyelesaikan temuan sesuai ketentuan skema. Lembaga sertifikasi meninjau bukti dan mengambil keputusan sertifikasi."
       - title: "Pemeliharaan sertifikat"
         description: "Organisasi menjalani surveilans dan audit sertifikasi ulang sesuai siklus yang ditetapkan skema dan lembaga sertifikasi."
+  - type: "content-section"
+    id: "iso45001-proses-sertifikasi"
+    surface: "navy"
+    title: "Proses sertifikasi secara umum"
+    description: "Sertifikasi sistem manajemen K3 pada umumnya dimulai dari pengajuan dan penetapan ruang lingkup, dilanjutkan dengan tinjauan dokumentasi serta kondisi organisasi. Audit tahap pertama memeriksa kesiapan sistem, audit tahap kedua menilai penerapan di lapangan, termasuk identifikasi bahaya, penilaian risiko, partisipasi pekerja, dan pemenuhan peraturan K3. Temuan ditindaklanjuti sebelum tinjauan keputusan sertifikasi. Setelah sertifikat diterbitkan, berlaku surveilans dan audit sertifikasi ulang sesuai siklus skema. Ketentuan teknis mengikuti edisi standar dan prosedur lembaga sertifikasi penerbit sertifikat."
+  - type: "link-grid"
+    id: "iso45001-referensi-resmi"
+    surface: "cream"
+    title: "Referensi resmi"
+    items:
+      - title: "ISO 45001:2018 — Occupational health and safety management systems"
+        href: "https://www.iso.org/standard/63787.html"
+      - title: "ISO 45001:2018/Amd 1:2024 — Climate action changes"
+        href: "https://www.iso.org/standard/88428.html"
+      - title: "International Accreditation Forum — informasi akreditasi dan skema"
+        href: "https://www.iaf.nu/"
   - type: "faq"
     id: "iso45001-faq"
     surface: "cream"

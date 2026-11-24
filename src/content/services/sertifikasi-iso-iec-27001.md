@@ -4,7 +4,7 @@ intro: "Sertifikasi Sistem Manajemen Keamanan Informasi ISO/IEC 27001 adalah pen
 metaDescription: "Informasi ISO/IEC 27001:2022 dan Amd 1:2024, ruang lingkup ISMS, penilaian risiko, pernyataan penerapan kontrol Annex A, tahapan audit, dan persyaratan sertifikasi."
 pubDate: "2026-11-23T00:00:00Z"
 updatedDate: "2026-11-23T00:00:00Z"
-draft: true
+draft: false
 id: 7
 featuredImage:
   src: "/images/illustrations/service-iso-iec-27001.webp"
@@ -69,6 +69,22 @@ blocks:
         description: "Organisasi menyelesaikan temuan sesuai ketentuan skema. Lembaga sertifikasi meninjau bukti dan mengambil keputusan sertifikasi."
       - title: "Pemeliharaan sertifikat"
         description: "Organisasi menjalani surveilans dan audit sertifikasi ulang sesuai siklus yang ditetapkan skema dan lembaga sertifikasi."
+  - type: "content-section"
+    id: "iso27001-proses-sertifikasi"
+    surface: "navy"
+    title: "Proses sertifikasi secara umum"
+    description: "Sertifikasi sistem manajemen keamanan informasi pada umumnya diawali pengajuan dan penetapan ruang lingkup ISMS, dilanjutkan tinjauan konteks, penilaian risiko, dan pernyataan penerapan kontrol. Audit tahap pertama menilai kesiapan, audit tahap kedua memeriksa penerapan kontrol dan pengelolaan risiko di lapangan. Temuan ditindaklanjuti sebelum tinjauan keputusan sertifikasi. Sertifikat dipelihara melalui pengawasan dan audit sertifikasi ulang sesuai siklus skema. Ketentuan mengikuti edisi standar serta prosedur lembaga sertifikasi penerbit sertifikat."
+  - type: "link-grid"
+    id: "iso27001-referensi-resmi"
+    surface: "cream"
+    title: "Referensi resmi"
+    items:
+      - title: "ISO/IEC 27001:2022 — Information security management systems"
+        href: "https://www.iso.org/standard/27001"
+      - title: "ISO/IEC 27001:2022/Amd 1:2024 — Climate action changes"
+        href: "https://www.iso.org/standard/88435.html"
+      - title: "International Accreditation Forum — informasi akreditasi dan skema"
+        href: "https://www.iaf.nu/"
   - type: "faq"
     id: "iso27001-faq"
     surface: "cream"
