@@ -13,8 +13,12 @@ test("pageAlternates emits reciprocal absolute alternates", () => {
     { lang: "id", href: `${origin}/about-us/` },
     { lang: "en", href: `${origin}/en/about-us/` },
   ]);
+  assert.deepEqual(pageAlternates("trainings"), [
+    { lang: "id", href: `${origin}/trainings/` },
+    { lang: "en", href: `${origin}/en/trainings/` },
+  ]);
 });
 
 test("pageAlternates ignores unsupported slugs", () => {
-  assert.deepEqual(pageAlternates("trainings"), []);
+  assert.deepEqual(pageAlternates("unknown-page"), []);
 });

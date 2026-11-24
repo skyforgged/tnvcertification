@@ -8,6 +8,8 @@ export const englishLabels = {
     registrationCancelled: "Registration cancelled",
     informationPending: "Registration information pending",
     onSite: "On site",
+    online: "Online",
+    hybrid: "Hybrid",
     methodPending: "Method to be confirmed",
     fee: "Fee",
     quota: "Quota",
@@ -37,5 +39,7 @@ export const englishLabels = {
     quotaFull: "Quota full",
     registrationCancelled: "Registration cancelled",
     informationPending: "Registration information pending",
+    programLabel: "Training program",
+    viewProgram: "View program",
   },
 } as const;

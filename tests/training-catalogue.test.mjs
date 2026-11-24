@@ -4,7 +4,9 @@ import test from "node:test";
 import { parse as parseYaml } from "yaml";
 
 const directory = new URL("../src/content/training/", import.meta.url);
-const files = readdirSync(directory).filter((name) => name.endsWith(".md")).sort();
+const files = readdirSync(directory)
+  .filter((name) => name.endsWith(".md") && !name.endsWith("-en.md"))
+  .sort();
 const entries = files.map((file) => {
   const raw = readFileSync(new URL(file, directory), "utf8");
   const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
@@ -28,7 +30,7 @@ const expected = [
   ["Pelatihan Auditor Internal cGMP", "pelatihan-auditor-internal-cgmp"],
 ];
 
-test("training collection contains exactly the 14 unique IAS internal auditor programs", () => {
+test("Indonesian training collection contains exactly the 14 unique IAS internal auditor programs", () => {
   assert.equal(files.length, 14);
   assert.deepEqual(
     entries.map((entry) => entry.data.slug).sort(),

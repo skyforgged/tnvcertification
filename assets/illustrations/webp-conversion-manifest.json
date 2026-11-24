@@ -204,6 +204,66 @@
     "home-assurance-en.svg": {
       "source": "28081eb8802083e0d409bf390fa4685fa2d0c77449125f94032d45ac0f34c2a4",
       "output": "83f8ec3ed36f12521e60038abdcd67dfd72fe30dd2363ca1bbe2d8971ef43ab5"
+    },
+    "training-en-cgmp.svg": {
+      "source": "b9a46bde934e264d6d4e41413a70734316233ac73cab94d5c43ffc4da3f085cb",
+      "output": "852c94c1a1863fc22363cba00e44a01f4fa3404f25d4b16da22185d92eb22830"
+    },
+    "training-en-fssc-22000.svg": {
+      "source": "c5226c1ffe3fb6851867459c6843cc1a0fa8bfb0a8ec1c75638b73e1b9365df7",
+      "output": "4f60379c01f9d87643726826e304ebe88193a036ac96c259cacf7daabf3e215b"
+    },
+    "training-en-iatf-16949.svg": {
+      "source": "90a3c21acf834678120c47bf7a1fea9f5ae6108e96fe1a0db8ab35d2b6e41bb6",
+      "output": "c3bf1bdc38e086450349692f1ddc5f3ba2a7effbd9eaf7e16d6805153e575672"
+    },
+    "training-en-iso-13485.svg": {
+      "source": "2b35637ada2fe861bfe4bb1e3bf27b927fd48fe4e1949d14e1b2ce195a7081f0",
+      "output": "b71242887e61eb7f9cf18e849b5b4d34bfa6a8d4f6b5e9dc8badefb9b267471e"
+    },
+    "training-en-iso-14001-migration.svg": {
+      "source": "41420cb3d85b6565ef0502438d50f4b6f537e1445797e526cf672812c9afc816",
+      "output": "ea263b182190f4abebb20e34c87e992656170fac0c1d3b4bdc884debb3d03de6"
+    },
+    "training-en-iso-14001.svg": {
+      "source": "344de26af8af0f5ccda1bb7b02d5424bb7b341d27b12a419c6106656494f5ab4",
+      "output": "8df96a756dc751d7b96b054746efc9e6b5910ab7e7e33234d8d4c1c41c98b40f"
+    },
+    "training-en-iso-15189.svg": {
+      "source": "66ad59c85a195f883180939dab26efaf2793d9011a2dd6783bf55fd7df4e3016",
+      "output": "1d14958427bdf9dd312bdcdfc15a0a764c0e93e878d40bda93b4a5dc5cbf9f4f"
+    },
+    "training-en-iso-17025.svg": {
+      "source": "c494d75f50e43c1fd3d4bcaa614ca3bc5e12fd05da222b85e02d7e58e6ced928",
+      "output": "88b75963ab7350768d3e727a7b169a1599435ac9fc3589dbeed47118fe78d7b7"
+    },
+    "training-en-iso-22000.svg": {
+      "source": "24ad5199240573779eb2a7ff78581784ea573c96b9b32849acb82a11b6121a30",
+      "output": "8a06c8da47370adae80301c31e152946b42b216dddb24c931aa4ee0efcde2642"
+    },
+    "training-en-iso-22301.svg": {
+      "source": "f7affe0032e7046d7da97b85f1b1fbbf626f937792fa2d3c41dd17975e6802a9",
+      "output": "4d533b684f63d1b65d9a5ee09462790068f020b96c6672671fcf196ada981d3e"
+    },
+    "training-en-iso-27001.svg": {
+      "source": "c9bb37a67b99d74b45401bcddf11dff3173665a6b7326ead2257e44e539e36fb",
+      "output": "0dddb01cf545584b1a0189a66ffcaaf911aac6698c54eefcd9802e07777144e1"
+    },
+    "training-en-iso-45001.svg": {
+      "source": "437c42a6b807ebb5f679b6da8bd8f6bffdf22d425007118723f084fa224bed40",
+      "output": "825c7619f8cc6f3bc266dd1ee7662fae1c8e2f594c9cd767993d85a003216c64"
+    },
+    "training-en-iso-50001.svg": {
+      "source": "aa451d5aaa74f94b8afb05495af7e1eea2c94b114068da2a731e1493a1ba20cb",
+      "output": "1e14cab8f6539b02f988c0c76fd4b10bc2573ced49b7020c18ce9b9dafb5b0ef"
+    },
+    "training-en-iso-9001.svg": {
+      "source": "5b002a5a115564bc23fc6512c75a81a2d582d114875b82514f2e0e6cccb38756",
+      "output": "8661fae348d5e25b075f72d8081637882e775b4b620865040bbe65818ddb53e0"
+    },
+    "trainings-index-en.svg": {
+      "source": "97c58c06d64c3ba21b355c8c62bbf9b8526fcd1e36db5c3370145677eb47619d",
+      "output": "865265859fcccbbc38808168deb63e07596e3c52dc3a1b678ff854e0ec4fd0b0"
     }
   }
 }

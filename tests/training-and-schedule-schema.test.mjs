@@ -3,6 +3,7 @@ import test from "node:test";
 import { collections } from "../src/content.config.ts";
 
 const trainingInput = {
+  id: 212,
   title: "Pelatihan Auditor Internal ISO 9001",
   intro: "Pelatihan Auditor Internal ISO 9001 adalah program pemahaman proses sertifikasi sistem manajemen mutu.",
   slug: "pelatihan-auditor-internal-iso-9001",
@@ -25,6 +26,7 @@ const trainingInput = {
 };
 
 const scheduleInput = {
+  id: 9001,
   trainingSlug: "pelatihan-auditor-internal-iso-9001",
   slug: "jadwal-pelatihan-iso-9001-2026",
   notes: "Jadwal angkatan akan diumumkan.",

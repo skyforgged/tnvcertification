@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="560" viewBox="0 0 720 560" fill="none">
+  <title>ISO 45001 training illustration</title>
+  <rect width="720" height="560" rx="36" fill="#EAF0FF"/>
+  <rect x="76" y="86" width="568" height="388" rx="28" fill="#FFFFFF"/>
+
+  <path d="M150 226 218 132l68 94z" fill="#FF6B35" opacity="0.3"/>
+  <path d="M392 132 458 226l66-94z" fill="#315CFF" opacity="0.22"/>
+  <circle cx="320" cy="296" r="58" fill="#FFD447" opacity="0.46"/>
+  <path d="M204 378h220" stroke="#1736A8" stroke-width="12" stroke-linecap="round"/>
+  <rect x="116" y="392" width="488" height="76" rx="18" fill="#1736A8"/>
+  <text x="360" y="434" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="700" fill="#FFFFFF">ISO 45001</text>
+  <text x="360" y="492" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="600" fill="#315CFF">Workplace safety</text>
+</svg>

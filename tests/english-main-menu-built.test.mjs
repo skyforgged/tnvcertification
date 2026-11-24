@@ -7,6 +7,7 @@ const expected = {
   Home: "/en/",
   Services: "/en/services/",
   CSMS: "/en/csms/",
+  Trainings: "/en/trainings/",
   About: "/en/about-us/",
 };
 

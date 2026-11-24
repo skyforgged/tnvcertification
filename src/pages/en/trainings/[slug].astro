@@ -1,0 +1,127 @@
+---
+import { getCollection } from "astro:content";
+import TrainingLayout from "../../../layouts/TrainingLayout.astro";
+import Section from "../../../components/Section.astro";
+import SectionHeading from "../../../components/SectionHeading.astro";
+import TrainingScheduleMonths from "../../../components/page/TrainingScheduleMonths.astro";
+import { getTrainingView } from "../../../data/training-view";
+import { sortSchedulesByStartDate } from "../../../lib/schedule-display";
+import { englishLabels } from "../../../lib/english-labels";
+import { trainingAlternates, trainingPath } from "../../../lib/training-routing";
+import { siteSettings } from "../../../site";
+import { getPublishedServices, servicePath } from "../../../data/services";
+import { trainingPageJsonLd } from "../../../lib/structured-data";
+
+export async function getStaticPaths() {
+  const trainings = await getCollection(
+    "training",
+    ({ data }) => data.draft !== true && data.lang === "en",
+  );
+  return trainings.map((training) => ({
+    params: { slug: training.data.slug },
+    props: { training },
+  }));
+}
+
+const { training } = Astro.props;
+const { hero, blocks } = getTrainingView({
+  title: training.data.title,
+  blocks: training.data.blocks,
+});
+const footerDescription = siteSettings.footer.trainingDescription(training.data.title, "en");
+const schedules = sortSchedulesByStartDate(
+  await getCollection(
+    "trainingSchedules",
+    ({ data }) =>
+      data.trainingSlug === training.data.slug &&
+      Boolean(data.startDate) &&
+      data.registrationStatus !== "cancelled",
+  ),
+);
+const publishedServices = await getPublishedServices("en");
+const idServices = await getCollection(
+  "services",
+  ({ data }) => data.lang === "id",
+);
+const idServicesBySlug = new Map(idServices.map((item) => [item.data.slug, item]));
+const enServicesByTranslationKey = new Map(publishedServices.map((item) => [item.data.translationKey, item]));
+const relatedServiceSlugs = [...new Set([
+  ...(training.data.relatedServiceSlugs ?? []),
+  ...schedules.map(({ data }) => data.serviceSlug).filter((slug): slug is string => Boolean(slug)),
+])];
+const relatedServices = relatedServiceSlugs.flatMap((slug) => {
+  const idService = idServicesBySlug.get(slug);
+  const service = idService ? enServicesByTranslationKey.get(idService.data.translationKey) : undefined;
+  if (!service) return [];
+  return [{ name: service.data.title, description: service.data.metaDescription, path: servicePath(service.data) }];
+});
+const structuredData = trainingPageJsonLd({
+  name: training.data.title,
+  description: training.data.metaDescription,
+  path: trainingPath(training.data),
+  image: training.data.featuredImage.src,
+  lang: "en",
+  blocks,
+  relatedServices,
+  schedules: schedules.map(({ data }) => data),
+});
+const detail = englishLabels.trainingDetail;
+const status = englishLabels.schedule;
+const labels = {
+  schedule: detail.schedule,
+  online: status.online,
+  hybrid: status.hybrid,
+  offline: status.onSite,
+  locationPending: detail.locationPending,
+  open: status.registrationOpen,
+  closed: status.registrationClosed,
+  full: status.quotaFull,
+  pending: status.informationPending,
+  price: status.fee,
+  quota: status.quota,
+  register: status.register,
+  noSchedule: detail.noSchedule,
+  datePending: status.datePending,
+  showPast: detail.showPast,
+  summaryActive: detail.activeSummary,
+  summaryAll: detail.allSummary,
+  emptyMonth: detail.noMonth,
+  note: detail.scheduleMayChange,
+  past: detail.past,
+  ongoing: detail.ongoing,
+  monthPickerLabel: detail.selectMonth,
+  monthButtonLabel: detail.monthCount,
+};
+const todayKey = new Intl.DateTimeFormat("en-CA", {
+  timeZone: "Asia/Jakarta", year: "numeric", month: "2-digit", day: "2-digit",
+}).format(new Date());
+---
+<TrainingLayout
+  title={`${training.data.title} | Trainings | ${siteSettings.title}`}
+  description={training.data.metaDescription}
+  canonical={trainingPath(training.data)}
+  alternates={trainingAlternates(training.data.slug)}
+  lang="en"
+  ogImage={training.data.featuredImage.src}
+  imageAlt={training.data.featuredImage.alt}
+  footerDescription={footerDescription}
+  hero={hero}
+  blocks={blocks}
+  structuredData={structuredData}
+>
+  <div class="w-full">
+    <Section spacing="spacious" aria-labelledby="training-schedule">
+      <SectionHeading id="training-schedule" title={labels.schedule} />
+      {schedules.length > 0 ? (
+        <TrainingScheduleMonths
+          schedules={schedules}
+          labels={labels}
+          locale="en-US"
+          todayKey={todayKey}
+        />
+      ) : (
+        <p class="mt-4 max-w-3xl border-y border-border py-6 leading-relaxed text-ink-muted">{labels.noSchedule}</p>
+      )}
+    </Section>
+  </div>
+</TrainingLayout>

@@ -8,6 +8,7 @@ import { getTrainingView } from "../../data/training-view";
 import { sortSchedulesByStartDate } from "../../lib/schedule-display";
 import { siteSettings } from "../../site";
 import { getPublishedServices, servicePath } from "../../data/services";
+import { trainingAlternates, trainingPath } from "../../lib/training-routing";
 import { trainingPageJsonLd } from "../../lib/structured-data";
 
 export async function getStaticPaths() {
@@ -49,7 +50,7 @@ const relatedServices = relatedServiceSlugs.map((slug) => {
 const structuredData = trainingPageJsonLd({
   name: training.data.title,
   description: training.data.metaDescription,
-  path: `/trainings/${training.data.slug}/`,
+  path: trainingPath(training.data),
   image: training.data.featuredImage.src,
   lang: training.data.lang,
   blocks,
@@ -100,7 +101,8 @@ const todayKey = new Intl.DateTimeFormat("en-CA", {
 <TrainingLayout
   title={`${training.data.title} | Pelatihan | ${siteSettings.title}`}
   description={training.data.metaDescription}
-  canonical={`/trainings/${training.data.slug}/`}
+  canonical={trainingPath(training.data)}
+  alternates={trainingAlternates(training.data.slug)}
   lang={training.data.lang}
   ogImage={training.data.featuredImage.src}
   imageAlt={training.data.featuredImage.alt}

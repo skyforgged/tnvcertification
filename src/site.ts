@@ -88,8 +88,10 @@ export const siteSettings = {
   footer: {
     serviceDescription: (title: string) =>
       `${organization.name} menyediakan jasa sertifikasi ${title.replace(/^Sertifikasi\s+/i, "")}.`,
-    trainingDescription: (title: string) =>
-      `${organization.name} melayani pelatihan ${title.replace(/^(?:Pelatihan|Training)\s+/i, "")}.`,
+    trainingDescription: (title: string, lang: "id" | "en" = "id") =>
+      lang === "en"
+        ? `${organization.name} provides training on ${title.replace(/^(?:Pelatihan|Training)\s+/i, "")}.`
+        : `${organization.name} melayani pelatihan ${title.replace(/^(?:Pelatihan|Training)\s+/i, "")}.`,
   },
 } as const;
 

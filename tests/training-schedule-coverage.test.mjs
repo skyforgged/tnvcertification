@@ -14,7 +14,7 @@ const entries = relativeFiles.map((file) => {
 
 const trainingSlugs = globSync("*.md", {
   cwd: new URL("../src/content/training/", import.meta.url),
-});
+}).filter((file) => !file.endsWith("-en.md"));
 const serviceSlugs = globSync("*.md", {
   cwd: new URL("../src/content/services/", import.meta.url),
 }).map((file) => {
@@ -44,7 +44,7 @@ test("2027 schedule archive has exactly 336 date-only entries", () => {
   assert.equal(entries.length, 336);
 });
 
-test("each of the 14 training slugs has 24 files in its own directory", () => {
+test("each of the 14 canonical Indonesian training slugs has 24 files in its own directory", () => {
   for (const file of trainingSlugs) {
     const slug = file.replace(/\.md$/, "");
     const count = entries.filter((entry) => entry.file.startsWith(`${slug}/`)).length;
