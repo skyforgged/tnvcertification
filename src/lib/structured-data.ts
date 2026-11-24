@@ -400,37 +400,9 @@ export function articlePageJsonLd(input: ArticleStructuredDataInput) {
     ...(about.length ? { about } : {}),
   });
 
-  input.blocks.forEach((block, index) => {
-    if (block.type === "faq" && block.items.length) {
-      const id = `${url}#faq-${block.id ?? index + 1}`;
-      entities.push({
-        "@type": "FAQPage",
-        "@id": id,
-        mainEntity: block.items.map((item) => ({
-          "@type": "Question",
-          name: item.question,
-          acceptedAnswer: { "@type": "Answer", text: item.answer },
-        })),
-      });
-      pageParts.push({ "@id": id });
-    }
-    if (block.type === "howto" && block.steps.length) {
-      const id = `${url}#howto-${block.id ?? index + 1}`;
-      entities.push({
-        "@type": "HowTo",
-        "@id": id,
-        name: block.title ?? input.name,
-        step: block.steps.map((step, stepIndex) => ({
-          "@type": "HowToStep",
-          position: stepIndex + 1,
-          name: step.title,
-          text: step.description,
-          ...(step.image?.src ? { image: new URL(step.image.src, siteSettings.url).toString() } : {}),
-        })),
-      });
-      pageParts.push({ "@id": id });
-    }
-  });
+  const { entities: blockEntities, pageParts: blockParts } = blockGraphNodes(input.blocks, url, input.name);
+  entities.push(...blockEntities);
+  pageParts.push(...blockParts);
 
   entities.push(
     {
