@@ -14,7 +14,7 @@ Both languages are supported consistently across page content, frontmatter, bloc
 
 ## Page entries (development mode)
 
-Page entries are ID-only in this phase. There are no translated `pages` entries yet; `/en/...` pages are redirect stubs to the Indonesian route. Do not add `lang: "en"` page entries or duplicate page copy in route files while this combined pattern is being evaluated.
+Page entries are no longer ID-only. English page entries exist for Home, CSMS, and About us; Services already has English pages; the remaining menu routes stay `/en/` redirect stubs. Paired entries use the same `slug` and `translationKey`, distinct positive numeric `id` values, and explicit `lang`. Keep editorial copy in the validated entry, not in route files.
 
 ## UI and blocks
 - Localize every user-facing string; pass labels/copy through props or a translation dictionary.

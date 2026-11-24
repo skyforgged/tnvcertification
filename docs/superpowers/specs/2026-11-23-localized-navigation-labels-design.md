@@ -19,7 +19,7 @@ On English URLs, the header and footer still show Indonesian menu labels. The ow
 
 ## Non-goals
 
-- No new English page content, translation entries, or `/en/` routes.
+- New English page content is limited to Home, CSMS, and About us; other menu routes keep redirect stubs.
 - No change to language switcher, breadcrumbs, locale resolver, or fallback stubs.
 - No translation of `siteSettings.description`; it stays as the existing SSOT value.
 - No visual redesign, new dependency, or client-side language state.

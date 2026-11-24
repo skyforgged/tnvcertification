@@ -22,6 +22,6 @@ const fallbackImage = { src: entry.data.featuredImage.src, alt: entry.data.featu
 >
   {hero && <PageHero slot="fullBleed" block={hero} fallbackImage={fallbackImage} lang={entry.data.lang} isCsms />}
   <article class="w-full">
-    <PageBlockRenderer blocks={blocks} fallbackImage={fallbackImage} />
+    <PageBlockRenderer blocks={blocks} fallbackImage={fallbackImage} lang={entry.data.lang} />
   </article>
 </WidePageLayout>

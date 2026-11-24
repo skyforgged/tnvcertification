@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { existsSync, readFileSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { parse as parseYaml } from "yaml";
@@ -63,4 +64,26 @@ test("English About entry has English contact labels and a paired route", async 
   assert.match(route, /pageAlternates\("about-us"\)/);
   const generic = await readFile(new URL("../src/pages/[slug].astro", import.meta.url), "utf8");
   assert.match(generic, /entry\.data\.lang !== "en"/);
+});
+
+const builtHtml = (path) => readFileSync(new URL(`../dist/${path}`, import.meta.url), "utf8");
+
+test("built English main-menu pages are real indexable pages", () => {
+  for (const path of ["en/index.html", "en/csms/index.html", "en/about-us/index.html"]) {
+    assert.ok(existsSync(new URL(`../dist/${path}`, import.meta.url)));
+    const html = builtHtml(path);
+    assert.doesNotMatch(html, /http-equiv=["']refresh["']/);
+    assert.match(html, /<html lang="en"/);
+    assert.match(html, /<link rel="canonical"/);
+    assert.match(html, /rel="alternate" hreflang="id"/);
+    assert.match(html, /rel="alternate" hreflang="en"/);
+    assert.match(html, /href="\/en\/services\/"/);
+    assert.doesNotMatch(html, />\s*Beranda\s*</);
+  }
+});
+
+test("built English CSMS uses the English FAQ heading", () => {
+  const html = builtHtml("en/csms/index.html");
+  assert.match(html, /Frequently asked questions/);
+  assert.doesNotMatch(html, /Pertanyaan Umum/);
 });
