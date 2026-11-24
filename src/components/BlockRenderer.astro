@@ -116,7 +116,7 @@ const ctaClass = (variant?: CtaBlock["variant"], surface?: Surface) =>
             {block.items.map((item, itemIndex) => (
               <li class="grid gap-3 border-t border-current/15 py-6 sm:grid-cols-[5rem_minmax(0,1fr)]">
                 <span class:list={["font-mono text-sm opacity-65", style.body]}>{String(itemIndex + 1).padStart(2, "0")}</span>
-                <div><h3 class:list={["text-xl font-semibold tracking-tight", style.heading]}>{item.title}</h3><p class:list={["mt-2 max-w-[var(--container-reading)] leading-relaxed", style.body]}>{item.description}</p></div>
+                <div><h3 class:list={["block-section-item-heading text-xl font-semibold tracking-tight", style.heading]}>{item.title}</h3><p class:list={["block-section-item-description mt-2 max-w-[var(--container-reading)] leading-relaxed", style.body]}>{item.description}</p></div>
               </li>
             ))}
           </ul>
@@ -126,8 +126,8 @@ const ctaClass = (variant?: CtaBlock["variant"], surface?: Surface) =>
             {block.items.map((item, itemIndex) => (
               <li class:list={["border border-current/15 p-5 sm:p-6", itemIndex === 0 ? "sm:col-span-2 lg:row-span-2" : "", style.body]}>
                 <span class="text-xs font-semibold tracking-widest opacity-60">{String(itemIndex + 1).padStart(2, "0")}</span>
-                <h3 class:list={["mt-3 text-lg font-semibold tracking-tight", style.heading]}>{item.title}</h3>
-                <p class="mt-2 leading-relaxed">{item.description}</p>
+                <h3 class:list={["block-section-item-heading mt-3 text-lg font-semibold tracking-tight", style.heading]}>{item.title}</h3>
+                <p class:list={["block-section-item-description mt-2 leading-relaxed", style.body]}>{item.description}</p>
               </li>
             ))}
           </ul>
@@ -137,7 +137,7 @@ const ctaClass = (variant?: CtaBlock["variant"], surface?: Surface) =>
             {block.items.map((item, itemIndex) => (
               <li class="grid gap-3 border-t border-current/20 py-5 sm:grid-cols-[2.5rem_minmax(0,1fr)]">
                 <span class="text-lg font-semibold opacity-60">{String(itemIndex + 1).padStart(2, "0")}</span>
-                <div><h3 class:list={["text-xl font-semibold", style.heading]}>{item.title}</h3><p class="mt-2 max-w-[var(--container-reading)] leading-relaxed">{item.description}</p></div>
+                <div><h3 class:list={["block-section-item-heading text-xl font-semibold", style.heading]}>{item.title}</h3><p class:list={["block-section-item-description mt-2 max-w-[var(--container-reading)] leading-relaxed", style.body]}>{item.description}</p></div>
               </li>
             ))}
           </ul>
@@ -147,7 +147,7 @@ const ctaClass = (variant?: CtaBlock["variant"], surface?: Surface) =>
             {block.items.map((item) => (
               <li class="flex gap-4">
                 <span aria-hidden="true" class="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-current"></span>
-                <div><h3 class:list={["text-lg font-semibold", style.heading]}>{item.title}</h3><p class:list={["mt-1 leading-relaxed", style.body]}>{item.description}</p></div>
+                <div><h3 class:list={["block-section-item-heading text-lg font-semibold", style.heading]}>{item.title}</h3><p class:list={["block-section-item-description mt-1 leading-relaxed", style.body]}>{item.description}</p></div>
               </li>
             ))}
           </ul>
@@ -157,8 +157,8 @@ const ctaClass = (variant?: CtaBlock["variant"], surface?: Surface) =>
             {block.items.slice(0,2).map((item, itemIndex) => (
               <article class:list={["p-5 sm:p-7", surface === "navy" ? "bg-block-navy" : surface === "cream" ? "bg-block-cream" : "bg-white"]}>
                 <span class="text-xs font-bold uppercase tracking-widest opacity-65">{String(itemIndex + 1).padStart(2, "0")}</span>
-                <h3 class:list={["mt-3 text-xl font-semibold tracking-tight", style.heading]}>{item.title}</h3>
-                <p class:list={["mt-3 leading-relaxed", style.body]}>{item.description}</p>
+                <h3 class:list={["block-section-item-heading mt-3 text-xl font-semibold tracking-tight", style.heading]}>{item.title}</h3>
+                <p class:list={["block-section-item-description mt-3 leading-relaxed", style.body]}>{item.description}</p>
               </article>
             ))}
           </div>
@@ -168,8 +168,8 @@ const ctaClass = (variant?: CtaBlock["variant"], surface?: Surface) =>
             {block.items.map((item, itemIndex) => (
               <li class:list={["border-t pt-4", style.divider.replace("divide-", "border-")]}>
                 <span class:list={["text-xs font-bold tabular-nums", style.body]}>{String(itemIndex + 1).padStart(2, "0")}</span>
-                <h3 class:list={["mt-2 text-lg font-semibold", style.heading]}>{item.title}</h3>
-                <p class:list={["mt-2 leading-relaxed", style.body]}>{item.description}</p>
+                <h3 class:list={["block-section-item-heading mt-2 text-lg font-semibold", style.heading]}>{item.title}</h3>
+                <p class:list={["block-section-item-description mt-2 leading-relaxed", style.body]}>{item.description}</p>
               </li>
             ))}
           </ul>

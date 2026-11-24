@@ -11,7 +11,7 @@ const servicesHref = primaryNavigation.find((item) => item.href === "/services/"
 ---
 <div id={block.id}>
   <MainMenuHero eyebrow={block.eyebrow} title={block.title} description={block.description ?? ""} image={block.image ?? fallbackImage.src} imageAlt={block.imageAlt ?? fallbackImage.alt} imagePriority variant={isHomepage ? "home" : "default"}>
-    {isHomepage && <ButtonLink slot="actions" href={whatsappHref}>Konsultasi via WhatsApp <span aria-hidden="true">↗</span></ButtonLink>}
+    {isHomepage && <ButtonLink slot="actions" href={whatsappHref}>Hubungi Kami via WhatsApp <span aria-hidden="true">↗</span></ButtonLink>}
     {isHomepage && <ButtonLink slot="actions" href={servicesHref} variant="secondary">Jelajahi layanan</ButtonLink>}
   </MainMenuHero>
 </div>

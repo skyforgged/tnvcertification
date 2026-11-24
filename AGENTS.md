@@ -29,6 +29,14 @@ This combined pattern is still in development and is not a final architecture de
 - Editorial `.md` entries (pages, services, articles) contain frontmatter blocks only and no Markdown body. A re-added body is rejected at build time and in changed-content preflight by CONTENT-014. Author the H1, intro and featured image as a `hero` block; `/services/` is the canonical example.
 - Page entries are ID-only in this phase; English fallbacks are redirect stubs, not translated page entries.
 
+## Editorial purpose and research standard
+
+- Build the website as a genuinely useful source of information, not a service catalogue or a collection of SEO pages.
+- Never publish internal conversations, AI instructions, strategy notes, corrections, workflow discussion, or development-process commentary as public content. Keep those in agent or operational documentation.
+- Research must be turned into substantive, accurate page content, not left as bare references or links. External sources are research inputs, never competitor backlinks.
+- Service pages must aim to be complete information hubs. The required depth, topic coverage, and SEO behaviour are defined in `docs/content-editorial-standards.md`.
+- Do not chase rankings through arbitrary length, keyword repetition, or near-identical pages. Prioritise accuracy, relevance, trust, semantic structure, and consistent topical authority.
+
 ## Mandatory editorial content rules
 - Every publishable content entry must have an introductory paragraph directly after its H1. The intro is exactly one paragraph and must explain the page title, beginning with the title followed by `adalah ...` (for example, `Sertifikasi ISO 9001 adalah ...`). Do not use generic or repeated intro copy across unrelated pages.
 - `metaDescription` is a required, separate SEO field. It must be unique, persuasive, relevant to the page, and must not duplicate the intro or featured-image alt text.

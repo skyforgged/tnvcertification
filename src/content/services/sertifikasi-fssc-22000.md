@@ -1,6 +1,6 @@
 ---
 title: "Sertifikasi Sistem Manajemen Keamanan Pangan FSSC 22000"
-intro: "Sertifikasi Sistem Manajemen Keamanan Pangan FSSC 22000 adalah skema penilaian sistem keamanan pangan yang menggabungkan ISO 22000, program prasyarat (PRP) sesuai kategori rantai pangan, dan persyaratan tambahan skema. Penerapannya membantu organisasi mengendalikan bahaya pangan secara sistematis, menjaga konsistensi proses, dan menunjukkan kesesuaian melalui audit independen."
+intro: "Sertifikasi Sistem Manajemen Keamanan Pangan FSSC 22000 adalah skema penilaian sistem keamanan pangan yang menggabungkan ISO 22000, program prasyarat (PRP) sesuai kategori rantai pangan, dan persyaratan tambahan skema."
 metaDescription: "Panduan lengkap FSSC 22000: komponen skema, ISO 22000, PRP sektoral, HACCP, food defense, food fraud, ketertelusuran, audit sertifikasi, dan transisi Version 7."
 pubDate: "2026-11-23T00:00:00Z"
 updatedDate: "2026-11-23T00:00:00Z"

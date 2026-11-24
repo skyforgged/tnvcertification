@@ -61,6 +61,12 @@ export const siteSettings = {
     logoHome: { id: "beranda", en: "home" },
     backToTop: { id: "Kembali ke atas ↑", en: "Back to top ↑" },
   },
+  footer: {
+    serviceDescription: (title: string) =>
+      `${organization.name} menyediakan jasa sertifikasi ${title.replace(/^Sertifikasi\s+/i, "")}.`,
+    trainingDescription: (title: string) =>
+      `${organization.name} melayani pelatihan ${title.replace(/^(?:Pelatihan|Training)\s+/i, "")}.`,
+  },
 } as const;
 
 export const primaryNavigation = [

@@ -6,6 +6,7 @@ import { getPublishedServices, servicePath } from "../../data/services";
 import type { HeroBlock } from "../../data/pages";
 import { siteCrumb } from "../../data/breadcrumbs";
 import { servicePageJsonLd } from "../../lib/structured-data";
+import { siteSettings } from "../../site";
 
 export async function getStaticPaths() {
   const services = await getPublishedServices("id");
@@ -34,6 +35,7 @@ const allBlocks = service.data.blocks ?? [];
 const hero = allBlocks.find((block): block is HeroBlock => block.type === "hero");
 if (!hero) throw new Error(`Service "${serviceId}" is missing a hero block.`);
 const blocks = allBlocks.filter((block) => block.type !== "hero");
+const footerDescription = siteSettings.footer.serviceDescription(service.data.title);
 ---
 
 <ServiceLayout
@@ -43,6 +45,7 @@ const blocks = allBlocks.filter((block) => block.type !== "hero");
   canonical={servicePath(service.data)}
   ogImage={service.data.featuredImage.src}
   imageAlt={service.data.featuredImage.alt}
+  footerDescription={footerDescription}
   breadcrumbs={[siteCrumb("/", lang), siteCrumb("/services/", lang), { label: service.data.title }]}
   hero={hero}
   blocks={blocks}

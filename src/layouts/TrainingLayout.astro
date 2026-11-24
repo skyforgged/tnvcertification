@@ -13,16 +13,17 @@ interface Props {
   canonical?: string;
   ogImage?: string;
   imageAlt: string;
+  footerDescription?: string;
   alternates?: SeoAlternate[];
   hero: HeroBlock;
   blocks: PageBlock[];
 }
-const { title, description, lang = "id", canonical, ogImage, imageAlt, alternates = [], hero, blocks } = Astro.props;
+const { title, description, lang = "id", canonical, ogImage, imageAlt, footerDescription, alternates = [], hero, blocks } = Astro.props;
 const homeLabel = lang === "en" ? "Home" : "Beranda";
 const trainingLabel = lang === "en" ? "Training" : "Pelatihan";
 const fallbackImage = { src: ogImage ?? "", alt: imageAlt };
 ---
-<Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage} alternates={alternates}>
+<Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage} footerDescription={footerDescription} alternates={alternates}>
   <Container as="article" variant="wide" gutter={false}>
     <Breadcrumbs items={[{ label: homeLabel, href: "/" }, { label: trainingLabel, href: "/trainings/" }, { label: title }]} />
     <PageHero block={hero} fallbackImage={fallbackImage} />

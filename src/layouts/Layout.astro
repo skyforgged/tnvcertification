@@ -9,7 +9,7 @@ import { uiLang } from "../lib/navigation";
 import { pageJsonLdGraph, serializeJsonLd } from "../lib/structured-data";
 
 export type Props = LayoutProps;
-const { structuredData = [] } = Astro.props;
+const { structuredData = [], footerDescription } = Astro.props;
 const seo = buildSeo(Astro.props);
 const jsonLd = serializeJsonLd(pageJsonLdGraph(structuredData));
 const ui = uiLang(seo.lang);
@@ -51,6 +51,6 @@ const ui = uiLang(seo.lang);
         <slot />
       </Container>
     </main>
-    <SiteFooter lang={seo.lang} />
+    <SiteFooter lang={seo.lang} description={footerDescription} />
   </body>
 </html>

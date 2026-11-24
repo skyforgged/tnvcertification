@@ -27,8 +27,8 @@ test("header localizes menu labels and navigation chrome", () => {
 });
 
 test("footer accepts lang and localizes group titles, links, and back-to-top", () => {
-  assert.match(footer, /interface Props \{\s*lang: string;\s*\}/);
-  assert.match(footer, /const \{ lang \} = Astro\.props/);
+  assert.match(footer, /interface Props \{\s*lang: string;\s*description\?: string;\s*\}/);
+  assert.match(footer, /const \{ lang, description = siteSettings\.description \} = Astro\.props/);
   assert.match(footer, /import \{ navigationLabel, uiLang \} from "\.\.\/lib\/navigation"/);
   assert.match(footer, /navigationLabel\(\{ label: group\.title, labelEn: group\.titleEn \}, lang\)/);
   assert.match(footer, /navigationLabel\(link, lang\)/);
@@ -41,6 +41,6 @@ test("layout localizes skip link and passes lang to footer", () => {
   assert.match(layout, /import \{ uiLang \} from "\.\.\/lib\/navigation"/);
   assert.match(layout, /const ui = uiLang\(seo\.lang\)/);
   assert.match(layout, /siteSettings\.ui\.skipToContent\[ui\]/);
-  assert.match(layout, /<SiteFooter lang=\{seo\.lang\} \/>/);
+  assert.match(layout, /<SiteFooter lang=\{seo\.lang\} description=\{footerDescription\} \/>/);
   assert.doesNotMatch(layout, /Lewati ke konten utama/);
 });
