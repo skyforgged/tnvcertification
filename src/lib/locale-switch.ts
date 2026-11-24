@@ -16,6 +16,7 @@ export interface LanguageSwitchInput {
   currentLang: string;
   services: readonly LanguageEntry[];
   articles: readonly LanguageEntry[];
+  pages: readonly LanguageEntry[];
   /** Indonesian paths whose /en/ variant is a redirect stub. */
   fallbackPaths: readonly string[];
 }
@@ -37,6 +38,11 @@ function withTrailingSlash(pathname: string): string {
 
 function articlePath(entry: LanguageEntry): string {
   return `/articles/${entry.slug}/`;
+}
+
+function pagePath(entry: LanguageEntry): string {
+  if (entry.slug === "home") return entry.lang === "id" ? "/" : "/en/";
+  return entry.lang === "id" ? `/${entry.slug}/` : `/en/${entry.slug}/`;
 }
 
 /** English service routes are /en + the Indonesian route; stub paths never carry /en. */
@@ -63,8 +69,13 @@ function counterpartHref(
   input: LanguageSwitchInput,
   pathname: string,
 ): string {
-  const { currentLang, services, articles } = input;
+  const { currentLang, services, articles, pages } = input;
   if (lang === currentLang) return "";
+
+  const pageSource = pages.find(
+    (entry) => entry.lang === currentLang && pagePath(entry) === pathname,
+  );
+  if (pageSource) return findCounterpart(pages, pageSource, lang, pagePath);
 
   if (SERVICE_DETAIL_PATH.test(pathname)) {
     const source = services.find(

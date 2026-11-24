@@ -11,14 +11,29 @@ const articles = [
   { lang: "id", slug: "panduan-dokumen-iso-9001", translationKey: "article-document-control-iso-9001" },
   { lang: "en", slug: "iso-9001-document-control", translationKey: "article-document-control-iso-9001" },
 ];
+const pages = [
+  { lang: "id", slug: "home", translationKey: "page-hal-home" },
+  { lang: "en", slug: "home", translationKey: "page-hal-home" },
+  { lang: "id", slug: "csms", translationKey: "page-hal-csms" },
+  { lang: "en", slug: "csms", translationKey: "page-hal-csms" },
+  { lang: "id", slug: "about-us", translationKey: "page-hal-about-us" },
+  { lang: "en", slug: "about-us", translationKey: "page-hal-about-us" },
+];
 const fallbackPaths = [
   "/services/sertifikasi-iso-9001-2026/",
   "/articles/",
-  "/about-us/",
 ];
 
 const options = (pathname, currentLang = "id", overrides = {}) =>
-  resolveLanguageOptions({ pathname, currentLang, services, articles, fallbackPaths, ...overrides });
+  resolveLanguageOptions({
+    pathname,
+    currentLang,
+    services,
+    articles,
+    pages,
+    fallbackPaths,
+    ...overrides,
+  });
 
 const shape = (list) =>
   list.map(({ lang, href, active, available }) => ({ lang, href, active, available }));
@@ -59,8 +74,23 @@ test("service index links both ways", () => {
   assert.equal(english[1].active, true);
 });
 
+test("language switch resolves localized main-menu pages", () => {
+  assert.deepEqual(shape(options("/", "id", { pages }).filter((option) => option.lang === "en")), [
+    { lang: "en", href: "/en/", active: false, available: true },
+  ]);
+  assert.deepEqual(shape(options("/en/", "en", { pages }).filter((option) => option.lang === "id")), [
+    { lang: "id", href: "/", active: false, available: true },
+  ]);
+  assert.deepEqual(shape(options("/csms/", "id", { pages }).filter((option) => option.lang === "en")), [
+    { lang: "en", href: "/en/csms/", active: false, available: true },
+  ]);
+  assert.deepEqual(shape(options("/en/about-us/", "en", { pages }).filter((option) => option.lang === "id")), [
+    { lang: "id", href: "/about-us/", active: false, available: true },
+  ]);
+});
+
 test("generic paths have no counterpart", () => {
-  for (const pathname of ["/", "/trainings/", "/schedules/", "/articles/", "/about-us/", "/csms/"]) {
+  for (const pathname of ["/trainings/", "/schedules/", "/articles/"]) {
     const inactive = options(pathname).find((option) => !option.active);
     assert.equal(inactive.available, false, pathname);
     assert.equal(inactive.href, "", pathname);
@@ -68,7 +98,7 @@ test("generic paths have no counterpart", () => {
 });
 
 test("fallback stubs and missing translations never produce an English link", () => {
-  for (const option of options("/about-us/")) {
+  for (const option of options("/trainings/")) {
     assert.ok(!option.href.startsWith("/en/"));
   }
   const missingPartner = options("/services/sertifikasi-iso-9001-2026/")[1];

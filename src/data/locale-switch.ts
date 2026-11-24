@@ -2,6 +2,7 @@
  * Gathers published entries and fallback routes for the header language
  * switcher. All link decisions stay in the pure lib/locale-switch resolver.
  */
+import { getCollection } from "astro:content";
 import { getPublishedArticles } from "./articles";
 import { getEnglishFallbackPaths } from "./locale-fallback";
 import { getPublishedServices } from "./services";
@@ -14,10 +15,11 @@ export async function getLanguageOptions(
   pathname: string,
   currentLang: string,
 ): Promise<LanguageOption[]> {
-  const [idServices, enServices, fallbackPaths] = await Promise.all([
+  const [idServices, enServices, fallbackPaths, pages] = await Promise.all([
     getPublishedServices("id"),
     getPublishedServices("en"),
     getEnglishFallbackPaths(),
+    getCollection("pages", (entry) => entry.data.draft !== true),
   ]);
   return resolveLanguageOptions({
     pathname,
@@ -31,6 +33,11 @@ export async function getLanguageOptions(
       lang: article.lang,
       slug: article.slug,
       translationKey: article.translationKey,
+    })),
+    pages: pages.map((entry) => ({
+      lang: entry.data.lang,
+      slug: entry.data.slug,
+      translationKey: entry.data.translationKey,
     })),
     fallbackPaths,
   });
