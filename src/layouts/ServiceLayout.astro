@@ -14,6 +14,7 @@ interface Props {
   canonical?: string;
   ogImage?: string;
   imageAlt: string;
+  footerDescription?: string;
   structuredData?: unknown[];
   breadcrumbs?: Array<{ label: string; href?: string }>;
   hero: HeroBlock;
@@ -29,6 +30,7 @@ const {
   canonical,
   ogImage,
   imageAlt,
+  footerDescription,
   structuredData = [],
   breadcrumbs = [],
   hero,
@@ -40,7 +42,7 @@ const fallbackImage = { src: ogImage ?? "", alt: imageAlt };
 const contactHref = `https://wa.me/${organization.contact.whatsapp.replace(/[^0-9]/g, "")}`;
 ---
 
-<Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage} structuredData={structuredData}>
+<Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage} footerDescription={footerDescription} structuredData={structuredData}>
   <Container as="article" variant="wide" gutter={false}>
     <Breadcrumbs items={breadcrumbs} lang={lang === "en" ? "en" : "id"} />
     {hero && <PageHero block={hero} fallbackImage={fallbackImage} />}

@@ -18,6 +18,8 @@ export interface LayoutProps {
   ogImage?: string;
   path?: string;
   alternates?: SeoAlternate[];
+  /** Optional page-specific description for the footer identity block. */
+  footerDescription?: string;
   /** Additional page-specific JSON-LD entities; organization is injected centrally. */
   structuredData?: unknown[];
 }

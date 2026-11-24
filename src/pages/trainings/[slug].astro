@@ -24,6 +24,7 @@ const { hero, blocks } = getTrainingView({
   title: training.data.title,
   blocks: training.data.blocks,
 });
+const footerDescription = siteSettings.footer.trainingDescription(training.data.title);
 const schedules = sortSchedulesByStartDate(
   await getCollection(
     "trainingSchedules",
@@ -81,6 +82,7 @@ const todayKey = new Intl.DateTimeFormat("en-CA", {
   lang={training.data.lang}
   ogImage={training.data.featuredImage.src}
   imageAlt={training.data.featuredImage.alt}
+  footerDescription={footerDescription}
   hero={hero}
   blocks={blocks}
 >
