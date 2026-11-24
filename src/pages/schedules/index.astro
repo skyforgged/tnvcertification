@@ -10,6 +10,7 @@ import {
   type ListingBlock,
 } from "../../data/pages";
 import { scheduleDateLabel, sortSchedulesByStartDate } from "../../lib/schedule-display";
+import { trainingScheduleDefaults } from "../../site";
 
 const entry = await getPageEntry("schedules");
 const hero = getPageHero(entry);
@@ -70,7 +71,11 @@ const statusLabel = (status?: string) => ({
                 </h2>
                 <p class="mt-2 text-sm text-ink-muted">
                   {schedule.data.locationType === "online" ? "Online" : schedule.data.locationType === "hybrid" ? "Hybrid" : schedule.data.locationType === "offline" ? "Tatap muka" : "Metode menyusul"}
-                  {(schedule.data.venue || schedule.data.city) && ` · ${[schedule.data.venue, schedule.data.city, schedule.data.province].filter(Boolean).join(", ")}`}
+                  {(schedule.data.venue || schedule.data.city || schedule.data.province || schedule.data.locationType === "offline" || schedule.data.locationType === "hybrid") && ` · ${[
+                    schedule.data.venue ?? ((schedule.data.locationType === "offline" || schedule.data.locationType === "hybrid") ? trainingScheduleDefaults.venue.name : undefined),
+                    schedule.data.city ?? ((schedule.data.locationType === "offline" || schedule.data.locationType === "hybrid") ? trainingScheduleDefaults.venue.address.city : undefined),
+                    schedule.data.province ?? ((schedule.data.locationType === "offline" || schedule.data.locationType === "hybrid") ? trainingScheduleDefaults.venue.address.province : undefined),
+                  ].filter(Boolean).join(", ")}`}
                 </p>
                 <p class="mt-2 text-sm font-medium text-ink">{statusLabel(schedule.data.registrationStatus)}</p>
                 {schedule.data.price !== undefined && (
