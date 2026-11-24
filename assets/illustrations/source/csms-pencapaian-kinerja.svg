@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480" fill="none">
+  <title>Ilustrasi Pencapaian Kinerja K3LL dalam CSMS</title>
+  <rect width="640" height="480" rx="28" fill="#F5F8FF"/>
+  <circle cx="320" cy="236" r="182" fill="#10B981" opacity=".10"/>
+  <path d="M320 80 462 128v104c0 94-56 158-142 196-86-38-142-102-142-196V128L320 80Z" fill="#10B981"/>
+  <path d="M320 108 435 149v86c0 72-43 124-115 156-72-32-115-84-115-156v-86l115-41Z" fill="#12345E" opacity=".92"/>
+  <rect x="230" y="300" width="34" height="54" rx="6" fill="#fff"/><rect x="280" y="266" width="34" height="88" rx="6" fill="#fff"/><rect x="330" y="230" width="34" height="124" rx="6" fill="#FFD447"/><rect x="380" y="188" width="34" height="166" rx="6" fill="#fff"/><path d="M226 372h196" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="462" cy="366" r="32" fill="#10B981" stroke="#fff" stroke-width="5"/>
+  <text x="462" y="376" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" fill="#fff">8</text>
+</svg>

@@ -14,6 +14,9 @@ export type ListingBlock = Extract<PageBlockUnion, { type: "listing" }>;
 export type UpcomingSchedulesBlock = Extract<PageBlockUnion, { type: "upcoming-schedules" }>;
 export type ContactBlock = Extract<PageBlockUnion, { type: "contact" }>;
 
+/** Prefix that identifies editorial topic pages owned by the /csms/[slug] route. */
+export const CSMS_TOPIC_PREFIX = "csms/";
+
 /** Slugs owned by a dedicated route; the generic [slug].astro must skip them. */
 export const routeOwnedPageSlugs: readonly string[] = [
   "home",
@@ -40,4 +43,13 @@ export function getPageHero(entry: PageEntry): HeroBlock | undefined {
 
 export function getPageBlocks(entry: PageEntry): PageBlock[] {
   return entry.data.blocks ?? [];
+}
+
+/** Published editorial topics rendered by the dedicated /csms/[slug] route. */
+export async function getCsmsTopicEntries(): Promise<PageEntry[]> {
+  const entries = await getCollection(
+    "pages",
+    (entry) => entry.data.draft !== true && entry.data.slug.startsWith(CSMS_TOPIC_PREFIX),
+  );
+  return entries.sort((a, b) => a.data.slug.localeCompare(b.data.slug));
 }

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480" fill="none">
+  <title>Ilustrasi Kepemimpinan dan Komitmen CSMS</title>
+  <rect width="640" height="480" rx="28" fill="#F5F8FF"/>
+  <circle cx="320" cy="236" r="182" fill="#315CFF" opacity=".10"/>
+  <path d="M320 80 462 128v104c0 94-56 158-142 196-86-38-142-102-142-196V128L320 80Z" fill="#315CFF"/>
+  <path d="M320 108 435 149v86c0 72-43 124-115 156-72-32-115-84-115-156v-86l115-41Z" fill="#12345E" opacity=".92"/>
+  <path d="m320 168 20 42 46 6-34 33 9 46-41-23-41 23 9-46-34-33 46-6 20-42Z" fill="#FFD447"/><circle cx="232" cy="326" r="14" fill="#fff"/><circle cx="320" cy="326" r="18" fill="#fff"/><circle cx="408" cy="326" r="14" fill="#fff"/><path d="M218 350h28m62 0h24m62 0h28" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="462" cy="366" r="32" fill="#315CFF" stroke="#fff" stroke-width="5"/>
+  <text x="462" y="376" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" fill="#fff">1</text>
+</svg>
