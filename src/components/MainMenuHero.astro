@@ -14,7 +14,7 @@ const isServices = variant === "services";
   isHome
     ? "relative isolate overflow-hidden border-brand-deepblue bg-[#102b55] py-9 shadow-[0_24px_60px_-42px_rgba(16,43,85,0.7)] sm:py-12 lg:min-h-[34rem] lg:py-14"
     : isServices
-      ? "relative isolate overflow-hidden border-[#dce7fb] bg-[#f1f5ff] py-10 sm:py-14 lg:py-[4.5rem]"
+      ? "relative left-1/2 isolate w-screen -translate-x-1/2 overflow-hidden border-[#dce7fb] bg-[#f1f5ff] py-10 sm:py-14 lg:py-[4.5rem]"
       : "border-border py-8 sm:py-12 lg:py-16"
 ]} aria-labelledby="main-menu-hero-title">
   {(isHome || isServices) && <div aria-hidden="true" class:list={["pointer-events-none absolute -left-28 -top-20 -z-10 h-96 w-96 rounded-full blur-3xl", isHome ? "bg-brand-blue/25" : "bg-brand-blue/10"]}></div>}
