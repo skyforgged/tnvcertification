@@ -1,7 +1,16 @@
 import { readdir, mkdir, stat } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 import path from "node:path";
+import {
+  CONVERSION_MANIFEST_NAME,
+  outputHash,
+  readManifest,
+  shouldConvert,
+  sourceFingerprint,
+  writeManifest,
+} from "../src/lib/image-conversion-cache.mjs";
 
+const sharpCliVersion = "6.1.0";
 const root = process.cwd();
 const sourceDir = path.join(root, "assets/illustrations/source");
 const outputDir = path.join(root, "public/images/illustrations");
@@ -40,19 +49,42 @@ if (sources.length === 0) {
 
 await mkdir(outputDir, { recursive: true });
 
+const manifestPath = path.join(
+  root,
+  "assets/illustrations",
+  CONVERSION_MANIFEST_NAME,
+);
+const manifest = await readManifest(manifestPath);
+let converted = 0;
+let skipped = 0;
+let manifestChanged = false;
+
 for (const sourcePath of sources) {
   const relativePath = path.relative(sourceDir, sourcePath);
   const outputPath = path.join(
     outputDir,
     relativePath.replace(/\.svg$/i, ".webp"),
   );
+  const fingerprint = await sourceFingerprint(
+    sourcePath,
+    settings,
+    sharpCliVersion,
+  );
+  const existingOutput = await outputHash(outputPath);
+
+  if (!shouldConvert(manifest, relativePath, fingerprint, existingOutput)) {
+    skipped += 1;
+    console.log(`Skipped ${path.relative(root, outputPath)} (unchanged).`);
+    continue;
+  }
+
   await mkdir(path.dirname(outputPath), { recursive: true });
 
   const result = spawnSync(
     "pnpm",
     [
       "dlx",
-      "sharp-cli@6.1.0",
+      `sharp-cli@${sharpCliVersion}`,
       "--input",
       sourcePath,
       "--output",
@@ -73,13 +105,24 @@ for (const sourcePath of sources) {
 
   if (result.error) throw result.error;
   if (result.status !== 0) {
-    throw new Error(`WebP conversion failed for ${relativePath} (exit ${result.status}).`);
+    throw new Error(
+      `WebP conversion failed for ${relativePath} (exit ${result.status}).`,
+    );
   }
 
   const output = await stat(outputPath);
+  manifest.entries[relativePath] = {
+    source: fingerprint,
+    output: await outputHash(outputPath),
+  };
+  manifestChanged = true;
+  converted += 1;
   console.log(
     `Created ${path.relative(root, outputPath)} (${(output.size / 1024).toFixed(1)} KB)`,
   );
 }
 
-console.log(`Converted ${sources.length} SVG master(s) to WebP.`);
+if (manifestChanged) await writeManifest(manifestPath, manifest);
+console.log(
+  `Converted ${converted} SVG master(s); skipped ${skipped} unchanged.`,
+);
