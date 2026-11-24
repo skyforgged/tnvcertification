@@ -199,6 +199,7 @@ export function trainingPageJsonLd(input: TrainingStructuredDataInput) {
         "@type": "CourseInstance",
         "@id": id,
         name: input.name,
+        course: { "@id": courseId },
         startDate: schedule.startDate,
         endDate: schedule.endDate,
         url,
