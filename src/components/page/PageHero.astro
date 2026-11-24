@@ -3,33 +3,15 @@ import MainMenuHero from "../MainMenuHero.astro";
 import ButtonLink from "../ButtonLink.astro";
 import { organization, primaryNavigation } from "../../site";
 import type { HeroBlock } from "../../data/pages";
-
-interface Props {
-  block: HeroBlock;
-  fallbackImage: { src: string; alt: string };
-}
-
-const { block, fallbackImage } = Astro.props;
+interface Props { block: HeroBlock; fallbackImage: { src: string; alt: string }; isHomepage?: boolean; }
+const { block, fallbackImage, isHomepage = false } = Astro.props;
 const whatsappNumber = organization.contact.whatsapp.replace(/\D/g, "");
 const whatsappHref = `https://wa.me/${whatsappNumber}`;
 const servicesHref = primaryNavigation.find((item) => item.href === "/services/")?.href ?? "/";
 ---
-
 <div id={block.id}>
-  <MainMenuHero
-    eyebrow={block.eyebrow}
-    title={block.title}
-    description={block.description ?? ""}
-    image={block.image ?? fallbackImage.src}
-    imageAlt={block.imageAlt ?? fallbackImage.alt}
-    imagePriority
-  >
-    <ButtonLink href={whatsappHref}>
-      Konsultasi via WhatsApp
-      <span aria-hidden="true">↗</span>
-    </ButtonLink>
-    <ButtonLink href={servicesHref} variant="secondary">
-      Jelajahi layanan
-    </ButtonLink>
+  <MainMenuHero eyebrow={block.eyebrow} title={block.title} description={block.description ?? ""} image={block.image ?? fallbackImage.src} imageAlt={block.imageAlt ?? fallbackImage.alt} imagePriority variant={isHomepage ? "home" : "default"}>
+    {isHomepage && <ButtonLink slot="actions" href={whatsappHref}>Konsultasi via WhatsApp <span aria-hidden="true">↗</span></ButtonLink>}
+    {isHomepage && <ButtonLink slot="actions" href={servicesHref} variant="secondary">Jelajahi layanan</ButtonLink>}
   </MainMenuHero>
 </div>
