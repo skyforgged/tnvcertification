@@ -9,7 +9,7 @@ const articleLayout = await readFile(new URL("../src/layouts/ArticleLayout.astro
 
 test("articles hero uses the elevated navy surface", () => {
   assert.match(hero, /const isArticles = variant === "articles";/);
-  assert.match(hero, /const isElevated = isHome \|\| isServices \|\| isCsms \|\| isTrainings \|\| isSchedules \|\| isArticles;/);
+  assert.match(hero, /const isElevated = isHome \|\| isServices \|\| isCsms \|\| isTrainings \|\| isSchedules \|\| isArticles \|\| isAbout;/);
   assert.match(hero, /isServices \|\| isCsms \|\| isTrainings \|\| isSchedules \|\| isArticles/);
 });
 
