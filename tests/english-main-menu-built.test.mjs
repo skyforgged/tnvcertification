@@ -8,6 +8,7 @@ const expected = {
   Services: "/en/services/",
   CSMS: "/en/csms/",
   Trainings: "/en/trainings/",
+  Schedules: "/en/schedules/",
   About: "/en/about-us/",
 };
 
@@ -15,6 +16,7 @@ const footerLabels = {
   Home: "Home",
   Services: "Services",
   CSMS: "CSMS",
+  Schedules: "Training schedules",
   About: "About",
 };
 

@@ -264,6 +264,10 @@
     "trainings-index-en.svg": {
       "source": "97c58c06d64c3ba21b355c8c62bbf9b8526fcd1e36db5c3370145677eb47619d",
       "output": "865265859fcccbbc38808168deb63e07596e3c52dc3a1b678ff854e0ec4fd0b0"
+    },
+    "schedules-calendar-en.svg": {
+      "source": "b037d31a562197d1cc9c0dd15b12f5fd9b3fcff548ed013293452fd2c3dec7ea",
+      "output": "8468f3ced15a8e98dfe4a0496289b55948efd2e61a495c5257821228c2752b47"
     }
   }
 }
