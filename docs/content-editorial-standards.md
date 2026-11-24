@@ -52,3 +52,26 @@ Peringkat bukan target yang dikejar dengan menambah panjang artikel secara arbit
 3. Perbaiki konten langsung di repository sebagai materi publik yang profesional dan layak dipublikasikan.
 
 Hasil diskusi internal dan evaluasi proses tetap berada di dokumentasi agent atau catatan operasional, bukan di konten publik.
+
+## Peralatan untuk korpus Markdown besar
+
+Ketika jumlah berkas konten melebihi ratusan, alat yang dibutuhkan adalah content tooling, bukan code graph. CodeGraph memetakan simbol, call path, dan dependency kode. Alat itu tidak memvalidasi makna editorial, pasangan terjemahan, atau aturan konten proyek ini.
+
+### Yang sudah dipakai repository
+
+- **Astro Content Collections + Zod** untuk schema, tipe, dan field wajib.
+- **`remark-parse` AST** untuk struktur heading dan intro. Jangan gunakan regex untuk aturan struktur Markdown.
+- **Validator konten kustom** untuk aturan CONTENT, copula `adalah`/`is`, alt teks, keunikan intro dan `metaDescription`, hierarchy heading, dan frontmatter-only entries.
+- **`validate:changed`** untuk preflight berkas konten yang berubah.
+- **Audit hasil build** untuk SEO, canonical, blok, gambar, dan heading.
+
+### Yang perlu ditambahkan bertahap
+
+- **Inventory script** yang merangkum slug, collection, `lang`, `translationKey`, status draft, judul, tanggal, gambar, jumlah kata, dan halaman tanpa tautan masuk.
+- **Translation parity check** yang membandingkan pasangan ID/EN berdasarkan `translationKey`, status draft, dan metadata wajib.
+- **Link audit** untuk tautan internal di berkas `.md`, anchor, dan route hasil build. Pemeriksaan tautan eksternal bersifat opsional dan harus dibedakan dari referensi riset; jangan mengubah sumber riset menjadi backlink kompetitor.
+- **Duplicate dan near-duplicate check** untuk judul, intro, `metaDescription`, dan kesamaan isi antar halaman.
+- **Terminology check** untuk istilah baku dan larangan kata tertentu, termasuk larangan kata berawalan `konsult`/`consult` dan larangan salinan status internal pada konten publik.
+- **Full-text search** untuk kerja harian. `rg` sudah cukup. SQLite FTS5 baru diperlukan bila dibuat antarmuka pencarian sendiri.
+
+Validator harus tetap deterministik dan berada di repository. AI boleh membantu menulis atau meninjau konten, tetapi tidak menggantikan aturan yang dijalankan pada `check`, `build`, `test`, dan `audit:*`. Obsidian atau alat sejenis boleh dipakai untuk menjelajah konten secara manual, tetapi repository tetap source of truth.
