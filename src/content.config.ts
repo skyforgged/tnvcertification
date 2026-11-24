@@ -227,6 +227,8 @@ const trainingHeroSchema = z.object({
 const trainingSchema = baseEntrySchema.extend({
   draft: z.boolean().optional(),
   categoryIds: z.array(z.string()).optional(),
+  // Explicit links to published service entries; never infer from course title.
+  relatedServiceSlugs: z.array(z.string().min(1)).optional(),
   hero: trainingHeroSchema.optional(),
   blocks: z.array(pageBlockSchema).optional(),
 });
