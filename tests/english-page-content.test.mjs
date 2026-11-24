@@ -62,6 +62,7 @@ test("English About entry has English contact labels and a paired route", async 
   assert.match(route, /getPageEntry\("about-us", "en"\)/);
   assert.match(route, /canonical="\/en\/about-us\/"/);
   assert.match(route, /pageAlternates\("about-us"\)/);
+  assert.match(route, /isAbout/);
   const generic = await readFile(new URL("../src/pages/[slug].astro", import.meta.url), "utf8");
   assert.match(generic, /entry\.data\.lang !== "en"/);
 });

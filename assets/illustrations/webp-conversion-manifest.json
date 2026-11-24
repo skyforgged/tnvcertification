@@ -192,6 +192,18 @@
     "training-iso9001-2026.svg": {
       "source": "1ea978620d94259e4bbe8e9a612df10e2f4ac73621a9ea1a62cbbdf4ee7c51bf",
       "output": "eaca96b9639868479d0f26c15d715cc9dfcc97561b788d4a073d9dc3e4646e65"
+    },
+    "about-organization-en.svg": {
+      "source": "3926257ca266162997f9caa83ad5aeb5719f729b715a1c76251755e6fc5b322e",
+      "output": "8a24cac225e374b5b923c35871d5473c71bccb181d7472f5d26799c1c2840875"
+    },
+    "csms-safety-en.svg": {
+      "source": "1be9787c3e3d38bccf6e07e09c42c7a43afc525da576f3874d6a922c98f36582",
+      "output": "13381797c144615de4706df757fc746a757b7a36b0684a0525d1450c917a81ee"
+    },
+    "home-assurance-en.svg": {
+      "source": "28081eb8802083e0d409bf390fa4685fa2d0c77449125f94032d45ac0f34c2a4",
+      "output": "83f8ec3ed36f12521e60038abdcd67dfd72fe30dd2363ca1bbe2d8971ef43ab5"
     }
   }
 }

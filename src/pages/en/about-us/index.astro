@@ -1,5 +1,6 @@
 ---
 import WidePageLayout from "../../../layouts/WidePageLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
 import PageHero from "../../../components/page/PageHero.astro";
 import PageBlockRenderer from "../../../components/page/PageBlockRenderer.astro";
 import { getPageBlocks, getPageEntry, getPageHero } from "../../../data/pages";
@@ -19,10 +20,17 @@ const fallbackImage = { src: entry.data.featuredImage.src, alt: entry.data.featu
   canonical="/en/about-us/"
   alternates={pageAlternates("about-us")}
   ogImage={fallbackImage.src}
-  breadcrumbs={[siteCrumb("/", "en"), { label: entry.data.title }]}
 >
+  <Fragment slot="fullBleed">
+    <div class="mx-auto w-full max-w-[var(--container-landing)] px-[var(--page-gutter)] pt-8 sm:pt-10 lg:pt-12">
+      <Breadcrumbs
+        items={[siteCrumb("/", entry.data.lang), { label: entry.data.title }]}
+        lang={entry.data.lang}
+      />
+    </div>
+    {hero && <PageHero block={hero} fallbackImage={fallbackImage} lang={entry.data.lang} isAbout />}
+  </Fragment>
   <article class="w-full">
-    {hero && <PageHero block={hero} fallbackImage={fallbackImage} lang={entry.data.lang} />}
     <PageBlockRenderer blocks={blocks} fallbackImage={fallbackImage} lang={entry.data.lang} />
   </article>
 </WidePageLayout>
