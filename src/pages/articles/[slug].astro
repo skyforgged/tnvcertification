@@ -37,10 +37,14 @@ const hero = allBlocks.find((block): block is HeroBlock => block.type === "hero"
 if (!hero) throw new Error(`Article "${entry.id}" is missing a hero block.`);
 const blocks: PageBlock[] = allBlocks.filter((block) => block.type !== "hero");
 const publishedServices = await getPublishedServices(lang === "en" ? "en" : "id");
-const relatedServices = entry.data.serviceId
-  ? publishedServices
-      .filter((service) => service.data.id === entry.data.serviceId)
-      .map((service) => ({ name: service.data.title, description: service.data.metaDescription, path: servicePath(service.data) }))
+const matchedService = entry.data.serviceId
+  ? publishedServices.find((service) => service.data.id === entry.data.serviceId)
+  : undefined;
+if (entry.data.serviceId && !matchedService) {
+  throw new Error(`Article "${entry.data.slug}" references missing or unpublished service ID "${entry.data.serviceId}".`);
+}
+const relatedServices = matchedService
+  ? [{ name: matchedService.data.title, description: matchedService.data.metaDescription, path: servicePath(matchedService.data) }]
   : [];
 const publishedTrainings = await getCollection("training", ({ data }) => data.draft !== true && data.lang === lang);
 const relatedCourses = (entry.data.relatedTrainingSlugs ?? []).map((slug) => {
