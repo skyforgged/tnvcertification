@@ -7,6 +7,8 @@ import TrainingScheduleMonths from "../../components/page/TrainingScheduleMonths
 import { getTrainingView } from "../../data/training-view";
 import { sortSchedulesByStartDate } from "../../lib/schedule-display";
 import { siteSettings } from "../../site";
+import { getPublishedServices, servicePath } from "../../data/services";
+import { trainingPageJsonLd } from "../../lib/structured-data";
 
 export async function getStaticPaths() {
   const trainings = await getCollection(
@@ -34,6 +36,23 @@ const schedules = sortSchedulesByStartDate(
       data.registrationStatus !== "cancelled",
   ),
 );
+const publishedServices = await getPublishedServices(training.data.lang === "en" ? "en" : "id");
+const relatedServiceSlugs = training.data.relatedServiceSlugs ?? [];
+const relatedServices = relatedServiceSlugs.map((slug) => {
+  const service = publishedServices.find((item) => item.data.slug === slug);
+  if (!service) throw new Error(`Training "${training.data.slug}" references missing or unpublished service "${slug}".`);
+  return { name: service.data.title, description: service.data.metaDescription, path: servicePath(service.data) };
+});
+const structuredData = trainingPageJsonLd({
+  name: training.data.title,
+  description: training.data.metaDescription,
+  path: `/trainings/${training.data.slug}/`,
+  image: training.data.featuredImage.src,
+  lang: training.data.lang,
+  blocks,
+  relatedServices,
+  schedules: schedules.map(({ data }) => data),
+});
 const isEnglish = training.data.lang === "en";
 const locale = isEnglish ? "en-US" : "id-ID";
 const labels = isEnglish
@@ -85,6 +104,7 @@ const todayKey = new Intl.DateTimeFormat("en-CA", {
   footerDescription={footerDescription}
   hero={hero}
   blocks={blocks}
+  structuredData={structuredData}
 >
   <div class="w-full">
     <Section spacing="spacious" aria-labelledby="jadwal-pelatihan">
