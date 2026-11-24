@@ -94,3 +94,58 @@ test("section nodes omit absent optional fields and survive graph assembly", () 
     entity["@type"] === "WebPage" &&
     entity.hasPart?.some((part) => part["@id"] === section["@id"])));
 });
+
+test("content-section with schema ItemList emits a nested ItemList with numbered ListItems", () => {
+  const entities = trainingPageJsonLd({
+    name: "Pelatihan",
+    description: "Deskripsi pelatihan.",
+    path,
+    blocks: [{
+      type: "content-section",
+      id: "tujuan-dan-kompetensi-peserta",
+      schema: "ItemList",
+      title: "Tujuan dan kompetensi yang dikembangkan",
+      description: "Paragraf pembuka.",
+      items: [
+        { title: "Memahami kriteria audit", description: "Mengenali kriteria." },
+        { title: "Merencanakan kegiatan audit", description: "Menentukan tujuan." },
+      ],
+    }],
+  });
+
+  const section = entities.find((entity) => entity["@type"] === "WebPageElement");
+  assert.equal(section["@id"], `${url}#tujuan-dan-kompetensi-peserta`);
+  assert.equal(section.hasPart["@type"], "ItemList");
+  assert.deepEqual(section.hasPart.itemListElement, [
+    { "@type": "ListItem", position: 1, name: "Memahami kriteria audit", description: "Mengenali kriteria." },
+    { "@type": "ListItem", position: 2, name: "Merencanakan kegiatan audit", description: "Menentukan tujuan." },
+  ]);
+});
+
+test("schema ItemList without items omits hasPart", () => {
+  const entities = trainingPageJsonLd({
+    name: "Pelatihan",
+    description: "Deskripsi pelatihan.",
+    path,
+    blocks: [{ type: "content-section", id: "kosong", schema: "ItemList", title: "Kosong" }],
+  });
+  const section = entities.find((entity) => entity["@type"] === "WebPageElement");
+  assert.equal("hasPart" in section, false);
+});
+
+test("content-section without schema keeps the CreativeWork array", () => {
+  const entities = trainingPageJsonLd({
+    name: "Pelatihan",
+    description: "Deskripsi pelatihan.",
+    path,
+    blocks: [{
+      type: "content-section",
+      id: "standar",
+      title: "Standar",
+      items: [{ title: "Satu", description: "Teks." }],
+    }],
+  });
+  const section = entities.find((entity) => entity["@type"] === "WebPageElement");
+  assert.equal(Array.isArray(section.hasPart), true);
+  assert.equal(section.hasPart[0]["@type"], "CreativeWork");
+});

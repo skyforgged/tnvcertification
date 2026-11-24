@@ -162,20 +162,29 @@ function blockGraphNodes(
     const id = `${url}#${blockAnchorId(block, index)}`;
 
     if (block.type === "content-section") {
+      const hasPart = block.items?.length
+        ? block.schema === "ItemList"
+          ? {
+              "@type": "ItemList",
+              itemListElement: block.items.map((item, itemIndex) => ({
+                "@type": "ListItem",
+                position: itemIndex + 1,
+                name: item.title,
+                description: item.description,
+              })),
+            }
+          : block.items.map((item) => ({
+              "@type": "CreativeWork",
+              name: item.title,
+              description: item.description,
+            }))
+        : undefined;
       entities.push({
         "@type": "WebPageElement",
         "@id": id,
         name: block.title ?? block.eyebrow ?? fallbackName,
         ...(block.description ? { description: block.description } : {}),
-        ...(block.items?.length
-          ? {
-              hasPart: block.items.map((item) => ({
-                "@type": "CreativeWork",
-                name: item.title,
-                description: item.description,
-              })),
-            }
-          : {}),
+        ...(hasPart ? { hasPart } : {}),
       });
     } else if (block.type === "faq" && Array.isArray(block.items) && block.items.length) {
       entities.push({

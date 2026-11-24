@@ -28,3 +28,10 @@ test("generic slug route skips route-owned slugs", () => {
   assert.match(slugRoute, /import \{[^}]*routeOwnedPageSlugs[^}]*\} from/);
   assert.match(slugRoute, /!routeOwnedPageSlugs\.includes\(/);
 });
+
+test("content-section schema field is restricted to known JSON-LD representations", () => {
+  assert.ok(
+    config.includes('schema: z.enum(["WebPageElement", "ItemList"]).optional()'),
+    "missing validated schema field on content-section blocks",
+  );
+});

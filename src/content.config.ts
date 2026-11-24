@@ -41,6 +41,7 @@ const contentSectionBlock = z.object({
   id: blockIdSchema.optional(),
   surface: sectionSurfaceSchema.optional(),
   layout: z.enum(["numbered-grid", "editorial", "bento", "highlight", "feature-list", "comparison"]).optional(),
+  schema: z.enum(["WebPageElement", "ItemList"]).optional(),
   eyebrow: z.string().optional(),
   title: z.string().min(1),
   description: z.string().optional(),
