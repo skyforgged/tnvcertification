@@ -51,3 +51,16 @@ test("English CSMS entry covers the nine elements with English paths", async () 
   assert.match(route, /canonical="\/en\/csms\/"/);
   assert.match(route, /pageAlternates\("csms"\)/);
 });
+
+test("English About entry has English contact labels and a paired route", async () => {
+  const entry = await readEntry("0037-halaman-about-us-en.md");
+  assertEnglishEntry(entry);
+  const contact = entry.data.blocks.find((block) => block.type === "contact");
+  assert.deepEqual(contact.labels, { email: "Email", phone: "Phone", address: "Address" });
+  const route = await readFile(new URL("../src/pages/en/about-us/index.astro", import.meta.url), "utf8");
+  assert.match(route, /getPageEntry\("about-us", "en"\)/);
+  assert.match(route, /canonical="\/en\/about-us\/"/);
+  assert.match(route, /pageAlternates\("about-us"\)/);
+  const generic = await readFile(new URL("../src/pages/[slug].astro", import.meta.url), "utf8");
+  assert.match(generic, /entry\.data\.lang !== "en"/);
+});

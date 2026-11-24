@@ -5,11 +5,13 @@ import PageHero from "../components/page/PageHero.astro";
 import PageBlockRenderer from "../components/page/PageBlockRenderer.astro";
 import { getPageHero, getPageBlocks, routeOwnedPageSlugs } from "../data/pages";
 import { siteCrumb } from "../data/breadcrumbs";
+import { pageAlternates } from "../lib/page-alternates";
 
 export async function getStaticPaths() {
   const pages = await getCollection("pages", ({ data }) => data.draft !== true);
   return pages
     .filter((entry) => !routeOwnedPageSlugs.includes(entry.data.slug))
+    .filter((entry) => entry.data.lang !== "en")
     .map((entry) => ({ params: { slug: entry.data.slug }, props: { entry } }));
 }
 const { entry } = Astro.props;
@@ -24,6 +26,7 @@ const fallbackImage = { src: entry.data.featuredImage.src, alt: entry.data.featu
   description={entry.data.metaDescription}
   lang={entry.data.lang}
   canonical={canonical}
+  alternates={pageAlternates(entry.data.lang === "id" ? entry.data.slug : "")}
   ogImage={entry.data.featuredImage.src}
   breadcrumbs={[siteCrumb("/", entry.data.lang), { label: entry.data.title }]}
 >
