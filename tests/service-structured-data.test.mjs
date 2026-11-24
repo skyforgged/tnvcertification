@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { ORGANIZATION_ID, pageJsonLdGraph, serviceIndexJsonLd, servicePageJsonLd } from "../src/lib/structured-data.ts";
+import { ORGANIZATION_ID, organizationJsonLd, pageJsonLdGraph, serviceIndexJsonLd, servicePageJsonLd } from "../src/lib/structured-data.ts";
 import { siteSettings } from "../src/site.ts";
 
 test("service page graph links a visible service to the canonical organization", () => {
@@ -74,4 +74,9 @@ test("page JSON-LD is serialized as a Schema.org graph with the organization", (
   assert.ok(Array.isArray(graph["@graph"]));
   assert.ok(graph["@graph"].some((item) => item["@type"] === "Organization"));
   assert.ok(graph["@graph"].some((item) => item["@type"] === "Service"));
+});
+
+test("canonical organization exposes its logo as an image for rich results", () => {
+  const organization = organizationJsonLd();
+  assert.equal(organization.image, new URL(organization.logo.url, siteSettings.url).toString());
 });
