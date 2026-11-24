@@ -10,7 +10,7 @@ const archiveLayout = await readFile(
 
 test("schedules hero uses the elevated navy surface", () => {
   assert.match(hero, /const isSchedules = variant === "schedules";/);
-  assert.match(hero, /const isElevated = isHome \|\| isServices \|\| isCsms \|\| isTrainings \|\| isSchedules;/);
+  assert.match(hero, /const isElevated = isHome \|\| isServices \|\| isCsms \|\| isTrainings \|\| isSchedules \|\| isArticles;/);
   assert.match(hero, /isServices \|\| isCsms \|\| isTrainings \|\| isSchedules/);
 });
 

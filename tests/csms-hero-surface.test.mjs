@@ -10,7 +10,7 @@ const detailRoute = await read("../src/pages/csms/[slug].astro");
 
 test("csms hero uses the elevated navy surface", () => {
   assert.match(hero, /const isCsms = variant === "csms";/);
-  assert.match(hero, /const isElevated = isHome \|\| isServices \|\| isCsms \|\| isTrainings \|\| isSchedules;/);
+  assert.match(hero, /const isElevated = isHome \|\| isServices \|\| isCsms \|\| isTrainings \|\| isSchedules \|\| isArticles;/);
   assert.match(hero, /isHome \? "max-w-\[14ch\][\s\S]*?isServices \|\| isCsms/);
 });
 
