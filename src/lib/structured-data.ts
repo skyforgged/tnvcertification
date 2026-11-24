@@ -2,7 +2,7 @@
  * Canonical JSON-LD entities. Organization is defined once from site.ts and
  * referenced by @id from other entity graphs (for example service pages).
  */
-import { organization, siteSettings } from "../site.ts";
+import { organization, siteSettings, trainingScheduleDefaults } from "../site.ts";
 import { siteCrumb } from "../data/breadcrumbs.ts";
 import type { PageBlock } from "../data/pages";
 
@@ -207,18 +207,20 @@ export function trainingPageJsonLd(input: TrainingStructuredDataInput) {
       if (schedule.locationType) {
         instance.courseMode = schedule.locationType === "offline" ? "inPerson" : schedule.locationType === "online" ? "online" : "blended";
       }
-      if (schedule.venue || schedule.city || schedule.province) {
+      const usesDefaultVenue = schedule.locationType === "offline" || schedule.locationType === "hybrid";
+      const venueAddress = trainingScheduleDefaults.venue.address;
+      if (schedule.venue || schedule.city || schedule.province || usesDefaultVenue) {
         instance.location = {
           "@type": "Place",
-          ...(schedule.venue ? { name: schedule.venue } : {}),
-          ...(schedule.city || schedule.province ? {
-            address: {
-              "@type": "PostalAddress",
-              ...(schedule.city ? { addressLocality: schedule.city } : {}),
-              ...(schedule.province ? { addressRegion: schedule.province } : {}),
-              addressCountry: "ID",
-            },
-          } : {}),
+          name: schedule.venue ?? (usesDefaultVenue ? trainingScheduleDefaults.venue.name : undefined),
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: venueAddress.street,
+            addressLocality: schedule.city ?? venueAddress.city,
+            addressRegion: schedule.province ?? venueAddress.province,
+            postalCode: venueAddress.postalCode,
+            addressCountry: venueAddress.countryCode,
+          },
         };
       }
       if (schedule.price !== undefined && schedule.currency) {
