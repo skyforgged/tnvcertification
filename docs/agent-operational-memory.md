@@ -23,7 +23,7 @@ This file records the operational conventions established during repeated merge 
 
 - User: `tnvcertification`.
 - Personal access token location: `/home/tnv-certification/.git-pat-tnvcertification`.
-- Read the file into a shell variable and pass it as a temporary `http.extraHeader` on the `git push` command. Do not print the token, echo it, write it into git config, or store it in repository files.
+- Read the file into a shell variable and pass it as a temporary `http.extraHeader` on the `git push` command. GitHub git transport requires Basic auth: build `auth=$(printf 'x-access-token:%s' "$token" | base64 -w0)` and use `git -c http.extraHeader="Authorization: Basic $auth" push origin main`. A Bearer header is rejected and makes git prompt for a username. Do not print the token, echo it, write it into git config, or store it in repository files.
 - After pushing, verify remote heads. Deleting a remote branch requires the same temporary auth.
 
 ## Status documentation
