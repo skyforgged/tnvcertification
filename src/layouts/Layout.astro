@@ -46,7 +46,8 @@ const ui = uiLang(seo.lang);
       {siteSettings.ui.skipToContent[ui]}
     </a>
     <SiteHeader lang={seo.lang} />
-    <main id="main-content" class="flex w-full flex-1">
+    <main id="main-content" class="flex w-full flex-1 flex-col">
+      <slot name="fullBleed" />
       <Container variant="landing" class="py-8 sm:py-10 lg:py-12">
         <slot />
       </Container>

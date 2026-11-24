@@ -23,8 +23,8 @@ const listings = blocks.filter((block): block is ListingBlock => block.type === 
 ---
 
 <Layout title={entry.data.title} description={entry.data.metaDescription} ogImage={fallbackImage.src}>
+  {hero && <PageHero slot="fullBleed" block={hero} fallbackImage={fallbackImage} isHomepage />}
   <div class="w-full">
-    {hero && <PageHero block={hero} fallbackImage={fallbackImage} isHomepage />}
     {linkGrids.map((block) => <HomeLinkGrid block={block} />)}
     {listings.map((block) => (
       <HomeListingSection block={block} hasItems={articles.length > 0}>
