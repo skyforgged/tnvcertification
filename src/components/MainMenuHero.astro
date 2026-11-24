@@ -1,5 +1,6 @@
 ---
 import FeaturedImage from "./FeaturedImage.astro";
+import { organization, siteSettings } from "../site";
 interface Props {
   eyebrow?: string;
   title: string;
@@ -34,7 +35,7 @@ const { eyebrow, title, description, image, imageAlt, imagePriority = false } = 
     </div>
     <p class="mt-7 flex items-center gap-3 text-xs font-medium tracking-wide text-ink-subtle">
       <span aria-hidden="true" class="h-px w-8 bg-brand-orange"></span>
-      PT. Intiprima Sertifikasi · Bagian dari TNV Group
+      {organization.name} · {siteSettings.tagline}
     </p>
   </div>
 
