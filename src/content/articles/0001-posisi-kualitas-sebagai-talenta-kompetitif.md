@@ -1,4 +1,5 @@
 ---
+id: 1
 title: "Posisi Kualitas sebagai Talenta Kompetitif"
 intro: "Posisi Kualitas sebagai Talenta Kompetitif adalah peran strategis dalam membangun kepercayaan dan daya saing organisasi melalui praktik mutu yang konsisten."
 metaDescription: "Peran talenta kualitas dalam membangun daya saing, kepercayaan pelanggan, dan perbaikan proses berkelanjutan di organisasi modern."

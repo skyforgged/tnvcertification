@@ -1,4 +1,5 @@
 ---
+id: 102
 title: "Pelatihan Auditor Internal IATF 16949"
 intro: "Pelatihan Auditor Internal IATF 16949 adalah program auditor internal yang membahas ruang lingkup audit, tahapan pemeriksaan, dan administrasi sertifikasi untuk sistem manajemen mutu otomotif IATF 16949."
 metaDescription: "Auditor internal sistem manajemen mutu otomotif IATF 16949: ruang lingkup audit, tahapan pemeriksaan, dan administrasi sertifikasi organisasi."

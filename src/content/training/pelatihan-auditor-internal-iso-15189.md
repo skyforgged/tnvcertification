@@ -1,4 +1,5 @@
 ---
+id: 105
 title: "Pelatihan Auditor Internal ISO 15189"
 intro: "Pelatihan Auditor Internal ISO 15189 adalah program auditor internal yang membahas ruang lingkup audit, tahapan pemeriksaan, dan administrasi sertifikasi untuk sistem manajemen mutu laboratorium medik ISO 15189."
 metaDescription: "Auditor internal sistem manajemen mutu laboratorium medik ISO 15189: ruang lingkup audit, tahapan pemeriksaan, dan administrasi sertifikasi organisasi."

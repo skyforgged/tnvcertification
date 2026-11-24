@@ -1,4 +1,5 @@
 ---
+id: 111
 title: "Pelatihan Auditor Internal ISO 50001"
 intro: "Pelatihan Auditor Internal ISO 50001 adalah program auditor internal yang membahas ruang lingkup audit, tahapan pemeriksaan, dan administrasi sertifikasi untuk sistem manajemen energi ISO 50001."
 metaDescription: "Auditor internal sistem manajemen energi ISO 50001: ruang lingkup audit, tahapan pemeriksaan, dan administrasi sertifikasi organisasi."

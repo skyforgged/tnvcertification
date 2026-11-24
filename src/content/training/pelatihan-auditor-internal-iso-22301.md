@@ -1,4 +1,5 @@
 ---
+id: 108
 title: "Pelatihan Auditor Internal ISO 22301"
 intro: "Pelatihan Auditor Internal ISO 22301 adalah program auditor internal yang membahas ruang lingkup audit, tahapan pemeriksaan, dan administrasi sertifikasi untuk sistem manajemen kontinuitas bisnis ISO 22301."
 metaDescription: "Auditor internal sistem manajemen kontinuitas bisnis ISO 22301: ruang lingkup audit, tahapan pemeriksaan, dan administrasi sertifikasi organisasi."

@@ -85,9 +85,9 @@ test("real main-menu routes expose localized hrefs", () => {
       ["/", "/en/"],
       ["/services/", "/en/services/"],
       ["/csms/", "/en/csms/"],
-      ["/trainings/", undefined],
-      ["/schedules/", undefined],
-      ["/articles/", undefined],
+      ["/trainings/", "/en/trainings/"],
+      ["/schedules/", "/en/schedules/"],
+      ["/articles/", "/en/articles/"],
       ["/about-us/", "/en/about-us/"],
     ],
   );

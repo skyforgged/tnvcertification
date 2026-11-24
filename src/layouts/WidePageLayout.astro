@@ -18,7 +18,7 @@ const { title, description, lang = "id", canonical, ogImage, alternates = [], st
 <Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage} alternates={alternates} structuredData={structuredData}>
   <Fragment slot="fullBleed"><slot name="fullBleed" /></Fragment>
   <Container variant="landing" gutter={false}>
-    {breadcrumbs.length > 0 && <Breadcrumbs items={breadcrumbs} />}
+    {breadcrumbs.length > 0 && <Breadcrumbs items={breadcrumbs} lang={lang === "en" ? "en" : "id"} />}
     <div class="min-w-0"><slot /></div>
   </Container>
 </Layout>

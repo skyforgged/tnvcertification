@@ -95,3 +95,19 @@ test("returns deduplicated absolute paths without an /en/ segment", () => {
     assert.ok(!path.includes("/en/"), `English segment leaked: ${path}`);
   }
 });
+
+test("omits index and pagination paths backed by real English pages", () => {
+  const paths = buildEnglishFallbackPaths({
+    ...empty,
+    articlePageCount: 2,
+    existingEnglishPaths: [
+      "/en/trainings/",
+      "/en/schedules/",
+      "/en/articles/",
+      "/en/articles/page/2/",
+    ],
+  });
+  for (const path of ["/trainings/", "/schedules/", "/articles/", "/articles/page/2/"]) {
+    assert.ok(!paths.includes(path), `unexpected fallback: ${path}`);
+  }
+});

@@ -1,4 +1,5 @@
 ---
+id: 103
 title: "Pelatihan Auditor Internal ISO 13485"
 intro: "Pelatihan Auditor Internal ISO 13485 adalah program auditor internal yang membahas ruang lingkup audit, tahapan pemeriksaan, dan administrasi sertifikasi untuk sistem manajemen mutu perangkat medis ISO 13485."
 metaDescription: "Auditor internal sistem manajemen mutu perangkat medis ISO 13485: ruang lingkup audit, tahapan pemeriksaan, dan administrasi sertifikasi organisasi."

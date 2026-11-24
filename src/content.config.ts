@@ -3,6 +3,7 @@ import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 import { collectionRegistry } from "./data/collections";
 import { isSupportedLinkUrl } from "./lib/link-url";
+import { numericEntryId } from "./lib/numeric-entry-id";
 import { pageEntryId } from "./lib/page-entry-id";
 
 /**
@@ -180,6 +181,7 @@ const baseEntrySchema = z.object({
 
 // --- Articles ---
 const articleSchema = baseEntrySchema.extend({
+  id: z.number().int().positive(),
   // Drafts may omit unapproved publication metadata and imagery.
   pubDate: z.coerce.date().optional(),
   featuredImage: imageObjectSchema.optional(),
@@ -228,6 +230,7 @@ const trainingHeroSchema = z.object({
 });
 
 const trainingSchema = baseEntrySchema.extend({
+  id: z.number().int().positive(),
   draft: z.boolean().optional(),
   categoryIds: z.array(z.string()).optional(),
   // Explicit links to published service entries; never infer from course title.
@@ -319,11 +322,15 @@ function collection<T extends z.ZodTypeAny>(
 }
 
 export const collections = {
-  articles: collection("articles", articleSchema),
+  articles: collection("articles", articleSchema, {
+    generateId: ({ data }) => numericEntryId(data),
+  }),
   services: collection("services", serviceSchema),
   categories: collection("categories", categorySchema),
   certifications: collection("certifications", certificationSchema),
-  training: collection("training", trainingSchema),
+  training: collection("training", trainingSchema, {
+    generateId: ({ data }) => numericEntryId(data),
+  }),
   trainingSchedules: collection("trainingSchedules", trainingScheduleSchema),
   pages: collection("pages", pageSchema, {
     generateId: ({ data }) => pageEntryId(data),

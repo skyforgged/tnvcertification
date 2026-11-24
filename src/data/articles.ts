@@ -6,6 +6,8 @@ import { globSync } from "tinyglobby";
 import { readFileSync } from "node:fs";
 import { parse as parseYaml } from "yaml";
 import { siteSettings } from "../site";
+import type { ArticleLang } from "../lib/article-routing.ts";
+import { numericEntryId } from "../lib/numeric-entry-id.ts";
 import type { SeoAlternate } from "../lib/seo";
 
 export interface Article {
@@ -55,10 +57,11 @@ function asDate(value: unknown): Date | undefined {
   return undefined;
 }
 
-function toArticle(id: string, data: Record<string, unknown>, body: string): Article | null {
+function toArticle(data: Record<string, unknown>, body: string): Article | null {
   const pubDate = asDate(data.pubDate);
   if (
     data.draft === true ||
+    typeof data.id !== "number" ||
     typeof data.title !== "string" ||
     typeof data.slug !== "string" ||
     typeof data.intro !== "string" ||
@@ -77,7 +80,7 @@ function toArticle(id: string, data: Record<string, unknown>, body: string): Art
 
   const updatedDate = asDate(data.updatedDate);
   return {
-    id,
+    id: numericEntryId(data),
     slug: data.slug,
     title: data.title,
     intro: data.intro,
@@ -105,18 +108,19 @@ function compareArticles(a: Article, b: Article): number {
   if (byEffective !== 0) return byEffective;
   const byPub = b.pubDate.getTime() - a.pubDate.getTime();
   if (byPub !== 0) return byPub;
-  const byId = a.id.localeCompare(b.id);
+  const byId = Number(a.id) - Number(b.id);
   return byId !== 0 ? byId : a.slug.localeCompare(b.slug);
 }
 
 /** Published articles in canonical order. Invalid entries are skipped. */
-export function getPublishedArticles(): Article[] {
+export function getPublishedArticles(lang: ArticleLang = "id"): Article[] {
   const files = globSync("src/content/articles/**/*.{md,mdx}", { onlyFiles: true });
   const articles: Article[] = [];
   for (const file of files) {
     const payload = readFrontmatter(file);
     if (payload === null) continue;
-    const article = toArticle(file, payload.data, payload.body);
+    if (payload.data.lang !== lang) continue;
+    const article = toArticle(payload.data, payload.body);
     if (article !== null) articles.push(article);
   }
   return articles.sort(compareArticles);

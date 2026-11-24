@@ -2,7 +2,15 @@
 import { siteSettings } from "../site";
 import type { SeoAlternate } from "./seo";
 
-const LOCALIZED_PAGES = ["home", "services", "csms", "about-us"] as const;
+const LOCALIZED_PAGES = [
+  "home",
+  "services",
+  "csms",
+  "about-us",
+  "trainings",
+  "schedules",
+  "articles",
+] as const;
 
 type LocalizedPageSlug = (typeof LOCALIZED_PAGES)[number];
 
@@ -17,5 +25,16 @@ export function pageAlternates(slug: string): SeoAlternate[] {
   return (["id", "en"] as const).map((lang) => ({
     lang,
     href: new URL(localPagePath(page, lang), siteSettings.url).toString(),
+  }));
+}
+
+export function articlePageAlternates(page: number): SeoAlternate[] {
+  if (!Number.isInteger(page) || page < 2) return [];
+  return (["id", "en"] as const).map((lang) => ({
+    lang,
+    href: new URL(
+      lang === "en" ? `/en/articles/page/${page}/` : `/articles/page/${page}/`,
+      siteSettings.url,
+    ).toString(),
   }));
 }

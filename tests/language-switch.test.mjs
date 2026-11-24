@@ -21,7 +21,6 @@ const pages = [
 ];
 const fallbackPaths = [
   "/services/sertifikasi-iso-9001-2026/",
-  "/articles/",
 ];
 
 const options = (pathname, currentLang = "id", overrides = {}) =>
@@ -54,12 +53,12 @@ test("service detail links English to Indonesian by translationKey", () => {
 
 test("article detail links Indonesian to English by translationKey", () => {
   const result = options("/articles/panduan-dokumen-iso-9001/");
-  assert.equal(result[1].href, "/articles/iso-9001-document-control/");
+  assert.equal(result[1].href, "/en/articles/iso-9001-document-control/");
   assert.equal(result[1].available, true);
 });
 
-test("article detail links English to Indonesian without an /en/ prefix", () => {
-  const pathname = "/articles/iso-9001-document-control/";
+test("article detail links English to Indonesian by translationKey", () => {
+  const pathname = "/en/articles/iso-9001-document-control/";
   const result = options(pathname, "en");
   assert.equal(result[0].href, "/articles/panduan-dokumen-iso-9001/");
   assert.equal(result[0].available, true);
@@ -89,16 +88,21 @@ test("language switch resolves localized main-menu pages", () => {
   ]);
 });
 
-test("generic paths have no counterpart", () => {
+test("main-menu indexes link both ways", () => {
   for (const pathname of ["/trainings/", "/schedules/", "/articles/"]) {
     const inactive = options(pathname).find((option) => !option.active);
-    assert.equal(inactive.available, false, pathname);
-    assert.equal(inactive.href, "", pathname);
+    assert.equal(inactive.href, `/en${pathname}`, pathname);
+    assert.equal(inactive.available, true, pathname);
+  }
+  for (const pathname of ["/en/trainings/", "/en/schedules/", "/en/articles/"]) {
+    const inactive = options(pathname, "en").find((option) => !option.active);
+    assert.equal(inactive.href, pathname.slice(3), pathname);
+    assert.equal(inactive.available, true, pathname);
   }
 });
 
 test("fallback stubs and missing translations never produce an English link", () => {
-  for (const option of options("/trainings/")) {
+  for (const option of options("/services/sertifikasi-iso-9001-2026/")) {
     assert.ok(!option.href.startsWith("/en/"));
   }
   const missingPartner = options("/services/sertifikasi-iso-9001-2026/")[1];
@@ -107,7 +111,7 @@ test("fallback stubs and missing translations never produce an English link", ()
 });
 
 test("an Indonesian article counterpart is not mistaken for an English stub", () => {
-  const result = options("/articles/iso-9001-document-control/", "en", {
+  const result = options("/en/articles/iso-9001-document-control/", "en", {
     fallbackPaths: [...fallbackPaths, "/articles/panduan-dokumen-iso-9001/"],
   });
   assert.equal(result[0].href, "/articles/panduan-dokumen-iso-9001/");

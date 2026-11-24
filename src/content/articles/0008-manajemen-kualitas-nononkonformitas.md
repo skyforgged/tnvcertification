@@ -1,4 +1,5 @@
 ---
+id: 8
 title: "Manajemen Kualitas Nonkonformitas"
 intro: "Manajemen Kualitas Nonkonformitas adalah proses mengendalikan penyimpangan mutu, menindaklanjuti akar penyebab, dan mencegah pengulangannya."
 metaDescription: "Penanganan nonkonformitas dalam sistem mutu: identifikasi penyimpangan, tindakan koreksi, dan pencegahan pengulangan."

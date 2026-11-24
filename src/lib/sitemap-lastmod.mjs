@@ -51,14 +51,14 @@ for (const [directory, prefix] of routePrefixes) {
     // `home` is a page entry but its canonical URL is the site root, not /home/.
     // English page variants use their own /en/ routes and must not overwrite
     // the Indonesian entry's lastmod.
+    const lang = quotedField(fm, "lang") ?? "id";
     let urlPath = `${prefix}${slug}/`;
-    if (directory === "pages") {
-      const lang = quotedField(fm, "lang") ?? "id";
-      if (lang === "en") {
-        urlPath = slug === "home" ? "/en/" : `/en/${slug}/`;
-      } else if (slug === "home") {
-        urlPath = "/";
-      }
+    if (lang === "en") {
+      urlPath = directory === "pages"
+        ? (slug === "home" ? "/en/" : `/en/${slug}/`)
+        : `/en${prefix}${slug}/`;
+    } else if (directory === "pages" && slug === "home") {
+      urlPath = "/";
     }
 
     // Keep UTC precision to the second, matching the authored metadata.

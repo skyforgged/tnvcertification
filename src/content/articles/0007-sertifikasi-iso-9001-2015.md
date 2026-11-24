@@ -1,4 +1,5 @@
 ---
+id: 7
 title: "Proses Audit Sertifikasi ISO 9001:2026"
 intro: "Proses Audit Sertifikasi ISO 9001:2026 adalah penilaian sistem manajemen mutu berbasis bukti untuk menentukan kesesuaiannya terhadap persyaratan standar dalam ruang lingkup yang diajukan."
 metaDescription: "Pelajari tujuan audit tahap 1 dan tahap 2, pengumpulan bukti, penanganan ketidaksesuaian, serta proses keputusan sertifikasi ISO 9001:2026."
