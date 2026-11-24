@@ -145,3 +145,153 @@ export function pageJsonLdGraph(additionalEntities: unknown[] = []) {
     "@graph": [organizationJsonLd(), ...additionalEntities],
   };
 }
+
+
+export interface TrainingStructuredDataInput {
+  name: string;
+  description: string;
+  path: string;
+  image?: string;
+  lang?: string;
+  blocks: Array<Record<string, any>>;
+  relatedServices?: Array<{ name: string; description: string; path: string }>;
+  schedules?: Array<{
+    slug: string;
+    startDate?: string;
+    endDate?: string;
+    locationType?: "offline" | "online" | "hybrid";
+    venue?: string;
+    city?: string;
+    province?: string;
+    price?: number;
+    currency?: string;
+  }>;
+}
+
+/** Connected JSON-LD graph generated from published training content and schedules. */
+export function trainingPageJsonLd(input: TrainingStructuredDataInput) {
+  const url = new URL(input.path, siteSettings.url).toString();
+  const courseId = `${url}#course`;
+  const breadcrumbId = `${url}#breadcrumb`;
+  const entities: Array<Record<string, unknown>> = [];
+  const pageParts: Array<{ "@id": string }> = [];
+
+  const relatedServices = (input.relatedServices ?? []).map((service) => {
+    const serviceUrl = new URL(service.path, siteSettings.url).toString();
+    const id = `${serviceUrl}#service`;
+    entities.push({
+      "@type": "Service",
+      "@id": id,
+      name: service.name,
+      description: service.description,
+      url: serviceUrl,
+      provider: { "@id": ORGANIZATION_ID },
+    });
+    return { "@id": id };
+  });
+
+  const instances = (input.schedules ?? [])
+    .filter((schedule) => Boolean(schedule.startDate && schedule.endDate))
+    .map((schedule) => {
+      const id = `${url}#course-instance-${schedule.slug}`;
+      const instance: Record<string, unknown> = {
+        "@type": "CourseInstance",
+        "@id": id,
+        name: input.name,
+        startDate: schedule.startDate,
+        endDate: schedule.endDate,
+        url,
+      };
+      if (schedule.locationType) {
+        instance.courseMode = schedule.locationType === "offline" ? "inPerson" : schedule.locationType === "online" ? "online" : "blended";
+      }
+      if (schedule.venue || schedule.city || schedule.province) {
+        instance.location = {
+          "@type": "Place",
+          ...(schedule.venue ? { name: schedule.venue } : {}),
+          ...(schedule.city || schedule.province ? {
+            address: {
+              "@type": "PostalAddress",
+              ...(schedule.city ? { addressLocality: schedule.city } : {}),
+              ...(schedule.province ? { addressRegion: schedule.province } : {}),
+              addressCountry: "ID",
+            },
+          } : {}),
+        };
+      }
+      if (schedule.price !== undefined && schedule.currency) {
+        instance.offers = { "@type": "Offer", price: schedule.price, priceCurrency: schedule.currency, url };
+      }
+      entities.push(instance);
+      return { "@id": id };
+    });
+
+  entities.push({
+    "@type": "Course",
+    "@id": courseId,
+    name: input.name,
+    description: input.description,
+    url,
+    provider: { "@id": ORGANIZATION_ID },
+    inLanguage: input.lang ?? "id",
+    ...(input.image ? { image: new URL(input.image, siteSettings.url).toString() } : {}),
+    ...(relatedServices.length ? { about: relatedServices } : {}),
+    ...(instances.length ? { hasCourseInstance: instances } : {}),
+  });
+
+  input.blocks.forEach((block, index) => {
+    if (block.type === "faq" && Array.isArray(block.items) && block.items.length) {
+      const id = `${url}#faq-${block.id ?? index + 1}`;
+      entities.push({
+        "@type": "FAQPage",
+        "@id": id,
+        mainEntity: block.items.map((item: { question: string; answer: string }) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: { "@type": "Answer", text: item.answer },
+        })),
+      });
+      pageParts.push({ "@id": id });
+    }
+    if (block.type === "howto" && Array.isArray(block.steps) && block.steps.length) {
+      const id = `${url}#howto-${block.id ?? index + 1}`;
+      entities.push({
+        "@type": "HowTo",
+        "@id": id,
+        name: block.title ?? input.name,
+        step: block.steps.map((step: { title: string; description: string; image?: { src: string } }, stepIndex: number) => ({
+          "@type": "HowToStep",
+          position: stepIndex + 1,
+          name: step.title,
+          text: step.description,
+          ...(step.image?.src ? { image: new URL(step.image.src, siteSettings.url).toString() } : {}),
+        })),
+      });
+      pageParts.push({ "@id": id });
+    }
+  });
+
+  entities.push(
+    {
+      "@type": "WebPage",
+      "@id": `${url}#webpage`,
+      url,
+      name: input.name,
+      description: input.description,
+      inLanguage: input.lang ?? "id",
+      mainEntity: { "@id": courseId },
+      breadcrumb: { "@id": breadcrumbId },
+      ...(pageParts.length ? { hasPart: pageParts } : {}),
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": breadcrumbId,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: input.lang === "en" ? "Home" : "Beranda", item: siteSettings.url },
+        { "@type": "ListItem", position: 2, name: input.lang === "en" ? "Training" : "Pelatihan", item: new URL("/trainings/", siteSettings.url).toString() },
+        { "@type": "ListItem", position: 3, name: input.name, item: url },
+      ],
+    },
+  );
+  return entities;
+}
