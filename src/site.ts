@@ -73,10 +73,10 @@ export const primaryNavigation = [
   { label: "Beranda", labelEn: "Home", href: "/" },
   { label: "Layanan", labelEn: "Services", href: "/services/" },
   { label: "CSMS", labelEn: "CSMS", href: "/csms/" },
-  { label: "Tentang", labelEn: "About", href: "/about-us/" },
   { label: "Pelatihan", labelEn: "Trainings", href: "/trainings/" },
   { label: "Jadwal", labelEn: "Schedules", href: "/schedules/" },
   { label: "Artikel", labelEn: "Articles", href: "/articles/" },
+  { label: "Tentang", labelEn: "About", href: "/about-us/" },
 ] as const;
 
 /** Localized breadcrumb labels and hrefs for routes with an English surface. */

@@ -71,8 +71,8 @@ const upcomingItems: UpcomingScheduleItem[] = selectUpcomingSchedules(
   lang={entry.data.lang}
   ogImage={fallbackImage.src}
 >
+  {hero && <PageHero slot="fullBleed" block={hero} fallbackImage={fallbackImage} isTrainings />}
   <div class="w-full">
-    {hero && <PageHero block={hero} fallbackImage={fallbackImage} />}
     {listings.map((block) => (
       <ListingSection block={block} hasItems={trainings.length > 0}>
         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

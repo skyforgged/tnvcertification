@@ -31,14 +31,17 @@ const {
   lang={lang}
   ogImage={image}
 >
-  <Container variant="wide" gutter={false} class="space-y-10">
+  <Fragment slot="fullBleed">
     <MainMenuHero
       eyebrow={eyebrow}
       title={title}
       description={description}
       image={image}
       imageAlt={imageAlt}
+      variant="schedules"
     />
+  </Fragment>
+  <Container variant="wide" gutter={false} class="space-y-10">
     <slot />
   </Container>
 </Layout>

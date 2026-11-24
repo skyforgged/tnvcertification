@@ -25,10 +25,10 @@ test("primary navigation keeps canonical hrefs and gains English labels", () => 
       ["/", "Beranda", "Home"],
       ["/services/", "Layanan", "Services"],
       ["/csms/", "CSMS", "CSMS"],
-      ["/about-us/", "Tentang", "About"],
       ["/trainings/", "Pelatihan", "Trainings"],
       ["/schedules/", "Jadwal", "Schedules"],
       ["/articles/", "Artikel", "Articles"],
+      ["/about-us/", "Tentang", "About"],
     ],
   );
 });
