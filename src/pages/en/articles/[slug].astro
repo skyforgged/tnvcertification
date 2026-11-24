@@ -1,0 +1,89 @@
+---
+import { getCollection } from "astro:content";
+import ArticleLayout from "../../../layouts/ArticleLayout.astro";
+import type { HeroBlock, PageBlock } from "../../../data/pages";
+import { siteCrumb } from "../../../data/breadcrumbs";
+import { getPublishedArticles, hreflangAlternates } from "../../../data/articles";
+import { getPublishedServices, servicePath } from "../../../data/services";
+import { articleIndexPath, articlePath } from "../../../lib/article-routing";
+import { trainingPath } from "../../../lib/training-routing";
+import { articlePageJsonLd } from "../../../lib/structured-data";
+
+export async function getStaticPaths() {
+  const published = getPublishedArticles("en");
+  const entries = await getCollection("articles", ({ data }) => data.draft !== true);
+  return published.map((article) => {
+    const entry = entries.find((candidate) => candidate.data.lang === "en" && candidate.data.slug === article.slug);
+    if (!entry) throw new Error(`Published article "${article.slug}" has no validated English entry.`);
+    const pubDate = entry.data.pubDate;
+    const featuredImage = entry.data.featuredImage;
+    if (!(pubDate instanceof Date) || !featuredImage) {
+      throw new Error(`Published article "${entry.id}" is missing its approved pubDate or featuredImage.`);
+    }
+    const alternates = hreflangAlternates(
+      entries
+        .filter((candidate) => candidate.data.translationKey === entry.data.translationKey)
+        .map((candidate) => ({ lang: candidate.data.lang, path: articlePath(candidate.data) })),
+    );
+    return {
+      params: { slug: article.slug },
+      props: { entry, alternates, pubDate, featuredImage },
+    };
+  });
+}
+const { entry, alternates, pubDate, featuredImage } = Astro.props;
+const lang = "en";
+const canonical = articlePath(entry.data);
+const allBlocks = entry.data.blocks ?? [];
+const hero = allBlocks.find((block): block is HeroBlock => block.type === "hero");
+if (!hero) throw new Error(`Article "${entry.id}" is missing a hero block.`);
+const blocks: PageBlock[] = allBlocks.filter((block) => block.type !== "hero");
+const publishedServices = await getPublishedServices("en");
+const matchedService = entry.data.serviceId
+  ? publishedServices.find((service) => service.data.id === entry.data.serviceId)
+  : undefined;
+if (entry.data.serviceId && !matchedService) {
+  throw new Error(`Article "${entry.data.slug}" references missing or unpublished service ID "${entry.data.serviceId}".`);
+}
+const relatedServices = matchedService
+  ? [{ name: matchedService.data.title, description: matchedService.data.metaDescription, path: servicePath(matchedService.data) }]
+  : [];
+const publishedTrainings = await getCollection("training", ({ data }) => data.draft !== true && data.lang === "en");
+const relatedCourses = (entry.data.relatedTrainingSlugs ?? []).map((slug) => {
+  const course = publishedTrainings.find((item) => item.data.slug === slug);
+  if (!course) throw new Error(`Article "${entry.data.slug}" references missing or unpublished training "${slug}".`);
+  return {
+    name: course.data.title,
+    description: course.data.metaDescription,
+    path: trainingPath(course.data),
+  };
+});
+const structuredData = articlePageJsonLd({
+  name: entry.data.title,
+  description: entry.data.metaDescription,
+  path: canonical,
+  image: featuredImage.src,
+  lang,
+  datePublished: pubDate.toISOString(),
+  dateModified: (entry.data.updatedDate ?? pubDate).toISOString(),
+  blocks,
+  relatedServices,
+  relatedCourses,
+});
+const indexCrumb = siteCrumb("/articles/", lang);
+---
+
+<ArticleLayout
+  title={entry.data.title}
+  description={entry.data.metaDescription}
+  lang="en"
+  canonical={canonical}
+  ogImage={featuredImage.src}
+  date={entry.data.updatedDate ?? pubDate}
+  imageAlt={featuredImage.alt}
+  alternates={alternates}
+  breadcrumbs={[siteCrumb("/", lang), { ...indexCrumb, href: articleIndexPath("en") }, { label: entry.data.title }]}
+  hero={hero}
+  blocks={blocks}
+  structuredData={structuredData}
+/>

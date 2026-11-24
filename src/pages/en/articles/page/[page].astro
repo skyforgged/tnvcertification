@@ -1,0 +1,56 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import ArticleCard from "../../../../components/ArticleCard.astro";
+import { getPublishedArticles } from "../../../../data/articles";
+import { getPageEntry } from "../../../../data/pages";
+import { articleIndexPath } from "../../../../lib/article-routing";
+import { englishLabels } from "../../../../lib/english-labels";
+import { articlePageAlternates } from "../../../../lib/page-alternates";
+import { getAdjacentPageHrefs, getPageLinks } from "../../../../lib/pagination";
+import { siteSettings } from "../../../../site";
+
+export function getStaticPaths() {
+  const pageSize = 9;
+  const ordered = getPublishedArticles("en");
+  const pageCount = Math.ceil(ordered.length / pageSize);
+  return Array.from({ length: Math.max(0, pageCount - 1) }, (_, index) => {
+    const page = index + 2;
+    return { params: { page: String(page) }, props: { page, articles: ordered.slice((page - 1) * pageSize, page * pageSize), pageCount } };
+  });
+}
+
+const entry = await getPageEntry("articles", "en");
+const { page, articles, pageCount: totalPages } = Astro.props;
+const root = articleIndexPath("en");
+const pageLinks = getPageLinks(page, totalPages, root);
+const adjacent = getAdjacentPageHrefs(page, totalPages, root);
+const image = { src: entry.data.featuredImage.src, alt: entry.data.featuredImage.alt };
+---
+
+<Layout
+  path={`/en/articles/page/${page}/`}
+  title={`${entry.data.title} — Page ${page} | ${siteSettings.title}`}
+  description={entry.data.metaDescription}
+  canonical={`${root}page/${page}/`}
+  alternates={articlePageAlternates(page)}
+  lang="en"
+  ogImage={image.src}
+>
+  <section class="w-full" aria-labelledby="article-archive-en">
+    <header class="mb-8 grid items-center gap-8 md:grid-cols-[1fr_280px]">
+      <h1 id="article-archive-en" class="text-3xl font-semibold text-brand-deepblue">{entry.data.title}</h1>
+      <img data-page-image src={image.src} alt={image.alt} width="720" height="480" loading="lazy" class="mx-auto w-full max-w-[280px]" />
+    </header>
+    <div class="mt-8 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {articles.map((article) => <ArticleCard article={article} headingLevel={2} />)}
+    </div>
+    <nav class="mt-10 flex flex-wrap items-center gap-4" aria-label="Pagination">
+      {adjacent.previous && <a href={adjacent.previous} class="underline">{englishLabels.pagination.previous}</a>}
+      {pageLinks.map((link) => link.current
+        ? <span aria-current="page" class="font-semibold text-brand-deepblue">{link.label}</span>
+        : <a href={link.href} class="underline">{link.label}</a>
+      )}
+      {adjacent.next && <a href={adjacent.next} class="underline">{englishLabels.pagination.next}</a>}
+    </nav>
+  </section>
+</Layout>

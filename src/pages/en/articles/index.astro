@@ -1,0 +1,57 @@
+---
+import WidePageLayout from "../../../layouts/WidePageLayout.astro";
+import PageHero from "../../../components/page/PageHero.astro";
+import ListingSection from "../../../components/page/ListingSection.astro";
+import ArticleCard from "../../../components/ArticleCard.astro";
+import Section from "../../../components/Section.astro";
+import { getPublishedArticles } from "../../../data/articles";
+import { getPageBlocks, getPageEntry, getPageHero, type ListingBlock } from "../../../data/pages";
+import { articleIndexPath } from "../../../lib/article-routing";
+import { englishLabels } from "../../../lib/english-labels";
+import { pageAlternates } from "../../../lib/page-alternates";
+import { getAdjacentPageHrefs, getPageLinks } from "../../../lib/pagination";
+import { siteSettings } from "../../../site";
+
+const entry = await getPageEntry("articles", "en");
+const hero = getPageHero(entry);
+const listings = getPageBlocks(entry).filter((block): block is ListingBlock => block.type === "listing");
+const fallbackImage = { src: entry.data.featuredImage.src, alt: entry.data.featuredImage.alt };
+const articles = getPublishedArticles("en");
+const pageSize = 9;
+const pageCount = Math.max(1, Math.ceil(articles.length / pageSize));
+const pageArticles = articles.slice(0, pageSize);
+const root = articleIndexPath("en");
+const pageLinks = getPageLinks(1, pageCount, root);
+const adjacent = getAdjacentPageHrefs(1, pageCount, root);
+---
+
+<WidePageLayout
+  title={`${entry.data.title} | ${siteSettings.title}`}
+  description={entry.data.metaDescription}
+  canonical={root}
+  alternates={pageAlternates("articles")}
+  lang="en"
+  ogImage={fallbackImage.src}
+>
+  {hero && <PageHero slot="fullBleed" block={hero} fallbackImage={fallbackImage} isArticles />}
+  <div class="w-full">
+    {listings.map((block) => (
+      <ListingSection block={block} hasItems={pageArticles.length > 0}>
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {pageArticles.map((article) => <ArticleCard article={article} headingLevel={2} />)}
+        </div>
+      </ListingSection>
+    ))}
+    {pageCount > 1 && (
+      <Section spacing="spacious" aria-label="Pagination">
+        <nav class="flex flex-wrap items-center gap-4">
+          {pageLinks.map((link) => link.current
+            ? <span aria-current="page" class="font-semibold text-brand-deepblue">{link.label}</span>
+            : <a href={link.href} class="underline">{link.label}</a>
+          )}
+          {adjacent.next && <a href={adjacent.next} class="underline">{englishLabels.pagination.next}</a>}
+        </nav>
+      </Section>
+    )}
+  </div>
+</WidePageLayout>

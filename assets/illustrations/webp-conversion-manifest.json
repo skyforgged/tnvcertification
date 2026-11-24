@@ -268,6 +268,46 @@
     "schedules-calendar-en.svg": {
       "source": "b037d31a562197d1cc9c0dd15b12f5fd9b3fcff548ed013293452fd2c3dec7ea",
       "output": "8468f3ced15a8e98dfe4a0496289b55948efd2e61a495c5257821228c2752b47"
+    },
+    "article-en-audit-process.svg": {
+      "source": "032dc41ade3e7fb9653dc10c01ab83a2e1bd987e4cbea879d12e8c2fbc5cd7a5",
+      "output": "38a4bb75f415ce1cb05140d8d1fdd1e4d1a65df3eb8567413a3d4ca421ba4e54"
+    },
+    "article-en-factory-risk.svg": {
+      "source": "26e3b2a82f1e7124e710f1695a9e689392e730903c06d2a6a2b29e69722de592",
+      "output": "cf34e1a9c1b6d6ebeacf711b08cdbe622ef3ceef8c636144035384870605f1ba"
+    },
+    "article-en-global-conformity.svg": {
+      "source": "26abc5152680ca8cc5daed0707a55c2a68db86379675706703c85e31ef8a5551",
+      "output": "aff43fe772468c076aef9cf1aaa71a63ecf6a1c8cc8cd22fcdbebfb1e81259a4"
+    },
+    "article-en-iso45001-certification.svg": {
+      "source": "1da0a080cf5497cfd2018b8b5d0052198b44894259e7c508ca580e81d9118e79",
+      "output": "efaccc6ad9897db3fa7e13f9a057ebc96e21b7d8467d07996424ddd697fc4761"
+    },
+    "article-en-iso9001-benefits.svg": {
+      "source": "05d51fbe25257685518585a25e2cd7be7f9a066a130b7f02f86e5d249b1003e6",
+      "output": "1cedf54b22e58239ccd918a3dff31faa3a55efb1ae57c9c0d46cff5796c344ab"
+    },
+    "article-en-iso9001-certification.svg": {
+      "source": "85f8b80cb0f7af92c1eb637be1a64f8ce65f1befe6c1533df64dcd06962d8b65",
+      "output": "cd25b8fd311d914fc77a883727a16e5ead24328f028a945201bbcf9d8767f6a8"
+    },
+    "article-en-nonconformity.svg": {
+      "source": "9e48ab996b7617a4e3c34646b2ea55b64aba774a1054e9ff5aa5483ef2bc7ed1",
+      "output": "31933287ecee334f522e7b396020d939734d25e902b5491f612c4f616f97c90d"
+    },
+    "article-en-quality-scholarships.svg": {
+      "source": "01213d508ffe8fbf171768f327bef24d34c57c64043ce3933aac7410cc75c684",
+      "output": "b82ad07094664f960a76ed735920efbc7632a24b0a24887dbff68f94ea30615f"
+    },
+    "article-en-quality-talent.svg": {
+      "source": "1dd47a0db7bea107d101c5e45f7f529a538ca22a270a92d90f61dd445a5c14dd",
+      "output": "acbd358880f25b8b9af150d17a7a5f43b761e6bd4b54bc57dba5cbbac4332f83"
+    },
+    "articles-index-en.svg": {
+      "source": "b53a0902ec5d6a0ef6c855887c7d6fb55ec6b6f90c7df365601673648ea74579",
+      "output": "259dc9041da331d48b9cb85f2b0c896d8128c3932dc9e58e5ed87afbf51b684c"
     }
   }
 }
