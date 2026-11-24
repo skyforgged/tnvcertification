@@ -1,0 +1,27 @@
+---
+import WidePageLayout from "../../../layouts/WidePageLayout.astro";
+import PageHero from "../../../components/page/PageHero.astro";
+import PageBlockRenderer from "../../../components/page/PageBlockRenderer.astro";
+import { getPageBlocks, getPageEntry, getPageHero } from "../../../data/pages";
+import { pageAlternates } from "../../../lib/page-alternates";
+import { siteSettings } from "../../../site";
+
+const entry = await getPageEntry("csms", "en");
+const hero = getPageHero(entry);
+const blocks = getPageBlocks(entry).filter((block) => block.type !== "hero");
+const fallbackImage = { src: entry.data.featuredImage.src, alt: entry.data.featuredImage.alt };
+---
+
+<WidePageLayout
+  title={`${entry.data.title} | ${siteSettings.title}`}
+  description={entry.data.metaDescription}
+  canonical="/en/csms/"
+  lang={entry.data.lang}
+  alternates={pageAlternates("csms")}
+  ogImage={fallbackImage.src}
+>
+  {hero && <PageHero slot="fullBleed" block={hero} fallbackImage={fallbackImage} lang={entry.data.lang} isCsms />}
+  <article class="w-full">
+    <PageBlockRenderer blocks={blocks} fallbackImage={fallbackImage} />
+  </article>
+</WidePageLayout>

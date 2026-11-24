@@ -30,7 +30,7 @@ const assertEnglishEntry = ({ raw, data, body }) => {
 };
 
 test("English Home entry is frontmatter-only and policy-compliant", async () => {
-  assertEnglishEntry(await readEntry("0030-halaman-home-en.md"));
+  assertEnglishEntry(await readEntry("0035-halaman-home-en.md"));
 });
 
 test("English Home route resolves the English entry and alternates", async () => {
@@ -38,4 +38,16 @@ test("English Home route resolves the English entry and alternates", async () =>
   assert.match(route, /getPageEntry\("home", "en"\)/);
   assert.match(route, /canonical="\/en\/"/);
   assert.match(route, /pageAlternates\("home"\)/);
+});
+
+test("English CSMS entry covers the nine elements with English paths", async () => {
+  const entry = await readEntry("0036-halaman-csms-en.md");
+  assertEnglishEntry(entry);
+  const grid = entry.data.blocks.find((block) => block.type === "link-grid" && block.items.length === 9);
+  assert.ok(grid);
+  assert.ok(grid.items.every((item) => item.href.startsWith("/en/csms/")));
+  const route = await readFile(new URL("../src/pages/en/csms/index.astro", import.meta.url), "utf8");
+  assert.match(route, /getPageEntry\("csms", "en"\)/);
+  assert.match(route, /canonical="\/en\/csms\/"/);
+  assert.match(route, /pageAlternates\("csms"\)/);
 });
