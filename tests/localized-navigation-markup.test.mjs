@@ -16,7 +16,7 @@ const layout = await readFile(
 );
 
 test("header localizes menu labels and navigation chrome", () => {
-  assert.match(header, /import \{ navigationLabel, uiLang \} from "\.\.\/lib\/navigation"/);
+  assert.match(header, /import \{ navigationHref, navigationLabel, uiLang \} from "\.\.\/lib\/navigation"/);
   assert.match(header, /const ui = uiLang\(lang\)/);
   assert.match(header, /navigationLabel\(item, lang\)/);
   assert.match(header, /siteSettings\.ui\.mainNavigation\[ui\]/);
@@ -28,13 +28,21 @@ test("header localizes menu labels and navigation chrome", () => {
 
 test("footer accepts lang and localizes group titles, links, and back-to-top", () => {
   assert.match(footer, /interface Props \{\s*lang: string;\s*description\?: string;\s*\}/);
-  assert.match(footer, /const \{ lang, description = siteSettings\.description \} = Astro\.props/);
-  assert.match(footer, /import \{ navigationLabel, uiLang \} from "\.\.\/lib\/navigation"/);
+  assert.match(footer, /const \{ lang, description \} = Astro\.props/);
+  assert.match(footer, /siteSettings\.ui\.footerDescription\[ui\]/);
+  assert.match(footer, /import \{ navigationHref, navigationLabel, uiLang \} from "\.\.\/lib\/navigation"/);
   assert.match(footer, /navigationLabel\(\{ label: group\.title, labelEn: group\.titleEn \}, lang\)/);
   assert.match(footer, /navigationLabel\(link, lang\)/);
   assert.match(footer, /siteSettings\.ui\.backToTop\[ui\]/);
   assert.doesNotMatch(footer, /Kembali ke atas/);
   assert.doesNotMatch(footer, />\s*\{link\.label\}\s*</);
+});
+
+test("header and footer resolve localized hrefs", () => {
+  assert.match(header, /navigationHref\(primaryNavigation\[0\], lang\)/);
+  assert.match(header, /navigationHref\(item, lang\)/);
+  assert.match(footer, /navigationHref\(primaryNavigation\[0\], lang\)/);
+  assert.match(footer, /navigationHref\(link, lang\)/);
 });
 
 test("layout localizes skip link and passes lang to footer", () => {

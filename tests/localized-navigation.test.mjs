@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { navigationLabel, uiLang } from "../src/lib/navigation.ts";
+import { navigationHref, navigationLabel, uiLang } from "../src/lib/navigation.ts";
 import { footerNavigation, primaryNavigation, siteSettings } from "../src/site.ts";
 
 test("uiLang maps explicit and locale-prefixed values", () => {
@@ -64,7 +64,31 @@ test("footer navigation keeps canonical hrefs and gains English labels", () => {
 
 test("localized UI chrome has both languages", () => {
   for (const value of Object.values(siteSettings.ui)) {
-    assert.ok(value.id, "missing Indonesian UI string");
-    assert.ok(value.en, "missing English UI string");
+    const localizedValues = "id" in value ? [value] : Object.values(value);
+    for (const localized of localizedValues) {
+      assert.ok(localized.id, "missing Indonesian UI string");
+      assert.ok(localized.en, "missing English UI string");
+    }
   }
+});
+
+test("navigationHref uses English hrefs only when present", () => {
+  assert.equal(navigationHref({ href: "/", hrefEn: "/en/" }, "en"), "/en/");
+  assert.equal(navigationHref({ href: "/", hrefEn: "/en/" }, "id"), "/");
+  assert.equal(navigationHref({ href: "/trainings/" }, "en"), "/trainings/");
+});
+
+test("real main-menu routes expose localized hrefs", () => {
+  assert.deepEqual(
+    primaryNavigation.map((entry) => [entry.href, entry.hrefEn]),
+    [
+      ["/", "/en/"],
+      ["/services/", "/en/services/"],
+      ["/csms/", "/en/csms/"],
+      ["/trainings/", undefined],
+      ["/schedules/", undefined],
+      ["/articles/", undefined],
+      ["/about-us/", "/en/about-us/"],
+    ],
+  );
 });
