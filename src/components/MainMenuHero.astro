@@ -8,38 +8,37 @@ interface Props {
 const { eyebrow, title, description, image, imageAlt, imagePriority = false, variant = "default" } = Astro.props;
 const isHome = variant === "home";
 const isServices = variant === "services";
+const isElevated = isHome || isServices;
 ---
 <section data-main-menu-hero class:list={[
   "grid w-full items-center border-b",
-  isHome
+  isElevated
     ? "relative isolate overflow-hidden border-brand-deepblue bg-[#102b55] py-9 shadow-[0_24px_60px_-42px_rgba(16,43,85,0.7)] sm:py-12 lg:min-h-[34rem] lg:py-14"
-    : isServices
-      ? "relative isolate w-full overflow-hidden border-[#dce7fb] bg-[#f1f5ff] py-10 sm:py-14 lg:py-[4.5rem]"
-      : "border-border py-8 sm:py-12 lg:py-16"
+    : "border-border py-8 sm:py-12 lg:py-16"
 ]} aria-labelledby="main-menu-hero-title">
-  {(isHome || isServices) && <div aria-hidden="true" class:list={["pointer-events-none absolute -left-28 -top-20 -z-10 h-96 w-96 rounded-full blur-3xl", isHome ? "bg-brand-blue/25" : "bg-brand-blue/10"]}></div>}
-  {(isHome || isServices) && <div aria-hidden="true" class:list={["pointer-events-none absolute -bottom-40 right-[28%] -z-10 h-80 w-80 rounded-full blur-3xl", isHome ? "bg-brand-orange/10" : "bg-brand-orange/15"]}></div>}
+  {isElevated && <div aria-hidden="true" class="pointer-events-none absolute -left-28 -top-20 -z-10 h-96 w-96 rounded-full bg-brand-blue/25 blur-3xl"></div>}
+  {isElevated && <div aria-hidden="true" class="pointer-events-none absolute -bottom-40 right-[28%] -z-10 h-80 w-80 rounded-full bg-brand-orange/10 blur-3xl"></div>}
   <div class:list={[
     "relative z-10 grid w-full items-center",
-    isHome || isServices
+    isElevated
       ? "mx-auto max-w-[var(--content-wide)] gap-9 px-[var(--page-gutter)] sm:gap-12 lg:grid-cols-[minmax(0,1.02fr)_minmax(360px,0.98fr)] lg:gap-14"
       : "gap-8 sm:gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] lg:gap-14"
   ]}>
     <div class="relative z-10 max-w-3xl">
-      {eyebrow && <p class:list={["font-semibold uppercase", isHome ? "mb-5 inline-flex items-center gap-2 text-[0.7rem] tracking-[0.18em] text-blue-100 sm:text-xs" : isServices ? "mb-5 inline-flex items-center rounded-full border border-brand-deepblue/15 bg-white/80 px-3.5 py-1.5 text-[0.7rem] tracking-[0.14em] text-brand-deepblue shadow-sm sm:text-xs" : "mb-4 text-xs tracking-[0.14em] text-brand-deepblue sm:text-sm"]}>
-        {isHome && <span aria-hidden="true" class="h-1.5 w-1.5 rounded-full bg-brand-orange"></span>}{eyebrow}
+      {eyebrow && <p class:list={["font-semibold uppercase", isElevated ? "mb-5 inline-flex items-center gap-2 text-[0.7rem] tracking-[0.18em] text-blue-100 sm:text-xs" : "mb-4 text-xs tracking-[0.14em] text-brand-deepblue sm:text-sm"]}>
+        {isElevated && <span aria-hidden="true" class="h-1.5 w-1.5 rounded-full bg-brand-orange"></span>}{eyebrow}
       </p>}
-      <h1 id="main-menu-hero-title" class:list={["font-semibold", isHome ? "max-w-[14ch] text-white text-[2.45rem] leading-[1.08] tracking-[-0.045em] sm:text-5xl lg:text-[3.65rem]" : isServices ? "max-w-[13ch] text-[#142b55] text-[2.65rem] leading-[1.06] tracking-[-0.045em] sm:text-5xl lg:text-[3.8rem]" : "max-w-3xl text-ink text-3xl leading-[1.12] tracking-tight sm:text-4xl lg:text-5xl"]}>{title}</h1>
-      <p class:list={[isHome ? "mt-6 max-w-[42rem] text-blue-100/90 text-base leading-[1.8] sm:text-lg" : isServices ? "mt-6 max-w-[42rem] text-[#4c5d78] text-base leading-[1.85] sm:text-lg" : "mt-5 max-w-2xl text-ink-muted text-base leading-relaxed sm:text-lg"]}>{description}</p>
-      {(isHome || isServices) && <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"><slot name="actions" /></div>}
+      <h1 id="main-menu-hero-title" class:list={["font-semibold", isHome ? "max-w-[14ch] text-white text-[2.45rem] leading-[1.08] tracking-[-0.045em] sm:text-5xl lg:text-[3.65rem]" : isServices ? "max-w-[13ch] text-white text-[2.65rem] leading-[1.06] tracking-[-0.045em] sm:text-5xl lg:text-[3.8rem]" : "max-w-3xl text-ink text-3xl leading-[1.12] tracking-tight sm:text-4xl lg:text-5xl"]}>{title}</h1>
+      <p class:list={[isElevated ? "mt-6 max-w-[42rem] text-blue-100/90 text-base leading-[1.8] sm:text-lg" : "mt-5 max-w-2xl text-ink-muted text-base leading-relaxed sm:text-lg"]}>{description}</p>
+      {isElevated && <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"><slot name="actions" /></div>}
       {isHome && <p class="mt-7 flex items-center gap-3 text-xs font-medium tracking-wide text-blue-100/75"><span aria-hidden="true" class="h-px w-8 bg-brand-orange"></span>{organization.name} · {siteSettings.tagline}</p>}
     </div>
-    <div class:list={["relative mx-auto w-full", isHome ? "max-w-[38rem] lg:ml-auto" : ""]}>
-      {(isHome || isServices) && <div aria-hidden="true" class:list={["absolute -right-4 -top-4 h-24 w-24 border-r-2 border-t-2 sm:-right-5 sm:-top-5 sm:h-32 sm:w-32", isHome ? "border-brand-orange" : "border-brand-blue/45"]}></div>}
-      <div class:list={["relative z-10", isHome ? "overflow-hidden rounded-[1.15rem] border border-white/20 bg-white/10 p-2 shadow-[0_24px_70px_-34px_rgba(0,0,0,0.6)] backdrop-blur-sm sm:rounded-[1.5rem] sm:p-3" : isServices ? "overflow-hidden rounded-[1.15rem] border border-white bg-white p-2 shadow-[0_28px_65px_-35px_rgba(23,54,168,0.38)] sm:rounded-[1.5rem] sm:p-3" : ""]}>
-        <FeaturedImage src={image} alt={imageAlt} width={1200} height={900} aspect="fourThree" priority={imagePriority} class={isHome || isServices ? "rounded-[0.85rem] border-0 sm:rounded-[1.1rem]" : "relative w-full"} />
+    <div class:list={["relative mx-auto w-full", isElevated ? "max-w-[38rem] lg:ml-auto" : ""]}>
+      {isElevated && <div aria-hidden="true" class="absolute -right-4 -top-4 h-24 w-24 border-r-2 border-t-2 border-brand-orange sm:-right-5 sm:-top-5 sm:h-32 sm:w-32"></div>}
+      <div class:list={["relative z-10", isElevated ? "overflow-hidden rounded-[1.15rem] border border-white/20 bg-white/10 p-2 shadow-[0_24px_70px_-34px_rgba(0,0,0,0.6)] backdrop-blur-sm sm:rounded-[1.5rem] sm:p-3" : ""]}>
+        <FeaturedImage src={image} alt={imageAlt} width={1200} height={900} aspect="fourThree" priority={imagePriority} class={isElevated ? "rounded-[0.85rem] border-0 sm:rounded-[1.1rem]" : "relative w-full"} />
       </div>
-      {(isHome || isServices) && <div aria-hidden="true" class:list={["absolute -bottom-5 -left-5 -z-10 h-28 w-28 rounded-full border-[14px] sm:-bottom-7 sm:-left-7 sm:h-36 sm:w-36", isHome ? "border-white/10" : "border-brand-blue/10"]}></div>}
+      {isElevated && <div aria-hidden="true" class="absolute -bottom-5 -left-5 -z-10 h-28 w-28 rounded-full border-[14px] border-white/10 sm:-bottom-7 sm:-left-7 sm:h-36 sm:w-36"></div>}
     </div>
   </div>
 </section>
