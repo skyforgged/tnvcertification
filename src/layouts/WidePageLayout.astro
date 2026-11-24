@@ -16,6 +16,7 @@ interface Props {
 const { title, description, lang = "id", canonical, ogImage, alternates = [], structuredData = [], breadcrumbs = [] } = Astro.props;
 ---
 <Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage} alternates={alternates} structuredData={structuredData}>
+  <slot name="fullBleed" />
   <Container variant="landing" gutter={false}>
     {breadcrumbs.length > 0 && <Breadcrumbs items={breadcrumbs} />}
     <div class="min-w-0"><slot /></div>
