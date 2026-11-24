@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import ButtonLink from "../ButtonLink.astro";
+import { trainingScheduleDefaults } from "../../site";
 import {
   monthKeyFromStartDate,
   scheduleDateLabel,
@@ -122,8 +123,14 @@ const summaryTemplate = labels.summaryActive.replace("{count}", String(activeCou
                 </div>
                 <div class="training-schedule-details min-w-0">
                   <p class="training-schedule-location text-sm text-ink-muted">{locationLabel(data.locationType)}</p>
-                  {(data.venue || data.city) && (
-                    <p class="training-schedule-venue mt-1 text-sm text-ink-muted">{[data.venue, data.city, data.province].filter(Boolean).join(", ")}</p>
+                  {(data.venue || data.city || data.province || data.locationType === "offline" || data.locationType === "hybrid") && (
+                    <p class="training-schedule-venue mt-1 text-sm text-ink-muted">
+                      {[
+                        data.venue ?? ((data.locationType === "offline" || data.locationType === "hybrid") ? trainingScheduleDefaults.venue.name : undefined),
+                        data.city ?? ((data.locationType === "offline" || data.locationType === "hybrid") ? trainingScheduleDefaults.venue.address.city : undefined),
+                        data.province ?? ((data.locationType === "offline" || data.locationType === "hybrid") ? trainingScheduleDefaults.venue.address.province : undefined),
+                      ].filter(Boolean).join(", ")}
+                    </p>
                   )}
                   <p data-status-label class="training-schedule-status mt-2 text-sm font-medium text-ink">{status}</p>
                   {data.price !== undefined && (

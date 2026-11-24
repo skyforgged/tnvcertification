@@ -11,6 +11,8 @@ featuredImage:
 slug: "pelatihan-auditor-internal-fssc-22000"
 translationKey: "training-pelatihan-auditor-internal-fssc-22000"
 lang: "id"
+relatedServiceSlugs:
+  - "sertifikasi-fssc-22000"
 blocks:
   - type: hero
     id: "hero-auditor-internal-fssc-22000"

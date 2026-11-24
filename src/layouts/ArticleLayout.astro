@@ -18,6 +18,7 @@ interface Props {
   breadcrumbs?: Array<{ label: string; href?: string }>;
   hero: HeroBlock;
   blocks: PageBlock[];
+  structuredData?: unknown[];
 }
 const {
   title,
@@ -31,11 +32,12 @@ const {
   breadcrumbs = [],
   hero,
   blocks,
+  structuredData = [],
 } = Astro.props;
 const fallbackImage = { src: ogImage ?? "", alt: imageAlt };
 const dateFormatter = new Intl.DateTimeFormat(lang === "en" ? "en-US" : "id-ID", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 ---
-<Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage} alternates={alternates}>
+<Layout title={title} description={description} lang={lang} canonical={canonical} ogImage={ogImage} alternates={alternates} structuredData={structuredData}>
   <Fragment slot="fullBleed">
     <div class="mx-auto w-full max-w-[var(--container-landing)] px-[var(--page-gutter)] pt-8 sm:pt-10 lg:pt-12">
       <div class="mx-auto w-full max-w-[var(--container-reading)]">

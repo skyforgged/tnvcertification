@@ -37,6 +37,18 @@ export const organization = {
   sameAs: [],
 } as const;
 
+/**
+ * Default in-person venue for training scheme events.
+ * Its postal address intentionally reuses the organization's registered office.
+ */
+export const trainingScheduleDefaults = {
+  venue: {
+    name: "IPSI Training Center",
+    address: organization.contact.address,
+    addressCountry: "Indonesia",
+  },
+} as const;
+
 export const siteSettings = {
   url: SITE_URL,
   title: "PT. Intiprima Sertifikasi",
