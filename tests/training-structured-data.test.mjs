@@ -115,8 +115,9 @@ test("content-section with schema ItemList emits a nested ItemList with numbered
 
   const section = entities.find((entity) => entity["@type"] === "WebPageElement");
   assert.equal(section["@id"], `${url}#tujuan-dan-kompetensi-peserta`);
-  assert.equal(section.hasPart["@type"], "ItemList");
-  assert.deepEqual(section.hasPart.itemListElement, [
+  assert.equal("hasPart" in section, false, "hasPart only accepts CreativeWork values");
+  assert.equal(section.mainEntity["@type"], "ItemList");
+  assert.deepEqual(section.mainEntity.itemListElement, [
     { "@type": "ListItem", position: 1, name: "Memahami kriteria audit", description: "Mengenali kriteria." },
     { "@type": "ListItem", position: 2, name: "Merencanakan kegiatan audit", description: "Menentukan tujuan." },
   ]);

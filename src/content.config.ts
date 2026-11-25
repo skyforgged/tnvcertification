@@ -26,7 +26,7 @@ const blockIdSchema = z
   .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "block id must be lowercase kebab-case");
 const faqBlock = z.object({
   type: z.literal("faq"),
-  id: blockIdSchema.optional(),
+  id: blockIdSchema,
   surface: sectionSurfaceSchema.optional(),
   items: z
     .array(

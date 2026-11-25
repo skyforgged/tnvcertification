@@ -162,7 +162,7 @@ function blockGraphNodes(
     const id = `${url}#${blockAnchorId(block, index)}`;
 
     if (block.type === "content-section") {
-      const hasPart = block.items?.length
+      const items = block.items?.length
         ? block.schema === "ItemList"
           ? {
               "@type": "ItemList",
@@ -184,7 +184,11 @@ function blockGraphNodes(
         "@id": id,
         name: block.title ?? block.eyebrow ?? fallbackName,
         ...(block.description ? { description: block.description } : {}),
-        ...(hasPart ? { hasPart } : {}),
+        ...(items
+          ? block.schema === "ItemList"
+            ? { mainEntity: items }
+            : { hasPart: items }
+          : {}),
       });
     } else if (block.type === "faq" && Array.isArray(block.items) && block.items.length) {
       entities.push({
