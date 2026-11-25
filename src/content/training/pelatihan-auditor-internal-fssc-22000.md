@@ -54,6 +54,7 @@ blocks:
         description: "Tindak lanjut temuan dan verifikasi efektivitas tindakan membantu organisasi memastikan bahwa masalah ditangani dan pembelajaran audit digunakan untuk memperbaiki sistem."
   - type: content-section
     id: "tujuan-dan-kompetensi-peserta"
+    schema: ItemList
     layout: "editorial"
     eyebrow: "Hasil pembelajaran"
     title: "Tujuan dan kompetensi yang dikembangkan"

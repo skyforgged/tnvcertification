@@ -5,6 +5,7 @@
 import { organization, siteSettings, trainingScheduleDefaults } from "../site.ts";
 import { siteCrumb } from "../data/breadcrumbs.ts";
 import type { PageBlock } from "../data/pages";
+import { blockAnchorId } from "../lib/block-ids.ts";
 
 export const ORGANIZATION_ID = `${siteSettings.url}/#organization`;
 
@@ -148,6 +149,75 @@ export function pageJsonLdGraph(additionalEntities: unknown[] = []) {
   };
 }
 
+/** Section-level entities whose @id matches the rendered section anchor. */
+function blockGraphNodes(
+  blocks: PageBlock[],
+  url: string,
+  fallbackName: string,
+): { entities: Array<Record<string, unknown>>; pageParts: Array<{ "@id": string }> } {
+  const entities: Array<Record<string, unknown>> = [];
+  const pageParts: Array<{ "@id": string }> = [];
+
+  blocks.forEach((block, index) => {
+    const id = `${url}#${blockAnchorId(block, index)}`;
+
+    if (block.type === "content-section") {
+      const hasPart = block.items?.length
+        ? block.schema === "ItemList"
+          ? {
+              "@type": "ItemList",
+              itemListElement: block.items.map((item, itemIndex) => ({
+                "@type": "ListItem",
+                position: itemIndex + 1,
+                name: item.title,
+                description: item.description,
+              })),
+            }
+          : block.items.map((item) => ({
+              "@type": "CreativeWork",
+              name: item.title,
+              description: item.description,
+            }))
+        : undefined;
+      entities.push({
+        "@type": "WebPageElement",
+        "@id": id,
+        name: block.title ?? block.eyebrow ?? fallbackName,
+        ...(block.description ? { description: block.description } : {}),
+        ...(hasPart ? { hasPart } : {}),
+      });
+    } else if (block.type === "faq" && Array.isArray(block.items) && block.items.length) {
+      entities.push({
+        "@type": "FAQPage",
+        "@id": id,
+        mainEntity: block.items.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: { "@type": "Answer", text: item.answer },
+        })),
+      });
+    } else if (block.type === "howto" && Array.isArray(block.steps) && block.steps.length) {
+      entities.push({
+        "@type": "HowTo",
+        "@id": id,
+        name: block.title ?? fallbackName,
+        step: block.steps.map((step, stepIndex) => ({
+          "@type": "HowToStep",
+          position: stepIndex + 1,
+          name: step.title,
+          text: step.description,
+          ...(step.image?.src ? { image: new URL(step.image.src, siteSettings.url).toString() } : {}),
+        })),
+      });
+    } else {
+      return;
+    }
+
+    pageParts.push({ "@id": id });
+  });
+
+  return { entities, pageParts };
+}
 
 export interface TrainingStructuredDataInput {
   name: string;
@@ -243,37 +313,9 @@ export function trainingPageJsonLd(input: TrainingStructuredDataInput) {
     ...(instances.length ? { hasCourseInstance: instances } : {}),
   });
 
-  input.blocks.forEach((block, index) => {
-    if (block.type === "faq" && Array.isArray(block.items) && block.items.length) {
-      const id = `${url}#faq-${block.id ?? index + 1}`;
-      entities.push({
-        "@type": "FAQPage",
-        "@id": id,
-        mainEntity: block.items.map((item: { question: string; answer: string }) => ({
-          "@type": "Question",
-          name: item.question,
-          acceptedAnswer: { "@type": "Answer", text: item.answer },
-        })),
-      });
-      pageParts.push({ "@id": id });
-    }
-    if (block.type === "howto" && Array.isArray(block.steps) && block.steps.length) {
-      const id = `${url}#howto-${block.id ?? index + 1}`;
-      entities.push({
-        "@type": "HowTo",
-        "@id": id,
-        name: block.title ?? input.name,
-        step: block.steps.map((step: { title: string; description: string; image?: { src: string } }, stepIndex: number) => ({
-          "@type": "HowToStep",
-          position: stepIndex + 1,
-          name: step.title,
-          text: step.description,
-          ...(step.image?.src ? { image: new URL(step.image.src, siteSettings.url).toString() } : {}),
-        })),
-      });
-      pageParts.push({ "@id": id });
-    }
-  });
+  const { entities: blockEntities, pageParts: blockParts } = blockGraphNodes(input.blocks, url, input.name);
+  entities.push(...blockEntities);
+  pageParts.push(...blockParts);
 
   entities.push(
     {
@@ -367,37 +409,9 @@ export function articlePageJsonLd(input: ArticleStructuredDataInput) {
     ...(about.length ? { about } : {}),
   });
 
-  input.blocks.forEach((block, index) => {
-    if (block.type === "faq" && block.items.length) {
-      const id = `${url}#faq-${block.id ?? index + 1}`;
-      entities.push({
-        "@type": "FAQPage",
-        "@id": id,
-        mainEntity: block.items.map((item) => ({
-          "@type": "Question",
-          name: item.question,
-          acceptedAnswer: { "@type": "Answer", text: item.answer },
-        })),
-      });
-      pageParts.push({ "@id": id });
-    }
-    if (block.type === "howto" && block.steps.length) {
-      const id = `${url}#howto-${block.id ?? index + 1}`;
-      entities.push({
-        "@type": "HowTo",
-        "@id": id,
-        name: block.title ?? input.name,
-        step: block.steps.map((step, stepIndex) => ({
-          "@type": "HowToStep",
-          position: stepIndex + 1,
-          name: step.title,
-          text: step.description,
-          ...(step.image?.src ? { image: new URL(step.image.src, siteSettings.url).toString() } : {}),
-        })),
-      });
-      pageParts.push({ "@id": id });
-    }
-  });
+  const { entities: blockEntities, pageParts: blockParts } = blockGraphNodes(input.blocks, url, input.name);
+  entities.push(...blockEntities);
+  pageParts.push(...blockParts);
 
   entities.push(
     {
