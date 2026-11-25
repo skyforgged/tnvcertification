@@ -23,6 +23,7 @@ export function organizationJsonLd() {
       width: organization.logo.width,
       height: organization.logo.height,
     },
+    image: new URL(organization.logo.url, siteSettings.url).toString(),
     email: organization.contact.email,
     telephone: organization.contact.phone,
     address: {
@@ -199,7 +200,6 @@ export function trainingPageJsonLd(input: TrainingStructuredDataInput) {
         "@type": "CourseInstance",
         "@id": id,
         name: input.name,
-        course: { "@id": courseId },
         startDate: schedule.startDate,
         endDate: schedule.endDate,
         url,
