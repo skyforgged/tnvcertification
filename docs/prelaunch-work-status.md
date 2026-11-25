@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated commit: working tree after `5f886f2` (full gate suite; English main-menu pages, PR #37/#38 merged, section JSON-LD revisions applied)
+- Validated commit: working tree after `665462f` (full gate suite; English main-menu pages, PR #37/#38/#39 merged, section JSON-LD and CI step-order revisions applied)
 
 Permanent rule: internal service-status copy — `Status pengembangan layanan`, `Status layanan`, `Service development status`, and every variant — is prohibited in all content, published or draft. Validators, tests, plans, and specs must not require or generate these blocks. Historical mentions in this file are incident records, not instructions.
 
@@ -56,6 +56,9 @@ The audit branch was merged into `main` by PR #3 (`ab54c88`).
 | P22 | Training and schedule content | Completed; PR #30 merged upstream at `8638c2f`, three local ISO service drafts preserved through `e34639a`, remote schedule-label syntax fixed at `7cb7246`, full gate suite passed |
 | P23 | Service content integration | Completed; 10 remote content commits merged, consultation wording and five missing block titles restored, FSSC intro/alt corrected, full gate suite passed on `bf8fb81` |
 | P24 | Service self-audit copy | Completed; six internal status blocks and availability/authorization FAQs removed, three metaDescriptions rewritten, regression tests added, full gate suite passed |
+| P25 | Full English main-menu pages | Completed; all seven English menu routes are real indexable pages, translated trainings/schedules/articles landed, full gate suite passed on `11efb5c` |
+| P26 | Schema.org PR #37/#38 | Completed; invalid `CourseInstance`/`Organization` fields fixed, section JSON-LD anchored to rendered IDs, full gate suite passed on `5f886f2` |
+| P27 | Quality gates ordering | Completed; PR #39 moved `pnpm build` before dist-dependent `pnpm test`, exact-step regression test added, full gate suite passed on `665462f` |
 | Build strategy | Content-first full-build baseline | Verification checkpoint closed for current baseline; timing baseline captured, negative preflight verified in CI; full checks mandatory |
 
 ## Verified repository facts
@@ -755,4 +758,27 @@ Full gate suite passed locally on `main` after merge and fixes with Node.js `26.
 | `pnpm audit:headings` | PASS, exit `0`, 94 HTML pages |
 
 CI status for `5f886f2` is not claimed here. Visual and keyboard review remain manual tasks.
+
+## P27 — Quality gates build/test order (2026-11-25)
+
+- CI on `760457e` failed because `.github/workflows/quality.yml` ran `pnpm test` before `pnpm build`. Seven built-page tests read `dist/`, which does not exist on a fresh checkout. Removing `dist/` locally reproduced the same seven failures.
+- GitHub PR #39 (`51a2a6e`) moved `Production build` ahead of `Tests` and added a regression test. Its head check run completed with `success`. Net diff against `main` was limited to the workflow and its new test.
+- Review found that the new test used a source substring check. Follow-up commit `665462f` parses the workflow YAML and compares exact `step.run` commands. A mutation check that swapped the two steps made the test fail, then the workflow was restored.
+- No content entries, structured data, or site configuration changed in this phase.
+
+Full gate suite passed locally on `main` after merge and test correction with Node.js `26.13.1`. Each command ran separately:
+
+| Command | Result |
+|---|---|
+| `pnpm check` | PASS, exit `0` |
+| `pnpm build` | PASS, exit `0`, 91 pages |
+| `pnpm typecheck` | PASS, exit `0` |
+| `pnpm lint` | PASS, exit `0` |
+| `pnpm test` | PASS, exit `0`, 579 tests |
+| `pnpm audit:seo` | PASS, exit `0`, 94 HTML pages and 76 unique canonicals |
+| `pnpm audit:blocks` | PASS, exit `0`, 114 sections in 45 pages |
+| `pnpm audit:page-images` | PASS, exit `0`, 76 generated URLs |
+| `pnpm audit:headings` | PASS, exit `0`, 94 HTML pages |
+
+CI status for `665462f` is not claimed here. Visual and keyboard review remain manual tasks.
 
