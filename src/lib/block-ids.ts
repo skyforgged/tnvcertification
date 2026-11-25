@@ -48,8 +48,7 @@ export function findDuplicateBlockIdIndexes(blocks: readonly BlockAnchorSource[]
   const seen = new Set<string>();
   const duplicates: number[] = [];
   blocks.forEach((block, index) => {
-    if (!nonEmpty(block.id)) return;
-    const id = block.id.trim();
+    const id = blockAnchorId(block, index);
     if (seen.has(id)) duplicates.push(index);
     else seen.add(id);
   });

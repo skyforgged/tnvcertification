@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
+import { collections } from "../src/content.config.ts";
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8").catch(() => "");
 const config = await read("src/content.config.ts");
@@ -29,9 +30,50 @@ test("generic slug route skips route-owned slugs", () => {
   assert.match(slugRoute, /!routeOwnedPageSlugs\.includes\(/);
 });
 
-test("content-section schema field is restricted to known JSON-LD representations", () => {
-  assert.ok(
-    config.includes('schema: z.enum(["WebPageElement", "ItemList"]).optional()'),
-    "missing validated schema field on content-section blocks",
-  );
+test("content-section schema accepts declared JSON-LD representations", () => {
+  const base = {
+    id: 99,
+    title: "Halaman",
+    intro: "Halaman adalah contoh pengujian skema.",
+    slug: "halaman-contoh",
+    metaDescription: "Deskripsi meta untuk pengujian skema.",
+    pubDate: "2026-11-25T00:00:00Z",
+    featuredImage: { src: "/images/example.webp", alt: "Halaman adalah contoh ilustrasi." },
+    lang: "id",
+    translationKey: "page-halaman-contoh",
+  };
+  const section = (schema) => ({
+    blocks: [{ type: "content-section", title: "Bagian", schema, items: [{ title: "Butir", description: "Teks." }] }],
+  });
+  const valid = collections.pages.schema.safeParse({ ...base, ...section("ItemList") });
+  assert.equal(valid.success, true, valid.success ? "" : JSON.stringify(valid.error.issues));
+
+  const invalid = collections.pages.schema.safeParse({ ...base, ...section("Product") });
+  assert.equal(invalid.success, false);
+});
+
+test("FAQ blocks require an explicit anchor id", () => {
+  const base = {
+    id: 100,
+    title: "Halaman",
+    intro: "Halaman adalah contoh pengujian skema.",
+    slug: "halaman-faq",
+    metaDescription: "Deskripsi meta untuk pengujian skema FAQ.",
+    pubDate: "2026-11-25T00:00:00Z",
+    featuredImage: { src: "/images/example.webp", alt: "Halaman adalah contoh ilustrasi." },
+    lang: "id",
+    translationKey: "page-halaman-faq",
+  };
+  const items = [{ question: "Apa?", answer: "Jawaban." }];
+  const missingId = collections.pages.schema.safeParse({
+    ...base,
+    blocks: [{ type: "faq", items }],
+  });
+  assert.equal(missingId.success, false);
+
+  const withId = collections.pages.schema.safeParse({
+    ...base,
+    blocks: [{ type: "faq", id: "faq-utama", items }],
+  });
+  assert.equal(withId.success, true, withId.success ? "" : JSON.stringify(withId.error.issues));
 });

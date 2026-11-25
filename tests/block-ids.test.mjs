@@ -42,6 +42,15 @@ test("findDuplicateBlockIdIndexes reports every occurrence after the first", () 
   assert.deepEqual(findDuplicateBlockIdIndexes(blocks), [2, 3]);
 });
 
+test("findDuplicateBlockIdIndexes reports duplicate ids derived from titles", () => {
+  const blocks = [
+    { type: "content-section", title: "Tahapan Audit" },
+    { type: "hero", title: "Beranda" },
+    { type: "content-section", title: "Tahapan Audit" },
+  ];
+  assert.deepEqual(findDuplicateBlockIdIndexes(blocks), [2]);
+});
+
 test("validateBlockIds reports duplicate ids with the file and field", () => {
   const blocks = Array.from({ length: 6 }, (_, index) => ({
     type: index === 0 || index === 5 ? "faq" : "content-section",
