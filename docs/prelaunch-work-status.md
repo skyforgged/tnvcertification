@@ -6,7 +6,7 @@
 - Base branch: `main`
 - Completed audit branch: `prep/site-identity-taxonomy-audit` (merged via PR #3)
 - Completed implementation branch: `feat/bilingual-service-taxonomy` (merged at `736bd14`)
-- Validated commit: working tree after `b68e4b4` (full gate suite; service self-audit pattern removed)
+- Validated commit: working tree after `5f886f2` (full gate suite; English main-menu pages, PR #37/#38 merged, section JSON-LD revisions applied)
 
 Permanent rule: internal service-status copy — `Status pengembangan layanan`, `Status layanan`, `Service development status`, and every variant — is prohibited in all content, published or draft. Validators, tests, plans, and specs must not require or generate these blocks. Historical mentions in this file are incident records, not instructions.
 
@@ -705,7 +705,7 @@ Full gate suite passed: all nine commands exit `0`, 418 tests, 66 built pages, 7
 
 ## P25 — Full English main-menu pages (in progress)
 
-Commits on `main`, not yet pushed: `00d0011` (routing foundation), `b2d11dc` (English trainings), `c617c96` (English schedules), `f368c91` (English articles).
+Pushed on `main`: `00d0011` (routing foundation), `b2d11dc` (English trainings), `c617c96` (English schedules), `f368c91` (English articles), `3159e64` (review fixes), `11efb5c` (documentation).
 
 - Every main-menu item resolves to a real English page: `/en/`, `/en/services/`, `/en/csms/`, `/en/trainings/`, `/en/schedules/`, `/en/articles/`, and `/en/about-us/`. Trainings includes 14 translated detail pages. The articles archive has nine translated details and no `/en/articles/page/2/`. Pagination uses a shared article order from `src/data/articles.ts`.
 - English training, schedule, and article entries use the same `slug` and `translationKey` as their Indonesian pairs. `lang` separates the pair. Numeric `id` values are distinct and positive. Article detail pages in both languages carry reciprocal `id`/`en` hreflang alternates. Service associations for English trainings map through `translationKey` and skip entries with no English service pair.
@@ -731,4 +731,28 @@ Full gate suite passed locally on `main` after the review fixes with Node.js `26
 | `pnpm audit:headings` | PASS, exit `0`, 94 HTML pages |
 
 CI status for these commits is not claimed here. Visual and keyboard review remain manual tasks.
+
+## P26 — Schema.org PR merges and section anchor corrections (2026-11-25)
+
+- GitHub PR #37 (`e893e33`) removed the invalid `course` property from `CourseInstance` and added the canonical Organization `image`. Its check run had failed on an outdated base before the English pages landed; the merged tree was validated locally.
+- GitHub PR #38 (`edab3fd`) anchored section-level JSON-LD to rendered section IDs and let a content section declare its JSON-LD representation in frontmatter. The add/add conflict in `tests/training-structured-data.test.mjs` was resolved by taking the PR #38 file, which contains the PR #37 assertions verbatim.
+- Review of the merged tree found an invalid `hasPart` value: `hasPart` accepts `CreativeWork`, not `ItemList`. Fix commit `5f886f2` emits a declared `ItemList` through `WebPageElement.mainEntity`. Default sections keep `hasPart` with `CreativeWork` values. A built-output check found 116 section nodes with matching rendered anchors, one `ItemList` under `mainEntity`, and zero `ItemList` values under `hasPart`.
+- Block-ID validation now includes derived anchors, so duplicate titles no longer create duplicate JSON-LD `@id` values. FAQ blocks require an explicit `id`, because their renderer anchor is otherwise group-local and can disagree with the global block index used by JSON-LD generation. Schema tests now use `safeParse` instead of source-string checks.
+- No fabricated dates, prices, availability, or unsupported schema claims were added.
+
+Full gate suite passed locally on `main` after merge and fixes with Node.js `26.13.1`. Each command ran separately:
+
+| Command | Result |
+|---|---|
+| `pnpm check` | PASS, exit `0` |
+| `pnpm build` | PASS, exit `0`, 91 pages |
+| `pnpm typecheck` | PASS, exit `0` |
+| `pnpm lint` | PASS, exit `0` |
+| `pnpm test` | PASS, exit `0`, 578 tests |
+| `pnpm audit:seo` | PASS, exit `0`, 94 HTML pages and 76 unique canonicals |
+| `pnpm audit:blocks` | PASS, exit `0`, 114 sections in 45 pages |
+| `pnpm audit:page-images` | PASS, exit `0`, 76 generated URLs |
+| `pnpm audit:headings` | PASS, exit `0`, 94 HTML pages |
+
+CI status for `5f886f2` is not claimed here. Visual and keyboard review remain manual tasks.
 
