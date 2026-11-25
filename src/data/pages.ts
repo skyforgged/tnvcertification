@@ -3,6 +3,7 @@
  * Editorial copy lives in `src/content/pages/`; routes only resolve and render it.
  */
 import { getCollection, type CollectionEntry } from "astro:content";
+import { selectPageEntry } from "../lib/page-selection";
 
 export type PageEntry = CollectionEntry<"pages">;
 type PageBlockUnion = NonNullable<PageEntry["data"]["blocks"]>[number];
@@ -27,14 +28,15 @@ export const routeOwnedPageSlugs: readonly string[] = [
   "articles",
 ];
 
-export async function getPageEntry(slug: string): Promise<PageEntry> {
+export async function getPageEntry(slug: string, lang = "id"): Promise<PageEntry> {
   const entries = await getCollection(
     "pages",
-    (entry) => entry.data.slug === slug && entry.data.draft !== true,
+    (entry) =>
+      entry.data.slug === slug &&
+      entry.data.lang === lang &&
+      entry.data.draft !== true,
   );
-  const entry = entries[0];
-  if (!entry) throw new Error(`Page entry "${slug}" not found or is a draft`);
-  return entry;
+  return selectPageEntry(entries, slug, lang);
 }
 
 export function getPageHero(entry: PageEntry): HeroBlock | undefined {
@@ -49,7 +51,10 @@ export function getPageBlocks(entry: PageEntry): PageBlock[] {
 export async function getCsmsTopicEntries(): Promise<PageEntry[]> {
   const entries = await getCollection(
     "pages",
-    (entry) => entry.data.draft !== true && entry.data.slug.startsWith(CSMS_TOPIC_PREFIX),
+    (entry) =>
+      entry.data.draft !== true &&
+      entry.data.lang === "id" &&
+      entry.data.slug.startsWith(CSMS_TOPIC_PREFIX),
   );
   return entries.sort((a, b) => a.data.slug.localeCompare(b.data.slug));
 }

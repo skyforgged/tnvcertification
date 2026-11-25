@@ -1,5 +1,6 @@
 ---
 import type { Article } from "../data/articles";
+import { articlePath } from "../lib/article-routing";
 
 interface Props {
   article: Article;
@@ -32,7 +33,7 @@ const articleLabel = article.lang === "en" ? "Article" : "Artikel";
   <p class="mt-4 text-xs font-semibold uppercase tracking-[0.12em] text-ink-subtle">{articleLabel}</p>
   <Heading class="mt-2 text-xl font-semibold leading-snug tracking-tight text-ink">
     <a
-      href={`/articles/${article.slug}/`}
+      href={articlePath(article)}
       class="rounded-sm underline-offset-4 hover:text-brand-deepblue hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue"
     >
       {article.title}

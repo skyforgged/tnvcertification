@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="560" viewBox="0 0 720 560" fill="none">
+  <title>Training schedules illustration</title>
+  <rect width="720" height="560" rx="36" fill="#EAF0FF"/>
+  <rect x="72" y="72" width="576" height="416" rx="28" fill="#FFFFFF"/>
+  <rect x="108" y="108" width="176" height="344" rx="20" fill="#1736A8"/>
+  <text x="140" y="158" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#FFFFFF">SCHEDULE</text>
+  <path d="M140 194h112" stroke="#36C9A5" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="166" cy="248" r="18" fill="#FFD447"/>
+  <path d="M200 248h52" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="166" cy="302" r="18" fill="#36C9A5"/>
+  <path d="M200 302h52" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="166" cy="356" r="18" fill="#FF6B35"/>
+  <path d="M200 356h44" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round"/>
+  <rect x="320" y="108" width="292" height="112" rx="18" fill="#EAF0FF"/>
+  <path d="M348 148h236M348 180h164" stroke="#315CFF" stroke-width="12" stroke-linecap="round"/>
+  <rect x="320" y="244" width="292" height="208" rx="18" fill="#F7FAFF" stroke="#CFFAFE" stroke-width="6"/>
+  <rect x="348" y="276" width="80" height="56" rx="12" fill="#FFD447"/>
+  <rect x="452" y="276" width="80" height="56" rx="12" fill="#36C9A5"/>
+  <rect x="556" y="276" width="28" height="56" rx="12" fill="#315CFF"/>
+  <path d="M348 372h236" stroke="#1736A8" stroke-width="12" stroke-linecap="round"/>
+  <path d="M348 408h176" stroke="#FF6B35" stroke-width="12" stroke-linecap="round"/>
+</svg>

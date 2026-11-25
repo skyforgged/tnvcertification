@@ -19,20 +19,18 @@ export function findHeadingViolations(html) {
   return violations;
 }
 
-/** English block components emit English auto-headings; verify the built HTML agrees. */
+/** English pages may use custom block titles, but must not emit Indonesian headings. */
+const indonesianHeadingTerms = /\b(pertanyaan|umum|proses|sertifikasi|pelatihan|jadwal|artikel|layanan|mutu|belum|tersedia|dinyatakan|pengembangan)\b/i;
+
 export function findLocalizedBlockHeadingViolations(html) {
   const lang = html.match(/<html\b[^>]*\blang=["']([^"']+)["']/i)?.[1]?.toLowerCase().split("-")[0] ?? "id";
   if (lang !== "en") return [];
-  const expected = {
-    faq: "Frequently asked questions",
-    howto: "Certification process",
-  };
   const violations = [];
-  for (const [type, label] of Object.entries(expected)) {
+  for (const type of ["faq", "howto"]) {
     const pattern = new RegExp(`<section\\b[^>]*block-section--${type}[^>]*>([\\s\\S]*?)<\\/section>`, "i");
     const heading = html.match(pattern)?.[1]?.match(/<h2\b[^>]*>([\s\S]*?)<\/h2>/i)?.[1]
       ?.replace(/<[^>]*>/g, "").trim();
-    if (heading && heading !== label) violations.push(`${type}: ${heading}`);
+    if (heading && indonesianHeadingTerms.test(heading)) violations.push(`${type}: ${heading}`);
   }
   return violations;
 }

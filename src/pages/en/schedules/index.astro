@@ -1,0 +1,119 @@
+---
+import ScheduleArchiveLayout from "../../../layouts/ScheduleArchiveLayout.astro";
+import ListingSection from "../../../components/page/ListingSection.astro";
+import ButtonLink from "../../../components/ButtonLink.astro";
+import { getCollection } from "astro:content";
+import {
+  getPageBlocks,
+  getPageEntry,
+  getPageHero,
+  type ListingBlock,
+} from "../../../data/pages";
+import { englishLabels } from "../../../lib/english-labels";
+import { pageAlternates } from "../../../lib/page-alternates";
+import { scheduleDateLabel, sortSchedulesByStartDate } from "../../../lib/schedule-display";
+import { trainingPath } from "../../../lib/training-routing";
+import { trainingScheduleDefaults } from "../../../site";
+
+const entry = await getPageEntry("schedules", "en");
+const hero = getPageHero(entry);
+const listings = getPageBlocks(entry).filter((block): block is ListingBlock => block.type === "listing");
+const fallbackImage = { src: entry.data.featuredImage.src, alt: entry.data.featuredImage.alt };
+const labels = englishLabels.schedule;
+
+const [schedules, trainings] = await Promise.all([
+  getCollection("trainingSchedules"),
+  getCollection(
+    "training",
+    ({ data }) => data.draft !== true && data.lang === "en",
+  ),
+]);
+
+const trainingBySlug = new Map(
+  trainings.map((training) => [training.data.slug, training]),
+);
+
+const publishedSchedules = sortSchedulesByStartDate(
+  schedules.filter(
+    (schedule) =>
+      schedule.data.registrationStatus !== "cancelled" &&
+      trainingBySlug.has(schedule.data.trainingSlug),
+  ),
+);
+
+const statusLabel = (status?: string) => ({
+  open: labels.registrationOpen,
+  closed: labels.registrationClosed,
+  full: labels.quotaFull,
+}[status ?? ""] ?? labels.informationPending);
+
+const locationLabel = (locationType?: string) => ({
+  online: labels.online,
+  hybrid: labels.hybrid,
+  offline: labels.onSite,
+}[locationType ?? ""] ?? labels.methodPending);
+---
+
+<ScheduleArchiveLayout
+  title={hero?.title ?? entry.data.title}
+  description={hero?.description ?? entry.data.intro}
+  canonical="/en/schedules/"
+  alternates={pageAlternates("schedules")}
+  lang="en"
+  image={hero?.image ?? fallbackImage.src}
+  imageAlt={hero?.imageAlt ?? fallbackImage.alt}
+  eyebrow={hero?.eyebrow}
+>
+  {listings.map((block) => (
+    <ListingSection block={block} hasItems={publishedSchedules.length > 0}>
+      <div class="divide-y divide-border border-y border-border">
+        {publishedSchedules.map((schedule) => {
+          const training = trainingBySlug.get(schedule.data.trainingSlug)!;
+          const trainingHref = trainingPath(training.data);
+          const usesDefaultVenue =
+            schedule.data.locationType === "offline" || schedule.data.locationType === "hybrid";
+          const place = [
+            schedule.data.venue ?? (usesDefaultVenue ? trainingScheduleDefaults.venue.name : undefined),
+            schedule.data.city ?? (usesDefaultVenue ? trainingScheduleDefaults.venue.address.city : undefined),
+            schedule.data.province ?? (usesDefaultVenue ? trainingScheduleDefaults.venue.address.province : undefined),
+          ].filter(Boolean).join(", ");
+          return (
+            <article class="grid gap-4 py-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
+              <div>
+                <p class="text-sm font-semibold text-ink-muted">
+                  {scheduleDateLabel(schedule.data.startDate, schedule.data.endDate, { locale: "en-US" })}
+                </p>
+                <h2 class="mt-2 text-xl font-semibold tracking-tight text-ink">
+                  <a href={trainingHref} class="hover:text-brand-blue">
+                    {training.data.title}
+                  </a>
+                </h2>
+                <p class="mt-2 text-sm text-ink-muted">
+                  {locationLabel(schedule.data.locationType)}
+                  {place && ` · ${place}`}
+                </p>
+                <p class="mt-2 text-sm font-medium text-ink">{statusLabel(schedule.data.registrationStatus)}</p>
+                {schedule.data.price !== undefined && (
+                  <p class="mt-1 text-sm text-ink-muted">
+                    {labels.fee}: {schedule.data.currency === "IDR" || !schedule.data.currency ? "Rp " : `${schedule.data.currency} `}
+                    {schedule.data.price.toLocaleString("en-US")}
+                  </p>
+                )}
+              </div>
+              <div class="flex flex-wrap gap-3 md:justify-end">
+                <ButtonLink href={trainingHref} variant="secondary" class="px-4 py-2">
+                  {labels.programDetail}
+                </ButtonLink>
+                {schedule.data.registrationUrl && schedule.data.registrationStatus === "open" && (
+                  <ButtonLink href={schedule.data.registrationUrl} class="px-4 py-2">
+                    {labels.register}
+                  </ButtonLink>
+                )}
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </ListingSection>
+  ))}
+</ScheduleArchiveLayout>

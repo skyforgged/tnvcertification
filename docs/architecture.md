@@ -112,7 +112,7 @@ Main-menu and corporate page copy is authored in `src/content/pages/*.md` and se
 - `getPageEntry`, `getPageHero`, and `getPageBlocks` are the selectors routes use for page copy.
 - Listing blocks describe their source and empty-state copy only; the route supplies cards/rows from the canonical collection.
 - Company identity and contact values still come from `site.ts`; `contact` blocks carry only editorial labels and description text.
-- Page entries are ID-only in this phase; EN paths are redirect stubs, and `routeOwnedPageSlugs` is also filtered out of the fallback generator.
+- Page entries are no longer ID-only; English entries cover Home, CSMS, and About us, Services already has English pages, and remaining menu routes stay redirect stubs. Paired entries share `slug` and `translationKey` but own distinct positive numeric `id` values.
 
 ### Known development-mode limitations
 

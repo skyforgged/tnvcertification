@@ -1,4 +1,5 @@
 ---
+id: 100
 title: "Pelatihan Auditor Internal cGMP"
 intro: "Pelatihan Auditor Internal cGMP adalah program auditor internal yang membahas ruang lingkup audit, tahapan pemeriksaan, dan administrasi sertifikasi untuk praktik produksi baik cGMP."
 metaDescription: "Auditor internal praktik produksi baik cGMP: ruang lingkup audit, tahapan pemeriksaan, dan administrasi sertifikasi organisasi."

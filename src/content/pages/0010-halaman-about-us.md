@@ -1,4 +1,5 @@
 ---
+id: 10
 title: "Tentang Intiprima Sertifikasi"
 intro: "Tentang Intiprima Sertifikasi adalah halaman yang memperkenalkan fokus organisasi dalam informasi sertifikasi, pelatihan, dan penilaian kepatuhan. Kami menempatkan kejelasan proses, ketepatan informasi, dan tanggung jawab sebagai landasan dalam membangun kepercayaan."
 metaDescription: "Kenali fokus, prinsip kerja, dan komitmen PT. Intiprima Sertifikasi dalam informasi sertifikasi, pelatihan, dan penilaian kepatuhan."

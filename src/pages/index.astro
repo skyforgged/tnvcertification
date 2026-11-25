@@ -12,6 +12,7 @@ import {
   type LinkGridBlock,
   type ListingBlock,
 } from "../data/pages";
+import { pageAlternates } from "../lib/page-alternates";
 
 const entry = await getPageEntry("home");
 const hero = getPageHero(entry);
@@ -22,7 +23,7 @@ const linkGrids = blocks.filter((block): block is LinkGridBlock => block.type ==
 const listings = blocks.filter((block): block is ListingBlock => block.type === "listing");
 ---
 
-<Layout title={entry.data.title} description={entry.data.metaDescription} ogImage={fallbackImage.src}>
+<Layout title={entry.data.title} description={entry.data.metaDescription} alternates={pageAlternates("home")} ogImage={fallbackImage.src}>
   {hero && <PageHero slot="fullBleed" block={hero} fallbackImage={fallbackImage} isHomepage />}
   <div class="w-full">
     {linkGrids.map((block) => <HomeLinkGrid block={block} />)}

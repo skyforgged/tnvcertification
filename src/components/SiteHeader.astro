@@ -1,6 +1,6 @@
 ---
 import { organization, siteSettings, primaryNavigation } from "../site";
-import { navigationLabel, uiLang } from "../lib/navigation";
+import { navigationHref, navigationLabel, uiLang } from "../lib/navigation";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 
 interface Props {
@@ -11,36 +11,39 @@ const { lang } = Astro.props;
 const ui = uiLang(lang);
 const currentPath = Astro.url.pathname;
 const isCurrent = (href: string) => {
-  if (href === "/") return currentPath === "/";
-  if (href === "/services/") {
-    return currentPath === href || currentPath.startsWith("/services/");
+  if (href === "/" || href === "/en/") return currentPath === href;
+  if (href === "/services/" || href === "/en/services/") {
+    return currentPath === href || currentPath.startsWith(href);
   }
   return currentPath === href || currentPath.startsWith(href);
 };
 ---
 <header class="border-b border-border bg-page">
   <div class="mx-auto flex max-w-[var(--content-wide)] flex-col gap-4 px-[var(--page-gutter)] py-4 md:flex-row md:items-center md:justify-between">
-    <a href="/" class="group flex items-center gap-3 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-blue" aria-label={`${organization.name} — ${siteSettings.ui.logoHome[ui]}`}>
+    <a href={navigationHref(primaryNavigation[0], lang)} class="group flex items-center gap-3 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-blue" aria-label={`${organization.name} — ${siteSettings.ui.logoHome[ui]}`}>
       <img src={organization.logo.url} width="240" height="64" alt={`${organization.groupName} — ${organization.name}`} class="h-12 w-auto max-w-[min(72vw,240px)] object-contain object-left" />
       <span class="sr-only">{siteSettings.title}</span>
     </a>
     <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-end md:gap-4">
       <nav aria-label={siteSettings.ui.mainNavigation[ui]}>
         <ul class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-semibold">
-          {primaryNavigation.map((item) => (
-            <li>
-              <a
-                href={item.href}
-                aria-current={isCurrent(item.href) ? "page" : undefined}
-                class:list={[
-                  "inline-flex border-b-2 px-3 py-2 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue",
-                  isCurrent(item.href) ? "border-brand-deepblue text-brand-deepblue" : "border-transparent text-ink-muted hover:border-border-strong hover:text-ink",
-                ]}
-              >
-                {navigationLabel(item, lang)}
-              </a>
-            </li>
-          ))}
+          {primaryNavigation.map((item) => {
+            const href = navigationHref(item, lang);
+            return (
+              <li>
+                <a
+                  href={href}
+                  aria-current={isCurrent(href) ? "page" : undefined}
+                  class:list={[
+                    "inline-flex border-b-2 px-3 py-2 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue",
+                    isCurrent(href) ? "border-brand-deepblue text-brand-deepblue" : "border-transparent text-ink-muted hover:border-border-strong hover:text-ink",
+                  ]}
+                >
+                  {navigationLabel(item, lang)}
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </nav>
       <LanguageSwitcher lang={lang} />

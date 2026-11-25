@@ -9,11 +9,15 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 const mainMenuRoutes = new Set([
   "/",
+  "/en/",
   "/services/",
+  "/en/services/",
   "/csms/",
+  "/en/csms/",
   "/trainings/",
   "/schedules/",
   "/articles/",
+  "/en/about-us/",
 ]);
 
 /** Editorial detail routes must carry a hero block with H1, intro and image. */

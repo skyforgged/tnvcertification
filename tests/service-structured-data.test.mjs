@@ -46,7 +46,7 @@ test("service page graph localizes breadcrumbs for English services", () => {
   assert.deepEqual(
     breadcrumbs.itemListElement.map((item) => [item.name, item.item]),
     [
-      ["Home", siteSettings.url],
+      ["Home", new URL("/en/", siteSettings.url).toString()],
       ["Services", new URL("/en/services/", siteSettings.url).toString()],
       ["ISO 14001 certification", new URL("/en/services/iso-14001-2026-certification/", siteSettings.url).toString()],
     ],

@@ -1,0 +1,105 @@
+---
+import WidePageLayout from "../../../layouts/WidePageLayout.astro";
+import PageHero from "../../../components/page/PageHero.astro";
+import ListingSection from "../../../components/page/ListingSection.astro";
+import UpcomingSchedules, { type UpcomingScheduleItem } from "../../../components/page/UpcomingSchedules.astro";
+import TrainingCard from "../../../components/TrainingCard.astro";
+import { getCollection } from "astro:content";
+import {
+  getPageBlocks,
+  getPageEntry,
+  getPageHero,
+  type ListingBlock,
+  type UpcomingSchedulesBlock,
+} from "../../../data/pages";
+import { englishLabels } from "../../../lib/english-labels";
+import { pageAlternates } from "../../../lib/page-alternates";
+import { scheduleDateLabel, selectUpcomingSchedules } from "../../../lib/schedule-display";
+import { trainingIndexPath, trainingPath } from "../../../lib/training-routing";
+import { siteSettings } from "../../../site";
+
+const entry = await getPageEntry("trainings", "en");
+const hero = getPageHero(entry);
+const listings = getPageBlocks(entry).filter((block): block is ListingBlock => block.type === "listing");
+const fallbackImage = { src: entry.data.featuredImage.src, alt: entry.data.featuredImage.alt };
+const trainings = await getCollection(
+  "training",
+  ({ data }) => data.draft !== true && data.lang === "en",
+);
+const upcomingBlocks = getPageBlocks(entry).filter(
+  (block): block is UpcomingSchedulesBlock => block.type === "upcoming-schedules",
+);
+const trainingBySlug = new Map(trainings.map((training) => [training.data.slug, training]));
+const datedSchedules = (await getCollection("trainingSchedules")).filter((schedule) =>
+  trainingBySlug.has(schedule.data.trainingSlug),
+);
+const upcomingItems: UpcomingScheduleItem[] = selectUpcomingSchedules(
+  datedSchedules,
+  new Date().toISOString().slice(0, 10),
+  12,
+).flatMap((schedule) => {
+  const training = trainingBySlug.get(schedule.data.trainingSlug);
+  if (!training) return [];
+
+  const locationType = schedule.data.locationType;
+  const methodLabel = locationType
+    ? {
+        offline: englishLabels.schedule.onSite,
+        online: englishLabels.schedule.online,
+        hybrid: englishLabels.schedule.hybrid,
+      }[locationType]
+    : englishLabels.trainingIndex.methodPending;
+  const place = [schedule.data.city, schedule.data.venue].filter(Boolean).join(", ");
+  const registrationStatus = schedule.data.registrationStatus;
+  const statusLabel = registrationStatus
+    ? {
+        open: englishLabels.trainingIndex.registrationOpen,
+        closed: englishLabels.trainingIndex.registrationClosed,
+        full: englishLabels.trainingIndex.quotaFull,
+        cancelled: englishLabels.trainingIndex.registrationCancelled,
+      }[registrationStatus]
+    : englishLabels.trainingIndex.informationPending;
+
+  return [{
+    key: schedule.data.slug,
+    dateLabel: scheduleDateLabel(schedule.data.startDate, schedule.data.endDate, {
+      locale: "en-US",
+      pendingLabel: englishLabels.schedule.datePending,
+    }),
+    title: training.data.title,
+    href: trainingPath(training.data),
+    detailLabel: place ? `${methodLabel} · ${place}` : methodLabel,
+    statusLabel,
+  }];
+});
+---
+
+<WidePageLayout
+  title={`${entry.data.title} | ${siteSettings.title}`}
+  description={entry.data.metaDescription}
+  canonical={trainingIndexPath("en")}
+  alternates={pageAlternates("trainings")}
+  lang={entry.data.lang}
+  ogImage={fallbackImage.src}
+>
+  {hero && <PageHero slot="fullBleed" block={hero} fallbackImage={fallbackImage} lang={entry.data.lang} isTrainings />}
+  <div class="w-full">
+    {listings.map((block) => (
+      <ListingSection block={block} hasItems={trainings.length > 0}>
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {trainings.map((training) => (
+            <TrainingCard
+              title={training.data.title}
+              description={training.data.intro}
+              href={trainingPath(training.data)}
+              lang="en"
+            />
+          ))}
+        </div>
+      </ListingSection>
+    ))}
+    {upcomingBlocks.map((block) => (
+      <UpcomingSchedules block={block} items={upcomingItems} />
+    ))}
+  </div>
+</WidePageLayout>

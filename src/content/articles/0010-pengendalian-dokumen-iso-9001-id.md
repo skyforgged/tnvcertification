@@ -1,4 +1,5 @@
 ---
+id: 10
 title: "Pengendalian Dokumen ISO 9001: Cara Menjaga Informasi Tetap Terkendali"
 intro: "Pengendalian Dokumen ISO 9001: Cara Menjaga Informasi Tetap Terkendali adalah pendekatan organisasi untuk memastikan informasi yang digunakan dalam menjalankan proses tetap akurat, mudah ditemukan, sesuai kebutuhan, dan terlindungi dari penggunaan versi yang keliru."
 metaDescription: "Pelajari cara mengendalikan dokumen sistem manajemen mutu, mulai dari identifikasi, persetujuan, distribusi, perubahan, hingga penyimpanan dan retensi."

@@ -1,4 +1,5 @@
 ---
+id: 110
 title: "Pelatihan Auditor Internal ISO 45001"
 intro: "Pelatihan Auditor Internal ISO 45001 adalah program auditor internal yang membahas ruang lingkup audit, tahapan pemeriksaan, dan administrasi sertifikasi untuk sistem manajemen kesehatan dan keselamatan kerja ISO 45001."
 metaDescription: "Auditor internal sistem manajemen kesehatan dan keselamatan kerja ISO 45001: ruang lingkup audit, tahapan pemeriksaan, dan administrasi sertifikasi organisasi."

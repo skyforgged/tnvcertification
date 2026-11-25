@@ -6,6 +6,7 @@ import Section from "../../../components/Section.astro";
 import { getPublishedServices, serviceIndexPath, servicePath } from "../../../data/services";
 import { siteSettings } from "../../../site";
 import { serviceIndexJsonLd } from "../../../lib/structured-data";
+import { pageAlternates } from "../../../lib/page-alternates";
 const services = await getPublishedServices("en");
 const structuredData = serviceIndexJsonLd(
   services.map((service) => ({
@@ -15,7 +16,7 @@ const structuredData = serviceIndexJsonLd(
   })),
 );
 ---
-<WidePageLayout title={`Services | ${siteSettings.title}`} description="Certification, audit, and conformity assessment services." canonical={serviceIndexPath("en")} lang="en" ogImage="/images/illustrations/services-assessment-en.webp" structuredData={structuredData}>
+<WidePageLayout title={`Services | ${siteSettings.title}`} description="Certification, audit, and conformity assessment services." canonical={serviceIndexPath("en")} lang="en" ogImage="/images/illustrations/services-assessment-en.webp" alternates={pageAlternates("services")} structuredData={structuredData}>
   <div class="w-full">
     <MainMenuHero
       eyebrow="Professional services"

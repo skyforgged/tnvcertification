@@ -1,4 +1,5 @@
 ---
+id: 22
 title: "Contractor Safety Management System (CSMS)"
 intro: "Contractor Safety Management System (CSMS) adalah pendekatan pengelolaan keselamatan dan kesehatan kerja yang digunakan pemberi kerja atau pemilik proyek untuk menilai kesiapan kontraktor sebelum dan selama pekerjaan berlangsung."
 metaDescription: "Kenali Contractor Safety Management System (CSMS), sembilan elemen utamanya, ruang lingkup penilaian, serta kaitannya dengan sertifikasi sistem manajemen K3."

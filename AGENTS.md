@@ -27,7 +27,7 @@ This combined pattern is still in development and is not a final architecture de
 - `src/data/pages.ts` exports the shared selectors and `routeOwnedPageSlugs`; dedicated routes own their slugs and the generic `[slug].astro` must skip them.
 - Blocks are discriminated and typed: `hero`, `link-grid`, `listing`, `contact`, plus the existing `content-section`, `faq`, `howto`, and `cta`. See `docs/components-blocks-layouts.md`.
 - Editorial `.md` entries (pages, services, articles) contain frontmatter blocks only and no Markdown body. A re-added body is rejected at build time and in changed-content preflight by CONTENT-014. Author the H1, intro and featured image as a `hero` block; `/services/` is the canonical example.
-- Page entries are ID-only in this phase; English fallbacks are redirect stubs, not translated page entries.
+- Page entries are no longer ID-only: English entries exist for Home, CSMS, and About us, while Services keeps its earlier English pages and the remaining menu routes stay redirect stubs.
 
 ## Editorial purpose and research standard
 

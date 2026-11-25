@@ -1,4 +1,5 @@
 ---
+id: 107
 title: "Pelatihan Auditor Internal ISO 22000"
 intro: "Pelatihan Auditor Internal ISO 22000 adalah program auditor internal yang membahas ruang lingkup audit, tahapan pemeriksaan, dan administrasi sertifikasi untuk sistem manajemen keamanan pangan ISO 22000."
 metaDescription: "Auditor internal sistem manajemen keamanan pangan ISO 22000: ruang lingkup audit, tahapan pemeriksaan, dan administrasi sertifikasi organisasi."

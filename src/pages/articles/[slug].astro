@@ -3,26 +3,27 @@ import { getCollection } from "astro:content";
 import ArticleLayout from "../../layouts/ArticleLayout.astro";
 import type { HeroBlock, PageBlock } from "../../data/pages";
 import { siteCrumb } from "../../data/breadcrumbs";
+import { getPublishedArticles, hreflangAlternates } from "../../data/articles";
 import { getPublishedServices, servicePath } from "../../data/services";
+import { articlePath } from "../../lib/article-routing";
 import { articlePageJsonLd } from "../../lib/structured-data";
 
 export async function getStaticPaths() {
-  const articles = await getCollection("articles", ({ data }) => data.draft !== true);
-  return articles.map((entry) => {
+  const published = getPublishedArticles("id");
+  const entries = await getCollection("articles", ({ data }) => data.draft !== true);
+  return published.map((article) => {
+    const entry = entries.find((candidate) => candidate.data.lang === "id" && candidate.data.slug === article.slug);
+    if (!entry) throw new Error(`Published article "${article.slug}" has no validated Indonesian entry.`);
     const pubDate = entry.data.pubDate;
     const featuredImage = entry.data.featuredImage;
     if (!(pubDate instanceof Date) || !featuredImage) {
       throw new Error(`Published article "${entry.id}" is missing its approved pubDate or featuredImage.`);
     }
-    const translationPair = articles.filter(
-      (candidate) => candidate.data.translationKey === entry.data.translationKey,
+    const alternates = hreflangAlternates(
+      entries
+        .filter((candidate) => candidate.data.translationKey === entry.data.translationKey)
+        .map((candidate) => ({ lang: candidate.data.lang, path: articlePath(candidate.data) })),
     );
-    const alternates = translationPair.length > 1
-      ? translationPair.map((candidate) => ({
-          lang: candidate.data.lang,
-          href: `/articles/${candidate.data.slug}/`,
-        }))
-      : [];
     return {
       params: { slug: entry.data.slug },
       props: { entry, alternates, pubDate, featuredImage },

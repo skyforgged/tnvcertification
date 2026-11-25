@@ -1,4 +1,5 @@
 ---
+id: 34
 title: "Pencapaian Lainnya dalam CSMS"
 intro: "Pencapaian Lainnya dalam CSMS adalah pengakuan atau inisiatif tambahan di luar delapan elemen utama yang melengkapi gambaran kinerja keselamatan kontraktor."
 metaDescription: "Menjelaskan peran penghargaan, sertifikasi pendukung, dan inisiatif keselamatan tambahan dalam gambaran menyeluruh penerapan CSMS."

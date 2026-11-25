@@ -1,4 +1,5 @@
 ---
+id: 20
 title: "Beranda Intiprima Sertifikasi"
 intro: "Beranda Intiprima Sertifikasi adalah halaman awal situs yang merangkum informasi sertifikasi, layanan, dan wawasan terkini dari PT. Intiprima Sertifikasi."
 metaDescription: "Mulai dari beranda resmi PT. Intiprima Sertifikasi untuk melihat informasi layanan sertifikasi, standar sistem manajemen, dan wawasan terbaru."

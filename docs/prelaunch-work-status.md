@@ -703,3 +703,32 @@ The same pattern existed in six service files, published and draft. All six inte
 
 Full gate suite passed: all nine commands exit `0`, 418 tests, 66 built pages, 70 HTML pages, 35 canonicals, 35 generated image URLs, and 0 restricted or self-audit phrases in generated HTML. CI status is not claimed here.
 
+## P25 — Full English main-menu pages (in progress)
+
+Commits on `main`, not yet pushed: `00d0011` (routing foundation), `b2d11dc` (English trainings), `c617c96` (English schedules), `f368c91` (English articles).
+
+- Every main-menu item resolves to a real English page: `/en/`, `/en/services/`, `/en/csms/`, `/en/trainings/`, `/en/schedules/`, `/en/articles/`, and `/en/about-us/`. Trainings includes 14 translated detail pages. The articles archive has nine translated details and no `/en/articles/page/2/`. Pagination uses a shared article order from `src/data/articles.ts`.
+- English training, schedule, and article entries use the same `slug` and `translationKey` as their Indonesian pairs. `lang` separates the pair. Numeric `id` values are distinct and positive. Article detail pages in both languages carry reciprocal `id`/`en` hreflang alternates. Service associations for English trainings map through `translationKey` and skip entries with no English service pair.
+- UI chrome for English training and schedule surfaces uses the shared `src/lib/english-labels.ts` dictionary. Indonesian block titles are not accepted as fallbacks on English pages.
+- Added 26 registered, project-owned illustrations (`ILL-052`–`ILL-077`) with SVG masters and generated WebP files. `pnpm images:illustrations` reports 10 newly converted masters and 67 unchanged files on the final pass.
+- The two document-control records remain `draft: true` and unpublished: `src/content/articles/0010-pengendalian-dokumen-iso-9001-id.md` and `src/content/articles/0011-iso-9001-document-control-en.md`. No publication date or featured image was added to them.
+- No source-level or generated-HTML consultation wording, internal service-status copy, fabricated dates, or invented availability entered this work.
+- Focused tests passed: `node --import tsx --test tests/english-article-content.test.mjs tests/english-main-menu-built.test.mjs` → 17 pass, 0 fail; `node --import tsx --test tests/english-main-menu-built.test.mjs` → 2 pass, 0 fail.
+- Review fixes: English home and English service detail now query `getPublishedArticles("en")` so contextual article cards stay in English. Built-output tests assert that English home cards link to English detail pages and that their titles match. English schedules empty-state copy no longer describes development or availability status. The rendered heading audit rejects Indonesian heading terms on English FAQ/HowTo sections, not just two exact fallback strings.
+
+Full gate suite passed locally on `main` after the review fixes with Node.js `26.13.1`. Each command ran separately; exit codes come from that run:
+
+| Command | Result |
+|---|---|
+| `pnpm check` | PASS, exit `0` |
+| `pnpm build` | PASS, exit `0`, 91 pages |
+| `pnpm typecheck` | PASS, exit `0` |
+| `pnpm lint` | PASS, exit `0` |
+| `pnpm test` | PASS, exit `0`, 565 tests |
+| `pnpm audit:seo` | PASS, exit `0`, 94 HTML pages and 76 unique canonicals |
+| `pnpm audit:blocks` | PASS, exit `0`, 114 sections in 45 pages |
+| `pnpm audit:page-images` | PASS, exit `0`, 76 generated URLs |
+| `pnpm audit:headings` | PASS, exit `0`, 94 HTML pages |
+
+CI status for these commits is not claimed here. Visual and keyboard review remain manual tasks.
+

@@ -1,4 +1,5 @@
 ---
+id: 6
 title: "Penilaian Kepatuhan Terhadap Standar Global"
 intro: "Penilaian Kepatuhan Terhadap Standar Global adalah proses memetakan persyaratan, menguji bukti, dan memastikan praktik lapangan sesuai standar yang berlaku."
 metaDescription: "Cara menilai kepatuhan terhadap standar global melalui audit internal, dokumentasi, dan verifikasi praktik kerja."

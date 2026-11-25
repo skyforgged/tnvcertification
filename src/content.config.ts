@@ -3,6 +3,8 @@ import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 import { collectionRegistry } from "./data/collections";
 import { isSupportedLinkUrl } from "./lib/link-url";
+import { numericEntryId } from "./lib/numeric-entry-id";
+import { pageEntryId } from "./lib/page-entry-id";
 
 /**
  * Shared image-object schema (single primary / optional gallery).
@@ -180,6 +182,7 @@ const baseEntrySchema = z.object({
 
 // --- Articles ---
 const articleSchema = baseEntrySchema.extend({
+  id: z.number().int().positive(),
   // Drafts may omit unapproved publication metadata and imagery.
   pubDate: z.coerce.date().optional(),
   featuredImage: imageObjectSchema.optional(),
@@ -228,6 +231,7 @@ const trainingHeroSchema = z.object({
 });
 
 const trainingSchema = baseEntrySchema.extend({
+  id: z.number().int().positive(),
   draft: z.boolean().optional(),
   categoryIds: z.array(z.string()).optional(),
   // Explicit links to published service entries; never infer from course title.
@@ -296,26 +300,40 @@ const trainingScheduleSchema = z.object({
 
 // --- General pages ---
 const pageSchema = baseEntrySchema.extend({
+  id: z.number().int().positive(),
   draft: z.boolean().optional(),
   blocks: z.array(pageBlockSchema).optional(),
 });
 
-function collection<T extends z.ZodTypeAny>(name: keyof typeof collectionRegistry, schema: T) {
+type LoaderOptions = Pick<Parameters<typeof glob>[0], "generateId">;
+
+function collection<T extends z.ZodTypeAny>(
+  name: keyof typeof collectionRegistry,
+  schema: T,
+  options: LoaderOptions = {},
+) {
   return defineCollection({
     loader: glob({
       base: `./${collectionRegistry[name].dir}`,
       pattern: "**/*.{md,mdx}",
+      ...options,
     }),
     schema,
   });
 }
 
 export const collections = {
-  articles: collection("articles", articleSchema),
+  articles: collection("articles", articleSchema, {
+    generateId: ({ data }) => numericEntryId(data),
+  }),
   services: collection("services", serviceSchema),
   categories: collection("categories", categorySchema),
   certifications: collection("certifications", certificationSchema),
-  training: collection("training", trainingSchema),
+  training: collection("training", trainingSchema, {
+    generateId: ({ data }) => numericEntryId(data),
+  }),
   trainingSchedules: collection("trainingSchedules", trainingScheduleSchema),
-  pages: collection("pages", pageSchema),
+  pages: collection("pages", pageSchema, {
+    generateId: ({ data }) => pageEntryId(data),
+  }),
 };

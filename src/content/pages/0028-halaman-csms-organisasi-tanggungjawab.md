@@ -1,4 +1,5 @@
 ---
+id: 28
 title: "Organisasi dan Tanggung Jawab CSMS"
 intro: "Organisasi dan Tanggung Jawab CSMS adalah pembagian peran, wewenang, dan jalur komunikasi yang memastikan pengelolaan keselamatan kerja berjalan di seluruh tingkat organisasi kontraktor."
 metaDescription: "Mengkaji struktur organisasi CSMS, penunjukan penanggung jawab K3LL, uraian tugas, serta jalur komunikasi antara manajemen dan pekerja."

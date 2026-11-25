@@ -1,4 +1,5 @@
 ---
+id: 23
 title: "Program Pelatihan Intiprima Sertifikasi"
 intro: "Program Pelatihan Intiprima Sertifikasi adalah katalog informasi program pengembangan kompetensi untuk sistem manajemen, audit, dan kepatuhan."
 metaDescription: "Jelajahi katalog program pelatihan dan pengembangan kompetensi untuk sistem manajemen, audit, dan kepatuhan organisasi."

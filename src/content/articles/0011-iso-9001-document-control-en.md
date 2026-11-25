@@ -1,4 +1,5 @@
 ---
+id: 11
 title: "ISO 9001 Document Control: Keeping Documented Information Under Control"
 intro: "ISO 9001 Document Control: Keeping Documented Information Under Control is the way an organization ensures that information used to operate its processes remains accurate, easy to find, suitable for its purpose, and protected against unintended use of incorrect versions."
 metaDescription: "Learn practical controls for documented information, from identification and approval to access, revision, storage, retention, and disposition."

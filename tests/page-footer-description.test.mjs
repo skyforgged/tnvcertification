@@ -16,11 +16,12 @@ test("footer templates use the company name and avoid repeated subject prefixes"
   );
 });
 
-test("SiteFooter accepts a description prop and falls back to the default site description", async () => {
+test("SiteFooter accepts a description prop and falls back to the localized site description", async () => {
   const source = await read("../src/components/SiteFooter.astro");
   assert.match(source, /description\?: string/);
-  assert.match(source, /description = siteSettings\.description/);
-  assert.match(source, /\{description\}/);
+  assert.match(source, /description \?\? siteSettings\.ui\.footerDescription\[ui\]/);
+  assert.match(source, /\{footerDescription\}/);
+  assert.equal(siteSettings.ui.footerDescription.id, siteSettings.description);
 });
 
 test("Layout forwards footerDescription to SiteFooter", async () => {

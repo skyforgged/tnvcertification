@@ -9,13 +9,16 @@ import { routeOwnedPageSlugs } from "./pages";
 import { getPublishedServices } from "./services";
 
 export async function getEnglishFallbackPaths(): Promise<string[]> {
-  const [pages, trainings, services, englishServices] = await Promise.all([
+  const [pages, trainings, englishTrainings, services, englishServices] = await Promise.all([
     getCollection("pages", ({ data }) => data.draft !== true),
     getCollection("training", ({ data }) => data.draft !== true),
+    getCollection("training", ({ data }) => data.draft !== true && data.lang === "en"),
     getPublishedServices("id"),
     getPublishedServices("en"),
   ]);
-  const articles = getPublishedArticles();
+  const articles = getPublishedArticles("id");
+  const englishArticles = getPublishedArticles("en");
+  const englishArticlePages = Math.max(0, Math.ceil(englishArticles.length / 9) - 1);
 
   return buildEnglishFallbackPaths({
     pages: pages
@@ -28,6 +31,17 @@ export async function getEnglishFallbackPaths(): Promise<string[]> {
     existingEnglishPaths: [
       "/en/services/",
       ...englishServices.map((entry) => `/en/services/${entry.data.slug}/`),
+      ...pages
+        .filter((entry) => entry.data.lang === "en")
+        .map((entry) =>
+          entry.data.slug === "home" ? "/en/" : `/en/${entry.data.slug}/`,
+        ),
+      ...englishTrainings.map((entry) => `/en/trainings/${entry.data.slug}/`),
+      ...englishArticles.map((entry) => `/en/articles/${entry.slug}/`),
+      ...Array.from(
+        { length: englishArticlePages },
+        (_, index) => `/en/articles/page/${index + 2}/`,
+      ),
     ],
   });
 }

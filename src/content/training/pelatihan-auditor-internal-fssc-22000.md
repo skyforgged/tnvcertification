@@ -1,4 +1,5 @@
 ---
+id: 101
 title: "Pelatihan Auditor Internal FSSC 22000"
 intro: "Pelatihan Auditor Internal FSSC 22000 adalah program pembelajaran untuk memahami persyaratan sistem manajemen keamanan pangan dan mengembangkan kemampuan merencanakan, melaksanakan, serta melaporkan audit internal secara objektif berdasarkan bukti."
 metaDescription: "Pelajari persyaratan FSSC 22000, perencanaan audit, teknik pemeriksaan, penulisan temuan, pelaporan, dan tindak lanjut melalui pelatihan auditor internal."

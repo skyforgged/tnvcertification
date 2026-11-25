@@ -72,31 +72,49 @@ export const siteSettings = {
     mainNavigation: { id: "Navigasi utama", en: "Main navigation" },
     logoHome: { id: "beranda", en: "home" },
     backToTop: { id: "Kembali ke atas ↑", en: "Back to top ↑" },
+    footerDescription: {
+      id: "PT. Intiprima Sertifikasi — bagian dari TNV Group. Informasi layanan sertifikasi dan standar sistem manajemen.",
+      en: "Certification information and management system standards.",
+    },
+    heroActions: {
+      whatsapp: {
+        id: "Hubungi Kami via WhatsApp",
+        en: "Contact us on WhatsApp",
+      },
+      exploreServices: { id: "Jelajahi layanan", en: "Explore services" },
+      viewServiceList: { id: "Lihat daftar layanan", en: "View service list" },
+    },
   },
   footer: {
     serviceDescription: (title: string) =>
       `${organization.name} menyediakan jasa sertifikasi ${title.replace(/^Sertifikasi\s+/i, "")}.`,
-    trainingDescription: (title: string) =>
-      `${organization.name} melayani pelatihan ${title.replace(/^(?:Pelatihan|Training)\s+/i, "")}.`,
+    trainingDescription: (title: string, lang: "id" | "en" = "id") =>
+      lang === "en"
+        ? `${organization.name} provides training on ${title.replace(/^(?:Pelatihan|Training)\s+/i, "")}.`
+        : `${organization.name} melayani pelatihan ${title.replace(/^(?:Pelatihan|Training)\s+/i, "")}.`,
   },
 } as const;
 
 export const primaryNavigation = [
-  { label: "Beranda", labelEn: "Home", href: "/" },
-  { label: "Layanan", labelEn: "Services", href: "/services/" },
-  { label: "CSMS", labelEn: "CSMS", href: "/csms/" },
-  { label: "Pelatihan", labelEn: "Trainings", href: "/trainings/" },
-  { label: "Jadwal", labelEn: "Schedules", href: "/schedules/" },
-  { label: "Artikel", labelEn: "Articles", href: "/articles/" },
-  { label: "Tentang", labelEn: "About", href: "/about-us/" },
+  { label: "Beranda", labelEn: "Home", href: "/", hrefEn: "/en/" },
+  { label: "Layanan", labelEn: "Services", href: "/services/", hrefEn: "/en/services/" },
+  { label: "CSMS", labelEn: "CSMS", href: "/csms/", hrefEn: "/en/csms/" },
+  { label: "Pelatihan", labelEn: "Trainings", href: "/trainings/", hrefEn: "/en/trainings/" },
+  { label: "Jadwal", labelEn: "Schedules", href: "/schedules/", hrefEn: "/en/schedules/" },
+  { label: "Artikel", labelEn: "Articles", href: "/articles/", hrefEn: "/en/articles/" },
+  { label: "Tentang", labelEn: "About", href: "/about-us/", hrefEn: "/en/about-us/" },
 ] as const;
 
 /** Localized breadcrumb labels and hrefs for routes with an English surface. */
 export const localizedCrumbs = {
   en: {
-    "/": { label: "Home", href: "/" },
+    "/": { label: "Home", href: "/en/" },
     "/services/": { label: "Services", href: "/en/services/" },
-    "/articles/": { label: "Articles", href: "/articles/" },
+    "/csms/": { label: "CSMS", href: "/en/csms/" },
+    "/trainings/": { label: "Trainings", href: "/en/trainings/" },
+    "/schedules/": { label: "Schedules", href: "/en/schedules/" },
+    "/articles/": { label: "Articles", href: "/en/articles/" },
+    "/about-us/": { label: "About", href: "/en/about-us/" },
   },
 } as const;
 
@@ -105,17 +123,17 @@ export const footerNavigation = [
     title: "Mulai",
     titleEn: "Get started",
     links: [
-      { label: "Beranda", labelEn: "Home", href: "/" },
-      { label: "Layanan", labelEn: "Services", href: "/services/" },
-      { label: "CSMS", labelEn: "CSMS", href: "/csms/" },
-      { label: "Tentang", labelEn: "About", href: "/about-us/" },
-      { label: "Pelatihan", labelEn: "Trainings", href: "/trainings/" },
-      { label: "Jadwal pelatihan", labelEn: "Training schedules", href: "/schedules/" },
+      { label: "Beranda", labelEn: "Home", href: "/", hrefEn: "/en/" },
+      { label: "Layanan", labelEn: "Services", href: "/services/", hrefEn: "/en/services/" },
+      { label: "CSMS", labelEn: "CSMS", href: "/csms/", hrefEn: "/en/csms/" },
+      { label: "Tentang", labelEn: "About", href: "/about-us/", hrefEn: "/en/about-us/" },
+      { label: "Pelatihan", labelEn: "Trainings", href: "/trainings/", hrefEn: "/en/trainings/" },
+      { label: "Jadwal pelatihan", labelEn: "Training schedules", href: "/schedules/", hrefEn: "/en/schedules/" },
     ],
   },
   {
     title: "Baca",
     titleEn: "Read",
-    links: [{ label: "Artikel dan panduan", labelEn: "Articles and guides", href: "/articles/" }],
+    links: [{ label: "Artikel dan panduan", labelEn: "Articles and guides", href: "/articles/", hrefEn: "/en/articles/" }],
   },
 ] as const;

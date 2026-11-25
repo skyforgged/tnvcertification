@@ -31,6 +31,6 @@ test("architecture records the known development-mode limitations", () => {
   assert.match(architecture, /not rendered yet/i);
 });
 
-test("bilingual standard records the ID-only page phase", () => {
-  assert.match(bilingual, /page entries are ID-only/i);
+test("bilingual standard records localized main-menu page entries", () => {
+  assert.match(bilingual, /Page entries are no longer ID-only/);
 });

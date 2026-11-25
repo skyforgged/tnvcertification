@@ -3,7 +3,9 @@
  * fallback-route discovery belong in the data layer; no Astro imports here.
  */
 import { siteSettings } from "../site.ts";
-import { serviceIndexPath, servicePath, type ServiceLang } from "./service-routing.ts";
+import { articlePath } from "./article-routing.ts";
+import { servicePath, type ServiceLang } from "./service-routing.ts";
+import { trainingPath } from "./training-routing.ts";
 
 export interface LanguageEntry {
   lang: string;
@@ -16,6 +18,8 @@ export interface LanguageSwitchInput {
   currentLang: string;
   services: readonly LanguageEntry[];
   articles: readonly LanguageEntry[];
+  trainings: readonly LanguageEntry[];
+  pages: readonly LanguageEntry[];
   /** Indonesian paths whose /en/ variant is a redirect stub. */
   fallbackPaths: readonly string[];
 }
@@ -29,14 +33,17 @@ export interface LanguageOption {
 }
 
 const SERVICE_DETAIL_PATH = /^\/(?:en\/)?services\/[^/]+\/$/;
-const ARTICLE_DETAIL_PATH = /^\/articles\/[^/]+\/$/;
+const ARTICLE_DETAIL_PATH = /^\/(?:en\/)?articles\/[^/]+\/$/;
+const TRAINING_DETAIL_PATH = /^\/(?:en\/)?trainings\/[^/]+\/$/;
+const ARTICLE_PAGINATION_PATH = /^\/(en\/)?articles\/page\/(\d+)\/$/;
 
 function withTrailingSlash(pathname: string): string {
   return pathname.endsWith("/") ? pathname : `${pathname}/`;
 }
 
-function articlePath(entry: LanguageEntry): string {
-  return `/articles/${entry.slug}/`;
+function pagePath(entry: LanguageEntry): string {
+  if (entry.slug === "home") return entry.lang === "id" ? "/" : "/en/";
+  return entry.lang === "id" ? `/${entry.slug}/` : `/en/${entry.slug}/`;
 }
 
 /** English service routes are /en + the Indonesian route; stub paths never carry /en. */
@@ -63,14 +70,34 @@ function counterpartHref(
   input: LanguageSwitchInput,
   pathname: string,
 ): string {
-  const { currentLang, services, articles } = input;
+  const { currentLang, services, articles, trainings, pages } = input;
   if (lang === currentLang) return "";
+
+  const pageSource = pages.find(
+    (entry) => entry.lang === currentLang && pagePath(entry) === pathname,
+  );
+  if (pageSource) return findCounterpart(pages, pageSource, lang, pagePath);
 
   if (SERVICE_DETAIL_PATH.test(pathname)) {
     const source = services.find(
       (entry) => entry.lang === currentLang && servicePath(entry) === pathname,
     );
     return source ? findCounterpart(services, source, lang, servicePath) : "";
+  }
+
+  if (TRAINING_DETAIL_PATH.test(pathname)) {
+    const source = trainings.find(
+      (entry) => entry.lang === currentLang && trainingPath(entry) === pathname,
+    );
+    return source ? findCounterpart(trainings, source, lang, trainingPath) : "";
+  }
+
+  const pagination = pathname.match(ARTICLE_PAGINATION_PATH);
+  if (pagination) {
+    const english = pagination[1] !== undefined;
+    if ((lang === "en") === english) return "";
+    const page = pagination[2];
+    return english ? `/articles/page/${page}/` : `/en/articles/page/${page}/`;
   }
 
   if (ARTICLE_DETAIL_PATH.test(pathname)) {
@@ -80,8 +107,10 @@ function counterpartHref(
     return source ? findCounterpart(articles, source, lang, articlePath) : "";
   }
 
-  if (pathname === serviceIndexPath("id") || pathname === serviceIndexPath("en")) {
-    return serviceIndexPath(lang);
+  const plainIndex = pathname.replace(/^\/en\//, "/");
+  const indexRoutes = ["/services/", "/trainings/", "/schedules/", "/articles/"];
+  if (indexRoutes.includes(plainIndex)) {
+    return lang === "en" ? `/en${plainIndex}` : plainIndex;
   }
 
   return "";
