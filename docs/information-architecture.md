@@ -32,3 +32,16 @@ npm run build
 npm run audit:ia
 ```
 The audit runs against `dist/` after production build in CI. It complements SEO link/canonical checks and editorial validation; it does not judge content usefulness or completeness, which remains QG-12.
+
+## Listing and related-content policy coverage
+
+The route/sitemap audit is complemented by deterministic query tests in the same CI test suite:
+
+- Article ordering is centralized in `src/data/articles.ts`: effective date descending, publication date descending, collection file ID ascending, then slug ascending.
+- Homepage articles use global ranks 1–3; service-index articles use ranks 4–6 and do not repeat the homepage set.
+- Related articles require an explicit `serviceId` match; labels or similar slugs are not used to infer a relation.
+- Article archive pagination is tested for crawlable previous/next/page links.
+- Upcoming schedules exclude past, date-less, and cancelled sessions; choose the nearest eligible sessions; then display that selected set in descending date order with a slug tie-breaker.
+- Training catalogue and schedule coverage are tested against the declared collection inventory.
+
+These tests protect the current project policies. If a listing's filter, order, limit, or relation changes, update its tests and this document in the same change.

@@ -109,6 +109,11 @@ function compareArticles(a: Article, b: Article): number {
   return byId !== 0 ? byId : a.slug.localeCompare(b.slug);
 }
 
+/** Stable canonical ordering used by every article listing. */
+export function sortArticles(articles: Article[]): Article[] {
+  return [...articles].sort(compareArticles);
+}
+
 /** Published articles in canonical order. Invalid entries are skipped. */
 export function getPublishedArticles(): Article[] {
   const files = globSync("src/content/articles/**/*.{md,mdx}", { onlyFiles: true });
@@ -119,7 +124,7 @@ export function getPublishedArticles(): Article[] {
     const article = toArticle(file, payload.data, payload.body);
     if (article !== null) articles.push(article);
   }
-  return articles.sort(compareArticles);
+  return sortArticles(articles);
 }
 
 /** Global ranks 1–3. */

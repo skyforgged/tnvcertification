@@ -70,3 +70,16 @@ test("English fallback excludes CSMS topic routes owned by the dedicated route",
   assert.match(source, /CSMS_TOPIC_PREFIX/);
   assert.match(source, /startsWith\(CSMS_TOPIC_PREFIX\)/);
 });
+
+test("homepage and service index use the shared canonical article selectors", async () => {
+  const [home, services, archive, serviceDetail] = await Promise.all([
+    readFile(new URL("../src/pages/index.astro", import.meta.url), "utf8"),
+    readFile(new URL("../src/pages/services/index.astro", import.meta.url), "utf8"),
+    readFile(new URL("../src/pages/articles/index.astro", import.meta.url), "utf8"),
+    readFile(new URL("../src/pages/services/[slug].astro", import.meta.url), "utf8"),
+  ]);
+  assert.match(home, /getHomepageArticles/);
+  assert.match(services, /getServiceIndexArticles/);
+  assert.match(archive, /getPublishedArticles/);
+  assert.match(serviceDetail, /getRelatedArticles/);
+});
