@@ -75,7 +75,8 @@ blocks:
       - title: Efektivitas tindakan
         description: Waktu penyelesaian tindakan korektif, temuan berulang, dan bukti bahwa tindakan mengurangi penyebab masalah.
       - title: Kematangan proses
-        description: Konsistensi pelaksanaan pengendalian, ketepatan data, keterlibatan pemilik proses, dan tindak lanjut hasil audit.\n  - type: content-section
+        description: Konsistensi pelaksanaan pengendalian, ketepatan data, keterlibatan pemilik proses, dan tindak lanjut hasil audit.
+  - type: content-section
     id: 0001-peran-organisasi
     title: Dukungan Organisasi Menentukan Hasil
     description: Profesional kualitas tidak dapat menjaga mutu sendirian. Pimpinan perlu menetapkan arah dan prioritas, pemilik proses perlu bertanggung jawab atas hasil operasional, dan pekerja perlu memiliki kompetensi serta ruang untuk melaporkan masalah. Fungsi kualitas akan lebih efektif ketika dapat menyampaikan risiko secara objektif dan bekerja lintas fungsi tanpa mengambil alih akuntabilitas unit lain.
