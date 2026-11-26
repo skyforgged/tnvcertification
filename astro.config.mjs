@@ -6,6 +6,7 @@ import { contentValidationIntegration } from "./src/content-validation";
 import { getContentLastmod, normalizeSitemapLastmod } from "./src/lib/sitemap-lastmod.mjs";
 import { removeStubUrlsFromSitemapFiles } from "./src/lib/sitemap-stubs.mjs";
 import { informationArchitecture } from "./src/data/information-architecture";
+import { siteSettings } from "./src/site";
 
 const sitemapLastmodIntegration = {
   name: "sitemap-content-lastmod",
@@ -19,7 +20,7 @@ const sitemapLastmodIntegration = {
 };
 
 export default defineConfig({
-  site: "https://tnv-certification.com",
+  site: siteSettings.url,
   // Permanent redirects are shared with the information-architecture audit.
   redirects: informationArchitecture.redirects,
   integrations: [

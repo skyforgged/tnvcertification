@@ -1,70 +1,31 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { auditInformationArchitecture, normalizeRoutePath } from "../src/lib/information-architecture.mjs";
-
-test("normalizes canonical route paths", () => {
+test("normalizes paths and rejects malformed percent encoding", () => {
   assert.equal(normalizeRoutePath("/services"), "/services/");
   assert.equal(normalizeRoutePath("/services//"), "/services/");
   assert.equal(normalizeRoutePath("/"), "/");
   assert.equal(normalizeRoutePath("https://example.com/articles/one"), "/articles/one/");
   assert.equal(normalizeRoutePath("/bad/%E0%A4%A"), null);
 });
-
 test("accepts a consistent route, sitemap, navigation, breadcrumb and redirect graph", () => {
-  const pages = [
-    { path: "/", indexable: true, links: ["/services/"] },
-    { path: "/services/", indexable: true, links: ["/services/iso/"] },
-    { path: "/services/iso/", indexable: true, links: ["/services/"] },
-    { path: "/old-services/", indexable: false, redirect: true, links: ["/services/"] },
-  ];
-  const issues = auditInformationArchitecture({
-    pages,
-    sitemapPaths: ["/", "/services/", "/services/iso/"],
-    navigationPaths: ["/", "/services/"],
-    breadcrumbPaths: ["/", "/services/"],
-    redirects: { "/old-services/": "/services/" },
-    coreRoutes: ["/", "/services/"],
-  });
-  assert.deepEqual(issues, []);
+  const pages = [{ path: "/", indexable: true, links: ["/services/"] }, { path: "/services/", indexable: true, links: ["/services/iso/"] }, { path: "/services/iso/", indexable: true, links: ["/services/"] }, { path: "/old-services/", indexable: false, redirect: true }];
+  assert.deepEqual(auditInformationArchitecture({ pages, sitemapPaths: ["/", "/services/", "/services/iso/"], navigationPaths: ["/", "/services/"], breadcrumbPaths: ["/", "/services/"], redirects: { "/old-services/": "/services/" }, coreRoutes: ["/", "/services/"], routeFamilies: [{ prefix: "/services/" }] }), []);
 });
-
-test("detects missing sitemap pages and invalid navigation and breadcrumb targets", () => {
-  const issues = auditInformationArchitecture({
-    pages: [{ path: "/", indexable: true, links: [] }],
-    sitemapPaths: ["/ghost/"],
-    navigationPaths: ["/missing/"],
-    breadcrumbPaths: ["/missing/"],
-    coreRoutes: ["/"],
-  });
-  assert.ok(issues.some((issue) => issue.rule === "IA-002" && issue.message.includes("/")));
-  assert.ok(issues.some((issue) => issue.rule === "IA-003"));
-  assert.ok(issues.some((issue) => issue.rule === "IA-004"));
-  assert.ok(issues.some((issue) => issue.rule === "IA-005"));
+test("detects sitemap, navigation and breadcrumb inconsistencies", () => {
+  const issues = auditInformationArchitecture({ pages: [{ path: "/", indexable: true }], sitemapPaths: ["/ghost/"], navigationPaths: ["/missing/"], breadcrumbPaths: ["/missing/"], coreRoutes: ["/"] });
+  for (const rule of ["IA-003", "IA-004", "IA-005", "IA-006"]) assert.ok(issues.some((issue) => issue.rule === rule), `missing ${rule}`);
 });
-
-test("requires redirect stubs to stay out of the sitemap and resolve to indexable targets", () => {
-  const issues = auditInformationArchitecture({
-    pages: [
-      { path: "/", indexable: true, links: [] },
-      { path: "/old/", indexable: false, redirect: true, links: [] },
-    ],
-    sitemapPaths: ["/", "/old/"],
-    redirects: { "/old/": "/missing/" },
-    coreRoutes: ["/"],
-  });
-  assert.ok(issues.some((issue) => issue.rule === "IA-007"));
-  assert.ok(issues.some((issue) => issue.rule === "IA-008"));
+test("requires redirects to exist, target an indexable page, and stay out of sitemap", () => {
+  const issues = auditInformationArchitecture({ pages: [{ path: "/", indexable: true }, { path: "/old/", indexable: false, redirect: true }], sitemapPaths: ["/", "/old/"], redirects: { "/old/": "/missing/" }, coreRoutes: ["/"] });
+  for (const rule of ["IA-008", "IA-009"]) assert.ok(issues.some((issue) => issue.rule === rule), `missing ${rule}`);
 });
-
-test("reports orphan indexable pages as warnings rather than failing by default", () => {
-  const issues = auditInformationArchitecture({
-    pages: [{ path: "/", indexable: true, links: [] }, { path: "/isolated/", indexable: true, links: [] }],
-    sitemapPaths: ["/", "/isolated/"],
-    coreRoutes: ["/"],
-  });
-  assert.deepEqual(issues, [{
-    rule: "IA-009",
-    severity: "warning",
-    message: "Indexable page has no incoming internal links: /isolated/",
-  }]);
+test("reports orphan pages as warnings", () => {
+  const issues = auditInformationArchitecture({ pages: [{ path: "/", indexable: true }, { path: "/isolated/", indexable: true }], sitemapPaths: ["/", "/isolated/"], coreRoutes: ["/"] });
+  assert.deepEqual(issues, [{ rule: "IA-010", severity: "warning", message: "Indexable page has no incoming internal links: /isolated/" }]);
+});
+test("requires route-family ownership and canonical path agreement", () => {
+  const issues = auditInformationArchitecture({ pages: [{ path: "/", indexable: true }, { path: "/odd/nested/", indexable: true }, { path: "/services/old/", canonical: "/services/new/", indexable: true }], sitemapPaths: ["/", "/odd/nested/", "/services/new/"], coreRoutes: ["/"], routeFamilies: [{ prefix: "/services/" }] });
+  assert.ok(issues.some((issue) => issue.rule === "IA-011"));
+  assert.ok(issues.some((issue) => issue.rule === "IA-002"));
 });

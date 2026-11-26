@@ -20,7 +20,9 @@
     "audit:headings": "node scripts/audit-heading-hierarchy.mjs",
     "audit:ia": "node --import tsx scripts/audit-information-architecture.mjs",
     "validate:changed": "node --import tsx scripts/validate-changed-content.mjs",
-    "images:illustrations": "node scripts/convert-illustrations.mjs"
+    "images:illustrations": "node scripts/convert-illustrations.mjs",
+    "predev": "pnpm images:illustrations",
+    "prebuild": "pnpm images:illustrations"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.6",
