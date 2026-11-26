@@ -52,7 +52,7 @@ blocks:
         description: Gunakan kriteria organisasi untuk menentukan risiko yang perlu ditangani, siapa pemilik tindakan, kapan ditinjau, dan bukti apa yang diperlukan.
   - type: content-section
     id: 0003-contoh-perubahan-pemasok
-    title: Contoh Ilustratif: Perubahan Pemasok Bahan
+    title: "Contoh Ilustratif: Perubahan Pemasok Bahan"
     description: Misalkan pabrik mengganti pemasok bahan yang memiliki karakteristik kritis bagi proses. Risiko yang perlu ditinjau bukan sekadar "pemasok baru", tetapi kemungkinan bahan tidak memenuhi spesifikasi, metode pengujian penerimaan tidak mendeteksi variasi, atau parameter proses lama tidak cocok dengan karakteristik bahan baru. Tim dapat meninjau spesifikasi dan bukti pemasok, menentukan pemeriksaan penerimaan yang sesuai, melakukan uji coba terkendali bila diperlukan, serta menetapkan kriteria penerimaan sebelum perubahan digunakan secara rutin. Setelah implementasi, data hasil produksi dan ketidaksesuaian perlu ditinjau untuk memastikan kontrol bekerja. Ini contoh hipotetis; keputusan aktual harus berdasarkan spesifikasi produk, proses, dan bukti teknis organisasi.
   - type: content-section
     id: 0003-memilih-pengendalian
