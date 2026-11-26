@@ -5,7 +5,7 @@ import viteConfig from "./vite.config.mjs";
 import { contentValidationIntegration } from "./src/content-validation";
 import { getContentLastmod, normalizeSitemapLastmod } from "./src/lib/sitemap-lastmod.mjs";
 import { removeStubUrlsFromSitemapFiles } from "./src/lib/sitemap-stubs.mjs";
-import { siteSettings } from "./src/site";
+import { informationArchitecture } from "./src/data/information-architecture";
 
 const sitemapLastmodIntegration = {
   name: "sitemap-content-lastmod",
@@ -19,19 +19,12 @@ const sitemapLastmodIntegration = {
 };
 
 export default defineConfig({
-  site: siteSettings.url,
-  // Preserve the previous singular directory URL as a permanent redirect.
-  redirects: {
-    "/en/": "/",
-    "/service/": "/services/",
-    "/schedule/": "/schedules/",
-    "/hal-about-us/": "/about-us/",
-  },
+  site: "https://tnv-certification.com",
+  // Permanent redirects are shared with the information-architecture audit.
+  redirects: informationArchitecture.redirects,
   integrations: [
     contentValidationIntegration,
     sitemap({
-      // lastmod must trace to content publication/update metadata, never to
-      // the file system or build time. Content-backed routes set it explicitly.
       serialize(item) {
         const lastmod = getContentLastmod(new URL(item.url).pathname);
         if (lastmod) item.lastmod = new Date(lastmod);

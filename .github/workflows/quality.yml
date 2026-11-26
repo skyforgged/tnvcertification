@@ -1,18 +1,14 @@
 name: Quality gates
-
 on:
   pull_request:
     branches: [main]
   push:
     branches: [main]
-
 permissions:
   contents: read
-
 concurrency:
   group: quality-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
 jobs:
   validate:
     name: Validate and build
@@ -57,5 +53,7 @@ jobs:
         run: pnpm audit:page-images
       - name: SEO and link audit
         run: pnpm audit:seo
+      - name: Information architecture audit
+        run: pnpm audit:ia
       - name: Block section audit
         run: pnpm audit:blocks

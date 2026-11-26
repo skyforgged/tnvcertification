@@ -18,10 +18,9 @@
     "audit:blocks": "node scripts/audit-block-sections.mjs",
     "audit:page-images": "node scripts/audit-page-images.mjs",
     "audit:headings": "node scripts/audit-heading-hierarchy.mjs",
+    "audit:ia": "node --import tsx scripts/audit-information-architecture.mjs",
     "validate:changed": "node --import tsx scripts/validate-changed-content.mjs",
-    "images:illustrations": "node scripts/convert-illustrations.mjs",
-    "predev": "pnpm images:illustrations",
-    "prebuild": "pnpm images:illustrations"
+    "images:illustrations": "node scripts/convert-illustrations.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.6",
