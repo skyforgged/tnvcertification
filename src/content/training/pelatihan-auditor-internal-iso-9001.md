@@ -93,7 +93,7 @@ blocks:
     items:
       - title: Lihat jadwal pelatihan yang tersedia
         description: Periksa daftar jadwal dan status pendaftaran yang dipublikasikan.
-        href: "/schedules"
+        href: "/schedules/"
   - type: faq
     id: auditor-internal-iso-9001-faq
     surface: "cream"
