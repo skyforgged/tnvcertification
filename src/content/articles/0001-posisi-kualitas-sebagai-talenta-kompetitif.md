@@ -66,7 +66,7 @@ blocks:
   - type: content-section
     id: 0001-mengukur-kontribusi
     title: Bagaimana Kontribusi Kualitas Diukur?
-    description: Tidak ada satu indikator yang cocok untuk semua organisasi. Pilih ukuran yang terhubung dengan tujuan proses dan gunakan beberapa indikator agar peningkatan pada satu sisi tidak menyembunyikan masalah di sisi lain.
+    description: Tidak ada satu indikator yang cocok untuk semua organisasi. Pilih ukuran yang terhubung dengan tujuan proses dan gunakan beberapa indikator agar peningkatan pada satu sisi tidak menyembunyikan masalah di sisi lain. Setiap indikator harus memiliki definisi, sumber data, periode pengukuran, dan pemilik yang jelas. Hindari menilai profesional kualitas hanya dari jumlah temuan audit yang ditutup atau banyaknya dokumen yang dibuat.
     items:
       - title: Kinerja keluaran
         description: Tingkat produk sesuai sejak pertama, jumlah cacat, pekerjaan ulang, scrap, atau kegagalan layanan sesuai definisi organisasi.
@@ -75,9 +75,7 @@ blocks:
       - title: Efektivitas tindakan
         description: Waktu penyelesaian tindakan korektif, temuan berulang, dan bukti bahwa tindakan mengurangi penyebab masalah.
       - title: Kematangan proses
-        description: Konsistensi pelaksanaan pengendalian, ketepatan data, keterlibatan pemilik proses, dan tindak lanjut hasil audit.
-    description: Indikator harus memiliki definisi, sumber data, periode pengukuran, dan pemilik yang jelas. Hindari menilai profesional kualitas hanya dari jumlah temuan audit yang ditutup atau banyaknya dokumen yang dibuat.
-  - type: content-section
+        description: Konsistensi pelaksanaan pengendalian, ketepatan data, keterlibatan pemilik proses, dan tindak lanjut hasil audit.\n  - type: content-section
     id: 0001-peran-organisasi
     title: Dukungan Organisasi Menentukan Hasil
     description: Profesional kualitas tidak dapat menjaga mutu sendirian. Pimpinan perlu menetapkan arah dan prioritas, pemilik proses perlu bertanggung jawab atas hasil operasional, dan pekerja perlu memiliki kompetensi serta ruang untuk melaporkan masalah. Fungsi kualitas akan lebih efektif ketika dapat menyampaikan risiko secara objektif dan bekerja lintas fungsi tanpa mengambil alih akuntabilitas unit lain.
