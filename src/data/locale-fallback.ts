@@ -5,7 +5,7 @@
 import { getCollection } from "astro:content";
 import { buildEnglishFallbackPaths } from "../lib/locale-fallback";
 import { getPublishedArticles } from "./articles";
-import { routeOwnedPageSlugs } from "./pages";
+import { CSMS_TOPIC_PREFIX, routeOwnedPageSlugs } from "./pages";
 import { getPublishedServices } from "./services";
 
 export async function getEnglishFallbackPaths(): Promise<string[]> {
@@ -19,7 +19,7 @@ export async function getEnglishFallbackPaths(): Promise<string[]> {
 
   return buildEnglishFallbackPaths({
     pages: pages
-      .filter((entry) => !routeOwnedPageSlugs.includes(entry.data.slug))
+      .filter((entry) => !routeOwnedPageSlugs.includes(entry.data.slug) && !entry.data.slug.startsWith(CSMS_TOPIC_PREFIX))
       .map((entry) => entry.data),
     services: services.map((entry) => entry.data),
     articles,

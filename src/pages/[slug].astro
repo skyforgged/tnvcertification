@@ -4,13 +4,13 @@ import WidePageLayout from "../layouts/WidePageLayout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import PageHero from "../components/page/PageHero.astro";
 import PageBlockRenderer from "../components/page/PageBlockRenderer.astro";
-import { getPageHero, getPageBlocks, routeOwnedPageSlugs } from "../data/pages";
+import { CSMS_TOPIC_PREFIX, getPageHero, getPageBlocks, routeOwnedPageSlugs } from "../data/pages";
 import { siteCrumb } from "../data/breadcrumbs";
 
 export async function getStaticPaths() {
   const pages = await getCollection("pages", ({ data }) => data.draft !== true);
   return pages
-    .filter((entry) => !routeOwnedPageSlugs.includes(entry.data.slug))
+    .filter((entry) => !routeOwnedPageSlugs.includes(entry.data.slug) && !entry.data.slug.startsWith(CSMS_TOPIC_PREFIX))
     .map((entry) => ({ params: { slug: entry.data.slug }, props: { entry } }));
 }
 const { entry } = Astro.props;

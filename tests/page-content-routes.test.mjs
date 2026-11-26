@@ -50,3 +50,8 @@ test("generic route renders a frontmatter hero and blocks without a body", () =>
   assert.match(routes["generic slug"], /getPageBlocks\(entry\)/);
   assert.match(routes["generic slug"], /PageBlockRenderer/);
 });
+
+test("generic slug route excludes CSMS topics owned by the dedicated route", () => {
+  assert.match(routes["generic slug"], /CSMS_TOPIC_PREFIX/);
+  assert.match(routes["generic slug"], /startsWith\(CSMS_TOPIC_PREFIX\)/);
+});

@@ -3,6 +3,7 @@ import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 import { collectionRegistry } from "./data/collections";
 import { isSupportedLinkUrl } from "./lib/link-url";
+import { categoryEntryId } from "./lib/category-entry-id";
 
 /**
  * Shared image-object schema (single primary / optional gallery).
@@ -304,6 +305,7 @@ function collection<T extends z.ZodTypeAny>(name: keyof typeof collectionRegistr
     loader: glob({
       base: `./${collectionRegistry[name].dir}`,
       pattern: "**/*.{md,mdx}",
+      ...(name === "categories" ? { generateId: ({ entry }) => categoryEntryId(entry) } : {}),
     }),
     schema,
   });

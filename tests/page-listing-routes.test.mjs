@@ -64,3 +64,9 @@ for (const [name, slug] of Object.entries(entrySlugs)) {
     assert.match(sources[name], new RegExp(`getPageEntry\\("${slug}"\\)`));
   });
 }
+
+test("English fallback excludes CSMS topic routes owned by the dedicated route", async () => {
+  const source = await readFile(new URL("../src/data/locale-fallback.ts", import.meta.url), "utf8");
+  assert.match(source, /CSMS_TOPIC_PREFIX/);
+  assert.match(source, /startsWith\(CSMS_TOPIC_PREFIX\)/);
+});
