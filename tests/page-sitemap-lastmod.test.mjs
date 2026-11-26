@@ -16,6 +16,6 @@ test("other page entries keep their own lastmod", () => {
 test("training detail lastmod comes from the training entry", () => {
   assert.equal(
     getContentLastmod("/trainings/pelatihan-auditor-internal-iso-9001/"),
-    "2026-11-23T00:00:00Z",
+    "2026-11-26T00:00:00Z",
   );
 });
