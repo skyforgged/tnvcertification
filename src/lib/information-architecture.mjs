@@ -22,7 +22,7 @@ export function auditInformationArchitecture({ pages, sitemapPaths, navigationPa
   for (const route of indexable) if (!sitemap.has(route)) issues.push({ rule: "IA-003", severity: "error", message: `Indexable page is missing from sitemap: ${route}` });
   for (const route of sitemap) if (!indexable.has(route)) issues.push({ rule: "IA-004", severity: "error", message: `Sitemap contains a missing, redirected, or noindex route: ${route}` });
   for (const route of navigationPaths) if (!indexable.has(normalizeRoutePath(route))) issues.push({ rule: "IA-005", severity: "error", message: `Navigation target is not an indexable canonical page: ${route}` });
-  for (const route of breadcrumbPaths) if (!indexable.has(normalizeRoutePath(route))) issues.push({ rule: "IA-006", severity: "error", message: `Breadcrumb target is not an indexable canonical page: ${route}`);
+  for (const route of breadcrumbPaths) if (!indexable.has(normalizeRoutePath(route))) issues.push({ rule: "IA-006", severity: "error", message: `Breadcrumb target is not an indexable canonical page: ${route}` });
   for (const [from, to] of Object.entries(redirects)) {
     const source = normalizeRoutePath(from), target = normalizeRoutePath(to);
     if (!byPath.get(source)?.redirect) issues.push({ rule: "IA-007", severity: "error", message: `Configured redirect has no generated redirect page: ${from}` });
